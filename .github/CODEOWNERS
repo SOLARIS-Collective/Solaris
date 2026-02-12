@@ -7,13 +7,13 @@
 # TEAMS
 
 # Map Maintainers
-/_maps/ @pentestss13/maptainers
+/_maps/ @MrCat15352
 
 # Sprite Maintainers
-/icons/ @pentestss13/spritetainers
+/icons/ @MrCat15352
 
 # CI and tool chains
-/tools/ @pentestss13/admins
+/tools/ @MrCat15352
 
 
 
@@ -21,9 +21,9 @@
 
 # Constellado
 
-/config/ @Constellado
-/data/ @Constellado
-/SQL/ @Constellado
+/config/ @MrCat15352
+/data/ @MrCat15352
+/SQL/ @MrCat15352
 
 # CONTRIBUTORS
 
@@ -32,4 +32,4 @@
 
 
 # ALL CHANGES
-* @Ossa88 @Constellado
+* @MrCat15352
