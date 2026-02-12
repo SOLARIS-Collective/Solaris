@@ -1,16 +1,17 @@
 {
 	"$schema": "https://raw.githubusercontent.com/PentestSS13/Pentest/master/_maps/ship_config_schema.json",
-	"map_name": "Beluga-class Transport",
+	"map_name": "Beluga-class Luxury Transport",
 	"map_short_name": "Beluga-class",
 	"map_path": "_maps/PentestMaps/Shuttles/independent/independent_beluga.dmm",
 	"faction": "/datum/faction/independent",
 	"prefix": "SV",
-	"manufacturer": "UNKNOWN",
-	"description": "The Beluga-class is a transport vessel for those with especially rich blood. Featuring a modest kitchen, hired Inteq security, and luxurious decoration, the Beluga is a first choice pick for many wealthy spacers trying to get from point A to B. The independent ship features several rooms for its guests and a well furnished meeting room for any corporate occassion.",
+	"manufacturer": "Ihejirika Civ. Manufacturing",
+	"description": "The Beluga-class is a transport vessel manufactured by Iherjirika Civilian Manufacturing; it is meant to compete with ISF Spacecraft in the premium luxury market and has gone through rigorous quality testing. The Beluga-class promises privacy and security as you travel in the lap of luxury. Contracted Inteq security officers are there to protect the passengers and crew, and a resident doctor is on call in case of medical emergency. The Beluga-class also features a fully-stocked bar, quiet study space, private rooms, and even a functional telecomms unit to meet the needs of the spacefaring, working professional. It is thus easy to see why so many choose the peace of mind that the Beluga-class offers when making their travel arrangements.",
 	"tags": [
 		"RP Focus",
 		"Riot",
-		"Service"
+		"Service",
+		"Generalist"
 	],
 	"namelists": [
 		"CRUISE",
@@ -47,18 +48,22 @@
 			"outfit": "/datum/outfit/job/independent/janitor",
 			"slots": 1
 		},
+		"Doctor": {
+			"outfit": "/datum/outfit/job/independent/doctor",
+			"slots": 1
+		},
 		"Assistant": {
 			"outfit": "/datum/outfit/job/independent/assistant",
-			"slots": 2
+			"slots": 1
 		}
 	},
-	"limit": 2,
+	"limit": 1,
 	"starting_funds": 4000,
 	"enabled": true,
 	"space_spawn": false,
 
 	"architect": "spockye",
 	"contributors": [
-		"No Contributors"
+		"FSlashN"
 	]
 }
