@@ -1,0 +1,4 @@
+author: "Frenjo"
+delete-after: True
+changes:
+  - rscadd: "Remastered Swarmer mob sprites for consistent shading and alpha values across variants and colours."
