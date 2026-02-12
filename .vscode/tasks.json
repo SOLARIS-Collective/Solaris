@@ -2,10 +2,10 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
-			"type": "process",
+			"type": "shell",
 			"command": "tools/build/build",
 			"windows": {
-				"command": ".\\tools\\build\\build.bat"
+				"command": "node --experimental-modules .\\tools\\build\\build.js"
 			},
 			"options": {
 				"env": {
