@@ -29,6 +29,9 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/client/proc/revokebunkerbypass,
 	/client/proc/requests,
 	/client/proc/fax_panel, /*send a paper to fax*/
+	/client/proc/show_all_verbs,				// [CELADON-ADD] - ADMIN-PANEL - Black Reality
+	/client/proc/manage_chatfilter,				// [CELADON-ADD] - BRAINDEAD-SYSTEM
+	/client/proc/toggle_chatfilter_hardcore,	// [CELADON-ADD] - BRAINDEAD-SYSTEM
 	)
 GLOBAL_LIST_INIT(admin_verbs_admin, world.AVerbsAdmin())
 GLOBAL_PROTECT(admin_verbs_admin)
@@ -38,11 +41,12 @@ GLOBAL_PROTECT(admin_verbs_admin)
 //	/datum/admins/proc/show_traitor_panel,	/*interface which shows a mob's mind*/ -Removed due to rare practical use. Moved to debug verbs ~Errorage
 	/datum/admins/proc/show_player_panel,	/*shows an interface for individual players, with various links (links require additional flags)*/
 	/datum/admins/proc/show_lag_switch_panel,
-	/datum/verbs/menu/Admin/verb/playerpanel,
+	/datum/verbs/Admin/verb/playerpanel,	// [CELADON-EDIT] - ADMIN-PANEL - НЕ МЕНЯТЬ ЭТО: /menu/
 	/client/proc/game_panel,			/*game panel, allows to change game-mode etc*/
 	/client/proc/check_ai_laws,			/*shows AI and borg laws*/
 	/datum/admins/proc/toggleooc,		/*toggles ooc on/off for everyone*/
 	/datum/admins/proc/toggleooclocal,	/*toggles looc on/off for everyone*/
+	/datum/admins/proc/toggledeadchat,	/*toggles deadchat on/off for everyone*/
 	/datum/admins/proc/toggleoocdead,	/*toggles ooc on/off for everyone who is dead*/
 	/datum/admins/proc/toggleenter,		/*toggles whether people can join the current game*/
 	/client/proc/toggle_ship_spawn, /* toggles players spawning ships via the join menu / shuttle creators */
@@ -138,9 +142,6 @@ GLOBAL_LIST_INIT(admin_verbs_spawn, list(
 	/client/proc/spawn_outpost, /* Allows admins to spawn a new outpost. */
 	/client/proc/spawn_overmap,
 	/client/proc/spawn_jump_point,
-	/client/proc/view_dead_players, // PENTEST ADDITION - View death records
-	/client/proc/test_gib_restoration, // PENTEST ADDITION - Test death recording
-	/client/proc/check_ckey_status, // PENTEST ADDITION - Check if a ckey is connected
 	))
 GLOBAL_PROTECT(admin_verbs_spawn)
 GLOBAL_LIST_INIT(admin_verbs_server, world.AVerbsServer())
@@ -201,7 +202,6 @@ GLOBAL_PROTECT(admin_verbs_debug)
 	/client/proc/map_template_upload,
 	/client/proc/jump_to_ruin,
 	/client/proc/fucky_wucky,
-	/client/proc/spooderman, /* Spooderman is a fun admin verb that plays a sound and shows an image to all players */
 	/client/proc/view_runtimes,
 	/client/proc/pump_random_event,
 	/client/proc/reload_configuration,
@@ -220,12 +220,7 @@ GLOBAL_PROTECT(admin_verbs_debug)
 	/datum/admins/proc/overmap_view, /* Opens HTML overmap viewer UI */
 	/client/proc/toggle_AI_interact, /*toggle admin ability to interact with machines as an AI*/
 	/client/proc/toggle_cdn,
-	/datum/admins/proc/delete_all_missions,
 	/client/proc/cmd_admin_toggle_fov,
-	/client/proc/toggle_breeding_debug,
-	/client/proc/test_custom_pets,
-	/client/proc/test_random_pet_selection,
-	/client/proc/spawn_random_custom_pet,
 	)
 GLOBAL_LIST_INIT(admin_verbs_possess, list(/proc/possess, /proc/release))
 GLOBAL_PROTECT(admin_verbs_possess)
@@ -396,6 +391,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 			return FALSE
 		if(!ghost.can_reenter_corpse)
 			log_admin("[key_name(usr)] re-entered corpse")
+			log_mankind_admin("ADMIN: [key_name(usr)] re-entered corpse") // [CELADON-ADD] - logging admin actions.
 			message_admins("[key_name_admin(usr)] re-entered corpse")
 		ghost.can_reenter_corpse = 1 //force re-entering even when otherwise not possible
 		ghost.reenter_corpse()
@@ -406,8 +402,10 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	else
 		//ghostize
 		log_admin("[key_name(usr)] admin ghosted.")
+		log_mankind_admin("ADMIN: [key_name(usr)] admin ghosted.") // [CELADON-ADD] - logging admin actions.
 		message_admins("[key_name_admin(usr)] admin ghosted.")
-		var/mob/body = mob
+		var/mob/living/body = mob
+		body.ignore_SSD = TRUE
 		body.ghostize(1)
 		init_verbs()
 		if(body && !body.key)
@@ -419,14 +417,24 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	set category = "Admin.Game"
 	set desc = "Toggles ghost-like invisibility (Don't abuse this)"
 	if(holder && mob)
-		if(mob.invisibility == INVISIBILITY_INVINISMIN)
-			mob.invisibility = initial(mob.invisibility)
-			mob.remove_from_all_data_huds()
-			to_chat(mob, span_boldannounce("Invisimin off. Invisibility reset."), confidential = TRUE)
+		// [CELADON-EDIT] - Оффовский извиз видно на худах. Вводим экстренное решение.
+		// if(mob.invisibility == INVISIBILITY_INVINISMIN)
+		// 	mob.invisibility = initial(mob.invisibility)
+		// 	mob.remove_from_all_data_huds()
+		// 	to_chat(mob, span_boldannounce("Invisimin off. Invisibility reset."), confidential = TRUE)
+		// else
+		// 	mob.invisibility = INVISIBILITY_INVINISMIN
+		// 	mob.add_to_all_human_data_huds()
+		// 	to_chat(mob, span_adminnotice("<b>Invisimin on. You are now as invisible as a ghost.</b>"), confidential = TRUE)
+		if(mob.alpha != 0)
+			mob.alpha = 0
+			mob.mouse_opacity = 0
+			to_chat(mob, span_adminnotice("<b>\[Invisibility_ON] Ваше тело растворяется в пустоту. Ваша активность видна лишь в Orbit.</b>"), confidential = TRUE)
 		else
-			mob.invisibility = INVISIBILITY_INVINISMIN
-			mob.add_to_all_human_data_huds()
-			to_chat(mob, span_adminnotice("<b>Invisimin on. You are now as invisible as a ghost.</b>"), confidential = TRUE)
+			mob.alpha = 255
+			mob.mouse_opacity = 1
+			to_chat(mob, span_adminnotice("<b>\[Invisibility_OFF] Ваше тело снова видно органическим формам жизни.</b>"), confidential = TRUE)
+		// [/CELADON-EDIT]
 
 /client/proc/check_antagonists()
 	set name = "Check Antagonists"
@@ -560,6 +568,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 			explosion(epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, TRUE, TRUE)
 	message_admins("[ADMIN_LOOKUPFLW(usr)] creating an admin explosion at [epicenter.loc].")
 	log_admin("[key_name(usr)] created an admin explosion at [epicenter.loc].")
+	log_mankind_admin("ADMIN: [key_name(usr)] created an admin explosion at [epicenter.loc].") // [CELADON-ADD] - logging admin actions.
 	BLACKBOX_LOG_ADMIN_VERB("Drop Bomb")
 
 /client/proc/drop_dynex_bomb()
@@ -573,6 +582,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 		dyn_explosion(epicenter, ex_power)
 		message_admins("[ADMIN_LOOKUPFLW(usr)] creating an admin explosion at [epicenter.loc].")
 		log_admin("[key_name(usr)] created an admin explosion at [epicenter.loc].")
+		log_mankind_admin("ADMIN: [key_name(usr)] created an admin explosion at [epicenter.loc].") // [CELADON-ADD] - logging admin actions.
 		BLACKBOX_LOG_ADMIN_VERB("Drop Dynamic Bomb")
 
 /client/proc/get_dynex_range()
@@ -800,3 +810,79 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 
 	var/datum/admins/admin = GLOB.admin_datums[ckey]
 	admin?.associate(src)
+
+// [CELADON-ADD] - ADMIN-PANEL - Black Reality
+/client/proc/show_all_verbs()
+	set category = "Admin"
+	set name = "Admin Panel 📋"
+
+	if(!holder)
+		return
+
+	admin_menu = new(usr)
+	admin_menu.ui_interact(usr)
+
+/datum/admin_menu
+	var/client/holder
+	var/compact_mode = FALSE
+
+/datum/admin_menu/New(user)
+	if (istype(user, /client))
+		var/client/user_client = user
+		holder = user_client
+	else
+		var/mob/user_mob = user
+		holder = user_mob.client
+
+/datum/admin_menu/ui_state(mob/user)
+	return GLOB.admin_state
+
+/datum/admin_menu/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "AdminVerbs")
+		ui.open()
+
+/datum/admin_menu/ui_data(mob/user)
+	var/list/data = list()
+	data["compactMode"] = compact_mode
+	return data
+
+/datum/admin_menu/ui_static_data(mob/user)
+	var/list/temp_data = list()
+	for(var/procpath/cur_verb as anything in holder.verbs)
+		if(!cur_verb.category)
+			continue
+		if(!temp_data[cur_verb.category])
+			temp_data[cur_verb.category] = list()
+		temp_data[cur_verb.category] += list(list("verb" = "[cur_verb]", "name" = cur_verb.name, "desc" = cur_verb.desc))
+
+	var/list/tgui_data = list()
+	for(var/category in temp_data)
+		var/list/cat = list(
+			"name" = category,
+			"items" = temp_data[category])
+		tgui_data["categories"] += list(cat)
+
+	LAZYADDASSOCLIST(tgui_data, "categories", list("name" = "История", "items" = reverseList(holder.last_verbs_used)))
+	return tgui_data
+
+/datum/admin_menu/ui_act(action, params)
+	. = ..()
+	if(.)
+		return
+
+	switch(action)
+		if("compact_toggle")
+			compact_mode = !compact_mode
+			return TRUE
+
+	if(!check_rights(R_ADMIN) || action != "run")
+		return
+
+	INVOKE_ASYNC(holder, text2path(params["verb"]))
+
+	LAZYADD(holder.last_verbs_used, list(list("verb" = params["verb"], "name" = params["name"], "desc" = params["desc"])))
+
+	SStgui.close_uis(usr)
+// [/CELADON-ADD]

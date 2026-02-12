@@ -1,0 +1,8 @@
+#ifndef MODPACK_MANKIND_LANIUS
+#define MODPACK_MANKIND_LANIUS
+
+#include "code/bodyparts.dm"
+#include "code/food.dm"
+#include "code/lanius.dm"
+
+#endif

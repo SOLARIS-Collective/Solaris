@@ -1,0 +1,9 @@
+#ifndef MODPACK_MANKIND_PAPERWORK
+#define MODPACK_MANKIND_PAPERWORK
+
+#include "_paperwork.dm"
+
+#include "code/papershredder.dm"
+#include "code/papers.dm"
+
+#endif

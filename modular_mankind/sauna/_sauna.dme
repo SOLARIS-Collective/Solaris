@@ -1,0 +1,8 @@
+#ifndef MODPACK_MANKIND_SAUNA
+#define MODPACK_MANKIND_SAUNA
+
+#include "_sauna.dm"
+
+#include "code/sauna_oven.dm"
+
+#endif

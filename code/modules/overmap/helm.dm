@@ -203,6 +203,24 @@
 		return
 
 	.["calibrating"] = calibrating
+	// [MANKIND-ADD] - MANKIND_OVERMAP_ARPA - Это вагабонд насрал
+	.["arpa_ships"] = list()
+	var/list/arpobjects = current_ship.check_proximity()
+	var/arpdequeue_pointer = 0
+	while (arpdequeue_pointer++ < arpobjects.len)
+		var/datum/overmap/ship/controlled/object = arpobjects[arpdequeue_pointer]
+		if(!istype(object, /datum/overmap/ship/controlled)) //Not an overmap object, ignore this
+			continue
+
+		var/list/cpa_list = calculate_cpa(current_ship, object, TRUE)
+		var/list/other_data = list(
+			name = object.name,
+			brg = cpa_list["brg"],
+			cpa = cpa_list["cpa"],
+			tcpa = cpa_list["tcpa"]
+		)
+		.["arpa_ships"] += list(other_data)
+	// [/MANKIND-ADD]
 	.["canRename"] = COOLDOWN_FINISHED(current_ship, rename_cooldown)
 	.["otherInfo"] = list()
 	var/list/objects = current_ship.get_nearby_overmap_objects(empty_if_src_docked = FALSE)
@@ -238,6 +256,12 @@
 	.["y"] = current_ship.y || current_ship.docked_to.y
 	.["docking"] = current_ship.docking
 	.["docked"] = current_ship.docked_to
+	// [MANKIND-EDIT] - MANKIND_OVERMAP_ARPA - Это вагабонд насрал
+	// .["heading"] = dir2text(current_ship.get_heading()) || "None"
+	.["course"] = "[current_ship.get_alt_heading()]°"
+	.["heading"] = "[current_ship.bow_heading]°"
+	// [/MANKIND-EDIT]
+	// .["heading"] = dir2text(current_ship.get_heading()) || "None"	// КОД JOPA
 	.["heading"] = dir2text(current_ship.get_heading()) || "None"
 	.["sector"] = current_ship.current_overmap.name
 	.["speed"] = current_ship.get_speed()
@@ -247,6 +271,9 @@
 	.["aiControls"] = allow_ai_control
 	.["burnDirection"] = current_ship.burn_direction
 	.["burnPercentage"] = current_ship.burn_percentage
+	// [MANKIND-ADD] - MANKIND_OVERMAP_ARPA - Это вагабонд насрал
+	.["rotating"] = current_ship.rotating
+	// [/MANKIND-ADD]
 	for(var/datum/weakref/engine in current_ship.shuttle_port.engine_list)
 		var/obj/machinery/power/shuttle/engine/real_engine = engine.resolve()
 		if(!real_engine)
@@ -270,6 +297,16 @@
 				ref = REF(engine)
 			)
 		.["engineInfo"] += list(engine_data)
+	// [MANKIND-ADD] - subshuttles fix
+	.["motheroutpost"] = null
+	.["issubshuttle"] = null
+	if(current_ship.source_template.parent_type == /datum/map_template/shuttle/subshuttles)
+		.["issubshuttle"] = "true"
+		current_ship.sensor_range = 2
+		var/datum/overmap/parent_ship = current_ship.docked_to
+		if(parent_ship && parent_ship.docked_to && istype(parent_ship.docked_to.parent_type, /datum/overmap/outpost))
+			.["motheroutpost"] = "true"
+	// [/MANKIND-ADD] - subshuttles fix
 
 /obj/machinery/computer/helm/ui_static_data(mob/user)
 	. = list()
@@ -280,7 +317,10 @@
 		prefixed = current_ship.name,
 		class = current_ship.source_template.name,
 		mass = current_ship.shuttle_port.turf_count,
-		sensor_range = 4
+		// [MANKIND-EDIT] MANKIND_OVERMAP_ARPA - Вага бля
+		// sensor_range = 4
+		sensor_range = current_ship.sensor_range
+		// [/MANKIND-EDIT]
 	)
 	.["canFly"] = TRUE
 	.["aiUser"] = issilicon(user)
@@ -298,6 +338,20 @@
 	. = TRUE
 
 	switch(action) // Universal topics
+		// [MANKIND-ADD] - MANKIND_OVERMAP_STUFF - Это вагабонд насрал
+		if("sensor_increase")
+			//овермап сенсорс максимальная дальность апдейт
+			current_ship.sensor_range = min(current_ship.default_sensor_range, current_ship.sensor_range+1)
+			//овермап сенсорс максимальная дальность апдейт конец
+			update_static_data(usr, ui)
+			current_ship.token.update_screen()
+			return
+		if("sensor_decrease")
+			current_ship.sensor_range = max(1, current_ship.sensor_range-1)
+			update_static_data(usr, ui)
+			current_ship.token.update_screen()
+			return
+		// [/MANKIND-ADD]
 		if("rename_ship")
 			var/new_name = params["newName"]
 			if(!new_name)
@@ -329,6 +383,21 @@
 			allow_ai_control = !allow_ai_control
 			say(allow_ai_control ? "AI Control has been enabled." : "AI Control is now disabled.")
 			return
+		// [MANKIND-ADD] - Signal S.O.S. - modular_mankind\wideband\code\signal.dm
+		if("send_sos")
+			if(!current_ship.SendSos(name = "[current_ship.name]", x = "[current_ship.x || current_ship.docked_to.x]", y = "[current_ship.y || current_ship.docked_to.y]"))
+				if(COOLDOWN_TIMELEFT(current_ship, sendsos_cooldown)/10 != 0)
+					say("Error: [COOLDOWN_TIMELEFT(current_ship, sendsos_cooldown)/10] секунд до заряда сигнала S.O.S.")
+				return
+			current_ship.SendSos(name = "[current_ship.name]", x = "[current_ship.x || current_ship.docked_to.x]", y = "[current_ship.y || current_ship.docked_to.y]")
+			return
+		if("hail")
+			var/datum/overmap/to_hail = locate(params["ship_to_act"]) in current_ship.get_nearby_overmap_objects(include_docked = TRUE, empty_if_src_docked = FALSE)
+			var/feedback_text = current_ship.show_hail_menu(usr, to_hail)
+			if(feedback_text)
+				say(feedback_text)
+			return
+		// [/MANKIND-ADD]
 		if("act_overmap")
 			if(SSshuttle.jump_mode > BS_JUMP_CALLED)
 				to_chat(usr, "<span class='warning'>Cannot interact due to bluespace jump preperations!</span>")
@@ -360,6 +429,23 @@
 
 	if(!current_ship.docked_to && !current_ship.docking)
 		switch(action)
+			// [MANKIND-ADD] - MANKIND_OVERMAP_STUFF - Это вагабонд насрал
+			if("rotate_left")
+				if(current_ship.rotating == -1)
+					current_ship.rotating = 0
+					current_ship.rotation_velocity = 0
+				else
+					current_ship.rotating = -1
+				return
+			if("rotate_right")
+				if(current_ship.rotating == 1)
+					current_ship.rotating = 0
+					current_ship.rotation_velocity = 0
+				else
+					current_ship.rotating = 1
+				return
+			// [/MANKIND-ADD]
+			// if("act_overmap")		// КОД JOPA
 			if("quick_dock")
 				if(SSshuttle.jump_mode > BS_JUMP_CALLED)
 					to_chat(usr, span_warning("Cannot dock due to bluespace jump preperations!"))

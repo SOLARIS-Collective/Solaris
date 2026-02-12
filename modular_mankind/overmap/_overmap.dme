@@ -1,0 +1,8 @@
+#ifndef MODPACK_MANKIND_OVERMAP
+#define MODPACK_MANKIND_OVERMAP
+
+#include "_overmap.dm"
+
+#include "code/overmap.dm"
+
+#endif

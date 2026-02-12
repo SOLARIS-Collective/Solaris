@@ -1,0 +1,8 @@
+#ifndef MODPACK_MANKIND_STAMPS
+#define MODPACK_MANKIND_STAMPS
+
+#include "_stamps.dm"
+
+#include "code/stamps.dm"
+
+#endif

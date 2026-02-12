@@ -16,6 +16,11 @@
 #define BLOCK_Z_IN_UP (1<<12) //! Should this object block z uprise from below?
 #define INFINITE_RESKIN (1<<13) // We can reskin this item infinitely
 #define ELEVATED_SURFACE (1<<14) // Should this object prevent open flames left on it from igniting the ground?
+// [CELADON-ADD] - CELADON_STRUCTURES - Барикады
+#define IGNORE_DENSITY (1<<15) 				//! Can we ignore density when building on this object? (for example, directional windows and grilles)
+#define BLOCKS_CONSTRUCTION (1<<16) 				//! Does this object prevent things from being built on it?
+#define BLOCKS_CONSTRUCTION_DIR (1<<17)					//! Does this object prevent same-direction things from being built on it?
+// [/CELADON-ADD]
 
 
 // If you add new ones, be sure to add them to /obj/Initialize as well for complete mapping support
@@ -37,6 +42,12 @@
 #define EYE_STAB (1<<13) /// Item can be used to eyestab
 #define NO_PIXEL_RANDOM_DROP (1<<14) //if dropped, it wont have a randomized pixel_x/pixel_y
 #define HAND_ITEM (1<<15) /// If an item is just your hand (circled hand, slapper) and shouldn't block things like riding
+
+// [CELADON-ADD]
+/// Является ли данный предмет семейной ценностью (family heirloom)
+#define FAMILY_HEIRLOOM	(1<<16) //выбор вещей из лодаута как family heirloom
+#define NO_ROTATE_RANDOM_THROW (1<<17) //if throwed, it wont have a randomized transform
+// [/CELADON-ADD]
 
 // Flags for the clothing_flags var on /obj/item/clothing
 

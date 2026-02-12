@@ -1,0 +1,8 @@
+#ifndef MODPACK_MANKIND_ELYSIUMPOD
+#define MODPACK_MANKIND_ELYSIUMPOD
+
+#include "_elysiumpod.dm"
+
+#include "code/elysiumpod.dm"
+
+#endif

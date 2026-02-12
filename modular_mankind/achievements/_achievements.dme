@@ -1,0 +1,8 @@
+#ifndef MODPACK_MANKIND_ACHIEVEMENTS
+#define MODPACK_MANKIND_ACHIEVEMENTS
+
+#include "_achievements.dm"
+
+#include "code/theinnerhell.dm"
+
+#endif

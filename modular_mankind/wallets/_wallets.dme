@@ -1,0 +1,8 @@
+#ifndef MODPACK_MANKIND_WALLETS
+#define MODPACK_MANKIND_WALLETS
+
+#include "_wallets.dm"
+
+#include "code/wallets.dm"
+
+#endif

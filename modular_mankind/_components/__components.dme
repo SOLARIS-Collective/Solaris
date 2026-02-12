@@ -1,0 +1,26 @@
+#ifndef MODPACK_MANKIND_COMPONENTS
+#define MODPACK_MANKIND_COMPONENTS
+
+#include "__components.dm"
+
+// Вводит в игру глобальные параметры
+#include "code/_globalvars/chat.dm"
+#include "code/chat_settings_panel.dm"
+
+// Добавляет компонент, отвечающий за удаление атомов.
+#include "code/datum/fancy_deletion_timer.dm"
+#include "code/datum/meteorcarp.dm"
+
+// Изменения корня датумов
+#include "code/datum/species.dm"
+
+// Задание переменной начального значения
+#include "code/mob/living.dm"
+
+// Оутфиты для ролей // Префиксы для кораблей ищи в дефайнах ~mod_mankind/names.dm
+#include "code/_outfits.dm"
+
+// MANKIND_DONATE - Добавляет систему донатных тиров.
+#include"code/donate.dm"
+
+#endif

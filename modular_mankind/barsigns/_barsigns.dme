@@ -1,0 +1,8 @@
+#ifndef MODPACK_MANKIND_BARSIGNS
+#define MODPACK_MANKIND_BARSIGNS
+
+#include "_barsigns.dm"
+
+#include "code/barsigns.dm"
+
+#endif

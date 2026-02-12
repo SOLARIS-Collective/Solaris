@@ -1,0 +1,9 @@
+#ifndef MODPACK_MANKIND_TURRETS
+#define MODPACK_MANKIND_TURRETS
+
+#include "_turrets.dm"
+
+#include "code/turrets.dm"
+#include "code/bullets.dm"
+
+#endif

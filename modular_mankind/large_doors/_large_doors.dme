@@ -1,0 +1,8 @@
+#ifndef MODPACK_MANKIND_LARGE_DOORS
+#define MODPACK_MANKIND_LARGE_DOORS
+
+#include "_large_doors.dm"
+
+#include "code/large_doors.dm"
+
+#endif

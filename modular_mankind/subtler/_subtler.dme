@@ -1,0 +1,8 @@
+#ifndef MODPACK_MANKIND_SUBTLER
+#define MODPACK_MANKIND_SUBTLER
+
+#include "_subtler.dm"
+
+#include "code/subtler.dm"
+
+#endif

@@ -1,0 +1,10 @@
+#ifndef MODPACK_MANKIND_DRAKEBORGS
+#define MODPACK_MANKIND_DRAKEBORGS
+
+#include "_drakeborgs.dm"
+
+#include "code/newforrobots.dm"
+#include "code/drake_modules.dm"
+#include "code/rnd.dm"
+
+#endif

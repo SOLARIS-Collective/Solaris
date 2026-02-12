@@ -148,6 +148,11 @@
 #define BODYTYPE_DIGITIGRADE (1<<6) //Lizard legs
 #define BODYTYPE_KEPORI (1<<7) //Just Kepori
 #define BODYTYPE_VOX (1<<8) //Big Vox
+// [CELADON-ADD] - TAJARA
+#define BODYTYPE_TAJARA (1<<9) //Fluffy Ass
+// [CELADON-ADD] - RIOL
+#define BODYTYPE_RIOL (1<<10)
+// [/CELADON-ADD]
 
 // Health/damage defines
 #define MAX_LIVING_HEALTH 100
@@ -359,6 +364,7 @@
 #define AGE_MIN 18 //youngest a character can be
 #define AGE_MAX 85 //oldest a character can be
 #define AGE_MINOR 20 //legal age of space drinking and smoking
+#define AGE_DRINKING 20 //legal age of space drinking and smoking
 #define WIZARD_AGE_MIN 30 //youngest a wizard can be
 #define APPRENTICE_AGE_MIN 29 //youngest an apprentice can be
 #define SHOES_SLOWDOWN 0 //How much shoes slow you down by default. Negative values speed you up
@@ -385,7 +391,10 @@
 
 // Roundstart trait system
 
-#define MAX_QUIRKS 4 //The maximum amount of quirks one character can have at roundstart
+// [CELADON-EDIT] - CELADON_RETURN_CONTENT_QUIRKS
+// #define MAX_QUIRKS 4  // CELADON-EDIT - ORIGINAL
+#define MAX_QUIRKS 6 //The maximum amount of quirks one character can have at roundstart
+// [/CELADON-EDIT]
 
 // AI Toggles
 #define AI_CAMERA_LUMINOSITY 5

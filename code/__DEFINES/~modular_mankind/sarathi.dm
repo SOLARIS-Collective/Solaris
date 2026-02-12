@@ -1,0 +1,5 @@
+#define SARATHI_SNOUTED_MASK_PATH 'modular_mankind/_storage_icons/icons/resprite/species/mask_snouted.dmi'
+#define SARATHI_SNOUTED_HELM_PATH 'modular_mankind/_storage_icons/icons/resprite/species/helms_snouted.dmi'
+#define SARATHI_DIGITIGRADE_SUIT_PATH 'modular_mankind/_storage_icons/icons/resprite/species/digitigrade_suit.dmi'
+#define SARATHI_DIGITIGRADE_BOOTS_PATH 'modular_mankind/_storage_icons/icons/resprite/species/digitigrade_boots.dmi'
+#define SARATHI_DIGITIGRADE_UNDER_PATH 'modular_mankind/_storage_icons/icons/resprite/species/digitigrade_under.dmi'

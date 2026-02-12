@@ -33,6 +33,7 @@
 		return
 
 	log_admin("[key_name(usr)] checked the individual player panel for [key_name(M)][isobserver(usr)?"":" while in game"].")
+	log_mankind_admin("ADMIN: [key_name(usr)] checked the individual player panel for [key_name(M)][isobserver(usr)?"":" while in game"].")
 
 	if(!M)
 		to_chat(usr, span_warning("You seem to be selecting a mob that doesn't exist anymore."), confidential = TRUE)
@@ -45,81 +46,6 @@
 		body += "<A href='byond://?_src_=holder;[HrefToken()];editrights=[(GLOB.admin_datums[M.client.ckey] || GLOB.deadmins[M.client.ckey]) ? "rank" : "add"];key=[M.key]'>[M.client.holder ? M.client.holder.rank : "Player"]</A>"
 		if(CONFIG_GET(flag/use_exp_tracking))
 			body += "<A href='byond://?_src_=holder;[HrefToken()];getplaytimewindow=[REF(M)]'>" + M.client.get_exp_living(FALSE) + "</a>"
-	else if(M.ckey)
-		// For mobs without clients (dead bodies, etc), still show the ckey info
-		body += " (ckey: <b>[M.ckey]</b>)"
-
-	// PENTEST ADDITION - Show death record status if available
-	var/target_ckey = M.ckey || M.client?.ckey
-
-	// If no ckey on mob, try to find it from death records by checking this mob reference
-	if(!target_ckey)
-		for(var/datum/death_restoration_record/record in GLOB.death_restoration_registry)
-			if(record.original_mob_ref == M)
-				target_ckey = record.player_ckey
-				body += " (ckey: <b>[target_ckey]</b> from death record)"
-				break
-
-	if(target_ckey)
-		// First check if THIS specific mob has a death record (using mob reference only)
-		var/datum/death_restoration_record/this_mob_record = null
-		for(var/datum/death_restoration_record/record in GLOB.death_restoration_registry)
-			if(record.original_mob_ref == M)
-				this_mob_record = record
-				break
-
-		if(this_mob_record)
-			// This IS an old dead body - show its abandonment status
-			var/status = this_mob_record.get_ckey_status()
-			var/status_color = "#88ccff" // Default blue for ghosted
-			var/status_symbol = ""
-
-			if(status == "Ghosted (DNR)" || status == "New Character" || status == "New Character (Dead)")
-				status_color = "#ff3333" // Red for abandoned
-				status_symbol = "❌ "
-			else if(status == "Ghosted")
-				status_color = "#88ccff" // Blue for ghosted
-			else if(status == "Alive")
-				status_color = "#00ff00" // Green for alive
-			else if(status == "Disconnected")
-				status_color = "#ff6666" // Pale red for disconnected
-				status_symbol = "⏸ "
-
-			body += "<br><b>Current Status:</b> <span style='color: [status_color]; font-weight: bold;'>[status_symbol][status]</span>"
-			if(status == "Disconnected")
-				body += " <span style='color: #aaaaaa;'>(body still theirs)</span>"
-		else
-			// This is NOT an old dead body - check if the ckey has ANY death records (abandoned bodies elsewhere)
-			var/has_abandoned_body = FALSE
-			for(var/datum/death_restoration_record/record in GLOB.death_restoration_registry)
-				if(record.player_ckey == target_ckey)
-					has_abandoned_body = TRUE
-					break
-
-			// Show status for current character
-			var/current_status = ""
-			var/status_color = "#00ff00"
-
-			if(isobserver(M))
-				current_status = "Ghosted"
-				status_color = "#88ccff"
-			else if(M.stat == DEAD)
-				current_status = "Dead (not recorded)"
-				status_color = "#ff6666"
-			else if(M.stat == UNCONSCIOUS)
-				current_status = "Unconscious"
-				status_color = "#ffaa00"
-			else
-				current_status = "Alive"
-				status_color = "#00ff00"
-
-			if(has_abandoned_body)
-				body += "<br><b>Death Record Status:</b> <span style='color: [status_color]; font-weight: bold;'>[current_status]</span> <span style='color: #ffaa00;'>(Has an abandoned body)</span>"
-			else
-				body += "<br><b>Status:</b> <span style='color: [status_color]; font-weight: bold;'>[current_status]</span>"
-	else
-		// No ckey found anywhere - this is an NPC or mob that was never player-controlled
-		body += "<br><b>Status:</b> <span style='color: #aaaaaa; font-weight: bold;'>NPC</span>"
 
 	if(isnewplayer(M))
 		body += " <B>Hasn't Entered Game</B> "
@@ -518,8 +444,8 @@
 		dat += "<hr/>"
 	if(SSticker.IsRoundInProgress())
 		dat += "<a href='byond://?src=[REF(src)];[HrefToken()];gamemode_panel=1'>(Game Mode Panel)</a><BR>"
+		dat += "<hr/>"
 	dat += {"
-		<BR>
 		<A href='byond://?src=[REF(src)];[HrefToken()];create_object=1'>Create Object</A><br>
 		<A href='byond://?src=[REF(src)];[HrefToken()];quick_create_object=1'>Quick Create Object</A><br>
 		<A href='byond://?src=[REF(src)];[HrefToken()];create_turf=1'>Create Turf</A><br>
@@ -529,10 +455,11 @@
 	if(marked_datum && istype(marked_datum, /atom))
 		dat += "<A href='byond://?src=[REF(src)];[HrefToken()];dupe_marked_datum=1'>Duplicate Marked Datum</A><br>"
 
+	log_mankind_admin("ADMIN: [key_name(usr)] has entered Game Panel.") // [CELADON_ADD] - logging admin actions.
+
 	var/datum/browser/popup = new(usr, "admin2", null, 240, 280)
 	popup.set_content(dat)
 	popup.open()
-//	usr << browse(dat, "window=admin2;size=240x280")
 	return
 
 /////////////////////////////////////////////////////////////////////////////////////////////////admins2.dm merge
@@ -656,6 +583,15 @@
 	message_admins("[key_name_admin(usr)] toggled LOOC.")
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Local OOC", "[GLOB.looc_allowed ? "Enabled" : "Disabled"]"))
 
+/datum/admins/proc/toggledeadchat()
+	set category = "Server"
+	set desc="Toggle dat bitch"
+	set name="Toggle Deadchat"
+	toggle_deadchat()
+	log_admin("[key_name(usr)] toggled deadchat.")
+	message_admins("[key_name_admin(usr)] toggled deadchat.")
+	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Dead Chat", "[GLOB.deadchat_allowed ? "Enabled" : "Disabled"]"))
+
 /datum/admins/proc/toggleoocdead()
 	set category = "Server"
 	set desc="Toggle dis bitch"
@@ -754,6 +690,7 @@
 			to_chat(world, "<b>The game will start in [DisplayTimeText(newtime)].</b>", confidential = TRUE)
 			SEND_SOUND(world, sound('sound/ai/attention.ogg'))
 			log_admin("[key_name(usr)] set the pre-game delay to [DisplayTimeText(newtime)].")
+			log_mankind_admin("ADMIN: [key_name(usr)] set the pre-game delay to [DisplayTimeText(newtime)].") // [CELADON_ADD] - logging admin actions.
 		BLACKBOX_LOG_ADMIN_VERB("Delay Game Start")
 
 /datum/admins/proc/unprison(mob/M in GLOB.mob_list)
@@ -801,6 +738,7 @@
 			A.flags_1 |= ADMIN_SPAWNED_1
 
 	log_admin("[key_name(usr)] spawned [amount] x [chosen] at [AREACOORD(usr)]")
+	log_mankind_admin("ADMIN: [key_name(usr)] spawned [amount] x [chosen] at [AREACOORD(usr)]") // [CELADON_ADD] - logging admin actions.
 	BLACKBOX_LOG_ADMIN_VERB("Spawn Atom")
 
 /datum/admins/proc/podspawn_atom(object as text)
@@ -825,6 +763,7 @@
 		new /obj/effect/pod_landingzone(T, pod)
 
 	log_admin("[key_name(usr)] pod-spawned [chosen] at [AREACOORD(usr)]")
+	log_mankind_admin("ADMIN: [key_name(usr)] pod-spawned [chosen] at [AREACOORD(usr)]") // [CELADON_ADD] - logging admin actions.
 	BLACKBOX_LOG_ADMIN_VERB("Podspawn Atom")
 
 /datum/admins/proc/spawn_cargo(object as text)
@@ -843,6 +782,7 @@
 	S.generate(get_turf(usr))
 
 	log_admin("[key_name(usr)] spawned cargo pack [chosen] at [AREACOORD(usr)]")
+	log_mankind_admin("ADMIN: [key_name(usr)] spawned cargo pack [chosen] at [AREACOORD(usr)]") // [CELADON_ADD] - logging admin actions.
 	BLACKBOX_LOG_ADMIN_VERB("Spawn Cargo")
 
 
@@ -927,10 +867,7 @@
 		to_chat(usr, "<b>No AIs located</b>" , confidential = TRUE)
 
 /datum/admins/proc/dynamic_mode_options(mob/user)
-	var/dat = {"
-		<center><B><h2>Dynamic Mode Options</h2></B></center><hr>
-		<br/>
-		<h3>Common options</h3>
+	var/dat = {"<h3>Common options</h3>
 		<i>All these options can be changed midround.</i> <br/>
 		<br/>
 		<b>Force extended:</b> - Option is <a href='byond://?src=[REF(src)];[HrefToken()];f_dynamic_force_extended=1'> <b>[GLOB.dynamic_forced_extended ? "ON" : "OFF"]</a></b>.
@@ -960,9 +897,11 @@
 		Midround injection delay:<br>
 		Minimum: <A href='byond://?src=[REF(src)];[HrefToken()];f_dynamic_roundstart_midround_min=1'>-> [GLOB.dynamic_midround_delay_min / 60 / 10] <-</A> Minutes<br>
 		Maximum: <A href='byond://?src=[REF(src)];[HrefToken()];f_dynamic_roundstart_midround_max=1'>-> [GLOB.dynamic_midround_delay_max / 60 / 10] <-</A> Minutes<br>
-		"}
+	"}
 
-	user << browse(dat, "window=dyn_mode_options;size=900x650")
+	var/datum/browser/browser = new(user, "dyn_mode_options", "Dynamic Mode Options", 900, 650)
+	browser.set_content(dat)
+	browser.open()
 
 /datum/admins/proc/create_or_modify_area()
 	set category = "Debug"
@@ -1082,6 +1021,8 @@
 	set category = "Admin.Game"
 	set name = "View Manifest"
 	set desc = "Opens the Manifest UI."
+
+	log_mankind_admin("ADMIN: [key_name(usr)] openned the crew manifest UI.") // [CELADON_ADD] - logging admin actions.
 
 	if(!GLOB.crew_manifest_tgui)
 		GLOB.crew_manifest_tgui = new /datum/crew_manifest(src)

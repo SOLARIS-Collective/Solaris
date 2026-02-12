@@ -1,5 +1,5 @@
-/*
 #define COMSIG_ATOM_BREAK "atom_break"
+/*
 /// from base of [/atom/proc/atom_fix]: ()
 #define COMSIG_ATOM_FIX "atom_fix"
 /// from base of [/atom/proc/atom_destruction]: (damage_flag)

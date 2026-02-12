@@ -504,7 +504,7 @@ MAX_OVERMAP_EVENTS 50
 MAX_OVERMAP_DYNAMIC_EVENTS 15
 
 ## Size of the overmap squared
-OVERMAP_SIZE 12
+OVERMAP_SIZE 50
 
 ## Which overmap generator to use
 ## Valid values are: "random", "solar_system"

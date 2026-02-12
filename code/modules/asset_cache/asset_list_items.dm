@@ -96,6 +96,24 @@
 /datum/asset/spritesheet/simple/paper
 	name = "paper"
 	assets = list(
+		// [MANKIND-ADD] - MANKIND_STAMPS
+		"stamp-inteq-celadon" = 'modular_mankind/_storage_icons/icons/assets/png/large_stamp-inteq.png',
+		"inteq-mothership-stamp" = 'modular_mankind/_storage_icons/icons/assets/png/inteq_mothership_stamp.png',
+		"solfed-corps-commander-stamp" = 'modular_mankind/_storage_icons/icons/assets/png/sf_commander_stamp.png',
+		"solfed-captain" = 'modular_mankind/_storage_icons/icons/assets/png/sf_captain_stamp.png',
+		"elysium-brigade-captain-stamp" = 'modular_mankind/_storage_icons/icons/assets/png/elysium_brigade_stamp.png',
+		"elysium-republic-stamp" = 'modular_mankind/_storage_icons/icons/assets/png/elysium_republic_stamp.png',
+		"elysium-avanpost-stamp" = 'modular_mankind/_storage_icons/icons/assets/png/elysium_outpost_stamp.png',
+		"nt-cent-command-stamp" = 'modular_mankind/_storage_icons/icons/assets/png/nanotrasen_central_command_stamp.png',
+		"nt-captain-stamp" = 'modular_mankind/_storage_icons/icons/assets/png/nanotrasen_captain_stamp.png',
+		"syndicate-captain-stamp" = 'modular_mankind/_storage_icons/icons/assets/png/syndicate_captain_stamp.png',
+		"stamp-df" = 'modular_mankind/_storage_icons/icons/assets/png/large_stamp-df_generic.png',
+		"stamp-df_captain" = 'modular_mankind/_storage_icons/icons/assets/png/large_stamp-df_captain.png',
+		"stamp-df_meddir" = 'modular_mankind/_storage_icons/icons/assets/png/large_stamp-df_med_dir.png',
+		"stamp-ne" = 'modular_mankind/_storage_icons/icons/assets/png/large_stamp-ne_generic.png',
+		"stamp-ne_captain" = 'modular_mankind/_storage_icons/icons/assets/png/large_stamp-ne_captain.png',
+		"stamp-ne_engdir" = 'modular_mankind/_storage_icons/icons/assets/png/large_stamp-ne_eng_dir.png',
+		// [/MANKIND-ADD]
 		"stamp-clown" = 'icons/stamp_icons/large_stamp-clown.png',
 		"stamp-deny" = 'icons/stamp_icons/large_stamp-deny.png',
 		"stamp-ok" = 'icons/stamp_icons/large_stamp-ok.png',
@@ -199,7 +217,10 @@
 		if (icon != 'icons/misc/language.dmi')
 			var/icon_state = initial(L.icon_state)
 			Insert("language-[icon_state]", icon, icon_state=icon_state)
-		..()
+	// [MANKIND_EDIT] - Переместил вызов родительского прока из цикла
+	// 		..() [MANKIND-EDIT] - ORIGINAL
+	..()
+	// [/MANKIND_EDIT]
 
 /datum/asset/simple/lobby
 	assets = list(
@@ -262,6 +283,11 @@
 		"rule8" = 'icons/UI_Icons/Achievements/Misc/rule8.png',
 		"snail" = 'icons/UI_Icons/Achievements/Misc/snail.png',
 		"mining" = 'icons/UI_Icons/Achievements/Skills/mining.png',
+		// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS, MANKIND_ACHIEVEMENTS
+		"clownking" = 'modular_mankind/_storage_icons/icons/assets/png/clownking.png',
+		"clownthanks" = 'modular_mankind/_storage_icons/icons/assets/png/clownthanks.png',
+		"theinnerhell" = 'modular_mankind/_storage_icons/icons/assets/png/theinnerhell.png'
+		// [/MANKIND-ADD]
 	)
 
 /datum/asset/spritesheet/simple/pills
@@ -437,6 +463,21 @@
 		"safe_dial.png" = 'html/safe_dial.png'
 	)
 
+
+// [MANKIND-ADD] - SHIP_SELECTION_REWORK - Добавляем asset для логотипов фракций
+/datum/asset/simple/faction_logos
+	assets = list(
+		"nanotrasen.png" = 'modular_mankind/_storage_icons/icons/assets/logo/nanotrasen.png',
+		"syndicate.png" = 'modular_mankind/_storage_icons/icons/assets/logo/syndicate.png',
+		"inteq.png" = 'modular_mankind/_storage_icons/icons/assets/logo/inteq.png',
+		"solfed.png" = 'modular_mankind/_storage_icons/icons/assets/logo/solfed.png',
+		"independent.png" = 'modular_mankind/_storage_icons/icons/assets/logo/independent.png',
+		"elysium.png" = 'modular_mankind/_storage_icons/icons/assets/logo/elysium.png',
+		"pirates.png" = 'modular_mankind/_storage_icons/icons/assets/logo/pirates.png',
+		"other.png" = 'modular_mankind/_storage_icons/icons/assets/logo/other.png'
+	)
+// [/MANKIND-ADD]
+
 /datum/asset/simple/pai
 	assets = list(
 		"paigrid.png" = 'html/paigrid.png'
@@ -467,7 +508,10 @@
 
 /datum/asset/spritesheet/supplypods/register()
 	for (var/style in 1 to length(GLOB.podstyles))
-		var/icon_file = 'icons/obj/supplypods.dmi'
+		// [MANKIND-EDIT] - MANKIND_ELYSIUMPOD
+		// var/icon_file = 'icons/obj/supplypods.dmi' // MANKIND-EDIT - ORIGINAL
+		var/icon_file = 'modular_mankind/_storage_icons/icons/structures/supplypods.dmi'
+		// [/MANKIND-EDIT]
 		var/states = icon_states(icon_file)
 		if (style == STYLE_SEETHROUGH)
 			Insert("pod_asset[style]", icon(icon_file, "seethrough-icon", SOUTH))

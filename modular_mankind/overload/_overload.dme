@@ -1,0 +1,8 @@
+#ifndef MANKIND_OVERLOAD
+#define MANKIND_OVERLOAD
+
+#include "overload.dm"
+
+#include "code/overload.dm"
+
+#endif

@@ -1,2 +1,2 @@
 @echo off
-call "%~dp0\..\tools\build\build.bat" --wait-on-error clean-all %*
+node --experimental-modules "%~dp0\..\tools\build\build.js" --wait-on-error clean-all %*

@@ -1,0 +1,8 @@
+#ifndef MODPACK_MANKIND_FIX_TAIL
+#define MODPACK_MANKIND_FIX_TAIL
+
+#include "_fix_tail.dm"
+
+#include "code/suits.dm"
+
+#endif

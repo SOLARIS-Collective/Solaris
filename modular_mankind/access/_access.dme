@@ -1,0 +1,8 @@
+#ifndef MODPACK_MANKIND_ACCESS
+#define MODPACK_MANKIND_ACCESS
+
+#include "_access.dm"
+
+#include "code/access.dm"
+
+#endif

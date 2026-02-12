@@ -1,0 +1,33 @@
+// Включает пути до наших дефайнов
+
+// ..\ - указывает на уровень выше каталога
+// Все дефайны файлы помещаем по пути code\__DEFINES\~modular_mankind
+// Тут указываем путь до нашего файла с дефайном!
+
+#include "..\code\__DEFINES\~modular_mankind\access.dm"
+#include "..\code\__DEFINES\~modular_mankind\map.dm"
+#include "..\code\__DEFINES\~modular_mankind\achievements.dm"
+#include "..\code\__DEFINES\~modular_mankind\colors.dm"
+#include "..\code\__DEFINES\~modular_mankind\donate.dm"
+#include "..\code\__DEFINES\~modular_mankind\game.dm"
+#include "..\code\__DEFINES\~modular_mankind\helpers.dm"
+#include "..\code\__DEFINES\~modular_mankind\lanius.dm"
+#include "..\code\__DEFINES\~modular_mankind\layers.dm"
+#include "..\code\__DEFINES\~modular_mankind\names.dm"
+#include "..\code\__DEFINES\~modular_mankind\roaches.dm"
+#include "..\code\__DEFINES\~modular_mankind\riol.dm"
+#include "..\code\__DEFINES\~modular_mankind\sarathi.dm"
+#include "..\code\__DEFINES\~modular_mankind\structures.dm"
+#include "..\code\__DEFINES\~modular_mankind\ship.dm"
+#include "..\code\__DEFINES\~modular_mankind\tajara.dm"
+#include "..\code\__DEFINES\~modular_mankind\text.dm"
+#include "..\code\__DEFINES\~modular_mankind\time.dm"
+#include "..\code\__DEFINES\~modular_mankind\traits.dm"
+#include "..\code\__DEFINES\~modular_mankind\translation.dm"
+
+#include "..\code\__DEFINES\~modular_mankind\emote.dm"
+#include "..\code\__DEFINES\~modular_mankind\flags.dm"
+
+#include "..\code\__DEFINES\~modular_mankind\mood.dm"
+
+#include "..\code\__DEFINES\~modular_mankind\wallets.dm"

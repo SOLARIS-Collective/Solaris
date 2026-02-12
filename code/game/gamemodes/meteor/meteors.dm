@@ -39,13 +39,29 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 	for(var/i = 0; i < number; i++)
 		spawn_meteor(meteortypes)
 
-/proc/spawn_meteor(list/meteortypes, datum/virtual_level/vlevel, padding = MAP_EDGE_PAD, obj/docking_port/mobile/shuttle_port)
+// [MANKIND-ADD] - MANKIND_OVERMAP_COLLISION - Это вагабонд насрал
+
+/proc/spawn_meteors_alt(number = 10, list/meteortypes, vlevel, port, dirc)
+	for(var/i = 0; i < number; i++)
+		spawn_meteor(meteortypes, vlevel, 0, port, dirc)
+
+// [/MANKIND-ADD]
+
+// [MANKIND-EDIT] - MANKIND_OVERMAP_COLLISION - Это вагабонд насрал
+// /proc/spawn_meteor(list/meteortypes, datum/virtual_level/vlevel, padding = MAP_EDGE_PAD, obj/docking_port/mobile/shuttle_port)	// ORIGINAL
+// /proc/spawn_meteor(list/meteortypes, datum/virtual_level/vlevel, padding = MAP_EDGE_PAD, direc = "none") // Это Вагабонда КОД JOPA
+/proc/spawn_meteor(list/meteortypes, datum/virtual_level/vlevel, padding = MAP_EDGE_PAD, obj/docking_port/mobile/shuttle_port, direc = "none")
+// [/MANKIND-EDIT]
 	var/turf/pickedstart
 	var/turf/pickedgoal
 	var/max_i = 10//number of tries to spawn meteor.
 	while(!isspaceturf(pickedstart))
 		var/startSide = pick(GLOB.cardinals)
-		if(shuttle_port)
+		// [MANKIND-ADD] - MANKIND_OVERMAP_COLLISION - Это вагабонд насрал
+		if(direc != "none")
+			startSide = direc
+		// [/MANKIND-ADD]
+		if(shuttle_port)	// возможно двойной метеорит прилетит 	// КОД JOPA
 			startSide = shuttle_port.preferred_direction
 
 		pickedstart = vlevel.get_side_turf(startSide, padding)
@@ -230,6 +246,21 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 /obj/effect/meteor/big/meteor_effect()
 	..()
 	explosion(src.loc, 1, 2, 3, 4, 0)
+
+// [MANKIND-ADD] - MANKIND_OVERMAP_COLLISION - Это вагабонд насрал
+//Invisible
+/obj/effect/meteor/invisible
+	name = "G-Imact"
+	alpha = 0
+	hits = 6
+	heavy = 1
+	dropamt = 4
+	threat = 10
+
+/obj/effect/meteor/invisible/meteor_effect()
+	..()
+	explosion(src.loc, 1, 2, 3, 4, 0)
+// [/MANKIND-ADD]
 
 //Flaming meteor
 /obj/effect/meteor/flaming

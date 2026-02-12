@@ -30,11 +30,22 @@ SUBSYSTEM_DEF(shuttle)
 
 	/// Whether express consoles are blocked from ordering anything or not
 	var/supplyBlocked = FALSE
-
+	/// Order number given to next cargo order
+	var/ordernum = 1
+	/// List of all singleton supply pack instances
+	var/list/supply_packs = list()
 	/// Stops ALL shuttles from being able to move
 	var/lockdown = FALSE
 
 /datum/controller/subsystem/shuttle/Initialize(timeofday)
+	ordernum = rand(1, 9000)
+
+	for(var/pack in subtypesof(/datum/supply_pack))
+		var/datum/supply_pack/P = new pack()
+		if(!P.contains)
+			continue
+		supply_packs[P.type] = P
+
 	for(var/obj/docking_port/stationary/stationary_port as anything in stationary)
 		stationary_port.load_roundstart()
 		CHECK_TICK
@@ -60,7 +71,7 @@ SUBSYSTEM_DEF(shuttle)
 /datum/controller/subsystem/shuttle/proc/request_jump(modifier = 1)
 	jump_mode = BS_JUMP_CALLED
 	jump_timer = addtimer(CALLBACK(src, PROC_REF(initiate_jump)), jump_request_time * modifier, TIMER_STOPPABLE)
-	priority_announce("Mobile ships preparing for jump. ETD: [jump_request_time * modifier / (1 MINUTES)] minutes.", null, null, "Priority")
+	priority_announce("Mobile ships preparing for jump. ETD: [jump_request_time * modifier / (1 MINUTES)] minutes.", null, null, ANNOUNCEMENT_PRIORITY)
 
 /// Cancels a currently requested bluespace jump. Can only be done after the jump has been requested but before the jump has actually begun.
 /datum/controller/subsystem/shuttle/proc/cancel_jump()
@@ -68,7 +79,7 @@ SUBSYSTEM_DEF(shuttle)
 		return
 	deltimer(jump_timer)
 	jump_mode = BS_JUMP_IDLE
-	priority_announce("Bluespace jump cancelled.", null, null, "Priority")
+	priority_announce("Bluespace jump cancelled.", null, null, ANNOUNCEMENT_PRIORITY)
 
 /// Initiates a bluespace jump, ending the round after a delay of jump_completion_time deciseconds. This cannot be interrupted by conventional means.
 /datum/controller/subsystem/shuttle/proc/initiate_jump()
@@ -80,7 +91,7 @@ SUBSYSTEM_DEF(shuttle)
 		M.on_emergency_launch()
 
 	jump_timer = addtimer(VARSET_CALLBACK(src, jump_mode, BS_JUMP_COMPLETED), jump_completion_time, TIMER_STOPPABLE)
-	priority_announce("Jump initiated. ETA: [jump_completion_time / (1 MINUTES)] minutes.", null, null, "Priority")
+	priority_announce("Jump initiated. ETA: [jump_completion_time / (1 MINUTES)] minutes.", null, null, ANNOUNCEMENT_PRIORITY)
 
 	INVOKE_ASYNC(SSticker, TYPE_PROC_REF(/datum/controller/subsystem/ticker,poll_hearts))
 
@@ -145,7 +156,8 @@ SUBSYSTEM_DEF(shuttle)
 		transit_name,
 		list(
 			ZTRAIT_RESERVED = TRUE,
-			ZTRAIT_SUN_TYPE = STATIC_EXPOSED
+			ZTRAIT_SUN_TYPE = STATIC_EXPOSED,
+			ZTRAIT_SCAN_DISRUPT = TRUE // [CELADON-EDIT] - CELADON_SURVEY_HANDHELD
 		),
 		mapzone,
 		transit_width,
@@ -200,6 +212,10 @@ SUBSYSTEM_DEF(shuttle)
 		transit_requesters = SSshuttle.transit_requesters
 	if (istype(SSshuttle.transit_request_failures))
 		transit_request_failures = SSshuttle.transit_request_failures
+	if (istype(SSshuttle.supply_packs))
+		supply_packs = SSshuttle.supply_packs
+
+	ordernum = SSshuttle.ordernum
 
 	lockdown = SSshuttle.lockdown
 
@@ -501,6 +517,7 @@ SUBSYSTEM_DEF(shuttle)
 					user.forceMove(new_ship.get_jump_to_turf())
 					message_admins("[key_name_admin(user)] loaded [new_ship] ([S]) with the shuttle manipulator.")
 					log_admin("[key_name(user)] loaded [new_ship] ([S]) with the shuttle manipulator.</span>")
+					log_mankind_admin("\[SHUTTLE]: [key_name(user)] loaded [new_ship] ([S]) with the shuttle manipulator.") // [CELADON_ADD] - logging admin actions.
 					SSblackbox.record_feedback("tally", "shuttle_manipulator_spawned", 1, "[S]")
 
 		if("edit_template")
@@ -561,6 +578,7 @@ SUBSYSTEM_DEF(shuttle)
 					port_ship.blacklisted &= ~please_leave
 					message_admins("[key_name_admin(user)] unblocked [port_ship] from [please_leave].")
 					log_admin("[key_name_admin(user)] unblocked [port_ship] from [please_leave].")
+					log_mankind_admin("\[SHUTTLE]: [user.client]/[user.mind] unblocked [port_ship] from [please_leave].") // [CELADON_ADD] - logging admin actions.
 				return TRUE
 			var/reason = input(user, "Provide a reason for blacklisting, which will be displayed on docking attempts", "Bar Them From The Pearly Gates", "Contact local law enforcement for more information.") as null|text
 			if(!reason)
@@ -571,6 +589,7 @@ SUBSYSTEM_DEF(shuttle)
 			port_ship.blacklisted[please_leave] = reason
 			message_admins("[key_name_admin(user)] blacklisted [port_ship] from landing at [please_leave] with reason: [reason]")
 			log_admin("[key_name_admin(user)] blacklisted [port_ship] from landing at [please_leave] with reason: [reason]")
+			log_mankind_admin("\[SHUTTLE]: [user.client]/[user.mind] blacklisted [port_ship] from landing at [please_leave] with reason: [reason]") // [CELADON_ADD] - logging admin actions.
 			return TRUE
 
 		if("fly")

@@ -1,0 +1,8 @@
+#ifndef MODPACK_MANKIND_CRAFTING_RECIPE
+#define MODPACK_MANKIND_CRAFTING_RECIPE
+
+#include "_crafting_recipe.dm"
+
+#include "code/tiles.dm"
+
+#endif

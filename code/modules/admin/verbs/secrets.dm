@@ -8,6 +8,8 @@
 	var/datum/secrets_menu/tgui  = new(usr)//create the datum
 	tgui.ui_interact(usr)//datum has a tgui component, here we open the window
 
+	log_mankind_admin("ADMIN: [key_name_admin(holder)] openned Secrets Panel.") // [CELADON_ADD] - logging admin actions.
+
 /datum/secrets_menu
 	var/client/holder //client of whoever is using this datum
 	var/is_debugger = FALSE
@@ -53,15 +55,14 @@
 	switch(action)
 		//Generic Buttons anyone can use.
 		if("admin_log")
-			var/dat = "<B>Admin Log<HR></B>"
+			var/dat
 			for(var/l in GLOB.admin_log)
 				dat += "<li>[l]</li>"
 			if(!GLOB.admin_log.len)
 				dat += "No-one has done anything this round!"
-			//holder << browse(dat, "window=admin_log") WS edit
-			var/datum/browser/popup = new(holder, "admin_log", null, 300, 430)
-			popup.set_content(dat)
-			popup.open()
+			var/datum/browser/browser = new(holder, "admin_log", "Admin Logs", 600, 500)
+			browser.set_content(dat)
+			browser.open()
 
 		//WS Begin - Mentors
 		if("mentor_log")
@@ -76,15 +77,15 @@
 		//WS end
 
 		if("show_admins")
-			var/dat = "<B>Current admins:</B><HR>"
+			var/dat
 			if(GLOB.admin_datums)
 				for(var/ckey in GLOB.admin_datums)
 					var/datum/admins/D = GLOB.admin_datums[ckey]
 					dat += "[ckey] - [D.rank.name]<br>"
 				//holder << browse(dat, "window=showadmins;size=600x500") WS edit
-				var/datum/browser/popup = new(holder, "showadmins", null, 600, 500)
-				popup.set_content(dat)
-				popup.open()
+				var/datum/browser/browser = new(holder, "showadmins", "Current admins", 600, 500)
+				browser.set_content(dat)
+				browser.open()
 
 		//Buttons for debug.
 		if("maint_access_engiebrig")
@@ -145,7 +146,10 @@
 			for(var/i in GLOB.human_list)
 				var/mob/living/carbon/human/H = i
 				if(H.ckey)
-					dat += "<tr><td>[H]</td><td>[H.dna.unique_enzymes]</td><td>[H.dna.blood_type.name]</td></tr>"
+// [CELADON-EDIT] - CELADON_BLOOD_DISPLAY
+//					dat += "<tr><td>[H]</td><td>[H.dna.unique_enzymes]</td><td>[H.dna.blood_type.name]</td></tr>"
+					dat += "<tr><td>[H]</td><td>[H.dna.unique_enzymes]</td><td>[H.get_blood_type_display()]</td></tr>"
+// [/CELADON-EDIT]
 			dat += "</table>"
 			holder << browse(dat, "window=DNA;size=440x410")
 		if("fingerprints")

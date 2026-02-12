@@ -1,0 +1,9 @@
+#ifndef MODPACK_MANKIND_QUIRKS
+#define MODPACK_MANKIND_QUIRKS
+
+#include "_quirks.dm"
+
+#include "code/good.dm"
+#include "code/neutral.dm"
+
+#endif

@@ -1,0 +1,10 @@
+#ifndef MODPACK_MANKIND_RESKIN_CUSTOMIZATION
+#define MODPACK_MANKIND_RESKIN_CUSTOMIZATION
+
+#include "_reskin_customization.dm"
+
+#include "code/armor.dm"
+#include "code/revolver.dm"
+#include "code/reflavour_armor_solfed.dm"
+
+#endif

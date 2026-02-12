@@ -375,6 +375,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		to_chat(src, span_warning("To leave your body again use the Ghost verb."))
 	mind.current.key = key
 	mind.current.client.init_verbs()
+	mind.current.ignore_SSD = FALSE
 	return TRUE
 
 /mob/dead/observer/verb/stay_dead()
@@ -466,6 +467,12 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	var/orbitsize = (I.Width()+I.Height())*0.5
 	orbitsize -= (orbitsize/world.icon_size)*(world.icon_size*0.25)
+
+	// [CELADON-ADD] - logging admin actions.
+	if(src.client.holder && istype(target, /mob/living/carbon/human))
+		var/mob/living/carbon/human/target_human = target
+		log_mankind_admin("\[GHOST]: [usr.key] has started orbiting [target_human.key] / [target_human.real_name].")
+	// [/CELADON-ADD]
 
 	var/rot_seg
 

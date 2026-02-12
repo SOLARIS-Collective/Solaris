@@ -1,5 +1,12 @@
 /obj/overmap
-	icon = 'icons/misc/overmap.dmi'
+	// [MANKIND-EDIT] - MANKIND_OVERMAP_ICON
+	// icon = 'icons/misc/overmap.dmi' // MANKIND-EDIT - ORIGINAL
+	icon = 'modular_mankind/_storage_icons/icons/assets/overmap/overmap.dmi'
+	// [/MANKIND-EDIT]
+	// [MANKIND-ADD] - MANKIND_OVERMAP_ICON - Это вагабонд насрал
+	// glide_size = 32
+	// [/MANKIND-ADD]
+	// mouse_opacity = 2
 	///~~If we need to render a map for cameras and helms for this object~~ basically can you look at and use this as a ship or station.
 	var/render_map = FALSE
 	/// The parent overmap datum for this overmap token that has all of the actual functionality.
@@ -12,6 +19,15 @@
 	/// Countdown we use in case it's needed
 	var/obj/effect/countdown/countdown
 
+	// [MANKIND-ADD] - MANKIND_OVERMAP_ICON - Это вагабонд насрал
+	var/obj/token_visuals/move_vec
+	var/obj/token_visuals/ship_image
+
+/obj/token_visuals
+	glide_size = 32
+	mouse_opacity = 0
+	// [/MANKIND-ADD]
+
 /obj/overmap/rendered
 	render_map = TRUE
 
@@ -21,6 +37,19 @@
 	name = parent.name
 	icon_state = parent.token_icon_state
 	if(render_map)	// Initialize map objects
+		// [MANKIND-ADD] - MANKIND_OVERMAP_ICON - Это вагабонд насрал
+		if(istype(parent, /datum/overmap/ship/controlled))
+			if(!move_vec)
+				move_vec = new (src)
+				move_vec.icon = 'modular_mankind/_storage_icons/icons/assets/overmap/overmap.dmi'
+				move_vec.icon_state = "movement_vector"
+				move_vec.layer = move_vec.layer + 1
+			if(!ship_image)
+				ship_image = new (src)
+				ship_image.icon = 'modular_mankind/_storage_icons/icons/assets/overmap/overmap.dmi'
+				ship_image.icon_state = "ship"
+				ship_image.layer = ship_image.layer + 2
+		// [/MANKIND-ADD]
 		map_name = "overmap_[REF(src)]_map"
 		cam_screen = new
 		cam_screen.name = "screen"
@@ -46,7 +75,13 @@
 		QDEL_NULL(cam_screen)
 		QDEL_NULL(cam_plane_master)
 		QDEL_NULL(cam_background)
-	QDEL_NULL(countdown)
+	// [MANKIND-ADD] - MANKIND_OVERMAP_ICON - Это вагабонд насрал
+	if(ship_image)
+		QDEL_NULL(ship_image)
+	if(move_vec)
+		QDEL_NULL(move_vec)
+	// [/MANKIND-ADD]
+	QDEL_NULL(countdown)	// Что это КОД JOPA
 	return ..()
 
 /obj/overmap/vv_get_dropdown()
@@ -103,7 +138,10 @@
 /obj/overmap/proc/update_screen()
 	if(render_map)
 		var/list/visible_turfs = list()
-		for(var/turf/T in view(4, get_turf(src)))
+		// [MANKIND-EDIT] - OVERMAP SENSOR - Это вагабонд насрал
+		// for(var/turf/T in view(4, get_turf(src)))
+		for(var/turf/T in view(parent.sensor_range, get_turf(src)))
+		// [/MANKIND-EDIT]
 			visible_turfs += T
 
 		var/list/bbox = get_bbox_of_atoms(visible_turfs)

@@ -1,0 +1,8 @@
+#ifndef MODPACK_MANKIND_BOARDING
+#define MODPACK_MANKIND_BOARDING
+
+#include "_boarding.dm"
+
+#include "code/boarding.dm"
+
+#endif

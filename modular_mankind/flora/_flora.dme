@@ -1,0 +1,8 @@
+#ifndef MODPACK_MANKIND_FLORA
+#define MODPACK_MANKIND_FLORA
+
+#include "_flora.dm"
+
+#include "code/plants.dm"
+
+#endif

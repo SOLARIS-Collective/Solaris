@@ -52,6 +52,10 @@
 	///How much % of a radio message we scramble of radios nearby/on top of us before sending. Will only scramble 1/5th this value if the radio is an adjacent tile, not 100%. Meant for hazards
 	var/interference_power
 
+	// [MANKIND-ADD] - OVERMAP SENSORS - Это вагабонд насрал
+	var/sensor_range = 1
+	// [/MANKIND-ADD]
+
 	/// The current docking ticket of this object, if any
 	var/datum/docking_ticket/current_docking_ticket
 
@@ -60,6 +64,38 @@
 	/// The 'death time' of the object. Used for limited lifespan events.
 	var/death_time
 
+// [MANKIND-ADD] - MANKIND_OVERMAP_STUFF - Это вагабонд насрал
+/obj/overmap
+	var/skip_alarm = 0
+
+/proc/get_pixel_distance(atom/A, atom/B)
+	var/x_dist = 0
+	var/y_dist = 0
+
+	if(A.x < B.x)
+		x_dist = (B.x-A.x)*32-A.pixel_w+B.pixel_w
+	else if(A.x > B.x)
+		x_dist = (A.x-B.x)*32+A.pixel_w-B.pixel_w
+	else
+		if(A.pixel_w < B.pixel_w)
+			x_dist = B.pixel_w-A.pixel_w
+		else if(A.pixel_w > B.pixel_w)
+			x_dist = A.pixel_w-B.pixel_w
+
+	if(A.y < B.y)
+		y_dist = (B.y-A.y)*32-A.pixel_z+B.pixel_z
+	else if(A.y > B.y)
+		y_dist = (A.y-B.y)*32+A.pixel_z-B.pixel_z
+	else
+		if(A.pixel_z < B.pixel_z)
+			y_dist = B.pixel_z-A.pixel_z
+		else if(A.pixel_z > B.pixel_z)
+			y_dist = A.pixel_z-B.pixel_z
+
+	return abs(x_dist)+abs(y_dist)
+// [/MANKIND-ADD]
+
+// /datum/overmap/New(position, ...)	// Старая позиция
 /datum/overmap/New(position, datum/overmap_star_system/system_spawned_in, ...)
 	SHOULD_NOT_OVERRIDE(TRUE) // Use [/datum/overmap/proc/Initialize] instead.
 	current_overmap = system_spawned_in
@@ -302,6 +338,19 @@
 
 	var/choice = tgui_input_list(usr, "What would you like to do at [interact_target]?", "Interact", possible_interactions, timeout = 10 SECONDS)
 	return do_interaction_with(user, interact_target, choice)
+
+/datum/overmap/proc/show_hail_menu(mob/living/user, datum/overmap/interact_target)
+	if(!user)
+		return
+	if(!istype(interact_target))
+		CRASH("Overmap datum [src] tried to interact with an invalid overmap datum. What?")
+
+	var/list/possible_interactions = interact_target.get_hail(user, src)
+
+	if(!possible_interactions)
+		return "There is nothing of interest at [interact_target]."
+
+	return do_hail(user, interact_target)
 
 /**
  * This handles the selection of an interaction

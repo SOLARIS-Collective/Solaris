@@ -1,0 +1,8 @@
+#ifndef MODPACK_MANKIND_BONGS
+#define MODPACK_MANKIND_BONGS
+
+#include "_bongs.dm"
+
+#include "code/bongs.dm"
+
+#endif

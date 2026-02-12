@@ -106,6 +106,10 @@
 /obj/item/clothing/shoes/jackboots/fast
 	slowdown = -1
 
+/obj/item/clothing/shoes/jackboots/knife/Initialize()
+	. = ..()
+	new /obj/item/melee/knife/combat(src)
+
 /obj/item/clothing/shoes/winterboots
 	name = "winter boots"
 	desc = "Boots lined with 'synthetic' animal fur."

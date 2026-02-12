@@ -1,0 +1,8 @@
+#ifndef MODPACK_MANKIND_PIZZAMAT
+#define MODPACK_MANKIND_PIZZAMAT
+
+#include "_pizzamat.dm"
+
+#include "code/pizzamat.dm"
+
+#endif

@@ -1,0 +1,8 @@
+#ifndef MODPACK_MANKIND_FACTION
+#define MODPACK_MANKIND_FACTION
+
+#include "_faction.dm"
+
+#include "code/faction.dm"
+
+#endif

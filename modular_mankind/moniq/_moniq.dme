@@ -1,0 +1,6 @@
+#ifndef MODPACK_MANKIND_MONIQ
+#define MODPACK_MANKIND_MONIQ
+
+#include "code/moniq.dm"
+
+#endif
