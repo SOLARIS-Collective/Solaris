@@ -233,7 +233,7 @@
 				)
 		if(prob(30))
 			backpack_contents += list(
-				/obj/item/reagent_containers/hypospray/medipen/survival = pick_weight(list(
+				/obj/item/reagent_containers/hypospray/medipen/survival = pick_weight(alist(
 					1 = 3,
 					2 = 2,
 					3 = 1
