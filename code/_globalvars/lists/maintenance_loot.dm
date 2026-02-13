@@ -23,7 +23,6 @@ GLOBAL_LIST_INIT(trash_loot, list(//junk: useless, very easy to get, or ghetto c
 		/obj/item/trash/chips = 1,
 		/obj/item/trash/popcorn = 1,
 		/obj/item/trash/sosjerky = 1,
-		/obj/item/trash/plate = 1,
 		/obj/item/trash/pistachios = 1,
 
 		/obj/item/poster/random_contraband = 1,
@@ -212,7 +211,7 @@ GLOBAL_LIST_INIT(uncommon_loot, list(//uncommon: useful items
 			) = 1,
 		list(//drinks
 			/obj/item/reagent_containers/food/drinks/bottle/vodka = 1,
-			/obj/item/reagent_containers/food/drinks/soda_cans/grey_bull = 1, //PENTEST CHANGE
+			/obj/item/reagent_containers/food/drinks/soda_cans/crosstalk = 1,
 			) = 1,
 		list(//sprayers
 			/obj/item/reagent_containers/spray = 1,
@@ -242,10 +241,11 @@ GLOBAL_LIST_INIT(oddity_loot, list(//oddity: strange or crazy items
 		/obj/item/clothing/suit/space/hardsuit/carp/old = 1,
 		/obj/item/clothing/suit/armor/reactive/repulse = 1,
 		/obj/item/melee/axe/fire = 1,
-		/obj/item/gun/ballistic/rocketlauncher/oneshot = 1,
 		/mob/living/simple_animal/crab = 1,
 		/obj/item/melee/baton/boomerang = 1,
-		/obj/item/circular_saw/best = 1,
+		// [CELADON-REMOVE] - CELADON_BALANCE - Что это за инструмент шакальный не понятно
+		// /obj/item/circular_saw/best = 1,
+		// [/CELADON-REMOVE]
 		/obj/item/gun/ballistic/shotgun/doublebarrel/brazil = 1,
 		/obj/item/toner/extreme = 1,
 		/obj/item/twenty_pounds_of_ice = 1,

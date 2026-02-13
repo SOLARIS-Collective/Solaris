@@ -16,7 +16,6 @@ GLOBAL_LIST_INIT(_kbMap, list(
 	"END" = "Southwest",
 	"PAGEDOWN" = "Southeast",
 	"SPACEBAR" = "Space",
-	" " = "Space", //PENTEST EDIT - Handle the actual space character from e.key
 	"ALT" = "Alt",
 	"SHIFT" = "Shift",
 	"CONTROL" = "Ctrl"

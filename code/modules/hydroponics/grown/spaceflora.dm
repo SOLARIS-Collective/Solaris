@@ -20,14 +20,13 @@
 	base_icon = "melon"
 	icon_state = base_icon
 
-
 /obj/item/seeds/voidmelon
 	name = "pack of voidmelon seeds"
 	desc = "These seeds grow into voidmelon plants."
 	icon_state = "seed-voidmelon"
 	species = "voidmelon"
 	plantname = "voidmelon Vines"
-	product = /obj/item/food/grown/voidmelon //PENTEST FIXED
+	product = /obj/item/food/grown/watermelon
 	lifespan = 50
 	endurance = 40
 	growing_icon = 'icons/obj/hydroponics/growing_fruits.dmi'

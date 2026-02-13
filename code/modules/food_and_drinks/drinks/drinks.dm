@@ -49,7 +49,7 @@
 
 	var/fraction = min(gulp_size/reagents.total_volume, 1)
 	checkLiked(fraction, M)
-	reagents.trans_to(M, gulp_size, transfered_by = user, method = INGEST)
+	reagents.trans_to(M, gulp_size, transfered_by = user, methods = INGEST)
 	playsound(M.loc,'sound/items/drink.ogg', rand(10,50), TRUE)
 	return TRUE
 
@@ -141,6 +141,12 @@
 	new_icon.SwapColor(rgb(255, 0, 220, 255), rgb(0, 0, 0, 0))
 	smashed_bottle.icon = new_icon
 	smashed_bottle.name = "broken [name]"
+	if(ranged)
+		var/matrix/M = matrix(smashed_bottle.transform)
+		M.Turn(rand(-170, 170))
+		smashed_bottle.transform = M
+		smashed_bottle.pixel_x = rand(-12, 12)
+		smashed_bottle.pixel_y = rand(-12, 12)
 	if(prob(33))
 		var/obj/item/shard/new_shard = new(drop_location())
 		if(target)
@@ -369,18 +375,19 @@
 	desc +=  span_notice("The writing reads '[random_reagent.name]'.")
 	update_appearance()
 
-/obj/item/reagent_containers/food/drinks/beer
-	name = "Bizircan Brewery GDM" //ditto the plan for bottled water, need to find a way to make multiple variants
+/obj/item/reagent_containers/food/drinks/mead
+	name = "Bizircan Brewery Dark Mead" //ditto the plan for bottled water, need to find a way to make multiple variants
 	desc = "A popular Gezenan drink made of fermented honey and spices, known as Gezenan Dark Mead, or GDM for short."
 	icon_state = "beer"
-	list_reagents = list(/datum/reagent/consumable/ethanol/beer = 30)
+	list_reagents = list(/datum/reagent/consumable/ethanol/mead = 30)
 	foodtype = SUGAR | ALCOHOL
 	custom_price = 10
 
-/obj/item/reagent_containers/food/drinks/beer/light
+/obj/item/reagent_containers/food/drinks/beer
 	name = "Carp Lite"
 	desc = "Brewed with \"Pure Ice Asteroid Spring Water\"."
 	list_reagents = list(/datum/reagent/consumable/ethanol/beer/light = 30)
+	icon_state = "beer"
 
 /obj/item/reagent_containers/food/drinks/ale
 	name = "RHIMBASA TAP"
@@ -425,6 +432,12 @@
 	B.force = 0
 	B.throwforce = 0
 	B.desc = "A carton with the bottom half burst open. Might give you a papercut."
+	if(ranged)
+		var/matrix/M = matrix(B.transform)
+		M.Turn(rand(-170, 170))
+		B.transform = M
+		B.pixel_x = rand(-12, 12)
+		B.pixel_y = rand(-12, 12)
 	transfer_fingerprints_to(B)
 	qdel(src)
 	target.Bumped(B)
@@ -651,12 +664,12 @@
 	icon_state = "sodawater"
 	list_reagents = list(/datum/reagent/consumable/sodawater = 50)
 
-/*/obj/item/reagent_containers/food/drinks/soda_cans/orange_soda //PENTEST REMOVAL - START
+/obj/item/reagent_containers/food/drinks/soda_cans/orange_soda
 	name = "Sol Sparkler: Orange Remembrance"
 	desc = "A line of flavored seltzer water from the Solarian Confederation. Its infamy stems from being flavored sparingly enough to warrant it being referred to as being vague memories of the fruit in question."
 	icon_state = "orange_soda"
 	list_reagents = list(/datum/reagent/consumable/orangejuice = 5, /datum/reagent/consumable/sodawater = 25)
-	foodtype = FRUIT*/ //PENTEST REMOVAL - END
+	foodtype = FRUIT
 
 /obj/item/reagent_containers/food/drinks/soda_cans/sol_dry
 	name = "Sol Dry"
@@ -672,7 +685,7 @@
 	list_reagents = list(/datum/reagent/consumable/space_up = 30)
 	foodtype = SUGAR | JUNKFOOD
 
-/*/obj/item/reagent_containers/food/drinks/soda_cans/lunapunch //PENTEST REMOVAL - START
+/obj/item/reagent_containers/food/drinks/soda_cans/lunapunch
 	name = "Lunapunch"
 	desc = "A soda with a distinctly herbal sweetness and a bitter aftertaste, popular across the C.L.I.P. colonies. Originally marketed as a health soft-drink for members of the CMM, the herbs used in its recipe claim to have health benefits... to dubious results."
 	icon_state = "lunapunch"
@@ -726,7 +739,7 @@
 	icon_state = "xeno_energy"
 	item_state = "xeno_energy"
 	list_reagents = list(/datum/reagent/consumable/xeno_energy = 40, /datum/reagent/consumable/electrolytes = 10)
-	foodtype = SUGAR | JUNKFOOD*/ //PENTEST REMOVAL - END
+	foodtype = SUGAR | JUNKFOOD
 
 /obj/item/reagent_containers/food/drinks/soda_cans/air
 	name = "Tradewind Canned"

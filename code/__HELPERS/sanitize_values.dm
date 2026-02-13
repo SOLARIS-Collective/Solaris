@@ -32,21 +32,10 @@
 			. += value
 
 //more specialised stuff
-/proc/sanitize_gender(gender,neuter=0,plural=1, default="male")
-	switch(gender)
-		if(MALE, FEMALE)
-			return gender
-		if(NEUTER)
-			if(neuter)
-				return gender
-			else
-				return default
-		if(PLURAL)
-			if(plural)
-				return gender
-			else
-				return default
-	return default
+/proc/sanitize_gender(gender, possible_genders = list(MALE, FEMALE, PLURAL, NEUTER))
+	if(!(gender in possible_genders))
+		return pick(possible_genders)
+	return gender
 
 /proc/sanitize_hexcolor(color, desired_format = 6, include_crunch = FALSE, default)
 	var/crunch = include_crunch ? "#" : ""
@@ -95,3 +84,27 @@
 	HSL[3] = min(HSL[3],0.4)
 	var/list/RGB = hsl2rgb(arglist(HSL))
 	return "#[num2hex(RGB[1],2)][num2hex(RGB[2],2)][num2hex(RGB[3],2)]"
+
+/**
+ * The procedure to check the text of the entered text on ntnrc_client.dm
+ *
+ * This procedure is designed to check the text you type into the chat client.
+ * It checks for invalid characters and the size of the entered text.
+ */
+/proc/reject_bad_chattext(text, max_length = 256)
+	var/non_whitespace = FALSE
+	var/char = ""
+	if (length(text) > max_length)
+		return
+	else
+		for(var/i = 1, i <= length(text), i += length(char))
+			char = text[i]
+			switch(text2ascii(char))
+				if(0 to 31)
+					return
+				if(32)
+					continue
+				else
+					non_whitespace = TRUE
+		if (non_whitespace)
+			return text

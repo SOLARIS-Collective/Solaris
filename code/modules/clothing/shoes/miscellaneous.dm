@@ -23,6 +23,10 @@
 	equip_delay_other = EQUIP_DELAY_BOOTS * 1.5
 	strip_delay = EQUIP_DELAY_BOOTS * 1.5
 
+/obj/item/clothing/shoes/combat/knife/Initialize()
+	. = ..()
+	new /obj/item/melee/knife/combat(src)
+
 /obj/item/clothing/shoes/combat/swat //overpowered boots for death squads
 	name = "\improper SWAT boots"
 	desc = "High speed, no drag combat boots."

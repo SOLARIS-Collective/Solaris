@@ -54,8 +54,6 @@
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/frills, GLOB.frills_list)
 	if(!GLOB.spines_list.len)
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/spines, GLOB.spines_list)
-	if(!GLOB.legs_list.len)
-		init_sprite_accessory_subtypes(/datum/sprite_accessory/legs, GLOB.legs_list)
 	if(!GLOB.body_markings_list.len)
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/body_markings, GLOB.body_markings_list)
 	if(!GLOB.wings_list.len)
@@ -68,6 +66,10 @@
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/moth_markings, GLOB.moth_markings_list)
 	if(!GLOB.squid_face_list.len)
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/squid_face, GLOB.squid_face_list)
+	// [CELADON-ADD] - CELADON_IPC_HAIR
+	if(!GLOB.ipc_hair_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/ipc_hair, GLOB.ipc_hair_list)
+	// [/CELADON-ADD] - CELADON_IPC_HAIR
 	if(!GLOB.ipc_screens_list.len)
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/ipc_screens, GLOB.ipc_screens_list)
 	if(!GLOB.ipc_antennas_list.len)
@@ -92,11 +94,58 @@
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/elzu_horns, GLOB.elzu_horns_list)
 	if(!GLOB.tails_list_elzu.len)
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/tails/elzu, GLOB.tails_list_elzu)
+	// [CELADON-ADD] - TAJARA
+	if(!GLOB.tajara_chest_markings_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/tajara_chest_markings, GLOB.tajara_chest_markings_list)
+	if(!GLOB.tajara_body_markings_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/tajara_body_markings, GLOB.tajara_body_markings_list)
+	if(!GLOB.tajara_facial_hairs_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/tajara_facial_hairs, GLOB.tajara_facial_hairs_list)
+	if(!GLOB.tajara_nose_markings_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/tajara_nose_markings, GLOB.tajara_nose_markings_list)
+	if(!GLOB.tajara_ears_markings_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/tajara_ears_markings, GLOB.tajara_ears_markings_list)
+	if(!GLOB.tajara_head_markings_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/tajara_head_markings, GLOB.tajara_head_markings_list)
+	if(!GLOB.tajara_tail_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/tails/tajara, GLOB.tajara_tail_list)
+	if(!GLOB.tajara_animated_tail_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/tails_animated/tajara, GLOB.tajara_animated_tail_list)
+	if(!GLOB.tajara_hairs_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/tajara_hairs, GLOB.tajara_hairs_list)
+	if(!GLOB.tajara_ears_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/tajara_ears, GLOB.tajara_ears_list)
+	// [CELADON-ADD] - CELADON_RIOL
+	if(!GLOB.riol_chest_markings_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/riol_chest_markings, GLOB.riol_chest_markings_list)
+	if(!GLOB.riol_body_markings_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/riol_body_markings, GLOB.riol_body_markings_list)
+	if(!GLOB.riol_facial_hairs_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/riol_facial_hairs, GLOB.riol_facial_hairs_list)
+	if(!GLOB.riol_nose_markings_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/riol_nose_markings, GLOB.riol_nose_markings_list)
+	if(!GLOB.riol_ears_markings_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/riol_ears_markings, GLOB.riol_ears_markings_list)
+	if(!GLOB.riol_head_markings_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/riol_head_markings, GLOB.riol_head_markings_list)
+	if(!GLOB.riol_tail_markings_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/riol_tail_markings, GLOB.riol_tail_markings_list)
+	if(!GLOB.riol_legs_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/riol_legs, GLOB.riol_legs_list)
+	if(!GLOB.riol_tail_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/tails/riol, GLOB.riol_tail_list)
+	if(!GLOB.riol_animated_tail_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/tails_animated/riol, GLOB.riol_animated_tail_list)
+	if(!GLOB.riol_hairs_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/riol_hairs, GLOB.riol_hairs_list)
+	if(!GLOB.riol_ears_list.len)
+		init_sprite_accessory_subtypes(/datum/sprite_accessory/riol_ears, GLOB.riol_ears_list)
+	// [/CELADON-ADD]
+
 	//For now we will always return none for tail_human and ears.
 	//if you don't keep this alphabetised I'm going to personally steal your shins and sell them online
 	return list(
 		"body_markings" = pick(GLOB.body_markings_list),
-		"body_size" = pick(GLOB.body_sizes),
 		"ears" = "None",
 		"elzu_horns" = pick(GLOB.elzu_horns_list),
 		"ethcolor" = GLOB.color_list_ethereal[pick(GLOB.color_list_ethereal)],
@@ -107,13 +156,33 @@
 		"ipc_brain" = pick(GLOB.ipc_brain_list),
 		"ipc_chassis" = pick(GLOB.ipc_chassis_list),
 		"ipc_screen" = pick(GLOB.ipc_screens_list),
+		"ipc_hair" = pick(GLOB.ipc_hair_list), // [CELADON-ADD] - CELADON_IPC_HAIR
 		"kepori_body_feathers" = pick(GLOB.kepori_body_feathers_list),
 		"kepori_head_feathers" = pick(GLOB.kepori_head_feathers_list),
 		"kepori_feathers" = pick(GLOB.kepori_feathers_list),
 		"kepori_tail_feathers" = pick(GLOB.kepori_tail_feathers_list),
 		"legs" = "Normal Legs",
-		"mcolor" = pick("FFFFFF","7F7F7F", "7FFF7F", "7F7FFF", "FF7F7F", "7FFFFF", "FF7FFF", "FFFF7F"),
-		"mcolor2" = pick("FFFFFF","7F7F7F", "7FFF7F", "7F7FFF", "FF7F7F", "7FFFFF", "FF7FFF", "FFFF7F"),
+			// [CELADON-EDIT] - TAJARA - токс цвета ремув - изменения базы
+		// "mcolor" = pick("FFFFFF","7F7F7F", "7FFF7F", "7F7FFF", "FF7F7F", "7FFFFF", "FF7FFF", "FFFF7F"),
+		// "mcolor2" = pick("FFFFFF","7F7F7F", "7FFF7F", "7F7FFF", "FF7F7F", "7FFFFF", "FF7FFF", "FFFF7F"),
+		// CELADON-EDIT - ORIGINAL
+		"mcolor" = pick("FFFFFF","7F7F7F", "7BBB7B", "7B7BBB", "BB7B7B", "7BBBBB", "BB7BBB", "BBBB7B"),
+		"mcolor2" = pick("FFFFFF","7F7F7F", "7BBB7B", "7B7BBB", "BB7B7B", "7BBBBB", "BB7BBB", "BBBB7B"),
+		// [/CELADON-EDIT]
+		// [CELADON-ADD] - TAJARA
+		"tajara_ears_markings_color" = pick("FFFFFF","7F7F7F", "7BBB7B", "7B7BBB", "BB7B7B", "7BBBBB", "BB7BBB", "BBBB7B"),
+		"tajara_head_markings_color" = pick("FFFFFF","7F7F7F", "7BBB7B", "7B7BBB", "BB7B7B", "7BBBBB", "BB7BBB", "BBBB7B"),
+		"tajara_nose_markings_color" = pick("FFFFFF","7F7F7F", "7BBB7B", "7B7BBB", "BB7B7B", "7BBBBB", "BB7BBB", "BBBB7B"),
+		"tajara_chest_markings_color" = pick("FFFFFF","7F7F7F", "7BBB7B", "7B7BBB", "BB7B7B", "7BBBBB", "BB7BBB", "BBBB7B"),
+		"tajara_body_markings_color" = pick("FFFFFF","7F7F7F", "7BBB7B", "7B7BBB", "BB7B7B", "7BBBBB", "BB7BBB", "BBBB7B"),
+		// [CELADON-ADD] - CELADON_RIOL
+		"riol_ears_markings_color" = 	pick("FFFFFF", "7F7F7F", "7BBB7B", "7B7BBB", "BB7B7B", "7BBBBB", "BB7BBB", "BBBB7B"),
+		"riol_head_markings_color" = 	pick("FFFFFF", "7F7F7F", "7BBB7B", "7B7BBB", "BB7B7B", "7BBBBB", "BB7BBB", "BBBB7B"),
+		"riol_nose_markings_color" = 	pick("FFFFFF", "7F7F7F", "7BBB7B", "7B7BBB", "BB7B7B", "7BBBBB", "BB7BBB", "BBBB7B"),
+		"riol_chest_markings_color" = 	pick("FFFFFF", "7F7F7F", "7BBB7B", "7B7BBB", "BB7B7B", "7BBBBB", "BB7BBB", "BBBB7B"),
+		"riol_body_markings_color" = 	pick("FFFFFF", "7F7F7F", "7BBB7B", "7B7BBB", "BB7B7B", "7BBBBB", "BB7BBB", "BBBB7B"),
+		"riol_tail_markings_color" = 	pick("FFFFFF", "7F7F7F", "7BBB7B", "7B7BBB", "BB7B7B", "7BBBBB", "BB7BBB", "BBBB7B"),
+		// [/CELADON-ADD]
 		"moth_fluff" = pick(GLOB.moth_fluff_list),
 		"moth_markings" = pick(GLOB.moth_markings_list),
 		"moth_wings" = pick(GLOB.moth_wings_list),
@@ -128,6 +197,29 @@
 		"vox_head_quills" = pick(GLOB.vox_head_quills_list),
 		"vox_neck_quills" = pick(GLOB.vox_neck_quills_list),
 		"wings" = "None",
+		// [CELADON-ADD] - TAJARA
+		"tajara_ears" = pick(GLOB.tajara_ears_list),
+		"tajara_hairs" = pick(GLOB.tajara_hairs_list),
+		"tajara_ears_markings" = pick(GLOB.tajara_ears_markings_list),
+		"tajara_head_markings" = pick(GLOB.tajara_head_markings_list),
+		"tajara_facial_hairs" = pick(GLOB.tajara_facial_hairs_list),
+		"tajara_nose_markings" = pick(GLOB.tajara_nose_markings_list),
+		"tajara_chest_markings" = pick(GLOB.tajara_chest_markings_list),
+		"tajara_body_markings" = pick(GLOB.tajara_body_markings_list),
+		"tajara_tail" = pick(GLOB.tajara_tail_list),
+		// [CELADON-ADD] - CELADON_RIOL
+		"riol_ears" = pick(GLOB.riol_ears_list),
+		"riol_hairs" = pick(GLOB.riol_hairs_list),
+		"riol_ears_markings" = pick(GLOB.riol_ears_markings_list),
+		"riol_head_markings" = pick(GLOB.riol_head_markings_list),
+		"riol_facial_hairs" = pick(GLOB.riol_facial_hairs_list),
+		"riol_nose_markings" = pick(GLOB.riol_nose_markings_list),
+		"riol_chest_markings" = pick(GLOB.riol_chest_markings_list),
+		"riol_body_markings" = pick(GLOB.riol_body_markings_list),
+		"riol_tail_markings" = pick(GLOB.riol_tail_markings_list),
+		"riol_tail" = pick(GLOB.riol_tail_list),
+		"riol_legs" = pick(GLOB.riol_legs_list),
+		// [/CELADON-ADD]
 	)
 
 /proc/random_hairstyle(gender)
@@ -222,7 +314,7 @@ GLOBAL_LIST_INIT(skin_tones, sortList(list(
 	if(isipc(H))
 		return pick(GLOB.ipc_preference_adjectives)
 	else
-		return pick(GLOB.preference_adjectives)
+		return pick(GLOB.organic_preference_adjectives)
 
 GLOBAL_LIST_EMPTY(species_list)
 

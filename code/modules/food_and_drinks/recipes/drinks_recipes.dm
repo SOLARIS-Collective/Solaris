@@ -333,9 +333,9 @@
 	results = list(/datum/reagent/consumable/ethanol/driestmartini = 2)
 	required_reagents = list(/datum/reagent/consumable/nothing = 1, /datum/reagent/consumable/ethanol/gin = 1)
 
-/*/datum/chemical_reaction/vimukti
+/datum/chemical_reaction/vimukti
 	results = list(/datum/reagent/consumable/ethanol/vimukti = 3)
-	required_reagents = list(/datum/reagent/consumable/ethanol/vodka = 1, /datum/reagent/consumable/coffee = 1, /datum/reagent/consumable/limejuice = 1)*/
+	required_reagents = list(/datum/reagent/consumable/ethanol/vodka = 1, /datum/reagent/consumable/coffee = 1, /datum/reagent/consumable/limejuice = 1)
 
 /datum/chemical_reaction/chocolatepudding
 	results = list(/datum/reagent/consumable/chocolatepudding = 20)
@@ -361,9 +361,9 @@
 	results = list(/datum/reagent/consumable/pumpkin_latte = 15)
 	required_reagents = list(/datum/reagent/consumable/pumpkinjuice = 5, /datum/reagent/consumable/coffee = 5, /datum/reagent/consumable/cream = 5)
 
-/*/datum/chemical_reaction/tadrixxfloat
+/datum/chemical_reaction/tadrixxfloat
 	results = list(/datum/reagent/consumable/tadrixxfloat = 15)
-	required_reagents = list(/datum/reagent/consumable/tadrixx = 5, /datum/reagent/consumable/ice = 5, /datum/reagent/consumable/cream = 5)*/
+	required_reagents = list(/datum/reagent/consumable/tadrixx = 5, /datum/reagent/consumable/ice = 5, /datum/reagent/consumable/cream = 5)
 
 /datum/chemical_reaction/triple_citrus
 	results = list(/datum/reagent/consumable/triple_citrus = 5)
@@ -617,7 +617,7 @@
 	results = list(/datum/reagent/consumable/ethanol/trickwine/ash_wine = 5)
 	required_reagents = list(/datum/reagent/consumable/ethanol/absinthe = 3, /datum/reagent/ash = 1, /datum/reagent/drug/mushroomhallucinogen = 1)
 	required_container = /obj/structure/fermenting_barrel/distiller
-	mix_sound ='sound/weather/ashstorm/inside/weak_end.ogg'
+	mix_sound ='sound/weather/ashstorm/outside/weak_end.ogg'
 
 /datum/chemical_reaction/ice_wine
 	results = list(/datum/reagent/consumable/ethanol/trickwine/ice_wine = 5)
@@ -651,7 +651,7 @@
 
 /datum/chemical_reaction/molten_bubbles
 	results = list(/datum/reagent/consumable/molten = 30)
-	required_reagents = list(/datum/reagent/clf3 = 10, /datum/reagent/consumable/space_cola = 20, /datum/reagent/medicine/leporazine = 1, /datum/reagent/medicine/lavaland_extract = 1)
+	required_reagents = list(/datum/reagent/clf3 = 10, /datum/reagent/consumable/space_cola = 20, /datum/reagent/medicine/leporazine = 1, /datum/reagent/medicine/hunter_extract = 1)
 
 /datum/chemical_reaction/plasma_bubbles
 	results = list(/datum/reagent/consumable/molten/plasma_fizz = 3)
@@ -664,7 +664,7 @@
 /datum/chemical_reaction/sand_bubbles/plasma			// Subbing plasma bubbles for reg
 	required_reagents = list(/datum/reagent/consumable/molten/plasma_fizz = 3, /datum/reagent/silicon = 2)
 
-/datum/chemical_reaction/eudamonia
-	results = list(/datum/reagent/consumable/ethanol/eudamonia = 2)
+/datum/chemical_reaction/eudaimonia
+	results = list(/datum/reagent/consumable/ethanol/eudaimonia = 2)
 	required_reagents = list(/datum/reagent/medicine/lithium_carbonate = 2, /datum/reagent/consumable/ethanol/hcider = 2)
 	mix_message = "The LiCarb dust incorporates into the cider, producing a pleasant chemical coloration!"

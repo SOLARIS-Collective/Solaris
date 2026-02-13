@@ -1,3 +1,6 @@
+/* [CELADON-DELETE] - Убираем инициализацию офовских предметов.
+	Разносим ресурсы по разным фракциям: "mod_celadon\outpost_console\code\supply_pack"
+
 /datum/supply_pack/emergency
 	category = "Emergency & Life Support"
 	crate_type = /obj/structure/closet/crate/internals
@@ -35,13 +38,13 @@
 	crate_name = "phorid internals crate"
 
 /datum/supply_pack/emergency/plasmaman_suit
-	name = "Plasmaman Suit Kit"
-	desc = "Keep the Plasmaman in your life comfy with a envirosuit. Refills sold seperately."
+	name = "Phorid Suit Kit"
+	desc = "Keep the Phorid in your life comfy with a Phorid envirosuit. Refills sold seperately."
 	cost = 500 //halves the price, halves the equipment. It's unlikely you need to equip more than 1 phorid at a time anyway
 	contains = list(/obj/item/clothing/under/plasmaman,
 					/obj/item/clothing/head/helmet/space/plasmaman,
 					/obj/item/clothing/gloves/color/plasmaman)
-	crate_name = "plasmaman supply kit"
+	crate_name = "phorid supply kit"
 
 /*
 		Niche protection
@@ -102,3 +105,5 @@
 					/obj/item/multitool)
 	crate_name = "bomb suit crate"
 	crate_type = /obj/structure/closet/crate/science
+
+[/CELADON-DELETE] */

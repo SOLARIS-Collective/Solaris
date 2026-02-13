@@ -1,7 +1,7 @@
 GLOBAL_LIST_INIT(command_positions, list(
 	"Captain",
 	"Head of Personnel",
-	"SolGov Representative",
+	"SolGov Representative", //WS edit - SolGov Rep
 	"Head of Security",
 	"Chief Engineer",
 	"Research Director",
@@ -37,7 +37,7 @@ GLOBAL_LIST_INIT(supply_positions, list(
 
 GLOBAL_LIST_INIT(service_positions, list(
 	"Head of Personnel",
-	"SolGov Representative",
+	"SolGov Representative",		//WS Edit - SolGov Rep
 	"Bartender",
 	"Botanist",
 	"Cook",
@@ -46,11 +46,12 @@ GLOBAL_LIST_INIT(service_positions, list(
 	"Psychologist",
 	"Lawyer",
 	"Chaplain",
+// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+	"Clown",
+	"Mime",
+// [/CELADON-ADD]
 	"Prisoner",
-	"Assistant",
-	"Clown", // PENTEST RESTORE - Clown job
-	"Mime" // PENTEST RESTORE - Mime job
-	))
+	"Assistant"))
 
 
 GLOBAL_LIST_INIT(security_positions, list(

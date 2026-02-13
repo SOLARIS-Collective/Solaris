@@ -57,7 +57,7 @@
 /datum/blackmarket_item/proc/randomize_stock()
 	stock = rand(stock_min, stock_max)
 
-/datum/blackmarket_item/proc/cycle(cost = TRUE, availibility = TRUE, stock = TRUE, force_appear = FALSE) //PENTEST CHANGE - STOCK = TRUE
+/datum/blackmarket_item/proc/cycle(cost = TRUE, availibility = TRUE, stock = TRUE, force_appear = FALSE)
 	if(cost)
 		randomize_price()
 	if(stock)

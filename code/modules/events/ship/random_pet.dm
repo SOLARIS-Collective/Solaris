@@ -9,7 +9,7 @@
 /datum/round_event/ship/random_pet
 	var/mob/living/simple_animal/random_pet
 
-/*/datum/round_event/ship/random_pet/setup()
+/datum/round_event/ship/random_pet/setup()
 	if(!..())
 		return FALSE
 	random_pet = pick(list(
@@ -20,7 +20,7 @@
 		/mob/living/simple_animal/pet/cat,
 		/mob/living/simple_animal/pet/mothroach,
 		/mob/living/simple_animal/pet/fox,
-	))*/
+	))
 
 /datum/round_event/ship/random_pet/start()
 	var/list/crates = list()

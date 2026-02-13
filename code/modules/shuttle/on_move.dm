@@ -36,7 +36,7 @@ All ShuttleMove procs go here
 				M.visible_message(span_warning("[shuttle] slams into [M]!"))
 				SSblackbox.record_feedback("tally", "shuttle_gib", 1, M.type)
 				log_attack("[key_name(M)] was shuttle gibbed by [shuttle].")
-				if(isanimal(M))
+				if(isanimal(M) || isbasicmob(M))
 					qdel(M)
 				else
 					M.gib()
@@ -326,6 +326,10 @@ All ShuttleMove procs go here
 /mob/living/lateShuttleMove(turf/oldT, list/movement_force, move_dir)
 	if(buckled)
 		return
+//	Cel-Add
+	if(issilicon(src))
+		return
+//	/Cel-Add
 
 	. = ..()
 

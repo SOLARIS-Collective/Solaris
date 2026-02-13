@@ -318,7 +318,7 @@
 			rack_dry(item_iterator)
 
 		SStgui.update_uis(src)
-		update_icon()
+		update_appearance()	// [CELADON-EDIT] - FIXES_WETHIDE - Замена устаревшего метода // update_icon()
 
 /obj/machinery/smartfridge/drying_rack/accept_check(obj/item/O)
 	if(HAS_TRAIT(O, TRAIT_DRYABLE)) //set on dryable element
@@ -424,8 +424,7 @@
 					/obj/item/reagent_containers/glass/beaker,
 					/obj/item/reagent_containers/spray,
 					/obj/item/reagent_containers/medigel,
-					/obj/item/reagent_containers/chem_pack,
-					/obj/item/reagent_containers/hypospray // PENTEST ADDITION
+					/obj/item/reagent_containers/chem_pack
 	))
 
 	if(istype(O, /obj/item/storage/pill_bottle))

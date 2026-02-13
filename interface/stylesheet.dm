@@ -49,8 +49,10 @@ em						{font-style: normal;	font-weight: bold;}
 .irmgradio				{color: #885231;}
 .pgfradio				{color: #127a35;}
 .syndradio				{color: ##612425;}
+.cyradio				{color: #4C9C9C;}
+.ngrradio				{color: #c59973;}
+.sunsradio				{color: #8f67a1;}
 .centcomradio			{color: #686868;}
-.aiprivradio			{color: #ff00ff;}
 .redteamradio			{color: #ff0000;}
 .blueteamradio			{color: #0000ff;}
 
@@ -133,6 +135,7 @@ h1.alert, h2.alert		{color: #000000;}
 .extremelybig			{font-size: 5;}
 .greentext				{color: #00FF00;	font-size: 3;}
 .redtext				{color: #FF0000;	font-size: 3;}
+.clown					{color: #FF69Bf;	font-size: 3;	font-family: "Comic Sans MS", cursive, sans-serif;	font-weight: bold;}
 .singing				{font-family: "Trebuchet MS", cursive, sans-serif; font-style: italic;}
 .hypnophrase			{color: #3bb5d3;	font-weight: bold;	animation: hypnocolor 1500ms infinite; animation-direction: alternate;}
 	@keyframes hypnocolor {
@@ -164,8 +167,4 @@ h1.alert, h2.alert		{color: #000000;}
 
 .monkeyhive				{color: #774704;}
 .monkeylead				{color: #774704;	font-size: 2;}
-
-
-
-.clown 					{color: #FF69Bf; font-size: 3; font-family: "Comic Sans MS", cursive, sans-serif; font-weight: bold;}
 </style>"}

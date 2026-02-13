@@ -8,8 +8,11 @@
 	desc = "A pile of live rounds."
 	icon = 'icons/obj/ammunition/ammo_bullets.dmi'
 	icon_state = "pistol-brass"
+// [CELADON-ADD] - ADD_MOD_BULLET_STACK - Загружает путь если из мода, иначе дефолтный
+	var/base_icon = null
+// [/CELADON-ADD]
 	base_icon_state = "pistol-brass"
-	item_flags = NO_PIXEL_RANDOM_DROP
+	item_flags = NO_PIXEL_RANDOM_DROP | NO_ROTATE_RANDOM_THROW	// [CELADON-EDIT]
 	multiple_sprites = AMMO_BOX_ONE_SPRITE
 	multiload = FALSE
 	start_empty = TRUE
@@ -26,6 +29,10 @@
 	icon_state = ""
 	for(var/casing in stored_ammo)
 		var/image/bullet = image(initial(icon), src, "[base_icon_state]")
+// [CELADON-ADD] - ADD_MOD_BULLET_STACK - Загружает путь если из мода, иначе дефолтный
+		if(base_icon != null)
+			bullet = image(base_icon, src, "[base_icon_state]")
+// [/CELADON-ADD]
 		bullet.pixel_x = rand(-8, 8)
 		bullet.pixel_y = rand(-8, 8)
 		bullet.transform = bullet.transform.Turn(round(45 * rand(0, 32) / 2)) //this is the equation Eris uses on their bullet stacks

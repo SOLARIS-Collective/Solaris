@@ -34,6 +34,12 @@
 	loot = list(/obj/item/organ/regenerative_core)
 	var/brood_type = /mob/living/simple_animal/hostile/asteroid/hivelordbrood
 	var/difficulty = 1
+	var/has_clickbox = TRUE
+
+/mob/living/simple_animal/hostile/asteroid/hivelord/Initialize()
+	. = ..()
+	if(has_clickbox)
+		AddComponent(/datum/component/clickbox, icon_state = "hivelord", max_scale = INFINITY, dead_state = "hivelord_dead") //they writhe so much.
 
 /mob/living/simple_animal/hostile/asteroid/hivelord/OpenFire(the_target)
 	if(world.time >= ranged_cooldown)
@@ -50,9 +56,11 @@
 	OpenFire()
 	return TRUE
 
-/mob/living/simple_animal/hostile/asteroid/hivelord/spawn_mob_trophy()
-	if(mob_trophy)
-		loot += mob_trophy //we don't butcher
+// [CELADON-REMOVE] - RETURN_CONTENT_CRUSHER_TROPHY - Выпилено ради легенды
+// /mob/living/simple_animal/hostile/asteroid/hivelord/spawn_mob_trophy()
+	// if(mob_trophy)
+		// loot += mob_trophy //we don't butcher
+// [/CELADON-REMOVE]
 
 /mob/living/simple_animal/hostile/asteroid/hivelord/death(gibbed)
 	mouse_opacity = MOUSE_OPACITY_ICON
@@ -68,7 +76,6 @@
 	icon_aggro = "Hivelordbrood"
 	icon_dead = "Hivelordbrood"
 	icon_gib = "syndicate_gib"
-	mouse_opacity = MOUSE_OPACITY_OPAQUE
 	move_to_delay = 1
 	friendly_verb_continuous = "buzzes near"
 	friendly_verb_simple = "buzz near"
@@ -76,7 +83,7 @@
 	speed = 3
 	maxHealth = 1
 	health = 1
-	movement_type = FLYING
+	is_flying_animal = TRUE
 	harm_intent_damage = 5
 	melee_damage_lower = 2
 	melee_damage_upper = 2
@@ -91,12 +98,15 @@
 	density = FALSE
 	del_on_death = 1
 	var/mob/source
+	var/clickbox_state = "hivelord"
+	var/clickbox_max_scale = INFINITY
 
 /mob/living/simple_animal/hostile/asteroid/hivelordbrood/Initialize(_source)
 	. = ..()
 	source = source
 	addtimer(CALLBACK(src, PROC_REF(death)), 100)
 	AddComponent(/datum/component/swarming)
+	AddComponent(/datum/component/clickbox, icon_state = clickbox_state, max_scale = clickbox_max_scale)
 
 //Legion
 /mob/living/simple_animal/hostile/asteroid/hivelord/legion
@@ -120,19 +130,26 @@
 	throw_message = "bounces harmlessly off of"
 	loot = list(/obj/item/organ/regenerative_core/legion)
 	brood_type = /mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion
-	mob_trophy = /obj/item/mob_trophy/legion_skull
+	// [CELADON-REMOVE] - RETURN_CONTENT_CRUSHER_TROPHY - Выпилено ради легенды
+	// mob_trophy = /obj/item/mob_trophy/legion_skull
+	// [/CELADON-REMOVE]
 	del_on_death = 1
 	stat_attack = HARD_CRIT
 	robust_searching = 1
 	var/dwarf_mob = FALSE
+	var/mob_to_spawn //if this legion is suppossed to spawn a specific mob
 	var/mob/living/carbon/human/stored_mob
+	has_clickbox = FALSE
 
 /mob/living/simple_animal/hostile/asteroid/hivelord/legion/death(gibbed)
 	move_force = MOVE_FORCE_DEFAULT
 	move_resist = MOVE_RESIST_DEFAULT
 	pull_force = PULL_FORCE_DEFAULT
 	if(prob(15))
-		new /obj/item/mob_trophy/legion_skull(loc)
+		// [CELADON-EDIT] - RETURN_CONTENT_CRUSHER_TROPHY
+		// new /obj/item/mob_trophy/legion_skull(loc) // CELADON-EDIT - ORIGINAL
+		new /obj/item/crusher_trophy/legion_skull(loc)
+		// [/CELADON-EDIT]
 		visible_message(span_warning("One of the [src]'s skulls looks intact."))
 	..()
 
@@ -165,6 +182,12 @@
 		if(stored_mob)
 			stored_mob.forceMove(get_turf(src))
 			stored_mob = null
+		else if(mob_to_spawn)
+			new mob_to_spawn(T)
+		// [CELADON-ADD] - RETURN_CONTENT
+		else if(fromtendril)
+			new /obj/effect/mob_spawn/human/corpse/charredskeleton(T)
+		// [/CELADON-ADD]
 		else if(from_nest)
 			new /obj/effect/mob_spawn/human/corpse/charredskeleton(T)
 		else if(dwarf_mob)
@@ -183,6 +206,11 @@
 	move_force = MOVE_FORCE_DEFAULT
 	move_resist = MOVE_RESIST_DEFAULT
 	pull_force = PULL_FORCE_DEFAULT
+	// [CELADON-ADD] - RETURN_CONTENT_CRUSHER_TROPHY
+	if(prob(75))
+		new /obj/item/crusher_trophy/dwarf_skull(loc)
+		visible_message("<span class='warning'>One of the [src]'s skulls looks like it survived.</span>")
+	// [/CELADON-ADD]
 	..()
 
 //Legion skull
@@ -212,6 +240,8 @@
 	stat_attack = SOFT_CRIT
 	robust_searching = 1
 	var/can_infest_dead = FALSE
+	clickbox_state = "sphere"
+	clickbox_max_scale = 2
 
 /mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion/staff
 	name = "emaciated legion"
@@ -391,7 +421,11 @@
 
 /mob/living/simple_animal/hostile/big_legion/Initialize()
 	.=..()
-	AddComponent(/datum/component/spawner, list(/mob/living/simple_animal/hostile/asteroid/hivelord/legion/nest), 200, faction, "peels itself off from", 3)
+	// [CELADON-EDIT] - RETURN_CONTENT
+	// AddComponent(/datum/component/spawner, list(/mob/living/simple_animal/hostile/asteroid/hivelord/legion/nest), 200, faction, "peels itself off from", 3) // CELADON-EDIT - ORIGINAL
+	AddComponent(/datum/component/spawner, list(/mob/living/simple_animal/hostile/asteroid/hivelord/legion/nest,
+												/mob/living/simple_animal/hostile/asteroid/hivelord/legion/tendril), 200, faction, "peels itself off from", 3)
+	// [/CELADON-EDIT]
 
 // Snow Legion
 /mob/living/simple_animal/hostile/asteroid/hivelord/legion/snow
@@ -402,7 +436,9 @@
 	icon_living = "snowlegion"
 	icon_aggro = "snowlegion_alive"
 	icon_dead = "snowlegion"
-	mob_trophy = /obj/item/mob_trophy/legion_skull
+	// [CELADON-REMOVE] - RETURN_CONTENT_CRUSHER_TROPHY - Выпилено ради легенды
+	// mob_trophy = /obj/item/mob_trophy/legion_skull
+	// [/CELADON-REMOVE]
 	loot = list(/obj/item/organ/regenerative_core/legion)
 	brood_type = /mob/living/simple_animal/hostile/asteroid/hivelordbrood/legion/snow
 

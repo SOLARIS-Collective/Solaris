@@ -48,6 +48,7 @@
 	var/linglink
 	var/datum/martial_art/martial_art
 	var/static/default_martial_art = new/datum/martial_art
+	var/miming = FALSE // Mime's vow of silence	// [CELADON-EDIT] - RETURN_CONTENT - CLOWN_RETURN_CONTENT
 	var/list/antag_datums
 	var/antag_hud_icon_state = null //this mind's ANTAG_HUD should have this icon_state
 	var/datum/atom_hud/antag/antag_hud = null //this mind's antag HUD
@@ -441,7 +442,7 @@
 /datum/mind/proc/show_memory(mob/recipient, window=1)
 	if(!recipient)
 		recipient = current
-	var/output = "<B>[current.real_name]'s Memories:</B><br>"
+	var/output = "<meta http-equiv='X-UA-Compatible' content='IE=edge' charset='UTF-8'/><B>[current.real_name]'s Memories:</B><br>"
 	output += memory
 
 

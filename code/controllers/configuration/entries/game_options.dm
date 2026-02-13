@@ -131,7 +131,7 @@
 	value_mode = VALUE_MODE_FLAG
 
 /datum/config_entry/number/max_loadout_items	//maximum number of items that can be in a player's loadout
-	config_entry_value = 10
+	config_entry_value = 20
 	min_val = 0
 
 /datum/config_entry/flag/no_summon_guns	//No
@@ -379,7 +379,7 @@
 	config_entry_value = 150
 
 /datum/config_entry/number/max_overmap_dynamic_events
-	config_entry_value = 10
+	config_entry_value = 25
 
 /datum/config_entry/string/overmap_generator_type
 	config_entry_value = "solar_system"
@@ -390,8 +390,20 @@
 
 /datum/config_entry/number/overmap_encounter_size
 	max_val = 255
-	config_entry_value = 127
-	min_val = 127
+	config_entry_value = 191
+	min_val = 191
+
+/**
+ * A config that skews with the random spawners weights
+ * If the value is lower than 1, it'll tend to even out the odds
+ * If higher than 1, it'll lean toward common spawns even more.
+ */
+/datum/config_entry/number/random_loot_weight_modifier
+	integer = FALSE
+	default = 1
+	min_val = 0.05
+	config_entry_value = 191
+	min_val = 191
 
 /datum/config_entry/number/max_dynamic_missions
 	config_entry_value = 0.66
@@ -401,7 +413,10 @@
 	integer = FALSE
 
 /datum/config_entry/flag/auto_ship_spawn_locking
-	config_entry_value = TRUE
+	// [CELADON-EDIT] - CELADON_MASTER_FILES - Отключаем автоматику
+	// config_entry_value = TRUE	// ORIGINAL
+	config_entry_value = FALSE
+	// [/CELADON-EDIT]
 
 //When the auto ship locking will start counting up, in minutes
 /datum/config_entry/number/ship_locking_starts

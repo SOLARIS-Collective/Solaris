@@ -104,10 +104,10 @@
 	build_path = /obj/machinery/telecomms/processor
 	req_components = list(
 		/obj/item/stock_parts/manipulator = 3,
+		/obj/item/stack/cable_coil = 2,
 		/obj/item/stock_parts/subspace/filter = 1,
 		/obj/item/stock_parts/subspace/treatment = 2,
 		/obj/item/stock_parts/subspace/analyzer = 1,
-		/obj/item/stack/cable_coil = 2,
 		/obj/item/stock_parts/subspace/amplifier = 1)
 
 /obj/item/circuitboard/machine/telecomms/receiver
@@ -127,7 +127,9 @@
 	req_components = list(
 		/obj/item/stock_parts/manipulator = 2,
 		/obj/item/stack/cable_coil = 2,
-		/obj/item/stock_parts/subspace/filter = 2)
+		/obj/item/stock_parts/subspace/filter = 2,
+		/obj/item/stock_parts/subspace/transmitter = 4
+		)
 
 /obj/item/circuitboard/machine/telecomms/server
 	name = "Telecommunication Server (Machine Board)"
@@ -567,15 +569,30 @@
 	name = "Smartfridge (Machine Board)"
 	build_path = /obj/machinery/smartfridge
 	req_components = list(/obj/item/stock_parts/matter_bin = 1)
-	var/static/list/fridges_name_paths = list(/obj/machinery/smartfridge = "plant produce",
+	// [CELADON-EDIT] - CELADON_QOL - Bloodbank circuit added
+	// var/static/list/fridges_name_paths = list(/obj/machinery/smartfridge = "plant produce", // CELADON-EDIT - ORIGINAL
+	// 	/obj/machinery/smartfridge/food = "food", // CELADON-EDIT - ORIGINAL
+	// 	/obj/machinery/smartfridge/drinks = "drinks", // CELADON-EDIT - ORIGINAL
+	// 	/obj/machinery/smartfridge/extract = "slimes", // CELADON-EDIT - ORIGINAL
+	// 	/obj/machinery/smartfridge/organ = "organs", // CELADON-EDIT - ORIGINAL
+	// 	/obj/machinery/smartfridge/chemistry = "chems", // CELADON-EDIT - ORIGINAL
+	// 	/obj/machinery/smartfridge/chemistry/virology = "viruses", // CELADON-EDIT - ORIGINAL
+	// 	/obj/machinery/smartfridge/disks = "disks")*/ // CELADON-EDIT - ORIGINAL
+	var/static/list/fridges_name_paths = list(/obj/machinery/smartfridge/bloodbank = "blood",	// CELADON-EDIT - ORIGINAL
 		/obj/machinery/smartfridge/food = "food",
 		/obj/machinery/smartfridge/drinks = "drinks",
 		/obj/machinery/smartfridge/bloodbank = "blood",
 		/obj/machinery/smartfridge/organ = "organs",
 		/obj/machinery/smartfridge/chemistry = "chems",
-		/obj/machinery/smartfridge/chemistry/virology = "viruses",
-		/obj/machinery/smartfridge/disks = "disks", /obj/machinery/smartfridge/extract = "slimes") //PENTEST ADDITION - XENOBIOLOGY
+		/obj/machinery/smartfridge/disks = "disks",
+		/obj/machinery/smartfridge/drinks = "drinks",
+		/obj/machinery/smartfridge/food = "food",
+		/obj/machinery/smartfridge/organ = "organs",
+		/obj/machinery/smartfridge = "plant produce",
+		/obj/machinery/smartfridge/chemistry/virology = "viruses")
+	// [/CELADON-EDIT]
 	needs_anchored = FALSE
+// Original is below because var then becomes not connectede to circutboard and problems appera
 
 /obj/item/circuitboard/machine/smartfridge/Initialize(mapload, new_type)
 	if(new_type)
@@ -666,6 +683,9 @@
 		/obj/machinery/vending/sovietsoda = "BODA",
 		/obj/machinery/vending/security = "SecTech",
 		/obj/machinery/vending/modularpc = "Deluxe Silicate Selections",
+// [CELADON-ADD] - CELADON_BALANCE - Универсальная плата вендоров
+		/obj/machinery/vending/mining_equipment = "Mining Equipment",
+// [/CELADON-ADD]
 		/obj/machinery/vending/custom = "Custom Vendor")
 
 /obj/item/circuitboard/machine/vendor/attackby(obj/item/I, mob/user, params)
@@ -725,7 +745,7 @@
 		/obj/item/stock_parts/capacitor = 1,
 		/obj/item/stock_parts/manipulator = 1,
 		/obj/item/stack/sheet/glass = 1,
-		///obj/item/stack/ore/bluespace_crystal/refined = 1, //PENTEST OVERRIDE - MAKING IT A LITTLE CHEAPER
+		/obj/item/stack/ore/bluespace_crystal/refined = 1,
 		/obj/item/stock_parts/cell = 1)
 	def_components = list(/obj/item/stock_parts/cell = /obj/item/stock_parts/cell/high)
 	needs_anchored = FALSE
@@ -1209,6 +1229,25 @@
 	req_components = list(/obj/item/stock_parts/micro_laser = 1)
 	needs_anchored = FALSE
 
+/obj/item/circuitboard/machine/griddle
+	name = "circuit board (Griddle)"
+	icon_state = "service"
+	build_path = /obj/machinery/griddle
+	req_components = list(
+		/obj/item/assembly/igniter = 1,
+		/obj/item/stack/cable_coil = 2,
+		/obj/item/stock_parts/micro_laser = 1,
+	)
+
+/obj/item/circuitboard/machine/oven
+	name = "circuit board (Oven)"
+	icon_state = "service"
+	build_path = /obj/machinery/oven
+	req_components = list(
+		/obj/item/assembly/igniter = 1,
+		/obj/item/stack/cable_coil = 2,
+		/obj/item/stock_parts/micro_laser = 1,
+	)
 
 /obj/item/circuitboard/machine/dish_drive
 	name = "Dish Drive (Machine Board)"
@@ -1426,6 +1465,14 @@
 	build_path = /obj/machinery/power/shuttle/engine/electric/bad
 	req_components = list(/obj/item/stock_parts/capacitor = 2,
 		/obj/item/stock_parts/micro_laser = 2)
+
+// Maploaded engines of this type function identically to standard ion engines, but they start with T3 parts
+/obj/item/circuitboard/machine/shuttle/engine/electric/premium
+	build_path = /obj/machinery/power/shuttle/engine/electric/premium
+	def_components = list(
+		/obj/item/stock_parts/capacitor = /obj/item/stock_parts/capacitor/super,
+		/obj/item/stock_parts/micro_laser = /obj/item/stock_parts/micro_laser/ultra
+		)
 
 /obj/item/circuitboard/machine/shuttle/engine/expulsion
 	name = "Expulsion Thruster (Machine Board)"

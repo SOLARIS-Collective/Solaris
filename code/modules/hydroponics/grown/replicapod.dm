@@ -6,7 +6,9 @@
 	icon_state = "seed-replicapod"
 	species = "replicapod"
 	plantname = "Replica Pod"
-	product = /mob/living/carbon/human //verrry special -- Urist
+	// [CELADON EDIT] - CELADON FIXES
+	product = null //verrry special -- Urist
+	// [CELADON EDIT]
 	lifespan = 50
 	endurance = 8
 	maturation = 10
@@ -65,7 +67,9 @@
 /obj/item/seeds/replicapod/get_analyzer_text()
 	var/text = ..()
 	if(contains_sample)
-		text += "\n It contains a blood sample with blood DNA (UE) \"sampleDNA\"." //blood DNA (UE) shows in medical records and is readable by forensics scanners
+	// [CELADON EDIT] - CELADON FIXES
+		text += "\n It contains a blood sample with blood DNA (UE) \"[sampleDNA]\"." //blood DNA (UE) shows in medical records and is readable by forensics scanners
+	// [CELADON EDIT]
 	return text
 
 /obj/item/seeds/replicapod/harvest(mob/user) //now that one is fun -- Urist
@@ -84,9 +88,6 @@
 				else
 					if(M.ckey == ckey && M.stat == DEAD)
 						make_podman = TRUE
-						if(isliving(M))
-							var/mob/living/L = M
-							make_podman = !L.hellbound
 						break
 		else //If the player has ghosted from his corpse before blood was drawn, his ckey is no longer attached to the mob, so we need to match up the cloned player through the mind key
 			for(var/mob/M in GLOB.player_list)
@@ -96,9 +97,6 @@
 						if(!O.can_reenter_corpse)
 							break
 					make_podman = TRUE
-					if(isliving(M))
-						var/mob/living/L = M
-						make_podman = !L.hellbound
 					ckey_holder = M.ckey
 					break
 

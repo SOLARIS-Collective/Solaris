@@ -48,6 +48,10 @@
 	user.update_inv_head()	//so our mob-overlays update
 
 	set_light_on(on)
+	// [CELADON-ADD] - FIXES_DEBUG_SUIT - фиксим фонарик переключение фонарика
+	to_chat(user, span_notice("You turn [on ? "on" : "off"] [src]'s flashlight."))
+	playsound(src, on ? 'sound/weapons/magin.ogg' : 'sound/weapons/magout.ogg', 40, TRUE)
+	// [/CELADON-ADD]
 
 	for(var/X in actions)
 		var/datum/action/A = X
@@ -124,6 +128,7 @@
 /obj/item/clothing/suit/space/hardsuit/Initialize()
 	if(jetpack && ispath(jetpack))
 		jetpack = new jetpack(src)
+	allowed += GLOB.security_vest_allowed
 	. = ..()
 
 /obj/item/clothing/suit/space/hardsuit/attack_self(mob/user)
@@ -215,7 +220,10 @@
 	item_state = "eng_hardsuit"
 	siemens_coefficient = 0
 	armor = list("melee" = 30, "bullet" = 5, "laser" = 10, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 75, "fire" = 100, "acid" = 75, "wound" = 20)
-	supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION
+	// [CELADON-EDIT] - TAJARA, CELADON_RIOL
+	// supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION // CELADON-EDIT - ORIGINAL
+	supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION | TAJARA_VARIATION | RIOL_VARIATION
+	// [/CELADON-EDIT]
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/engine
 	resistance_flags = FIRE_PROOF
 
@@ -289,7 +297,10 @@
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/mining
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	custom_price = 2000
-	supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION
+	// [CELADON-EDIT] - TAJARA, CELADON_RIOL
+	// supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION // CELADON-EDIT - ORIGINAL
+	supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION | TAJARA_VARIATION | RIOL_VARIATION
+	// [/CELADON-EDIT]
 
 	//Heavy Mining Hardsuit, bought from Cargo.
 /obj/item/clothing/suit/space/hardsuit/mining/heavy
@@ -313,6 +324,7 @@
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	armor = list("melee" = 65, "bullet" = 30, "laser" = 25, "energy" = 30, "bomb" = 70, "bio" = 100, "rad" = 85, "fire" = 100, "acid" = 100, "wound" = 30)
 	light_range = 10
+	supports_variations = SNOUTED_VARIATION
 
 	//NS hardsuit
 /obj/item/clothing/suit/space/hardsuit/mining/heavy/ns
@@ -324,7 +336,8 @@
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/mining/heavy/ns
 	hardsuit_type = "nsmining"
 	resistance_flags = FIRE_PROOF | ACID_PROOF
-	armor = list("melee" = 65, "bullet" = 30, "laser" = 25, "energy" = 30, "bomb" = 70, "bio" = 100, "rad" = 85, "fire" = 100, "acid" = 100)
+	armor = list("melee" = 65, "bullet" = 30, "laser" = 25, "energy" = 30, "bomb" = 70, "bio" = 100, "rad" = 85, "fire" = 100, "acid" = 100, "wound" = 30) // [CELADON-EDIT] - CELADON_BALANCE - добавил защиту от ваундов
+	supports_variations = KEPORI_VARIATION
 
 /obj/item/clothing/head/helmet/space/hardsuit/mining/heavy/ns
 	name = "N+S mining hardsuit helmet"
@@ -333,7 +346,8 @@
 	item_state = "hardsuit0-nsmining"
 	hardsuit_type = "nsmining"
 	resistance_flags = FIRE_PROOF | ACID_PROOF
-	armor = list("melee" = 65, "bullet" = 30, "laser" = 25, "energy" = 30, "bomb" = 70, "bio" = 100, "rad" = 85, "fire" = 100, "acid" = 100)
+	armor = list("melee" = 65, "bullet" = 30, "laser" = 25, "energy" = 30, "bomb" = 70, "bio" = 100, "rad" = 85, "fire" = 100, "acid" = 100, "wound" = 30) // [CELADON-EDIT] - CELADON_BALANCE - добавил защиту от ваундов
+	supports_variations = KEPORI_VARIATION
 
 	//Syndicate hardsuit
 /obj/item/clothing/head/helmet/space/hardsuit/syndi
@@ -367,6 +381,10 @@
 /obj/item/clothing/head/helmet/space/hardsuit/syndi/attack_self(mob/user)
 	on = !on
 	set_light_on(on)
+	// [CELADON-ADD] - FIXES_DEBUG_SUIT - фиксим фонарик переключение фонарика
+	to_chat(user, span_notice("You turn [on ? "on" : "off"] [src]'s flashlight."))
+	playsound(src, on ? 'sound/weapons/magin.ogg' : 'sound/weapons/magout.ogg', 40, TRUE)
+	// [/CELADON-ADD]
 
 /obj/item/clothing/head/helmet/space/hardsuit/syndi/proc/toggle_mode(mob/user) //Toggle Helmet
 	if(!isturf(user.loc))
@@ -412,10 +430,16 @@
 			linkedsuit.name = initial(linkedsuit.name)
 			linkedsuit.desc = initial(linkedsuit.desc)
 			linkedsuit.clothing_flags |= STOPSPRESSUREDAMAGE
+			// [CELADON - ADD] - BALANCE
+			linkedsuit.slowdown = 0.7
+			// [CELADON - ADD]
 			linkedsuit.cold_protection |= CHEST | GROIN | LEGS | FEET | ARMS | HANDS
 		else
 			linkedsuit.name += " (travel)"
 			linkedsuit.desc = linkedsuit.alt_desc
+			// [CELADON - ADD] - BALANCE
+			linkedsuit.slowdown = linkedsuit.combat_slowdown
+			// [CELADON - ADD]
 			linkedsuit.clothing_flags &= ~STOPSPRESSUREDAMAGE
 			linkedsuit.cold_protection &= ~(CHEST | GROIN | LEGS | FEET | ARMS | HANDS)
 			if(linkedsuit.lightweight)
@@ -439,11 +463,85 @@
 	allowed = list(/obj/item/gun, /obj/item/ammo_box,/obj/item/ammo_casing, /obj/item/melee/baton, /obj/item/melee/energy/sword/saber, /obj/item/restraints/handcuffs, /obj/item/tank/internals)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/syndi
 	jetpack = /obj/item/tank/jetpack/suit
+	// [CELADON-EDIT] - TAJARA, CELADON_RIOL, BALANCE
+	// supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION // CELADON-EDIT - ORIGINAL
+	// var/combat_slowdown = 0 //slowdown when in combat mode // [CELADON - EDIT] - ORIGINAL
+	supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION | TAJARA_VARIATION | RIOL_VARIATION
+	var/combat_slowdown = 0.2
+	// [/CELADON - EDIT]
 	slowdown = 0.5
 	var/lightweight = 0 //used for flags when toggling
 
 	kepori_override_icon = 'icons/mob/clothing/suits/spacesuits_kepori.dmi'
 	supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION | KEPORI_VARIATION
+
+//Ramzi Syndie suit
+/obj/item/clothing/head/helmet/space/hardsuit/syndi/ramzi
+	name = "rust-red hardsuit helmet"
+	desc = "A beat-up standardized dual-mode helmet derived from more advanced special operations helmets, its red rusted into a dirty brown. It is in EVA mode. Manufactured by Ramzi Clique."
+	alt_desc = "A beat-up standardized dual-mode helmet derived from more advanced special operations helmets, its red rusted into a dirty brown. It is in travel mode. Manufactured by Ramzi Clique."
+	icon_state = "hardsuit1-ramzi"
+	item_state = "hardsuit1-ramzi"
+	hardsuit_type = "ramzi"
+	armor = list("melee" = 35, "bullet" = 40, "laser" = 20,"energy" = 40, "bomb" = 10, "bio" = 100, "rad" = 50, "fire" = 75, "acid" = 75, "wound" = 20)
+
+/obj/item/clothing/suit/space/hardsuit/syndi/ramzi
+	name = "rust-red hardsuit"
+	desc = "A beat-up standardized dual-mode hardsuit derived from more advanced special operations hardsuits, its red rusted into a dirty brown. It is in EVA mode. Manufactured by Ramzi Clique."
+	alt_desc = "A beat-up standardized dual-mode hardsuit derived from more advanced special operations hardsuits, its red rusted into a dirty brown. It is in travel mode. Manufactured by Ramzi Clique."
+	icon_state = "hardsuit1-ramzi"
+	item_state = "hardsuit1-ramzi"
+	hardsuit_type = "ramzi"
+	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/syndi/ramzi
+	jetpack = null
+	armor = list("melee" = 35, "bullet" = 40, "laser" = 20,"energy" = 40, "bomb" = 10, "bio" = 100, "rad" = 50, "fire" = 75, "acid" = 75, "wound" = 20)
+	slowdown = 0.7
+	jetpack = null
+	supports_variations = DIGITIGRADE_VARIATION | KEPORI_VARIATION | VOX_VARIATION
+
+//Ramzi Elite Suit
+/obj/item/clothing/head/helmet/space/hardsuit/syndi/ramzi/elite
+	name = "elite rust-red hardsuit helmet"
+	desc = "An elite version of the rusted-red hardsuit helmet, with improved armour and fireproofing. The armour is worn and heavy. It is in EVA mode."
+	alt_desc = "An elite version of the rusted-red hardsuit, with improved armour and fireproofing. The armour is worn and heavy. It is in travel mode."
+	hardsuit_type = "ramzielite"
+	icon_state = "hardsuit1-ramzielite"
+	item_state = "hardsuit1-ramzielite"
+	armor = list("melee" = 50, "bullet" = 60, "laser" = 30, "energy" = 40, "bomb" = 35, "bio" = 100, "rad" = 60, "fire" = 100, "acid" = 80, "wound" = 50) // [CELADON-EDIT] - CELADON_BALANCE
+
+/obj/item/clothing/suit/space/hardsuit/syndi/ramzi/elite
+	name = "elite rust-red hardsuit"
+	desc = "An elite version of the rusted-red hardsuit, with improved armour and fireproofing. The armour is worn and heavy. It is in EVA mode."
+	alt_desc = "An elite version of the rusted-red hardsuit, with improved armour and fireproofing. The armour is worn and heavy. It is in EVA mode."
+	icon_state = "hardsuit1-ramzielite"
+	item_state = "hardsuit1-ramzielite"
+	hardsuit_type = "ramzielite"
+	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/syndi/ramzi/elite
+	armor = list("melee" = 50, "bullet" = 60, "laser" = 30, "energy" = 40, "bomb" = 35, "bio" = 100, "rad" = 60, "fire" = 100, "acid" = 80, "wound" = 50) // [CELADON-EDIT] - CELADON_BALANCE
+	slowdown = 1.25
+//Mayor's Suit
+
+/obj/item/clothing/suit/space/hardsuit/syndi/old
+	name = "worn blood-red hardsuit"
+	desc = "A dual-mode, once advanced hardsuit designed for special combat operations. So severely damaged, it is no longer spaceproof. It is in 'EVA' mode. Produced by the Gorlex Marauders."
+	alt_desc = "A dual-mode, once advanced hardsuit designed for special combat operations. So severely damaged, it is no longer spaceproof. It is in travel mode. Produced by the Gorlex Marauders."
+	icon_state = "hardsuit1-old"
+	item_state = "old_syndie_hardsuit"
+	hardsuit_type = "old"
+	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/syndi/old
+	armor = list("melee" = 35, "bullet" = 40, "laser" = 20,"energy" = 40, "bomb" = 10, "bio" = 100, "rad" = 50, "fire" = 75, "acid" = 75, "wound" = 20)
+	slowdown = 0.5
+	jetpack = null
+	supports_variations = KEPORI_VARIATION | DIGITIGRADE_VARIATION
+
+/obj/item/clothing/head/helmet/space/hardsuit/syndi/old
+	name = "worn blood-red hardsuit helmet"
+	desc = "A dual-mode, once advanced hardsuit helmet designed for special combat operations. So severely damaged, it is no longer spaceproof. It is in 'EVA' mode. Produced by the Gorlex Marauders."
+	alt_desc = "A dual-mode, once advanced hardsuit helmet designed for special combat operations. So severely damaged, it is no longer spaceproof. It is in travel mode. Produced by the Gorlex Marauders."
+	icon_state = "hardsuit1-old"
+	item_state = "old_syndie_helm"
+	hardsuit_type = "old"
+	supports_variations = KEPORI_VARIATION
 
 //Elite Syndie suit
 /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite
@@ -476,7 +574,10 @@
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	resistance_flags = FIRE_PROOF | ACID_PROOF
-	supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION
+	// [CELADON-EDIT] - TAJARA, CELADON_RIOL
+	// supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION // CELADON-EDIT - ORIGINAL
+	supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION | TAJARA_VARIATION | RIOL_VARIATION
+	// [/CELADON-EDIT]
 
 /obj/item/clothing/suit/space/hardsuit/syndi/elite/debug
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite/debug
@@ -491,7 +592,10 @@
 	hardsuit_type = "cybersun"
 	armor = list("melee" = 25, "bullet" = 25, "laser" = 50, "energy" = 50, "bomb" = 25, "bio" = 100, "rad" = 60, "fire" = 60, "acid" = 60, "wound" = 30)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/syndi/cybersun
-	supports_variations = VOX_VARIATION | KEPORI_VARIATION
+	// [CELADON-EDIT] - TAJARA, CELADON_RIOL
+	// supports_variations = VOX_VARIATION // CELADON-EDIT - ORIGINAL
+	supports_variations = VOX_VARIATION | KEPORI_VARIATION | TAJARA_VARIATION | RIOL_VARIATION
+	// [/CELADON-EDIT]
 
 /obj/item/clothing/head/helmet/space/hardsuit/syndi/cybersun
 	name = "neutron-star combat hardsuit helmet"
@@ -510,6 +614,10 @@
 	hardsuit_type = "cyberparamed"
 	armor = list("melee" = 25, "bullet" = 25, "laser" = 35, "energy" = 40, "bomb" = 10, "bio" = 100, "rad" = 65, "fire" = 75, "acid" = 40, "wound" = 20)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/syndi/cybersun/paramed
+	// [CELADON-EDIT] - TAJARA, CELADON_RIOL
+	// supports_variations = VOX_VARIATION // CELADON-EDIT - ORIGINAL
+	supports_variations = VOX_VARIATION | TAJARA_VARIATION | RIOL_VARIATION
+	// [/CELADON-EDIT]
 	jetpack = null
 
 /obj/item/clothing/head/helmet/space/hardsuit/syndi/cybersun/paramed
@@ -540,7 +648,10 @@
 	armor = list("melee" = 30, "bullet" = 5, "laser" = 10, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 60, "fire" = 60, "acid" = 75, "wound" = 20)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/medical
 	slowdown = 0.3
-	supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION
+	// [CELADON-EDIT] - TAJARA, CELADON_RIOL
+	// supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION // CELADON-EDIT - ORIGINAL
+	supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION | TAJARA_VARIATION | RIOL_VARIATION
+	// [/CELADON-EDIT]
 
 /obj/item/clothing/head/helmet/space/hardsuit/medical/cmo
 	name = "chief medical officer's hardsuit helmet"
@@ -552,35 +663,35 @@
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/medical/cmo
 
 	//Research Director hardsuit
-/*/obj/item/clothing/head/helmet/space/hardsuit/rd
-	name = "scientific hardsuit helmet"
-	desc = "A prototype helmet designed for research in a hazardous, low pressure environment. Scientific data flashes across the visor."
-	icon_state = "hardsuit0-rd"
-	hardsuit_type = "rd"
+/obj/item/clothing/head/helmet/space/hardsuit/bomb
+	name = "EOD hardsuit helmet"
+	desc = "A bulky helmet designed for hazardous, low pressure environments. Fitted with extensive plating for handling of explosives and shrapnel. The difference between a closed and open-casket."
+	icon_state = "hardsuit0-eod"
+	hardsuit_type = "eod"
 	resistance_flags = ACID_PROOF | FIRE_PROOF
 	max_heat_protection_temperature = FIRE_SUIT_MAX_TEMP_PROTECT
-	armor = list("melee" = 30, "bullet" = 40, "laser" = 10, "energy" = 20, "bomb" = 100, "bio" = 100, "rad" = 60, "fire" = 60, "acid" = 80, "wound" = 20)
+	armor = list("melee" = 30, "bullet" = 40, "laser" = 10, "energy" = 20, "bomb" = 100, "bio" = 100, "rad" = 60, "fire" = 60, "acid" = 80, "wound" = 40)
 	var/explosion_detection_dist = 21
 	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL | SCAN_REAGENTS | SNUG_FIT | BLOCK_GAS_SMOKE_EFFECT | ALLOWINTERNALS //WS Port - Cit Internals
 	actions_types = list(/datum/action/item_action/toggle_helmet_light, /datum/action/item_action/toggle_research_scanner)
 
-/obj/item/clothing/head/helmet/space/hardsuit/rd/Initialize()
+/obj/item/clothing/head/helmet/space/hardsuit/bomb/Initialize()
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_EXPLOSION, PROC_REF(sense_explosion))
 
-/obj/item/clothing/head/helmet/space/hardsuit/rd/equipped(mob/living/carbon/human/user, slot)
+/obj/item/clothing/head/helmet/space/hardsuit/bomb/equipped(mob/living/carbon/human/user, slot)
 	..()
 	if (slot == ITEM_SLOT_HEAD)
 		var/datum/atom_hud/DHUD = GLOB.huds[DATA_HUD_DIAGNOSTIC_BASIC]
 		DHUD.add_hud_to(user)
 
-/obj/item/clothing/head/helmet/space/hardsuit/rd/dropped(mob/living/carbon/human/user)
+/obj/item/clothing/head/helmet/space/hardsuit/bomb/dropped(mob/living/carbon/human/user)
 	..()
 	if (user.head == src)
 		var/datum/atom_hud/DHUD = GLOB.huds[DATA_HUD_DIAGNOSTIC_BASIC]
 		DHUD.remove_hud_from(user)
 
-/obj/item/clothing/head/helmet/space/hardsuit/rd/proc/sense_explosion(datum/source, turf/epicenter, devastation_range, heavy_impact_range,
+/obj/item/clothing/head/helmet/space/hardsuit/bomb/proc/sense_explosion(datum/source, turf/epicenter, devastation_range, heavy_impact_range,
 		light_impact_range, took, orig_dev_range, orig_heavy_range, orig_light_range)
 	var/turf/T = get_turf(src)
 	if(T.z != epicenter.z)
@@ -589,11 +700,11 @@
 		return
 	display_visor_message("Explosion detected! Epicenter: [devastation_range], Outer: [heavy_impact_range], Shock: [light_impact_range]")
 
-/obj/item/clothing/suit/space/hardsuit/rd
-	name = "scientific hardsuit"
-	desc = "A prototype suit that protects against hazardous, low pressure environments. Fitted with extensive plating for handling explosives and dangerous research materials."
-	icon_state = "hardsuit-rd"
-	item_state = "hardsuit-rd"
+/obj/item/clothing/suit/space/hardsuit/bomb
+	name = "EOD hardsuit"
+	desc = "A bulky suit that protects against hazardous, low pressure environments. Fitted with extensive plating for handling of explosives and shrapnel. The difference between a closed and open-casket."
+	icon_state = "hardsuit-eod"
+	item_state = "hardsuit-eod"
 	resistance_flags = ACID_PROOF | FIRE_PROOF
 	max_heat_protection_temperature = FIRE_SUIT_MAX_TEMP_PROTECT //Same as an emergency firesuit. Not ideal for extended exposure.
 	allowed = list(/obj/item/flashlight,
@@ -601,10 +712,17 @@
 		/obj/item/gun/energy/wormhole_projector,
 		/obj/item/hand_tele,
 		/obj/item/aicard)
-	slowdown = 1.5
-	armor = list("melee" = 30, "bullet" = 40, "laser" = 10, "energy" = 20, "bomb" = 100, "bio" = 100, "rad" = 60, "fire" = 60, "acid" = 80, "wound" = 20)
-	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/rd
-	supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION*/
+	slowdown = 1
+	armor = list("melee" = 30, "bullet" = 40, "laser" = 10, "energy" = 20, "bomb" = 100, "bio" = 100, "rad" = 60, "fire" = 60, "acid" = 80, "wound" = 40)
+	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/bomb
+	// [CELADON-EDIT] - TAJARA, CELADON_RIOL
+	// supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION // CELADON-EDIT - ORIGINAL
+	supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION | TAJARA_VARIATION | RIOL_VARIATION
+	// [/CELADON-EDIT]
+
+/obj/item/clothing/suit/space/hardsuit/bomb/Initialize()
+	. = ..()
+	allowed = GLOB.security_hardsuit_allowed
 
 //Security hardsuit
 /obj/item/clothing/head/helmet/space/hardsuit/security
@@ -614,7 +732,10 @@
 	item_state = "sec_helm"
 	hardsuit_type = "sec"
 	armor = list("melee" = 35, "bullet" = 30, "laser" = 30, "energy" = 40, "bomb" = 10, "bio" = 100, "rad" = 50, "fire" = 75, "acid" = 75, "wound" = 20)
-	supports_variations = SNOUTED_VARIATION
+	// [CELADON-EDIT] - CELADON_VOX - WTF у них же есть даже в атласе спрайт...
+	//supports_variations = SNOUTED_VARIATION
+	supports_variations = SNOUTED_VARIATION | VOX_VARIATION
+	// [/CELADON-EDIT]
 
 /obj/item/clothing/suit/space/hardsuit/security
 	icon_state = "hardsuit-sec"
@@ -624,7 +745,10 @@
 	armor = list("melee" = 35, "bullet" = 30, "laser" = 30, "energy" = 40, "bomb" = 10, "bio" = 100, "rad" = 50, "fire" = 75, "acid" = 75, "wound" = 20)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/security
 	slowdown = 0.5
-	supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION
+	// [CELADON-EDIT] - TAJARA, CELADON_RIOL
+	// supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION // CELADON-EDIT - ORIGINAL
+	supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION | TAJARA_VARIATION | RIOL_VARIATION
+	// [/CELADON-EDIT]
 
 /obj/item/clothing/suit/space/hardsuit/security/Initialize()
 	. = ..()
@@ -646,8 +770,11 @@
 	armor = list("melee" = 50, "bullet" = 45, "laser" = 40, "energy" = 40, "bomb" = 25, "bio" = 100, "rad" = 50, "fire" = 95, "acid" = 95, "wound" = 30)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/security/hos
 	jetpack = /obj/item/tank/jetpack/suit
+	// [CELADON-EDIT] - TAJARA, CELADON_RIOL
+	// supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION // CELADON-EDIT - ORIGINAL
+	supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION | TAJARA_VARIATION | RIOL_VARIATION
+	// [/CELADON-EDIT]
 	slowdown = 0.7
-	supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION
 
 	//SWAT MKII
 /obj/item/clothing/head/helmet/space/hardsuit/swat
@@ -655,9 +782,9 @@
 	icon_state = "swat2helm"
 	item_state = "swat2helm"
 	desc = "A tactical SWAT helmet MK.II."
-	armor = list("melee" = 40, "bullet" = 50, "laser" = 50, "energy" = 60, "bomb" = 50, "bio" = 100, "rad" = 50, "fire" = 100, "acid" = 100)
+	armor = list("melee" = 40, "bullet" = 50, "laser" = 50, "energy" = 60, "bomb" = 50, "bio" = 100, "rad" = 50, "fire" = 100, "acid" = 100, "wound" = 40)  // [CELADON-EDIT] - CELADON_BALANCE
 	resistance_flags = FIRE_PROOF | ACID_PROOF
-	//flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR //we want to see the mask //this makes the hardsuit not fireproof you genius //PENTEST OVERRIDE
+	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR //we want to see the mask //this makes the hardsuit not fireproof you genius
 	heat_protection = HEAD
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	actions_types = list()
@@ -669,12 +796,11 @@
 	desc = "A MK.II SWAT suit with streamlined joints and armor made out of superior materials, insulated against intense heat if worn with the complementary gas mask. The most advanced tactical armor available."
 	icon_state = "swat2"
 	item_state = "swat2"
-	armor = list("melee" = 40, "bullet" = 50, "laser" = 50, "energy" = 60, "bomb" = 50, "bio" = 100, "rad" = 50, "fire" = 100, "acid" = 100)
+	armor = list("melee" = 40, "bullet" = 50, "laser" = 50, "energy" = 60, "bomb" = 50, "bio" = 100, "rad" = 50, "fire" = 100, "acid" = 100, "wound" = 40)  // [CELADON-EDIT] - CELADON_BALANCE
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT //this needed to be added a long fucking time ago
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/swat
-	supports_variations = DIGITIGRADE_VARIATION //PENTEST ADDITION
 
 /obj/item/clothing/suit/space/hardsuit/swat/Initialize()
 	. = ..()
@@ -693,7 +819,6 @@
 	icon_state = "caparmor"
 	item_state = "capspacesuit"
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/swat/captain
-	supports_variations = DIGITIGRADE_VARIATION //PENTEST ADDITION
 
 	//Old Prototype
 /obj/item/clothing/head/helmet/space/hardsuit/ancient
@@ -879,7 +1004,7 @@
 	icon_state = "hardsuit1-syndi"
 	item_state = "syndie_hardsuit"
 	hardsuit_type = "syndi"
-	armor = list("melee" = 40, "bullet" = 50, "laser" = 30, "energy" = 40, "bomb" = 35, "bio" = 100, "rad" = 50, "fire" = 100, "acid" = 100)
+	armor = list("melee" = 40, "bullet" = 50, "laser" = 30, "energy" = 40, "bomb" = 35, "bio" = 100, "rad" = 50, "fire" = 100, "acid" = 100, "wound" = 30) // [CELADON-EDIT] - CELADON_BALANCE
 	allowed = list(/obj/item/gun, /obj/item/ammo_box, /obj/item/ammo_casing, /obj/item/melee/baton, /obj/item/melee/energy/sword/saber, /obj/item/restraints/handcuffs, /obj/item/tank/internals)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/shielded/syndi
 	slowdown = 0.5
@@ -910,7 +1035,7 @@
 	icon_state = "hardsuit1-syndi"
 	item_state = "syndie_helm"
 	hardsuit_type = "syndi"
-	armor = list("melee" = 40, "bullet" = 50, "laser" = 30, "energy" = 40, "bomb" = 35, "bio" = 100, "rad" = 50, "fire" = 100, "acid" = 100)
+	armor = list("melee" = 40, "bullet" = 50, "laser" = 30, "energy" = 40, "bomb" = 35, "bio" = 100, "rad" = 50, "fire" = 100, "acid" = 100, "wound" = 30) // [CELADON-EDIT] - CELADON_BALANCE
 
 ///SWAT version
 /obj/item/clothing/suit/space/hardsuit/shielded/swat
@@ -922,7 +1047,7 @@
 	max_charges = 4
 	current_charges = 4
 	recharge_delay = 15
-	armor = list("melee" = 80, "bullet" = 80, "laser" = 50, "energy" = 60, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
+	armor = list("melee" = 80, "bullet" = 80, "laser" = 50, "energy" = 60, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100, "wound" = 60) // [CELADON-EDIT] - CELADON_BALANCE // armor = list("melee" = 80, "bullet" = 80, "laser" = 50, "energy" = 60, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
 	strip_delay = 130
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/shielded/swat
@@ -934,7 +1059,7 @@
 	icon_state = "deathsquad"
 	item_state = "deathsquad"
 	hardsuit_type = "syndi"
-	armor = list("melee" = 80, "bullet" = 80, "laser" = 50, "energy" = 60, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
+	armor = list("melee" = 80, "bullet" = 80, "laser" = 50, "energy" = 60, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100, "wound" = 60)  // [CELADON-EDIT] - CELADON_BALANCE // armor = list("melee" = 80, "bullet" = 80, "laser" = 50, "energy" = 60, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
 	strip_delay = 130
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	actions_types = list()
@@ -976,9 +1101,17 @@
 	return ..()
 
 /obj/item/clothing/head/helmet/space/light/proc/turn_on(mob/user)
+// [CELADON-ADD] - FIXES_DEBUG_SUIT - фиксим фонарик переключение фонарика
+	to_chat(user, span_notice("You turn on [src]'s flashlight."))
+	playsound(src, 'sound/weapons/magin.ogg', 40, TRUE)
+// [/CELADON-ADD]
 	set_light_on(TRUE)
 
 /obj/item/clothing/head/helmet/space/light/proc/turn_off(mob/user)
+// [/CELADON-ADD] - FIXES_DEBUG_SUIT - фиксим фонарик переключение фонарика
+	to_chat(user, span_notice("You turn off [src]'s flashlight."))
+	playsound(src, 'sound/weapons/magout.ogg', 40, TRUE)
+// [/CELADON-ADD]
 	set_light_on(FALSE)
 
 ////Independents
@@ -991,7 +1124,10 @@
 	item_state = "independent_sec_helm"
 	hardsuit_type = "independent-sec"
 	armor = list("melee" = 35, "bullet" = 25, "laser" = 20,"energy" = 40, "bomb" = 10, "bio" = 100, "rad" = 50, "fire" = 75, "acid" = 75, "wound" = 20)
-	supports_variations = VOX_VARIATION | SNOUTED_VARIATION
+	// [CELADON-EDIT] - TAJARA, CELADON_RIOL
+	// supports_variations = VOX_VARIATION | SNOUTED_VARIATION // CELADON-EDIT - ORIGINAL
+	supports_variations = VOX_VARIATION | SNOUTED_VARIATION | TAJARA_VARIATION | RIOL_VARIATION
+	// [/CELADON-EDIT]
 
 /obj/item/clothing/suit/space/hardsuit/security/independent
 	icon_state = "hardsuit-independent-sec"
@@ -1002,7 +1138,10 @@
 	hardsuit_type = "independent-sec"
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/security/independent
 	armor = list("melee" = 35, "bullet" = 25, "laser" = 20, "energy" = 40, "bomb" = 10, "bio" = 100, "rad" = 50, "fire" = 75, "acid" = 75, "wound" = 20)
-	supports_variations = VOX_VARIATION | DIGITIGRADE_VARIATION
+	// [CELADON-EDIT] - TAJARA, CELADON_RIOL
+	// supports_variations = VOX_VARIATION | DIGITIGRADE_VARIATION // CELADON-EDIT - ORIGINAL
+	supports_variations = VOX_VARIATION | DIGITIGRADE_VARIATION | TAJARA_VARIATION | RIOL_VARIATION
+	// [/CELADON-EDIT]
 
 //Mining
 /obj/item/clothing/head/helmet/space/hardsuit/mining/independent

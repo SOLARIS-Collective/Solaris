@@ -38,7 +38,6 @@
 #define ROLE_FAMILIES "Familes Antagonists"
 #define ROLE_BORER "borer"
 #define ROLE_FRONTIERSMEN "Frontiersmen"
-#define ROLE_CULTIST "Cultist"
 
 //Missing assignment means it's not a gamemode specific role, IT'S NOT A BUG OR ERROR.
 //The gamemode specific ones are just so the gamemodes can query whether a player is old enough
@@ -48,8 +47,6 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_FRONTIERSMEN = /datum/antagonist/frontiersmen,
 	ROLE_ALIEN,
 	ROLE_SENTIENCE,
-	ROLE_BORER,
-	ROLE_CULTIST = /datum/game_mode/cult, //PENTEST INCLUSION - Mostly until we can modularize the rest of cult away
 ))
 
 //Job defines for what happens when you fail to qualify for any job during job selection

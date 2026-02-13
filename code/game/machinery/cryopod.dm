@@ -309,6 +309,26 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod/retro, 17)
 /obj/machinery/cryopod/proc/despawn_occupant()
 	var/mob/living/mob_occupant = occupant
 
+	// [CELADON-ADD] - CELADON_GHOST_ROLES
+	// Check if this is a ghost role
+	if(!mob_occupant.mind?.original_ship)
+		// Ghost role - simple deletion without crew processing
+		if(mob_occupant.client)
+			mob_occupant.ghostize(TRUE)
+
+		for(var/obj/item/W in mob_occupant.GetAllContents())
+			qdel(W)
+
+		open_machine()
+		qdel(mob_occupant)
+		occupant = null
+		// Check if this is an outpost cryopod that should replenish the role
+		if(istype(src, /obj/machinery/cryopod/outpost))
+			var/obj/machinery/cryopod/outpost/outpost_pod = src
+			outpost_pod.try_replenish_role()
+		return
+	// [/CELADON-ADD]
+
 	if(!isnull(mob_occupant.mind.original_ship))
 		var/datum/overmap/ship/controlled/original_ship_instance = mob_occupant.mind.original_ship.resolve()
 
@@ -439,7 +459,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod/retro, 17)
 	to_chat(target, span_boldnotice("If you ghost, log out or close your client now, your character will shortly be permanently removed from the round."))
 	name = "[name] ([occupant.name])"
 	log_admin(span_notice("[key_name(target)] entered a stasis pod."))
-	message_admins("[key_name_admin(target)] entered a stasis pod. (<A HREF='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)")
+	message_admins("[key_name_admin(target)] entered a stasis pod. (<A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)")
 	add_fingerprint(target)
 
 /obj/machinery/cryopod/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override)

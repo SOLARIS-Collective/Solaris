@@ -200,8 +200,6 @@
 			return list("mode" = RCD_MACHINE, "delay" = 20, "cost" = 25)
 		if(RCD_COMPUTER)
 			return list("mode" = RCD_COMPUTER, "delay" = 20, "cost" = 25)
-		if(RCD_GIRDER) //PENTEST ADDITION - for girder construction
-			return list("mode" = RCD_GIRDER, "delay" = 10, "cost" = 8) //PENTEST ADDITION - for girder construction
 	return FALSE
 
 /turf/open/floor/rcd_act(mob/user, obj/item/construction/rcd/the_rcd, passed_mode)
@@ -256,13 +254,6 @@
 			C.state = 1
 			C.setDir(the_rcd.computer_dir)
 			return TRUE
-		if(RCD_GIRDER) //PENTEST ADDITION START - for girder construction
-			if(locate(/obj/structure/girder) in src)
-				return FALSE
-			var/obj/structure/girder/G = new(src)
-			to_chat(user, span_notice("You construct the girder."))
-			G.set_anchored(TRUE)
-			return TRUE //PENTEST ADDITION END - for girder construction
 
 	return FALSE
 

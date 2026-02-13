@@ -151,6 +151,7 @@ Some ships might prioritize characters exclusively from a faction in their memos
 Moths, if their wings are intact, have full mobility in zero gravity environments that have an atmosphere.
 Vox are near-unmatched in hand-to-hand fighting; their kicks deal extra damage and hurt organs.
 IPC posibrains are contained in the chest, not the head.
+Shiptest has uptime on Wednesdays, Fridays, and Saturdays.
 Exosuits are not as durable as they might feel, and it is still wise to take cover with them.
 Turning on strafing mode on an exosuit for combat is wise, and allows you to keep your firing lines constantly on the enemy.
 A Gygax's leg actuators drain the cell very quickly. Use sparingly.

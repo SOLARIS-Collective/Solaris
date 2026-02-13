@@ -2,6 +2,10 @@
 	var/static/mob_category = rand(1, 3)
 
 /obj/effect/spawner/random/randomthreat/Initialize(mapload)
+	// [CELADON-ADD] - FIXES_SPAWNERS_ON_SPACE - Проверка на космотурф
+	if(isspaceturf(get_turf(src)))
+		return INITIALIZE_HINT_QDEL
+	// [/CELADON-ADD]
 	switch(mob_category)
 		if(1)
 			loot = list(
@@ -51,8 +55,11 @@
 /obj/effect/spawner/random/hermit
 	name = "hermit spawner"
 	loot = list(
-		/mob/living/simple_animal/hostile/human/hermit/survivor = 50,
-		/mob/living/simple_animal/hostile/human/hermit/ranged/hunter = 35,
+		/mob/living/simple_animal/hostile/human/hermit/survivor = 35,
+		/mob/living/simple_animal/hostile/human/hermit/ranged/hunter = 25,
+		/mob/living/simple_animal/hostile/human/hermit/survivor/brawler = 10,
+		/mob/living/simple_animal/hostile/human/hermit/ranged/shotgun = 10,
+		/mob/living/simple_animal/hostile/human/hermit/survivor/lunatic = 5,
 		/mob/living/simple_animal/hostile/human/hermit/ranged/gunslinger = 10,
 		/mob/living/simple_animal/hostile/human/hermit/ranged/e11 = 5
 	)
@@ -89,3 +96,15 @@
 		/mob/living/basic/bear/polar = 85,
 		/mob/living/basic/bear/polar/warrior = 15
 	)
+
+/obj/effect/spawner/random/snow_monkey_pack
+	loot = list(
+		/mob/living/basic/snow_monkey
+	)
+	spawn_loot_count = null
+	spawn_loot_double = TRUE
+
+/obj/effect/spawner/random/snow_monkey_pack/spawn_loot(lootcount_override)
+	if(!spawn_loot_count)
+		spawn_loot_count = rand(2,5)
+	. = ..()

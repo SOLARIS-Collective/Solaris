@@ -1,5 +1,5 @@
 /obj/mecha/combat/gygax
-	desc = "A light security exosuit manufactured by Cybersun Biodynamics. The basic version of the Gygax 500 Series combat exosuits, the Gygax 501p can overload its leg actuators to further enhance mobility."
+	desc = "A light security exosuit manufactured by Cybersun Biodynamics. The basic version of the 500 Series combat exosuits, the 501p can overload its leg actuators to further enhance mobility."
 	name = "\improper 501p Security Exosuit"
 	icon_state = "gygax"
 	step_in = 3
@@ -71,7 +71,7 @@
 	cell = new /obj/item/stock_parts/cell/hyper(src)
 
 /obj/mecha/combat/gygax/charger
-	name = "\improper Modified Gygax 501p"
+	name = "\improper Modified 501p"
 	desc = "A lightweight security exosuit, this one seems to have been modified for short high speed charges instead of enhanced speed."
 	charge_break_walls = TRUE
 	charge_toss_structures = TRUE
@@ -96,7 +96,7 @@
 
 /obj/mecha/combat/gygax/charger/mp
 	name = "\improper NT-501p-MP"
-	desc = "An exosuit model derrived from the Cybersun Gygax 501p and modified for mass production. This model has had its armor plating reduced to reduce production costs. The leg actuators have been modified to take advantage of the consequently lighter frame, allowing for swift charges over moderate distances without heavily taxing the power supply."
+	desc = "An exosuit model derrived from the Cybersun 501p and modified for mass production. This model has had its armor plating reduced to reduce production costs. The leg actuators have been modified to take advantage of the consequently lighter frame, allowing for swift charges over moderate distances without heavily taxing the power supply."
 	armor = list("melee" = 25, "bullet" = 30, "laser" = 30, "energy" = 15, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100)
 	icon_state = "mpgygax"
 	charge_break_walls = FALSE

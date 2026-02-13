@@ -1,7 +1,7 @@
 //A slow but strong beast that tries to stun using its tentacles
 /mob/living/simple_animal/hostile/asteroid/goliath
 	name = "goliath"
-	desc = "A territorial species of megaherbivore mysteriously found throughout the Frontier that uses its burrowing tendrils to unearth roots, fungus, and occasional minerals. When agitated, it uses these tendrils to ensnare, and subsequently pulverize, perceived threats. Nanotrasen Survey Corps recommends maintaining a very healthy distance."
+	desc = "A territorial species of megaherbivore mysteriously found throughout the Frontier that uses its burrowing tendrils to unearth roots, fungus, and occasional minerals. When agitated, it uses these tendrils to ensnare, and subsequently pulverize, perceived threats. CLIP-BARD recommends maintaining a very healthy distance."
 	icon = 'icons/mob/lavaland/lavaland_monsters_wide.dmi'
 	icon_state = "ancient_goliath"
 	icon_living = "ancient_goliath"
@@ -68,6 +68,12 @@
 
 /mob/living/simple_animal/hostile/asteroid/goliath/death(gibbed)
 	move_resist = MOVE_RESIST_DEFAULT
+	// [CELADON-ADD] - FIXES_GOLIATH_TENTACLES
+	// Удаляем все тентакли при смерти голиафа
+	for(var/obj/effect/temp_visual/goliath_tentacle/T in world)
+		if(T.spawner == src)
+			qdel(T)
+	// [/CELADON-ADD]
 	..()
 
 /mob/living/simple_animal/hostile/asteroid/goliath/gib()
@@ -142,7 +148,7 @@
 //Lavaland Goliath
 /mob/living/simple_animal/hostile/asteroid/goliath/beast
 	name = "goliath"
-	desc = "A territorial species of megaherbivore mysteriously found throughout the Frontier that uses its burrowing tendrils to unearth roots, fungus, and occasional minerals. When agitated, it uses these tendrils to ensnare, and subsequently pulverize, perceived threats. Nanotrasen Survey Corps recommends maintaining a very healthy distance."
+	desc = "A territorial species of megaherbivore mysteriously found throughout the Frontier that uses its burrowing tendrils to unearth roots, fungus, and occasional minerals. When agitated, it uses these tendrils to ensnare, and subsequently pulverize, perceived threats. CLIP-BARD recommends maintaining a very healthy distance."
 	icon = 'icons/mob/lavaland/lavaland_monsters_wide.dmi'
 	icon_state = "goliath"
 	icon_living = "goliath"
@@ -150,7 +156,8 @@
 	icon_dead = "goliath_dead"
 	throw_message = "does nothing to the thick hide of the"
 	pre_attack_icon = "goliath_preattack"
-	mob_trophy = /obj/item/mob_trophy/goliath_tentacle
+	//mob_trophy = /obj/item/mob_trophy/goliath_tentacle		// [CELADON-EDIT] - RETURN_CONTENT_CRUSHER_TROPHY
+	crusher_loot = /obj/item/crusher_trophy/goliath_tentacle	// [/CELADON-EDIT]
 	butcher_results = list(/obj/item/food/meat/slab/goliath = 2, /obj/item/stack/sheet/bone = 2, /obj/item/stack/sheet/sinew = 2, /obj/item/stack/ore/silver = 10)
 	guaranteed_butcher_results = list(/obj/item/stack/sheet/animalhide/goliath_hide = 2)
 	loot = list()
@@ -252,8 +259,11 @@
 	maxHealth = 180
 	health = 180
 	speed = 4
-	mob_trophy = /obj/item/mob_trophy/elder_tentacle
+	//mob_trophy = /obj/item/mob_trophy/elder_tentacle
 	guaranteed_butcher_results = list()
+	// [CELADON-REMOVE] - RETURN_CONTENT_CRUSHER_TROPHY - Выпилено ради легенды
+	// trophy_drop_mod = 75
+	// [/CELADON-REMOVE]
 	wander = FALSE
 	bonus_tame_chance = 10
 	var/list/cached_tentacle_turfs
@@ -263,6 +273,12 @@
 /mob/living/simple_animal/hostile/asteroid/goliath/beast/ancient/Life()
 	. = ..()
 	if(!.) // dead
+		// [CELADON-ADD] - FIXES_GOLIATH_TENTACLES
+		// Удаляем все тентакли при смерти древнего голиафа
+		for(var/obj/effect/temp_visual/goliath_tentacle/T in world)
+			if(T.spawner == src)
+				qdel(T)
+		// [/CELADON-ADD]
 		return
 	if(AIStatus != AI_ON)
 		return
@@ -318,13 +334,28 @@
 			new type(T, spawner)
 
 /obj/effect/temp_visual/goliath_tentacle/proc/get_directions()
-	return GLOB.cardinals.Copy()
+	// [CELADON-EDIT] - CELADON_BALANCE - Поднимаем разнообразие мобам
+	// return GLOB.cardinals.Copy()	// CELADON-EDIT - ORIGINAL
+	return GLOB.alldirs_multiz.Copy()
+	// [/CELADON-EDIT]
 
 /obj/effect/temp_visual/goliath_tentacle/proc/tripanim()
+	// [CELADON-ADD] - FIXES_GOLIATH_TENTACLES
+	// Проверяем, жив ли еще создатель
+	if(QDELETED(spawner) || (spawner && spawner.stat == DEAD))
+		qdel(src)
+		return
+	// [/CELADON-ADD]
 	deltimer(timerid)
 	timerid = addtimer(CALLBACK(src, PROC_REF(trip)), 3, TIMER_STOPPABLE)
 
 /obj/effect/temp_visual/goliath_tentacle/proc/trip()
+	// [CELADON-ADD] - FIXES_GOLIATH_TENTACLES
+	// Проверяем, жив ли еще создатель
+	if(QDELETED(spawner) || (spawner && spawner.stat == DEAD))
+		qdel(src)
+		return
+	// [/CELADON-ADD]
 	var/latched = FALSE
 	for(var/mob/living/L in loc)
 		if((!QDELETED(spawner) && spawner.faction_check_mob(L)) || L.stat == DEAD)
@@ -349,7 +380,7 @@
 	icon_state = "marker"
 	flick(retract,src)
 	deltimer(timerid)
-	timerid = QDEL_IN(src, 7)
+	timerid = QDEL_IN_STOPPABLE(src, 7)
 
 /obj/item/saddle
 	name = "saddle"
@@ -505,7 +536,7 @@
 	armor = list("melee" = 30, "bullet" = 65, "laser" = 55, "energy" = 30, "bomb" = 60, "bio" = 30, "rad" = 50, "fire" = 30, "acid" = 50)
 	move_to_delay = 3 SECONDS
 	speed = 3
-	//mob_trophy = /obj/item/mob_trophy/elder_tentacle
+	mob_trophy = /obj/item/mob_trophy/elder_tentacle
 	pre_attack_icon = "ws_ancient_goliath_preattack"
 	throw_message = "does nothing to the rocky hide of the"
 	guaranteed_butcher_results = list()

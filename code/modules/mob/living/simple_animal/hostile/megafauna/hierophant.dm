@@ -59,7 +59,8 @@ Difficulty: Hard
 	ranged_cooldown_time = 40
 	aggro_vision_range = 21 //so it can see to one side of the arena to the other
 	loot = list(/obj/item/hierophant_club)
-	mob_trophy = /obj/item/mob_trophy/vortex_talisman
+	//mob_trophy = /obj/item/mob_trophy/vortex_talisman			// [CELADON-EDIT] - RETURN_CONTENT_CRUSHER_TROPHY
+	crusher_loot = /obj/item/crusher_trophy/vortex_talisman		// [/CELADON-EDIT]
 	wander = FALSE
 	gps_name = "Zealous Signal"
 	achievement_type = /datum/award/achievement/boss/hierophant_kill
@@ -417,14 +418,14 @@ Difficulty: Hard
 		set_stat(CONSCIOUS) // deathgasp wont run if dead, stupid
 		..(force_grant = stored_nearby)
 
-/*/mob/living/simple_animal/hostile/megafauna/hierophant/devour(mob/living/L)
+/mob/living/simple_animal/hostile/megafauna/hierophant/devour(mob/living/L)
 	for(var/obj/item/W in L)
 		if(!L.dropItemToGround(W))
 			qdel(W)
 	visible_message(span_hierophant_warning("\"[pick(kill_phrases)]\""))
 	visible_message(span_hierophant_warning("[src] annihilates [L]!"),span_userdanger("You annihilate [L], restoring your health!"))
 	adjustHealth(-L.maxHealth*0.5)
-	L.dust()*/
+	L.dust()
 
 /mob/living/simple_animal/hostile/megafauna/hierophant/CanAttack(atom/the_target)
 	. = ..()

@@ -202,7 +202,7 @@
 		. += "[registered_name]"
 	if(registered_age)
 		. += "<B>AGE:</B>"
-		. += "[registered_age] years old [(registered_age < AGE_DRINKING) ? "There's a holographic stripe that reads <b>[span_danger("'MINOR: DO NOT SERVE ALCOHOL OR TOBACCO'")]</b> along the bottom of the card." : ""]"
+		. += "[registered_age] years old [(registered_age < AGE_DRINKING) ? "There's a holographic stripe that reads <b>[span_danger("'DO NOT SERVE ALCOHOL OR TOBACCO'")]</b> along the bottom of the card." : ""]"
 	if(length(ship_access))
 		var/list/ship_factions = list()
 		var/list/ship_names = list()
@@ -279,7 +279,14 @@ update_label()
 */
 
 /obj/item/card/id/proc/update_label()
-	name = "[(istype(src, /obj/item/card/id/syndicate)) ? "[initial(name)]" : "access card"][(!assignment) ? "" : " ([assignment])"]"
+	// [CELADON-EDIT] - FIXES_AGENT_CARD_NAME - Скрываем истинное название карты агента
+	// name = "[(istype(src, /obj/item/card/id/syndicate)) ? "[initial(name)]" : "access card"][(!assignment) ? "" : " ([assignment])"]"	// ORIGINAL
+	if(istype(src, /obj/item/card/id/syndicate))
+		var/obj/item/card/id/syndicate/agent_card = src
+		name = "[agent_card.forged ? "access card" : initial(name)][(!assignment) ? "" : " ([assignment])"]"
+	else
+		name = "access card[(!assignment) ? "" : " ([assignment])"]"
+	// [/CELADON-EDIT]
 
 /obj/item/card/id/silver
 	desc = "A silver-colored card, usually given to higher-ranking officials in ships and stations."
@@ -305,37 +312,75 @@ update_label()
 	access = list(ACCESS_MAINT_TUNNELS, ACCESS_SYNDICATE)
 	var/anyone = FALSE //Can anyone forge the ID or just syndicate?
 	var/forged = FALSE //have we set a custom name and job assignment, or will we use what we're given when we chameleon change?
+	// [CELADON-ADD] - Adds agent card lock by fingerprint on AltClick
+	var/removed = FALSE
+	var/fingerprint
+	var/datum/action/item_action/chameleon/change/id/chameleon_action
+	// [CELADON-ADD] - Adds agent card lock by fingerprint on AltClick
 
 /obj/item/card/id/syndicate/Initialize()
 	. = ..()
-	var/datum/action/item_action/chameleon/change/id/chameleon_action = new(src)
+	chameleon_action = new(src) // [CELADON-EDIT] var/datum/action/item_action/chameleon/change/id/chameleon_action = new(src) -> chameleon_action = new(src)
 	chameleon_action.chameleon_type = /obj/item/card/id
 	chameleon_action.chameleon_name = "ID Card"
 	chameleon_action.initialize_disguises()
+
+// [CELADON-ADD] - Adds agent card lock by fingerprint on AltClick
+/obj/item/card/id/syndicate/AltClick(mob/living/carbon/user)
+	. = ..()
+	if(!fingerprint || fingerprint == user.dna.uni_identity)
+		if(!removed)
+			chameleon_action.Remove(user)
+			chameleon_action.chameleon_type = null
+			chameleon_action.chameleon_name = null
+			QDEL_NULL(chameleon_action)
+			removed = !removed
+		else
+			chameleon_action = new(src)
+			chameleon_action.chameleon_type = /obj/item/card/id
+			chameleon_action.chameleon_name = "ID Card"
+			chameleon_action.Grant(user)
+			removed = !removed
+// [/CELADON-ADD]
 
 /obj/item/card/id/syndicate/afterattack(obj/item/O, mob/user, proximity)
 	if(!proximity)
 		return
 	if(istype(O, /obj/item/card/id))
-		var/obj/item/card/id/I = O
-		src.access |= I.access
+		// [CELADON-REMOVE] - FIXES_AGENT_CARD - Переместил вниз, ибо проверка внизу не имеет смсла вообще
+		// var/obj/item/card/id/I = O
+		// src.access |= I.access
+		// [/CELADON-REMOVE]
 		if(isliving(user) && user.mind)
 			if(user.mind.special_role || anyone)
+				// [CELADON-ADD] - FIXES_AGENT_CARD
+				var/obj/item/card/id/I = O
+				src.access |= I.access
+				for(var/datum/overmap/ship/controlled/ship in I.ship_access)
+					if(!has_ship_access(ship))
+						add_ship_access(ship)
+				// [/CELADON-ADD]
 				to_chat(usr, span_notice("The card's microscanners activate as you pass it over the ID, copying its access."))
 
-/obj/item/card/id/syndicate/attack_self(mob/user)
+/obj/item/card/id/syndicate/attack_self(mob/living/carbon/user) //[CELADON-EDIT] mob/user -> mob/living/carbon/user
 	if(isliving(user) && user.mind)
 		var/first_use = registered_name ? FALSE : TRUE
-		if(!(user.mind.special_role || anyone)) //Unless anyone is allowed, only syndies can use the card, to stop metagaming.
+		// [CELADON-FIXES] Fixes agent card's mind check from special_role to faction + adds fingerprint check
+		var/list/user_faction_list = user.faction
+		if(!(user_faction_list.Find("[FACTION_PLAYER_SYNDICATE]")) && (!fingerprint || fingerprint != user.dna.uni_identity))
+		//if(!(user.mind.special_role || anyone)) //Unless anyone is allowed, only syndies can use the card, to stop metagaming.
+		// [CELADON-FIXES]
 			if(first_use) //If a non-syndie is the first to forge an unassigned agent ID, then anyone can forge it.
 				anyone = TRUE
 			else
 				return ..()
-
 		var/popup_input = alert(user, "Choose Action", "Agent ID", "Show", "Forge/Reset")
 		if(user.incapacitated())
 			return
 		if(popup_input == "Forge/Reset" && !forged)
+			// [CELADON-ADD] - Adds agent card lock with fingerprint
+			fingerprint = user.dna.uni_identity
+			// [/CELADON-ADD]
 			var/input_name = stripped_input(user, "What name would you like to put on this card? Leave blank to randomise.", "Agent card name", registered_name ? registered_name : (ishuman(user) ? user.real_name : user.name), MAX_NAME_LEN)
 			input_name = reject_bad_name(input_name)
 			if(!input_name)
@@ -357,20 +402,25 @@ update_label()
 
 			registered_name = input_name
 			assignment = target_occupation
+			forged = TRUE // [CELADON-ADD] - FIXES_AGENT_CARD_NAME
 			update_label()
-			forged = TRUE
+			// forged = TRUE // [CELADON-REMOVE] - FIXES_AGENT_CARD_NAME - Поднял выше ДО применения изменений
 			to_chat(user, span_notice("You successfully forge the ID card."))
 			log_game("[key_name(user)] has forged \the [initial(name)] with name \"[registered_name]\" and occupation \"[assignment]\".")
 
 			return
 		else if (popup_input == "Forge/Reset" && forged)
+			// [CELADON-ADD] - Adds agent card lock with fingerprint
+			fingerprint = null
+			// [/CELADON-ADD]
 			registered_name = initial(registered_name)
 			assignment = initial(assignment)
 			faction_icon = initial(faction_icon)
 			job_icon = initial(job_icon)
+			forged = FALSE // [CELADON-ADD] - FIXES_AGENT_CARD_NAME
 			log_game("[key_name(user)] has reset \the [initial(name)] named \"[src]\" to default.")
 			update_label()
-			forged = FALSE
+			// forged = FALSE // [CELADON-REMOVE] - FIXES_AGENT_CARD_NAME - Поднял выше ДО применения изменений
 			to_chat(user, span_notice("You successfully reset the ID card."))
 			return
 	return ..()
@@ -499,6 +549,15 @@ update_label()
 	access = get_all_accesses()
 	. = ..()
 
+// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+/obj/item/card/id/ert/clown
+	icon_state = "ert_clown"
+
+/obj/item/card/id/ert/clown/Initialize()
+	access = get_all_accesses()
+	. = ..()
+// [/CELADON-ADD]
+
 /obj/item/card/id/ert/deathsquad
 	desc = "An access card colored in black and red."
 	icon_state = "deathsquad" //NO NO SIR DEATH SQUADS ARENT A PART OF NANOTRASEN AT ALL
@@ -513,7 +572,10 @@ update_label()
 	uses_overlays = FALSE
 
 /obj/item/card/id/debug/Initialize()
-	access = get_all_accesses()+get_all_centcom_access()+get_all_syndicate_access()
+	// [CELADON-EDIT] - CELADON_ACCESS
+	// access = get_all_accesses()+get_all_centcom_access()+get_all_syndicate_access() // CELADON-EDIT - ORIGINAL
+	access = get_all_accesses()+get_all_centcom_access()+get_all_syndicate_access()+get_all_accesses_outpost()+get_faction_access_outpost()
+	// [/CELADON-EDIT]
 	. = ..()
 
 /obj/item/card/id/prisoner

@@ -139,6 +139,11 @@
 			new /obj/item/reagent_containers/food/drinks/bottle/absinthe/premium(src)
 			new /obj/item/storage/fancy/cigarettes/cigpack_cannabis(src)
 		if(6 to 10)
+			new /obj/item/skateboard/pro(src)
+		// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+		if(11 to 15)
+			new /mob/living/simple_animal/bot/honkbot(src)
+		// [/CELADON-ADD]
 			new /obj/item/gun/ballistic/automatic/pistol/himehabu(src)
 			new /obj/item/ammo_box/magazine/m22lr_himehabu(src)
 			new /obj/item/ammo_box/magazine/m22lr_himehabu(src)
@@ -186,6 +191,10 @@
 			new /obj/item/reagent_containers/glass/bottle/vial/small/preloaded/combat_drug(src)
 			new /obj/item/reagent_containers/glass/bottle/vial/small/preloaded/stasis(src)
 		if(65 to 66)
+			new /obj/item/clothing/suit/ianshirt(src)
+			// [CELADON-ADD] - CELADON_RETURN_CONTENT_SPAWN
+			new /obj/item/clothing/suit/hooded/ian_costume(src)
+			// [/CELADON-ADD]
 			new /obj/item/tank/jetpack/oxygen/harness(src)
 		if(67 to 68)
 			for(var/i in 1 to 3)
@@ -224,7 +233,7 @@
 		if(92)
 			new /obj/item/storage/firstaid/advanced(src)
 		if(93)
-			new /obj/item/attachment/gun/energy/e50(src)
+			//new /obj/item/attachment/gun/energy/e50(src)
 		if(94)
 			new /mob/living/simple_animal/hostile/mimic/crate(src)
 			qdel_on_open = TRUE
@@ -232,7 +241,6 @@
 			for(var/i in 1 to 15)
 				new /obj/item/food/energybar(src)
 		if(96)
-			new /obj/item/melee/banhammer(src)
 			for(var/i in 1 to 3)
 				new /obj/item/mine/pressure/sound(src)
 		if(97)

@@ -13,6 +13,8 @@
 
 	var/cookable = FALSE
 	var/cooked = FALSE
+	//temp, remove this or just keep it i dont care but the rations need color overlays
+	var/filling_color
 
 /obj/item/food/ration/Initialize(mapload)
 	. = ..()

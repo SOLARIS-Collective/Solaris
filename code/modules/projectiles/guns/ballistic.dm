@@ -40,6 +40,7 @@
 	var/wear_major_threshold = 180
 	/// Highest wear value so the gun doesn't end up completely irreperable
 	var/wear_maximum = 300
+	var/ignores_wear = FALSE
 	/// Doesn't ever keep ammo when loading a new round into the chamber. Mainly for BOLT_TYPE_NO_BOLT guns.
 	var/doesnt_keep_bullet = FALSE
 
@@ -53,9 +54,8 @@
 		/obj/item/attachment/laser_sight,
 		/obj/item/attachment/rail_light,
 		/obj/item/attachment/bayonet,
-		/obj/item/attachment/gun,
-		/obj/item/attachment/sling,
-		/obj/item/attachment/ammo_counter
+		/obj/item/attachment/ammo_counter,
+		/obj/item/attachment/gun
 	)
 	slot_available = list(
 		ATTACHMENT_SLOT_MUZZLE = 1,
@@ -147,7 +147,7 @@
 			chambered = null
 		else if(empty_chamber)
 			chambered = null
-	if (chamber_next_round && (magazine?.max_ammo > 1) && !condition_check(from_firing, shooter))
+	if (chamber_next_round && (magazine?.max_ammo >= 1) && !condition_check(from_firing, shooter))
 		chamber_round()
 	SEND_SIGNAL(src, COMSIG_GUN_CHAMBER_PROCESSED)
 
@@ -175,6 +175,11 @@
 		else
 			chambered = magazine.get_round(keep_bullet || bolt_type == BOLT_TYPE_NO_BOLT)
 		if (bolt_type != BOLT_TYPE_OPEN)
+			// [CELADON-ADD] - FIXES_PHYSICS_AMMO_CASING - Останавливаем физику гильз
+			var/datum/component/movable_physics/physics = chambered.GetComponent(/datum/component/movable_physics)
+			if(physics)
+				qdel(physics)
+			// [/CELADON-ADD]
 			chambered.forceMove(src)
 
 ///updates a bunch of racking related stuff and also handles the sound effects and the like
@@ -392,7 +397,7 @@
 		var/count_chambered = !(bolt_type == BOLT_TYPE_NO_BOLT || bolt_type == BOLT_TYPE_OPEN)
 		. += span_notice("It has <b>[get_ammo(count_chambered)]</b> round\s remaining.")
 
-/*/obj/item/gun/ballistic/examine_more(mob/user) //PENTEST EDIT - START
+/obj/item/gun/ballistic/examine_more(mob/user)
 	. = ..()
 	if(bolt_type != BOLT_TYPE_NO_BOLT && wear_rate)
 		. += "You can [bolt_wording] [src] by pressing the <b>unique action</b> key. By default, this is <b>space</b>"
@@ -407,7 +412,7 @@
 			conditionstr = span_red("poor")
 		else if(gun_wear <= wear_major_threshold) //TTD: switch doesn't play nice with variables but this sucks
 			conditionstr = span_warning("terrible")
-		. += "it is in [conditionstr] condition[gun_wear >= wear_minor_threshold ? gun_wear >= wear_major_threshold ? " and will suffer constant malfunctions" : " and will suffer from regular malfunctions" :""]." *///PENTEST EDIT - END
+		. += "it is in [conditionstr] condition[gun_wear >= wear_minor_threshold ? gun_wear >= wear_major_threshold ? " and will suffer constant malfunctions" : " and will suffer from regular malfunctions" :""]."
 
 ///Gets the number of bullets in the gun
 /obj/item/gun/ballistic/proc/get_ammo(countchambered = TRUE)

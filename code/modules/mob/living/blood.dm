@@ -75,7 +75,11 @@
 	var/temp_bleed = 0
 	var/update_bleed_icons = FALSE
 	//Bleeding out
-	for(var/obj/item/bodypart/iter_part as anything in bodyparts)
+	var/obj/item/bodypart/iter_part
+	for(var/zone in bodyparts)
+		iter_part = bodyparts[zone]
+		if(!iter_part)
+			continue
 		var/iter_bleed_rate = iter_part.get_part_bleed_rate()
 		temp_bleed += iter_bleed_rate
 		iter_part.generic_bleedstacks = max(0, iter_part.generic_bleedstacks - 1)
@@ -92,7 +96,11 @@
 /// Has each bodypart update its bleed/wound overlay icon states. If any have changed, it has the owner update wound overlays and returns TRUE
 /mob/living/carbon/proc/update_bodypart_bleed_overlays()
 	var/update_bleed_icons
-	for(var/obj/item/bodypart/iter_part as anything in bodyparts)
+	var/obj/item/bodypart/iter_part
+	for(var/zone in bodyparts)
+		iter_part = bodyparts[zone]
+		if(iter_part)
+			continue
 		if(iter_part.update_part_wound_overlay())
 			update_bleed_icons = TRUE
 
@@ -108,7 +116,7 @@
 
 	//Blood loss still happens in locker, floor stays clean
 	if(isturf(loc) && prob(sqrt(amt)*BLOOD_DRIP_RATE_MOD) && !isgroundlessturf(src.loc))
-		add_splatter_floor(loc, (amt >= 10))
+		add_splatter_floor(loc, (amt <= 5))
 
 /mob/living/carbon/human/bleed(amt)
 	amt *= physiology.bleed_mod
@@ -120,8 +128,11 @@
 	if(!blood_volume)
 		return
 	var/bleed_amt = 0
-	for(var/X in bodyparts)
-		var/obj/item/bodypart/iter_bodypart = X
+	var/obj/item/bodypart/iter_bodypart
+	for(var/zone in bodyparts)
+		iter_bodypart = bodyparts[zone]
+		if(!iter_bodypart)
+			continue
 		bleed_amt += iter_bodypart.get_part_bleed_rate()
 	return bleed_amt
 
@@ -207,6 +218,8 @@
 /mob/living/carbon/proc/spray_blood(splatter_direction, splatter_strength = 3)
 	if(!isturf(loc))
 		return
+	if((NOBLOOD in dna.species.species_traits)) // [CELADON - ADD] LANIUS
+		return
 	var/obj/effect/decal/cleanable/blood/hitsplatter/our_splatter = new(loc)
 
 	our_splatter.blood_dna_info = get_blood_dna_list()
@@ -219,16 +232,22 @@
 
 /mob/living/carbon/restore_blood()
 	blood_volume = BLOOD_VOLUME_NORMAL
-	for(var/i in bodyparts)
-		var/obj/item/bodypart/BP = i
-		BP.generic_bleedstacks = 0
+	var/obj/item/bodypart/limb
+	for(var/zone in bodyparts)
+		limb = bodyparts[zone]
+		if(!limb)
+			continue
+		limb.generic_bleedstacks = 0
 
 /****************************************************
 				BLOOD TRANSFERS
 ****************************************************/
 
 //Gets blood from mob to a container or other mob, preserving all data in it.
-/mob/living/proc/transfer_blood_to(atom/movable/AM, amount, forced)
+// [CELADON-EDIT] - CELADON_FIXES_BLOOD
+// /mob/living/proc/transfer_blood_to(atom/movable/AM, amount, forced)	// ORIGINAL
+/mob/living/proc/transfer_blood_to(atom/movable/AM, amount, forced, allow_excess = FALSE)
+// [CELADON-EDIT]
 	if(!blood_volume || !AM.reagents)
 		return FALSE
 	if(blood_volume < BLOOD_VOLUME_BAD && !forced)
@@ -261,7 +280,12 @@
 					C.reagents.add_reagent(/datum/reagent/toxin, amount * 0.5)
 					return TRUE
 
-			C.blood_volume = min(C.blood_volume + round(amount, 0.1), BLOOD_VOLUME_MAX_LETHAL)
+			// Ограничиваем кровь до нормального уровня, если не указан флаг allow_excess
+			var/max_blood = allow_excess ? BLOOD_VOLUME_MAX_LETHAL : BLOOD_VOLUME_NORMAL	// [CELADON-ADD] - CELADON_FIXES_BLOOD
+			// [CELADON-EDIT] - CELADON_FIXES_BLOOD
+			// /mob/living/proc/transfer_blood_to(atom/movable/AM, amount, forced)	// ORIGINAL
+			C.blood_volume = min(C.blood_volume + round(amount, 0.1), max_blood)
+			// [/CELADON-EDIT]
 			return TRUE
 
 	AM.reagents.add_reagent(blood_id, amount, blood_data, bodytemperature)
@@ -335,7 +359,13 @@
 /proc/get_blood_dna_color(list/blood_dna)
 	var/blood_print = blood_dna[length(blood_dna)]
 	var/datum/blood_type/blood_type = blood_dna[blood_print]
-	return blood_type.color
+	//[CELADON-EDIT] - CELADON_FIXES - я думал ИПЦ специально сделали кам вместо крови, а это оказывается рантайм... Моя любовь разрушена
+	//return blood_type.color
+	if(blood_type)
+		return blood_type.color
+	else
+		return COLOR_WHITE
+	//[/CELADON-EDIT]
 
 //to add a splatter of blood or other mob liquid.
 /mob/living/proc/add_splatter_floor(turf/T, small_drip, amt)

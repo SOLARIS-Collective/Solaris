@@ -1,6 +1,6 @@
-#define LOG_BURN_TIMER 1800 //PENTEST CHANGE - was 150
-#define PAPER_BURN_TIMER 60 //PENTEST CHANGE - was 5
-#define MAXIMUM_BURN_TIMER 36000 //PENTEST CHANGE - was 3000
+#define LOG_BURN_TIMER 150
+#define PAPER_BURN_TIMER 5
+#define MAXIMUM_BURN_TIMER 3000
 
 /obj/structure/fireplace
 	name = "fireplace"
@@ -51,15 +51,6 @@
 		user.visible_message("<span class='notice'>[user] tosses some \
 			wood into [src].</span>", "<span class='notice'>You add \
 			some fuel to [src].</span>")
-	else if(istype(T, /obj/item/grown/log)) //PENTEST ADDITION - START
-		var/space_remaining = MAXIMUM_BURN_TIMER - burn_time_remaining()
-		if(space_remaining < LOG_BURN_TIMER)
-			to_chat(user, span_warning("You can't fit any more fuel in [src]!"))
-			return
-		adjust_fuel_timer(LOG_BURN_TIMER)
-		user.visible_message("<span class='notice'>[user] places [T] into \
-			[src].</span>", "<span class='notice'>You add [T] to [src].</span>")
-		qdel(T) //PENTEST ADDITION - END
 	else if(istype(T, /obj/item/paper_bin))
 		var/obj/item/paper_bin/paper_bin = T
 		user.visible_message("<span class='notice'>[user] throws [T] into \

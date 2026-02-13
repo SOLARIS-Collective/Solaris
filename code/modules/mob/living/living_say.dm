@@ -20,12 +20,12 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	RADIO_KEY_CENTCOM = RADIO_CHANNEL_CENTCOM,
 	RADIO_KEY_SOLFED = RADIO_CHANNEL_SOLFED,		//WS Edit - SolGov Rep
 	RADIO_KEY_NANOTRASEN = RADIO_CHANNEL_NANOTRASEN,
-	RADIO_KEY_RAMZI_SHORT = RADIO_CHANNEL_RAMZI_SHORT,
 	RADIO_KEY_ELYSIUM = RADIO_CHANNEL_ELYSIUM,
 	RADIO_KEY_INTEQ = RADIO_CHANNEL_INTEQ,
-	RADIO_KEY_PIRATE_SHORT = RADIO_CHANNEL_PIRATE_SHORT,
 	RADIO_KEY_WIDEBAND = RADIO_CHANNEL_WIDEBAND,
-	RADIO_KEY_VOX_SHORT = RADIO_CHANNEL_VOX_SHORT,
+	RADIO_KEY_RAMZI = RADIO_CHANNEL_RAMZI,
+	RADIO_KEY_PIRATE = RADIO_CHANNEL_PIRATE,
+	RADIO_KEY_VOX = RADIO_CHANNEL_VOX,
 	RADIO_KEY_SUNS = RADIO_CHANNEL_SUNS,
 
 	// Admin
@@ -51,8 +51,8 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	"å" = RADIO_CHANNEL_SYNDICATE,
 	"í" = RADIO_CHANNEL_CENTCOM,
 	"ò" = RADIO_CHANNEL_NANOTRASEN,
-	"ü" = RADIO_CHANNEL_RAMZI_SHORT,
-	"û" = RADIO_CHANNEL_PIRATE_SHORT,
+	"ü" = RADIO_CHANNEL_RAMZI,
+	"û" = RADIO_CHANNEL_PIRATE,
 	"ì" = RADIO_CHANNEL_INTEQ,
 
 	// Admin
@@ -372,7 +372,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 			speech_bubble_recipients.Add(M.client)
 	// [CELADON-EDIT] - CELADON_QOL - Меняем бабл эмоута
 	// var/image/I = image('icons/mob/talk.dmi', src, "[bubble_type][say_test(message)]", FLY_LAYER) // CELADON-EDIT -> ORIGIN
-	var/image/I = image('modular_mankind/_storage_icons/icons/assets/qol/talk.dmi', src, "[bubble_type][say_test(message)]", FLY_LAYER)
+	var/image/I = image('mod_celadon/_storage_icons/icons/assets/qol/talk.dmi', src, "[bubble_type][say_test(message)]", FLY_LAYER)
 	// [/CELADON-EDIT]
 	I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
 	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(flick_overlay_global), I, speech_bubble_recipients, 3 SECONDS)

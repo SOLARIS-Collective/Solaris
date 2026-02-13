@@ -29,6 +29,8 @@
 	var/is_dimorphic = FALSE
 	///Greyscale draw color
 	var/draw_color
+	///Should it automatically rename itself based on limb_id and body_zone?
+	var/dynamic_rename = TRUE
 
 	/// The icon state of the limb's overlay, colored with a different color
 	var/overlay_icon_state
@@ -142,7 +144,8 @@
 
 /obj/item/bodypart/Initialize()
 	. = ..()
-	name = "[limb_id] [parse_zone(body_zone)]"
+	if(dynamic_rename)
+		name = "[limb_id] [parse_zone(body_zone)]"
 	update_icon_dropped()
 
 	if(!IS_ORGANIC_LIMB(src))
@@ -460,7 +463,7 @@
 	// quick re-check to see if bare_wound_bonus applies, for the benefit of log_wound(), see about getting the check from check_woundings_mods() somehow
 	if(ishuman(owner))
 		var/mob/living/carbon/human/human_wearer = owner
-		var/list/clothing = human_wearer.clothingonpart(src)
+		var/list/clothing = human_wearer.get_clothing_on_part(src)
 		for(var/obj/item/clothing/clothes_check as anything in clothing)
 			// unlike normal armor checks, we tabluate these piece-by-piece manually so we can also pass on appropriate damage the clothing's limbs if necessary
 			if(clothes_check.armor.getRating("wound"))
@@ -518,7 +521,7 @@
 
 	if(owner && ishuman(owner))
 		var/mob/living/carbon/human/H = owner
-		var/list/clothing = H.clothingonpart(src)
+		var/list/clothing = H.get_clothing_on_part(src)
 		for(var/obj/item/clothing/C as anything in clothing)
 			// unlike normal armor checks, we tabluate these piece-by-piece manually so we can also pass on appropriate damage the clothing's limbs if necessary
 			armor_ablation += C.armor.getRating("wound")
@@ -559,7 +562,7 @@
 		if(updating_health)
 			owner.updatehealth()
 		if(owner.dna?.species && (REVIVESBYHEALING in owner.dna.species.species_traits))
-			if(owner.health > 0 && !owner.hellbound)
+			if(owner.health > 0)
 				owner.revive(FALSE)
 				owner.cure_husk() // If it has REVIVESBYHEALING, it probably can't be cloned. No husk cure.
 	cremation_progress = min(0, cremation_progress - ((brute_dam + burn_dam)*(100/max_damage)))
@@ -792,7 +795,10 @@
 	if(mutation_color) //I hate mutations
 		draw_color = mutation_color
 	else if(should_draw_greyscale)
-		draw_color = (species_color) || (skin_tone && skintone2hex(skin_tone))
+		// [CELADON-EDIT] - TAJARA, CELADON_RIOL
+		// draw_color = (species_color) || (skin_tone && skintone2hex(skin_tone)) // CELADON-EDIT - ORIGINAL
+		draw_color = (species_color) || (skin_tone && skintone2hex(skin_tone)) || (skin_tone_nose && skintonenose2hex(skin_tone_nose)) || (skin_tone_tajara && skintonetajara2hex(skin_tone_tajara)) || (skin_tone_riol && skintoneriol2hex(skin_tone_riol))
+		// [/CELADON-EDIT]
 	else
 		draw_color = null
 
@@ -819,6 +825,19 @@
 		else
 			skin_tone = ""
 
+		// [CELADON-ADD] - TAJARA
+		if(S.use_skintonetajara)
+			skin_tone_tajara = H.skin_tone_tajara
+		else
+			skin_tone_tajara = ""
+
+		// [CELADON-ADD] - CELADON_RIOL
+		if(S.use_skintoneriol)
+			skin_tone_riol = H.skin_tone_riol
+		else
+			skin_tone_riol = ""
+		// [/CELADON-ADD]
+
 		use_damage_color = S.use_damage_color
 		if(((MUTCOLORS in S.species_traits) || (DYNCOLORS in S.species_traits)) && uses_mutcolor) //Ethereal code. Motherfuckers.
 			if(S.fixed_mut_color)
@@ -835,7 +854,10 @@
 
 		draw_color = mutation_color
 		if(should_draw_greyscale) //Should the limb be colored?
-			draw_color ||= (species_color) || (skin_tone && skintone2hex(skin_tone))
+			// [CELADON-EDIT] - TAJARA, CELADON_RIOL
+			// draw_color ||= (species_color) || (skin_tone && skintone2hex(skin_tone)) // CELADON-EDIT - ORIGINAL
+			draw_color ||= (species_color) || (skin_tone && skintone2hex(skin_tone)) || (skin_tone_nose && skintonenose2hex(skin_tone_nose)) || (skin_tone_tajara && skintonetajara2hex(skin_tone_tajara)) || (skin_tone_riol && skintoneriol2hex(skin_tone_riol))
+			// [/CELADON-EDIT]
 
 		dmg_overlay_type = S.damage_overlay_type
 
@@ -932,7 +954,11 @@
 
 		draw_color = mutation_color
 		if(should_draw_greyscale) //Should the limb be colored outside of a forced color?
-			draw_color ||= (species_color) || (skin_tone && skintone2hex(skin_tone))
+			// [CELADON-EDIT] - TAJARA, CELADON_RIOL
+			// draw_color ||= (species_color) || (skin_tone && skintone2hex(skin_tone)) // CELADON-EDIT - ORIGINAL
+			draw_color ||= (species_color) || (skin_tone && skintone2hex(skin_tone)) || (skin_tone_nose && skintonenose2hex(skin_tone_nose)) || (skin_tone_tajara && skintonetajara2hex(skin_tone_tajara)) || (skin_tone_riol && skintoneriol2hex(skin_tone_riol))
+			// [/CELADON-EDIT]
+
 
 		if(draw_color)
 			limb.color = "#[draw_color]"

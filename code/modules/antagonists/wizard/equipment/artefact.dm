@@ -37,7 +37,7 @@
 	icon_state = "rift"
 	density = TRUE
 	anchored = TRUE
-	var/spawn_path = /mob/living/simple_animal/cow //defaulty cows to prevent unintentional narsies
+	var/spawn_path = /mob/living/basic/cow //defaulty cows to prevent unintentional narsies
 	var/spawn_amt_left = 20
 	var/spawn_fast = 0
 
@@ -67,7 +67,7 @@
 /obj/item/veilrender/vealrender
 	name = "veal render"
 	desc = "A wicked curved blade of alien origin, recovered from the ruins of a vast farm."
-	spawn_type = /mob/living/simple_animal/cow
+	spawn_type = /mob/living/basic/cow
 	spawn_amt = 20
 	activate_descriptor = "hunger"
 	rend_desc = "Reverberates with the sound of ten thousand moos."
@@ -239,6 +239,9 @@
 	var/hat = pick(/obj/item/clothing/head/helmet/roman, /obj/item/clothing/head/helmet/roman/legionnaire)
 	H.equip_to_slot_or_del(new hat(H), ITEM_SLOT_HEAD)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/costume/roman(H), ITEM_SLOT_ICLOTHING)
+	// [CELADON-ADD] - CELADON_RETURN_CONTENT_SPAWN
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/roman(H), ITEM_SLOT_FEET)
+	// [/CELADON-ADD]
 	H.put_in_hands(new /obj/item/shield/riot/roman(H), TRUE)
 	H.put_in_hands(new /obj/item/melee/sword/claymore(H), TRUE)
 	H.equip_to_slot_or_del(new /obj/item/melee/spear(H), ITEM_SLOT_BACK)

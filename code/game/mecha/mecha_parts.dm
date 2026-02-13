@@ -289,6 +289,20 @@
 	name = "Durand Central Control module (Exosuit Board)"
 	icon_state = "mainboard"
 
+// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNSS
+/obj/item/circuitboard/mecha/honker/peripherals
+	name = "H.O.N.K Peripherals Control module (Exosuit Board)"
+	icon_state = "mcontroller"
+
+/obj/item/circuitboard/mecha/honker/targeting
+	name = "H.O.N.K Weapon Control and Targeting module (Exosuit Board)"
+	icon_state = "mcontroller"
+
+/obj/item/circuitboard/mecha/honker/main
+	name = "H.O.N.K Central Control module (Exosuit Board)"
+	icon_state = "mainboard"
+// [/CELADON-ADD]
+
 /obj/item/circuitboard/mecha/odysseus/peripherals
 	name = "200 Series Peripherals Control module (Exosuit Board)"
 	icon_state = "mcontroller"
@@ -307,6 +321,3 @@
 
 /obj/item/circuitboard/mecha/phazon/main
 	name = "Phazon Central Control module (Exosuit Board)"
-
-/obj/item/toy/prize/odysseus
-	name = "toy Odysseus 202r"

@@ -120,7 +120,7 @@
 		return
 
 	if(!force)
-		if(M.can_inject(user, 1))
+		if(M.can_inject(user))
 			to_chat(user, span_warning("You stab [M] with the pen."))
 			if(!stealth)
 				to_chat(M, span_danger("You feel a tiny prick!"))
@@ -177,7 +177,7 @@
 		if(reagents.total_volume)
 			if(M.reagents)
 
-				reagents.trans_to(M, reagents.total_volume, transfered_by = user, method = INJECT)
+				reagents.trans_to(M, reagents.total_volume, transfered_by = user, methods = INJECT)
 
 
 /obj/item/pen/sleepy/Initialize()
@@ -255,12 +255,12 @@
 	tool_behaviour = TOOL_MINING //For the classic "digging out of prison with a spoon but you're in space so this analogy doesn't work" situation.
 	toolspeed = 10 //You will never willingly choose to use one of these over a shovel.
 
-/obj/item/pen/solgov //DO NOT CHANGE... ON PURPOSE... SEE OVERRIDE
+/obj/item/pen/solgov
 	name = "\improper SolGov pen"
 	desc = "A pen with SolGov's insignia on the side."
 	icon_state = "pen-sg"
 
-/obj/item/pen/fountain/solgov //DO NOT CHANGE... ON PURPOSE... SEE OVERRIDE
+/obj/item/pen/fountain/solgov
 	name = "\improper SolGov fountain pen"
 	desc = "A fancy fountain pen with SolGov's insignia emblazoned onto the wood."
 	icon_state = "pen-fountain-sg"

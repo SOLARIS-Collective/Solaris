@@ -12,6 +12,7 @@
 	name = "black jeans"
 	desc = "Only for those who can pull it off."
 	icon_state = "jeansblack"
+	supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION | KEPORI_VARIATION
 
 /obj/item/clothing/under/pants/cargo
 	name = "cargo pants"
@@ -23,9 +24,11 @@
 						"jean cargo pants" = "cargojeans",
 						"olive cargo pants" = "cargoolive",
 						"brown cargo pants" = "cargobrown",
+						"navy cargo pants" = "cargonavy",
 						)
 	unique_reskin_changes_base_icon_state = TRUE
 	unique_reskin_changes_name = TRUE
+	supports_variations = DIGITIGRADE_VARIATION
 
 /obj/item/clothing/under/pants/cargo/grey
 	name = "grey cargo pants"
@@ -44,6 +47,12 @@
 	desc = "A pocket for every need."
 	icon_state = "cargokhaki"
 	current_skin = "khaki cargo pants"
+
+/obj/item/clothing/under/pants/cargo/navy
+	name = "navy cargo pants"
+	desc = "A pocket for every need."
+	icon_state = "cargonavy"
+	current_skin = "navy cargo pants"
 
 /obj/item/clothing/under/pants/cargo/jeans
 	name = "jean cargo pants"
@@ -77,28 +86,77 @@
 	name = "black pants"
 	desc = "These pants are dark, like your soul."
 	icon_state = "blackpants"
+	supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION | KEPORI_VARIATION
 
 /obj/item/clothing/under/pants/tan
 	name = "tan pants"
 	desc = "Some tan pants. You look like a white collar worker with these on."
 	icon_state = "khaki"
+	supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION | KEPORI_VARIATION
 
 /obj/item/clothing/under/pants/track
 	name = "track pants"
 	desc = "A pair of track pants, for the athletic."
 	icon_state = "trackpants"
+	unique_reskin = list("black track pants" = "trackpants",
+						"teal track pants" = "trackpantsteal",
+						"pink track pants" = "trackpantspink",
+						"blue track pants" = "trackpantsblue",
+						"red track pants" = "trackpantsred",
+						"purple track pants" = "trackpantspurple",
+						)
+	unique_reskin_changes_base_icon_state = TRUE
+	unique_reskin_changes_name = TRUE
+	supports_variations = DIGITIGRADE_VARIATION
+
+/obj/item/clothing/under/pants/track/teal
+	name = "teal track pants"
+	current_skin = "teal track pants"
+
+/obj/item/clothing/under/pants/track/pink
+	name = "pink track pants"
+	current_skin = "pink track pants"
+
+/obj/item/clothing/under/pants/track/blue
+	name = "blue track pants"
+	current_skin = "blue track pants"
+
+/obj/item/clothing/under/pants/track/red
+	name = "red track pants"
+	current_skin = "red track pants"
+
+/obj/item/clothing/under/pants/track/purple
+	name = "purple track pants"
+	current_skin = "purple track pants"
 
 /obj/item/clothing/under/pants/jeans
 	name = "jeans"
 	desc = "A nondescript pair of tough blue jeans."
 	icon_state = "jeans"
+	supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION | KEPORI_VARIATION
 
 /obj/item/clothing/under/pants/khaki
 	name = "khaki pants"
 	desc = "A pair of dust beige khaki pants."
 	icon_state = "khaki"
+	supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION | KEPORI_VARIATION
 
 /obj/item/clothing/under/pants/camo
 	name = "camo pants"
 	desc = "A pair of woodland camouflage pants. Probably not the best choice for deep space."
 	icon_state = "camopants"
+
+/obj/item/clothing/under/pants/pajamared
+	name = "red pajama pants"
+	desc = "A comfy pair of pajamas. Probably not the best for work attire."
+	icon_state = "pajamared"
+
+/obj/item/clothing/under/pants/pajamablue
+	name = "blue pajama pants"
+	desc = "A comfy pair of pajamas. Probably not the best for work attire."
+	icon_state = "pajamablue"
+
+/obj/item/clothing/under/pants/pajamagreen
+	name = "green pajama pants"
+	desc = "A comfy pair of pajamas. Probably not the best for work attire."
+	icon_state = "pajamagreen"

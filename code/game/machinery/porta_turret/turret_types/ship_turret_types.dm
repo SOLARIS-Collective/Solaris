@@ -158,7 +158,7 @@
 	stun_projectile_sound = 'sound/weapons/gun/rifle/hydra.ogg'
 	lethal_projectile = /obj/projectile/bullet/a556_42
 	lethal_projectile_sound = 'sound/weapons/gun/rifle/hydra.ogg'
-	faction = list(FACTION_RAMZI, FACTION_TURRET)
+	faction = list(FACTION_RAMZI_RENEGADE, FACTION_TURRET)	// [CELADON-ADD] - RAMZI-RENEGATE
 	max_integrity = 180
 	shot_delay = 16
 	burst_delay = 8
@@ -246,7 +246,7 @@
 /* Gauss with no non-lethal option */
 /* Effective at long range */
 
-/obj/machinery/porta_turret/ship/solgov
+/obj/machinery/porta_turret/ship/solcon
 	name = "Type Fauchard Emplacement" // <- women who cannot do solcon names good
 	desc = "A long range turret manufactured by the Solarbundswaffenkammer. It is rated for combat usage, and has a higher than average lethality index."
 	faction = list(FACTION_PLAYER_SOLCON, FACTION_TURRET)

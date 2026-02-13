@@ -81,7 +81,6 @@
 	SStitle.splash_turf = src
 	if(SStitle.icon)
 		icon = SStitle.icon
-	handle_generic_titlescreen_sizes() //PENTEST CHANGE - WIDESCREEN SPLASH
 	..()
 
 /turf/closed/indestructible/splashscreen/vv_edit_var(var_name, var_value)
@@ -90,7 +89,6 @@
 		switch(var_name)
 			if(NAMEOF(src, icon))
 				SStitle.icon = icon
-				handle_generic_titlescreen_sizes() //PENTEST CHANGE - WIDESCREEN SPLASH
 
 
 /turf/closed/indestructible/reinforced

@@ -11,6 +11,7 @@
 #define RUINTYPE_DESERT "Desert"
 #define RUINTYPE_WATER "Water"
 #define RUINTYPE_BATTLEFIELD "Battlefield"
+#define RUINTYPE_MOON "Moon"
 
 /// do not actually use this for your ruin type, this is for the ruintype_to_list proc
 #define RUINTYPE_EVERYTHING "Everything"
@@ -19,6 +20,18 @@
 // IF YOU ADD NEW A NEW RUIN TYPE
 // PLEASE MAKE SURE YOU ADD IT TO THE BELOW LIST AND PROC!
 
+// [CELADON-EDIT] - CELADON_CONFIGS_MAPS - добавляем в лист дефайн
+// #define RUINTYPE_LIST_ALL list(\ // CELADON-EDIT -> ORIGINAL
+// 	RUINTYPE_SPACE,\ // CELADON-EDIT -> ORIGINAL
+// 	RUINTYPE_LAVA,\ // CELADON-EDIT -> ORIGINAL
+// 	RUINTYPE_ICE,\ // CELADON-EDIT -> ORIGINAL
+// 	RUINTYPE_SAND,\ // CELADON-EDIT -> ORIGINAL
+// 	RUINTYPE_JUNGLE,\ // CELADON-EDIT -> ORIGINAL
+// 	RUINTYPE_ROCK,\ // CELADON-EDIT -> ORIGINAL
+// 	RUINTYPE_BEACH,\ // CELADON-EDIT -> ORIGINAL
+// 	RUINTYPE_WASTE,\ // CELADON-EDIT -> ORIGINAL
+// 	RUINTYPE_YELLOW,\ // CELADON-EDIT -> ORIGINAL
+// 	RUINTYPE_EVERYTHING) // CELADON-EDIT -> ORIGINAL
 #define RUINTYPE_LIST_ALL list(\
 	RUINTYPE_SPACE,\
 	RUINTYPE_LAVA,\
@@ -29,7 +42,16 @@
 	RUINTYPE_BEACH,\
 	RUINTYPE_WASTE,\
 	RUINTYPE_YELLOW,\
+	RUINTYPE_PLASMA,\
+	RUINTYPE_EARTH_SAND,\
+	RUINTYPE_WATER,\
+	RUINTYPE_DESERT,\
+	RUINTYPE_ASTEROID,\
+	RUINTYPE_SHROUDED,\
+	RUINTYPE_ANIMA,\
+	RUINTYPE_MOON,\
 	RUINTYPE_EVERYTHING)
+// [/CELADON-EDIT] - CELADON_CONFIGS_MAPS
 
 /proc/ruintype_to_list(ruintype)
 	if(ruintype == RUINTYPE_EVERYTHING)
@@ -40,7 +62,7 @@
 /*
 Maps described in the catalogue must be described with at least one or more of the following tags.
 
-*Loot Summary
+* Loot Summary
 Minor Loot = Has negligable/no loot at all, only contains fluff items or just the loot found from enemy drops or structures in the ruin.
 Medium Loot = Has a pool of loot that is useful for the average player or ship, but not in large amounts, and does not have more than one or two boss drops.
 Major Loot = Contains a large pool of loot useful to the average player or ship. Or includes more boss drops or necropolis loot than there are challenges for.
@@ -49,7 +71,8 @@ Major Loot = Contains a large pool of loot useful to the average player or ship.
 #define RUIN_TAG_MEDIUM_LOOT "Medium Loot"
 #define RUIN_TAG_MAJOR_LOOT "Major Loot"
 
-/*Combat Summary
+/*
+* Combat Summary
 No Combat = Contains no enemies or combat challenges.
 Minor Combat Challenge = Has only 1-2 hit melee mobs in small or moderate amounts.
 Medium Combat Challenge = Contains more than just simple low health melee mobs, or a moderate amount of mobs.
@@ -62,7 +85,8 @@ Boss Combat Challenge = Contains either one or more bossmobs, has a large number
 #define RUIN_TAG_BOSS_COMBAT "Boss Combat Challenge"
 
 
-/*Qualities
+/*
+* Qualities
 Megafauna = Map contains one or more megafauna.
 Antag Gear = Map contains one or more items typically only obtainable by antag roles.
 Necropolis Loot = Map contains an item or chest from the necropolis loot pool.

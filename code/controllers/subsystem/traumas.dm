@@ -12,14 +12,15 @@ SUBSYSTEM_DEF(traumas)
 
 /datum/controller/subsystem/traumas/Initialize()
 	//phobia types is to pull from randomly for brain traumas, e.g. conspiracies is for special assignment only
-	phobia_types = sortList(list("spiders", "space", "security", "greytide", "lizards",
+	phobia_types = sortList(list("spiders", "space", "security", "clowns", "greytide", "lizards",	//phobia_types = sortList(list("spiders", "space", "security", "greytide", "lizards",	// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
 						"skeletons", "snakes", "robots", "doctors", "authority", "the supernatural",
-						"aliens", "strangers", "birds", "falling", "anime", "clowns")) //PENTEST RESTORED CLOWNS
+						"aliens", "strangers", "birds", "falling", "anime"))
 
 	phobia_regexes = list(
 		"spiders"          = construct_phobia_regex("spiders"),
 		"space"            = construct_phobia_regex("space"),
 		"security"         = construct_phobia_regex("security"),
+		"clowns"           = construct_phobia_regex("clowns"),	// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
 		"greytide"         = construct_phobia_regex("greytide"),
 		"lizards"          = construct_phobia_regex("lizards"),
 		"skeletons"        = construct_phobia_regex("skeletons"),
@@ -33,8 +34,7 @@ SUBSYSTEM_DEF(traumas)
 		"conspiracies"     = construct_phobia_regex("conspiracies"),
 		"birds"            = construct_phobia_regex("birds"),
 		"falling"          = construct_phobia_regex("falling"),
-		"anime"            = construct_phobia_regex("anime"),
-		"clowns"           = construct_phobia_regex("clowns") //PENTEST RESTORED CLOWNS
+		"anime"            = construct_phobia_regex("anime")
 	)
 
 	phobia_mobs = list(
@@ -55,7 +55,7 @@ SUBSYSTEM_DEF(traumas)
 	)
 
 	phobia_objs = list(
-		"snakes" = typecacheof(list(/obj/item/toy/plush/snakeplushie)),
+		"snakes" = typecacheof(list(/obj/item/rod_of_asclepius, /obj/item/toy/plush/snakeplushie)),	//"snakes" = typecacheof(list(/obj/item/toy/plush/snakeplushie)),	// [CELADON-EDIT] - RETURN_CONTENT_NECROOLIS
 
 		"spiders"   = typecacheof(list(/obj/structure/spider, /obj/item/toy/plush/spider)),
 
@@ -64,6 +64,15 @@ SUBSYSTEM_DEF(traumas)
 			/obj/item/clothing/under/rank/security/head_of_security, /obj/item/clothing/under/rank/security/detective,
 			/obj/item/melee/baton, /obj/item/gun/energy/taser, /obj/item/restraints/handcuffs,
 			/obj/machinery/door/airlock/security, /obj/effect/hallucination/simple/securitron)),
+
+// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+		"clowns"    = typecacheof(list(
+			/obj/item/clothing/under/rank/civilian/clown,
+			/obj/item/clothing/mask/gas/clown_hat, /obj/item/instrument/bikehorn,
+			/obj/item/grown/bananapeel, /obj/item/food/cheesiehonkers,
+			/obj/item/pda/clown,
+			/obj/item/trash/cheesie)),
+// [/CELADON-ADD]
 
 		"greytide"  = typecacheof(list(
 			/obj/item/clothing/under/color/grey, /obj/item/melee/baton/cattleprod,
@@ -75,7 +84,6 @@ SUBSYSTEM_DEF(traumas)
 
 		"skeletons" = typecacheof(list(
 			/obj/item/organ/tongue/bone, /obj/item/clothing/suit/armor/bone, /obj/item/stack/sheet/bone,
-			/obj/item/food/meat/slab/human/mutant/skeleton,
 			/obj/effect/decal/remains/human)),
 
 		"conspiracies" = typecacheof(list(
@@ -126,7 +134,7 @@ SUBSYSTEM_DEF(traumas)
 			/obj/item/melee/baton/abductor, /obj/item/radio/headset/abductor, /obj/item/scalpel/alien, /obj/item/hemostat/alien,
 			/obj/item/retractor/alien, /obj/item/circular_saw/alien, /obj/item/surgicaldrill/alien, /obj/item/cautery/alien,
 			/obj/item/clothing/head/helmet/abductor, /obj/structure/bed/abductor, /obj/structure/table_frame/abductor,
-			/obj/structure/table/abductor, /obj/structure/table/optable/abductor, /obj/structure/closet/abductor, /obj/item/organ/heart/gland,
+			/obj/structure/table/abductor, /obj/structure/closet/abductor, /obj/item/organ/heart/gland,
 			/obj/machinery/abductor, /obj/item/crowbar/abductor, /obj/item/screwdriver/abductor, /obj/item/weldingtool/abductor,
 			/obj/item/wirecutters/abductor, /obj/item/wrench/abductor, /obj/item/stack/sheet/mineral/abductor)),
 
@@ -141,13 +149,7 @@ SUBSYSTEM_DEF(traumas)
 			/obj/item/clothing/suit/space/space_ninja,
 			/obj/item/clothing/mask/gas/space_ninja, /obj/item/clothing/shoes/space_ninja, /obj/item/clothing/gloves/space_ninja,
 			/obj/item/melee/sword/vibro, /obj/item/melee/sword/energy_katana, /obj/item/toy/katana,
-			/obj/item/melee/sword/katana, /obj/structure/window/paperframe, /obj/structure/mineral_door/paperframe)),
-
-		"clowns"    = typecacheof(list( //PENTEST RESTORED CLOWNS
-			/obj/item/clothing/under/rank/civilian/clown,
-			/obj/item/clothing/mask/gas/clown_hat, /obj/item/instrument/bikehorn,
-			/obj/item/grown/bananapeel, /obj/item/food/cheesiehonkers,
-			/obj/item/trash/cheesie)), //PENTEST RESTORED CLOWNS
+			/obj/item/melee/sword/katana, /obj/structure/window/paperframe, /obj/structure/mineral_door/paperframe))
 	)
 
 	phobia_turfs = list(
@@ -169,6 +171,23 @@ SUBSYSTEM_DEF(traumas)
 			/datum/species/abductor, /datum/species/jelly, /datum/species/pod)),
 		"spiders" = typecacheof(list(/datum/species/spider))
 	)
+
+	// [CELADON-ADD] - TAJARA
+
+	// Мне это кажется более крутым решением, чем оверрайд Initialize
+	// делать, потому что дополнить его в начале невозможно, а при
+	// дополнении в конце, мы дополняем после того как отрепорчено,
+	// что подсистема успешно запустилась.
+
+	// Это единственное место где можно воткнуться после инициализации,
+	// но перед оповещением что подсистема запущена
+
+	init_tajara_mod()
+
+	// [CELADON-ADD] - CELADON_RIOL
+	init_riol_mod()
+
+	// [/CELADON-ADD]
 
 	return ..()
 

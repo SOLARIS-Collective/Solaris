@@ -53,6 +53,36 @@
 
 //data HUD (medhud, sechud) defines
 //Don't forget to update human/New() if you change these!
+// [CELADON-EDIT-FIX] - ФИКС СЕК-ХАДОВ ВРЕМЕННЫЙ
+/*
+#define DATA_HUD_SECURITY_BASIC "sec_basic"
+#define DATA_HUD_SECURITY_ADVANCED "sec_adv"
+#define DATA_HUD_MEDICAL_BASIC "med_basic"
+#define DATA_HUD_MEDICAL_ADVANCED "med_adv"
+#define DATA_HUD_DIAGNOSTIC_BASIC "diag_basic"
+#define DATA_HUD_DIAGNOSTIC_ADVANCED "diag_adv"
+#define DATA_HUD_ABDUCTOR "abductor_data"
+#define DATA_HUD_SENTIENT_DISEASE "disease"
+#define DATA_HUD_AI_DETECT "ai_detect"
+#define DATA_HUD_FAN "fan"
+
+//antag HUD defines
+#define ANTAG_HUD_REV "rev"
+#define ANTAG_HUD_OPS "ops"
+#define ANTAG_HUD_WIZ "wiz"
+#define ANTAG_HUD_SHADOW "shadow"
+#define ANTAG_HUD_TRAITOR "traitor"
+#define ANTAG_HUD_NINJA "ninja"
+#define ANTAG_HUD_CHANGELING "changeling"
+#define ANTAG_HUD_ABDUCTOR "abductor_antag"
+#define ANTAG_HUD_BROTHER "brother"
+#define ANTAG_HUD_OBSESSED "obsessed"
+#define ANTAG_HUD_FUGITIVE "fugitive"
+#define ANTAG_HUD_GANGSTER "gangster"
+#define ANTAG_HUD_SPACECOP "spacecop"
+*/
+//data HUD (medhud, sechud) defines
+//Don't forget to update human/New() if you change these!
 #define DATA_HUD_SECURITY_BASIC 1
 #define DATA_HUD_SECURITY_ADVANCED 2
 #define DATA_HUD_MEDICAL_BASIC 3
@@ -78,7 +108,7 @@
 #define ANTAG_HUD_FUGITIVE 21
 #define ANTAG_HUD_GANGSTER 22
 #define ANTAG_HUD_SPACECOP 23
-
+// [/CELADON-EDIT-FIX]
 
 // Notification action types
 #define NOTIFY_JUMP "jump"

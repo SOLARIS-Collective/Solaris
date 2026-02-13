@@ -7,7 +7,7 @@
 	lefthand_file = GUN_LEFTHAND_ICON
 	righthand_file = GUN_RIGHTHAND_ICON
 	flags_1 =  CONDUCT_1
-	slot_flags = ITEM_SLOT_BELT
+	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_SUITSTORE
 	custom_materials = list(/datum/material/iron=2000)
 	w_class = WEIGHT_CLASS_NORMAL
 	throwforce = 5
@@ -45,6 +45,7 @@
 /*
  *  Firing
 */
+	var/actually_shoots = TRUE //is this gun a brick and doesnt fire bullet
 	var/fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
 	var/vary_fire_sound = TRUE
 	var/fire_sound_volume = 50
@@ -348,6 +349,8 @@
 	build_firemodes()
 	if(sawn_off)
 		sawoff(forced = TRUE)
+	if(slot_flags & ITEM_SLOT_SUITSTORE)
+		ADD_TRAIT(src, TRAIT_FORCE_SUIT_STORAGE, REF(src))
 
 /obj/item/gun/ComponentInitialize()
 	. = ..()
@@ -369,8 +372,10 @@
 /obj/item/gun/proc/do_wield(mob/user, instant)
 	user.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/gun, multiplicative_slowdown = wield_slowdown)
 	wield_time = world.time + wield_delay
+// [CELADON-ADD] - CELADON_FIXES
 	if(azoom)
 		azoom.Grant(user)
+// [/CELADON-ADD]
 	if(wield_time > 0 && !instant)
 		if(do_after(
 			user,
@@ -392,6 +397,10 @@
 	wielded = FALSE
 	wielded_fully = FALSE
 	zoom(user, forced_zoom = FALSE)
+// [CELADON-ADD] - CELADON_FIXES
+	if(azoom)
+		azoom.Remove(user)
+// [/CELADON-ADD]
 	user.remove_movespeed_modifier(/datum/movespeed_modifier/gun)
 	if(azoom)
 		azoom.Remove(user)
@@ -420,15 +429,13 @@
 	. = ..()
 	if(manufacturer)
 		. += span_notice("It has <b>[manufacturer]</b> engraved on it.")
+	if(HAS_TRAIT(src,TRAIT_FORCE_SUIT_STORAGE))
+		. += span_notice("It has clips and hooks for easy carrying.")
 
 /obj/item/gun/examine_more(mob/user)
 	. = ..()
 	if(has_safety)
-		. += "The safety is [safety ? span_green("ON") : span_red("OFF")]. Ctrl-Click to toggle the safety."
-
-	if(gun_firemodes.len > 1)
-		. += "You can change the [src]'s firemode by pressing the <b>secondary action</b> key. By default, this is <b>Shift + Space</b>"
-
+		. += "The safety is [safety ? span_green("ON") : span_red("OFF")]. Right-Click to toggle the safety."
 
 /obj/item/gun/attackby(obj/item/I, mob/living/user, params)
 	. = ..()
@@ -441,7 +448,7 @@
 		zoom(user, user.dir, FALSE) //we can only stay zoomed in if it's in our hands	//yeah and we only unzoom if we're actually zoomed using the gun!!
 
 /obj/item/gun/attack(mob/M as mob, mob/user)
-	if(user.a_intent == INTENT_HARM) //Flogging
+	if(user.a_intent == INTENT_HARM || !actually_shoots) //Flogging
 		return ..()
 	return
 
@@ -468,13 +475,26 @@
 	return
 
 /obj/item/gun/afterattack(atom/target, mob/living/user, flag, params)
-	. = ..()
+	if(fire_gun(target, user, flag, params))
+		return TRUE
+	return ..()
+
+/obj/item/gun/proc/fire_gun(atom/target, mob/living/user, flag, params)
+	if(!actually_shoots)// this gun doesn't actually fire bullets. Dont shoot.
+		return
 	//No target? Why are we even firing anyways...
 	if(!target)
 		return
 	//If we are burst firing, don't fire, obviously
 	if(currently_firing_burst)
 		return
+
+	if(SEND_SIGNAL(user, COMSIG_MOB_TRYING_TO_FIRE_GUN, src, target, flag, params) & COMPONENT_CANCEL_GUN_FIRE)
+		return
+
+	if(SEND_SIGNAL(src, COMSIG_GUN_TRY_FIRE, user, target, flag, params) & COMPONENT_CANCEL_GUN_FIRE)
+		return
+
 	//This var happens when we are either clicking someone next to us or ourselves. Check if we don't want to fire...
 	if(flag)
 		if(target in user.contents) //can't shoot stuff inside us.
@@ -741,16 +761,39 @@
 
 /obj/item/gun/CtrlClick(mob/user)
 	. = ..()
-	if(!has_safety)
-		return
-	// only checks for first level storage e.g pockets, hands, suit storage, belts, nothing in containers
-	if(!in_contents_of(user))
-		return
-
 	if(isliving(user) && in_range(src, user))
 		toggle_safety(user)
 
-/obj/item/gun/proc/toggle_safety(mob/user, silent=FALSE)
+// This is overridden when interacting with attached underbarrel guns.
+/obj/item/gun/attack_hand_secondary(mob/user, list/modifiers)
+	. = ..()
+	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
+		return
+	if(toggle_safety(user))
+		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+
+/obj/item/gun/attackby_secondary(obj/item/weapon, mob/user, params)
+	. = ..()
+	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
+		return
+	if(toggle_safety(user))
+		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+
+/obj/item/gun/attack_self_secondary(mob/user, modifiers)
+	. = ..()
+	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
+		return
+	if(toggle_safety(user))
+		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+
+/obj/item/gun/proc/toggle_safety(mob/user, silent=FALSE, override_check = FALSE)
+	if(!has_safety)
+		return FALSE
+
+	// only checks for first level storage e.g pockets, hands, suit storage, belts, nothing in containers
+	if(!in_contents_of(user) && !override_check)
+		return FALSE
+
 	safety = !safety
 
 	if(!silent)
@@ -761,8 +804,9 @@
 		)
 
 	update_appearance()
+	return TRUE
 
-/obj/item/gun/attack_hand(mob/user)
+/obj/item/gun/attack_hand(mob/user, list/modifiers)
 	. = ..()
 	update_appearance()
 
@@ -860,15 +904,21 @@
 /obj/item/gun/proc/before_firing(atom/target,mob/user)
 	return
 
-/obj/item/gun/proc/calculate_recoil(mob/user, recoil_bonus = 0)
+/obj/item/gun/proc/calculate_recoil(mob/living/user, recoil_bonus = 0)
 	if(HAS_TRAIT(user, TRAIT_GUNSLINGER))
 		recoil_bonus += gunslinger_recoil_bonus
-	return clamp(recoil_bonus, min_recoil , INFINITY)
+	recoil_bonus *= user.recoil_effect
+	return clamp(recoil_bonus, min_recoil, INFINITY)
 
 /obj/item/gun/proc/calculate_spread(mob/user, bonus_spread)
 	var/final_spread = 0
 	var/randomized_gun_spread = 0
 	var/randomized_bonus_spread = 0
+	// [CELADON-ADD] - BALLISTIC_SHIELD - Небольшое снижение разброса при использовании щита
+	var/obj/item/shield/shield = user.get_inactive_held_item()
+	if(istype(shield) && spread_unwielded > 0)
+		bonus_spread += shield.spread_bonus
+	// [CELADON-ADD]
 
 	final_spread += bonus_spread
 
@@ -1148,10 +1198,6 @@
 	update_appearance()
 	for(var/datum/action/current_action as anything in actions)
 		current_action.UpdateButtonIcon()
-
-/obj/item/gun/secondary_action(user)
-	if(gun_firemodes.len > 1)
-		fire_select(user)
 
 /datum/action/item_action/toggle_firemode/UpdateButtonIcon(status_only = FALSE, force = FALSE)
 	var/obj/item/gun/our_gun = target

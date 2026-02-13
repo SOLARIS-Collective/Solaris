@@ -105,7 +105,8 @@
 			return
 	return ..()
 
+
 /obj/item/candle/tribal_torch/update_appearance()
-	. = ..()
 	icon_state = "torch[lit ? "_lit" : "_unlit"]"
-	item_state = "torch[lit ? "_lit" : "_unlit"]"
+	item_state = "torch[lit ? "-on" : ""]"
+	return ..()

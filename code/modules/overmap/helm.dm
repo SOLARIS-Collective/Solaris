@@ -4,7 +4,7 @@
 #define JUMP_STATE_FIRING 3
 #define JUMP_STATE_FINALIZED 4
 #define JUMP_CHARGE_DELAY (7 SECONDS)
-#define JUMP_CHARGEUP_TIME (1 MINUTES)
+#define JUMP_CHARGEUP_TIME (20 SECONDS)
 
 /obj/machinery/computer/helm
 	name = "helm control console"
@@ -38,8 +38,6 @@
 	/// If we are jumping, what cords are we jumping to?
 	var/list/jump_coords
 
-	COOLDOWN_DECLARE(silicon_access_print_cooldown) //PENTEST ADDITION
-
 /obj/machinery/computer/helm/retro
 	icon = 'icons/obj/machines/retro_computer.dmi'
 	icon_state = "computer-retro"
@@ -50,12 +48,8 @@
 	icon_state = "computer-solgov"
 	deconpath = /obj/structure/frame/computer/solgov
 
-/datum/config_entry/number/bluespace_jump_wait
-	default = 5 MINUTES
-
 /obj/machinery/computer/helm/Initialize(mapload, obj/item/circuitboard/C)
 	. = ..()
-	jump_allowed = world.time + CONFIG_GET(number/bluespace_jump_wait)
 	ntnet_relay = new(src)
 
 /obj/machinery/computer/helm/examine(mob/user)
@@ -72,18 +66,14 @@
 	if(current_ship.docked_to || current_ship.docking)
 		say("Bluespace Jump Calibration detected interference in the local area.")
 		return
-	if(world.time < jump_allowed)
-		var/jump_wait = DisplayTimeText(jump_allowed - world.time)
-		say("Bluespace Jump Calibration is currently recharging. ETA: [jump_wait].")
-		return
 	message_admins("[ADMIN_LOOKUPFLW(usr)] has initiated a bluespace jump in [ADMIN_VERBOSEJMP(src)]")
 	jump_timer = addtimer(CALLBACK(src, PROC_REF(jump_sequence), TRUE), JUMP_CHARGEUP_TIME, TIMER_STOPPABLE)
 	if(new_system)
-		priority_announce("Bluespace jump calibration to destination [new_system.name] initialized. Calibration completion in [JUMP_CHARGEUP_TIME/600] minutes.", sender_override="[current_ship.name] Bluespace Pylon", zlevel=virtual_z())
+		priority_announce("Bluespace jump calibration to destination [new_system.name] initialized. Calibration completion in [JUMP_CHARGEUP_TIME/10] seconds.", sender_override="[current_ship.name] Bluespace Pylon", zlevel=virtual_z())
 		jump_destination = new_system
 		jump_coords = newpos
 	else
-		priority_announce("Bluespace jump calibration initialized. Exitting Frontier. Calibration completion in [JUMP_CHARGEUP_TIME/600] minutes.", sender_override="[current_ship.name] Bluespace Pylon", zlevel=virtual_z())
+		priority_announce("Bluespace jump calibration initialized. Exitting Frontier. Calibration completion in [JUMP_CHARGEUP_TIME/10] seconds.", sender_override="[current_ship.name] Bluespace Pylon", zlevel=virtual_z())
 
 	calibrating = TRUE
 	return TRUE
@@ -148,6 +138,11 @@
 		current_ship.helms -= src
 	current_ship = port.current_ship
 	current_ship.helms |= src
+	if(port.registered_faction)
+		var/datum/language/official_language = port.registered_faction.official_language
+		var/datum/language_holder/lang_holder = get_language_holder()
+		grant_language(official_language)
+		lang_holder.selected_language = official_language
 
 /**
  * This proc manually rechecks that the helm computer is connected to a proper ship
@@ -203,7 +198,7 @@
 		return
 
 	.["calibrating"] = calibrating
-	// [MANKIND-ADD] - MANKIND_OVERMAP_ARPA - Это вагабонд насрал
+	// [CELADON-ADD] - CELADON_OVERMAP_ARPA - Это вагабонд насрал
 	.["arpa_ships"] = list()
 	var/list/arpobjects = current_ship.check_proximity()
 	var/arpdequeue_pointer = 0
@@ -220,7 +215,7 @@
 			tcpa = cpa_list["tcpa"]
 		)
 		.["arpa_ships"] += list(other_data)
-	// [/MANKIND-ADD]
+	// [/CELADON-ADD]
 	.["canRename"] = COOLDOWN_FINISHED(current_ship, rename_cooldown)
 	.["otherInfo"] = list()
 	var/list/objects = current_ship.get_nearby_overmap_objects(empty_if_src_docked = FALSE)
@@ -256,13 +251,12 @@
 	.["y"] = current_ship.y || current_ship.docked_to.y
 	.["docking"] = current_ship.docking
 	.["docked"] = current_ship.docked_to
-	// [MANKIND-EDIT] - MANKIND_OVERMAP_ARPA - Это вагабонд насрал
+	// [CELADON-EDIT] - CELADON_OVERMAP_ARPA - Это вагабонд насрал
 	// .["heading"] = dir2text(current_ship.get_heading()) || "None"
 	.["course"] = "[current_ship.get_alt_heading()]°"
 	.["heading"] = "[current_ship.bow_heading]°"
-	// [/MANKIND-EDIT]
+	// [/CELADON-EDIT]
 	// .["heading"] = dir2text(current_ship.get_heading()) || "None"	// КОД JOPA
-	.["heading"] = dir2text(current_ship.get_heading()) || "None"
 	.["sector"] = current_ship.current_overmap.name
 	.["speed"] = current_ship.get_speed()
 	.["eta"] = current_ship.get_eta()
@@ -271,9 +265,9 @@
 	.["aiControls"] = allow_ai_control
 	.["burnDirection"] = current_ship.burn_direction
 	.["burnPercentage"] = current_ship.burn_percentage
-	// [MANKIND-ADD] - MANKIND_OVERMAP_ARPA - Это вагабонд насрал
+	// [CELADON-ADD] - CELADON_OVERMAP_ARPA - Это вагабонд насрал
 	.["rotating"] = current_ship.rotating
-	// [/MANKIND-ADD]
+	// [/CELADON-ADD]
 	for(var/datum/weakref/engine in current_ship.shuttle_port.engine_list)
 		var/obj/machinery/power/shuttle/engine/real_engine = engine.resolve()
 		if(!real_engine)
@@ -297,7 +291,7 @@
 				ref = REF(engine)
 			)
 		.["engineInfo"] += list(engine_data)
-	// [MANKIND-ADD] - subshuttles fix
+	// [CELADON-ADD] - subshuttles fix
 	.["motheroutpost"] = null
 	.["issubshuttle"] = null
 	if(current_ship.source_template.parent_type == /datum/map_template/shuttle/subshuttles)
@@ -306,8 +300,7 @@
 		var/datum/overmap/parent_ship = current_ship.docked_to
 		if(parent_ship && parent_ship.docked_to && istype(parent_ship.docked_to.parent_type, /datum/overmap/outpost))
 			.["motheroutpost"] = "true"
-	// [/MANKIND-ADD] - subshuttles fix
-
+	// [/CELADON-ADD] - subshuttles fix
 /obj/machinery/computer/helm/ui_static_data(mob/user)
 	. = list()
 	.["isViewer"] = viewer || (!allow_ai_control && issilicon(user))
@@ -317,10 +310,10 @@
 		prefixed = current_ship.name,
 		class = current_ship.source_template.name,
 		mass = current_ship.shuttle_port.turf_count,
-		// [MANKIND-EDIT] MANKIND_OVERMAP_ARPA - Вага бля
+		// [CELADON-EDIT] CELADON_OVERMAP_ARPA - Вага бля
 		// sensor_range = 4
 		sensor_range = current_ship.sensor_range
-		// [/MANKIND-EDIT]
+		// [/CELADON-EDIT]
 	)
 	.["canFly"] = TRUE
 	.["aiUser"] = issilicon(user)
@@ -338,7 +331,7 @@
 	. = TRUE
 
 	switch(action) // Universal topics
-		// [MANKIND-ADD] - MANKIND_OVERMAP_STUFF - Это вагабонд насрал
+		// [CELADON-ADD] - CELADON_OVERMAP_STUFF - Это вагабонд насрал
 		if("sensor_increase")
 			//овермап сенсорс максимальная дальность апдейт
 			current_ship.sensor_range = min(current_ship.default_sensor_range, current_ship.sensor_range+1)
@@ -351,9 +344,10 @@
 			update_static_data(usr, ui)
 			current_ship.token.update_screen()
 			return
-		// [/MANKIND-ADD]
+		// [/CELADON-ADD]
 		if("rename_ship")
 			var/new_name = params["newName"]
+			var/ship_name = (!COOLDOWN_FINISHED(current_ship, rename_prefix_cooldown)) ? "[new_name]" : "[current_ship.source_template.prefix] [new_name]" // [CELADON-ADD] - Показывает актуальное название для корабля.
 			if(!new_name)
 				return
 			new_name = trim(new_name)
@@ -362,7 +356,7 @@
 			if(!reject_bad_text(new_name, MAX_CHARTER_LEN) || CHAT_FILTER_CHECK(new_name))
 				say("Error: Replacement designation rejected by system.")
 				return
-			if(tgui_alert(usr, "Are you sure you want to rename the ship to the \"[current_ship.source_template.prefix] [new_name]\"?", "Rename Confirmation", list("Yes", "No")) != "Yes")
+			if(tgui_alert(usr, "Are you sure you want to rename the ship to the \"[ship_name]\"?", "Rename Confirmation", list("Yes", "No")) != "Yes")
 				return
 			if(!current_ship.Rename(new_name))
 				say("Error: [COOLDOWN_TIMELEFT(current_ship, rename_cooldown)/10] seconds until ship designation can be changed.")
@@ -383,7 +377,7 @@
 			allow_ai_control = !allow_ai_control
 			say(allow_ai_control ? "AI Control has been enabled." : "AI Control is now disabled.")
 			return
-		// [MANKIND-ADD] - Signal S.O.S. - modular_mankind\wideband\code\signal.dm
+		// [Celadon-ADD] - Signal S.O.S. - mod_celadon\wideband\code\signal.dm
 		if("send_sos")
 			if(!current_ship.SendSos(name = "[current_ship.name]", x = "[current_ship.x || current_ship.docked_to.x]", y = "[current_ship.y || current_ship.docked_to.y]"))
 				if(COOLDOWN_TIMELEFT(current_ship, sendsos_cooldown)/10 != 0)
@@ -397,7 +391,7 @@
 			if(feedback_text)
 				say(feedback_text)
 			return
-		// [/MANKIND-ADD]
+		// [/Celadon-ADD]
 		if("act_overmap")
 			if(SSshuttle.jump_mode > BS_JUMP_CALLED)
 				to_chat(usr, "<span class='warning'>Cannot interact due to bluespace jump preperations!</span>")
@@ -407,21 +401,6 @@
 			if(feedback_text)
 				say(feedback_text)
 			return
-		if ("PRG_printsiliconaccess" ) //PENTEST CHANGE - START
-			if(issilicon(usr))
-				to_chat(usr, span_warning("You are unable to print a Silicon Access Chip."))
-				return
-			if(!current_ship)
-				return
-			if(!COOLDOWN_FINISHED(src, silicon_access_print_cooldown))
-				say("Printer unavailable. Please allow a short time before attempting to print.")
-				return
-			if (current_ship)
-				var/obj/item/borg/upgrade/ship_access_chip/chip = new(get_turf(src), current_ship)
-				chip.ship = current_ship
-				COOLDOWN_START(src, silicon_access_print_cooldown, 10 SECONDS)
-			playsound('sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
-			return //PENTEST UPGRADE - END
 
 	if(jump_state != JUMP_STATE_OFF)
 		say("Bluespace Jump in progress. Controls suspended.")
@@ -429,7 +408,7 @@
 
 	if(!current_ship.docked_to && !current_ship.docking)
 		switch(action)
-			// [MANKIND-ADD] - MANKIND_OVERMAP_STUFF - Это вагабонд насрал
+			// [CELADON-ADD] - CELADON_OVERMAP_STUFF - Это вагабонд насрал
 			if("rotate_left")
 				if(current_ship.rotating == -1)
 					current_ship.rotating = 0
@@ -444,7 +423,7 @@
 				else
 					current_ship.rotating = 1
 				return
-			// [/MANKIND-ADD]
+			// [/CELADON-ADD]
 			// if("act_overmap")		// КОД JOPA
 			if("quick_dock")
 				if(SSshuttle.jump_mode > BS_JUMP_CALLED)

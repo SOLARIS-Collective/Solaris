@@ -39,28 +39,28 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 	for(var/i = 0; i < number; i++)
 		spawn_meteor(meteortypes)
 
-// [MANKIND-ADD] - MANKIND_OVERMAP_COLLISION - Это вагабонд насрал
+// [CELADON-ADD] - CELADON_OVERMAP_COLLISION - Это вагабонд насрал
 
 /proc/spawn_meteors_alt(number = 10, list/meteortypes, vlevel, port, dirc)
 	for(var/i = 0; i < number; i++)
 		spawn_meteor(meteortypes, vlevel, 0, port, dirc)
 
-// [/MANKIND-ADD]
+// [/CELADON-ADD]
 
-// [MANKIND-EDIT] - MANKIND_OVERMAP_COLLISION - Это вагабонд насрал
+// [CELADON-EDIT] - CELADON_OVERMAP_COLLISION - Это вагабонд насрал
 // /proc/spawn_meteor(list/meteortypes, datum/virtual_level/vlevel, padding = MAP_EDGE_PAD, obj/docking_port/mobile/shuttle_port)	// ORIGINAL
 // /proc/spawn_meteor(list/meteortypes, datum/virtual_level/vlevel, padding = MAP_EDGE_PAD, direc = "none") // Это Вагабонда КОД JOPA
 /proc/spawn_meteor(list/meteortypes, datum/virtual_level/vlevel, padding = MAP_EDGE_PAD, obj/docking_port/mobile/shuttle_port, direc = "none")
-// [/MANKIND-EDIT]
+// [/CELADON-EDIT]
 	var/turf/pickedstart
 	var/turf/pickedgoal
 	var/max_i = 10//number of tries to spawn meteor.
 	while(!isspaceturf(pickedstart))
 		var/startSide = pick(GLOB.cardinals)
-		// [MANKIND-ADD] - MANKIND_OVERMAP_COLLISION - Это вагабонд насрал
+		// [CELADON-ADD] - CELADON_OVERMAP_COLLISION - Это вагабонд насрал
 		if(direc != "none")
 			startSide = direc
-		// [/MANKIND-ADD]
+		// [/CELADON-ADD]
 		if(shuttle_port)	// возможно двойной метеорит прилетит 	// КОД JOPA
 			startSide = shuttle_port.preferred_direction
 
@@ -125,7 +125,7 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 	GLOB.meteor_list += src
 	SSaugury.register_doom(src, threat)
 	SpinAnimation()
-	timerid = QDEL_IN(src, lifetime)
+	timerid = QDEL_IN_STOPPABLE(src, lifetime)
 	chase_target(target)
 
 /obj/effect/meteor/Bump(atom/A)
@@ -247,7 +247,7 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 	..()
 	explosion(src.loc, 1, 2, 3, 4, 0)
 
-// [MANKIND-ADD] - MANKIND_OVERMAP_COLLISION - Это вагабонд насрал
+// [CELADON-ADD] - CELADON_OVERMAP_COLLISION - Это вагабонд насрал
 //Invisible
 /obj/effect/meteor/invisible
 	name = "G-Imact"
@@ -260,7 +260,7 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 /obj/effect/meteor/invisible/meteor_effect()
 	..()
 	explosion(src.loc, 1, 2, 3, 4, 0)
-// [/MANKIND-ADD]
+// [/CELADON-ADD]
 
 //Flaming meteor
 /obj/effect/meteor/flaming
@@ -300,8 +300,7 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 	heavy = 1
 	meteorsound = 'sound/effects/blobattack.ogg'
 	meteordrop = list(
-		/obj/item/food/meat/slab/human,
-		/obj/item/food/meat/slab/human/mutant,
+		/obj/item/food/meat/slab,
 		/obj/item/organ/heart,
 		/obj/item/organ/lungs,
 		/obj/item/organ/tongue,
@@ -312,7 +311,7 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 
 /obj/effect/meteor/meaty/Initialize()
 	for(var/path in meteordrop)
-		if(path == /obj/item/food/meat/slab/human/mutant)
+		if(path == /obj/item/food/meat/slab)
 			meteordrop -= path
 			meteordrop += pick(subtypesof(path))
 

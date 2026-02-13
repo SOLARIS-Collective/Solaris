@@ -39,7 +39,6 @@
 		/obj/item/scalpel,
 		/obj/item/scalpel/advanced,
 		/obj/item/circular_saw,
-		/obj/item/circular_saw/best, //CODY WUZ HERE
 		/obj/item/surgicaldrill,
 		/obj/item/surgicaldrill/advanced,
 		/obj/item/retractor,

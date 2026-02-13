@@ -96,6 +96,9 @@
 		/obj/structure/flora/grass/both = 12,
 		/obj/structure/flora/ash/chilly = 4,
 		/obj/structure/flora/ash/garden/frigid = 2,
+		// [CELADON - ADD] - CELADON_RETURN_LANDMINE
+		/obj/item/mine/pressure/explosive/rusty/live{icon = 'mod_celadon/_storage_icons/icons/items/misc/landmine.dmi'} = 1,
+		// [/CELADON - ADD]
 	)
 	flora_spawn_chance = 10
 	mob_spawn_chance = 1
@@ -108,6 +111,7 @@
 		/mob/living/simple_animal/hostile/asteroid/ice_demon/random = 5,
 		/mob/living/simple_animal/hostile/asteroid/ice_whelp = 5,
 		/mob/living/simple_animal/hostile/asteroid/lobstrosity = 10,
+		/obj/effect/spawner/random/snow_monkey_pack = 5,
 	)
 	feature_spawn_chance = 0.1
 	feature_spawn_list = list(
@@ -119,6 +123,9 @@
 		/obj/structure/vein/ice/classtwo/rare = 10,
 		/obj/structure/vein/ice/classthree = 10,
 		/obj/structure/vein/ice/classthree/rare = 5,
+		// [CELADON - ADD] - CELADON_RETURN_LANDMINE
+		/obj/effect/spawner/minefield = 2,
+		// [/CELADON - ADD]
 	)
 
 /datum/biome/snow/lush
@@ -142,6 +149,9 @@
 		/obj/structure/flora/ausbushes/ppflowers = 2,
 		/obj/structure/flora/ausbushes/lavendergrass = 2,
 		/obj/structure/flora/ash/garden/frigid = 2,
+		// [CELADON - ADD] - CELADON_RETURN_LANDMINE
+		/obj/item/mine/pressure/explosive/rusty/live = 1,
+		// [/CELADON - ADD]
 	)
 
 /datum/biome/snow/forest
@@ -150,6 +160,9 @@
 		/obj/structure/flora/tree/pine = 20,
 		/obj/structure/flora/tree/dead = 6,
 		/obj/structure/flora/grass/both = 8,
+		// [CELADON - ADD] - CELADON_RETURN_LANDMINE
+		/obj/item/mine/pressure/explosive/rusty/live{icon = 'mod_celadon/_storage_icons/icons/items/misc/landmine.dmi'} = 1,
+		// [/CELADON - ADD]
 	)
 
 /datum/biome/snow/forest/dense
@@ -158,6 +171,9 @@
 		/obj/structure/flora/tree/pine = 20,
 		/obj/structure/flora/grass/both = 6,
 		/obj/structure/flora/tree/dead = 3,
+		// [CELADON - ADD] - CELADON_RETURN_LANDMINE
+		/obj/item/mine/pressure/explosive/rusty/live{icon = 'mod_celadon/_storage_icons/icons/items/misc/landmine.dmi'} = 1,
+		// [/CELADON - ADD]
 	)
 
 /datum/biome/arctic
@@ -244,6 +260,10 @@
 		/obj/structure/flora/ash/stem_shroom = 2,
 		/obj/structure/flora/ash/puce = 2,
 		/obj/structure/flora/ash/garden/frigid = 2,
+		// [CELADON - ADD] - CELADON_RETURN_LANDMINE
+		/obj/item/mine/pressure/explosive/rusty/live = 1,
+		/obj/item/mine/proximity/explosive/live = 1,
+		// [/CELADON - ADD]
 	)
 	closed_turf_types = list(
 		/turf/closed/mineral/random/snow = 1
@@ -267,6 +287,9 @@
 		/obj/structure/vein/ice = 30,
 		/obj/structure/vein/ice/classtwo = 50,
 		/obj/structure/vein/ice/classthree = 6,
+		// [CELADON - ADD] - CELADON_RETURN_LANDMINE
+		/obj/effect/spawner/minefield = 2,
+		// [/CELADON - ADD]
 	)
 
 /datum/biome/cave/snow/thawed
@@ -308,6 +331,9 @@
 		/obj/structure/flora/ash/leaf_shroom = 3,
 		/obj/structure/flora/ash/cap_shroom = 3,
 		/obj/structure/flora/ash/stem_shroom = 3,
+		// [CELADON - ADD] - CELADON_RETURN_LANDMINE
+		/obj/item/mine/pressure/explosive/fire/live = 1,
+		// [/CELADON - ADD]
 	)
 	feature_spawn_chance = 0.2
 

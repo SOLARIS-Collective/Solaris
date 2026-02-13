@@ -128,11 +128,38 @@
 // Syndicate fort
 
 /area/ruin/jungle/syndifort
-	name = "Syndicate Fort"
+	name = "Marauder Bunker"
 	icon_state = "green"
 
+/area/ruin/jungle/syndifort/electrical
+	name = "Marauder Bunker Electrical"
+	icon_state = "yellow"
+
+/area/ruin/jungle/syndifort/atmos
+	name = "Marauder Bunker Air Filtration"
+
+/area/ruin/jungle/syndifort/canteen
+	name = "Marauder Bunker Canteen"
+	icon_state = "crew_quarters"
+
+/area/ruin/jungle/syndifort/dorms
+	name = "Marauder Bunker Dorms"
+	icon_state = "crew_quarters"
+
+/area/ruin/jungle/syndifort/armory
+	name = "Marauder Bunker Armory"
+	icon_state = "red"
+
+/area/ruin/jungle/syndifort/storage
+	name = "Marauder Bunker Storage Room"
+	icon_state = "supply"
+
+/area/ruin/jungle/syndifort/medical
+	name = "Marauder Bunker Infirmary"
+	icon_state = "blue"
+
 /area/ruin/jungle/syndifort/jerry
-	name = "Syndicate Fort Tower"
+	name = "Marauder Bunker Control Room"
 	icon_state = "bridge"
 
 // Cave Crew
@@ -168,3 +195,40 @@
 /area/ruin/jungle/cavecrew/ship
 	name = "Cave Base Ship"
 	icon_state = "hangar"
+
+//Serene Hunts
+/area/ruin/powered/hunts/canteen
+	name = "Restraunt"
+	icon_state = "cafeteria"
+
+/area/ruin/powered/hunts/hotel
+	name = "Hotel"
+	icon_state = "crew_quarters"
+
+/area/ruin/powered/hunts/gun_shop
+	name = "Hunting Supply Store"
+	icon_state = "armory"
+
+/area/ruin/powered/hunts/toilet
+	name = "Washroom"
+	icon_state = "toilet"
+
+/area/ruin/powered/hunts/shed
+	name = "Groundkeeper's Shed"
+	icon_state = "hydro"
+
+/area/ruin/powered/hunts/sec
+	name = "Checkpoint"
+	icon_state = "security"
+
+/area/ruin/powered/hunts/gate
+	name = "Gate"
+	icon_state = "exit"
+
+/area/ruin/powered/hunts/barn
+	name = "Barn"
+	icon_state = "xenolab"
+
+/area/ruin/powered/hunts/shuttle
+	name = "Shuttle"
+	icon_state = "shuttle"

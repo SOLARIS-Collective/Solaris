@@ -13,6 +13,10 @@ GLOBAL_LIST_INIT(lizard_names_male, world.file2list("strings/names/lizard_male.t
 GLOBAL_LIST_INIT(lizard_names_female, world.file2list("strings/names/lizard_female.txt"))
 GLOBAL_LIST_INIT(spider_names, world.file2list("strings/names/spider_names.txt"))
 GLOBAL_LIST_INIT(kepori_names, world.file2list("strings/names/kepori_names.txt"))
+// [CELADON-ADD] - RETURN_CONTENT - CLOWN_RETURN_CONTENT
+GLOBAL_LIST_INIT(clown_names, world.file2list("mod_celadon/return_content_clowns/code/strings/clown.txt"))
+GLOBAL_LIST_INIT(mime_names, world.file2list("mod_celadon/return_content_clowns/code/strings/mime.txt"))
+// [/CELADON-ADD]
 GLOBAL_LIST_INIT(carp_names, world.file2list("strings/names/carp.txt"))
 GLOBAL_LIST_INIT(plasmaman_names, world.file2list("strings/names/plasmaman.txt"))
 GLOBAL_LIST_INIT(squid_names, world.file2list("strings/names/squid.txt"))
@@ -20,15 +24,13 @@ GLOBAL_LIST_INIT(posibrain_names, world.file2list("strings/names/posibrain.txt")
 GLOBAL_LIST_INIT(nightmare_names, world.file2list("strings/names/nightmare.txt"))
 GLOBAL_LIST_INIT(megacarp_first_names, world.file2list("strings/names/megacarp1.txt"))
 GLOBAL_LIST_INIT(megacarp_last_names, world.file2list("strings/names/megacarp2.txt"))
-GLOBAL_LIST_INIT(clown_names, world.file2list("strings/names/clown.txt"))
-GLOBAL_LIST_INIT(mime_names, world.file2list("strings/names/mime.txt"))
 
 GLOBAL_LIST_INIT(verbs, world.file2list("strings/names/verbs.txt"))
 GLOBAL_LIST_INIT(ing_verbs, world.file2list("strings/names/ing_verbs.txt"))
 GLOBAL_LIST_INIT(adverbs, world.file2list("strings/names/adverbs.txt"))
 GLOBAL_LIST_INIT(adjectives, world.file2list("strings/names/adjectives.txt"))
-GLOBAL_LIST_INIT(preference_adjectives, world.file2list("strings/preference_adjectives.txt"))
-GLOBAL_LIST_INIT(ipc_preference_adjectives, world.file2list("strings/ipc_preference_adjectives.txt"))
+GLOBAL_LIST_INIT(organic_preference_adjectives, world.file2list("strings/human_adjectives/organic_adjectives.txt") + world.file2list("strings/human_adjectives/abstract_adjectives.txt"))
+GLOBAL_LIST_INIT(ipc_preference_adjectives, world.file2list("strings/human_adjectives/ipc_adjectives.txt") + world.file2list("strings/human_adjectives/abstract_adjectives.txt"))
 GLOBAL_LIST_INIT(dream_strings, world.file2list("strings/dreamstrings.txt"))
 //loaded on startup because of "
 //would include in rsc if ' was used
@@ -45,4 +47,8 @@ List of configurable names in preferences and their metadata
 GLOBAL_LIST_INIT(preferences_custom_names, list(
 	"cyborg" = list("pref_name" = "Cyborg", "qdesc" = "cyborg name (Leave empty to use default naming scheme)", "group" = "silicons", "allow_null" = TRUE),
 	"ai" = list("pref_name" = "AI", "qdesc" = "ai name", "group" = "silicons", "allow_null" = FALSE),
+	// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+	"clown" = list("pref_name" = "Clown" , "qdesc" = "clown name", "group" = "fun", "allow_null" = FALSE),
+	"mime" = list("pref_name" = "Mime", "qdesc" = "mime name" , "group" = "fun", "allow_null" = FALSE),
+	// [/CELADON-ADD]
 ))

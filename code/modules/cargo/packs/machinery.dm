@@ -1,5 +1,8 @@
+/* [CELADON-DELETE] - Убираем инициализацию офовских предметов.
+	Разносим ресурсы по разным фракциям: "mod_celadon\outpost_console\code\supply_pack"
+
 /datum/supply_pack/machinery
-	category = "Machines & Parts"
+	category = "Industrial Machines & Parts"
 	crate_type = /obj/structure/closet/crate/engineering
 
 /*
@@ -184,6 +187,8 @@
 	crate_type = /obj/structure/closet/crate/large
 	no_bundle = TRUE
 
+	// [CELADON-REMOVE] - CELADON_QoL - Перенос непопулярного и затерявшегося товара в более видное место, дополнение его материалами и инструкциями
+/*
 /datum/supply_pack/machinery/robotics
 	name = "Robotics Assembly Crate"
 	desc = "The tools you need to replace those finicky humans with a loyal robot army! Contains four proximity sensors, four robotic arms, two empty first aid kits, two health analyzers, two red hardhats, two mechanical toolboxes, and two cleanbot assemblies!"
@@ -209,6 +214,8 @@
 	crate_name = "robotics assembly crate"
 	crate_type = /obj/structure/closet/crate/science
 	no_bundle = TRUE
+*/
+	// [/CELADON-REMOVE]
 
 /*
 		Miscellaneous machines
@@ -260,14 +267,16 @@
 	crate_name = "ion thruster crate"
 	crate_type = /obj/structure/closet/crate/engineering
 
-/datum/supply_pack/machinery/plasma_thruster
-	name = "Plasma Thruster Crate"
-	desc = "A crate containing a plasma thruster and its heater's electronics. For when you need a lot of extra thrust."
-	cost = 1500
-	contains = list(/obj/item/circuitboard/machine/shuttle/heater,
-					/obj/item/circuitboard/machine/shuttle/engine/plasma)
-	crate_name = "plasma thruster crate"
-	crate_type = /obj/structure/closet/crate/engineering
+// [CELADON-REMOVE] - CELADON_OUTPOST_CONSOLE - Удаляем дубликат двигателей
+// /datum/supply_pack/machinery/plasma_thruster
+// 	name = "Plasma Thruster Crate"
+// 	desc = "A crate containing a plasma thruster and its heater's electronics. For when you need a lot of extra thrust."
+// 	cost = 1500
+// 	contains = list(/obj/item/circuitboard/machine/shuttle/heater,
+// 					/obj/item/circuitboard/machine/shuttle/engine/plasma)
+// 	crate_name = "plasma thruster crate"
+// 	crate_type = /obj/structure/closet/crate/engineering
+// [/CELADON-REMOVE]
 
 /datum/supply_pack/machinery/combustion_thruster
 	name = "Combustion Thruster Crate"
@@ -433,3 +442,5 @@
 	desc = "Now YOU can find out: Will! It! Blend?!"
 	cost = 500
 	contains = list(/obj/item/circuitboard/machine/reagentgrinder)
+
+[/CELADON-DELETE] */

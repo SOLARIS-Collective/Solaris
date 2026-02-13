@@ -140,6 +140,7 @@
 	icon = 'icons/turf/planetary/icemoon.dmi'
 	icon_state = "dark_ice"
 	initial_gas_mix = FROZEN_ATMOS
+	initial_temperature = 180
 	planetary_atmos = TRUE
 	baseturfs = /turf/open/floor/plating/ice
 	slowdown = 1
@@ -171,8 +172,11 @@
 	light_power = 1
 	light_color = LIGHT_COLOR_LIGHT_CYAN
 
+/turf/open/floor/plating/ice/colder
+	initial_temperature = 140
+
 /turf/open/floor/plating/ice/temperate
-	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
+	initial_temperature = 255.37
 
 /turf/open/floor/plating/ice/break_tile()
 	return
@@ -199,6 +203,7 @@
 	icon = 'icons/turf/snow.dmi'
 	icon_state = "snowplating"
 	initial_gas_mix = FROZEN_ATMOS
+	initial_temperature = 180
 	attachment_holes = FALSE
 	planetary_atmos = TRUE
 	footstep = FOOTSTEP_ASTEROID
@@ -218,45 +223,14 @@
 	canSmoothWith = list(SMOOTH_GROUP_FLOOR_SNOWED)
 	planetary_atmos = TRUE
 
+/turf/open/floor/plating/snowed/colder
+	initial_temperature = 140
+
+/turf/open/floor/plating/snowed/temperatre
+	initial_temperature = 255.37
+
 /turf/open/floor/plating/snowed/smoothed/icemoon
 	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
-
-/turf/open/floor/plating/grass
-	name = "grass"
-	desc = "A patch of grass."
-	icon_state = "grass-255"
-	base_icon_state = "grass"
-	icon = 'icons/turf/floors/grass.dmi'
-	bullet_bounce_sound = null
-	footstep = FOOTSTEP_GRASS
-	barefootstep = FOOTSTEP_GRASS
-	clawfootstep = FOOTSTEP_GRASS
-	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
-	smoothing_flags = SMOOTH_BITMASK
-	smoothing_groups = list(SMOOTH_GROUP_TURF_OPEN, SMOOTH_GROUP_FLOOR_GRASS)
-	canSmoothWith = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_FLOOR_GRASS)
-	pixel_x = -19 // recenters 70x70 turf sprites for mappers
-	pixel_y = -19
-	layer = GRASS_TURF_LAYER
-	flammability = 1.5 // just a bit more than enough to sustain itself, needs additional fuel (plants) to really get going
-	var/smooth_icon = 'icons/turf/floors/grass.dmi'
-	/// How long this takes to burn down to just dirt
-	var/burn_limit = 20
-
-/turf/open/floor/plating/grass/Initialize(mapload, inherited_virtual_z)
-	. = ..()
-	pixel_x = 0 // resets -19 pixel offset
-	pixel_y = 0
-	if(smoothing_flags)
-		var/matrix/translation = new
-		translation.Translate(-19, -19)
-		transform = translation
-		icon = smooth_icon
-
-/turf/open/floor/plating/grass/jungle/burn_tile()
-	burn_limit--
-	if(burn_limit <= 0)
-		ScrapeAway()
 
 /turf/open/floor/plating/sandy_dirt
 	gender = PLURAL

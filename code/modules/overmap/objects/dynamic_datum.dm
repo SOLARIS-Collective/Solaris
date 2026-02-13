@@ -69,6 +69,7 @@
 
 /datum/overmap/dynamic/Initialize(position, datum/overmap_star_system/system_spawned_in, load_now=TRUE, ...)
 	. = ..()
+#ifndef NOOVERMAP
 	SSovermap.dynamic_encounters += src
 	current_overmap.dynamic_encounters += src
 
@@ -76,6 +77,7 @@
 	vlevel_width = CONFIG_GET(number/overmap_encounter_size)
 	if(load_now)
 		choose_level_type(load_now)
+#endif
 
 /datum/overmap/dynamic/Destroy()
 	for(var/obj/docking_port/stationary/dock as anything in reserve_docks)
@@ -126,7 +128,7 @@
 				playsound(Mob, landing_sound, 50)
 
 
-/datum/overmap/dynamic/post_undocked(datum/overmap/dock_requester)
+/datum/overmap/dynamic/post_undocked(datum/overmap/dock_requester)	// [OVERWRITE] - FIXES_DOCKING - mod_celadon/fixes/code/dock_empty_space_fix.dm
 	start_countdown()
 
 /datum/overmap/dynamic/proc/start_countdown(_lifespan = 60 SECONDS, _color = null)
@@ -157,9 +159,6 @@
 	if(length(mapzone?.get_mind_mobs()) || SSlag_switch.measures[DISABLE_PLANETDEL])
 		return FALSE //Dont fuck over stranded people
 
-	for(var/datum/mission/ruin/dynamic_mission in dynamic_missions)
-		if(dynamic_mission.active && !dynamic_mission.bound_left_location)
-			return FALSE //Dont fuck over people trying to complete a mission.
 
 	return TRUE
 
@@ -177,6 +176,7 @@
  * Chooses a type of level for the dynamic level to use.
  */
 /datum/overmap/dynamic/proc/choose_level_type(load_now = TRUE)
+#ifndef NOOVERMAP
 	if(isnull(probabilities))
 		probabilities = current_overmap.dynamic_probabilities
 	if(!isnull(force_encounter))
@@ -192,13 +192,14 @@
 	if(istype(used_ruin))
 		for(var/mission_type in used_ruin.ruin_mission_types)
 			dynamic_missions += new mission_type(src, 1 + length(dynamic_missions))
-
+#endif
 
 
 /datum/overmap/dynamic/proc/set_planet_type(datum/planet_type/planet)
+#ifndef NOOVERMAP
 	if(!is_type_in_list(planet, list(/datum/planet_type/asteroid, /datum/planet_type/spaceruin)))
 		planet_name = "[gen_planet_name()]"
-		Rename(planet_name)
+		name = "[planet_name] ([planet.name])"
 
 	ruin_type = planet.ruin_type
 	default_baseturf = planet.default_baseturf
@@ -221,10 +222,7 @@
 /datum/overmap/dynamic/alter_token_appearance()
 	if(!planet)
 		return ..()
-	if(!ispath(planet, /datum/planet_type/asteroid) || !ispath(planet, /datum/planet_type/spaceruin))
-		token.name = "[planet.name]"
-	else
-		token.name = "[planet_name]" + " ([planet.name])"
+	token.name = name
 	token_icon_state = planet.icon_state
 	desc = planet.desc
 	default_color = planet.color
@@ -243,22 +241,27 @@
 	if(current_overmap.override_object_colors)
 		token.color = current_overmap.primary_color
 	current_overmap.post_edit_token_state(src)
+#endif
 
 ///??? I dont think i ever finished this, and if i do, move to planet_types.dm
 /datum/overmap/dynamic/proc/choose_random_asteroid()
 
 /datum/overmap/dynamic/proc/gen_planet_name()
 	. = ""
-	switch(rand(1,10))
-		if(1 to 4)
+	switch(rand(1,12))
+		if(1 to 3)
 			for(var/i in 1 to rand(2,3))
 				. += capitalize(pick(GLOB.alphabet))
 			. += "-"
 			. += "[pick(rand(1,999))]"
-		if(4 to 9)
+		if(3 to 5)
+			. += "[pick(GLOB.planet_names)]"
+		if(5 to 7)
 			. += "[pick(GLOB.planet_names)] \Roman[rand(1,9)]"
-		if(10)
+		if(8 to 11)
 			. += "[pick(GLOB.planet_prefixes)] [pick(GLOB.planet_names)]"
+		if(12)
+			. += "[capitalize(pick(GLOB.adjectives))] [pick(GLOB.planet_names)]"
 
 /**
  * Load a level for a ship that's visiting the level.
@@ -281,11 +284,15 @@
 	reserve_docks = dynamic_encounter_values[2]
 	ruin_turfs = dynamic_encounter_values[3]
 	spawned_ruins = dynamic_encounter_values[4]
-	spawned_mission_pois = dynamic_encounter_values[5]
 
 	var/datum/virtual_level/our_likely_vlevel = mapzone.virtual_levels[1]
 	if(istype(our_likely_vlevel) && selfloop)
 		our_likely_vlevel.selfloop()
+
+	for(var/obj/docking_port/stationary/port in reserve_docks)
+		if(port.roundstart_template)
+			port.name = "[name] auxillary docking location"
+			port.load_roundstart()
 
 	SEND_SIGNAL(src, COMSIG_OVERMAP_LOADED)
 	loading = FALSE
@@ -301,22 +308,6 @@
 	for(var/ruin in ruin_turfs)
 		var/turf/ruin_turf = ruin_turfs[ruin]
 		message_admins(span_big("Click here to jump to \"[ruin]\": " + ADMIN_JMP(ruin_turf)))
-
-/datum/overmap/dynamic/ui_data(mob/user)
-	. = ..()
-	.["active_ruin_missions"] = list()
-	.["inactive_ruin_missions"] = list()
-	for(var/datum/mission/ruin/mission as anything in dynamic_missions)
-		if(mission.active)
-			.["active_ruin_missions"] += list(list(
-				"ref" = REF(mission),
-				"name" = mission.name,
-			))
-		else
-			.["inactive_ruin_missions"] += list(list(
-				"ref" = REF(mission),
-				"name" = mission.name,
-			))
 
 /datum/overmap/dynamic/empty
 	name = "Empty Space"
@@ -591,12 +582,18 @@
 	light_power = 1
 	light_color = "#FFFFFF" // should look liminal, due to moons lighting
 
+/area/overmap_encounter/planetoid/moon/explored
+	area_flags = VALID_TERRITORY
+
 /area/overmap_encounter/planetoid/asteroid
 	name = "\improper Asteroid Field"
 	sound_environment = SOUND_ENVIRONMENT_QUARRY
 	ambience_index = AMBIENCE_SPACE
 	light_range = 0
 	light_power = 0
+
+/area/overmap_encounter/planetoid/asteroid/explored
+	area_flags = VALID_TERRITORY
 
 /area/overmap_encounter/planetoid/gas_giant
 	name = "\improper Gas Giant"

@@ -43,28 +43,15 @@
 	var/drawtype
 	var/text_buffer = ""
 
-	var/static/list/graffiti = list(
-		"face","guy","end","body","amyjon","antilizard","cyka","dwarf","engie","matt","prolizard","revolution","star","uboa","Omni","Newton","Clandestine","Prima","Zero-G","Osiron","Psyke","Diablo","Blasto","North","Donk","Sleeping Carp","Gene","Cyber","Tunnel","Sirius","Waffle","Max","Gib"
-	)
-	var/static/list/code = list(
-		"getout","empty","unsafe","camp","safepath","jackpot","dismantle"
-	)
-	var/static/list/symbols = list(
-		"danger","firedanger","electricdanger","biohazard","radiation","safe","evac","space","med","trade","shop","food","peace","like","skull","nay","heart","credit"
-	)
-	var/static/list/drawings = list(
-		"largebrush","smallbrush","brush","splatter","snake","carp","ghost","taser","disk","fireaxe","toolbox","corgi","cat","clown","toilet","blueprint","beepsky","scroll","bottle","shotgun","stickman"
-	)
-	var/static/list/oriented = list(
-		"arrow","line","thinline","shortline","body","chevron","footprint","clawprint","pawprint","dogo","nogo"
-	) // These turn to face the same way as the drawer
-	var/static/list/runes = list(
-		"rune1","rune2","rune3","rune4","rune5","rune6"
-	)
+	var/static/list/graffiti = list("face","guy","end","body")
+	var/static/list/code = list("getout","empty","unsafe","camp","safepath","jackpot","dismantle")
+	var/static/list/symbols = list("danger","firedanger","electricdanger","biohazard","radiation","safe","evac","space","med","trade","shop","food","peace","like","skull","nay","heart","credit")
+	var/static/list/drawings = list("smallbrush","brush","splatter","snake","carp","ghost","taser","disk","fireaxe","toolbox","corgi","cat","toilet","blueprint","beepsky","scroll","bottle","shotgun")
+	var/static/list/oriented = list("arrow","line","thinline","shortline","body","chevron","footprint","clawprint","pawprint","dogo","nogo") // These turn to face the same way as the drawer
 	var/static/list/randoms = list(RANDOM_ANY, RANDOM_RUNE, RANDOM_ORIENTED,
 		RANDOM_NUMBER, RANDOM_GRAFFITI, RANDOM_LETTER, RANDOM_SYMBOL, RANDOM_PUNCTUATION, RANDOM_DRAWING)
 
-	var/static/list/all_drawables = graffiti + code + symbols + drawings + oriented + runes
+	var/static/list/all_drawables = graffiti + code + symbols + drawings + oriented
 
 	var/paint_mode = PAINT_NORMAL
 
@@ -171,7 +158,7 @@
 		ui = new(user, src, "Crayon", name)
 		ui.open()
 
-/obj/item/toy/crayon/spraycan/AltClick(mob/user)
+/obj/item/toy/crayon/spraycan/attack_self_secondary(mob/user)
 	if(user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
 		if(has_cap)
 			is_capped = !is_capped
@@ -311,8 +298,6 @@
 			drawing = pick(graffiti)
 		if(RANDOM_ORIENTED)
 			drawing = pick(oriented)
-		if(RANDOM_RUNE)
-			drawing = pick(runes)
 		if(RANDOM_NUMBER)
 			drawing = ascii2text(rand(48, 57)) // 0-9
 		if(RANDOM_ANY)
@@ -413,7 +398,7 @@
 	if(affected_turfs.len)
 		fraction /= affected_turfs.len
 	for(var/t in affected_turfs)
-		reagents.trans_to(t, ., volume_multiplier, transfered_by = user, method = TOUCH)
+		reagents.trans_to(t, ., volume_multiplier, transfered_by = user, methods = TOUCH)
 	check_empty(user)
 
 /obj/item/toy/crayon/attack(mob/M, mob/user)
@@ -432,7 +417,7 @@
 		var/eaten = use_charges(user, 5, FALSE)
 		if(check_empty(user)) //Prevents divsion by zero
 			return
-		reagents.trans_to(M, eaten, volume_multiplier, transfered_by = user, method = INGEST)
+		reagents.trans_to(M, eaten, volume_multiplier, transfered_by = user, methods = INGEST)
 		// check_empty() is called during afterattack
 	else
 		..()
@@ -520,6 +505,18 @@
 	reagent_contents = list(/datum/reagent/consumable/nutriment = 0.5,  /datum/reagent/colorful_reagent/powder/white/crayon = 1.5)
 	dye_color = DYE_WHITE
 
+// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+/obj/item/toy/crayon/mime
+	icon = 'mod_celadon/_storage_icons/icons/other/clown_mime/crayons.dmi'
+	icon_state = "crayonmime"
+	desc = "A very sad-looking crayon."
+	paint_color = "#FFFFFF"
+	crayon_color = "mime"
+	reagent_contents = list(/datum/reagent/consumable/nutriment = 0.5, /datum/reagent/colorful_reagent/powder/invisible = 1.5)
+	charges = -1
+	dye_color = DYE_MIME
+// [/CELADON-ADD]
+
 /obj/item/toy/crayon/rainbow
 	icon_state = "crayonrainbow"
 	paint_color = "#FFF000"
@@ -568,9 +565,20 @@
 /obj/item/storage/crayons/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/toy/crayon))
 		var/obj/item/toy/crayon/C = W
+// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+/*
 		if(C.crayon_color == "rainbow")
 			to_chat(usr, span_warning("This crayon is too powerful to be contained in this box!"))
 			return
+*/
+		switch(C.crayon_color)
+			if("mime")
+				to_chat(usr, span_warning("This crayon is too sad to be contained in this box!"))
+				return
+			if("rainbow")
+				to_chat(usr, span_warning("This crayon is too powerful to be contained in this box!"))
+				return
+// [/CELADON-ADD]
 		if(istype(W, /obj/item/toy/crayon/spraycan))
 			to_chat(user, span_warning("Spraycans are not crayons!"))
 			return
@@ -638,6 +646,10 @@
 	if(check_empty(user))
 		return
 
+	if(isbodypart(target))
+		if(color_limb(target, user))
+			return
+
 	if(istype(target, /obj/structure/railing/modern))
 		playsound(user.loc, 'sound/effects/spray.ogg', 25, TRUE, 5)
 		return
@@ -667,8 +679,10 @@
 
 		return
 
-
-	if(isobj(target) && !istype(target, /obj/effect/decal/cleanable/crayon/gang)) //PENTEST REVERTED
+// [CELADON-EDIT] - UNFUCK_SPRAYCAN
+	//if(isobj(target) && !istype(target, /obj/effect/decal/cleanable/crayon/gang) && !istype(target, /obj/item/clothing))
+	if(isobj(target) && !istype(target, /obj/effect/decal/cleanable/crayon/gang))
+// [/CELADON-EDIT]
 		if(actually_paints)
 			if(color_hex2num(paint_color) < 350 && !istype(target, /obj/structure/window) && !istype(target, /obj/effect/decal/cleanable/crayon)) //Colors too dark are rejected
 				to_chat(usr, span_warning("A color that dark on an object like this? Surely not..."))
@@ -682,7 +696,7 @@
 					target.set_opacity(initial(target.opacity))
 
 		. = use_charges(user, 2)
-		reagents.trans_to(target, ., volume_multiplier, transfered_by = user, method = VAPOR)
+		reagents.trans_to(target, ., volume_multiplier, transfered_by = user, methods = VAPOR)
 
 		if(pre_noise || post_noise)
 			playsound(user.loc, 'sound/effects/spray.ogg', 5, TRUE, 5)
@@ -701,6 +715,51 @@
 		var/mutable_appearance/spray_overlay = mutable_appearance('icons/obj/crayons.dmi', "[is_capped ? "spraycan_cap_colors" : "spraycan_colors"]")
 		spray_overlay.color = paint_color
 		. += spray_overlay
+
+/obj/item/toy/crayon/spraycan/proc/color_limb(obj/item/bodypart/limb, mob/living/user)
+	if(!IS_ROBOTIC_LIMB(limb))
+		return FALSE
+
+	var/static/list/type_whitelist = list(/obj/item/bodypart/head/robot, /obj/item/bodypart/r_arm/robot, /obj/item/bodypart/l_arm/robot, /obj/item/bodypart/chest/robot, /obj/item/bodypart/leg/right/robot, /obj/item/bodypart/leg/left/robot)
+	if(!(limb.type in type_whitelist)) //Kepori won't break my system damn it
+		to_chat(user, span_warning("The machine doesn't accept that type of prosthetic!"))
+		return
+
+	var/list/skins = list()
+	var/static/list/style_list_icons = list(
+		"standard" = 'icons/mob/augmentation/augments.dmi',
+		"engineer" = 'icons/mob/augmentation/augments_engineer.dmi',
+		"security" = 'icons/mob/augmentation/augments_security.dmi',
+		"mining" = 'icons/mob/augmentation/augments_mining.dmi',
+		"bishop" = 'mod_celadon/_storage_icons/icons/mobs/augmentation/augments_bishop.dmi',
+		"shellguard" = 'mod_celadon/_storage_icons/icons/mobs/augmentation/augments_shellguard.dmi',
+		"wardtakahashi" = 'mod_celadon/_storage_icons/icons/mobs/augmentation/augments_wardtakahashi.dmi',
+		"xion" = 'mod_celadon/_storage_icons/icons/mobs/augmentation/augments_xion.dmi',
+		"zenghu" = 'mod_celadon/_storage_icons/icons/mobs/augmentation/augments_zenghu.dmi',
+		)
+	var/static/list/digitigrade_style_list = list(
+		"digitigrade" = 'mod_celadon/_storage_icons/icons/mobs/augmentation/digitigrade_legs.dmi',
+		"lizard" = 'icons/mob/augmentation/augments_lizard.dmi',
+		)
+	var/static/list/style_options_list = style_list_icons + digitigrade_style_list
+
+
+	for(var/skin_option in style_options_list)
+		var/image/part_image = image(icon = style_options_list[skin_option], icon_state = "[limb.limb_id]_[limb.body_zone]")
+		if(limb.aux_zone) //Hands
+			part_image.overlays += image(icon = style_options_list[skin_option], icon_state = "[limb.limb_id]_[limb.aux_zone]")
+		skins += list("[skin_option]" = part_image)
+	var/choice = show_radial_menu(user, src, skins, require_near = TRUE)
+	if(choice && (use_charges(user, 5, requires_full = FALSE)))
+		playsound(user.loc, 'sound/effects/spray.ogg', 5, TRUE, 5)
+		limb.static_icon = style_options_list[choice]
+		if(choice in digitigrade_style_list)
+			limb.bodytype |= BODYTYPE_DIGITIGRADE
+		else
+			limb.bodytype &= ~(BODYTYPE_DIGITIGRADE)
+		limb.should_draw_greyscale = TRUE //Premptive fuck you to greyscale IPCs trying to break something
+		limb.update_icon_dropped()
+	return TRUE
 
 /obj/item/toy/crayon/spraycan/borg
 	name = "cyborg spraycan"
@@ -739,6 +798,39 @@
 	reagent_contents = list(/datum/reagent/clf3 = 1)
 	actually_paints = FALSE
 	paint_color = "#000000"
+
+// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+/obj/item/toy/crayon/spraycan/lubecan
+	name = "slippery spraycan"
+	desc = "You can barely keep hold of this thing."
+	icon = 'mod_celadon/_storage_icons/icons/other/clown_mime/crayons.dmi'
+	icon_state = "clowncan2_cap"
+	icon_capped = "clowncan2_cap"
+	icon_uncapped = "clowncan2"
+	use_overlays = FALSE
+
+	reagent_contents = list(/datum/reagent/lube = 1, /datum/reagent/consumable/banana = 1)
+	volume_multiplier = 5
+
+/obj/item/toy/crayon/spraycan/lubecan/isValidSurface(surface)
+	return istype(surface, /turf/open/floor)
+
+/obj/item/toy/crayon/spraycan/mimecan
+	name = "silent spraycan"
+	desc = "Art is best seen, not heard."
+	icon = 'mod_celadon/_storage_icons/icons/other/clown_mime/crayons.dmi'
+	icon_state = "mimecan_cap"
+	icon_capped = "mimecan_cap"
+	icon_uncapped = "mimecan"
+	use_overlays = FALSE
+
+	can_change_colour = FALSE
+	paint_color = "#FFFFFF" //RGB
+
+	pre_noise = FALSE
+	post_noise = FALSE
+	reagent_contents = list(/datum/reagent/consumable/nothing = 1, /datum/reagent/toxin/mutetoxin = 1)
+// [/CELADON-ADD]
 
 /obj/item/toy/crayon/spraycan/infinite
 	name = "infinite spraycan"

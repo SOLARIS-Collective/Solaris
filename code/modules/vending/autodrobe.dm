@@ -7,6 +7,52 @@
 	product_slogans = "Dress for success!;Suited and booted!;It's show time!;Why leave style up to fate? Use AutoDrobe!"
 	vend_reply = "Thank you for using AutoDrobe!"
 	products = list(
+		// [CELADON-ADD] - CELADON_RETURN_CONTENT_SPAWN
+		/obj/item/clothing/suit/chickensuit = 1,
+		/obj/item/clothing/head/chicken = 1,
+		/obj/item/clothing/head/beret/vintage = 1,
+		/obj/item/clothing/head/beret/archaic = 1,
+		/obj/item/clothing/glasses/monocle =1,
+		/obj/item/clothing/head/bowler = 1,
+		/obj/item/clothing/head/plaguedoctorhat = 1,
+		/obj/item/clothing/suit/imperium_monk = 1,
+		/obj/item/clothing/suit/chaplainsuit/holidaypriest = 1,
+		/obj/item/clothing/suit/chaplainsuit/whiterobe = 1,
+		/obj/item/clothing/head/wizard/marisa/fake = 1,
+		/obj/item/clothing/suit/wizrobe/marisa/fake = 1,
+		/obj/item/clothing/head/witchwig = 1,
+		/obj/item/clothing/suit/wizrobe/fake = 1,
+		/obj/item/clothing/head/wizard/fake = 1,
+		/obj/item/clothing/head/rabbitears =1,
+		/obj/item/clothing/head/sombrero = 1,
+		/obj/item/clothing/head/sombrero/green = 1,
+		/obj/item/clothing/suit/poncho = 1,
+		/obj/item/clothing/suit/poncho/green = 1,
+		/obj/item/clothing/suit/poncho/red = 1,
+		/obj/item/clothing/suit/whitedress = 1,
+		/obj/item/clothing/head/jester = 1,
+		/obj/item/clothing/suit/hooded/ian_costume = 1,
+		/obj/item/clothing/suit/hooded/bee_costume = 1,
+		/obj/item/clothing/head/cueball = 1,
+		/obj/item/clothing/head/delinquent = 1,
+		/obj/item/clothing/head/shrine_wig = 1,
+		/obj/item/clothing/suit/shrine_maiden = 1,
+		/obj/item/clothing/suit/changshan_red = 1,
+		/obj/item/clothing/suit/changshan_blue = 1,
+		/obj/item/clothing/suit/cheongsam_red = 1,
+		/obj/item/clothing/suit/cheongsam_blue = 1,
+		/obj/item/clothing/head/powdered_wig = 1,
+		/obj/item/clothing/glasses/sunglasses/garb = 2,
+		/obj/item/clothing/under/rank/civilian/clown/blue = 1,
+		/obj/item/clothing/under/rank/civilian/clown/green = 1,
+		/obj/item/clothing/under/rank/civilian/clown/yellow = 1,
+		/obj/item/clothing/under/rank/civilian/clown/orange = 1,
+		/obj/item/clothing/under/rank/civilian/clown/purple = 1,
+		/obj/item/clothing/mask/gas/sexyclown = 1,
+		/obj/item/clothing/under/rank/civilian/clown/sexy = 1,
+		/obj/item/clothing/mask/gas/sexymime = 1,
+		/obj/item/clothing/under/rank/civilian/clown/jester = 1,
+		// [/CELADON-ADD]
 		/obj/item/clothing/under/costume/gladiator = 1,
 		/obj/item/clothing/head/helmet/gladiator = 1,
 		/obj/item/clothing/under/rank/command/captain/suit = 1,
@@ -50,6 +96,10 @@
 		/obj/item/clothing/under/dress/sundress = 1,
 		/obj/item/staff/broom = 1,
 		/obj/item/staff = 3,
+// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+		/obj/item/clothing/under/rank/civilian/mime/sexy = 1,
+		/obj/item/clothing/under/rank/civilian/mime/skirt = 1,
+// [/CELADON-ADD]
 		/obj/item/clothing/mask/rat/bat = 1,
 		/obj/item/clothing/mask/rat/bee = 1,
 		/obj/item/clothing/mask/rat/bear = 1,
@@ -82,6 +132,12 @@
 		/obj/item/clothing/glasses/blindfold = 1,
 		/obj/item/clothing/mask/muzzle = 2)
 	premium = list(
+	// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+		/obj/item/clothing/under/rank/civilian/clown/rainbow = 1,
+		/obj/item/clothing/suit/chaplainsuit/clownpriest = 1,
+		/obj/item/clothing/head/clownmitre = 1,
+		/obj/item/clothing/shoes/roman = 1,
+		/obj/item/clothing/suit/hooded/mysticrobe = 1,
 		/obj/item/clothing/suit/pirate/captain = 2,
 		/obj/item/clothing/head/pirate/captain = 2,
 		/obj/item/clothing/head/helmet/roman/fake = 1,
@@ -89,6 +145,14 @@
 		/obj/item/clothing/under/costume/roman = 1,
 		/obj/item/shield/riot/roman/fake = 1,
 		/obj/item/skub = 1)
+	contraband = list(
+		/obj/item/clothing/suit/judgerobe = 1,
+		/obj/item/clothing/accessory/fan_mime_pin = 1,
+		/obj/item/clothing/accessory/fan_clown_pin = 1,
+		/obj/item/clothing/glasses/sunglasses = 2,
+		/obj/item/clothing/glasses/blindfold = 1,
+		/obj/item/clothing/mask/muzzle = 2)
+	// [/CELADON-ADD]
 	refill_canister = /obj/item/vending_refill/autodrobe
 	default_price = 90
 	extra_price = 180

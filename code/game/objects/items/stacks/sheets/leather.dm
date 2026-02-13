@@ -53,6 +53,17 @@
 	icon_state = "sheet-monkey"
 	item_state = "sheet-monkey"
 
+GLOBAL_LIST_INIT(monkey_recipes, list ( \
+	new/datum/stack_recipe("monkey mask", /obj/item/clothing/mask/gas/monkeymask, 1), \
+	// [CELADON-ADD] - CELADON_RETURN_CONTENT_SPAWN
+	new/datum/stack_recipe("monkey suit", /obj/item/clothing/suit/monkeysuit, 2), \
+	// [/CELADON-ADD]
+	))
+
+/obj/item/stack/sheet/animalhide/monkey/get_main_recipes()
+	. = ..()
+	. += GLOB.monkey_recipes
+
 /obj/item/stack/sheet/animalhide/lizard
 	name = "lizard skin"
 	desc = "Sssssss..."
@@ -104,9 +115,10 @@
 	var/wetness = 30 //Reduced when exposed to high temperautres
 	var/drying_threshold_temperature = 500 //Kelvin to start drying
 
-/obj/item/stack/sheet/leather/wetleather/Initialize(mapload, new_amount, merge)
+/obj/item/stack/sheet/wethide/Initialize(mapload, new_amount, merge)
 	. = ..()
 	AddElement(/datum/element/dryable, /obj/item/stack/sheet/leather)
+	AddComponent(/datum/component/bakeable, /obj/item/stack/sheet/leather, rand(15 SECONDS, 20 SECONDS), TRUE, TRUE)
 
 /*
  * Leather SHeet
@@ -128,6 +140,9 @@ GLOBAL_LIST_INIT(leather_recipes, list ( \
 	new/datum/stack_recipe("leather bandolier", /obj/item/storage/belt/security/military/frontiersmen, 4), \
 	new/datum/stack_recipe("leather jacket", /obj/item/clothing/suit/jacket/leather, 7), \
 	new/datum/stack_recipe("leather shoes", /obj/item/clothing/shoes/laceup, 2), \
+	// [CELADON-ADD] - CELADON_RETURN_CONTENT_SPAWN
+	new/datum/stack_recipe("leather overcoat", /obj/item/clothing/suit/jacket/leather/overcoat, 10), \
+	// [/CELADON-ADD]
 	new/datum/stack_recipe("saddle", /obj/item/saddle, 5), \
 ))
 

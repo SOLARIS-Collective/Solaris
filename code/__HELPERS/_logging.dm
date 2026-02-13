@@ -37,7 +37,7 @@
 #define testing(msg)
 #endif
 
-#ifdef UNIT_TESTS
+#if defined(UNIT_TESTS) || defined(SPACEMAN_DMM)
 /proc/log_test(text)
 	WRITE_LOG(GLOB.test_log, text)
 	SEND_TEXT(world.log, text)
@@ -122,12 +122,7 @@
 
 /proc/log_econ(text)
 	if (CONFIG_GET(flag/log_econ))
-		WRITE_LOG(GLOB.world_mankind_economic_log, "ECON: [text]") // [CELADON-EDIT] - CELADON_COMPONENTS_LOGS - Делаем всей экономики вывод в файл economic.log // WRITE_LOG(GLOB.world_attack_log, "MONEY: [text]")
-		WRITE_LOG(GLOB.world_attack_log, "MONEY: [text]")
-
-// /proc/log_econ(text)
-// 	if (CONFIG_GET(flag/log_econ))
-// 		WRITE_LOG(GLOB.world_attack_log, "MONEY: [text]")
+		WRITE_LOG(GLOB.world_celadon_economic_log, "ECON: [text]") // [CELADON-EDIT] - CELADON_COMPONENTS_LOGS - Делаем всей экономики вывод в файл economic.log // WRITE_LOG(GLOB.world_attack_log, "MONEY: [text]")
 
 /proc/log_manifest(ckey, datum/mind/mind,mob/body, latejoin = FALSE)
 	if (CONFIG_GET(flag/log_manifest))
@@ -225,9 +220,9 @@
 		WRITE_LOG(GLOB.world_job_debug_log, "JOB: [text]")
 
 // [CELADON-ADD] - Logging for admin actions.
-/proc/log_mankind_admin(text)
+/proc/log_celadon_admin(text)
 	if (CONFIG_GET(flag/log_admin))
-		WRITE_LOG(GLOB.world_mankind_admin_log, "[text]")
+		WRITE_LOG(GLOB.world_celadon_admin_log, "[text]")
 // [/CELADON-ADD]
 
 /* Log to both DD and the logfile. */
@@ -240,6 +235,9 @@
 /* Log to the logfile only. */
 /proc/log_runtime(text)
 	WRITE_LOG(GLOB.world_runtime_log, text)
+
+/proc/log_signal(text, list/data)
+	WRITE_LOG(GLOB.world_signal_log, text)
 
 /* Rarely gets called; just here in case the config breaks. */
 /proc/log_config(text)

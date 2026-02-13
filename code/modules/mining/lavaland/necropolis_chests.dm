@@ -17,7 +17,7 @@
 	switch(loot)
 		if(1,2)
 			new /obj/item/shared_storage/red(src)
-		if(3,4) //PENTEST CORRECTION
+		if(3)
 			new /obj/item/necromantic_stone/lava(src)
 		if(5)
 			new /obj/item/pickaxe/diamond(src)
@@ -32,7 +32,7 @@
 			else
 				new /obj/item/disk/design_disk/modkit_disc/rapid_repeater(src)
 		if(9)
-			new /obj/item/gem/bloodstone(src)
+			new /obj/item/rod_of_asclepius(src)	//new /obj/item/gem/bloodstone(src) // [CELADON-EDIT] - RETURN_CONTENT_NECROOLIS
 		if(10)
 			new /obj/item/organ/heart/cursed/wizard(src)
 		if(11)
@@ -54,7 +54,13 @@
 			else
 				new /obj/item/disk/design_disk/modkit_disc/bounty(src)
 		if(18)
-			new /obj/item/warp_cube/red(src)
+			// [CELADON-EDIT] - CELADON_BALANCE
+			// new /obj/item/warp_cube/red(src)	// CELADON-EDIT - ORIGINAL
+			if(prob(20))
+				new /obj/item/warp_cube/red(src)
+			else
+				new /obj/item/toy/plush/among(src)
+			// [/CELADON-EDIT]
 		if(19)
 			new /obj/item/wisp_lantern(src)
 		if(20)
@@ -73,6 +79,10 @@
 			new /obj/item/gun/energy/spur(src)
 		if(28)
 			new /obj/item/clothing/suit/armor/ascetic(src)
+		// [CELADON-ADD] - CELADON_RETURN_CONTENT_SPAWN
+		if(29)
+			new /obj/item/clothing/glasses/godeye(src)
+		// [/CELADON-ADD]
 
 /obj/structure/closet/crate/necropolis/tendril/greater
 	desc = "It's watching you wearily. It seems terribly bloated."
@@ -85,7 +95,7 @@
 				new /obj/item/shared_storage/red(src)
 			if(2)
 				new /obj/item/clothing/suit/space/hardsuit/cult(src)
-			if(3,4) //PENTEST CORRECTION
+			if(3)
 				new /obj/item/necromantic_stone/lava(src)
 			if(5)
 				new /obj/item/pickaxe/diamond(src)
@@ -100,7 +110,7 @@
 				else
 					new /obj/item/disk/design_disk/modkit_disc/rapid_repeater(src)
 			if(9)
-				new /obj/item/gem/bloodstone(src)
+				new /obj/item/rod_of_asclepius(src)	//new /obj/item/gem/bloodstone(src) // [CELADON-EDIT] - RETURN_CONTENT_NECROOLIS
 			if(10)
 				new /obj/item/organ/heart/cursed/wizard(src)
 			if(11)
@@ -122,7 +132,13 @@
 				else
 					new /obj/item/disk/design_disk/modkit_disc/bounty(src)
 			if(18)
-				new /obj/item/warp_cube/red(src)
+				// [CELADON-EDIT] - CELADON_BALANCE
+				// new /obj/item/warp_cube/red(src)	// CELADON-EDIT - ORIGINAL
+				if(prob(20))
+					new /obj/item/warp_cube/red(src)
+				else
+					new /obj/item/toy/plush/among(src)
+				// [/CELADON-EDIT]
 			if(19)
 				new /obj/item/wisp_lantern(src)
 			if(20)
@@ -141,6 +157,10 @@
 				new /obj/item/gun/energy/spur(src)
 			if(28)
 				new /obj/item/clothing/suit/armor/ascetic(src)
+			// [CELADON-ADD] - CELADON_RETURN_CONTENT_SPAWN
+			if(29)
+				new /obj/item/clothing/glasses/godeye(src)
+			// [/CELADON-ADD]
 
 /datum/design/unique_modkit
 	category = list("Mining Designs", "Cyborg Upgrade Modules") //can't be normally obtained
@@ -638,6 +658,9 @@
 	var/hat = pick(/obj/item/clothing/head/helmet/roman, /obj/item/clothing/head/helmet/roman/legionnaire)
 	H.equip_to_slot_or_del(new hat(H), ITEM_SLOT_HEAD)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/costume/roman(H), ITEM_SLOT_ICLOTHING)
+	// [CELADON-ADD] - CELADON_RETURN_CONTENT_SPAWN
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/roman(H), ITEM_SLOT_FEET)
+	// [/CELADON-ADD]
 	H.put_in_hands(new /obj/item/shield/riot/roman(H), TRUE)
 	H.put_in_hands(new /obj/item/melee/sword/claymore(H), TRUE)
 	H.equip_to_slot_or_del(new /obj/item/melee/spear(H), ITEM_SLOT_BACK)
@@ -690,6 +713,8 @@
 		walk(hit_mob, 0) //stops them mid pathing even if they're stunimmune
 		hit_mob.apply_status_effect(/datum/status_effect/ice_block_talisman, 5 SECONDS)
 
+// [CELADON-REMOVE] - RETURN_CONTENT_CRUSHER_TROPHY - Удаляем для возвращения легенды
+/*
 /datum/status_effect/ice_block_talisman
 	id = "ice_block_talisman"
 	duration = 40
@@ -722,6 +747,9 @@
 		to_chat(owner, span_notice("The cube melts!"))
 	owner.cut_overlay(cube)
 	UnregisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE)
+*/
+// [/CELADON-REMOVE]
+
 
 //earthquake gauntlets
 /obj/item/clothing/gloves/gauntlets
@@ -980,7 +1008,7 @@
 			to_chat(owner, span_warning("The defensive wind is faltering!"))
 		if(current_charges <= 0)
 			owner.visible_message(span_warning("The desert storm protecting [owner] fades away, leaving only ionized sparks!"))
-			playsound(loc, 'sound/weather/ashstorm/inside/weak_end.ogg', 100, TRUE)
+			playsound(loc, 'sound/weather/ashstorm/outside/weak_end.ogg', 100, TRUE)
 			shield_state = "broken"
 			owner.update_inv_wear_suit()
 		return 1
@@ -1044,7 +1072,7 @@
 	switch(random)
 		if(1)
 			to_chat(user, span_danger("Your appearance morphs to that of a very small humanoid ash dragon! You get to look like a dragon without the cool abilities."))
-			H.dna.features = list("mcolor" = "A02720", "tail_lizard" = "Dark Tiger", "tail_human" = "None", "face_markings" = "None", "horns" = "Curled", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "Long", "body_markings" = "Dark Tiger Body", "legs" = "Digitigrade Legs")
+			H.dna.features = list("mcolor" = "A02720", "tail_lizard" = "Dark Tiger", "tail_human" = "None", "face_markings" = "None", "horns" = "Curled", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "Long", "body_markings" = "Dark Tiger Body")
 			H.eye_color = "fee5a3"
 			H.set_species(/datum/species/lizard)
 		if(2)

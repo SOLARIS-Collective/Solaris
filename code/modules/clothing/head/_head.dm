@@ -11,7 +11,10 @@
 	var/can_toggle = null
 	greyscale_icon_state = "hat"
 	greyscale_colors = list(list(16,26))
-	supports_variations = VOX_VARIATION
+	// [CELADON-EDIT] - TAJARA, CELADON_RIOL
+	// supports_variations = VOX_VARIATION // CELADON-EDIT - ORIGINAL
+	supports_variations = VOX_VARIATION | TAJARA_VARIATION | RIOL_VARIATION
+	// [/CELADON-EDIT]
 	blood_overlay_type = "helmet"
 
 	equipping_sound = EQUIP_SOUND_VFAST_GENERIC

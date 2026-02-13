@@ -15,6 +15,7 @@
 	opacity = TRUE
 	density = TRUE
 	layer = EDGED_TURF_LAYER
+	initial_temperature = TCMB
 	base_icon_state = "smoothrocks"
 	var/smooth_icon = 'icons/turf/walls/smoothrocks.dmi'
 	var/environment_type = "asteroid"
@@ -29,14 +30,22 @@
 	var/x_offset = -4
 	var/y_offset = -4
 
+	MAP_SWITCH(pixel_x = 0, pixel_x = -4)
+	MAP_SWITCH(pixel_y = 0, pixel_y = -4)
+
 	attack_hitsound = 'sound/effects/break_stone.ogg'
 	break_sound = 'sound/effects/break_stone.ogg'
 	hitsound_type = PROJECTILE_HITSOUND_STONE
 
 	min_dam = 5
-	max_integrity = MINERAL_WALL_INTEGRITY
-	brute_mod = 1
-	burn_mod = 1
+	// [CELADON-EDIT] - CELADON_BALANCE - Делаем из картонного камня скалу!
+	// max_integrity = MINERAL_WALL_INTEGRITY
+	// brute_mod = 1
+	// burn_mod = 1	// CELADON-EDIT - ORIGINAL
+	max_integrity = 1200
+	brute_mod = 0.3
+	burn_mod = 0.3
+	// [/CELADON-EDIT]
 
 	mob_smash_flags = ENVIRONMENT_SMASH_MINERALS
 	proj_bonus_damage_flags = PROJECTILE_BONUS_DAMAGE_MINERALS
@@ -205,7 +214,11 @@
 /turf/closed/mineral/random
 	var/list/mineralSpawnChanceList = list(/obj/item/stack/ore/uranium = 3, /obj/item/stack/ore/gold = 4,
 		/obj/item/stack/ore/plasma = 40, /obj/item/stack/ore/iron = 65, /obj/item/stack/ore/titanium = 5,
-		/obj/item/stack/ore/bluespace_crystal = 1)
+		/obj/item/stack/ore/bluespace_crystal = 1,
+		// [CELADON-ADD] - RETURN GIBTONITE
+		/turf/closed/mineral/gibtonite = 4
+		// [/CELADON-ADD]
+		)
 		//Currently, Adamantine won't spawn as it has no uses. -Durandan
 	var/mineralChance = 10
 
@@ -772,7 +785,7 @@
 	turf_type = /turf/open/floor/plating/asteroid/whitesands/lit
 	baseturfs = /turf/open/floor/plating/asteroid/whitesands/dried/lit
 
-/turf/closed/mineral/random/high_chance
+/turf/closed/mineral/random/high_chance/whitesands
 	icon = 'icons/turf/walls/ws_walls.dmi'
 	icon_state = "smoothrocks-0"
 	smooth_icon = 'icons/turf/walls/ws_walls.dmi'
@@ -812,8 +825,8 @@
 	base_icon_state = "jungle_wall"
 	smoothing_flags = SMOOTH_BITMASK | SMOOTH_BORDER
 	canSmoothWith = list(SMOOTH_GROUP_MINERAL_WALLS)
-	turf_type = /turf/open/floor/plating/dirt/jungle
-	baseturfs = /turf/open/floor/plating/dirt/jungle
+	turf_type = /turf/open/floor/plating/asteroid/dirt/jungle
+	baseturfs = /turf/open/floor/plating/asteroid/dirt/jungle
 
 	mineralChance = 16
 
@@ -936,6 +949,11 @@
 	mineralSpawnChanceList = list(/obj/item/stack/ore/uranium = 2, /obj/item/stack/ore/diamond = 1, /obj/item/stack/ore/gold = 5,
 		/obj/item/stack/ore/plasma = 1, /obj/item/stack/ore/iron = 40, /obj/item/stack/ore/titanium = 20,
 		/obj/item/stack/ore/bluespace_crystal = 5)
+
+/turf/closed/mineral/random/moon/safe
+
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15"
+	baseturfs = /turf/open/floor/plating/asteroid/moon/safe
 
 /turf/closed/mineral/random/moon/lit
 	turf_type = /turf/open/floor/plating/asteroid/moon_coarse/dark/lit

@@ -1,3 +1,6 @@
+/* [CELADON-DELETE] - Убираем инициализацию офовских предметов.
+	Разносим ресурсы по разным фракциям: "mod_celadon\outpost_console\code\supply_pack"
+
 /datum/supply_pack/food
 	category = "Food & Agricultural"
 
@@ -8,7 +11,11 @@
 /datum/supply_pack/food/donkpockets
 	name = "Donk Pocket Variety Crate"
 	desc = "Featuring a line up of Donk Co.'s most popular pastry!"
+// [CELADON-EDIT] - CELADON_BALANCE
+//	cost = 500
+// CELADON-EDIT - ORIGINAL
 	cost = 500
+// [/CELADON-EDIT]
 	contains = list(/obj/item/storage/box/donkpockets/donkpocketspicy,
 					/obj/item/storage/box/donkpockets/donkpocketteriyaki,
 					/obj/item/storage/box/donkpockets/donkpocketpizza,
@@ -25,7 +32,11 @@
 /datum/supply_pack/food/pizza
 	name = "Pizza Crate"
 	desc = "Best prices on this side of the galaxy. All deliveries are guaranteed to be 99.5% anomaly-free!"
-	cost = 750// Best prices this side of the galaxy.
+// [CELADON-EDIT] - CELADON_BALANCE
+//	cost = 3000
+// CELADON-EDIT - ORIGINAL
+	cost = 2000 // Best prices this side of the galaxy.
+// [/CELADON-EDIT]
 	contains = list(/obj/item/pizzabox/margherita,
 					/obj/item/pizzabox/mushroom,
 					/obj/item/pizzabox/meat,
@@ -65,6 +76,15 @@
 	crate_name = "food crate"
 	crate_type = /obj/structure/closet/crate/freezer
 
+/datum/supply_pack/food/ingredients_specialized
+	name = "Advanced Cooking Crate"
+	desc = "For the discerning chef. Contains a bottle of enzyme, a salt shaker, a pepper mill, a bottle of ketchup, a bottle of hot sauce, and a bottle of cream."
+// [CELADON-EDIT] - CELADON_BALANCE
+//	cost = 2000
+// CELADON-EDIT - ORIGINAL
+	cost = 500
+// [/CELADON-EDIT]
+
 /datum/supply_pack/food/ingredients_condiments
 	name = "Condiments Crate"
 	desc = "A variety of garnishes for topping off your dish with a little extra pizzaz. Contains a bottle of enzyme, a salt shaker, a pepper mill, a bottle of ketchup, a bottle of hot sauce, a bottle of BBQ sauce, and a bottle of cream."
@@ -85,15 +105,14 @@
 	name = "Exotic Meat Crate"
 	desc = "The best cuts in the whole sector. Probably."
 	cost = 500
-	contains = list(/obj/item/food/meat/slab/human/mutant/slime,
-					/obj/item/food/meat/slab/killertomato,
+	contains = list(/obj/item/food/meat/slab/killertomato,
 					/obj/item/food/meat/slab/bear,
 					/obj/item/food/meat/slab/xeno,
 					/obj/item/food/meat/slab/spider,
 					/obj/item/food/meat/slab/penguin,
 					/obj/item/food/spiderleg,
 					/obj/item/food/fishmeat/carp,
-					/obj/item/food/meat/slab/human,
+					/obj/item/food/meat/slab,
 	)
 	crate_name = "meat crate"
 	crate_type = /obj/structure/closet/crate/freezer
@@ -170,6 +189,17 @@
 					/obj/item/food/grown/carrot,
 					/obj/item/food/grown/carrot,
 					/obj/item/food/grown/carrot,
+	)
+
+/datum/supply_pack/food/ingredients_basic/cabbage
+	name = "Cabbage Crate"
+	desc = "Crate containing five cabbages."
+	cost = 75
+	contains = list(/obj/item/food/grown/cabbage,
+					/obj/item/food/grown/cabbage,
+					/obj/item/food/grown/cabbage,
+					/obj/item/food/grown/cabbage,
+					/obj/item/food/grown/cabbage,
 	)
 
 /datum/supply_pack/food/ingredients_basic/chanterelle
@@ -333,7 +363,11 @@
 /datum/supply_pack/food/ingredients_randomized/bread
 	name = "Bread Crate"
 	desc = "A crate full of various breads. Bready to either be eaten or made into delicious meals."
-	cost = 300
+// [CELADON-EDIT] - CELADON_BALANCE
+//	cost = 1000
+// CELADON-EDIT - ORIGINAL
+	cost = 250
+// [/CELADON-EDIT]
 	contains = list(/obj/item/food/bread/plain,
 					/obj/item/food/breadslice/plain,
 					/obj/item/food/breadslice/plain,
@@ -358,12 +392,21 @@
 */
 
 /datum/supply_pack/food/grill
-	name = "Grilling Starter Kit"
-	desc = "Sometimes the stresses of the world are too much to bear. Some times, for God's sake, you just want to grill. This crate is for those times."
+	name = "Griddle Construction Kit"
+	desc = "DIY cooking has never been easier!"
 	cost = 1000
-	contains = list(/obj/machinery/grill/unwrenched)
-	crate_name = "grilling starter kit crate"
-	crate_type = /obj/structure/closet/crate/large
+	contains = list(/obj/item/circuitboard/machine/griddle)
+	crate_name = "griddle circuit board crate"
+	crate_type = /obj/structure/closet/crate
+	no_bundle = TRUE
+
+/datum/supply_pack/food/oven
+	name = "Oven Construction Kit"
+	desc = "DIY cooking has never been easier!"
+	cost = 1500
+	contains = list(/obj/item/circuitboard/machine/oven)
+	crate_name = "griddle circuit board crate"
+	crate_type = /obj/structure/closet/crate
 	no_bundle = TRUE
 
 /*
@@ -373,7 +416,12 @@
 /datum/supply_pack/food/hydrotank
 	name = "Hydroponics Backpack Crate"
 	desc = "Bring on the flood with this high-capacity backpack crate. Contains 500 units of life-giving H2O."
+// [CELADON-EDIT] - CELADON_BALANCE
+//	cost = 750
+// CELADON-EDIT
+// CELADON-EDIT - ORIGINAL
 	cost = 750
+// [/CELADON-EDIT]
 	contains = list(/obj/item/watertank)
 	crate_name = "hydroponics backpack crate"
 	crate_type = /obj/structure/closet/crate/hydroponics
@@ -381,7 +429,11 @@
 /datum/supply_pack/food/gardening
 	name = "Gardening Crate"
 	desc = "Supplies for growing a great garden! Contains two bottles of ammonia, two Plant-B-Gone spray bottles, a hatchet, cultivator, plant analyzer, as well as a pair of leather gloves and a botanist's apron."
+// [CELADON-EDIT] - CELADON_BALANCE
+//	cost = 1500
+// CELADON-EDIT - ORIGINAL
 	cost = 500
+// [/CELADON-EDIT]
 	contains = list(/obj/item/reagent_containers/spray/plantbgone,
 					/obj/item/reagent_containers/spray/plantbgone,
 					/obj/item/reagent_containers/glass/bottle/ammonia,
@@ -438,7 +490,11 @@
 /datum/supply_pack/food/exoticseeds
 	name = "Exotic Seeds Crate"
 	desc = "Any entrepreneuring botanist's dream. Contains eleven different seeds, including two mystery seeds!"
+// [CELADON-EDIT] - CELADON_BALANCE
+//	cost = 3000
+// CELADON-EDIT - ORIGINAL
 	cost = 1000
+// [/CELADON-EDIT]
 	contains = list(/obj/item/seeds/nettle,
 					/obj/item/seeds/plump,
 					/obj/item/seeds/liberty,
@@ -623,3 +679,20 @@
 		/obj/item/reagent_containers/condiment/tiris_milk,
 		/obj/item/reagent_containers/condiment/tiris_milk,
 	)
+/datum/supply_pack/food/ingredients_basic/tiris_sele
+	name = "Tiris Sele Crate"
+	desc = "A gentle blood sauce made from a Tiris."
+	cost = 20
+	contains = list(
+		/obj/item/reagent_containers/condiment/tiris_sele
+	)
+
+/datum/supply_pack/food/ingredients_basic/tiris_sale
+	name = "Tiris Sale Crate"
+	desc = "A strong blood sauce made from a Tiris."
+	cost = 20
+	contains = list(
+		/obj/item/reagent_containers/condiment/tiris_sale
+	)
+
+[/CELADON-DELETE] */

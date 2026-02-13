@@ -107,7 +107,6 @@
 #define RCD_AIRLOCK 2
 #define RCD_DECONSTRUCT 3
 #define RCD_WINDOWGRILLE 4
-#define RCD_GIRDER 5 //PENTEST ADDITION - for girder construction
 #define RCD_MACHINE 8
 #define RCD_COMPUTER 16
 

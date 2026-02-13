@@ -125,7 +125,11 @@
 		shell_health -= dam_amount
 		if(shell_health <= 0)
 			has_shell = FALSE
-			armor = null		// Armor comes from the shell
+			// [CELADON-EDIT] - CELADON_BALANCE_MOBS
+			// armor = null		// Armor comes from the shell	// CELADON-EDIT - ORIGINAL
+			armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 30, "bomb" = 40, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 20)		// Full armor comes from the shell
+			armor = getArmor(arglist(armor))
+			// [/CELADON-EDIT]
 			for(var/l in shell_loot)
 				new l(loc)
 			if(!shell_snap_message)
@@ -135,7 +139,9 @@
 				shell_snap_message = TRUE //so it doesnt repeat
 		update_appearance()
 		return TRUE
-	update_appearance()
+	// [CELADON-REMOVE] - CELADON_BALANCE_MOBS
+	// update_appearance()
+	// [/CELADON-REMOVE]
 	return FALSE
 
 /mob/living/simple_animal/hostile/asteroid/basilisk/whitesands/CanAttack(atom/the_target)
@@ -220,10 +226,11 @@
 	speak_emote = list("telepathically cries")
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	stat_attack = UNCONSCIOUS
-	movement_type = FLYING
+	is_flying_animal = TRUE
 	robust_searching = 1
 	attack_same = TRUE		// So we'll fight basilisks
-	mob_trophy = /obj/item/mob_trophy/watcher_wing
+	//mob_trophy = /obj/item/mob_trophy/watcher_wing		// [CELADON-EDIT] - RETURN_CONTENT_CRUSHER_TROPHY
+	crusher_loot = /obj/item/crusher_trophy/watcher_wing	// [/CELADON-EDIT]
 	loot = list()
 	butcher_results = list(/obj/item/stack/ore/diamond = 2, /obj/item/stack/sheet/sinew = 2, /obj/item/stack/sheet/bone = 1)
 	lava_drinker = FALSE
@@ -286,8 +293,10 @@
 	light_power = 2.5
 	light_color = LIGHT_COLOR_LAVA
 	projectiletype = /obj/projectile/temp/basilisk/magmawing
-	mob_trophy = /obj/item/mob_trophy/magma_wing
-	trophy_drop_mod = 75
+	// [CELADON-REMOVE] - RETURN_CONTENT_CRUSHER_TROPHY - Выпилено ради легенды
+	// // mob_trophy = /obj/item/mob_trophy/magma_wing
+	// trophy_drop_mod = 75
+	// [/CELADON-REMOVE]
 
 /mob/living/simple_animal/hostile/asteroid/basilisk/watcher/icewing
 	name = "icewing watcher"
@@ -301,8 +310,10 @@
 	ranged_cooldown_time = 20
 	projectiletype = /obj/projectile/temp/basilisk/icewing
 	butcher_results = list(/obj/item/stack/ore/diamond = 5, /obj/item/stack/sheet/bone = 1) //No sinew; the wings are too fragile to be usable
-	mob_trophy = /obj/item/mob_trophy/ice_wing
-	trophy_drop_mod = 75
+	// [CELADON-REMOVE] - RETURN_CONTENT_CRUSHER_TROPHY - Выпилено ради легенды
+	// //mob_trophy = /obj/item/mob_trophy/ice_wing
+	// trophy_drop_mod = 75
+	// [/CELADON-REMOVE]
 
 /obj/projectile/temp/basilisk/magmawing
 	name = "scorching blast"

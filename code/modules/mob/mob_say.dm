@@ -1,22 +1,12 @@
 //Speech verbs.
 
 ///Say verb
-/mob/verb/say_verb(message as text|null)
+/mob/verb/say_verb(message as text)
 	set name = "Say"
 	set category = "IC"
-
-	//PENTEST START
-	if (!message)
-		if (!typing_indicator)
-			set_typing_indicator(TRUE)
-		message = input(usr, "say \"text\"") as text|null
-
-	set_typing_indicator(FALSE)
-
-	if(!message)
-		return
-	//PENTEST END
-
+	set instant = TRUE
+	if(typing_indicator)
+		set_typing_indicator(FALSE)
 	if(GLOB.say_disabled)	//This is here to try to identify lag problems
 		to_chat(usr, span_danger("Speech is currently admin-disabled."))
 		return
@@ -62,6 +52,10 @@
 
 	if(GLOB.say_disabled)	//This is here to try to identify lag problems
 		to_chat(usr, span_danger("Speech is currently admin-disabled."))
+		return
+
+	if(!GLOB.deadchat_allowed && !client.holder)
+		to_chat(usr, span_danger("Deadchat is currently muted."))
 		return
 
 	var/jb = is_banned_from(ckey, "Deadchat")

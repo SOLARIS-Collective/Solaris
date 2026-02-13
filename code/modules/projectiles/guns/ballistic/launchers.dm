@@ -77,6 +77,7 @@ GLOBAL_LIST_INIT(rpg_scrawlings, list(
 
 	//Bolt
 	bolt_type = BOLT_TYPE_NO_BOLT
+	doesnt_keep_bullet = TRUE
 
 	///Magazine stuff
 	cartridge_wording = "rocket"
@@ -118,7 +119,7 @@ GLOBAL_LIST_INIT(rpg_scrawlings, list(
 
 /obj/item/gun/ballistic/rocketlauncher/solgov
 	name = "Panzerfaust XII"
-	desc = "The standard recoiless rifle of the Terran Federation. Barely varies from previous models." //PENTEST CHANGE
+	desc = "The standard recoiless rifle of the Solarian Confederation. Barely varies from previous models."
 
 	icon = 'icons/obj/guns/manufacturer/solararmories/48x32.dmi'
 	lefthand_file = 'icons/obj/guns/manufacturer/solararmories/lefthand.dmi'

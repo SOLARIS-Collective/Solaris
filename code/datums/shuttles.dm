@@ -6,9 +6,6 @@
 	var/description
 	var/list/tags
 
-	var/architect
-	var/list/contributors
-
 	var/list/movement_force // If set, overrides default movement_force on shuttle
 
 	/// This offsets where the ship is in the transit level.
@@ -20,16 +17,21 @@
 	var/port_y_offset
 	var/port_dir
 
-	var/ship_icon //PENTEST ADDITION -- Might be removed with Overmap 5
-	var/empty_space_icon //PENTEST ADDITION
-
 	var/limit = 2
 	var/enabled
 	var/short_name
+
+	// [CELADON-ADD] - OVERMAP SENSORS
+	var/def_sensor_range = 4
+	// [/CELADON-ADD]
+
 	var/list/job_slots = list()
 	var/list/name_categories = list("GENERAL")
 	/// The icon state the ship usesship_generic
-	var/token_icon_state = "ship_generic"
+	// [CELADON-EDIT] - CELADON_OVERMAP_ICON - спрайты некросивые получаюца
+	// var/token_icon_state = "ship_generic"	// CELADON-EDIT - ORIGINAL
+	var/token_icon_state = "ship"
+	// [/CELADON-EDIT]
 	/// The prefix of the ship's name.
 	var/prefix = "ISV"
 	/// The name of the ship's manufacturer.
@@ -50,7 +52,6 @@
 	var/spawn_time_coeff = 1
 	var/officer_time_coeff = 1
 
-	var/skip_checks = FALSE //PENTEST EDIT
 	var/static/list/outfits
 
 /datum/map_template/shuttle/proc/prerequisites_met()
@@ -60,7 +61,10 @@
 	if(path)
 		mappath = path
 	else if(category && file_name)
-		mappath = "_maps/shuttles/[category]/[file_name].dmm"
+		// [CELADON-EDIT] - CELADON_CONFIGS_MAPS - Меняем сабшатлы на наши
+		// mappath = "_maps/shuttles/[category]/[file_name].dmm" // CELADON-EDIT - ORIGINAL
+		mappath = "_maps/_mod_celadon/shuttles/[category]/[file_name].dmm"
+		// [/CELADON-EDIT]
 	. = ..()
 
 /datum/map_template/shuttle/preload_size(path, cache)
@@ -385,13 +389,21 @@
 	token_icon_state = "ship_tiny_generic"
 	prefix = "ISV"
 
-//your subshuttle here
+//your subshuttle here //why is my subshuttle here // its no longer there //oops i dropped my subshuttles everywhere
+
 /datum/map_template/shuttle/subshuttles/crux
 	file_name = "minutemen_crux"
 	name = "Crux Dropship"
 	token_icon_state = "ship_tiny_generic"
 	faction = /datum/faction/clip
 	prefix = "CMSV"
+
+/datum/map_template/shuttle/subshuttles/hestia
+	file_name = "minutemen_hestia"
+	name = "Hestia-class Emergency Shuttle"
+	token_icon_state = "ship_tiny_generic"
+	faction = /datum/faction/clip
+	prefix = "CLSV"
 
 /datum/map_template/shuttle/subshuttles/ancon
 	file_name = "nanotrasen_ancon"
@@ -407,9 +419,9 @@
 	token_icon_state = "ship_tiny_generic"
 	prefix = "ISV"
 
-/datum/map_template/shuttle/subshuttles/anvil
-	file_name = "inteq_anvil"
-	name = "Anvil-class Dropship"
+/datum/map_template/shuttle/subshuttles/javelin
+	file_name = "inteq_javelin"
+	name = "Javelin-class Mobile Operations Shuttle"
 	faction = /datum/faction/inteq
 	token_icon_state = "ship_tiny_generic"
 	prefix = "IRMV"
@@ -423,15 +435,8 @@
 	prefix = "CSSV"
 	name_categories = list("GENERAL", "SPACE")
 
-/datum/map_template/shuttle/subshuttles/haste
-	file_name = "inteq_haste"
-	name = "Haste-class Ambulance"
-	faction = /datum/faction/inteq
-	token_icon_state = "ship_tiny_generic"
-	prefix = "IRMV"
-
 /datum/map_template/shuttle/subshuttles/nail
-	file_name = "pgf_nail"
+	file_name = "pirate_nail"
 	name = "Nail-class Boarding Vessel"
 	faction = /datum/faction/pgf
 	token_icon_state = "ship_tiny_generic"
@@ -486,22 +491,22 @@
 	token_icon_state = "ship_tiny_generic"
 	prefix = "ISV"
 
-//PENTEST ADDITIONS
-/datum/map_template/shuttle/subshuttles/falcon
-	file_name = "nanotrasen_falcon"
-	name = "Falcon Dropship"
-	prefix = "NTSV"
-
-/datum/map_template/shuttle/subshuttles/sierra
-	file_name = "nanotrasen_sierra"
-	name = "Sierra-class Recovery Shuttle"
-	faction = /datum/faction/nt
+/datum/map_template/shuttle/subshuttles/shortbow
+	file_name = "srm_shortbow"
+	name = "Shortbow-class Dropship"
+	faction = /datum/faction/srm
 	token_icon_state = "ship_tiny_generic"
-	prefix = "NTSV"
+	prefix = "SRSV"
 
-/datum/map_template/shuttle/subshuttles/malp
-	file_name = "nanotrasen_malp"
-	name = "MALP-class Hostile Exploration Shuttle"
-	faction = /datum/faction/nt
+/datum/map_template/shuttle/subshuttles/karst
+	file_name = "ngr_karst"
+	name = "Karst-class Drop Pod"
+	faction = /datum/faction/syndicate/ngr
 	token_icon_state = "ship_tiny_generic"
-	prefix = "NTSV"
+	prefix = "NGRV"
+
+/datum/map_template/shuttle/subshuttles/june
+	file_name = "independent_june"
+	name = "June-class Dropship"
+	token_icon_state = "ship_tiny_generic"
+	prefix = "SV"

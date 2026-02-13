@@ -8,11 +8,12 @@
 /datum/overmap/ship/controlled
 	token_type = /obj/overmap/rendered
 	dock_time = 10 SECONDS
-	interaction_options = list(INTERACTION_OVERMAP_DOCK, INTERACTION_OVERMAP_QUICKDOCK, INTERACTION_OVERMAP_HAIL, INTERACTION_OVERMAP_INTERDICTION)
+	interaction_options = list(INTERACTION_OVERMAP_DOCK, INTERACTION_OVERMAP_QUICKDOCK, INTERACTION_OVERMAP_INTERDICTION)
+	interaction_hail = list(INTERACTION_OVERMAP_HAIL)
 
-	// [MANKIND-ADD] - OVERMAP SENSORS
+	// [CELADON-ADD] - OVERMAP SENSORS
 	var/default_sensor_range = 4
-	// [/MANKIND-ADD]
+	// [/CELADON-ADD]
 
 	///Vessel estimated thrust per full burn
 	var/est_thrust
@@ -44,7 +45,7 @@
 	/// List of currently-accepted missions.
 	var/list/datum/mission/missions
 	/// The maximum number of currently active missions that a ship may take on.
-	var/max_missions = 2
+	var/max_missions = 3
 
 	/// Manifest list of people on the ship. Indexed by mob REAL NAME. value is JOB INSTANCE
 	var/list/manifest = list()
@@ -88,24 +89,24 @@
 	///The cooldown for events hitting this ship. Generally used by events with a big consquence and fires slower than normal, like flares
 	COOLDOWN_DECLARE(event_cooldown)
 
-	/// [MANKIND-ADD] Таймер, что даёт время на становление пиратами или пацифистами для независимых суден.
+	/// [CELADON-ADD] Таймер, что даёт время на становление пиратами или пацифистами для независимых суден.
 	COOLDOWN_DECLARE(rename_prefix_cooldown)
-	/// [/MANKIND-ADD]
+	/// [/CELADON-ADD]
 
 /datum/overmap/ship/controlled/Rename(new_name, force = FALSE)
 	var/old_name = name
-	var/full_name = "[source_template.prefix] [new_name]"
-	// [MANKIND-ADD] - Возможность сменить префикс корабля для PISV или RSV.
+	var/full_name = "Error"
+	// [CELADON-ADD] - Возможность сменить префикс корабля для PISV или RSV.
 	if(!COOLDOWN_FINISHED(src, rename_prefix_cooldown))
 		full_name = "[new_name]"
 	else
 		full_name = "[source_template.prefix] [new_name]"
-	// [/MANKIND-ADD]
+	// [/CELADON-ADD]
 	if(!force && !COOLDOWN_FINISHED(src, rename_cooldown) || !..(full_name, force))
 		return FALSE
 
 	message_admins("[key_name_admin(usr)] renamed vessel '[old_name]' to '[full_name]'")
-	log_admin("[key_name(src)] has renamed vessel '[old_name]' to '[full_name]'")
+	log_admin("[usr.ckey] ([usr.real_name]) on [key_name(src)] has renamed vessel '[old_name]' to '[full_name]'")
 	SSblackbox.record_feedback("text", "ship_renames", 1, full_name)
 
 	real_name = new_name
@@ -133,7 +134,7 @@
  * * creation_template - The template used to create the ship.
  * * target_port - The port to dock the new ship to.
  */
-/datum/overmap/ship/controlled/Initialize(position, system_spawned_in, datum/map_template/shuttle/creation_template, create_shuttle = TRUE)
+/datum/overmap/ship/controlled/Initialize(position, system_spawned_in, datum/map_template/shuttle/creation_template, create_shuttle = TRUE, outpost_special_docking_perms)
 	. = ..()
 	if(creation_template)
 		source_template = creation_template
@@ -151,7 +152,10 @@
 				Dock(position, force = TRUE)
 
 			refresh_engines()
+		default_sensor_range = source_template.def_sensor_range
 		ship_account = new(name, source_template.starting_funds)
+		if(outpost_special_docking_perms)
+			outpost_special_dock_perms = TRUE
 
 	else
 		stack_trace("Attempted to create a controlled ship without a template!")
@@ -169,7 +173,7 @@
 	GLOB.ship_select_tgui?.update_static_data_for_all_viewers()
 	GLOB.crew_manifest_tgui?.update_static_data_for_all_viewers()
 
-	// [MANKIND-ADD] - MANKIND_COMPONENT - Добавляем оповещении о пиратах
+	// [CELADON-ADD] - CELADON_COMPONENT - Добавляем оповещении о пиратах
 	if(istype(get_faction(), /datum/faction/pirate))
 		var/datum/overmap/outpost/outpost = SSovermap.outposts[1]
 		if(outpost)
@@ -183,7 +187,10 @@
 
 /datum/overmap/outpost // Это тут потому-что если верхнее перепишется, то нижнее тоже. Срать вечно 🤙
 	var/obj/item/radio/intercom/wideband/radio
-	// [/MANKIND-ADD]
+	// [/CELADON-ADD]
+
+/datum/overmap/ship/controlled/proc/get_faction()
+	return source_template.faction
 
 /datum/overmap/ship/controlled/Destroy()
 	//SHOULD be called first
@@ -285,7 +292,7 @@
 /**
  * Docks to an empty dynamic encounter. Used for intership interaction, structural modifications, and such
  */
-/datum/overmap/ship/controlled/proc/dock_in_empty_space()	// [OVERWRITE] - FIXES_DOCKING -modular_mankind/fixes/code/dock_empty_space_fix.dm
+/datum/overmap/ship/controlled/proc/dock_in_empty_space()	// [OVERWRITE] - FIXES_DOCKING -mod_celadon/fixes/code/dock_empty_space_fix.dm
 	var/datum/overmap/dynamic/empty/empty_space = locate() in current_overmap.overmap_container[x][y]
 	if(!empty_space)
 		empty_space = new(list("x" = x, "y" = y), current_overmap)
@@ -299,21 +306,21 @@
 	for(var/obj/machinery/power/shuttle/engine/real_engine as anything in shuttle_port.get_engines())
 		if(!real_engine.enabled)
 			continue
-// [MANKIND-EDIT] - MANKIND FIXES
-//thrust_used += real_engine.burn_engine(percentage, deltatime) // MANKIND-EDIT - ORIGINAL
+// [CELADON-EDIT] - CELADON FIXES
+//thrust_used += real_engine.burn_engine(percentage, deltatime) // CELADON-EDIT - ORIGINAL
 		var/engine_thrust = real_engine.burn_engine(percentage, seconds_per_tick)
 		thrust_used += engine_thrust
 		if(real_engine.engine_type == "plasma")
 			thrust_used += real_engine.plasma_thrust(percentage, seconds_per_tick)
-// [/MANKIND-EDIT]
+// [/CELADON-EDIT]
 		// ID: ALARM_CONFLICTS_OFFOS
 		// thrust_used += real_engine.burn_engine(percentage, seconds_per_tick)
 
 	thrust_used = thrust_used / (shuttle_port.turf_count * 100)
-// [MANKIND-EDIT] - MANKIND FIXES | FIX_DISPLAY_TRUSTER
+// [CELADON-EDIT] - CELADON FIXES | FIX_DISPLAY_TRUSTER
 	//est_thrust = thrust_used * 100 / (percentage * seconds_per_tick) //cheeky way of rechecking the thrust, check it every time it's used // ORIGINAL
 	est_thrust = thrust_used / percentage * 100 //cheeky way of rechecking the thrust, check it every time it's used
-// [/MANKIND-EDIT]
+// [/CELADON-EDIT]
 	return thrust_used
 
 /**
@@ -325,11 +332,10 @@
 		real_engine.update_engine()
 		if(real_engine.enabled)
 			calculated_thrust += real_engine.thrust
-// [MANKIND-EDIT] - MANKIND FIXES | FIX_DISPLAY_TRUSTER
+// [CELADON-EDIT] - CELADON FIXES | FIX_DISPLAY_TRUSTER
 	//est_thrust = calculated_thrust / (shuttle_port.turf_count * 100) * 1 SECONDS / SSphysics.wait	// ORIGINAL
 	est_thrust = calculated_thrust / (shuttle_port.turf_count * 100)
-// [/MANKIND-EDIT]
-
+// [/CELADON-EDIT]
 /**
  * Calculates the average fuel fullness of all engines.
  */
@@ -346,10 +352,10 @@
 		return
 	avg_fuel_amnt = round(fuel_avg / engine_amnt * 100)
 
-// [MANKIND-EDIT] - OVERMAP PHYSICS - Это вагабонд насрал
+// [CELADON-EDIT] - OVERMAP PHYSICS - Это вагабонд насрал
 // /datum/overmap/ship/controlled/tick_move()
 /datum/overmap/ship/controlled/not_tick_move(var/xmov, var/ymov)
-// [/MANKIND-EDIT]
+// [/CELADON-EDIT]
 	if(avg_fuel_amnt < 1)
 		//Slow down a little when there's no fuel
 		adjust_speed(clamp(-speed_x, max_speed * -0.001, max_speed * 0.001), clamp(-speed_y, max_speed * -0.001, max_speed * 0.001))
@@ -376,13 +382,13 @@
 
 /datum/overmap/ship/controlled/proc/get_application(mob/applicant)
 	var/index_key = applicant.client?.holder?.fakekey ? applicant.client.holder.fakekey : applicant.key
-	// [MANKIND-EDIT] - FIXES_ADMIN_STEALTH
+	// [CELADON-EDIT] - FIXES_ADMIN_STEALTH
 	// return LAZYACCESS(applications, ckey(index_key))	// ORIGINAL
 	var/result = LAZYACCESS(applications, ckey(index_key))
 	if(!result && applicant.client?.holder?.fakekey)
 		result = LAZYACCESS(applications, ckey(applicant.key))
 	return result
-	// [/MANKIND-EDIT]
+	// [/CELADON-EDIT]
 
 /**
  * Bastardized version of GLOB.manifest.manifest_inject, but used per ship.
@@ -539,18 +545,18 @@
 
 /datum/overmap/ship/controlled/proc/attempt_key_usage(mob/user, obj/item/key/ship/shipkey, obj/machinery/computer/helm/target_helm)
 	user.changeNext_move(CLICK_CD_MELEE)
-	// [MANKIND-ADD] - Well Done!
+	// [CELADON-ADD] - Well Done!
 	if(shipkey == target_helm && shipkey.well_done)
 		playsound(user.loc, 'sound/machines/click.ogg', 20)
 		return
-	// [/MANKIND-ADD]
+	// [/CELADON-ADD]
 
 	if(shipkey.master_ship != src)
 		target_helm?.say("Invalid shipkey usage attempted, forcibly locking down.")
 		helm_locked = TRUE
 	else
 		helm_locked = !helm_locked
-		// [MANKIND-ADD] - Well Done - Дифферинцируем по звуку сигналку и ключи
+		// [CELADON-ADD] - Well Done - Дифферинцируем по звуку сигналку и ключи
 		if(shipkey == target_helm)
 			if(helm_locked)
 				playsound(user.loc, 'sound/machines/beep.ogg', 20, FALSE)
@@ -559,8 +565,8 @@
 			else
 				playsound(user.loc, 'sound/machines/beep.ogg', 20, FALSE)
 		else
-		// [/MANKIND-ADD]
-			playsound(src, helm_locked ? 'sound/machines/button4.ogg' : 'sound/machines/button3.ogg')
+		// [/CELADON-ADD]
+			playsound(user.loc, helm_locked ? 'sound/machines/button4.ogg' : 'sound/machines/button3.ogg',20)
 
 	for(var/obj/machinery/computer/helm/helm as anything in helms)
 		SStgui.close_uis(helm)
@@ -570,7 +576,7 @@
 /datum/overmap/ship/controlled/alter_token_appearance()
 	if(!source_template)
 		return ..()
-	// [MANKIND-EDIT] - REMOVE_INFO_CLASSSHIP - Убираем отображение класса корабля при шифт клике
+	// [CELADON-EDIT] - REMOVE_INFO_CLASSSHIP - Убираем отображение класса корабля при шифт клике
 	/*
 	desc = {"[span_boldnotice("IFF is reporting the following:")]
 	[span_bold("Affiliation: ")][source_template.faction.name]
@@ -580,7 +586,7 @@
 	desc = {"[span_boldnotice("IFF is reporting the following:")]
 	[span_bold("Affiliation: ")][source_template.faction.name]
 	[span_bold("Velocity: ")][round(get_speed(), 0.1)] Gm/s"}
-	// [/MANKIND-EDIT]
+	// [/CELADON-EDIT]
 	return ..()
 
 //when bluespace jumping gets moved to its own machine make this NOT look for non-vewscreen helms
@@ -629,9 +635,10 @@
 	)
 	var/random_color = TRUE //if the key uses random coloring (logic stolen from screwdriver.dm)
 	slot_flags = ITEM_SLOT_NECK
-	// [MANKIND-ADD] - Well Done?
+	// [CELADON-ADD] - Well Done?
 	var/well_done = FALSE
-	// [/MANKIND-ADD]
+	// [/CELADON-ADD]
+
 
 /obj/item/key/ship/Initialize(mapload, datum/overmap/ship/controlled/master_ship)
 	. = ..()
@@ -658,17 +665,18 @@
 	return ..()
 
 /obj/item/key/ship/attack_self(mob/user)
-	// [MANKIND-ADD] - Well Done cooldown
+	// [CELADON-ADD] - Well Done cooldown
 	if(user.next_move > world.time)
 		return
-	// [/MANKIND-ADD]
+	// [/CELADON-ADD]
 	if(!master_ship || !Adjacent(user))
 		return ..()
 
 	master_ship.attempt_key_usage(user, src, src) // hello I am a helm console I promise
 	return TRUE
 
-// [MANKIND-ADD] - Well Done act
+// [CELADON-ADD] - Well Done act
 /obj/item/key/ship/microwave_act(obj/machinery/microwave/M)
 	well_done = TRUE
-// [/MANKIND-ADD]
+// [/CELADON-ADD]
+

@@ -51,12 +51,19 @@
 	show_magazine_on_sprite = TRUE
 	unique_mag_sprites_for_variants = TRUE
 	weapon_weight = WEAPON_MEDIUM
-	slot_flags = ITEM_SLOT_BACK
+	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_SUITSTORE
 	manufacturer = MANUFACTURER_IMPORT
 	default_ammo_type = /obj/item/ammo_box/magazine/skm_762_40
 	allowed_ammo_types = list(
 		/obj/item/ammo_box/magazine/skm_762_40,
 	)
+
+	unique_reskin = list(\
+		"SKM" = "skm",
+		"Polymer" = "skm_polymer",
+		"Bright" = "skm_bright",
+		)
+	unique_reskin_changes_inhand = TRUE
 
 	//truly a doohickey for every occasion
 	unique_attachments = list (
@@ -114,6 +121,11 @@
 	item_state = "skm_inteq"
 	manufacturer = MANUFACTURER_INTEQ
 
+// [CELADON-ADD] - Рескинов нету - невидимая СКМ
+	unique_reskin = null
+	unique_reskin_changes_inhand = FALSE
+// [/CELADON-ADD]
+
 /obj/item/gun/ballistic/automatic/assault/cm82
 	name = "\improper CM-16"
 	desc = "The standard-issue rifle of CLIP and an extensively modified reproduction of the P-16. Chambered in 5.56mm."
@@ -146,7 +158,7 @@
 
 	fire_select_icon_state_prefix = "swisschesse_"
 
-	slot_flags = ITEM_SLOT_BACK
+	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_SUITSTORE
 	default_ammo_type = /obj/item/ammo_box/magazine/swiss
 	allowed_ammo_types = list(
 		/obj/item/ammo_box/magazine/swiss,

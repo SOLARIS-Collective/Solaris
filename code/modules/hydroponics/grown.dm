@@ -29,7 +29,7 @@
 	/// Boozepwr of the wine if NULL distill_reagent
 	var/wine_power = 10
 	///Color of the grown object
-	//var/filling_color
+	var/filling_color
 	//Amount of discovery points given for scanning
 	var/discovery_points = 0
 
@@ -50,8 +50,6 @@
 
 	pixel_x = base_pixel_x + rand(-5, 5)
 	pixel_y = base_pixel_y + rand(-5, 5)
-
-	make_dryable()
 
 	for(var/datum/plant_gene/trait/trait in seed.genes)
 		trait.on_new(src, loc)

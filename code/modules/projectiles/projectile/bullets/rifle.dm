@@ -92,12 +92,15 @@
 
 //.308 WIN (M514 & GAL DMRs)
 
+
+//[СELADON-REMOVE] - CELADON_WEAPONS - хватит это терпеть! Теперь эти патроны только в модпаке - mod_celadon\weapons\code\modules\projectiles\projectile\bullets\rifle.dm
+/*
 /obj/projectile/bullet/a308
 	name = ".308 bullet"
 	damage = 35
 	armour_penetration = 40
 	speed = BULLET_SPEED_RIFLE
-	bullet_identifier = "large bullet"
+
 
 /obj/projectile/bullet/a308/hp
 	name = ".308 hollow point bullet"
@@ -118,6 +121,8 @@
 	armour_penetration = 20
 	speed_mod = BULLET_SPEED_RUBBER_MOD
 	bullet_identifier = "large rubber bullet"
+*/
+//[/СELADON-REMOVE]
 
 // .299 Eoehoma Caseless (E-40)
 

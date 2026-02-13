@@ -11,6 +11,7 @@
 
 	var/list/contents = AM.GetAllContents()
 
+
 	var/datum/export_report/report = external_report
 
 	if(!report) //If we don't have any longer transaction going on
@@ -65,6 +66,9 @@
 	var/list/export_types = list()	// Type of the exported object. If none, the export datum is considered base type.
 	var/include_subtypes = TRUE		// Set to FALSE to make the datum apply only to a strict type.
 	var/list/exclude_types = list()	// Types excluded from export
+
+	///can this export be targetting with high-value bounty?
+	var/valid_event_target = TRUE
 
 /datum/export/New()
 	..()

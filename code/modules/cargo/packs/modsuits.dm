@@ -1,6 +1,9 @@
 
-/// commented out until we figure out what we're doing with modsuits
+/* [CELADON-DELETE] - Убираем инициализацию офовских предметов.
+	Разносим ресурсы по разным фракциям: "mod_celadon\outpost_console\code\supply_pack"
 
+/// commented out until we figure out what we're doing with modsuits
+/*
 /datum/supply_pack/modsuits
 	category = "MODsuits"
 	crate_type = /obj/structure/closet/crate/secure/gear
@@ -228,9 +231,7 @@
 	cost = 500
 	contains = list(/obj/item/mod/module/reagent_scanner)
 
+*/
 
 
-
-
-
-
+[/CELADON-DELETE] */

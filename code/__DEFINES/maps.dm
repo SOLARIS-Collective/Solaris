@@ -34,6 +34,8 @@ require only minor tweaks.
 #define ZTRAIT_RESERVED "Reserved"
 #define ZTRAIT_AWAY "Away Mission"
 #define ZTRAIT_SPACE_RUINS "Space Ruins"
+#define ZTRAIT_SCAN_DISRUPT "Scanning Disruption" // [CELADON-EDIT] - CELADON_SURVEY_HANDHELD
+#define ZTRAIT_GAS_GIANT "Gas Giant"
 
 // enum - how SSsun should calculate sun exposure on this level
 // if left null, AZIMUTH is assumed
@@ -127,7 +129,10 @@ require only minor tweaks.
 //Only used for unit testing at the moment, technically splits it into 16 but I didn't like the word for that
 #define ALLOCATION_OCTODRANT 3
 
-#define QUADRANT_MAP_SIZE 127
+// [CELADON-EDIT] - CELADON_MAP_EXPANSION - Увеличиваем рамки аванпоста
+//#define QUADRANT_MAP_SIZE 127	// CELADON-EDIT -> ORIGINAL
+#define QUADRANT_MAP_SIZE 191
+// [/CELADON-EDIT]
 #define OCTODRANT_MAP_SIZE 63
 
 #define QUADRANT_SIZE_BORDER 3

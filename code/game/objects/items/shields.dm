@@ -62,7 +62,7 @@
 			user.dropItemToGround(src, force = TRUE)
 		playsound(src, braking_sound, 100)
 		if(broken_shield)
-			icon = 'modular_mankind/_storage_icons/icons/items/weapons/shields.dmi'
+			icon = 'mod_celadon/_storage_icons/icons/items/weapons/shields.dmi'
 			icon_state = "[src::icon_state]_broken"
 // [/CELADON-ADD]
 		name = "broken [src::name]"
@@ -157,10 +157,10 @@
 	slowdown = 0.5
 	max_integrity = 600
 	block_chance = 60
-	icon = 'modular_mankind/_storage_icons/icons/items/weapons/shields.dmi'
-	lefthand_file = 'modular_mankind/_storage_icons/icons/items/weapons/shields_lefthand.dmi'
-	righthand_file = 'modular_mankind/_storage_icons/icons/items/weapons/shields_righthand.dmi'
-	mob_overlay_icon = 'modular_mankind/_storage_icons/icons/items/weapons/shields_back.dmi'
+	icon = 'mod_celadon/_storage_icons/icons/items/weapons/shields.dmi'
+	lefthand_file = 'mod_celadon/_storage_icons/icons/items/weapons/shields_lefthand.dmi'
+	righthand_file = 'mod_celadon/_storage_icons/icons/items/weapons/shields_righthand.dmi'
+	mob_overlay_icon = 'mod_celadon/_storage_icons/icons/items/weapons/shields_back.dmi'
 	broken_shield = TRUE
 // [/CELADON-ADD]
 
@@ -395,8 +395,8 @@
 
 // [CELADON-ADD] - BALLISTIC_SHIELD - Extended Edition
 	desc = "An advanced riot shield made of lightweight materials that collapses for easy storage. Use 10 plasteel to repair."
-	lefthand_file = 'modular_mankind/_storage_icons/icons/items/weapons/shields_lefthand.dmi'
-	righthand_file = 'modular_mankind/_storage_icons/icons/items/weapons/shields_righthand.dmi'
+	lefthand_file = 'mod_celadon/_storage_icons/icons/items/weapons/shields_lefthand.dmi'
+	righthand_file = 'mod_celadon/_storage_icons/icons/items/weapons/shields_righthand.dmi'
 	max_integrity = 400
 	block_chance = 50
 	slowdown = 0.3

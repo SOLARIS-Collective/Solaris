@@ -4,9 +4,10 @@
  * Basically, any overmap object that is capable of moving by itself. //wouldnt it make more sense for this to be named /datum/overmap/movable
  *
  */
- // [MANKIND-ADD] - MANKIND_OVERMAP_STUFF - Это вагабонд насрал
+
+// [CELADON-ADD] - CELADON_OVERMAP_STUFF - Это вагабонд насрал
 /obj/shiptrail
-	icon = 'modular_mankind/_storage_icons/icons/assets/overmap/overmap.dmi'
+	icon = 'mod_celadon/_storage_icons/icons/assets/overmap/overmap.dmi'
 	icon_state = "ship_trail"
 	alpha = 200
 	glide_size = 32
@@ -74,15 +75,15 @@
 		M.Turn(bow_heading)
 		S.transform = M
 		trails[1] = S
-// [/MANKIND-ADD]
+// [/CELADON-ADD]
 
 /datum/overmap/ship
 	name = "overmap vessel"
 	char_rep = ">"
-	// [MANKIND-EDIT] - MANKIND_OVERMAP_STUFF - Это вагабонд насрал
+	// [CELADON-EDIT] - CELADON_OVERMAP_STUFF - Это вагабонд насрал
 	// token_icon_state = "ship"
 	token_icon_state = "ship_point"
-	// [/MANKIND-EDIT]
+	// [/CELADON-EDIT]
 
 	///If TRUE stationary_icon_state and moving_icon_state are used instead of an overlay being applied to stationary_icon_state
 	var/legacy_rendering_switch = FALSE
@@ -117,7 +118,7 @@
 
 	var/registered_to_docked = FALSE
 
-	// [MANKIND-ADD] - MANKIND_OVERMAP_STUFF - Это вагабонд насрал
+// [CELADON-ADD] - CELADON_OVERMAP_STUFF - Это вагабонд насрал
 	///For bay overmap
 	var/x_pixels_moved = 0
 	var/y_pixels_moved = 0
@@ -133,7 +134,7 @@
 	var/rotation_velocity = 0
 
 	var/skiptickfortrail = 0
-	// [MANKIND-EDIT] - Убираем предупреждение валидатора; [MANKIND-EDIT] - Добавлены ковычки для запуска на 516
+	// [CELADON-EDIT] - Убираем предупреждение валидатора; [CELADON-EDIT] - Добавлены ковычки для запуска на 516
 #if DM_VERSION >= 516
 	var/list/obj/shiptrail/trails = alist(1 = null,
 							2 = null,
@@ -143,7 +144,7 @@
 							2 = null,
 							3 = null)
 #endif
-	// [/MANKIND-EDIT]
+	// [/CELADON-EDIT]
 
 /datum/overmap/ship/proc/check_proximity()
 //	token.collision_alarm()
@@ -152,21 +153,27 @@
 		calculate_cpa(src, i.parent)
 		arpa_add |= i.parent
 	return arpa_add
-// [/MANKIND-ADD]
+// [/CELADON-ADD]
 
 // /datum/overmap/ship/Initialize(position, ...)	// КОД JOPA
 /datum/overmap/ship/Initialize(position, system_spawned_in, ...)
 	. = ..()
 	if(docked_to)
+		position_to_move["x"] = docked_to.x
+		position_to_move["y"] = docked_to.y
+	else
+		position_to_move["x"] = x
+		position_to_move["y"] = y
+	if(docked_to)
 		RegisterSignal(docked_to, COMSIG_OVERMAP_MOVED, PROC_REF(on_docked_to_moved))
 		registered_to_docked = TRUE
 
 /datum/overmap/ship/Destroy()
-	// [MANKIND-EDIT] - MANKIND_OVERMAP_STUFF - Это вагабонд насрал
+	// [CELADON-EDIT] - CELADON_OVERMAP_STUFF - Это вагабонд насрал
 	//	if(movement_callback_id)
 	//		deltimer(movement_callback_id, SSovermap_movement)
 	clear_trails()
-	// [/MANKIND-EDIT]
+	// [/CELADON-EDIT]
 	return ..()
 
 /datum/overmap/ship/complete_dock(datum/overmap/dock_target, datum/docking_ticket/ticket)
@@ -182,10 +189,10 @@
 
 /datum/overmap/ship/Undock(force = FALSE)
 	. = ..()
-	if(istype(/datum/overmap/ship, docked_to))
+	if(istype(docked_to, /datum/overmap/ship))
 		var/datum/overmap/ship/old_dock = docked_to
 		adjust_speed(old_dock.speed_x, old_dock.speed_y)
-	// [MANKIND-ADD] - subshuttles fix
+	// [CELADON-ADD] - subshuttles fix
 		x_pixels_moved = old_dock.x_pixels_moved + (pick(6, -6))
 		y_pixels_moved = old_dock.y_pixels_moved + (pick(6, -6))
 
@@ -198,8 +205,7 @@
 		y = docked_to.docked_to.y
 		position_to_move["x"] = docked_to.docked_to.x
 		position_to_move["y"] = docked_to.docked_to.y
-	// [/MANKIND-ADD] - subshuttles fix
-
+	// [/CELADON-ADD] - subshuttles fix
 /datum/overmap/ship/proc/on_docked_to_moved()
 	x = docked_to.x
 	y = docked_to.y
@@ -210,8 +216,9 @@
  * * n_x - Speed in the X direction to change
  * * n_y - Speed in the Y direction to change
  */
+
 /datum/overmap/ship/proc/adjust_speed(n_x, n_y)
-// [MANKIND-EDIT] - MANKIND_OVERMAP_STUFF - Это вагабонд насрал
+// [CELADON-EDIT] - CELADON_OVERMAP_STUFF - Это вагабонд насрал
 //	var/offset = 1
 //	if(movement_callback_id)
 //		var/previous_time = 1 / MAGNITUDE(speed_x, speed_y)
@@ -222,7 +229,7 @@
 	if(QDELING(src) || docked_to)
 		return
 
-// [/MANKIND-EDIT]
+// [/CELADON-EDIT]
 
 	speed_x = min(max_speed, speed_x + n_x)
 	speed_y = min(max_speed, speed_y + n_y)
@@ -232,7 +239,7 @@
 	if(speed_y < min_speed && speed_y > -min_speed)
 		speed_y = 0
 
-// [MANKIND-EDIT] - MANKIND_OVERMAP_STUFF - Это вагабонд насрал
+// [CELADON-EDIT] - CELADON_OVERMAP_STUFF - Это вагабонд насрал
 	// token.update_icon_state()
 	speed_x = speed_x+vector_to_add["x"]
 	speed_y = speed_y+vector_to_add["y"]
@@ -243,10 +250,11 @@
 		speed_x = speed_x*0.98
 		speed_y = speed_y*0.98
 
-// [/MANKIND-EDIT]
+// [/CELADON-EDIT]
 
 	update_visuals()
-// [MANKIND-EDIT] - MANKIND_OVERMAP_STUFF - Это вагабонд насрал
+
+// [CELADON-EDIT] - CELADON_OVERMAP_STUFF - Это вагабонд насрал
 	//	if(is_still() || QDELING(src) || movement_callback_id || docked_to || docking)
 	//		return
 	//	var/timer = 1 / MAGNITUDE(speed_x, speed_y) * offset
@@ -257,13 +265,13 @@
 		M.Turn(get_alt_heading())
 		if(token.move_vec)
 			token.move_vec.transform = M
-// [/MANKIND-EDIT]
+// [/CELADON-EDIT]
 
 /**
  * Called by [/datum/overmap/ship/proc/adjust_speed], this continually moves the ship according to its speed
  */
 
-// [MANKIND-ADD] - MANKIND_OVERMAP_STUFF - Это вагабонд насрал
+// [CELADON-ADD] - CELADON_OVERMAP_STUFF - Это вагабонд насрал
 /datum/overmap/ship/proc/not_tick_move(var/xmov, var/ymov)
 	if(QDELING(src))
 		return
@@ -275,9 +283,9 @@
 			token.ship_image.forceMove(token.loc)
 		if(token.move_vec)
 			token.move_vec.forceMove(token.loc)
-// [/MANKIND-ADD]
+// [/CELADON-ADD]
 
-// [MANKIND-REMOVE] - MANKIND_OVERMAP_STUFF - Это вагабонд насрал
+// [CELADON-REMOVE] - CELADON_OVERMAP_STUFF - Это вагабонд насрал
 /*
 /datum/overmap/ship/proc/tick_move()
 	if(is_still() || QDELING(src) || docked_to)
@@ -300,7 +308,7 @@
 	movement_callback_id = addtimer(CALLBACK(src, PROC_REF(tick_move)), timer, TIMER_STOPPABLE, SSovermap_movement)
 	token.update_screen()
 */
-// [/MANKIND-REMOVE]
+// [/CELADON-REMOVE]
 
 /**
  * Returns whether or not the ship is moving in any direction.
@@ -322,7 +330,8 @@
 /**
  * Returns the direction the ship is moving in terms of dirs
  */
-// [MANKIND-ADD] - MANKIND_OVERMAP_STUFF - Это вагабонд насрал
+
+// [CELADON-ADD] - CELADON_OVERMAP_STUFF - Это вагабонд насрал
 /datum/overmap/ship/proc/get_alt_heading()
 	. = 0
 	var/stuff = -arctan(speed_x, speed_y)
@@ -332,7 +341,7 @@
 	if(stuff < 0)
 		stuff = stuff+360
 	. = stuff
-// [/MANKIND-ADD]
+// [/CELADON-ADD]
 
 /datum/overmap/ship/proc/get_heading()
 	. = NONE
@@ -351,7 +360,7 @@
  * Returns the estimated time in deciseconds to the next tile at current speed, or approx. time until reaching the destination when on autopilot
  */
 /datum/overmap/ship/proc/get_eta()
-	// [MANKIND-EDIT] - MANKIND_OVERMAP_STUFF - Это вагабонд насрал
+	// [CELADON-EDIT] - CELADON_OVERMAP_STUFF - Это вагабонд насрал
 	// . += timeleft(movement_callback_id, SSovermap_movement)
 	// if(!.)
 	// 	return "--:--"
@@ -371,6 +380,9 @@
 		y_pixels_to_move = y_pixels_to_move+token.pixel_z
 
 	var/stuff
+
+
+
 	var/stuffx = 0
 	if(speed_x != 0)
 		stuffx = round(x_pixels_to_move/(max(speed_x, -speed_x)*(30 SECONDS)))
@@ -392,14 +404,15 @@
 		return "00:00"
 
 	return "[add_leading(num2text((stuff / 60) % 60), 2, "0")]:[add_leading(num2text(stuff % 60), 2, "0")]"
-	// [/MANKIND-EDIT]
+	// [/CELADON-EDIT]
+
 
 /datum/overmap/ship/process(seconds_per_tick)
 	if((burn_direction == BURN_STOP && is_still()) || docked_to || docking)
 		change_heading(BURN_NONE)
 		return
 
-// [MANKIND-EDIT] - MANKIND_OVERMAP_STUFF - Это вагабонд насрал
+// [CELADON-EDIT] - CELADON_OVERMAP_STUFF - Это вагабонд насрал
 //	var/added_velocity = calculate_burn(burn_direction, burn_engines(burn_percentage, delta_time))
 // //Slows down the ship just enough to come to a full stop
 // if(burn_direction == BURN_STOP)
@@ -443,7 +456,7 @@
 				newy = burn_engines(burn_percentage, seconds_per_tick)*cos(bow_heading+90)
 
 	adjust_speed(newx, newy)
-// [/MANKIND-EDIT]
+// [/CELADON-EDIT]
 
 /**
  * Calculates the amount of acceleration to apply to the ship given the direction and velocity increase
@@ -486,9 +499,9 @@
 	burn_direction = direction
 	if(burn_direction == BURN_NONE)
 		STOP_PROCESSING(SSphysics, src)
-		// [MANKIND-ADD] - MANKIND_OVERMAP_STUFF - Это вагабонд насрал
+		// [CELADON-ADD] - CELADON_OVERMAP_STUFF - Это вагабонд насрал
 		rotating = 0
-		// [/MANKIND-ADD]
+		// [/CELADON-ADD]
 	else
 		START_PROCESSING(SSphysics, src)
 
@@ -506,15 +519,15 @@
 	else if(direction & SOUTH)
 		char_rep = "v"
 	if(direction)
-		// [MANKIND-EDIT] - MANKIND_OVERMAP_STUFF - Это вагабонд насрал
+		// [CELADON-EDIT] - CELADON_OVERMAP_STUFF - Это вагабонд насрал
 		//		token.icon_state = "ship_moving"
 		//		M.Turn(altdirection)
 		//	else
 		//		token.icon_state = "ship"
 		token.dir = NORTH
-		// [/MANKIND-EDIT]
+		// [/CELADON-EDIT]
 
-// [MANKIND-REMOVE] - MANKIND_OVERMAP_ICON - Убираем офовские картинки шипов
+// [CELADON-REMOVE] - CELADON_OVERMAP_ICON - Убираем офовские картинки шипов
 	// alter_token_appearance()
 
 // /datum/overmap/ship/alter_token_appearance()
@@ -545,7 +558,7 @@
 // 			token.add_overlay("dir_idle")
 // 		if(speed)
 // 			token.add_overlay("speed_[clamp(round(speed,1),0,10)]")
-// [/MANKIND-REMOVE]
+// [/CELADON-REMOVE]
 
 // ensures the camera always moves when the ship moves
 /datum/overmap/ship/overmap_move(new_x, new_y)

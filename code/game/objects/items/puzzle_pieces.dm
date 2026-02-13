@@ -21,12 +21,6 @@
 	color = "#f0da12"
 	puzzle_id = "cheese"
 
-/obj/item/keycard/swordfish
-	name = "titanic keycard"
-	desc = "Smells like it was at the bottom of a harbor."
-	color = "#3bbbdb"
-	puzzle_id = "swordfish"
-
 /obj/item/keycard/harmfactory
 	name = "factory keycard"
 	desc = "A keycard opening a door within the world's worst factory"
@@ -55,11 +49,6 @@
 
 /obj/item/keycard/gatedrop
 	icon_state = "golden_key"
-
-/obj/item/keycard/gatedrop/lavacanyon
-	name = "Vault Key"
-	desc = "A dusty key, smudged with dried blood."
-	puzzle_id = "lavacanyonkey"
 
 //***************
 //*****Doors*****

@@ -169,14 +169,14 @@
 	addtimer(CALLBACK(src, PROC_REF(start)), telegraph_duration)
 
 	if(sound_active_outside)
-		sound_active_outside.output_atoms = outside_areas
+		sound_active_outside.output_atoms = impacted_areas
 	if(sound_active_inside)
-		sound_active_inside.output_atoms = impacted_areas
+		sound_active_inside.output_atoms = outside_areas
 	if(sound_weak_outside)
-		sound_weak_outside.output_atoms = outside_areas
+		sound_weak_outside.output_atoms = impacted_areas
 		sound_weak_outside.start()
 	if(sound_weak_inside)
-		sound_weak_inside.output_atoms = impacted_areas
+		sound_weak_inside.output_atoms = outside_areas
 		sound_weak_inside.start()
 
 /**
@@ -310,7 +310,10 @@
 		set_area_icon_state(N)
 		if(stage == END_STAGE)
 			N.color = null
-			N.icon = 'icons/turf/areas.dmi'
+			// [CELADON-EDIT] - CELADON_AREAS - Иначе никак не подсунуть свои зоны
+			// N.icon = 'icons/turf/areas.dmi' // CELADON-EDIT - ORIGINAL
+			N.icon = 'mod_celadon/_storage_icons/icons/assets/areas.dmi'
+			// [CELADON-EDIT]
 			N.layer = initial(N.layer)
 			N.plane = initial(N.plane)
 			N.set_opacity(FALSE)

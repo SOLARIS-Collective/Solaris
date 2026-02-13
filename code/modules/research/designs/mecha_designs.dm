@@ -80,6 +80,29 @@
 	category = list("Exosuit Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
+// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+/datum/design/board/honker_main
+	name = "\"H.O.N.K\" Central Control module"
+	desc = "Allows for the construction of a \"H.O.N.K\" Central Control module."
+	id = "honker_main"
+	build_path = /obj/item/circuitboard/mecha/honker/main
+	category = list("Exosuit Modules")
+
+/datum/design/board/honker_peri
+	name = "\"H.O.N.K\" Peripherals Control module"
+	desc = "Allows for the construction of a \"H.O.N.K\" Peripheral Control module."
+	id = "honker_peri"
+	build_path = /obj/item/circuitboard/mecha/honker/peripherals
+	category = list("Exosuit Modules")
+
+/datum/design/board/honker_targ
+	name = "\"H.O.N.K\" Weapons & Targeting Control module"
+	desc = "Allows for the construction of a \"H.O.N.K\" Weapons & Targeting Control module."
+	id = "honker_targ"
+	build_path = /obj/item/circuitboard/mecha/honker/targeting
+	category = list("Exosuit Modules")
+// [CELADON-ADD]
+
 /datum/design/board/phazon_main
 	name = "\"Phazon\" Central Control module"
 	desc = "Allows for the construction of a \"Phazon\" Central Control module."
@@ -360,6 +383,35 @@
 	materials = list(/datum/material/iron=10000,/datum/material/glass =  1000,/datum/material/silver=500)
 	construction_time = 100
 	category = list("Exosuit Equipment")
+
+// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+/datum/design/mech_mousetrap_mortar
+	name = "H.O.N.K Mousetrap Mortar"
+	id = "mech_mousetrap_mortar"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/mousetrap_mortar
+	materials = list(/datum/material/iron=20000,/datum/material/hellstone=5000)
+	construction_time = 300
+	category = list("Exosuit Equipment")
+
+/datum/design/mech_banana_mortar
+	name = "H.O.N.K Banana Mortar"
+	id = "mech_banana_mortar"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/banana_mortar
+	materials = list(/datum/material/iron=20000,/datum/material/hellstone=5000)
+	construction_time = 300
+	category = list("Exosuit Equipment")
+
+/datum/design/mech_punching_glove
+	name = "Oingo Boingo Punch-face"
+	id = "mech_punching_face"
+	build_type = MECHFAB
+	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/punching_glove
+	materials = list(/datum/material/iron=20000,/datum/material/hellstone=7500)
+	construction_time = 400
+	category = list("Exosuit Equipment")
+// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
 
 /datum/design/mech_plasma_cutter
 	name = "Exosuit Module Design (217-D Heavy Plasma Cutter)"

@@ -1,3 +1,6 @@
+/* [CELADON-DELETE] - Убираем инициализацию офовских предметов.
+	Разносим ресурсы по разным фракциям: "mod_celadon\outpost_console\code\supply_pack"
+
 /datum/supply_pack/costumes_toys
 	category = "Costumes & Toys"
 
@@ -78,7 +81,7 @@
 
 /datum/supply_pack/costumes_toys/costume_original
 	name = "Original Costume Crate"
-	desc = "Reenact plays with this assortment of outfits. Contains eight different costumes!"
+	desc = "Reenact Solarian plays with this assortment of outfits. Contains eight different costumes!"
 	cost = 500
 	contains = list(/obj/item/clothing/head/snowman,
 					/obj/item/clothing/suit/snowman,
@@ -110,7 +113,7 @@
 					/obj/item/clothing/suit/toggle/lawyer,
 					/obj/item/clothing/under/rank/civilian/lawyer/purpsuit,
 					/obj/item/clothing/suit/toggle/lawyer/purple,
-					/obj/item/clothing/suit/toggle/lawyer/black,
+					/obj/item/clothing/suit/lawyer/charcoal,
 					/obj/item/clothing/accessory/waistcoat,
 					/obj/item/clothing/neck/tie/blue,
 					/obj/item/clothing/neck/tie/red,
@@ -184,3 +187,5 @@
 					/obj/item/clothing/under/dress/rilena,
 					/obj/item/gun/energy/buster)
 	crate_name = "collectable merchandise crate"
+
+[/CELADON-DELETE] */

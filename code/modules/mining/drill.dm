@@ -25,6 +25,7 @@
 
 	var/malfunction
 	var/active = FALSE
+	///the vein that we are currently drilling
 	var/obj/structure/vein/our_vein
 	var/datum/looping_sound/drill/soundloop
 	var/obj/item/stock_parts/cell/cell
@@ -79,9 +80,19 @@
 		update_overlays()
 		update_icon_state()
 	if(!active && our_vein?.currently_spawning)
-		our_vein.toggle_spawning()
+		our_vein.stop_spawning()
+	// [CELADON-ADD] - CELADON_FIXES - FIXES_DRILLCLASS - Дополнительная проверка для буров миссии
+	if(istype(src, /obj/machinery/drill/mission) && our_vein?.currently_spawning)
+		var/obj/machinery/drill/mission/mission_drill = src
+		if(mission_drill.num_current >= mission_drill.num_wanted)
+			our_vein.stop_spawning()
+	// [/CELADON-ADD]
 
 /obj/machinery/drill/Destroy()
+	// [CELADON-ADD] - CELADON_FIXES - FIXES_DRILLCLASS - Останавливаем спавн мобов при удалении бура
+	if(our_vein?.currently_spawning)
+		our_vein.stop_spawning()
+	// [/CELADON-ADD]
 	QDEL_NULL(soundloop)
 	QDEL_NULL(cell)
 	return ..()
@@ -140,6 +151,7 @@
 			to_chat(user, span_notice("You secure the [src] to the ore vein."))
 			playsound(src, 'sound/items/deconstruct.ogg', 50, TRUE)
 			our_vein = vein
+			our_vein.our_drill = src
 			anchored = TRUE
 			update_icon_state()
 			return
@@ -148,8 +160,9 @@
 			playsound(src, 'sound/items/deconstruct.ogg', 50, TRUE)
 			anchored = FALSE
 
-			if(our_vein?.spawner_attached && our_vein?.currently_spawning)
-				our_vein.toggle_spawning()
+			if(our_vein?.currently_spawning)
+				our_vein.stop_spawning()
+			our_vein.our_drill = null
 			our_vein = null
 			update_icon_state()
 			return
@@ -283,10 +296,11 @@
 	soundloop.stop()
 	deltimer(current_timerid)
 	if(our_vein?.currently_spawning)
-		our_vein.toggle_spawning()
+		our_vein.stop_spawning()
 	if(destructive)
 		our_vein.Destroy()
 		our_vein = null
+		anchored = FALSE
 	playsound(src, 'sound/machines/switch2.ogg', 50, TRUE)
 	update_icon_state()
 	update_overlays()
@@ -314,10 +328,9 @@
 		var/mine_time
 		active = TRUE
 		soundloop.start()
-		if(!our_vein.spawner_attached)
-			our_vein.begin_spawning()
-		else if(!our_vein.currently_spawning)
-			our_vein.toggle_spawning()
+		our_vein.begin_spawning()
+		if(!our_vein.currently_spawning)
+			our_vein.stop_spawning()
 		for(var/obj/item/stock_parts/micro_laser/laser in component_parts)
 			mine_time = round((300/sqrt(laser.rating))*our_vein.mine_time_multiplier)
 		eta = mine_time*our_vein.mining_charges
@@ -354,8 +367,11 @@
 
 //Overly long proc to handle the unique properties for each malfunction type
 /obj/machinery/drill/proc/malfunction(malfunction_type)
+
+	//we want to pause the creation of new spawners
 	if(active && our_vein?.currently_spawning)
-		our_vein.toggle_spawning() //turns mob spawning off after a malfunction
+		our_vein.stop_spawning()
+
 	switch(malfunction_type)
 		if(MALF_LASER)
 			say("Malfunction: Laser array damaged, please replace before continuing mining operations.")

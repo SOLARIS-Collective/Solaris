@@ -43,7 +43,7 @@
 
 /// In which we print the message that we're starting to heal someone, then we try healing them. Does the do_after whether or not it can actually succeed on a targeted mob
 /obj/item/stack/medical/proc/try_heal(mob/living/patient, mob/user, silent = FALSE)
-	if(!patient.can_inject(user, TRUE))
+	if(!patient.can_inject(user))
 		return
 
 	if(patient == user)
@@ -53,7 +53,7 @@
 				span_notice("[user] starts to apply [src] on [user.p_them()]self..."),
 				span_notice("You begin applying [src] on yourself..."),
 			)
-		if(!do_after(user, self_delay, patient, extra_checks = CALLBACK(patient, TYPE_PROC_REF(/mob/living, can_inject), user, TRUE)))
+		if(!do_after(user, self_delay, patient, extra_checks = CALLBACK(patient, TYPE_PROC_REF(/mob/living, can_inject), user)))
 			return
 
 	else if(other_delay)
@@ -63,7 +63,7 @@
 				span_notice("[user] starts to apply [src] on [patient]."),
 				span_notice("You begin applying [src] on [patient]..."),
 			)
-		if(!do_after(user, other_delay, patient, extra_checks = CALLBACK(patient, TYPE_PROC_REF(/mob/living, can_inject), user, TRUE)))
+		if(!do_after(user, other_delay, patient, extra_checks = CALLBACK(patient, TYPE_PROC_REF(/mob/living, can_inject), user)))
 			return
 
 	if(heal(patient, user))
@@ -138,7 +138,7 @@
 	self_delay = 2 SECONDS
 	other_delay = 1.5 SECONDS
 	heal_brute = 10
-	grind_results = list(/datum/reagent/medicine/c2/libital = 10)
+	grind_results = list(/datum/reagent/medicine/indomide = 10)
 	merge_type = /obj/item/stack/medical/bruise_pack
 
 /obj/item/stack/medical/gauze
@@ -153,7 +153,7 @@
 	max_amount = 12
 	amount = 6
 	grind_results = list(/datum/reagent/cellulose = 2)
-	custom_price = 50
+	custom_price = 35 // [CELADON-EDIT] - OUTPOST_MED_BALANCE // custom_price = 50
 	burn_cleanliness_bonus = 0.35
 	merge_type = /obj/item/stack/medical/gauze
 	var/gauze_type = /datum/bodypart_aid/gauze
@@ -472,10 +472,19 @@
 	merge_type = /obj/item/stack/medical/splint/hunter
 
 /obj/item/stack/medical/splint/improvised
-	name = "improvised splint"
+	name = "wooden improvised splint"
 	desc = "Crudely made out splints with wood and some cotton sling, you doubt this will be any good."
-	singular_name = "improvised splint"
+	singular_name = "wooden improvised splint"
 	icon_state = "splint_improv"
 	amount = 1
 	splint_type = /datum/bodypart_aid/splint/improvised
 	merge_type = /obj/item/stack/medical/splint/improvised
+
+/obj/item/stack/medical/splint/improvised_metal
+	name = "metal improvised splint"
+	desc = "Crudely made out splints with metal rods and some cotton sling, you doubt this will be any good."
+	singular_name = "metal improvised splint"
+	icon_state = "splint_improv_metal"
+	amount = 1
+	splint_type = /datum/bodypart_aid/splint/improvised_metal
+	merge_type = /obj/item/stack/medical/splint/improvised_metal

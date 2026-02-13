@@ -1,3 +1,6 @@
+/* [CELADON-DELETE] - Убираем инициализацию офовских предметов.
+	Разносим ресурсы по разным фракциям: "mod_celadon\outpost_console\code\supply_pack"
+
 // the ever continuing guncode growth. if only we had this passion for engineering.
 
 /* Attachments */
@@ -52,13 +55,6 @@
 	contains = list(/obj/item/attachment/ammo_counter)
 	crate_name = "ammo counter crate"
 
-/datum/supply_pack/attachment/sling
-	name = "Shoulder Sling Crate"
-	desc = "Contains a single shoulder sling to be mounted on a firearm for easy carrying without armor holsters. Only compatible with longarms."
-	cost = 250
-	contains = list(/obj/item/attachment/sling)
-	crate_name = "shoulder sling crate"
-
 /datum/supply_pack/attachment/scope
 	name = "Scope Crate"
 	desc = "Contains a single scope to be mounted on a firearm."
@@ -94,6 +90,13 @@
 	contains = list(/obj/item/storage/guncase/underbarrel_flamethrower)
 	crate_name = "underbarrel flamethrower crate"
 
+/datum/supply_pack/attachment/riot_launcher
+	name = "Underbarrel Riot Grenade Launcher Crate"
+	desc = "Contains a single shot underbarrel riot grenade launcher to be mounted on a firearm."
+	cost = 1000
+	contains = list(/obj/item/storage/guncase/underbarrel_riot_grenade)
+	crate_name = "underbarrel riot grenade launcher crate"
+
 /datum/supply_pack/attachment/e_gun
 	name = "Underbarrel Energy Gun Crate"
 	desc = "Contains an underbarrel energy gun to be mounted on a firearm."
@@ -101,16 +104,12 @@
 	contains = list(/obj/item/storage/guncase/energy/underbarrel_e_gun)
 	crate_name = "underbarrel energy gun crate"
 
-/datum/supply_pack/attachment/riot_launcher
-	name = "Underbarrel Riot Grenade Launcher Crate"
-	desc = "Contains a single shot underbarrel riot grenade launcher to be mounted on a firearm."
-	cost = 750
-	contains = list(/obj/item/storage/guncase/underbarrel_riot_grenade)
-	crate_name = "underbarrel riot grenade launcher crate"
-
 /datum/supply_pack/attachment/flare
 	name = "Underbarrel Flare Gun Crate"
 	desc = "Contains a single shot underbarrel flare gun to be mounted on a firearm. One box of flares included."
 	cost = 200
 	contains = list(/obj/item/attachment/gun/flare)
 	crate_name = "underbarrel flare gun crate"
+
+
+[/CELADON-DELETE] */

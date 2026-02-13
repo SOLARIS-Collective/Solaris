@@ -12,7 +12,7 @@ GLOBAL_VAR(changeling_team_objective_type) //If this is not null, we hand our th
 	antag_flag = ROLE_CHANGELING
 	false_report_weight = 10
 	restricted_jobs = list("AI", "Cyborg")
-	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Brig Physician", "SolGov Representative", "Prisoner")
+	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Brig Physician", "SolGov Representative", "Prisoner") //WS edit - Brig Physicians, SolGov Rep
 	required_players = 15
 	required_enemies = 1
 	recommended_enemies = 4
@@ -111,9 +111,13 @@ GLOBAL_VAR(changeling_team_objective_type) //If this is not null, we hand our th
 	user.updateappearance(mutcolor_update=1)
 
 	///Bodypart data hack. Will rewrite when I rewrite changelings soon-ish
-	for(var/obj/item/bodypart/BP as anything in user.bodyparts)
-		if(IS_ORGANIC_LIMB(BP))
-			BP.update_limb(is_creating = TRUE)
+	var/obj/item/bodypart/limb
+	for(var/zone in user.bodyparts)
+		limb = user.bodyparts[zone]
+		if(!limb)
+			continue
+		if(IS_ORGANIC_LIMB(limb))
+			limb.update_limb(is_creating = TRUE)
 
 	user.domutcheck()
 

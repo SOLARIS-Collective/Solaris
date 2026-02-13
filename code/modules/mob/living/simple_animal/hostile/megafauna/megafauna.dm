@@ -11,7 +11,7 @@
 	light_range = 3
 	faction = list("mining", "boss")
 	weather_immunities = list("lava","ash")
-	movement_type = FLYING
+	is_flying_animal = TRUE
 	robust_searching = TRUE
 	ranged_ignores_vision = TRUE
 	stat_attack = DEAD
@@ -71,10 +71,19 @@
 	if(health > 0)
 		return
 	else
-		spawn_mob_trophy()
-		var/datum/status_effect/crusher_damage/crusher = has_status_effect(STATUS_EFFECT_CRUSHERDAMAGETRACKING)
+		// [CELADON-ADD] - RETURN_CONTENT_CRUSHER_TROPHY
+		var/datum/status_effect/crusher_damage/C = has_status_effect(STATUS_EFFECT_CRUSHERDAMAGETRACKING)
+		// [/CELADON-ADD]
+		// [CELADON-REMOVE] - RETURN_CONTENT_CRUSHER_TROPHY - Выпилено ради легенды
+		// spawn_mob_trophy()
+		// var/datum/status_effect/crusher_damage/crusher = has_status_effect(STATUS_EFFECT_CRUSHERDAMAGETRACKING)
+		// [/CELADON-REMOVE]
 		var/crusher_kill = FALSE
-		if(crusher && mob_trophy && crusher.total_damage >= maxHealth * 0.6)
+		// [CELADON-EDIT] - RETURN_CONTENT_CRUSHER_TROPHY
+		// if(crusher && mob_trophy && crusher.total_damage >= maxHealth * 0.6)
+		if(C && crusher_loot && C.total_damage >= maxHealth * 0.6)
+			spawn_crusher_loot()
+		// [/CELADON-EDIT]
 			crusher_kill = TRUE
 		if(true_spawn && !(flags_1 & ADMIN_SPAWNED_1))
 			var/tab = "megafauna_kills"
@@ -85,9 +94,11 @@
 				SSblackbox.record_feedback("tally", tab, 1, "[initial(name)]")
 		..()
 
-/mob/living/simple_animal/hostile/megafauna/proc/spawn_mob_trophy()
-	if(mob_trophy)
-		loot += mob_trophy
+// [CELADON-REMOVE] - RETURN_CONTENT_CRUSHER_TROPHY - Выпилено ради легенды
+// /mob/living/simple_animal/hostile/megafauna/proc/spawn_mob_trophy()
+// 	if(mob_trophy)
+		// loot += mob_trophy
+// [/CELADON-REMOVE]
 
 /mob/living/simple_animal/hostile/megafauna/gib()
 	if(health > 0)

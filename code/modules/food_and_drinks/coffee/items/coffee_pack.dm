@@ -21,6 +21,7 @@
 	illustration = null
 	icon = 'icons/obj/item/coffee.dmi'
 	icon_state = "arabica_beans"
+
 /obj/item/storage/box/coffeepack/arabica/PopulateContents()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 5

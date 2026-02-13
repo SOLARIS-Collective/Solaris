@@ -19,7 +19,6 @@
 #define TOOL_DECONSTRUCT "deconstruct"
 #define TOOL_BLOODFILTER "blood filter"
 #define TOOL_ROLLINGPIN "rollingpin"
-#define TOOL_CULTIVATOR "cultivator" // For Cyborg Botany Omni Tool Checks
 
 
 // If delay between the start and the end of tool operation is less than MIN_TOOL_SOUND_DELAY,

@@ -110,6 +110,8 @@
 
 /datum/config_entry/flag/auth_admin_testing // auth server allows admin testing and other actions
 
+/datum/config_entry/flag/DiscordVerify // [CELADON-ADD] - Добавляем систему верификации аккаунтов через Discord
+
 /datum/config_entry/number/vote_delay	// minimum time between voting sessions (deciseconds, 10 minute default)
 	config_entry_value = 6000
 	integer = FALSE
@@ -231,22 +233,22 @@
 /datum/config_entry/string/banappeals
 
 /datum/config_entry/string/wikiurl
-	config_entry_value = "https://shiptest.net/wiki/"
+	config_entry_value = "https://wiki.celadon.pro/"
 
 /datum/config_entry/string/loreurl
-	config_entry_value = "https://github.com/tgstation/common_core"
+	config_entry_value = "https://shiptest.net/wiki/Lore_Primer"
 
 /datum/config_entry/string/rulesurl
-	config_entry_value = "https://web.pentest.com.co/rules.html"
+	config_entry_value = "https://wiki.celadon.pro/index.php/Правила_игры"
 
 /datum/config_entry/string/githuburl
-	config_entry_value = "https://github.com/PentestSS13/Pentest"
+	config_entry_value = "https://github.com/CeladonSS13/Shiptest"
 
 /datum/config_entry/string/discordurl
-	config_entry_value = "https://discord.gg/ydGPEejXZB"
+	config_entry_value = "https://discord.gg/rxsggTJzY3"
 
 /datum/config_entry/string/mapviewerurl
-	config_entry_value = "https://shiptest.net/map"
+	config_entry_value = "https://map.celadon.pro/"
 
 /datum/config_entry/string/centcom_ban_db	// URL for the CentCom Galactic Ban DB API
 
@@ -524,3 +526,10 @@
 /datum/config_entry/string/elasticsearch_metrics_endpoint
 
 /datum/config_entry/string/elasticsearch_metrics_apikey
+
+/**
+ * Tgui ui_act payloads larger than 2kb are split into chunks a maximum of 1kb in size.
+ * This flag represents the maximum chunk count the server is willing to receive.
+ */
+/datum/config_entry/number/tgui_max_chunk_count
+	default = 32

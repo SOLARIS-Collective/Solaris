@@ -26,7 +26,11 @@
 #define SPOOKY_SKELETON 1
 #define ANGRY_FAITHLESS 2
 #define SCARY_BATS 3
-#define HOWLING_GHOST 4
+// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
+//#define HOWLING_GHOST 4
+#define INSANE_CLOWN 4
+#define HOWLING_GHOST 5
+// [/CELADON-EDIT]
 
 //Spookoween variables
 /obj/structure/closet
@@ -43,6 +47,11 @@
 	trigger_spooky_trap()
 
 /obj/structure/closet/proc/set_spooky_trap()
+// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+	if(prob(0.1))
+		trapped = INSANE_CLOWN
+		return
+// [/CELADON-ADD]
 	if(prob(1))
 		trapped = ANGRY_FAITHLESS
 		return
@@ -94,11 +103,13 @@
 		trapped = 0
 		QDEL_IN(F, 120)
 
+	// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
 	else if(trapped == INSANE_CLOWN)
 		visible_message("<span class='userdanger'><font size='5'>...</font></span>")
 		playsound(loc, 'sound/spookoween/scary_clown_appear.ogg', 300, TRUE)
 		spawn_atom_to_turf(/mob/living/simple_animal/hostile/clown_insane, loc, 1, FALSE)
 		trapped = 0
+	// [/CELADON-ADD]
 
 //don't spawn in crates
 /obj/structure/closet/crate/trigger_spooky_trap()
@@ -168,6 +179,18 @@
 /mob/living/simple_animal/shade/howling_ghost/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
 	. = 0
 
+/////////////////////////
+// Spooky Uplink Items //
+/////////////////////////
+
+/datum/uplink_item/device_tools/emag/hack_o_lantern
+	name = "Hack-o'-Lantern"
+	desc = "An emag fitted to support the Halloween season. Candle not included."
+	category = "Holiday"
+	item = /obj/item/card/emag/halloween
+	surplus = 0
+
+// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
 ///////////////////////////
 //Spookoween Insane Clown//
 ///////////////////////////
@@ -176,7 +199,7 @@
 /mob/living/simple_animal/hostile/clown_insane
 	name = "insane clown"
 	desc = "Some clowns do not manage to be accepted, and go insane. This is one of them."
-	icon = 'modular_pentest/modules/job_clown/icons/mob/clown_mobs.dmi'
+	icon = 'icons/mob/clown_mobs.dmi'
 	icon_state = "scary_clown"
 	icon_living = "scary_clown"
 	icon_dead = "scary_clown"
@@ -240,27 +263,6 @@
 	if(prob(5))
 		playsound(loc, 'sound/spookoween/insane_low_laugh.ogg', 300, TRUE)
 
-/mob/living/simple_animal/hostile/clown_insane/attackby(obj/item/O, mob/user)
-	if(istype(O, /obj/item/nullrod))
-		if(prob(5))
-			visible_message("<span class='notice'>[src] finally found the peace it deserves. <i>You hear honks echoing off into the distance.</i></span>")
-			playsound(loc, 'sound/spookoween/insane_low_laugh.ogg', 300, TRUE)
-			qdel(src)
-		else
-			visible_message("<span class='danger'>[src] seems to be resisting the effect!</span>")
-		return
-	return ..()
-
 /mob/living/simple_animal/hostile/clown_insane/handle_temperature_damage()
 	return
-
-/////////////////////////
-// Spooky Uplink Items //
-/////////////////////////
-
-/datum/uplink_item/device_tools/emag/hack_o_lantern
-	name = "Hack-o'-Lantern"
-	desc = "An emag fitted to support the Halloween season. Candle not included."
-	category = "Holiday"
-	item = /obj/item/card/emag/halloween
-	surplus = 0
+// [/CELADON-ADD]

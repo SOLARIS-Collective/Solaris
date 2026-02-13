@@ -3,12 +3,6 @@
 	faction = FACTION_PLAYER_SOLCON
 	faction_icon = "bg_solgov"
 
-/datum/outfit/job/solgov/post_equip(mob/living/carbon/human/H, visualsOnly)
-	. = ..()
-	if(visualsOnly)
-		return
-	H.grant_language(/datum/language/solarian_international)
-
 /datum/outfit/job/solgov/assistant
 	name = "SolGov - Scribe"
 	id_assignment = "Scribe"
@@ -50,7 +44,9 @@
 	suit = /obj/item/clothing/suit/armor/vest/solgov/captain
 	shoes = /obj/item/clothing/shoes/laceup
 	head = /obj/item/clothing/head/solgov/captain
-	backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1)
+	// [CELADON-REMOVE] - CELADON_BALANCE - Убираем телескопички
+	// backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1)
+	// [/CELADON-REMOVE]
 
 	backpack = /obj/item/storage/backpack/captain
 	satchel = /obj/item/storage/backpack/satchel/cap
@@ -59,7 +55,7 @@
 
 	accessory = /obj/item/clothing/accessory/medal/gold/captain
 
-	chameleon_extras = list(/obj/item/gun/energy/e_gun, /obj/item/stamp/captain)
+	chameleon_extras = list(/obj/item/gun/energy/sharplite/x12, /obj/item/stamp/captain)
 
 /datum/outfit/job/solgov/sonnensoldner
 	name = "SolGov - Sonnensöldner"
@@ -118,10 +114,13 @@
 	suit = /obj/item/clothing/suit/armor/vest/solgov/overseer
 	shoes = /obj/item/clothing/shoes/laceup
 
-	backpack_contents = list(/obj/item/storage/box/ids=1,\
-		/obj/item/melee/classic_baton/telescopic=1, /obj/item/modular_computer/tablet/preset/advanced = 1)
+	// [CELADON-REMOVE] - CELADON_BALANCE - Убираем телескопички
+	// backpack_contents = list(/obj/item/storage/box/ids=1,
+	// /obj/item/melee/classic_baton/telescopic=1, /obj/item/modular_computer/tablet/preset/advanced = 1)	// CELADON-EDIT - ORIGINAL
+	backpack_contents = list(/obj/item/storage/box/ids=1, /obj/item/modular_computer/tablet/preset/advanced = 1)
+	// [/CELADON-REMOVE]
 
-	chameleon_extras = list(/obj/item/gun/energy/e_gun, /obj/item/stamp/officer)
+	chameleon_extras = list(/obj/item/gun/energy/sharplite/x12, /obj/item/stamp/officer)
 
 /datum/outfit/job/solgov/doctor
 	name = "SolGov - Medical Doctor"

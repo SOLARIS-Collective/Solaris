@@ -35,7 +35,7 @@
 	deathmessage = "fades as the energies that tied it to this world dissipate."
 	deathsound = 'sound/magic/demon_dies.ogg'
 	stat_attack = HARD_CRIT
-	movement_type = FLYING
+	is_flying_animal = TRUE
 	robust_searching = TRUE
 	footstep_type = FOOTSTEP_MOB_CLAW
 	/// Distance the demon will teleport from the target
@@ -47,7 +47,10 @@
 	nodamage = FALSE
 	temperature = -40
 
-/mob/living/simple_animal/hostile/asteroid/ice_demon/OpenFire()
+// [CELADON-EDIT] - CELADON_BALANCE_MOBS
+// /mob/living/simple_animal/hostile/asteroid/ice_demon/OpenFire()
+/mob/living/simple_animal/hostile/asteroid/old_demon/OpenFire()
+// [/CELADON-EDIT]
 	// Sentient ice demons teleporting has been linked to server crashes
 	if(client)
 		return ..()
@@ -74,6 +77,10 @@
 		new /obj/item/assembly/signaler/anomaly/bluespace(loc)
 	if(prob(5))
 		new /obj/item/gem/fdiamond(loc)
+	// [CELADON-ADD] - RETURN_CONTENT_CRUSHER_TROPHY
+	if(prob(10))
+		new /obj/item/crusher_trophy/ice_wing(loc)
+	// [/CELADON-ADD]
 	return ..()
 
 /mob/living/simple_animal/hostile/asteroid/old_demon
@@ -115,12 +122,14 @@
 	deathmessage = "screeches in rage as it falls back into nullspace."
 	deathsound = 'sound/magic/demon_dies.ogg'
 	stat_attack = HARD_CRIT
-	movement_type = FLYING
+	is_flying_animal = TRUE
 	robust_searching = TRUE
 	footstep_type = FOOTSTEP_MOB_CLAW
 	/// Distance the demon will teleport from the target
 	var/teleport_distance = 3
-	trophy_drop_mod = 75
+	// [CELADON-REMOVE] - RETURN_CONTENT_CRUSHER_TROPHY - Выпилено ради легенды
+	// trophy_drop_mod = 75
+	// [/CELADON-REMOVE]
 
 /obj/projectile/temp/basilisk/ice
 	name = "ice blast"
@@ -155,6 +164,10 @@
 		new /obj/item/assembly/signaler/anomaly/bluespace(loc)
 	if(prob(20))
 		new /obj/item/gem/fdiamond(loc)
+	// [CELADON-ADD] - RETURN_CONTENT_CRUSHER_TROPHY
+	if(prob(50))
+		new /obj/item/crusher_trophy/ice_crystal(loc)
+	// [/CELADON-ADD]
 	return ..()
 
 /mob/living/simple_animal/hostile/asteroid/ice_demon/random/Initialize()

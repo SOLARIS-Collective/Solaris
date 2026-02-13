@@ -391,7 +391,7 @@
 // [CELADON-EDIT] - DANGER_STORM
 	zap_flag = ZAP_MAJOR_STORM_FLAGS
 	max_zap_strike = 12
-	min_zap_strike = 6
+	min_zap_strike = 6	
 // [/CELADON-EDIT]
 
 /datum/overmap/event/nebula
@@ -507,7 +507,7 @@
 
 //Carp "meteors" - throws carp at the ship
 
-/datum/overmap/event/meteor/carp	// вынесено в modular_mankind/fixes/code/research_mission.dm, оставлено дял того чтобы не удалять кучу зависимостей
+/datum/overmap/event/meteor/carp	// вынесено в mod_celadon/fixes/code/research_mission.dm, оставлено дял того чтобы не удалять кучу зависимостей
 	name = "carp migration (moderate)"
 	desc = "A migratory school of space carp. They travel at high speeds, and flying through them may cause them to impact your ship"
 	base_icon_state = "carp_medium_"
@@ -556,7 +556,7 @@
 
 // dust clouds throw dust if you go Way Fast
 
-/datum/overmap/event/meteor/dust	// вынесено в modular_mankind/fixes/code/research_mission.dm, оставлено дял того чтобы не удалять кучу зависимостей
+/datum/overmap/event/meteor/dust	// вынесено в mod_celadon/fixes/code/research_mission.dm, оставлено дял того чтобы не удалять кучу зависимостей
 	name = "dust cloud"
 	desc = "A cloud of spaceborne dust. Relatively harmless, unless you're travelling at relative speeds"
 	base_icon_state = "dust"

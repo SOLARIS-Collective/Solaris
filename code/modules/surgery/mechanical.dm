@@ -1,18 +1,19 @@
+// [CELADON-REMOVE] - CELADON_IPC_SURGERY - Выносим в mod_celadon/ipc_surgery/code/ipc_surgery.dm
 /*\ Mechanical Surgery for IPC's and the augmented \*/
-
-/datum/surgery/brain_surgery/mechanic
-	name = "Mechanical brain surgery"
-	requires_bodypart_type = BODYTYPE_ROBOTIC
-	steps = list(
-		/datum/surgery_step/mechanic_open,
-		/datum/surgery_step/open_hatch,
-		/datum/surgery_step/prepare_electronics,
-		/datum/surgery_step/fix_brain/mechanic,
-		/datum/surgery_step/close_hatch,
-		/datum/surgery_step/mechanic_close
-	)
-	lying_required = FALSE
-	self_operable = TRUE
+// /datum/surgery/brain_surgery/mechanic
+// 	name = "Mechanical brain surgery"
+// 	requires_bodypart_type = BODYTYPE_ROBOTIC
+// 	steps = list(
+// 		/datum/surgery_step/mechanic_open,
+// 		/datum/surgery_step/open_hatch,
+// 		/datum/surgery_step/prepare_electronics,
+// 		/datum/surgery_step/fix_brain,
+// 		/datum/surgery_step/close_hatch,
+// 		/datum/surgery_step/mechanic_close
+// 	)
+// 	lying_required = FALSE
+// 	self_operable = TRUE
+// [/CELADON-REMOVE]
 
 /datum/surgery_step/fix_brain/mechanic
 	implements = list(

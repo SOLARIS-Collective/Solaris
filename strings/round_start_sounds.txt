@@ -1,1 +1,5 @@
-modular_pentest/modules/title_music/sounds/banned_from_argo.mp3
+mod_celadon/_storage_sounds/sound/lobby/title0.ogg
+mod_celadon/_storage_sounds/sound/lobby/title1.ogg
+mod_celadon/_storage_sounds/sound/lobby/title2.ogg
+mod_celadon/_storage_sounds/sound/lobby/title3.ogg
+

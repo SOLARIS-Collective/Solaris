@@ -181,12 +181,18 @@ SUBSYSTEM_DEF(mapping)
 #define CHECK_LIST_EXISTS(X) if(!islist(data[X])) { stack_trace("[##X] missing from json!"); continue; }
 /datum/controller/subsystem/mapping/proc/load_ship_templates()
 	ship_purchase_list = list()
-	var/list/filelist = flist("_maps/configs/")
+	// [CELADON-EDIT] - CELADON_CONFIGS_MAPS
+	// var/list/filelist = flist("_maps/configs/") // CELADON-EDIT - ORIGINAL
+	var/list/filelist = flist("_maps/_mod_celadon/configs/")
+	// [/CELADON-EDIT]
 
 	filelist = sortList(filelist)
 
 	for(var/filename in filelist)
-		var/file = file("_maps/configs/" + filename)
+		// [CELADON-EDIT] - CELADON_CONFIGS_MAPS
+		// var/file = file("_maps/configs/" + filename) // CELADON-EDIT - ORIGINAL
+		var/file = file("_maps/_mod_celadon/configs/" + filename)
+		// [/CELADON-EDIT]
 		if(!file)
 			stack_trace("Could not open map config: [filename]")
 			continue
@@ -205,20 +211,16 @@ SUBSYSTEM_DEF(mapping)
 		CHECK_LIST_EXISTS("job_slots")
 		var/datum/map_template/shuttle/S = new(data["map_path"], data["map_name"], TRUE)
 		S.file_name = data["map_path"]
-		if(istext(data["ship_icon"]))
-			S.ship_icon = data["ship_icon"]
-		if(istext(data["empty_space_icon"]))
-			S.empty_space_icon = data["empty_space_icon"]
-
-		if(istext(data["architect"]))
-			S.architect = data["architect"]
-		if(islist(data["contributors"]))
-			S.contributors = data["contributors"]
 
 		if(istext(data["map_short_name"]))
 			S.short_name = data["map_short_name"]
 		else
 			S.short_name = copytext(S.name, 1, 20)
+
+		// [CELADON-ADD] - OVERMAP SENSORS
+		if(isnum(data["sensor_range"]))
+			S.def_sensor_range = data["sensor_range"]
+		// [/CELADON-ADD]
 
 		if(istext(data["token_icon_state"]))
 			S.token_icon_state = data["token_icon_state"]
@@ -254,9 +256,6 @@ SUBSYSTEM_DEF(mapping)
 
 		if(istext(data["description"]))
 			S.description = data["description"]
-
-		if(istext(data["skip_checks"]) && isnum(data["skip_checks"])) //Pentest edit
-			S.skip_checks = TRUE //Pentest edit
 
 		if(islist(data["tags"]))
 			S.tags = data["tags"]

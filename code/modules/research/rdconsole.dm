@@ -123,32 +123,12 @@ Nothing else in the console has ID requirements.
 	return ..()
 
 /obj/machinery/computer/rdconsole/attackby(obj/item/D, mob/user, params)
-	if(istype(D, /obj/item/slime_extract)) //PENTEST REVERT START
-		var/obj/item/slime_extract/E = D
-		if(!slime_already_researched[E.type])
-			if(!E.research)
-				playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 3, -1)
-				visible_message("<span class='notice'>[src] buzzes and displays a message: Invalid extract! (You shouldn't be seeing this. If you are, tell someone.)</span>")
-				return
-			if(E.Uses <= 0)
-				playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 3, -1)
-				visible_message("<span class='notice'>[src] buzzes and displays a message: Extract consumed - no research available.</span>")
-				return
-			else
-				playsound(src, 'sound/machines/ping.ogg', 50, 3, -1)
-				visible_message("<span class='notice'>[user] inserts [E] into a slot on the [src]!</span>", "<span class='notice'>You insert [E] into a slot on the [src], producting [E.research] points from the extract's chemical makeup!</span>")
-				stored_research.add_point_list(list(TECHWEB_POINT_TYPE_GENERIC = E.research))
-				slime_already_researched[E.type] = TRUE
-				qdel(D)
-				return
-		else
-			visible_message("<span class='notice'>[src] buzzes and displays a message: Slime extract already researched!</span>")
-			playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 3, -1)
-			return //PENTEST REVERT END
-
 	if(istype(D, /obj/item/seeds))
 		var/obj/item/seeds/E = D
-		if(!plant_already_researched[E.type])
+		// [CELADON-EDIT] - CELADON_FIXES - Попытка починить абуз
+		// if(!plant_already_researched[E.type])	// CELADON-EDIT - ORIGINAL
+		if(!GLOB.plant_already_researched[E.type])
+		// [/CELADON-EDIT]
 			if(!E.research)
 				playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 3, -1)
 				visible_message(span_warning("[src] buzzes and displays a message: Sample quality error! Sample is either too common to be of value or too full of bugs to be of use!"))
@@ -157,7 +137,10 @@ Nothing else in the console has ID requirements.
 				playsound(src, 'sound/machines/ping.ogg', 50, 3, -1)
 				visible_message(span_notice("[user] inserts [E] into a slot on the [src]!"), span_notice("You insert [E] into a slot on the [src], producting [E.research] points from the plant's genetic makeup!"))
 				stored_research.add_point_list(list(TECHWEB_POINT_TYPE_GENERIC = E.research))
-				plant_already_researched[E.type] = TRUE
+				// [CELADON-EDIT] - CELADON_FIXES - Попытка починить абуз
+				// plant_already_researched[E.type] = TRUE	// CELADON-EDIT - ORIGINAL
+				GLOB.plant_already_researched[E.type] = TRUE
+				// [/CELADON-EDIT]
 				qdel(D)
 				return
 		else
@@ -655,16 +638,21 @@ Nothing else in the console has ID requirements.
 /obj/machinery/computer/rdconsole/proc/ui_designdisk()		//Legacy code
 	RDSCREEN_UI_DDISK_CHECK
 	var/list/l = list()
+	// [CELADON-EDIT] - CELADON_FIXES - Индексная отрисовка слотов 1..max_blueprints
+	// Нормализуем длину при необходимости
+	if(d_disk.blueprints.len < d_disk.max_blueprints)
+		d_disk.blueprints.len = d_disk.max_blueprints
 	l += "Disk Operations: <A href='byond://?src=[REF(src)];clear_design=0'>Clear Disk</A><A href='byond://?src=[REF(src)];updt_design=0'>Upload All</A><A href='byond://?src=[REF(src)];eject_design=1'>Eject Disk</A>"
-	for(var/i in d_disk.blueprints)
+	for(var/i in 1 to d_disk.max_blueprints)
 		l += "<div class='statusDisplay'>"
-		if(istype(i, /datum/design))
-			var/datum/design/D = i
+		var/datum/design/D = d_disk.blueprints[i]
+		if(istype(D, /datum/design))
 			l += "[D.icon_html(usr)] <A href='byond://?src=[REF(src)];view_design=[D.id]'>[D.name]</A>"
 			l += "Operations: <A href='byond://?src=[REF(src)];updt_design=[i]'>Upload to database</A> <A href='byond://?src=[REF(src)];clear_design=[i]'>Clear Slot</A>"
 		else
 			l += "Empty Slot Operations: <A href='byond://?src=[REF(src)];switch_screen=[RDSCREEN_DESIGNDISK_UPLOAD];disk_slot=[i]'>Load Design to Slot</A>"
 		l += "</div>"
+	// [/CELADON-EDIT]
 	return l
 
 /obj/machinery/computer/rdconsole/proc/ui_designdisk_upload()	//Legacy code
@@ -1108,13 +1096,26 @@ Nothing else in the console has ID requirements.
 			return
 		var/n = text2num(ls["clear_design"])
 		if(!n)
+			// [CELADON-EDIT] - CELADON_FIXES - Массовая очистка индексно
+			if(!islist(d_disk.blueprints))
+				d_disk.blueprints = list()
+			if(d_disk.blueprints.len < d_disk.max_blueprints)
+				d_disk.blueprints.len = d_disk.max_blueprints
 			for(var/i in 1 to d_disk.max_blueprints)
 				d_disk.blueprints[i] = null
-				say("Wiping design disk.")
+			say("Wiping design disk.")
+			// [/CELADON-EDIT]
 		else
-			var/datum/design/D = d_disk.blueprints[n]
-			say("Wiping design [D.name] from design disk.")
-			d_disk.blueprints[n] = null
+			// [CELADON-EDIT] - CELADON_FIXES - Очистка слота индексно, без сжатия
+			if(!islist(d_disk.blueprints))
+				d_disk.blueprints = list()
+			if(d_disk.blueprints.len < d_disk.max_blueprints)
+				d_disk.blueprints.len = d_disk.max_blueprints
+			if(n >= 1 && n <= d_disk.max_blueprints)
+				var/datum/design/D = d_disk.blueprints[n]
+				say("Wiping design [D ? D.name : "slot [n]"] from design disk.")
+				d_disk.blueprints[n] = null
+			// [/CELADON-EDIT]
 	if(ls["search"]) //Search for designs with name matching pattern
 		searchstring = ls["to_search"]
 		searchtype = ls["type"]
@@ -1133,7 +1134,7 @@ Nothing else in the console has ID requirements.
 		if(QDELETED(d_disk))
 			say("No Design Disk Inserted!")
 			return
-		var/slot = text2num(ls["copy_design"])
+		var/slot = text2num(ls["copy_design"]) // numeric slot only
 		var/datum/design/design = SSresearch.techweb_design_by_id(ls["copy_design_ID"])
 		if(design)
 			var/autolathe_friendly = TRUE
@@ -1145,7 +1146,14 @@ Nothing else in the console has ID requirements.
 						autolathe_friendly = FALSE
 			if(design.build_type & (AUTOLATHE|PROTOLATHE)) // Specifically excludes circuit imprinter and mechfab
 				design.build_type = autolathe_friendly ? (design.build_type | AUTOLATHE) : design.build_type
-			d_disk.blueprints[slot] = design
+			// [CELADON-EDIT] - CELADON_FIXES - Пишем строго по индексу, не сжимаем список
+			if(!islist(d_disk.blueprints))
+				d_disk.blueprints = list()
+			if(d_disk.blueprints.len < d_disk.max_blueprints)
+				d_disk.blueprints.len = d_disk.max_blueprints
+			if(slot >= 1 && slot <= d_disk.max_blueprints)
+				d_disk.blueprints[slot] = design
+			// [/CELADON-EDIT]
 		screen = RDSCREEN_DESIGNDISK
 	if(ls["eject_item"]) //Eject the item inside the destructive analyzer.
 		if(QDELETED(linked_destroy))

@@ -42,7 +42,6 @@
 	icon_state = "formal_terragov"
 	item_state = "formal_terragov"
 
-
 /obj/item/clothing/under/solgov/formal/captain
 	name = "\improper SolGov captain uniform"
 	desc = "A formal SolGov uniform, utilized by captains of SolGov vessels."
@@ -149,7 +148,10 @@
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/solgov
 	allowed = list(/obj/item/gun, /obj/item/ammo_box,/obj/item/ammo_casing, /obj/item/melee/baton, /obj/item/melee/energy/sword/saber, /obj/item/restraints/handcuffs, /obj/item/tank/internals)
 	slowdown = 0.2
-	supports_variations = DIGITIGRADE_VARIATION
+	// [CELADON-EDIT] - TAJARA, CELADON_RIOL
+	// supports_variations = DIGITIGRADE_VARIATION // CELADON-EDIT - ORIGINAL
+	supports_variations = DIGITIGRADE_VARIATION | TAJARA_VARIATION | RIOL_VARIATION
+	// [/CELADON-EDIT]
 
 /obj/item/clothing/suit/hazardvest/solgov
 	name = "SolGov hazard vest"
@@ -171,6 +173,12 @@
 	mob_overlay_icon = 'icons/mob/clothing/faction/solgov/suits.dmi'
 	icon_state = "solgov_robe"
 	item_state = "solgov_robe"
+
+	equipping_sound = EQUIP_SOUND_SHORT_GENERIC
+	unequipping_sound = UNEQUIP_SOUND_SHORT_GENERIC
+	equip_delay_self = EQUIP_DELAY_COAT
+	equip_delay_other = EQUIP_DELAY_COAT * 1.5
+	strip_delay = EQUIP_DELAY_COAT * 1.5
 
 /obj/item/clothing/suit/solgov/dress
 	name = "SolGov dress"
@@ -233,7 +241,7 @@
 	mob_overlay_icon = 'icons/mob/clothing/faction/solgov/suits.dmi'
 	icon_state = "armor_solgov_trenchcoat"
 	item_state = "trenchcoat_solgov"
-	armor = list("melee" = 25, "bullet" = 10, "laser" = 25, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	armor = list("melee" = 25, "bullet" = 10, "laser" = 25, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0, "wound" = 10)  // [CELADON-EDIT] - CELADON_BALANCE
 	cold_protection = CHEST|LEGS|ARMS
 	heat_protection = CHEST|LEGS|ARMS
 	supports_variations = DIGITIGRADE_VARIATION_NO_NEW_ICON
@@ -280,6 +288,7 @@
 	item_state = "sonnensoldner_hat"
 	worn_y_offset = 4
 	dog_fashion = null
+	armor = list("melee" = 35, "bullet" = 35, "laser" = 35,"energy" = 40, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50, "wound" = 20) //[CELADON-ADD] - CELADON_BALANCE
 
 /obj/item/clothing/head/solgov/captain
 	name = "\improper SolGov bicorne hat"
@@ -290,6 +299,7 @@
 	item_state = "solgov_bicorne"
 	worn_y_offset = 2
 	dog_fashion = null
+	armor = list("melee" = 35, "bullet" = 35, "laser" = 35,"energy" = 40, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50, "wound" = 20) //[CELADON-ADD] - CELADON_BALANCE
 
 /obj/item/clothing/head/beret/solgov
 	name = "\improper SolGov beret"

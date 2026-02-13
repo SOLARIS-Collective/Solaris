@@ -15,6 +15,7 @@
 	/// The ship we reside on for ease of access
 	var/datum/overmap/ship/controlled/current_ship
 	var/datum/faction/current_faction
+	var/datum/overmap/outpost/outpost_docked
 
 	var/contraband = FALSE
 	var/self_paid = FALSE
@@ -27,8 +28,19 @@
 	var/blockade_warning = "Bluespace instability detected. Delivery impossible."
 	var/message
 	var/list/supply_pack_data
+	/// The currently linked supplypod beacon
+	var/obj/item/supplypod_beacon/beacon
+	/// Area instance that cargo pods are sent to
+	var/area/landingzone
+	/// The pod type used to deliver orders
+	var/podType = /obj/structure/closet/supplypod // [CELADON-EDIT] - CELADON_OUTPOST_CONSOLE - instead of "/obj/structure/closet/supplypod/centcompod"
+	/// Cooldown to prevent printing supplypod beacon spam
+	var/cooldown = 0
+	/// Is the console in beacon mode? exists to let beacon know when a pod may come in
+	var/use_beacon = FALSE
 	/// The account to charge purchases to, defaults to the cargo budget
 	var/datum/bank_account/charge_account
+	var/pack_data_cooldown = 0  // [CELADON-ADD] - CELADON_FIXES: Cooldown for generating pack data to prevent FPS drops
 
 /obj/machinery/computer/cargo/Initialize()
 	. = ..()
@@ -64,38 +76,43 @@
 	if(current_ship)
 		current_faction = current_ship.source_template.faction
 		charge_account = current_ship.ship_account
+		outpost_docked = current_ship.docked_to
 
 /obj/machinery/computer/cargo/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "OutpostCommunications", name)
+		ui = new(user, src, "OutpostCommunicationsCeladon", name) // [CELADON-EDIT] - CELADON_OUTPOST_CONSOLE - instead of "OutpostCommunications"
 		ui.open()
 		if(!charge_account)
 			reconnect()
 
 /obj/machinery/computer/cargo/ui_static_data(mob/user)
 	. = ..()
-	var/outpost_docked = istype(current_ship.docked_to, /datum/overmap/outpost)
-	if(outpost_docked)
+	outpost_docked = current_ship.docked_to
+	// [CELADON-EDIT] - CELADON_FIXES: Prevent constant pack data generation every tick
+	// if(istype(outpost_docked))
+	if(istype(outpost_docked) && pack_data_cooldown <= world.time)
 		generate_pack_data()
+		pack_data_cooldown = world.time + 50  // Cache for 5 seconds
 	else
 		supply_pack_data = list()
+	// [/CELADON-ADD]
 
 /obj/machinery/computer/cargo/ui_data(mob/user)
 	var/list/data = list()
-
-	var/outpost_docked = istype(current_ship.docked_to, /datum/overmap/outpost)
 
 	data["onShip"] = !isnull(current_ship)
 	data["shipFaction"] = current_ship.source_template.faction.name
 	data["numMissions"] = current_ship ? LAZYLEN(current_ship.missions) : 0
 	data["maxMissions"] = current_ship ? current_ship.max_missions : 0
-	data["outpostDocked"] = outpost_docked
+	data["outpostDocked"] = istype(outpost_docked)
 	data["points"] = charge_account ? charge_account.account_balance : 0
 	data["siliconUser"] = user.has_unlimited_silicon_privilege && check_ship_ai_access(user)
 	message = "Purchases will be delivered to your hangar's delivery zone."
-	if(SSshuttle.supplyBlocked)
+	data["blockade"] = FALSE
+	if(istype(outpost_docked) && outpost_docked.market.supply_blocked)
 		message = blockade_warning
+		data["blockade"] = TRUE
 	data["message"] = message
 	data["supplies"] = supply_pack_data
 
@@ -103,14 +120,20 @@
 	data["outpostMissions"] = list()
 
 	if(current_ship)
-		for(var/datum/mission/outpost/M as anything in current_ship.missions)
+		for(var/datum/mission/M as anything in current_ship.missions)
 			data["shipMissions"] += list(M.get_tgui_info())
-		if(outpost_docked)
-			var/datum/overmap/outpost/out = current_ship.docked_to
-			for(var/datum/mission/outpost/M as anything in out.missions)
+		if(istype(outpost_docked))
+			for(var/datum/mission/M as anything in outpost_docked.missions)
 				data["outpostMissions"] += list(M.get_tgui_info())
 
 	return data
+
+//[CELADON-ADD] - CELADON_FIXES - Чиним реролл
+/datum/overmap/ship/controlled
+	var/given_up_missions = 0
+	var/giveup_timer = - 15 MINUTES
+	var/giveup_timeout = FALSE
+//[/CELADON-ADD]
 
 /obj/machinery/computer/cargo/ui_act(action, params, datum/tgui/ui)
 	. = ..()
@@ -131,11 +154,32 @@
 				src.visible_message(span_notice("[src] dispenses a holochip."))
 			return TRUE
 
+		//[CELADON-ADD] - CELADON_FIXES - чиним реролл
+		if("payFine")
+			var/val = 3000
+			// no giving yourself money
+			if(!charge_account || !val || val <= 0)
+				return
+			if(charge_account.adjust_money(-val))
+				playsound(src, 'sound/machines/twobeep_high.ogg', 50, TRUE)
+				src.visible_message("<span class='notice'>[src] unblocks giving up.</span>")
+				var/obj/docking_port/mobile/D = SSshuttle.get_containing_shuttle(src)
+				var/datum/overmap/ship/controlled/ship = D.current_ship
+				if(ship)
+					ship.given_up_missions = 0
+					ship.giveup_timer = world.time-15 MINUTES
+					ship.giveup_timeout = FALSE
+		//[/CELADON-ADD]
+		// if("add")
 		if("purchase")
 			var/list/purchasing = params["cart"]
 			var/total_cost = text2num(params["total"])
 			var/datum/overmap/outpost/current_outpost = current_ship.docked_to
 			if(!istype(current_ship.docked_to) || purchasing.len == 0)
+				return
+
+			if(istype(outpost_docked) && outpost_docked.market.supply_blocked)
+				say("Outpost cargo unavailable!")
 				return
 
 			if(!charge_account.adjust_money(-total_cost, CREDIT_LOG_CARGO))
@@ -152,7 +196,7 @@
 			current_outpost.market.make_order(usr, unprocessed_packs, return_crate_spawner())
 
 		if("mission-act")
-			var/datum/mission/outpost/mission = locate(params["ref"])
+			var/datum/mission/mission = locate(params["ref"])
 			var/obj/docking_port/mobile/D = SSshuttle.get_containing_shuttle(src)
 			var/datum/overmap/ship/controlled/ship = D.current_ship
 			var/datum/overmap/outpost/outpost = ship.docked_to
@@ -161,13 +205,34 @@
 			if(!mission.accepted)
 				if(LAZYLEN(ship.missions) >= ship.max_missions)
 					return
-				mission.accept(ship, loc)
+				mission.accept(ship, loc, return_crate_spawner())
 				return TRUE
 			else if(mission.servant == ship)
 				if(mission.can_complete())
 					mission.turn_in()
-				else if(tgui_alert(usr, "Give up on [mission]?", src, list("Yes", "No")) == "Yes")
-					mission.give_up()
+				//[CELADON-EDIT] - CELADON_FIXES - фиксим ролл миссий
+				//else if(tgui_alert(usr, "Give up on [mission]?", src, list("Yes", "No")) == "Yes")
+				// mission.give_up()
+					ship.given_up_missions = 0
+					ship.giveup_timer = world.time-15 MINUTES
+					ship.giveup_timeout = FALSE
+				else
+					if(world.time > ship.giveup_timer)
+						if(ship.giveup_timeout)
+							ship.given_up_missions = 0
+							ship.giveup_timeout = FALSE
+						if(ship.given_up_missions < 3)
+							ship.given_up_missions = ship.given_up_missions+1
+							mission.give_up()
+							if(ship.given_up_missions >= 3)
+								ship.giveup_timer = world.time+15 MINUTES
+								ship.giveup_timeout = TRUE
+								to_chat(usr, "<span class='alert'>Maximum limit of aborted missions reached. Please wait 15 minutes, while we are checking your ship history for any possible frauds. Future attempts to give up a mission might result in a bad reputation.</span>")
+							return TRUE
+					else
+						to_chat(usr, "<span class='alert'>Please wait [ceil((ship.giveup_timer-world.time)/600)] minutes before giving up again.</span>")
+						return TRUE
+				//[/CELADON-EDIT]
 				return TRUE
 
 /obj/machinery/computer/cargo/attackby(obj/item/W, mob/living/user, params)
@@ -184,8 +249,6 @@
 
 	if(!current_ship.docked_to)
 		return supply_pack_data
-
-	var/datum/overmap/outpost/outpost_docked = current_ship.docked_to
 
 	if(!istype(outpost_docked))
 		return supply_pack_data

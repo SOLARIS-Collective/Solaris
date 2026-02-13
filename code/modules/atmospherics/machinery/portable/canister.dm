@@ -43,14 +43,10 @@
 		"co2" = /obj/machinery/portable_atmospherics/canister/carbon_dioxide,
 		"plasma" = /obj/machinery/portable_atmospherics/canister/toxins,
 		"n2o" = /obj/machinery/portable_atmospherics/canister/nitrous_oxide,
-		"no2" = /obj/machinery/portable_atmospherics/canister/nitryl, //PENTEST RESTORE
 		"bz" = /obj/machinery/portable_atmospherics/canister/bz,
 		"air" = /obj/machinery/portable_atmospherics/canister/air,
 		"water vapor" = /obj/machinery/portable_atmospherics/canister/water_vapor,
 		"tritium" = /obj/machinery/portable_atmospherics/canister/tritium,
-		"hyper-noblium" = /obj/machinery/portable_atmospherics/canister/nob, //PENTEST RESTORE
-		"stimulum" = /obj/machinery/portable_atmospherics/canister/stimulum, //PENTEST RESTORE
-		"pluoxium" = /obj/machinery/portable_atmospherics/canister/pluoxium, //PENTEST RESTORE
 		"caution" = /obj/machinery/portable_atmospherics/canister,
 		"freon" = /obj/machinery/portable_atmospherics/canister/freon,
 		"hydrogen" = /obj/machinery/portable_atmospherics/canister/hydrogen,

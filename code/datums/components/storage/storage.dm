@@ -62,8 +62,12 @@
 
 	var/allow_big_nesting = FALSE					//allow storage objects of the same or greater size.
 
-	var/attack_hand_interact = TRUE					//interact on attack hand.
-	var/quickdraw = FALSE							//altclick interact
+	/// Should left-click open this storage item while equipped?
+	var/attack_hand_interact = TRUE
+	/// Should alt-click open this storage item?
+	var/alt_click_open = TRUE
+	/// Should alt or right click quickly draw the first available item?
+	var/quickdraw = FALSE
 	///can we quickopen storage when it's in a pocket
 	var/pocket_openable = FALSE
 
@@ -122,9 +126,12 @@
 	RegisterSignal(parent, COMSIG_MOVABLE_POST_THROW, PROC_REF(close_all))
 	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
 
-	RegisterSignal(parent, COMSIG_CLICK_ALT, PROC_REF(on_alt_click))
+	RegisterSignals(parent, list(COMSIG_ATOM_ATTACK_HAND_SECONDARY, COMSIG_ITEM_ATTACK_SELF_SECONDARY), PROC_REF(on_open_storage_click))
+	RegisterSignal(parent, COMSIG_ATOM_ATTACKBY_SECONDARY, PROC_REF(on_open_storage_attackby))
 	RegisterSignal(parent, COMSIG_MOUSEDROP_ONTO, PROC_REF(mousedrop_onto))
 	RegisterSignal(parent, COMSIG_MOUSEDROPPED_ONTO, PROC_REF(mousedrop_receive))
+	if(alt_click_open)
+		RegisterSignal(parent, COMSIG_CLICK_ALT, PROC_REF(on_open_storage_click))
 
 	update_actions()
 
@@ -815,36 +822,47 @@
 	SIGNAL_HANDLER
 
 	return ui_hide(target)
-
-/datum/component/storage/proc/on_alt_click(datum/source, mob/user)
-	SIGNAL_HANDLER
-
-	INVOKE_ASYNC(src, PROC_REF(on_alt_click_async), source, user)
-
-/datum/component/storage/proc/on_alt_click_async(datum/source, mob/user)
+/datum/component/storage/proc/open_storage(mob/user)
 	if(!isliving(user) || !user.CanReach(parent) || user.incapacitated())
-		return
-	if(!access_check(user))
 		return FALSE
 	if(locked)
-		to_chat(user, span_warning("[parent] seems to be [locked_flavor]!"))
-		return
+		to_chat(user, span_warning("[parent] seems to be locked!"))
+		return FALSE
 
+	. = TRUE
 	var/atom/A = parent
 	if(!quickdraw)
 		A.add_fingerprint(user)
 		user_show_to_mob(user)
+		playsound(A, "rustle", 50, TRUE, -5)
+		return
+	var/obj/item/to_remove = locate() in real_location()
+	if(!to_remove)
 		return
 
-	var/obj/item/I = locate() in real_location()
-	if(!I)
+	INVOKE_ASYNC(src, PROC_REF(attempt_put_in_hands), to_remove, user)
+
+/datum/component/storage/proc/on_open_storage_click(datum/source, mob/user, list/modifiers)
+	SIGNAL_HANDLER
+
+	if(open_storage(user))
+		return COMPONENT_CANCEL_ATTACK_CHAIN
+
+/datum/component/storage/proc/on_open_storage_attackby(datum/source, obj/item/weapon, mob/user, params)
+	SIGNAL_HANDLER
+
+	if(open_storage(user))
+		return COMPONENT_SECONDARY_CANCEL_ATTACK_CHAIN
+
+///attempt to put an item from contents into the users hands
+/datum/component/storage/proc/attempt_put_in_hands(obj/item/to_remove, mob/user)
+	var/atom/parent_as_atom = parent
+	parent_as_atom.add_fingerprint(user)
+	remove_from_storage(to_remove, get_turf(user))
+	if(!user.put_in_hands(to_remove))
+		to_chat(user, span_notice("You fumble for [to_remove] and it falls on the floor."))
 		return
-	A.add_fingerprint(user)
-	remove_from_storage(I, get_turf(user))
-	if(!user.put_in_hands(I))
-		to_chat(user, span_notice("You fumble for [I] and it falls on the floor."))
-		return
-	user.visible_message(span_warning("[user] draws [I] from [parent]!"), span_notice("You draw [I] from [parent]."))
+	user.visible_message(span_warning("[user] draws [to_remove] from [parent]!"), span_notice("You draw [to_remove] from [parent]."))
 
 /datum/component/storage/proc/action_trigger(datum/signal_source, datum/action/source)
 	SIGNAL_HANDLER
@@ -867,26 +885,25 @@
 	return max_volume || AUTO_SCALE_STORAGE_VOLUME(max_w_class, max_combined_w_class)
 
 //checks for mob-related storage access conditions
-/datum/component/storage/proc/access_check(message = TRUE)
-/*	var/atom/ourparent = parent //PENTEST OVERRIDE - START
-	var/datum/component/storage/otherstorage
+/datum/component/storage/proc/access_check(mob/user, message = TRUE)
+	var/atom/parent_atom = parent
 
-	//if we are inside another storage object, let's move up and check access there instead
-	if(istype(ourparent.loc, /obj/item/storage))
-		ourparent = ourparent.loc
-		//get our parent's storage component so we can check their access vars
-		otherstorage = ourparent.GetComponent(/datum/component/storage)
+	//if we are inside another storage object, check access there recursively
+	var/atom/container_atom = parent_atom.loc
+	var/datum/component/storage/container_storage = container_atom.GetComponent(/datum/component/storage)
+	if(container_storage && !container_storage.access_check(user))
+		return FALSE // If we can't access the storage we're in, we can't access us, message is handled by recursion
 
-	if(ismob(ourparent.loc))
-		var/mob/holder = ourparent.loc
+	if(ismob(container_atom))
+		var/mob/holder = container_atom
 
-		if(otherstorage? !otherstorage.carry_access : !carry_access)
+		if(!carry_access)
 			if(message)
-				to_chat(holder, span_warning( "[ourparent] is too cumbersome to open inhand, you're going to have to set it down!"))
+				to_chat(user, span_warning("[parent_atom] is too cumbersome to open inhand, you're going to have to set it down!"))
 			return FALSE
 
-		if((otherstorage? !otherstorage.worn_access : !worn_access) && !holder.held_items.Find(ourparent))
+		if(!worn_access && !holder.held_items.Find(parent_atom))
 			if(message)
-				to_chat(holder, span_warning( "Your arms aren't long enough to reach [ourparent] while it's on your back!"))
-			return FALSE*/ //PENTEST OVERRIDE - END
+				to_chat(user, span_warning("Your arms aren't long enough to reach [parent_atom] while it's on your back!"))
+			return FALSE
 	return TRUE

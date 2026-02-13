@@ -1,0 +1,9 @@
+#ifndef MODPACK_CELADON_WIDEBAND
+#define MODPACK_CELADON_WIDEBAND
+
+#include "_wideband.dm"
+
+#include "code/wideband.dm"
+#include "code/signal.dm"
+
+#endif

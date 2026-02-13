@@ -51,6 +51,10 @@
 		user.update_sight()
 		if(icon_state == "welding-g")
 			change_glass_color(user, /datum/client_colour/glass_colour/gray)
+		// [CELADON-ADD] - CELADON_RETURN_CONTENT_SPAWN
+		else if(icon_state == "bustin-g")
+			change_glass_color(user, /datum/client_colour/glass_colour/green)
+		// [/CELADON-ADD]
 		else
 			change_glass_color(user, null)
 
@@ -76,6 +80,7 @@
 	vision_flags = SEE_TURFS
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
 	glass_colour_type = /datum/client_colour/glass_colour/lightgreen
+	flags_cover = GLASSESCOVERSEYES | SEALS_EYES
 
 
 /obj/item/clothing/glasses/meson/night
@@ -100,6 +105,7 @@
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 100)
 	custom_price = 250
 	supports_variations = VOX_VARIATION
+	flags_cover = GLASSESCOVERSEYES | SEALS_EYES
 
 /obj/item/clothing/glasses/science/item_action_slot_check(slot)
 	if(slot == ITEM_SLOT_EYES)
@@ -110,6 +116,7 @@
 	desc = "A pair of prescription glasses fitted with an analyzer for scanning items and reagents. "
 	icon_state = "prescriptionpurple"
 	vision_correction = 1
+	flags_cover = GLASSESCOVERSEYES
 
 /obj/item/clothing/glasses/science/prescription/fake
 	name = "science glasses"
@@ -126,6 +133,7 @@
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	glass_colour_type = /datum/client_colour/glass_colour/green
 	supports_variations = VOX_VARIATION
+	flags_cover = GLASSESCOVERSEYES | SEALS_EYES
 
 /obj/item/clothing/glasses/eyepatch
 	name = "eyepatch"
@@ -163,6 +171,7 @@
 	item_state = "glasses"
 	vision_flags = SEE_OBJS
 	glass_colour_type = /datum/client_colour/glass_colour/lightblue
+	flags_cover = GLASSESCOVERSEYES | SEALS_EYES
 
 /obj/item/clothing/glasses/material/mining
 	name = "optical material scanner"
@@ -244,6 +253,7 @@
 	item_state = "ballistic_goggles"
 	supports_variations = KEPORI_VARIATION | VOX_VARIATION
 	glass_colour_type = /datum/client_colour/glass_colour/lightblue
+	flags_cover = GLASSESCOVERSEYES | SEALS_EYES
 
 /obj/item/clothing/glasses/welding
 	name = "welding goggles"
@@ -310,7 +320,10 @@
 	. = ..()
 	if(!isinhands && ishuman(loc) && !colored_before)
 		var/mob/living/carbon/human/H = loc
-		var/mutable_appearance/M = mutable_appearance('icons/mob/clothing/eyes/eyes.dmi', "blindfoldwhite")
+		// [CELADON-EDIT] - CELADON_RETURN_CONTENT_SPAWN
+		// var/mutable_appearance/M = mutable_appearance('icons/mob/clothing/eyes/eyes.dmi', "blindfoldwhite")	// CELADON-EDIT - ORIGINAL
+		var/mutable_appearance/M = mutable_appearance('mod_celadon/_storage_icons/icons/items/clothing/eyes/overlay/eyes.dmi', "blindfoldwhite")
+		// [/CELADON-EDIT]
 		M.appearance_flags |= RESET_COLOR
 		M.color = "#[H.eye_color]"
 		. += M
@@ -344,6 +357,7 @@
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
 	flash_protect = FLASH_PROTECTION_SENSITIVE
 	glass_colour_type = /datum/client_colour/glass_colour/red
+	flags_cover = GLASSESCOVERSEYES | SEALS_EYES
 
 /obj/item/clothing/glasses/thermal/emp_act(severity)
 	. = ..()
@@ -382,6 +396,7 @@
 	icon_state = "eyepatch-0"
 	item_state = "eyepatch-0"
 	var/flipped = FALSE
+	flags_cover = GLASSESCOVERSEYES
 
 /obj/item/clothing/glasses/thermal/eyepatch/AltClick(mob/user)
 	. = ..()
@@ -408,6 +423,18 @@
 	icon_state = "heat"
 	item_state = "heat"
 	flags_cover = GLASSESCOVERSEYES | SEALS_EYES
+
+/obj/item/clothing/glasses/safety
+	name = "safety goggles"
+	desc = "A pair of goggles meant to protect your eyes from debris and irritants."
+	icon_state = "safety_skier"
+	item_state = "safety_skier"
+	flags_cover = GLASSESCOVERSEYES | SEALS_EYES
+	supports_variations = VOX_VARIATION
+	unique_reskin = list(
+		"biker" = "safety_biker",
+		"skier" = "safety_skier",
+	)
 
 /obj/item/clothing/glasses/orange
 	name = "orange glasses"

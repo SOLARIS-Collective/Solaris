@@ -34,10 +34,14 @@
 
 	equipping_sound = EQUIP_SOUND_VFAST_GENERIC
 	unequipping_sound = UNEQUIP_SOUND_VFAST_GENERIC
-	equip_delay_self = EQUIP_DELAY_BACK
+	// [CELADON-REMOVE] - CELADON_BALANCE_CD
+	//equip_delay_self = EQUIP_DELAY_BACK
+	// [/CELADON-REMOVE]
 	equip_delay_other = EQUIP_DELAY_BACK * 1.5
 	strip_delay = EQUIP_DELAY_BACK * 1.5
 	equip_self_flags = EQUIP_ALLOW_MOVEMENT | EQUIP_SLOWDOWN
+
+	custom_price = 50
 
 /obj/item/storage/backpack/ComponentInitialize()
 	. = ..()
@@ -46,7 +50,9 @@
 	STR.max_volume = STORAGE_VOLUME_BACKPACK
 	STR.max_w_class = MAX_WEIGHT_CLASS_BACKPACK
 	STR.use_sound = 'sound/items/storage/unzip.ogg'
-	STR.worn_access = FALSE
+	// [CELADON-REMOVE] - CELADON_BALANCE_CD
+	// STR.worn_access = FALSE
+	// [/CELADON-REMOVE]
 
 /obj/item/storage/backpack/examine(mob/user)
 	. = ..()
@@ -96,6 +102,17 @@
 	desc = "A robust backpack for stashing your loot."
 	icon_state = "explorerpack"
 	item_state = "explorerpack"
+
+// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+/obj/item/storage/backpack/mime
+	name = "Parcel Parceaux"
+	icon = 'mod_celadon/_storage_icons/icons/other/clown_mime/backpacks.dmi'
+	lefthand_file = 'mod_celadon/_storage_icons/icons/other/clown_mime/backpack_lefthand.dmi'
+	righthand_file = 'mod_celadon/_storage_icons/icons/other/clown_mime/backpack_righthand.dmi'
+	desc = "A silent backpack made for those silent workers. Silence Co."
+	icon_state = "mimepack"
+	item_state = "mimepack"
+// [/CELADON-ADD]
 
 /obj/item/storage/backpack/medic
 	name = "medical backpack"
@@ -179,6 +196,16 @@
 	desc = "A spacious backpack with lots of pockets, worn by Janitors of an Emergency Response Team."
 	icon_state = "ert_janitor"
 
+// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+/obj/item/storage/backpack/ert/clown
+	name = "emergency response team clown backpack"
+	icon = 'mod_celadon/_storage_icons/icons/other/clown_mime/backpacks.dmi'
+	lefthand_file = 'mod_celadon/_storage_icons/icons/other/clown_mime/backpack_lefthand.dmi'
+	righthand_file = 'mod_celadon/_storage_icons/icons/other/clown_mime/backpack_righthand.dmi'
+	mob_overlay_icon = 'mod_celadon/_storage_icons/icons/other/clown_mime/backpack_onmob.dmi'
+	desc = "A spacious backpack with lots of pockets, worn by Clowns of an Emergency Response Team."
+	icon_state = "ert_clown"
+// [/CELADON-ADD]
 /*
  * Satchel Types
  */
@@ -193,16 +220,22 @@
 
 	equipping_sound = null
 	unequipping_sound = null
-	equip_delay_self = null
+	// [CELADON-REMOVE] - CELADON_BALANCE_CD
+	//equip_delay_self = null
+	// [/CELADON-REMOVE]
 	equip_delay_other = EQUIP_DELAY_BACK
 	strip_delay = EQUIP_DELAY_BACK
 
+// [CELADON-REMOVE] - CELADON_BALANCE_CD
+/*
 /obj/item/storage/backpack/satchel/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_volume = STORAGE_VOLUME_SATCHEL
 	STR.max_w_class = MAX_WEIGHT_CLASS_M_CONTAINER
 	STR.worn_access = TRUE
+*/
+// [CELADON-REMOVE]
 
 /obj/item/storage/backpack/satchel/leather
 	name = "leather satchel"
@@ -412,7 +445,6 @@
 	desc = "A large duffel bag for holding extra things."
 	icon_state = "duffel"
 	item_state = "duffel"
-	slowdown = 1
 	greyscale_colors = list(list(21, 11), list(14, 19), list(15, 16))
 	w_class = WEIGHT_CLASS_HUGE
 
@@ -525,7 +557,7 @@
 /obj/item/storage/backpack/duffelbag/syndie/hitman/PopulateContents()
 	new /obj/item/clothing/under/suit/black(src)
 	new /obj/item/clothing/accessory/waistcoat(src)
-	new /obj/item/clothing/suit/toggle/lawyer/black(src)
+	new /obj/item/clothing/suit/lawyer/charcoal(src)
 	new /obj/item/clothing/shoes/laceup(src)
 	new /obj/item/clothing/gloves/color/black(src)
 	new /obj/item/clothing/glasses/sunglasses(src)
@@ -659,8 +691,25 @@
 	new /obj/item/ammo_box/magazine/m9mm_rattlesnake(src)
 	new /obj/item/ammo_box/magazine/m9mm_rattlesnake(src)
 	new /obj/item/reagent_containers/food/drinks/bottle/vodka/badminka(src)
-	new /obj/item/reagent_containers/hypospray/medipen/stimulants(src)
+	new /obj/item/reagent_containers/hypospray/medipen/combat_drug(src)
 	new /obj/item/grenade/syndieminibomb(src)
+
+// [CELADON-ADD] - CELADON_RETURN_CONTENT_SPAWN
+// For ClownOps.
+/obj/item/storage/backpack/duffelbag/clown/syndie/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	slowdown = 0
+	STR.silent = TRUE
+
+/obj/item/storage/backpack/duffelbag/clown/syndie/PopulateContents()
+	new /obj/item/clothing/under/rank/civilian/clown(src)
+	new /obj/item/clothing/shoes/clown_shoes(src)
+	new /obj/item/pda/clown(src)
+	new /obj/item/clothing/mask/gas/clown_hat(src)
+	new /obj/item/bikehorn(src)
+	new /obj/item/implanter/sad_trombone(src)
+// [/CELADON-ADD]
 
 /obj/item/storage/backpack/henchmen
 	name = "wings"

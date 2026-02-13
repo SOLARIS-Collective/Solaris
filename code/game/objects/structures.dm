@@ -45,6 +45,21 @@
 
 /obj/structure/MouseDrop_T(atom/movable/O, mob/user)
 	. = ..()
+// 	if(!climbable)	// Офы удалили вообще возможность перелезания
+// 		return
+// // [CELADON-REMOVE] - CELADON_FIXES - Удалено по причине что можно было перелезть только с одной стороны
+// //	if(get_turf(src) == O.loc) //makes so you can't drag yourself into the same structure to climb again, making you move off it. I commented this out because he made the railings one-sided.
+// //		return
+// // [/CELADON-REMOVE]
+// 	if(user == O && isliving(O))
+// 		var/mob/living/L = O
+// 		if(isanimal(L))
+// 			var/mob/living/simple_animal/A = L
+// 			if (!A.dextrous)
+// 				return
+// 		if(L.mobility_flags & MOBILITY_MOVE)
+// 			climb_structure(user)
+// 			return
 	if(!istype(O, /obj/item) || user.get_active_held_item() != O)
 		return
 	if(iscyborg(user))

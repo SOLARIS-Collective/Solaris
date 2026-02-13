@@ -48,13 +48,15 @@ RLD
 	if(upgrade & RCD_UPGRADE_SILO_LINK)
 		silo_mats = AddComponent(/datum/component/remote_materials, "RCD", mapload, FALSE)
 
+// [CELADON-EDIT] - OMNI_TOOLS - Добавлены `span_notice() в сообщения`
 /obj/item/construction/examine(mob/user)
 	. = ..()
-	. += "It currently holds [matter]/[max_matter] matter-units."
+	. += span_notice("It currently holds [matter]/[max_matter] matter-units.")
 	if(upgrade & RCD_UPGRADE_SILO_LINK)
-		. += "Remote storage link state: [silo_link ? "[silo_mats.on_hold() ? "ON HOLD" : "ON"]" : "OFF"]."
+		. += span_notice("Remote storage link state: [silo_link ? "[silo_mats.on_hold() ? "ON HOLD" : "ON"]" : "OFF"].")
 		if(silo_link && silo_mats.mat_container && !silo_mats.on_hold())
-			. += "Remote connection has iron in equivalent to [silo_mats.mat_container.get_material_amount(/datum/material/iron)/500] RCD unit\s." //1 matter for 1 floor tile, as 4 tiles are produced from 1 metal
+			. += span_notice("Remote connection has iron in equivalent to [silo_mats.mat_container.get_material_amount(/datum/material/iron)/500] RCD unit\s.") //1 matter for 1 floor tile, as 4 tiles are produced from 1 metal
+// [/CELADON-EDIT]
 
 /obj/item/construction/Destroy()
 	QDEL_NULL(spark_system)
@@ -435,8 +437,7 @@ RLD
 		"Airlock" = image(icon = 'icons/mob/radial.dmi', icon_state = "airlock"),
 		"Deconstruct" = image(icon= 'icons/mob/radial.dmi', icon_state = "delete"),
 		"Grilles & Windows" = image(icon = 'icons/mob/radial.dmi', icon_state = "grillewindow"),
-		"Floors & Walls" = image(icon = 'icons/mob/radial.dmi', icon_state = "wallfloor"),
-		"Girder" = image(icon = 'icons/obj/structures.dmi', icon_state = "girder"), //PENTEST ADDITION - for girder construction
+		"Floors & Walls" = image(icon = 'icons/mob/radial.dmi', icon_state = "wallfloor")
 	)
 	if(upgrade & RCD_UPGRADE_FRAMES)
 		choices += list(
@@ -456,12 +457,10 @@ RLD
 		choices += list(
 			"Change Window Type" = image(icon = 'icons/mob/radial.dmi', icon_state = "windowtype")
 		)
-	var/choice = show_radial_menu(user, src, choices, custom_check = CALLBACK(src, PROC_REF(check_menu), user), radius = 42, require_near = TRUE, tooltips = TRUE) //PENTEST ADDITION - radial menu is bigger
+	var/choice = show_radial_menu(user, src, choices, custom_check = CALLBACK(src, PROC_REF(check_menu), user), require_near = TRUE, tooltips = TRUE)
 	if(!check_menu(user))
 		return
 	switch(choice)
-		if("Girder") //PENTEST ADDITION - for girder construction
-			mode = RCD_GIRDER //PENTEST ADDITION - for girder construction
 		if("Floors & Walls")
 			mode = RCD_FLOORWALL
 		if("Airlock")

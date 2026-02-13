@@ -1,3 +1,6 @@
+/* [CELADON-DELETE] - Убираем инициализацию офовских предметов.
+	Разносим ресурсы по разным фракциям: "mod_celadon\outpost_console\code\supply_pack"
+
 /datum/supply_pack/ammo
 	category = "Bulk Ammunition"
 	crate_type = /obj/structure/closet/crate/secure/gear
@@ -240,11 +243,17 @@
 	contains = list(/obj/item/storage/box/ammo/a4570)
 	cost = 190 //5.6 ammo efficiency at 45 damage
 
-/datum/supply_pack/ammo/a4570_box/match
+/datum/supply_pack/ammo/a4570_match
 	name = ".45-70 Match Crate"
 	desc = "Contains a 24-round box containing devastatingly powerful .45-70 caliber ammunition, that travels faster, pierces armour better, and ricochets off targets."
 	contains = list(/obj/item/storage/box/ammo/a4570_match)
 	cost = 235
+
+/datum/supply_pack/ammo/a4570_hp
+	name = ".45-70 Hollow Point Ammo Box Crate"
+	desc = "Contains a 24-round box containing devastatingly powerful .45-70 hollow point caliber ammunition."
+	contains = list(/obj/item/storage/box/ammo/a4570_hp)
+	cost = 260
 
 /* 7.62 */
 
@@ -357,25 +366,31 @@
 
 
 /* .308 */
-
 /datum/supply_pack/ammo/a308_ammo_box
 	name = "308 Ammo Box Crate"
 	desc = "Contains a thirty-round .308 box for DMRs such as the SsG-04 and CM-GAL-S."
 	contains = list(/obj/item/storage/box/ammo/a308)
 	cost = 185 //4.8 ammo efficiency at 30 damage //TTD 35 damage 215 cr DMR buff
 
-/datum/supply_pack/ammo/a308_ap
-	name = "308 Armour Piercing Ammo Box Crate"
-	desc = "Contains a thirty-round .308 armour piercing box for DMRs such as the SsG-04 and CM-GAL-S."
-	contains = list(/obj/item/storage/box/ammo/a308/ap)
-	cost = 230 //TTD 270
+// [CELADON-DELETE] - cargo ammo fix - CELADON_WEAPONS
+// /datum/supply_pack/ammo/a308_ap
+// 	name = "308 Armour Piercing Ammo Box Crate"
+// 	desc = "Contains a thirty-round .308 armour piercing box for DMRs such as the SsG-04 and CM-GAL-S."
+// 	contains = list(/obj/item/storage/box/ammo/a308/ap)
+// 	cost = 230 //TTD 270
 
-/datum/supply_pack/ammo/a308_hp
-	name = "308 Hollow Point Ammo Box Crate"
-	desc = "Contains a thirty-round .308 hollow point box for DMRs such as the SsG-04 and CM-GAL-S."
-	contains = list(/obj/item/storage/box/ammo/a308/hp)
-	cost = 230 //TTD 270
+// /datum/supply_pack/ammo/a308_hp
+// 	name = "308 Hollow Point Ammo Box Crate"
+// 	desc = "Contains a thirty-round .308 hollow point box for DMRs such as the SsG-04 and CM-GAL-S."
+// 	contains = list(/obj/item/storage/box/ammo/a308/hp)
+// 	cost = 230 //TTD 270
 
+///datum/supply_pack/ammo/a308_hp
+	//name = "308 Hollow Point Ammo Box Crate"
+	//desc = "Contains a thirty-round .308 hollow point box for DMRs such as the SsG-04 and CM-GAL-S."
+	//contains = list(/obj/item/storage/box/ammo/a308/hp)
+	//cost = 500
+// [/CELADON-DELETE] - cargo ammo fix
 /* 7.5x64 */
 
 /datum/supply_pack/ammo/a65clip_box
@@ -411,15 +426,15 @@
 
 /datum/supply_pack/ammo/ferropelletboxcrate
 	name = "Ferromagnetic Pellet Box Crate"
-	desc = "Contains a 48-round ferromagnetic pellet ammo box for gauss guns such as the Claris."
+	desc = "Contains a 88-round ferromagnetic pellet ammo box for gauss guns such as the Claris."
 	contains = list(/obj/item/storage/box/ammo/ferropellet)
-	cost = 210 //5.7 ammo efficiency at 25 damage
+	cost = 250 //5.7 ammo efficiency at 25 damage
 
 /datum/supply_pack/ammo/hcpellets
 	name = "High Conductivity Pellet Box Crate"
 	desc = "Contains a 48-round high conductivity pellet ammo box for gauss guns such as the Claris."
 	contains = list(/obj/item/storage/box/ammo/ferropellet/hc)
-	cost = 260
+	cost = 310
 
 /* ferroslugs */
 
@@ -439,12 +454,14 @@
 
 /datum/supply_pack/ammo/ferrolanceboxcrate
 	name = "Ferromagnetic Lance Box Crate"
-	desc = "Contains a 48-round box for high-powered gauss guns such as the GAR assault rifle."
+	desc = "Contains a 60-round box for high-powered gauss guns such as the GAR assault rifle."
 	contains = list(/obj/item/storage/box/ammo/ferrolance)
-	cost = 285 //5 ammo efficiency at 30 damage
+	cost = 300 //5 ammo efficiency at 30 damage - I don't know how this formula works so I just eyeballed it to be on par with 556CLIP
 
-/datum/supply_pack/ammo/ferrolanceboxcrate
+/datum/supply_pack/ammo/ferrolanceboxcrate_hc
 	name = "High Conductivity Lance Box Crate"
-	desc = "Contains a 48-round box for high-powered gauss guns such as the GAR assault rifle."
+	desc = "Contains a 60-round box for high-powered gauss guns such as the GAR assault rifle."
 	contains = list(/obj/item/storage/box/ammo/ferrolance/hc)
-	cost = 360
+	cost = 380
+
+[/CELADON-DELETE] */

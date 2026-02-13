@@ -170,7 +170,7 @@
 	///ds between parallax updates
 	var/parallax_throttle = 0
 	var/parallax_movedir = 0
-	var/parallax_layers_max = 4
+	var/parallax_layers_max = 8
 	var/parallax_animate_timer
 
 	/// rate limiting for the crew manifest
@@ -195,3 +195,10 @@
 	/// Used by SSserver_maint to detect if a client is newly AFK.
 	var/last_seen_afk = 0
 
+// [CELADON-ADD] - ADMIN-PANEL - Black Reality
+	/// Last Admin Verbs used
+	var/list/last_verbs_used = list()
+
+	/// Literally Admin Verbs Menu
+	var/datum/admin_menu/admin_menu
+// [/CELADON-ADD]

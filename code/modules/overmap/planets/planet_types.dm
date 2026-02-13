@@ -31,28 +31,28 @@
 	var/selfloop = FALSE
 	///How much of a radio message we mess up on nearby or on landed/orbitting ships
 	var/interference_power = 0
-	// [MANKIND-ADD] - MANKIND_OVERMAP_ICON - Это вагабонд насрал
-	var/icon = 'modular_mankind/_storage_icons/icons/assets/overmap/overmap.dmi'
+	// [CELADON-ADD] - CELADON_OVERMAP_ICON - Это вагабонд насрал
+	var/icon = 'mod_celadon/_storage_icons/icons/assets/overmap/overmap.dmi'
 	var/pixel_w = 0
 	var/pixel_z = 0
-	// [/MANKIND-ADD]
+	// [/CELADON-ADD]
 
 
 /datum/planet_type/lava
 	name = "lava planetoid"
 	desc = "A planet rife with seismic and volcanic activity. High temperatures and dangerous xenofauna render it dangerous for the unprepared."
 	planet = DYNAMIC_WORLD_LAVA
-	// [MANKIND-EDIT] - MANKIND_OVERMAP_ICON - Это вагабонд насрал
+	// [CELADON-EDIT] - CELADON_OVERMAP_ICON - Это вагабонд насрал
 	//	color = COLOR_ORANGE
 	//  icon_state = "lava"
 	icon_state = "volcano"
-	// [/MANKIND-EDIT]
+	// [/CELADON-EDIT]
 	mapgen = /datum/map_generator/planet_generator/lava
 	default_baseturf = /turf/open/floor/plating/asteroid/basalt/lava
 	gravity = STANDARD_GRAVITY
 	weather_controller_type = /datum/weather_controller/lavaland
 	ruin_type = RUINTYPE_LAVA
-	interference_power = 5
+	interference_power = 0
 
 	primary_ores = list(
 		/obj/item/stack/ore/iron,
@@ -64,11 +64,11 @@
 	name = "frozen planetoid"
 	desc = "A frozen planet covered in thick snow, thicker ice, and dangerous predators."
 	planet = DYNAMIC_WORLD_ICE
-	// [MANKIND-EDIT] - MANKIND_OVERMAP_ICON - Это вагабонд насрал
+	// [CELADON-EDIT] - CELADON_OVERMAP_ICON - Это вагабонд насрал
 	//	color = COLOR_BLUE_LIGHT
 	// icon_state = "globe_2"
 	icon_state = "ice"
-	// [/MANKIND-EDIT]
+	// [/CELADON-EDIT]
 	mapgen = /datum/map_generator/planet_generator/snow
 	default_baseturf = /turf/open/floor/plating/asteroid/snow/icemoon
 	gravity = STANDARD_GRAVITY
@@ -84,13 +84,13 @@
 	name = "jungle planetoid"
 	desc = "A densely forested world, filled with vines, animals, and underbrush. Surprisingly habitable with a machete."
 	planet = DYNAMIC_WORLD_JUNGLE
-	// [MANKIND-EDIT] - MANKIND_OVERMAP_ICON - Это вагабонд насрал
+	// [CELADON-EDIT] - CELADON_OVERMAP_ICON - Это вагабонд насрал
 	//	color = COLOR_LIME
 	// icon_state = "globe_2"
 	icon_state = "jungle"
-	// [/MANKIND-EDIT]
+	// [/CELADON-EDIT]
 	mapgen = /datum/map_generator/planet_generator/jungle
-	default_baseturf = /turf/open/floor/plating/dirt/jungle
+	default_baseturf = /turf/open/floor/plating/asteroid/dirt/jungle
 	gravity = STANDARD_GRAVITY
 	weather_controller_type = /datum/weather_controller/lush
 	ruin_type = RUINTYPE_JUNGLE
@@ -103,11 +103,11 @@
 	name = "rock planetoid"
 	desc = "A rocky red world in the midst of terraforming. While some plants have taken hold, it is widely hostile to life."
 	planet = DYNAMIC_WORLD_ROCKPLANET
-	// [MANKIND-EDIT] - MANKIND_OVERMAP_ICON - Это вагабонд насрал
+	// [CELADON-EDIT] - CELADON_OVERMAP_ICON - Это вагабонд насрал
 	//	color = "#bd1313"
 	// icon_state = "rock"
 	icon_state = "rock"
-	// [/MANKIND-EDIT]
+	// [/CELADON-EDIT]
 	mapgen = /datum/map_generator/planet_generator/rock
 	default_baseturf = /turf/open/floor/plating/asteroid
 	gravity = STANDARD_GRAVITY
@@ -121,11 +121,11 @@
 	name = "salty sand planetoid"
 	desc = "A formerly vibrant world, turned to sand by the ravages of the ICW. The survivors of it are long mad by now."
 	planet = DYNAMIC_WORLD_SAND
-	// [MANKIND-EDIT] - MANKIND_OVERMAP_ICON - Это вагабонд насрал
+	// [CELADON-EDIT] - CELADON_OVERMAP_ICON - Это вагабонд насрал
 	//	color = COLOR_GRAY
 	// icon_state = "whitesands"
 	icon_state = "whitesands"
-	// [/MANKIND-EDIT]
+	// [/CELADON-EDIT]
 	mapgen = /datum/map_generator/planet_generator/sand
 	default_baseturf = /turf/open/floor/plating/asteroid/whitesands
 	gravity = STANDARD_GRAVITY
@@ -141,11 +141,11 @@
 	name = "ocean planetoid"
 	desc = "The platonic ideal of vacation spots. Warm, comfortable temperatures, and a breathable atmosphere."
 	planet = DYNAMIC_WORLD_BEACHPLANET
-	// [MANKIND-EDIT] - MANKIND_OVERMAP_ICON - Это вагабонд насрал
+	// [CELADON-EDIT] - CELADON_OVERMAP_ICON - Это вагабонд насрал
 	//	color = "#c6b597"
 	// icon_state = "ocean"
 	icon_state = "ocean"
-	// [/MANKIND-EDIT]
+	// [/CELADON-EDIT]
 	mapgen = /datum/map_generator/planet_generator/beach
 	default_baseturf = /turf/open/floor/plating/asteroid/sand/lit
 	gravity = STANDARD_GRAVITY
@@ -161,9 +161,9 @@
 	desc = "Some sort of strange portal. There's no identification of what this is."
 	planet = DYNAMIC_WORLD_REEBE
 	icon_state = "wormhole"
-	// [MANKIND-REMOVE] - MANKIND_OVERMAP_ICON - Это вагабонд насрал
+	// [CELADON-REMOVE] - CELADON_OVERMAP_ICON - Это вагабонд насрал
 	//	color = COLOR_YELLOW
-	// [/MANKIND-REMOVE]
+	// [/CELADON-REMOVE]
 	mapgen = /datum/map_generator/single_biome/reebe
 	gravity = STANDARD_GRAVITY
 	default_baseturf = /turf/open/chasm/reebe_void
@@ -178,9 +178,9 @@
 	desc = "A field of asteroids with significant traces of minerals."
 	planet = DYNAMIC_WORLD_ASTEROID
 	icon_state = "asteroid"
-	// [MANKIND-REMOVE] - MANKIND_OVERMAP_ICON - Это вагабонд насрал
+	// [CELADON-REMOVE] - CELADON_OVERMAP_ICON - Это вагабонд насрал
 	//	color = COLOR_GRAY
-	// [/MANKIND-REMOVE]
+	// [/CELADON-REMOVE]
 	mapgen = /datum/map_generator/planet_generator/asteroid
 	// Space, because asteroid maps also include space turfs and the prospect of space turfs
 	// existing without space as their baseturf scares me.
@@ -202,6 +202,23 @@
 	planet = DYNAMIC_WORLD_SPACERUIN
 	icon_state = "signal_strange"
 	color = null
+	mapgen = /datum/map_generator/planet_generator/asteroid
+	default_baseturf = /turf/open/space
+	weather_controller_type = null
+	ruin_type = RUINTYPE_SPACE
+#ifndef RUIN_PLACEMENT_TEST
+	selfloop = TRUE
+#endif
+
+// empty space if you need to run a space ruin the old way or just need an empty clearing for whatever reason
+
+/datum/planet_type/space
+	name = "weak energy signal"
+	desc = "A very weak energy signal originating from space."
+	planet = DYNAMIC_WORLD_SPACE_NO_RUIN
+	icon_state = "signal_strange"
+	color = null
+	weight = 0
 	mapgen = /datum/map_generator/single_turf/space
 	default_baseturf = /turf/open/space
 	weather_controller_type = null
@@ -214,17 +231,17 @@
 	name = "waste disposal planetoid"
 	desc = "A highly oxygenated world, coated in garbage, radiation, and rust."
 	planet = DYNAMIC_WORLD_WASTEPLANET
-	// [MANKIND-EDIT] - MANKIND_OVERMAP_ICON - Это вагабонд насрал
+	// [CELADON-EDIT] - CELADON_OVERMAP_ICON - Это вагабонд насрал
 	// icon_state = "globe2"
 	//	color = "#a9883e"
 	icon_state = "waste"
-	// [/MANKIND-EDIT]
+	// [/CELADON-EDIT]
 	mapgen = /datum/map_generator/planet_generator/waste
 	default_baseturf = /turf/open/floor/plating/asteroid/wasteplanet
 	gravity = STANDARD_GRAVITY
 	weather_controller_type = /datum/weather_controller/chlorine
 	ruin_type = RUINTYPE_WASTE
-	interference_power = 5
+	interference_power = 0
 	primary_ores = list(\
 		/obj/item/stack/ore/iron,
 		/obj/item/stack/ore/plasma,
@@ -237,12 +254,12 @@
 	desc = "A floating ball of gas, with high gravity and even higher pressure."
 	planet = DYNAMIC_WORLD_GAS_GIANT
 	icon_state = "giant"
-	// [MANKIND-EDIT] - MANKIND_OVERMAP_ICON - Это вагабонд насрал
+	// [CELADON-EDIT] - CELADON_OVERMAP_ICON - Это вагабонд насрал
 	//	color = COLOR_DARK_MODERATE_ORANGE
-	icon = 'modular_mankind/_storage_icons/icons/assets/overmap/overmap_large.dmi'
+	icon = 'mod_celadon/_storage_icons/icons/assets/overmap/overmap_large.dmi'
 	pixel_w = -8
 	pixel_z = -8
-	// [/MANKIND-EDIT]
+	// [/CELADON-EDIT]
 	mapgen = /datum/map_generator/single_biome/gas_giant
 	gravity = GAS_GIANT_GRAVITY
 	default_baseturf = /turf/open/chasm/gas_giant
@@ -252,26 +269,26 @@
 	preserve_level = TRUE
 	interference_power = 10
 
-// [MANKIND-REMOVE] - MANKIND_OVERMAP_ICON - modular_mankind/maps/code/planet_types.dm
+// [CELADON-REMOVE] - CELADON_OVERMAP_ICON - mod_celadon/maps/code/planet_types.dm
 // /datum/planet_type/plasma_giant
 // 	name = "plasma giant"
 // 	desc = "The backbone of interstellar travel, the mighty plasma giant allows fuel collection to take place."
 // 	planet = DYNAMIC_WORLD_PLASMA_GIANT
-// 	// [MANKIND-EDIT] - MANKIND_OVERMAP_ICON - Это вагабонд насрал
+// 	// [CELADON-EDIT] - CELADON_OVERMAP_ICON - Это вагабонд насрал
 // 	//	color = COLOR_PURPLE
 // 	// icon_state = "giant"
 // 	icon_state = "planet-plasma"
-// 	icon = 'modular_mankind/_storage_icons/icons/assets/overmap/overmap_large.dmi'
+// 	icon = 'mod_celadon/_storage_icons/icons/assets/overmap/overmap_large.dmi'
 // 	pixel_w = -8
 // 	pixel_z = -8
-// 	// [/MANKIND-EDIT]
+// 	// [/CELADON-EDIT]
 // 	mapgen = /datum/map_generator/single_biome/plasma_giant
 // 	gravity = GAS_GIANT_GRAVITY
 // 	default_baseturf = /turf/open/chasm/gas_giant/plasma
 // 	weight = 0
 // 	preserve_level = TRUE
 // 	interference_power = 10
-// [/MANKIND-REMOVE]
+// [/CELADON-REMOVE]
 
 /datum/planet_type/water
 	name = "aqua planetoid"
@@ -339,6 +356,7 @@
 	weight = 20
 
 	mapgen = /datum/map_generator/planet_generator/moon
+	ruin_type = RUINTYPE_MOON
 	gravity = STANDARD_GRAVITY
 	default_baseturf = /turf/open/floor/plating/asteroid/moon/lit
 	weather_controller_type = null
@@ -358,7 +376,7 @@
 
 	ruin_type = RUINTYPE_BATTLEFIELD // minor 'planets' have no ruins
 	mapgen = /datum/map_generator/planet_generator/battlefield
-	default_baseturf = /turf/open/floor/plating/dirt/jungle/dark/lit/battlefield
+	default_baseturf = /turf/open/floor/plating/asteroid/dirt/battlefield
 	gravity = STANDARD_GRAVITY
 	weather_controller_type = /datum/weather_controller/toxic
 

@@ -29,6 +29,7 @@
 
 	/// The total lists of interactions vessels can do with this object. If nothing, then vessels are unable to interact with this object.
 	var/list/interaction_options
+	var/list/interaction_hail
 
 	/// The time, in deciseconds, needed for this object to call
 	var/dock_time
@@ -36,6 +37,9 @@
 	var/dock_timer_id
 	/// Whether or not the overmap object is currently docking.
 	var/docking
+
+	/// Whether this can attempt to dock to the special ports on the outpost
+	var/outpost_special_dock_perms = FALSE
 
 	/// Current overmap we are apart of.
 	var/datum/overmap_star_system/current_overmap
@@ -52,9 +56,9 @@
 	///How much % of a radio message we scramble of radios nearby/on top of us before sending. Will only scramble 1/5th this value if the radio is an adjacent tile, not 100%. Meant for hazards
 	var/interference_power
 
-	// [MANKIND-ADD] - OVERMAP SENSORS - Это вагабонд насрал
+	// [CELADON-ADD] - OVERMAP SENSORS - Это вагабонд насрал
 	var/sensor_range = 1
-	// [/MANKIND-ADD]
+	// [/CELADON-ADD]
 
 	/// The current docking ticket of this object, if any
 	var/datum/docking_ticket/current_docking_ticket
@@ -64,7 +68,7 @@
 	/// The 'death time' of the object. Used for limited lifespan events.
 	var/death_time
 
-// [MANKIND-ADD] - MANKIND_OVERMAP_STUFF - Это вагабонд насрал
+// [CELADON-ADD] - CELADON_OVERMAP_STUFF - Это вагабонд насрал
 /obj/overmap
 	var/skip_alarm = 0
 
@@ -93,7 +97,7 @@
 			y_dist = A.pixel_z-B.pixel_z
 
 	return abs(x_dist)+abs(y_dist)
-// [/MANKIND-ADD]
+// [/CELADON-ADD]
 
 // /datum/overmap/New(position, ...)	// Старая позиция
 /datum/overmap/New(position, datum/overmap_star_system/system_spawned_in, ...)
@@ -339,6 +343,7 @@
 	var/choice = tgui_input_list(usr, "What would you like to do at [interact_target]?", "Interact", possible_interactions, timeout = 10 SECONDS)
 	return do_interaction_with(user, interact_target, choice)
 
+
 /datum/overmap/proc/show_hail_menu(mob/living/user, datum/overmap/interact_target)
 	if(!user)
 		return
@@ -351,7 +356,7 @@
 		return "There is nothing of interest at [interact_target]."
 
 	return do_hail(user, interact_target)
-
+	
 /**
  * This handles the selection of an interaction
  *
@@ -379,8 +384,6 @@
 			if(docked_to || docking)
 				return "ERROR: Unable to do this currently! Undock first!"
 			return Dock(interact_target)
-		if(INTERACTION_OVERMAP_HAIL)
-			return do_hail(user, interact_target)
 		if(INTERACTION_OVERMAP_INTERDICTION)
 			if(docked_to || docking)
 				return "ERROR: Unable to do this currently! Reduce speed or undock!"
@@ -419,12 +422,12 @@
 	return FALSE
 
 /datum/overmap/ship/controlled/do_hail(mob/living/user, datum/overmap/interact_target)
-	if(!interact_target || interact_target==src)
+	if(!interact_target)	//if(!interact_target || interact_target==src)	// [CELADON-EDIT] - CELADON_OVERMAP - SHIP_HAIL_HIMSELF - Возвращаем фичу на сообщение кораблей самим себе
 		return "Invalid Target."
 	var/input = stripped_input(user, "Please choose a message to hail the target with.", "Hailing Vessel")
 	if(!input)
 		return
-	priority_announce("[input]", "Outbound Hail to [interact_target]", 'sound/effects/hail.ogg', sender_override = name, zlevel = shuttle_port.virtual_z())
+	priority_announce("[html_decode(input)]", "Outbound Hail to [interact_target]", 'sound/effects/hail.ogg', sender_override = name, zlevel = shuttle_port.virtual_z())
 	interact_target.relay_message(user,interact_target, input)
 	deadchat_broadcast(" hailed the <span class='name'>[interact_target.name]</span>: [input]", "<span class='name'>[user.real_name]</span>", user, message_type=DEADCHAT_ANNOUNCEMENT)
 	return
@@ -445,7 +448,7 @@
  * * requesting_interactor - The overmap datum requesting the options.
  */
 /datum/overmap/ship/controlled/relay_message(mob/living/user, datum/overmap/requesting_interactor, message)
-	priority_announce("[message]", "Incoming Hail", 'sound/effects/hail.ogg', sender_override = requesting_interactor.name, zlevel = shuttle_port.virtual_z())
+	priority_announce("[html_decode(message)]", "Incoming Hail", 'sound/effects/hail.ogg', sender_override = requesting_interactor.name, zlevel = shuttle_port.virtual_z())
 	return
 
 /**
@@ -457,6 +460,8 @@
 /datum/overmap/proc/get_interactions(mob/living/user, datum/overmap/requesting_interactor)
 	return interaction_options
 
+/datum/overmap/proc/get_hail(mob/living/user, datum/overmap/requesting_interactor)
+	return interaction_hail
 /**
  * Gets all the available interaction options.
  *
@@ -474,7 +479,7 @@
  *
  * * dock_target - The overmap datum to dock to. Cannot be null.
  */
-/datum/overmap/proc/Dock(datum/overmap/dock_target, obj/docking_port/stationary/override_dock, force = FALSE)
+/datum/overmap/proc/Dock(datum/overmap/dock_target, obj/docking_port/stationary/override_dock, force = FALSE)	// [OVERWRITE] - FIXES_DOCKING - mod_celadon/fixes/code/dock_empty_space_fix.dm
 	SHOULD_CALL_PARENT(TRUE)
 	if(!istype(dock_target))
 		CRASH("Overmap datum [src] tried to dock to an invalid overmap datum.")
@@ -596,6 +601,10 @@
 		container = container.docked_to
 	current_overmap = container.current_overmap // so we dont accidentally slingshot hundreds of au undocking
 	current_overmap.overmap_container[container.x][container.y] += src
+	//[CELADON-ADD] - CELADON_FIXES
+	token.pixel_w = container.token.pixel_w+(pick(6, -6))
+	token.pixel_z = container.token.pixel_z+(pick(6, -6))
+	//[/CELADON-ADD]
 	x = container.x
 	y = container.y
 

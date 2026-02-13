@@ -33,13 +33,6 @@
 	equip_sound = 'sound/items/equip/straps_equip.ogg'
 	equip_self_flags = null
 
-//Standard biosuit, orange stripe
-/obj/item/clothing/head/bio_hood/general
-	icon_state = "bio_general"
-
-/obj/item/clothing/suit/bio_suit/general
-	icon_state = "bio_general"
-
 //Virology biosuit, green stripe
 /obj/item/clothing/head/bio_hood/virology
 	icon_state = "bio_virology"
@@ -88,7 +81,9 @@
 
 /obj/item/clothing/suit/bio_suit/cmo/Initialize()
 	. = ..()
-	allowed += list(/obj/item/melee/classic_baton/telescopic)
+	// [CELADON-REMOVE] - CELADON_BALANCE - Убираем телескопички
+	// allowed += list(/obj/item/melee/classic_baton/telescopic)
+	// [/CELADON-REMOVE]
 
 //Plague Dr mask can be found in clothing/masks/gasmask.dm
 /obj/item/clothing/suit/bio_suit/plaguedoctorsuit

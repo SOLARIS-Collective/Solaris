@@ -278,8 +278,8 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "modkit"
 	w_class = WEIGHT_CLASS_SMALL
-	require_model = 1 //PENTEST CHANGE
-	model_type = list(/obj/item/robot_module/miner) //PENTEST CHANGE
+	require_module = 1
+	module_type = list(/obj/item/robot_module/miner)
 	var/denied_type = null
 	var/maximum_of_type = 1
 	var/cost = 30

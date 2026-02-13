@@ -90,17 +90,12 @@
 	var/list/datum/data_pda_msg/pda_msgs = list()
 	var/list/datum/data_rc_msg/rc_msgs = list()
 	var/decryptkey = "password"
-	var/calibrating = 15 MINUTES //Init reads this and adds world.time, then becomes 0 when that time has passed and the machine works
 
 /obj/machinery/telecomms/message_server/Initialize(mapload)
 	. = ..()
 	if (!decryptkey)
 		decryptkey = GenerateKey()
 
-	if (calibrating)
-		calibrating += world.time
-		say("Calibrating... Estimated wait time: [rand(3, 9)] minutes.")
-		pda_msgs += new /datum/data_pda_msg("System Administrator", "system", "This is an automated message. System calibration started at [station_time_timestamp()]")
 	else
 		pda_msgs += new /datum/data_pda_msg("System Administrator", "system", MESSAGE_SERVER_FUNCTIONING_MESSAGE)
 
@@ -112,8 +107,6 @@
 
 /obj/machinery/telecomms/message_server/examine(mob/user)
 	. = ..()
-	if(calibrating)
-		. += span_warning("It's still calibrating.")
 
 /obj/machinery/telecomms/message_server/proc/GenerateKey()
 	var/newKey
@@ -122,15 +115,9 @@
 	newKey += pick("1", "2", "3", "4", "5", "6", "7", "8", "9", "0")
 	return newKey
 
-/obj/machinery/telecomms/message_server/process(seconds_per_tick)
-	. = ..()
-	if(calibrating && calibrating <= world.time)
-		calibrating = 0
-		pda_msgs += new /datum/data_pda_msg("System Administrator", "system", MESSAGE_SERVER_FUNCTIONING_MESSAGE)
-
 /obj/machinery/telecomms/message_server/receive_information(datum/signal/subspace/messaging/signal, obj/machinery/telecomms/machine_from)
 	// can't log non-message signals
-	if(!istype(signal) || !signal.data["message"] || !on || calibrating)
+	if(!istype(signal) || !signal.data["message"] || !on)
 		return
 
 	// log the signal
@@ -149,13 +136,6 @@
 	// pass it along to either the hub or the broadcaster
 	if(!relay_information(signal, /obj/machinery/telecomms/hub))
 		relay_information(signal, /obj/machinery/telecomms/broadcaster)
-
-/obj/machinery/telecomms/message_server/update_overlays()
-	. = ..()
-
-	if(calibrating)
-		. += "message_server_calibrate"
-
 
 // Root messaging signal datum
 /datum/signal/subspace/messaging
@@ -230,7 +210,7 @@
 		M << browse_rsc(picture.picture_image, "pda_photo.png")
 		M << browse("<html><head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'><title>PDA Photo</title></head>" \
 		+ "<body style='overflow:hidden;margin:0;text-align:center'>" \
-		+ "<img src='pda_photo.png' width='192' style='-ms-interpolation-mode:nearest-neighbor' />" \
+		+ "<img src='pda_photo.png' width='192' style='image-rendering:pixelated' />" \
 		+ "</body></html>", "window=pdaphoto;size=[picture.psize_x]x[picture.psize_y];can-close=true")
 		onclose(M, "pdaphoto")
 
@@ -271,4 +251,3 @@
 	network = "tcommsat"
 	autolinkers = list("messaging")
 	decryptkey = null //random
-	calibrating = 0

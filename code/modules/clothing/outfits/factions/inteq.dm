@@ -4,11 +4,14 @@
 	faction_icon = "bg_inteq"
 
 	uniform = /obj/item/clothing/under/syndicate/inteq
+	alt_uniform = /obj/item/clothing/under/syndicate/inteq/sneaksuit
 	box = /obj/item/storage/box/survival/inteq
 
 	backpack = /obj/item/storage/backpack
 	satchel = /obj/item/storage/backpack/satchel
-	duffelbag = /obj/item/storage/backpack/duffelbag
+	//[CELADON-REMOVE] - CELADON_OUTFIT
+	//duffelbag = /obj/item/storage/backpack/duffelbag
+	//[/CELADON-REMOVE]
 	courierbag = /obj/item/storage/backpack/messenger/inteq
 
 ///assistants
@@ -35,6 +38,7 @@
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses/inteq
 	mask = /obj/item/clothing/mask/balaclava/inteq
 	suit = /obj/item/clothing/suit/armor/hos/inteq
+	uniform = /obj/item/clothing/under/syndicate/inteq/honorable
 	dcoat = /obj/item/clothing/suit/hooded/wintercoat/security/inteq
 	belt = /obj/item/storage/belt/security/webbing/inteq
 	gloves = /obj/item/clothing/gloves/combat
@@ -43,8 +47,9 @@
 
 	r_pocket = /obj/item/assembly/flash/handheld
 	l_pocket = /obj/item/restraints/handcuffs
-
-	backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1)
+	// [CELADON-REMOVE] - CELADON_BALANCE - Убираем телескопички
+	// backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1)
+	// [/CELADON-REMOVE]
 
 /datum/outfit/job/inteq/captain/empty
 	name = "IRMG - Vanguard (Naked)"
@@ -73,6 +78,10 @@
 	belt = /obj/item/storage/belt/military/assault
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses/inteq
 
+	suit_store = /obj/item/gun/ballistic/automatic/pistol/m20_auto_elite/inteq
+	l_pocket = /obj/item/ammo_box/magazine/m20_auto_elite
+	r_pocket = /obj/item/ammo_box/magazine/m20_auto_elite
+
 ///Chief Engineer
 
 /datum/outfit/job/inteq/ce
@@ -95,7 +104,10 @@
 
 	courierbag = /obj/item/storage/backpack/messenger/inteq
 
-	backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1, /obj/item/modular_computer/tablet/preset/advanced=1)
+	// [CELADON-EDIT] - CELADON_BALANCE - Убираем телескопички
+	// backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1, /obj/item/modular_computer/tablet/preset/advanced=1)	// CELADON-EDIT - ORIGINAL
+	backpack_contents = list(/obj/item/modular_computer/tablet/preset/advanced=1)
+	// [/CELADON-EDIT]
 
 ///paramedic
 
@@ -132,7 +144,7 @@
 	job_icon = "securityofficer"
 
 	ears = /obj/item/radio/headset/alt
-	head = /obj/item/clothing/head/helmet/inteq
+	head = /obj/item/clothing/head/helmet/m10/inteq
 	suit = /obj/item/clothing/suit/armor/vest/alt
 	belt = /obj/item/storage/belt/security/webbing/inteq
 	mask = /obj/item/clothing/mask/balaclava/inteq
@@ -203,7 +215,7 @@
 
 	ears = /obj/item/radio/headset/inteq/alt
 	head = /obj/item/clothing/head/warden/inteq
-	uniform = /obj/item/clothing/under/syndicate/inteq
+	uniform = /obj/item/clothing/under/syndicate/inteq/honorable
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses/inteq
 	mask = /obj/item/clothing/mask/balaclava/inteq
 	belt = /obj/item/storage/belt/military/assault
@@ -217,6 +229,36 @@
 
 /datum/outfit/job/inteq/warden/empty
 	name = "IRMG - Master At Arms (Naked)"
+
+	head = null
+	glasses = null
+	mask = null
+	belt = null
+	suit = null
+	gloves = null
+
+/datum/outfit/job/inteq/warden/classone
+	name = "IRMG - Enforcer Class One"
+	id_assignment = "Enforcer Class One"
+	jobtype = /datum/job/warden
+	job_icon = "warden"
+
+	ears = /obj/item/radio/headset/inteq/alt
+	head = /obj/item/clothing/head/soft/inteq
+	uniform = /obj/item/clothing/under/syndicate/inteq
+	glasses = /obj/item/clothing/glasses/hud/security/sunglasses/inteq
+	mask = /obj/item/clothing/mask/balaclava/inteq
+	belt = /obj/item/storage/belt/security/webbing/inteq/alt
+	suit = /obj/item/clothing/suit/armor/vest/security/warden/inteq
+	dcoat = /obj/item/clothing/suit/hooded/wintercoat/security/inteq
+	shoes = /obj/item/clothing/shoes/combat
+	gloves = /obj/item/clothing/gloves/combat
+	suit_store = null
+
+	courierbag = /obj/item/storage/backpack/messenger/inteq
+
+/datum/outfit/job/inteq/warden/classone/empty
+	name = "IRMG - Enforcer Class One (Naked)"
 
 	head = null
 	glasses = null

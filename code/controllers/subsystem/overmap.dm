@@ -1,3 +1,4 @@
+#ifndef MINIMAL
 SUBSYSTEM_DEF(overmap)
 	name = "Overmap"
 	wait = 10
@@ -23,6 +24,9 @@ SUBSYSTEM_DEF(overmap)
 	/// The mandatory and default star system
 	var/datum/overmap_star_system/default_system
 
+	/// The secondary star system that allows planet spawns
+	var/datum/overmap_star_system/wild_system
+
 	///Should events be processed
 	var/events_enabled = TRUE
 
@@ -41,8 +45,6 @@ SUBSYSTEM_DEF(overmap)
 	//if(length(tracked_star_systems) >= 1)
 	//	CRASH("Attempted to create more than 1 star system. Having mutiple star systems is not supported.")
 
-	if(length(tracked_star_systems) >= 1)
-		WARNING("Attempted to create more than 1 star system. Bugs may occur as this isn't very well supported, you have been warned")
 	tracked_star_systems += new_starsystem
 	return new_starsystem
 
@@ -55,8 +57,14 @@ SUBSYSTEM_DEF(overmap)
 	outposts = list()
 	dynamic_encounters = list()
 	events = list()
-
-	default_system = create_new_star_system(new /datum/overmap_star_system/shiptest)
+/* // [CELADON-EDIT] - Спасибо, пожалуй откажемся от 2 сектора
+	var/list/sector_types = pick(subtypesof(/datum/overmap_star_system/safezone))
+	default_system = create_new_star_system(new sector_types)
+	wild_system = create_new_star_system (new /datum/overmap_star_system/shiptest)
+*/
+	var/list/sector_types = pick(subtypesof(/datum/overmap_star_system/shiptest/elysium))
+	default_system = create_new_star_system(new sector_types)
+// [/CELADON-EDIT]
 	return ..()
 
 /datum/controller/subsystem/overmap/proc/spawn_new_star_system(datum/overmap_star_system/system_to_spawn=/datum/overmap_star_system)
@@ -64,8 +72,8 @@ SUBSYSTEM_DEF(overmap)
 		return create_new_star_system(system_to_spawn)
 	return create_new_star_system(new system_to_spawn)
 
-
 /datum/controller/subsystem/overmap/fire()
+#ifndef NOOVERMAP
 	for(var/datum/overmap_star_system/current_system as anything in tracked_star_systems)
 		if(!current_system.encounters_refresh)
 			continue
@@ -77,6 +85,7 @@ SUBSYSTEM_DEF(overmap)
 				E.apply_effect()
 				if(MC_TICK_CHECK)
 					return
+#endif
 
 /**
  * Gets the parent overmap object (e.g. the planet the atom is on) for a given atom.
@@ -104,6 +113,16 @@ SUBSYSTEM_DEF(overmap)
 			continue
 		if(our_outpost.mapzone?.is_in_bounds(source))
 			return our_outpost
+
+/datum/controller/subsystem/overmap/proc/get_main_outpost()
+	if(!length(outposts))
+		return "No outpost exists in this area of space."
+	return outposts[1]
+
+/datum/controller/subsystem/overmap/proc/get_main_outpost_coords()
+	if(!length(outposts))
+		return "No outpost exists in this area of space."
+	return "[outposts[1]?:x]-[outposts[1]?:y]"
 
 /datum/controller/subsystem/overmap/proc/ship_crew_percentage()
 	var/ship_percentages = 0
@@ -236,9 +255,14 @@ SUBSYSTEM_DEF(overmap)
 	if(our_spawn_location)
 		system_to_spawn_in = our_spawn_location.current_overmap
 
-	if(!ship_loc && template.space_spawn)
+	// [CELADON-EDIT] - FIXES_SPAWN_SHIP - Изменено, так как корабли с параметром space-spawn: true всё равно спавнились на аванпосту. Изменен порядок приоритетов
+	// if(!ship_loc && template.space_spawn)
+	// 	ship_loc = null
+	// else	// ORIGINAL
+	if(template.space_spawn)
 		ship_loc = null
-	else
+	else if(!ship_loc)
+	// [/CELADON-EDIT]
 		ship_loc = SSovermap.outposts[1]
 
 	ship_spawning = TRUE
@@ -266,8 +290,8 @@ SUBSYSTEM_DEF(overmap)
 			for(var/datum/overmap/nearby_obj as anything in our_overmap_object.current_overmap.overmap_container[newcords["x"]][newcords["y"]])
 				if(!istype(nearby_obj))
 					continue
-				interference_power += nearby_obj.interference_power / 5
-	return interference_power
+				interference_power += nearby_obj.interference_power / 8
+		return max(interference_power,0)
 
 
 /////////////////////////////////////////////////////////////////////
@@ -333,7 +357,11 @@ SUBSYSTEM_DEF(overmap)
 	var/secondary_structure_color = "#FFFFFF"
 
 	///the tileset we use, just the icon we force tokens to use, override only if nessary
-	var/tileset = 'icons/misc/overmap.dmi'
+	// [CELADON-EDIT] - CELADON_OVERMAP
+	// var/tileset = 'icons/misc/overmap.dmi'	// CELADON-EDIT - ORIGINAL
+	var/tileset = 'mod_celadon/_storage_icons/icons/assets/overmap/overmap.dmi'
+	// [/CELADON-EDIT]
+
 	///This is the flag that makes it so all overmap objects use the same uniform color above. If false, tokens use their default colors
 	var/override_object_colors = FALSE
 
@@ -344,6 +372,9 @@ SUBSYSTEM_DEF(overmap)
 	var/can_jump_to = TRUE
 	//can our pallete be selected randomly roundstart? set to no for subtypes or if you dont change the pallete
 	var/can_be_selected_randomly = TRUE
+
+	/// Datum type for the main outpost spawned here
+	var/default_outpost_type
 
 	COOLDOWN_DECLARE(dynamic_despawn_cooldown)
 
@@ -361,17 +392,23 @@ SUBSYSTEM_DEF(overmap)
 	outposts = list()
 	events = list()
 
+#ifdef NOOVERMAP
+	size = 8
+#endif
+
+#ifndef NOOVERMAP
 	if(isnull(dynamic_probabilities))
 		dynamic_probabilities = list()
 		for(var/datum/planet_type/planet_type as anything in subtypesof(/datum/planet_type))
 			dynamic_probabilities[initial(planet_type.planet)] = initial(planet_type.weight)
+#endif
 
 	if(!generator_type)
 		generator_type = CONFIG_GET(string/overmap_generator_type)
 	if(!size)
 		size = CONFIG_GET(number/overmap_size)
 	if(!max_overmap_dynamic_events)
-		max_overmap_dynamic_events = CONFIG_GET(number/max_overmap_dynamic_events)
+		max_overmap_dynamic_events = isnull(max_overmap_dynamic_events)
 
 	overmap_container = new/list(size, size, 0)
 
@@ -437,6 +474,7 @@ SUBSYSTEM_DEF(overmap)
  * The proc that creates all the objects on the overmap, split into seperate procs for redundancy.
  */
 /datum/overmap_star_system/proc/create_map()
+#ifndef NOOVERMAP
 	switch(generator_type)
 		if(OVERMAP_GENERATOR_SOLAR)
 			spawn_events_in_orbits()
@@ -444,6 +482,7 @@ SUBSYSTEM_DEF(overmap)
 			spawn_events()
 
 	spawn_ruin_levels()
+#endif
 
 	if(has_outpost)
 		spawn_outpost()
@@ -516,24 +555,23 @@ SUBSYSTEM_DEF(overmap)
 /datum/overmap_star_system/proc/spawn_outpost()
 	var/list/location = get_unused_overmap_square_in_radius(rand(4, round(size/5)))
 
-	var/datum/overmap/outpost/found_type
 	if(fexists(OUTPOST_OVERRIDE_FILEPATH))
 		var/file_text = trim_right(file2text(OUTPOST_OVERRIDE_FILEPATH)) // trim_right because there's often a trailing newline
 		var/datum/overmap/outpost/potential_type = text2path(file_text)
 		if(!potential_type || !ispath(potential_type, /datum/overmap/outpost))
 			stack_trace("SSovermap found an outpost override file at [OUTPOST_OVERRIDE_FILEPATH], but was unable to find the outpost type [potential_type]!")
 		else
-			found_type = potential_type
+			default_outpost_type = potential_type
 		fdel(OUTPOST_OVERRIDE_FILEPATH) // don't want it to affect 2 rounds in a row.
 
-	if(!found_type)
+	if(!default_outpost_type)
 		var/list/possible_types = subtypesof(/datum/overmap/outpost)
 		for(var/datum/overmap/outpost/outpost_type as anything in possible_types)
 			if(!initial(outpost_type.main_template))
 				possible_types -= outpost_type
-		found_type = pick(possible_types)
+		default_outpost_type = pick(possible_types)
 
-	var/datum/overmap/outpost/our_outpost = new found_type(location, src)
+	var/datum/overmap/outpost/our_outpost = new default_outpost_type(location, src)
 
 	//gets rid of nearby events that casue radio interference
 	for(var/direction as anything in GLOB.cardinals)
@@ -592,6 +630,9 @@ SUBSYSTEM_DEF(overmap)
 		QUADRANT_MAP_SIZE
 	)
 
+	// [CELADON-ADD] - CELADON_FIXES
+	dynamic_datum.stop_countdown()
+	// [/CELADON-ADD]
 	vlevel.reserve_margin(QUADRANT_SIZE_BORDER)
 
 	mapgen.pre_generation(dynamic_datum)
@@ -599,7 +640,6 @@ SUBSYSTEM_DEF(overmap)
 	// the generataed turfs start unpopulated (i.e. no flora / fauna / etc.). we add that AFTER placing the ruin, relying on the ruin's areas to determine what gets populated
 	log_shuttle("SSOVERMAP: START_DYN_E: RUNNING MAPGEN REF [REF(mapgen)] FOR VLEV [vlevel.id] OF TYPE [mapgen.type]")
 	mapgen.generate_turfs(vlevel.get_unreserved_block())
-
 	var/list/ruin_turfs = list()
 	var/list/ruin_templates = list()
 	if(used_ruin)
@@ -608,7 +648,10 @@ SUBSYSTEM_DEF(overmap)
 				vlevel.low_x+6 + vlevel.reserved_margin,
 				vlevel.high_x-used_ruin.width-6 - vlevel.reserved_margin
 			),
-			vlevel.high_y-used_ruin.height-6 - vlevel.reserved_margin,
+			// [CELADON-EDIT] - CELADON_MAP_EXPANSION - Координаты спавна руин
+			// vlevel.high_y-used_ruin.height-6 - vlevel.reserved_margin,	// ORIGINAL
+			vlevel.high_y - used_ruin.height - 60 - vlevel.reserved_margin,
+			// [/CELADON-EDIT]
 			vlevel.z_value
 		)
 		used_ruin.load(ruin_turf)
@@ -641,10 +684,28 @@ SUBSYSTEM_DEF(overmap)
 		)
 	// now we need to offset to account for the first dock
 	var/turf/secondary_docking_turf = locate(
-		primary_docking_turf.x+RESERVE_DOCK_MAX_SIZE_LONG+RESERVE_DOCK_DEFAULT_PADDING,
+		// [CELADON-EDIT] - CELADON_MAP_EXPANSION - Смещение док порта
+		// primary_docking_turf.x+RESERVE_DOCK_MAX_SIZE_LONG+RESERVE_DOCK_DEFAULT_PADDING,
+		// primary_docking_turf.y,
+		primary_docking_turf.x + 60 + RESERVE_DOCK_MAX_SIZE_LONG + RESERVE_DOCK_DEFAULT_PADDING,
+		primary_docking_turf.y + 75 + RESERVE_DOCK_MAX_SIZE_LONG + RESERVE_DOCK_DEFAULT_PADDING,
+		// [/CELADON-EDIT]
+		primary_docking_turf.z
+		)
+
+	// [CELADON-ADD] - CELADON_MAP_EXPANSION - Добавление координат для док портов
+	var/turf/third_docking_turf = locate(
+		primary_docking_turf.x + 60 + RESERVE_DOCK_MAX_SIZE_LONG + RESERVE_DOCK_DEFAULT_PADDING,
 		primary_docking_turf.y,
 		primary_docking_turf.z
 		)
+
+	var/turf/fourth_docking_turf = locate(
+		primary_docking_turf.x,
+		primary_docking_turf.y + 75 + RESERVE_DOCK_MAX_SIZE_LONG + RESERVE_DOCK_DEFAULT_PADDING,
+		primary_docking_turf.z
+		)
+	// [/CELADON-ADD]
 
 	var/list/docking_ports = list()
 
@@ -668,50 +729,73 @@ SUBSYSTEM_DEF(overmap)
 	secondary_dock.adjust_dock_for_landing = TRUE
 	docking_ports += secondary_dock
 
-	if(!used_ruin)
-		// no ruin, so we can make more docks upward
-		var/turf/tertiary_docking_turf = locate(
-			primary_docking_turf.x,
-			primary_docking_turf.y+RESERVE_DOCK_MAX_SIZE_SHORT+RESERVE_DOCK_DEFAULT_PADDING,
-			primary_docking_turf.z
-		)
-		// rinse and repeat
-		var/turf/quaternary_docking_turf = locate(
-			secondary_docking_turf.x,
-			secondary_docking_turf.y+RESERVE_DOCK_MAX_SIZE_SHORT+RESERVE_DOCK_DEFAULT_PADDING,
-			secondary_docking_turf.z
-		)
+	// [CELADON-ADD] - CELADON_MAP_EXPANSION - Создание док порта исходя из ранее заданных координат
+	var/obj/docking_port/stationary/third_dock = new(third_docking_turf)
+	third_dock.dir = NORTH
+	third_dock.name = "[encounter_name] docking location #3"
+	third_dock.height = RESERVE_DOCK_MAX_SIZE_SHORT
+	third_dock.width = RESERVE_DOCK_MAX_SIZE_LONG
+	third_dock.dheight = 0
+	third_dock.dwidth = 0
+	third_dock.adjust_dock_for_landing = TRUE
+	docking_ports += third_dock
 
-		var/obj/docking_port/stationary/tertiary_dock = new(tertiary_docking_turf)
-		tertiary_dock.dir = NORTH
-		tertiary_dock.name = "[encounter_name] docking location #3"
-		tertiary_dock.height = RESERVE_DOCK_MAX_SIZE_SHORT
-		tertiary_dock.width = RESERVE_DOCK_MAX_SIZE_LONG
-		tertiary_dock.dheight = 0
-		tertiary_dock.dwidth = 0
-		tertiary_dock.adjust_dock_for_landing = TRUE
-		docking_ports += tertiary_dock
+	var/obj/docking_port/stationary/fourth_dock = new(fourth_docking_turf)
+	fourth_dock.dir = NORTH
+	fourth_dock.name = "[encounter_name] docking location #4"
+	fourth_dock.height = RESERVE_DOCK_MAX_SIZE_SHORT
+	fourth_dock.width = RESERVE_DOCK_MAX_SIZE_LONG
+	fourth_dock.dheight = 0
+	fourth_dock.dwidth = 0
+	fourth_dock.adjust_dock_for_landing = TRUE
+	docking_ports += fourth_dock
+	// [/CELADON-ADD]
 
-		var/obj/docking_port/stationary/quaternary_dock = new(quaternary_docking_turf)
-		quaternary_dock.dir = NORTH
-		quaternary_dock.name = "[encounter_name] docking location #4"
-		quaternary_dock.height = RESERVE_DOCK_MAX_SIZE_SHORT
-		quaternary_dock.width = RESERVE_DOCK_MAX_SIZE_LONG
-		quaternary_dock.dheight = 0
-		quaternary_dock.dwidth = 0
-		quaternary_dock.adjust_dock_for_landing = TRUE
-		docking_ports += quaternary_dock
+	// [CELADON-REMOVE] - CELADON_MAP_EXPANSION - Чтобы не возникало лишних док портов
+	// if(!used_ruin)
+	// 	// no ruin, so we can make more docks upward
+	// 	var/turf/tertiary_docking_turf = locate(
+	// 		primary_docking_turf.x,
+	// 		primary_docking_turf.y+RESERVE_DOCK_MAX_SIZE_SHORT+RESERVE_DOCK_DEFAULT_PADDING,
+	// 		primary_docking_turf.z
+	// 	)
+	// 	// rinse and repeat
+	// 	var/turf/quaternary_docking_turf = locate(
+	// 		secondary_docking_turf.x,
+	// 		secondary_docking_turf.y+RESERVE_DOCK_MAX_SIZE_SHORT+RESERVE_DOCK_DEFAULT_PADDING,
+	// 		secondary_docking_turf.z
+	// 	)
+	//
+	// 	var/obj/docking_port/stationary/tertiary_dock = new(tertiary_docking_turf)
+	// 	tertiary_dock.dir = NORTH
+	// 	tertiary_dock.name = "[encounter_name] docking location #3"
+	// 	tertiary_dock.height = RESERVE_DOCK_MAX_SIZE_SHORT
+	// 	tertiary_dock.width = RESERVE_DOCK_MAX_SIZE_LONG
+	// 	tertiary_dock.dheight = 0
+	// 	tertiary_dock.dwidth = 0
+	// 	tertiary_dock.adjust_dock_for_landing = TRUE
+	// 	docking_ports += tertiary_dock
+	//
+	// 	var/obj/docking_port/stationary/quaternary_dock = new(quaternary_docking_turf)
+	// 	quaternary_dock.dir = NORTH
+	// 	quaternary_dock.name = "[encounter_name] docking location #4"
+	// 	quaternary_dock.height = RESERVE_DOCK_MAX_SIZE_SHORT
+	// 	quaternary_dock.width = RESERVE_DOCK_MAX_SIZE_LONG
+	// 	quaternary_dock.dheight = 0
+	// 	quaternary_dock.dwidth = 0
+	// 	quaternary_dock.adjust_dock_for_landing = TRUE
+	// 	docking_ports += quaternary_dock
+	//
+	//else // we've spawned a ruin and are now checking for any docks that it has
+	//	for(var/obj/docking_port/stationary/port as obj in SSshuttle.stationary)
+	//		if(port.virtual_z() == vlevel.id)
+	//			if(port in docking_ports)
+	//				continue
+	//			docking_ports += port
+	// [/CELADON-REMOVE]
 
-	var/list/datum/weakref/spawned_mission_pois = list()
-	for(var/obj/effect/landmark/mission_poi/mission_poi in SSmissions.unallocated_pois)
-		if(!vlevel.is_in_bounds(mission_poi))
-			continue
 
-		spawned_mission_pois += WEAKREF(mission_poi)
-		SSmissions.unallocated_pois -= mission_poi
-
-
-	return list(mapzone, docking_ports, ruin_turfs, ruin_templates, spawned_mission_pois)
+	return list(mapzone, docking_ports, ruin_turfs, ruin_templates)
 
 /**
  * Reserves a square dynamic encounter area then loads a map.
@@ -949,11 +1033,7 @@ SUBSYSTEM_DEF(overmap)
 	override_object_colors = TRUE
 	overmap_icon_state = "overmap"
 
-	dynamic_probabilities = list(\
-		DYNAMIC_WORLD_BEACHPLANET = 10,
-		DYNAMIC_WORLD_SPACERUIN = 5,
-		DYNAMIC_WORLD_MOON = 20,
-		)
+	max_overmap_dynamic_events = 0
 
 /datum/overmap_star_system/zx_spectrum_pallete
 	//main colors, used for dockable terrestrials, and background
@@ -1046,9 +1126,13 @@ SUBSYSTEM_DEF(overmap)
 	else
 		datum_to_edit.token.add_filter("gloweffect", 5, list("type"="drop_shadow", "color"= "#808080", "size"=2, "offset"=1))
 
-/datum/overmap_star_system/ngr
-	name = "Gorlex Controlled - Ecbatana"
+// [CELADON-REMOVE] - CELADON_CONFIGS_MAPS
+/*
+/datum/overmap_star_system/safezone/ngr
+	name = "Gorlex Controlled - Value of Public Works"
 	starname = "Ecbatana"
+	startype = /datum/overmap/star/dwarf
+	default_outpost_type = /datum/overmap/outpost/ngr_rock
 
 	//main colors, used for dockable terrestrials, and background
 	primary_color = "#d9ad82"
@@ -1064,6 +1148,124 @@ SUBSYSTEM_DEF(overmap)
 
 	override_object_colors = TRUE
 	overmap_icon_state = "overmap_dark"
+
+/datum/overmap_star_system/safezone/clip
+	name = "CLIP Controlled - High-Pier"
+	starname = "Chana"
+	startype = /datum/overmap/star/dwarf/orange
+	default_outpost_type = /datum/overmap/outpost/clip_ocean
+
+	//main colors, used for dockable terrestrials, and background
+	primary_color = "#6fa8de"
+	secondary_color = "#96b6d4"
+
+	//hazard colors, used for the overmap hazards and sun
+	hazard_primary_color = "#d5e3f0"
+	hazard_secondary_color = "#96a6b5"
+
+	//structure colors, used for ships and outposts/colonies
+	primary_structure_color = "#97dfe8"
+	secondary_structure_color = "#6fa8de"
+
+	override_object_colors = TRUE
+	overmap_icon_state = "overmap_dark"
+
+/datum/overmap_star_system/safezone/trifuge
+	name = "Independent - Minya"
+	starname = "Aubaine"
+	startype = /datum/overmap/star/medium
+	default_outpost_type = /datum/overmap/outpost/indie_space
+
+	//main colors, used for dockable terrestrials, and background
+	primary_color = "#5e5e5e"
+	secondary_color = "#242424"
+
+	//hazard colors, used for the overmap hazards and sun
+	hazard_primary_color = "#b56060"
+	hazard_secondary_color = "#824242"
+
+	//structure colors, used for ships and outposts/colonies
+	primary_structure_color = "#ffffff"
+	secondary_structure_color = "#ffffff"
+
+	override_object_colors = TRUE
+	overmap_icon_state = "overmap"
+
+/datum/overmap_star_system/safezone/nt
+	name = "Nanotrasen Controlled - Persei-277"
+	starname = "Persei-277"
+	startype = /datum/overmap/star/medium
+	default_outpost_type = /datum/overmap/outpost/nanotrasen_ice
+
+	//main colors, used for dockable terrestrials, and background
+	primary_color = "#7e8cd9"
+	secondary_color = "#33324a"
+
+	//hazard colors, used for the overmap hazards and sun
+	hazard_primary_color = "#ededed"
+	hazard_secondary_color = "#7f7db0"
+
+	//structure colors, used for ships and outposts/colonies
+	primary_structure_color = "#4272db"
+	secondary_structure_color = "#38a0eb"
+
+	override_object_colors = TRUE
+	overmap_icon_state = "overmap_dark"
+
+/datum/overmap_star_system/safezone/thousand_eyes
+	name = "Cybersun - Kapche-Legnica"
+	starname = "Kapche-Legnica"
+	startype = /datum/overmap/star/binary
+	default_outpost_type = /datum/overmap/outpost/cybersun_gas_giant
+
+	primary_color = "#00eaff"
+	secondary_color = "#4d140f"
+
+	hazard_primary_color = "#972241"
+	hazard_secondary_color = "#71a1a9"
+
+	primary_structure_color = "#ffffff"
+	secondary_structure_color = "#ffffff"
+
+	override_object_colors = TRUE
+	overmap_icon_state = "overmap"
+*/
+// [/CELADON-REMOVE]
+
+// [CELADON-ADD] - NO_STATIC_SECTOR Опасные стартовые сектора
+/datum/overmap_star_system/shiptest/elysium
+	has_outpost = TRUE
+	override_object_colors = FALSE
+	overmap_icon_state = "overmap_dark"
+
+/datum/overmap_star_system/shiptest/elysium/ice
+	name = "Elysium Controlled - Value of Public Works"
+	starname = "Ecbatana"
+	startype = /datum/overmap/star/dwarf
+	default_outpost_type = /datum/overmap/outpost/elysium_ice
+
+	//main colors, used for dockable terrestrials, and background
+	primary_color = "#7e8cd9"
+	secondary_color = "#33324a"
+
+	//hazard colors, used for the overmap hazards and sun
+	hazard_primary_color = "#ededed"
+	hazard_secondary_color = "#7f7db0"
+
+/datum/overmap_star_system/shiptest/elysium/asteroid
+	name = "Elysium Controlled - Persei-277"
+	starname = "Persei-277"
+	startype = /datum/overmap/star/medium
+	default_outpost_type = /datum/overmap/outpost/elysium_asteroid
+
+	//main colors, used for dockable terrestrials, and background
+	primary_color = "#d9ad82"
+	secondary_color = "#c48c60"
+
+	//hazard colors, used for the overmap hazards and sun
+	hazard_primary_color = "#c13623"
+	hazard_secondary_color = "#943a43"
+// [/CELADON-ADD]
 
 /datum/overmap_star_system/c64
 
@@ -1084,13 +1286,13 @@ SUBSYSTEM_DEF(overmap)
 
 //default shiptest overmap
 /datum/overmap_star_system/shiptest
-	has_outpost = TRUE
+	has_outpost = FALSE
 	can_be_selected_randomly = FALSE
 	encounters_refresh = TRUE
 
 /datum/overmap_star_system/shiptest/create_map()
+	max_overmap_dynamic_events = CONFIG_GET(number/max_overmap_dynamic_events)
 	. = ..()
-	set_station_name(starname)
 
 /datum/overmap_star_system/admin_sandbox
 	name = "Admin Sandbox"
@@ -1120,3 +1322,4 @@ SUBSYSTEM_DEF(overmap)
 	The [span_notice("MODIF. OVERMAP")] tool is similar in usuage to BUILD ADV but to manipulate the overmap only.
 	"}
 	return ..()
+#endif

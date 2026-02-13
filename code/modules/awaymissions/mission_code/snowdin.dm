@@ -3,6 +3,7 @@
 /turf/open/floor/plasteel/dark/snowdin
 	initial_gas_mix = FROZEN_ATMOS
 	planetary_atmos = 1
+	initial_temperature = 180
 
 /turf/open/lava/plasma
 	name = "liquid plasma"
@@ -74,12 +75,15 @@
 					if(istype(S, /datum/species/plasmaman) || istype(S, /datum/species/android)) //ignore plasmamen/robotic species
 						continue
 
-					for(var/BP in PP.bodyparts)
-						var/obj/item/bodypart/NN = BP
-						if(IS_ORGANIC_LIMB(NN) && NN.limb_id != "plasmaman") //getting every organic, non-plasmaman limb (augments/androids are immune to this)
-							plasma_parts += NN
-						if(!IS_ORGANIC_LIMB(NN))
-							robo_parts += NN
+					var/obj/item/bodypart/limb
+					for(var/zone in PP.bodyparts)
+						limb = PP.bodyparts[zone]
+						if(!limb)
+							continue
+						if(IS_ORGANIC_LIMB(limb) && limb.limb_id != "plasmaman") //getting every organic, non-plasmaman limb (augments/androids are immune to this)
+							plasma_parts += limb
+						if(!IS_ORGANIC_LIMB(limb))
+							robo_parts += limb
 
 					if(prob(35)) //checking if the delay is over & if the victim actually has any parts to nom
 						PP.adjustToxLoss(15)

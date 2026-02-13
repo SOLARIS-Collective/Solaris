@@ -56,7 +56,8 @@ Difficulty: Hard
 	pixel_x = -32
 	base_pixel_x = -32
 	del_on_death = TRUE
-	mob_trophy = /obj/item/mob_trophy/demon_claws
+	//mob_trophy = /obj/item/mob_trophy/demon_claws			// [CELADON-EDIT] - RETURN_CONTENT_CRUSHER_TROPHY
+	crusher_loot = /obj/item/crusher_trophy/demon_claws		// [/CELADON-EDIT]
 	loot = list(/obj/structure/closet/crate/necropolis/bubblegum)
 	blood_volume = BLOOD_VOLUME_MAXIMUM //BLEED FOR ME
 	var/charging = FALSE
@@ -504,7 +505,9 @@ Difficulty: Hard
 	health = 1
 	maxHealth = 1
 	alpha = 127.5
-	mob_trophy = null
+	// [CELADON-REMOVE] - RETURN_CONTENT_CRUSHER_TROPHY - Выпилено и заменено в модуле
+	// mob_trophy = null
+	// [/CELADON-REMOVE]
 	loot = null
 	achievement_type = null
 	crusher_achievement_type = null

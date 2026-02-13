@@ -49,6 +49,9 @@
 #define HIDENECK (1<<10)
 #define HIDEHORNS (1<<11) 	// Used for hiding Sarathi horns.
 #define HIDESNOUT (1<<11)
+// [CELADON-ADD] - CELADON_FIX_TAIL
+#define HIDETAIL (1<<12)
+// [/CELADON-ADD]
 
 //bitflags for clothing coverage - also used for limbs
 #define HEAD (1<<0)
@@ -87,6 +90,11 @@
 #define SNOUTED_SMALL_VARIATION (1<<5) //For Elzuose snouts
 #define VOX_VARIATION (1<<6)
 #define KEPORI_VARIATION (1<<7)
+// [CELADON-ADD] - TAJARA
+#define TAJARA_VARIATION (1<<8)
+// [CELADON-ADD] - CELADON_RIOL
+#define RIOL_VARIATION (1<<9)
+// [/CELADON-ADD]
 
 #define NOT_DIGITIGRADE 0
 #define FULL_DIGITIGRADE 1
@@ -159,7 +167,8 @@ GLOBAL_LIST_INIT(security_vest_allowed, typecacheof(list(
 	/obj/item/reagent_containers/spray/pepper,
 	/obj/item/restraints/handcuffs,
 	/obj/item/tank/internals/emergency_oxygen,
-	/obj/item/tank/internals/plasmaman)))
+	/obj/item/tank/internals/plasmaman,
+	/obj/item/melee/sledgehammer)))
 
 GLOBAL_LIST_INIT(security_wintercoat_allowed, typecacheof(list(
 	/obj/item/ammo_box,

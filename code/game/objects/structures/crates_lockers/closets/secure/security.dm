@@ -25,13 +25,20 @@
 	new /obj/item/clothing/head/caphat(src)
 	new /obj/item/clothing/head/caphat/parade(src)
 	new /obj/item/clothing/suit/armor/vest/capcarapace/captunic(src)
+	// [CELADON-ADD] - CELADON_RETURN_CONTENT_SPAWN
+	new /obj/item/clothing/head/crown/fancy(src)
+	// [/CELADON-ADD]
 	new /obj/item/cartridge/captain(src)
 	new /obj/item/storage/box/silver_ids(src)
 	new /obj/item/radio/headset/heads/captain/alt(src)
 	new /obj/item/radio/headset/heads/captain(src)
 	new /obj/item/clothing/gloves/color/captain(src)
+	// [CELADON-ADD] - CELADON_RETURN_CONTENT_SPAWN
+	new /obj/item/clothing/glasses/sunglasses/gar/supergar(src)
+	// [/CELADON-ADD]
 	new /obj/item/storage/belt/sabre(src)
-	new /obj/item/gun/energy/e_gun(src)
+	new /obj/item/gun/energy/sharplite/x12(src)
+	new /obj/item/gun/energy/e_gun/e_old(src)	// [CELADON-ADD] - CELADON_RETURN_EGUN
 	new /obj/item/door_remote/captain(src)
 	new /obj/item/card/id/captains_spare(src)
 	new /obj/item/storage/photo_album/Captain(src)
@@ -48,6 +55,9 @@
 	new /obj/item/clothing/head/beret/hop(src) //WS edit - More Berets
 	new /obj/item/clothing/under/rank/command/head_of_personnel(src) //WS Edit - Better Command Uniforms
 	new /obj/item/clothing/under/rank/command/head_of_personnel/skirt(src) //WS Edit - Better Command Uniforms
+	// [CELADON-ADD] - CELADON_RETURN_CONTENT_SPAWN
+	new /obj/item/clothing/head/hopcap(src)
+	// [/CELADON-ADD]
 	new /obj/item/cartridge/head_of_personnel(src)
 	new /obj/item/radio/headset/heads/head_of_personnel(src)
 	new /obj/item/clothing/shoes/sneakers/brown(src)
@@ -57,7 +67,8 @@
 	new /obj/item/clothing/suit/armor/vest/hop(src) //WS edit - Command Resprite 3
 	new /obj/item/assembly/flash/handheld(src)
 	new /obj/item/clothing/glasses/sunglasses(src)
-	new /obj/item/gun/energy/e_gun/mini(src) //WS Edit - Gives HoP a mini egun
+	new /obj/item/gun/energy/sharplite/x26(src) //WS Edit - Gives HoP a mini egun
+	new /obj/item/gun/energy/e_gun/e_old/mini(src)	// [CELADON-ADD] - CELADON_RETURN_EGUN
 	new /obj/item/clothing/neck/petcollar(src)
 	new /obj/item/pet_carrier(src)
 	new /obj/item/door_remote/civilian(src)
@@ -88,6 +99,9 @@
 	new /obj/item/clothing/under/rank/security/head_of_security/alt/skirt(src)
 	new /obj/item/clothing/head/HoS(src)
 	new /obj/item/clothing/glasses/hud/security/sunglasses/eyepatch(src)
+	// [CELADON-ADD] - CELADON_RETURN_CONTENT_SPAWN
+	new /obj/item/clothing/glasses/hud/security/sunglasses/gars/supergars(src)
+	// [/CELADON-ADD]
 	new /obj/item/clothing/suit/armor/vest/security/hos(src) //WS Edit - Better security jumpsuit sprites
 	new /obj/item/storage/lockbox/medal/sec(src)
 	new /obj/item/megaphone/sec(src)
@@ -97,7 +111,8 @@
 	new /obj/item/storage/box/flashbangs(src)
 	new /obj/item/shield/riot/tele(src)
 	new /obj/item/storage/belt/security/full(src)
-	new /obj/item/gun/energy/e_gun/hos(src)
+	new /obj/item/gun/energy/sharplite/x01(src)
+	new /obj/item/gun/energy/e_gun/e_old/hos(src)	// [CELADON-ADD] - CELADON_RETURN_EGUN
 	new /obj/item/gun/ballistic/automatic/pistol/commissar(src) //WS edit - free lethals
 	new /obj/item/pinpointer/nuke(src)
 	new /obj/item/circuitboard/machine/techfab/department/security(src)
@@ -134,7 +149,7 @@
 	new /obj/item/clothing/gloves/krav_maga/sec(src)
 	new /obj/item/door_remote/head_of_security(src)
 	new /obj/item/gun/ballistic/shotgun/automatic/m11(src)
-	new /obj/item/gun/ballistic/automatic/pistol/commander(src)
+	new /obj/item/gun/ballistic/automatic/pistol/challenger(src)
 	new /obj/item/gun_voucher
 
 /obj/structure/closet/secure_closet/security
@@ -145,7 +160,7 @@
 /obj/structure/closet/secure_closet/security/PopulateContents()
 	..()
 	new /obj/item/clothing/suit/armor/vest(src)
-	new /obj/item/clothing/head/helmet/sec(src)
+	new /obj/item/clothing/head/helmet/m10(src)
 	new /obj/item/radio/headset/headset_sec(src)
 	new /obj/item/radio/headset/headset_sec/alt(src)
 	//WS begin - Prescription HUDs
@@ -161,7 +176,7 @@
 /obj/structure/closet/secure_closet/security/sec/PopulateContents()
 	..()
 	new /obj/item/storage/belt/security/full(src)
-	new /obj/item/gun/ballistic/automatic/pistol/commander/no_mag(src) //WS edit - free lethals //shiptest: these comments are very funny, please dont remove them
+	new /obj/item/gun/ballistic/automatic/pistol/challenger/no_mag(src) //WS edit - free lethals //shiptest: these comments are very funny, please dont remove them
 
 /obj/structure/closet/secure_closet/security/cargo
 
@@ -254,6 +269,9 @@
 		new /obj/item/paper/fluff/jobs/security/court_judgement (src)
 	new /obj/item/pen (src)
 	new /obj/item/clothing/suit/judgerobe (src)
+	// [CELADON-ADD] - CELADON_RETURN_CONTENT_SPAWN
+	new /obj/item/clothing/head/powdered_wig (src)
+	// [/CELADON-ADD]
 	new /obj/item/storage/briefcase(src)
 
 /obj/structure/closet/secure_closet/contraband/armory
@@ -307,7 +325,8 @@
 	..()
 	new /obj/item/gun/energy/ionrifle(src)
 	for(var/i in 1 to 3)
-		new /obj/item/gun/energy/e_gun(src)
+		new /obj/item/gun/energy/e_gun/e_old(src)	// [CELADON-ADD] - CELADON_RETURN_EGUN
+		new /obj/item/gun/energy/sharplite/x12(src)
 	for(var/i in 1 to 3)
 		new /obj/item/gun/energy/laser(src)
 
@@ -318,7 +337,8 @@
 
 /obj/structure/closet/secure_closet/tac/PopulateContents()
 	..()
-	new /obj/item/gun/ballistic/automatic/smg/wt550(src)
+	new /obj/item/gun/ballistic/automatic/smg/resolution(src)
+	new /obj/item/gun/ballistic/automatic/smg/wt550(src)	// [CELADON-ADD] - CELADON_RETURN_EGUN
 	new /obj/item/clothing/head/helmet/bulletproof(src)
 	new /obj/item/clothing/mask/gas/vigilitas(src)
 	new /obj/item/clothing/suit/armor/vest/bulletproof(src)
@@ -345,7 +365,7 @@
 /obj/structure/closet/secure_closet/labor_camp_security/PopulateContents()
 	..()
 	new /obj/item/clothing/suit/armor/vest(src)
-	new /obj/item/clothing/head/helmet/sec(src)
+	new /obj/item/clothing/head/helmet/m10(src)
 	new /obj/item/clothing/under/rank/security/officer(src)
 	new /obj/item/clothing/under/rank/security/officer/skirt(src)
 	new /obj/item/clothing/glasses/hud/security/sunglasses(src)

@@ -117,6 +117,8 @@ GLOBAL_LIST_INIT(pai_faces_icons, list(
 															"atmosphere sensor" = 5,
 															"photography module" = 5,
 															"remote signaller" = 10,
+															"medical records" = 10,
+															"security records" = 10,
 															"camera zoom" = 10,
 															"host scan" = 10,
 															//"camera jack" = 10,
@@ -155,6 +157,10 @@ GLOBAL_LIST_INIT(pai_faces_icons, list(
 				left_part = downloadSoftware()
 			if("manifest")
 				left_part = softwareManifest()
+			if("medicalrecord")
+				left_part = softwareMedicalRecord()
+			if("securityrecord")
+				left_part = softwareSecurityRecord()
 			if("encryptionkeys")
 				left_part = softwareEncryptionKeys()
 			if("translator")
@@ -300,6 +306,24 @@ GLOBAL_LIST_INIT(pai_faces_icons, list(
 						var/target = locate(href_list["target"]) in GLOB.PDAs
 						aiPDA.create_message(src, target)
 
+			if("medicalrecord") // Accessing medical records
+				if(subscreen == 1)
+					medicalActive1 = find_record("id", href_list["med_rec"], GLOB.data_core.general)
+					if(medicalActive1)
+						medicalActive2 = find_record("id", href_list["med_rec"], GLOB.data_core.medical)
+					if(!medicalActive2)
+						medicalActive1 = null
+						temp = "Unable to locate requested security record. Record may have been deleted, or never have existed."
+
+			if("securityrecord")
+				if(subscreen == 1)
+					securityActive1 = find_record("id", href_list["sec_rec"], GLOB.data_core.general)
+					if(securityActive1)
+						securityActive2 = find_record("id", href_list["sec_rec"], GLOB.data_core.security)
+					if(!securityActive2)
+						securityActive1 = null
+						temp = "Unable to locate requested security record. Record may have been deleted, or never have existed."
+
 			if("securityhud")
 				if(href_list["toggle"])
 					secHUD = !secHUD
@@ -366,7 +390,7 @@ GLOBAL_LIST_INIT(pai_faces_icons, list(
 	dat += "<A href='byond://?src=[REF(src)];software=radio;sub=0'>Radio Configuration</A><br>"
 	dat += "<A href='byond://?src=[REF(src)];software=image'>Screen Display</A><br>"
 	dat += "<a href='byond://?src=[REF(src)];software=pdamessage;sub=0'>Digital Messenger</a> <br>" //WS Start -- pAIs get messanger and manifest for free
-	dat += "<a href='byond://?src=[REF(src)];software=manifest;sub=0'>Sector Log</a> <br>" //WS end
+	dat += "<a href='byond://?src=[REF(src)];software=manifest;sub=0'>Crew Manifest</a> <br>" //WS end
 	//dat += "Text Messaging <br>"
 	dat += "<br>"
 
@@ -375,6 +399,10 @@ GLOBAL_LIST_INIT(pai_faces_icons, list(
 	for(var/s in software)
 		if(s == "host scan")
 			dat += "<a href='byond://?src=[REF(src)];software=hostscan;sub=0'>Host Health Scan</a> <br>"
+		if(s == "medical records")
+			dat += "<a href='byond://?src=[REF(src)];software=medicalrecord;sub=0'>Medical Records</a> <br>"
+		if(s == "security records")
+			dat += "<a href='byond://?src=[REF(src)];software=securityrecord;sub=0'>Security Records</a> <br>"
 		if(s == "camera")
 			dat += "<a href='byond://?src=[REF(src)];software=[s]'>Camera Jack</a> <br>"
 		if(s == "remote signaller")
@@ -499,9 +527,9 @@ GLOBAL_LIST_INIT(pai_faces_icons, list(
 	<A href='byond://?src=[REF(src)];software=signaller;send=1'>Send Signal</A><BR>"}
 	return dat
 
-// Sector Log (aka the old crew manifest)
+// Crew Manifest
 /mob/living/silicon/pai/proc/softwareManifest()
-	. += "<h2>Sector Log</h2><br><br>"
+	. += "<h2>Crew Manifest</h2><br><br>"
 	if(GLOB.data_core.general)
 		for(var/datum/data/record/t in sortRecord(GLOB.data_core.general))
 			. += "[t.fields["name"]] - [t.fields["rank"]]<BR>"

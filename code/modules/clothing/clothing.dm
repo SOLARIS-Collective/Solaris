@@ -82,8 +82,7 @@
 		if(M.putItemFromInventoryInHandIfPossible(src, H.held_index, FALSE, TRUE))
 			add_fingerprint(usr)
 
-//PENTEST MODULARIZED - Modularized so that moths can actually eat clothes
-/*/obj/item/food/clothing // fuck you
+/obj/item/food/clothing // fuck you
 	name = "temporary moth clothing snack item"
 	desc = "If you're reading this it means I messed up. This is related to moths eating clothes and I didn't know a better way to do it than making a new food object."
 	food_reagents = list(/datum/reagent/consumable/nutriment = 1)
@@ -92,13 +91,28 @@
 
 /obj/item/clothing/attack(mob/M, mob/user, def_zone)
 	if(user.a_intent != INTENT_HARM && moth_edible && ismoth(M))
-		var/obj/item/food/clothing/clothing_as_food = new
-		clothing_as_food.name = name
-		if(clothing_as_food.attack(M, user, def_zone))
+		// [CELADON-EDIT] - FIXES_MOTH_EATING_CLOTHING - Убираем создание временных новых объектов еды, обращаемся напрямую к объектам еды
+		// var/obj/item/food/clothing/clothing_as_food = new
+		// clothing_as_food.name = name
+		// if(clothing_as_food.attack(M, user, def_zone))
+		// 	take_damage(15, sound_effect=FALSE)
+		// qdel(clothing_as_food)	// ORIGINAL
+		if(M == user)
+			to_chat(user, span_notice("You start eating [src]..."))
+			user.visible_message(span_notice("[user] eats [src]."), span_notice("You eat [src]. It tastes like dust and lint."))
+			user.reagents.add_reagent(/datum/reagent/consumable/nutriment, 1)
 			take_damage(15, sound_effect=FALSE)
-		qdel(clothing_as_food)
+			playsound(M.loc,'sound/items/eatfood.ogg', rand(10,50), TRUE)
+		else
+			if(do_after(user, 10, M))
+				to_chat(user, span_notice("You try to feed [src] to [M]..."))
+				user.visible_message(span_notice("[user] feeds [src] to [M]."), span_notice("You feed [src] to [M]."))
+				M.reagents.add_reagent(/datum/reagent/consumable/nutriment, 1)
+				take_damage(15, sound_effect=FALSE)
+				playsound(M.loc,'sound/items/eatfood.ogg', rand(10,50), TRUE)
+	// [CELADON-EDIT]
 	else
-		return ..()*/
+		return ..()
 
 /obj/item/clothing/attackby(obj/item/tool, mob/user, params)
 	if(tool.get_sharpness() && cuttable)
@@ -205,7 +219,7 @@
 		else
 			how_cool_are_your_threads += "[src] can store [pockets.max_items] item\s that are [weightclass2text(pockets.max_w_class)] or smaller.\n"
 		if(pockets.quickdraw)
-			how_cool_are_your_threads += "You can quickly remove an item from [src] using Alt-Click.\n"
+			how_cool_are_your_threads += "You can quickly remove an item from [src] using Right-Click.\n"
 		if(pockets.silent)
 			how_cool_are_your_threads += "Adding or removing items from [src] makes no noise.\n"
 		how_cool_are_your_threads += "</span>"
@@ -270,26 +284,48 @@
 /obj/item/clothing/proc/armor_to_protection_class(armor_value)
 	armor_value = round(armor_value,10) / 10
 	switch (armor_value)
+		// [CELADON-EDIT] - CELADON_QOL - Заменяем на числовое значение отображение класса брони
+		// if (1)
+		// 	. = "I"
+		// if (2)
+		// 	. = "II"
+		// if (3)
+		// 	. = "III"
+		// if (4)
+		// 	. = "IV"
+		// if (5)
+		// 	. = "V"
+		// if (6)
+		// 	. = "VI"
+		// if (7)
+		// 	. = "VII"
+		// if (8)
+		// 	. = "VIII"
+		// if (9)
+		// 	. = "IX"
+		// if (10 to INFINITY)
+		// 	. = "X"			// CELADON-EDIT - ORIGINAL
 		if (1)
-			. = "I"
+			. = "1"
 		if (2)
-			. = "II"
+			. = "2"
 		if (3)
-			. = "III"
+			. = "3"
 		if (4)
-			. = "IV"
+			. = "4"
 		if (5)
-			. = "V"
+			. = "5"
 		if (6)
-			. = "VI"
+			. = "6"
 		if (7)
-			. = "VII"
+			. = "7"
 		if (8)
-			. = "VIII"
+			. = "8"
 		if (9)
-			. = "IX"
+			. = "9"
 		if (10 to INFINITY)
-			. = "X"
+			. = "10"
+		// [/CELADON-EDIT]
 	return .
 
 /obj/item/clothing/atom_break(damage_flag)
@@ -299,6 +335,8 @@
 	if(ismob(loc)) //It's not important enough to warrant a message if nobody's wearing it
 		var/mob/M = loc
 		to_chat(M, span_warning("Your [name] starts to fall apart!"))
+
+	. = ..()
 
 //This mostly exists so subtypes can call appriopriate update icon calls on the wearer.
 /obj/item/clothing/proc/update_clothes_damaged_state(damaging = TRUE)
@@ -330,10 +368,10 @@
 
 	var/icon/human_clothing_icon = icon(file2use, state2use)
 
-	if("[layer]" in mob_species.offset_clothing)
+	var/list/shifts = get_species_worn_offsets(layer, mob_species)	// [CELADON-EDIT] - Get species-specific offsets
+	if(shifts)														// [/CELADON-EDIT]
 		// This code taken from Baystation 12
 		var/icon/final_I = icon('icons/blanks/64x64.dmi', "nothing")
-		var/list/shifts = mob_species.offset_clothing["[layer]"]
 
 		// Apply all pixel shifts for each direction.
 		for(var/shift_facing in shifts)
@@ -421,6 +459,14 @@
 		return
 	..()
 
+/obj/item/clothing/under/attack_hand_secondary(mob/user, list/modifiers)
+	toggle()
+	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+
+/obj/item/clothing/under/attackby_secondary(obj/item/weapon, mob/user, params)
+	toggle()
+	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+
 /obj/item/clothing/under/AltClick(mob/user)
 	if(..())
 		return TRUE
@@ -436,13 +482,11 @@
 		if(toggle_rolldown())
 			return TRUE
 
-
 /obj/item/clothing/under/CtrlClick(mob/user)
 	if(..())
 		return 1
 	if(attached_accessory)
 		remove_accessory(user)
-
 
 /obj/item/clothing/under/verb/jumpsuit_rollsleeves()
 	set name = "Roll Up/Down Sleeves"

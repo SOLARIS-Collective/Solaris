@@ -20,6 +20,11 @@
 	var/integrity = 3
 	var/volume = 70
 
+	//Alert variables
+	var/warning_alert = FALSE
+	var/critical_warning_alert = FALSE
+	var/empty_alert = FALSE
+
 	supports_variations = VOX_VARIATION
 
 /obj/item/tank/ui_action_click(mob/user)
@@ -33,7 +38,7 @@
 	if(breather.internal == src)
 		to_chat(breather, span_notice("You close [src] valve."))
 		breather.internal = null
-		//breather.update_internals_hud_icon(0) //PENTEST REMOVAL
+		breather.update_internals_hud_icon(0)
 	else
 		if(!breather.getorganslot(ORGAN_SLOT_BREATHING_TUBE))
 			var/obj/item/clothing/clothes_check = breather.wear_mask
@@ -59,7 +64,7 @@
 		else
 			to_chat(breather, span_notice("You open [src] valve."))
 		breather.internal = src
-		//breather.update_internals_hud_icon(1) //PENTEST REMOVAL
+		breather.update_internals_hud_icon(1)
 	breather.update_action_buttons_icon()
 
 
@@ -71,7 +76,10 @@
 
 	populate_gas()
 
+	update_appearance(UPDATE_OVERLAYS)
 	START_PROCESSING(SSobj, src)
+
+	addtimer(CALLBACK(src, PROC_REF(pressure_alerts)), 5 SECONDS, TIMER_STOPPABLE|TIMER_LOOP|TIMER_DELETE_ME)
 
 /obj/item/tank/proc/populate_gas()
 	return
@@ -222,6 +230,33 @@
 	air_contents.react()
 	check_status()
 
+/obj/item/tank/update_overlays()
+	. = ..()
+	var/status_overlay_icon_state
+	var/pressure = air_contents.return_pressure()
+
+	// Switches the pressure status overlay depending on which range the tank pressure lies in
+	switch(pressure)
+		if((5 * ONE_ATMOSPHERE) to (29 * ONE_ATMOSPHERE))
+			status_overlay_icon_state = "status_nominal"
+		if((2 * ONE_ATMOSPHERE) to (5 * ONE_ATMOSPHERE))
+			status_overlay_icon_state = "status_warning"
+		if((0.75 * ONE_ATMOSPHERE) to (2 * ONE_ATMOSPHERE))
+			status_overlay_icon_state = "status_alert"
+		if((0.1 * ONE_ATMOSPHERE) to (0.75 * ONE_ATMOSPHERE))
+			status_overlay_icon_state = "status_critical"
+		else
+			status_overlay_icon_state = null
+
+	// Actually sets the overlay. As of now, this has only been done for smaller emergency tanks
+	// The if statement is set as follows due to the coarse search type that the istype proc conducts, as subtypes count as valid types
+	var/mutable_appearance/status_overlay = mutable_appearance(icon, status_overlay_icon_state)
+	
+	if(istype(src, /obj/item/tank/internals/emergency_oxygen/double))
+		status_overlay.pixel_x = 1
+		status_overlay.pixel_y = 2
+	. += status_overlay
+
 /obj/item/tank/proc/check_status()
 	//Handle exploding, leaking, and rupturing of the tank
 
@@ -270,3 +305,43 @@
 
 	else if(integrity < 3)
 		integrity++
+
+// adjusts sprites and issues text alerts depending on tank pressure
+/obj/item/tank/proc/pressure_alerts()
+
+	var/pressure = air_contents.return_pressure()
+
+	// Prevents jetpacks from sending any kind of pressure alert
+	if(istype(src, /obj/item/tank/jetpack))
+		return 0
+
+	// Prevents newly printed tanks from beeping out an alert
+	if(!air_contents || pressure == 0)
+		warning_alert = TRUE
+		critical_warning_alert = TRUE
+		empty_alert = TRUE
+		return 0
+
+	// Checks the pressure of the tank while it's in use and sends an alert out when the pressure reaches a specific range.
+	// Binary variables are used here to prevent an alert from repeating more than once
+	switch(pressure)
+		if((5 * ONE_ATMOSPHERE) to (20 * ONE_ATMOSPHERE))
+			warning_alert = FALSE
+			critical_warning_alert = FALSE
+			empty_alert = FALSE
+		if((2 * ONE_ATMOSPHERE) to (5 * ONE_ATMOSPHERE))
+			if(!warning_alert)
+				warning_alert = TRUE
+		if((0.75 * ONE_ATMOSPHERE) to (2 * ONE_ATMOSPHERE))
+			if(!critical_warning_alert)
+				critical_warning_alert = TRUE
+				playsound(src, 'sound/machines/twobeep_high.ogg', 30, FALSE)
+				say("Tank is at [pressure] kPa! Pressure critically low! -- Estimated time until depletion: [src.volume * 2.5] minutes.")
+		if(0 to (0.75 * ONE_ATMOSPHERE))
+			if(!empty_alert)
+				empty_alert = TRUE
+				playsound(src, 'sound/machines/twobeep_high.ogg', 30, FALSE)
+				playsound(src, 'sound/machines/beep.ogg', 30, FALSE)
+				say("Tank is nearly empty! Replacement recommended!")
+
+	update_appearance(UPDATE_OVERLAYS)

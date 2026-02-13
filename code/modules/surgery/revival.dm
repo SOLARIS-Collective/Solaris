@@ -9,8 +9,8 @@
 				/datum/surgery_step/revive,
 				/datum/surgery_step/close)
 
-	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey, /mob/living/simple_animal)  //PENTEST CHANGE
-	possible_locs = list(BODY_ZONE_CHEST) //PENTEST CHANGE
+	target_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/monkey)
+	possible_locs = list(BODY_ZONE_HEAD)
 	requires_bodypart_type = 0
 
 /datum/surgery/revival/can_start(mob/user, mob/living/carbon/target)
@@ -18,17 +18,10 @@
 		return FALSE
 	if(target.stat != DEAD)
 		return FALSE
-	if(target.hellbound || HAS_TRAIT(target, TRAIT_HUSK))
+	if(HAS_TRAIT(target, TRAIT_HUSK))
 		return FALSE
-	if(!is_valid_target(target)) //PENTEST CHANGE START
-		return FALSE
-	return TRUE
-
-/// Extra checks which can be overridden
-/datum/surgery/revival/proc/is_valid_target(mob/living/patient)
-//	if (iscarbon(patient))
-//		return FALSE
-	if (!(patient.mob_biotypes & (MOB_ORGANIC|MOB_HUMANOID))) //PENTEST CHANGE END
+	var/obj/item/organ/brain/B = target.getorganslot(ORGAN_SLOT_BRAIN)
+	if(!B)
 		return FALSE
 	return TRUE
 

@@ -112,7 +112,6 @@
 /datum/ship_application/ui_state(mob/user)
 	return GLOB.always_state
 
-
 // [CELADON-ADD] - SHIP_SELECTION_REWORK - Вспомогательная функция для очистки HTML-сущностей
 /datum/ship_application/proc/clean_html_entities(text)
 	if(!text)

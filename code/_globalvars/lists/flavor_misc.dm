@@ -13,8 +13,8 @@ GLOBAL_LIST_EMPTY(underwear_list)		//stores /datum/sprite_accessory/underwear in
 GLOBAL_LIST_EMPTY(undershirt_list) 	//stores /datum/sprite_accessory/undershirt indexed by name
 	//Socks
 GLOBAL_LIST_EMPTY(socks_list)		//stores /datum/sprite_accessory/socks indexed by name
-	//Body Sizes
-GLOBAL_LIST_INIT(body_sizes, list("Normal" = BODY_SIZE_NORMAL, "Short" = BODY_SIZE_SHORT, "Tall" = BODY_SIZE_TALL))
+	//Height Filter names
+GLOBAL_LIST_INIT(height_filters, list("Shorter" = HUMAN_HEIGHT_SHORTEST, "Short" = HUMAN_HEIGHT_SHORT, "Normal" = HUMAN_HEIGHT_MEDIUM, "Tall" = HUMAN_HEIGHT_TALL, "Taller" = HUMAN_HEIGHT_TALLER))
 	//lizard Bits (all datum lists indexed by name)
 GLOBAL_LIST_EMPTY(body_markings_list)
 GLOBAL_LIST_EMPTY(tails_list_lizard)
@@ -23,7 +23,6 @@ GLOBAL_LIST_EMPTY(face_markings_list)
 GLOBAL_LIST_EMPTY(horns_list)
 GLOBAL_LIST_EMPTY(frills_list)
 GLOBAL_LIST_EMPTY(spines_list)
-GLOBAL_LIST_EMPTY(legs_list)
 GLOBAL_LIST_EMPTY(animated_spines_list)
 
 	//Mutant Human bits
@@ -37,6 +36,7 @@ GLOBAL_LIST_EMPTY(moth_wings_list)
 GLOBAL_LIST_EMPTY(moth_fluff_list)
 GLOBAL_LIST_EMPTY(moth_markings_list)
 GLOBAL_LIST_EMPTY(squid_face_list)
+GLOBAL_LIST_EMPTY(ipc_hair_list) // [CELADON-ADD] - CELADON_IPC_HAIR
 GLOBAL_LIST_EMPTY(ipc_screens_list)
 GLOBAL_LIST_EMPTY(ipc_antennas_list)
 GLOBAL_LIST_EMPTY(ipc_tail_list)
@@ -112,23 +112,13 @@ GLOBAL_LIST_INIT(ai_core_display_screens, sortList(list(
 	"Alien",
 	"Angel",
 	"Banned",
-	"Bee",
-	"Borb",
-	"Boy",
-	"BoxFort",
 	"Bliss",
 	"Blue",
-	"Catamari",
-	"Cheese",
 	"Clown",
-	"Darkmatter",
 	"Database",
 	"Dorf",
 	"Firewall",
-	"Fische",
-	"Fox",
 	"Fuzzy",
-	"Girl",
 	"Gentoo",
 	"Glitchman",
 	"Gondola",
@@ -137,35 +127,25 @@ GLOBAL_LIST_INIT(ai_core_display_screens, sortList(list(
 	"HAL 9000",
 	"Heartline",
 	"Helios",
-	"Hotdog",
 	"House",
 	"Inverted",
 	"Lamp",
-	"Liz",
 	"Matrix",
 	"Monochrome",
 	"Murica",
-	"Nadburn",
 	"Nanotrasen",
 	"Not Malf",
 	"President",
 	"Random",
 	"Rainbow",
-	"Rainbowslime",
-	"RandomGod",
 	"Red",
 	"Red October",
 	"Static",
 	"Syndicat Meow",
 	"Text",
-	"Terminal",
-	"Tiger",
 	"Too Deep",
 	"Triumvirate",
 	"Triumvirate-M",
-	"Voiddonut",
-	"Vox",
-	"Yes-Man",
 	"Weird")))
 
 /proc/resolve_ai_icon(input)

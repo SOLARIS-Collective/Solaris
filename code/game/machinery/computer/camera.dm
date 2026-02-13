@@ -237,7 +237,7 @@
 		var/cam_location = active_camera_B.loc
 
 		// Is the camera in the following items? If so, let it transmit an image as normal
-		if((istype(cam_location, /obj/item/clothing/suit)) || (istype(cam_location, /obj/item/clothing/head/helmet)) || istype(cam_location, /obj/item/storage/belt) || istype(cam_location, /obj/item/storage/pouch)) //Should probably be refactored into excluding backpacks and boots instead of the current whitelist if more places need to be added
+		if(!(istype(cam_location, /obj/item/clothing/shoes)))
 			cam_location = active_camera_B.loc.loc
 
 		// If we're not forcing an update for some reason and the cameras are in the same location,
@@ -377,13 +377,13 @@
 
 /obj/machinery/computer/security/telescreen/entertainment
 	name = "entertainment monitor"
-	desc = "A screen displaying various entertainment channels. I hope they have that new Clown sitcom on this."
+	desc = "A screen displaying various entertainment channels. I hope they have that new Gezenan sitcom on this."
 	icon = 'icons/obj/status_display.dmi'
 	icon_state = "entertainment_blank"
 	network = list("IntraNet")
 	density = FALSE
 	circuit = null
-	//interaction_flags_atom = NONE  // interact() is called by BigClick()
+	interaction_flags_atom = NONE  // interact() is called by BigClick()
 	var/icon_state_off = "entertainment_blank"
 	var/icon_state_on = "entertainment"
 

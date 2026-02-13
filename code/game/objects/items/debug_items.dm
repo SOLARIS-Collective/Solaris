@@ -26,12 +26,10 @@
 
 /obj/item/debug/omnitool
 	name = "omnitool"
-	desc = "The original hypertool, born before them all. Use it in hand to unleash its true power."
+	desc = "The original hypertool, born before them all. Use it in hand to unleash it's true power."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "hypertool"
 	item_state = "hypertool"
-	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
 	toolspeed = 0.1
 	tool_behaviour = null
 
@@ -45,31 +43,6 @@
 	if(user.incapacitated() || !user.Adjacent(src))
 		return FALSE
 	return TRUE
-
-//automatically finds tool behavior if there is only one. requires an extension of the proc if a tool has multiple behaviors
-/obj/item/proc/get_all_tool_behaviours()
-	if (!isnull(tool_behaviour))
-		return list(tool_behaviour)
-	return null
-
-/obj/item/debug/omnitool/get_all_tool_behaviours()
-	return list(TOOL_ANALYZER,
-	TOOL_CAUTERY,
-	TOOL_CROWBAR,
-	TOOL_DRILL,
-	TOOL_HEMOSTAT,
-	TOOL_KNIFE,
-	TOOL_MINING,
-	TOOL_MULTITOOL,
-	TOOL_RETRACTOR,
-	TOOL_SAW,
-	TOOL_SCALPEL,
-	TOOL_SCREWDRIVER,
-	TOOL_SHOVEL,
-	TOOL_WELDER,
-	TOOL_WIRECUTTER,
-	TOOL_WRENCH,
-	)
 
 /obj/item/debug/omnitool/attack_self(mob/user)
 	if(!user)
@@ -89,8 +62,7 @@
 		"Cautery" = image(icon = 'icons/obj/surgery.dmi', icon_state = "cautery"),
 		"Drill" = image(icon = 'icons/obj/surgery.dmi', icon_state = "drill"),
 		"Scalpel" = image(icon = 'icons/obj/surgery.dmi', icon_state = "scalpel"),
-		"Saw" = image(icon = 'icons/obj/surgery.dmi', icon_state = "saw"),
-		"Knife" = image(icon = 'icons/obj/weapon/knives/knife.dmi', icon_state = "cleaver"),
+		"Saw" = image(icon = 'icons/obj/surgery.dmi', icon_state = "saw")
 		)
 	var/tool_result = show_radial_menu(user, src, tool_list, custom_check = CALLBACK(src, PROC_REF(check_menu), user), require_near = TRUE, tooltips = TRUE)
 	if(!check_menu(user))
@@ -126,5 +98,3 @@
 			tool_behaviour = TOOL_SCALPEL
 		if("Saw")
 			tool_behaviour = TOOL_SAW
-		if("Knife")
-			tool_behaviour = TOOL_KNIFE

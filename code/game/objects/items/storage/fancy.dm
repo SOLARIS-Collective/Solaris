@@ -149,9 +149,14 @@
 			return
 		var/image/current_huevo = image(icon = icon, icon_state = "eggbox_eggoverlay")
 		if(egg_count <= 6) //less than 6 eggs
-			current_huevo.pixel_x = (3*(egg_count-1))
+		// [CELADON-EDIT] - CELADON_RESPRITE
+		//	current_huevo.pixel_x = (3*(egg_count-1))
+		//else //if more than 6, make an extra row
+		//	current_huevo.pixel_x = (3*(egg_count-7)) //-7 to 'reset' it
+			current_huevo.pixel_x = (5*(egg_count-1))
 		else //if more than 6, make an extra row
-			current_huevo.pixel_x = (3*(egg_count-7)) //-7 to 'reset' it
+			current_huevo.pixel_x = (5*(egg_count-7)) //-7 to 'reset' it
+		// [/CELADON-EDIT]
 			current_huevo.pixel_y = -3
 		add_overlay(current_huevo)
 
@@ -203,23 +208,61 @@
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 6
-	STR.set_holdable(list(/obj/item/clothing/mask/cigarette, /obj/item/lighter))
+	// [CELADON-ADD] - CELADON_QOL
+	STR.max_w_class = WEIGHT_CLASS_TINY
+	// STR.storage_flags = STORAGE_FLAGS_VOLUME_DEFAULT
+	// [/CELADON-ADD]
+	// [CELADON-EDIT] - CELADON_QOL
+	// STR.set_holdable(list(/obj/item/clothing/mask/cigarette, /obj/item/lighter)) // CELADON-EDIT - ORIGINAL
+	STR.set_holdable(list(/obj/item/clothing/mask/cigarette, /obj/item/lighter, /obj/item/cigbutt))
+	// [/CELADON-EDIT]
 
 /obj/item/storage/fancy/cigarettes/examine(mob/user)
 	. = ..()
 	. += span_notice("Alt-click to extract contents.")
 
-/obj/item/storage/fancy/cigarettes/AltClick(mob/living/carbon/user)
+/obj/item/storage/fancy/cigarettes/afterattack_secondary(atom/target, mob/user, proximity_flag, click_parameters)
+	. = ..()
+	if(!proximity_flag)
+		return
+	if(ishuman(target) && contents.len)
+		var/mob/living/carbon/human/bumming_a_smoke = target
+		if(do_after(user, 15, bumming_a_smoke, show_progress = FALSE))
+			var/obj/item/clothing/mask/cigarette/british_slang = locate(/obj/item/clothing/mask/cigarette) in contents
+			if(british_slang)
+				SEND_SIGNAL(src, COMSIG_TRY_STORAGE_TAKE, british_slang, user)
+				if(bumming_a_smoke.equip_to_slot_if_possible(british_slang, ITEM_SLOT_MASK, disable_warning=TRUE))
+					user.visible_message(span_notice("[user] puts a cigarette in [bumming_a_smoke]'s lips"), span_notice("You put a cigarette in [bumming_a_smoke]'s lips"))
+				else
+					bumming_a_smoke.put_in_hand(british_slang)
+					user.visible_message(span_notice("[user] puts a cigarette in [bumming_a_smoke]'s hand"), span_notice("You put a cigarette in [bumming_a_smoke]'s hands"))
+				contents -= british_slang
+
+/obj/item/storage/fancy/cigarettes/attack_self_secondary(mob/living/carbon/user)
 	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
 		return
-	var/obj/item/clothing/mask/cigarette/W = locate(/obj/item/clothing/mask/cigarette) in contents
-	if(W && contents.len > 0)
-		SEND_SIGNAL(src, COMSIG_TRY_STORAGE_TAKE, W, user)
-		user.put_in_hands(W)
-		contents -= W
-		to_chat(user, span_notice("You take \a [W] out of the pack."))
+	get_cigarette(user)
+
+/obj/item/storage/fancy/cigarettes/AltClick(mob/living/carbon/user)
+	. = ..()
+	var/obj/item/lighter/the_zippo = locate(/obj/item/lighter) in contents
+	if(the_zippo)
+		SEND_SIGNAL(src, COMSIG_TRY_STORAGE_TAKE, the_zippo, user)
+		user.put_in_hands(the_zippo)
+		contents -= the_zippo
+	else
+		get_cigarette(user)
+
+/obj/item/storage/fancy/cigarettes/proc/get_cigarette(mob/living/carbon/user)
+	var/obj/item/clothing/mask/cigarette/british_slang = locate(/obj/item/clothing/mask/cigarette) in contents
+	if(british_slang)
+		SEND_SIGNAL(src, COMSIG_TRY_STORAGE_TAKE, british_slang, user)
+		user.put_in_hands(british_slang)
+		contents -= british_slang
+		to_chat(user, span_notice("You take \a [british_slang] out of the pack."))
 	else
 		to_chat(user, span_notice("There are no [contents_tag]s left in the pack."))
+
 
 /obj/item/storage/fancy/cigarettes/update_icon_state()
 	. = ..()
@@ -328,13 +371,6 @@
 	. = ..()
 	if(prob(7))
 		spawn_type = /obj/item/clothing/mask/cigarette/candy/nicotine //uh oh!
-
-/obj/item/storage/fancy/cigarettes/cigpack_xeno
-	name = "\improper Xeno Filtered packet"
-	desc = "Loaded with 100% pure slime. And also nicotine."
-	icon_state = "slime"
-	base_icon_state = "slime"
-	spawn_type = /obj/item/clothing/mask/cigarette/xeno
 
 /obj/item/storage/fancy/cigarettes/cigpack_cannabis
 	name = "\improper Freak Brothers' Special packet"
@@ -458,7 +494,7 @@
 
 /obj/item/storage/fancy/cigarettes/cigars/havana
 	name = "\improper premium Havanian cigar case"
-	desc = "Even after centuries of Terran export, Havana smooth is only found in proper solarian cigars."
+	desc = "Even after centuries of Solarian export, Havana smooth is only found in proper terran cigars."
 	icon_state = "cohibacase"
 	base_icon_state = "cohibacase"
 	spawn_type = /obj/item/clothing/mask/cigarette/cigar/havana

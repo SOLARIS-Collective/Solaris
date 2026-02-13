@@ -41,9 +41,11 @@
 /obj/item/storage/box/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	STR.storage_flags = STORAGE_FLAGS_VOLUME_DEFAULT
-	STR.max_volume = STORAGE_VOLUME_CONTAINER_S
-	STR.max_w_class = WEIGHT_CLASS_SMALL
+	// [CELADON-EDIT]
+	//STR.storage_flags = STORAGE_FLAGS_VOLUME_DEFAULT
+	//STR.max_volume = STORAGE_VOLUME_CONTAINER_S
+	//STR.max_w_class = WEIGHT_CLASS_SMALL
+	// [/CELADON-EDIT]
 	STR.use_sound = 'sound/items/storage/briefcase.ogg'
 
 /obj/item/storage/box/update_overlays()
@@ -71,6 +73,28 @@
 	if(istype(W, /obj/item/stack/packageWrap))
 		return 0
 	return ..()
+
+// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+//Mime spell boxes
+
+/obj/item/storage/box/mime
+	name = "invisible box"
+	desc = "Unfortunately not large enough to trap the mime."
+	foldable = null
+	icon_state = "box"
+	item_state = null
+	alpha = 0
+
+/obj/item/storage/box/mime/attack_hand(mob/user)
+	..()
+	if(user.mind.miming)
+		alpha = 255
+
+/obj/item/storage/box/mime/Moved(oldLoc, dir)
+	if (iscarbon(oldLoc))
+		alpha = 0
+	..()
+// [/CELADON-ADD]
 
 //Disk boxes
 
@@ -158,9 +182,13 @@
 /obj/item/storage/box/survival/clip
 	internal_type = /obj/item/tank/internals/emergency_oxygen/engi //clip actually cares about their personnel
 
-/obj/item/storage/box/survival/clip/balaclava
-	mask_type = /obj/item/clothing/mask/balaclava
+/obj/item/storage/box/survival/clip/minutemen
+	mask_type = /obj/item/clothing/mask/balaclava/combat
 	internal_type = /obj/item/tank/internals/emergency_oxygen/double
+
+/obj/item/storage/box/survival/pgf
+	mask_type = /obj/item/clothing/mask/breath/pgfmask
+	internal_type = /obj/item/tank/internals/emergency_oxygen/engi
 
 /obj/item/storage/box/survival/inteq
 	mask_type = /obj/item/clothing/mask/balaclava/inteq
@@ -169,6 +197,10 @@
 /obj/item/storage/box/survival/frontier
 	mask_type = null // we spawn in gas masks in frontiersmen bags alongside this, so it isn't nessary
 	internal_type = /obj/item/tank/internals/emergency_oxygen //frontiersmen dont
+
+/obj/item/storage/box/survival/vi
+	mask_type = /obj/item/clothing/mask/gas/vigilitas
+	internal_type = /obj/item/tank/internals/emergency_oxygen/engi
 
 /obj/item/storage/box/gloves
 	name = "box of latex gloves"
@@ -260,9 +292,9 @@
 
 /obj/item/storage/box/hypospray/PopulateContents()
 	new /obj/item/hypospray/mkii(src)
-	new /obj/item/reagent_containers/glass/bottle/vial/small/preloaded/bicaridine(src)
-	new /obj/item/reagent_containers/glass/bottle/vial/small/preloaded/antitoxin(src)
-	new /obj/item/reagent_containers/glass/bottle/vial/small/preloaded/kelotane(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/small/preloaded/indomide(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/small/preloaded/pancrazine(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/small/preloaded/alvitane(src)
 	new /obj/item/reagent_containers/glass/bottle/vial/small/preloaded/dexalin(src)
 
 /obj/item/storage/box/hypospray/mkiii
@@ -270,10 +302,10 @@
 
 /obj/item/storage/box/hypospray/mkiii/PopulateContents()
 	new /obj/item/hypospray/mkii/mkiii(src)
-	new /obj/item/reagent_containers/glass/bottle/vial/large/preloaded/bicaridine(src)
-	new /obj/item/reagent_containers/glass/bottle/vial/large/preloaded/antitoxin(src)
-	new /obj/item/reagent_containers/glass/bottle/vial/large/preloaded/kelotane(src)
-	new /obj/item/reagent_containers/glass/bottle/vial/large/preloaded/dexalin(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/large/preloaded/silfrine(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/large/preloaded/gjalrazine(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/large/preloaded/ysiltane(src)
+	new /obj/item/reagent_containers/glass/bottle/vial/large/preloaded/salbutamol(src)
 
 /obj/item/storage/box/medigels
 	name = "box of medical gels"
@@ -299,11 +331,21 @@
 	name = "box of smoke grenades (WARNING)"
 	desc = "<B>WARNING: Do not use in enclosed areas. Protective mask must be worn when in smoke cloud.</B>"
 	icon_state = "secbox"
-	illustration = "flashbang"
+	illustration = "smoke"
 
 /obj/item/storage/box/smokebombs/PopulateContents()
 	for(var/i in 1 to 7)
 		new /obj/item/grenade/smokebomb(src)
+
+/obj/item/storage/box/barriers
+	name = "box of barrier grenades (WARNING)"
+	desc = "<B>WARNING: Deploy barriers with care, providing ample space for automatic deployment to prevent accidental injury.</B>"
+	icon_state = "secbox"
+	illustration = "flashbang"
+
+/obj/item/storage/box/barriers/PopulateContents()
+	for(var/i in 1 to 7)
+		new /obj/item/grenade/barrier(src)
 
 /obj/item/storage/box/flashbangs
 	name = "box of flashbangs (WARNING)"
@@ -453,6 +495,24 @@
 	for(var/i in 1 to 6)
 		new /obj/item/reagent_containers/food/drinks/drinkingglass(src)
 
+/obj/item/storage/box/shotglasses
+	name = "box of shot glasses"
+	desc = "It has a picture of shot glasses on it."
+	illustration = "drinkglass"
+
+/obj/item/storage/box/shotglasses/PopulateContents()
+	for(var/i in 1 to 6)
+		new /obj/item/reagent_containers/food/drinks/drinkingglass/shotglass(src)
+
+/obj/item/storage/box/modglasses
+	name = "box of malleable glasses"
+	desc = "It has a picture of malleable glasses on it."
+	illustration = "drinkglass"
+
+/obj/item/storage/box/modglasses/PopulateContents()
+	for(var/i in 1 to 6)
+		new /obj/item/reagent_containers/food/drinks/modglass(src)
+
 /obj/item/storage/box/condimentbottles
 	name = "box of condiment bottles"
 	desc = "It has a large ketchup smear on it."
@@ -477,7 +537,12 @@
 	icon_state = "donkpocketbox"
 	illustration=null
 	var/donktype = /obj/item/food/donkpocket
-
+// [CELADON-EDIT]
+/obj/item/storage/box/donkpockets/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.set_holdable(list(/obj/item/food/donkpocket))
+// [/CELADON-EDIT]
 /obj/item/storage/box/donkpockets/PopulateContents()
 	for(var/i in 1 to 6)
 		new donktype(src)
@@ -508,7 +573,13 @@
 	icon_state = "monkeycubebox"
 	illustration = null
 	var/cube_type = /obj/item/food/monkeycube
-
+// [CELADON-EDIT]
+/obj/item/storage/box/monkeycubes/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_items = 7
+	STR.set_holdable(list(/obj/item/food/monkeycube))
+// [/CELADON-EDIT]
 /obj/item/storage/box/monkeycubes/PopulateContents()
 	for(var/i in 1 to 5)
 		new cube_type(src)
@@ -615,16 +686,6 @@
 	for(var/i in 1 to 7)
 		new	/obj/item/restraints/handcuffs/alien(src)
 
-/obj/item/storage/box/fakesyndiesuit
-	name = "boxed space suit and helmet"
-	desc = "A sleek, sturdy box used to hold replica spacesuits."
-	icon_state = "syndiebox"
-	illustration = "syndiesuit"
-
-/obj/item/storage/box/fakesyndiesuit/PopulateContents()
-	new /obj/item/clothing/head/syndicatefake(src)
-	new /obj/item/clothing/suit/syndicatefake(src)
-
 /obj/item/storage/box/mousetraps
 	name = "box of Pest-B-Gon mousetraps"
 	desc = span_alert("Keep out of reach of children.")
@@ -648,7 +709,13 @@
 	desc = "Eight wrappers of fun! Ages 8 and up. Not suitable for children."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "spbox"
-
+	// [CELADON-EDIT]
+/obj/item/storage/box/snappops/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.set_holdable(list(/obj/item/toy/snappop))
+	STR.max_items = 8
+// [/CELADON-EDIT]
 /obj/item/storage/box/snappops/PopulateContents()
 	SEND_SIGNAL(src, COMSIG_TRY_STORAGE_FILL_TYPE, /obj/item/toy/snappop)
 
@@ -663,7 +730,13 @@
 	drop_sound = 'sound/items/handling/matchbox_drop.ogg'
 	pickup_sound =  'sound/items/handling/matchbox_pickup.ogg'
 	custom_price = 2
-
+// [CELADON-EDIT]
+/obj/item/storage/box/matches/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_items = 10
+	STR.set_holdable(list(/obj/item/match))
+// [/CELADON-EDIT]
 /obj/item/storage/box/matches/PopulateContents()
 	SEND_SIGNAL(src, COMSIG_TRY_STORAGE_FILL_TYPE, /obj/item/match)
 
@@ -779,6 +852,18 @@
 	new /obj/item/stack/medical/bruise_pack(src)
 	new /obj/item/stack/medical/ointment(src)
 	new /obj/item/reagent_containers/hypospray/medipen(src)
+
+// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNSS
+// Clown survival box
+/obj/item/storage/box/hug/survival/PopulateContents()
+	new /obj/item/clothing/mask/breath(src)
+	new /obj/item/reagent_containers/hypospray/medipen(src)
+
+	if(!isplasmaman(loc))
+		new /obj/item/tank/internals/emergency_oxygen(src)
+	else
+		new /obj/item/tank/internals/plasmaman/belt(src)
+// [/CELADON-ADD]
 
 /obj/item/storage/box/rubbershot
 	name = "box of rubber shots"
@@ -1062,7 +1147,6 @@
 	new /obj/item/food/spidereggs(src)
 	new /obj/item/food/fishmeat/carp(src)
 	new /obj/item/food/meat/slab/xeno(src)
-	new /obj/item/food/meat/slab/corgi(src)
 	new /obj/item/food/meatball(src)
 
 /obj/item/storage/box/ingredients/exotic
@@ -1177,14 +1261,14 @@
 	new /obj/item/circuitboard/machine/circuit_imprinter/department/science(src)
 	new /obj/item/circuitboard/computer/rdconsole(src)
 
-/obj/item/storage/box/silver_sulf
-	name = "box of silver sulfadiazine patches"
+/obj/item/storage/box/alvitane
+	name = "box of alvitane patches"
 	desc = "Contains patches used to treat burns."
 	illustration = "firepatch"
 
-/obj/item/storage/box/silver_sulf/PopulateContents()
+/obj/item/storage/box/alvitane/PopulateContents()
 	for(var/i in 1 to 7)
-		new /obj/item/reagent_containers/pill/patch/silver_sulf(src)
+		new /obj/item/reagent_containers/pill/patch/alvitane(src)
 
 /obj/item/storage/box/fountainpens
 	name = "box of fountain pens"
@@ -1384,6 +1468,8 @@
 		)
 	generate_items_inside(items_inside,src)
 
+// [CELADON-REMOVE] - DEBUG_QUALITY
+/*
 /obj/item/storage/box/debugtools
 	name = "box of debug tools"
 	icon_state = "syndiebox"
@@ -1407,6 +1493,8 @@
 		/obj/item/storage/box/material=1
 		)
 	generate_items_inside(items_inside,src)
+*/
+// [/CELADON-REMOVE]
 
 /obj/item/storage/box/plastic
 	name = "plastic box"
@@ -1473,3 +1561,12 @@
 		)
 	generate_items_inside(items_inside,src)
 
+/obj/item/storage/box/plasticware
+	name = "plasticware box"
+	desc = "Contains plastic forks, spoons and knives for eating food (and other things)."
+
+/obj/item/storage/box/plasticware/PopulateContents()
+	for(var/i in 1 to 3)
+		new /obj/item/kitchen/fork/plastic(src)
+		new /obj/item/kitchen/spoon/plastic(src)
+		new /obj/item/melee/knife/plastic(src)
