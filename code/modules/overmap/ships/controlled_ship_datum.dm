@@ -535,7 +535,8 @@
 			return cand_mob
 
 /datum/overmap/ship/controlled/proc/get_mob_if_valid_owner(datum/mind/candidate)
-	if(!(candidate in owner_candidates) || !owner_candidates[candidate]["eligible"])
+	var/list/candidate_info = owner_candidates[candidate]
+	if(!islist(candidate_info) || !candidate_info["eligible"])
 		return null
 	var/mob/cand_mob = candidate.active ? candidate.current : candidate.get_ghost(FALSE, FALSE)
 	// testing trace

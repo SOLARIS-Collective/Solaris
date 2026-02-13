@@ -90,7 +90,8 @@
 	if(!occupant || !iscarbon(occupant))
 		return
 	var/mob/living/carbon/C = occupant
-	operation_order = reverseList(C.get_all_bodyparts())   //Chest and head are first in bodyparts, so we invert it to make them suffer more
+	var/list/bodyparts = C.get_all_bodyparts()
+	operation_order = reverseList(bodyparts)   //Chest and head are first in bodyparts, so we invert it to make them suffer more
 	warming_up = TRUE
 	harvesting = TRUE
 	visible_message(span_notice("The [name] begins warming up!"))

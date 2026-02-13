@@ -212,8 +212,11 @@
 			var/datum/mind/target_mind = locate(params["ref"]) in parent_ship.owner_candidates
 			if(!target_mind)
 				return TRUE
+			var/list/mind_info = parent_ship.owner_candidates[target_mind]
+			if(!islist(mind_info))
+				return TRUE
 			// swaps their eligibility
-			parent_ship.owner_candidates[target_mind]["eligible"] = !parent_ship.owner_candidates[target_mind]["eligible"]
+			mind_info["eligible"] = !mind_info["eligible"]
 			update_static_data(user)
 			return TRUE
 

@@ -271,7 +271,7 @@
 	for(var/turf/closed/mineral/rock in circle_range_turfs(src, 2))
 		rock.gets_drilled()
 	for(var/mob/living/mob in range(1, src))
-		mob.apply_damage(12 * (ishostile(mob) ? fauna_boost : 1), BRUTE, spread_damage = TRUE)
+		mob.apply_damage(12 * (ishostile(mob) ? fauna_boost : 1), BRUTE, null, FALSE, FALSE, TRUE)
 		if(!ishostile(mob) || !firer)
 			continue
 		var/mob/living/simple_animal/hostile/hostile_mob = mob
