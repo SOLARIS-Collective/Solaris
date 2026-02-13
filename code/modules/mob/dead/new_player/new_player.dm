@@ -35,7 +35,7 @@
 	. = ..()
 
 	GLOB.new_player_list += src
-	//SSpoints_of_interest.make_point_of_interest(src)
+	SSpoints_of_interest.make_point_of_interest(src)
 
 /mob/dead/new_player/Destroy()
 	GLOB.new_player_list -= src
@@ -224,12 +224,11 @@
 	var/less_input_message
 	if(SSlag_switch.measures[DISABLE_DEAD_KEYLOOP])
 		less_input_message = " - Notice: Observer freelook is currently disabled."
-	var/this_is_like_playing_right = tgui_alert(src, "Are you sure you wish to observe? You will [CONFIG_GET(flag/norespawn) ? "not " : "" ]be able to respawn later.[less_input_message]", "Player Setup", list("Yes","No"))
+	// Don't convert this to tgui please, it's way too important
 
+	var/this_is_like_playing_right = alert(usr, "Are you sure you wish to observe? You will not be able to play this round![less_input_message]", "Observe", "Yes", "No")
 	if(QDELETED(src) || !src.client || this_is_like_playing_right != "Yes")
 		ready = PLAYER_NOT_READY
-		src << browse(null, "window=playersetup") //closes the player setup window
-		new_player_panel()
 		return FALSE
 
 	var/mob/dead/observer/observer = new()
@@ -292,11 +291,11 @@
 	if(auth_check)
 		return
 
-/*	if(!client.prefs.randomise[RANDOM_NAME]) // do they have random names enabled //PENTEST CHANGE - START
+	if(!client.prefs.randomise[RANDOM_NAME]) // do they have random names enabled
 		var/name = client.prefs.real_name
 		if(GLOB.real_names_joined.Find(name)) // is there someone who spawned with the same name
 			to_chat(usr, "<span class='warning'>Someone has spawned with this name already.")
-			return FALSE */
+			return FALSE
 
 	var/error = IsJobUnavailable(job, ship, check_playtime)
 	if(error != JOB_AVAILABLE)
@@ -367,6 +366,13 @@
 	if(!GLOB.ship_select_tgui)
 		GLOB.ship_select_tgui = new /datum/ship_select(src)
 
+	// [CELADON-ADD] - CELADON: DISCORD VERIFY
+	if(CONFIG_GET(flag/DiscordVerify))
+		if(!checkDiscordVerify(src.ckey))
+			to_chat(usr, span_danger("Ваш аккаунт не верифицирован в Discord.\n Пожалуйста, используйте кнопку 'Verify Discord Account' во вкладке 'Special Verbs' для Discord верификации."))
+			return
+	// [/CELADON-ADD]
+
 	GLOB.ship_select_tgui.ui_interact(src)
 
 /mob/dead/new_player/proc/can_join_round(silent = FALSE)
@@ -407,7 +413,6 @@
 	GLOB.joined_player_list += ckey
 
 	var/frn = CONFIG_GET(flag/force_random_names)
-	var/admin_anon_names = SSticker.anonymousnames
 	if(!frn)
 		frn = is_banned_from(ckey, "Appearance")
 		if(QDELETED(src))
@@ -415,10 +420,6 @@
 	if(frn)
 		client.prefs.random_character()
 		client.prefs.real_name = client.prefs.pref_species.random_name(gender,1)
-
-	if(admin_anon_names)//overrides random name because it achieves the same effect and is an admin enabled event tool
-		client.prefs.random_character()
-		client.prefs.real_name = anonymous_name(src)
 
 	var/is_antag
 	if(mind in GLOB.pre_setup_antags)

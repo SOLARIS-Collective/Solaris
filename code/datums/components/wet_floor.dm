@@ -73,23 +73,23 @@
 
 /datum/component/wet_floor/proc/update_flags()
 	var/intensity
-	lube_flags = NONE
+	lube_flags = SLIPPERY_TURF
 	switch(highest_strength)
 		if(TURF_WET_WATER)
 			intensity = 60
-			lube_flags = NO_SLIP_WHEN_WALKING
+			lube_flags |= NO_SLIP_WHEN_WALKING
 		if(TURF_WET_LUBE)
 			intensity = 80
-			lube_flags = SLIDE | GALOSHES_DONT_HELP
+			lube_flags |= SLIDE | GALOSHES_DONT_HELP
 		if(TURF_WET_ICE)
 			intensity = 120
-			lube_flags = SLIDE | GALOSHES_DONT_HELP
+			lube_flags |= SLIDE | GALOSHES_DONT_HELP
 		if(TURF_WET_PERMAFROST)
 			intensity = 120
-			lube_flags = SLIDE_ICE | GALOSHES_DONT_HELP
+			lube_flags |= SLIDE_ICE | GALOSHES_DONT_HELP
 		if(TURF_WET_SUPERLUBE)
 			intensity = 120
-			lube_flags = SLIDE | GALOSHES_DONT_HELP | SLIP_WHEN_CRAWLING
+			lube_flags |= SLIDE | GALOSHES_DONT_HELP | SLIP_WHEN_CRAWLING
 		else
 			qdel(parent.GetComponent(/datum/component/slippery))
 			return
@@ -111,6 +111,13 @@
 		. = max(., time_left_list[i])
 
 /datum/component/wet_floor/process(seconds_per_tick)
+	//[CELADON-ADD] - CELADON_FIXES - вобщем эта залупа рантаймит потому-что почему-то компонент нахуй попадает на /turf/closed который НЕ ДОЛЖЕН ТАМ БЫТЬ
+	if(!isopenturf(parent))
+		STOP_PROCESSING(SSwet_floors, src)
+		var/turf/T = parent
+		T.cut_overlay(current_overlay)
+		qdel(T.GetComponent(/datum/component/slippery))
+	//[/CELADON-ADD]
 	var/turf/open/T = parent
 	var/diff = world.time - last_process
 	var/decrease = 0

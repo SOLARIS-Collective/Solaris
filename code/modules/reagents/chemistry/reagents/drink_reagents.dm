@@ -153,6 +153,14 @@
 	glass_name = "glass of banana juice"
 	glass_desc = "While staring down at this glass, some part of you wonders what went through the minds of those who decided to add this to milk."
 
+// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNSS
+/datum/reagent/consumable/banana/on_mob_life(mob/living/carbon/M)
+	if((ishuman(M) && M.job == "Clown") || ismonkey(M))
+		M.heal_bodypart_damage(1,1, 0)
+		. = 1
+	..()
+// [/CELADON-ADD]
+
 /datum/reagent/consumable/nothing
 	name = "Nothing"
 	description = "Absolutely nothing."
@@ -161,6 +169,41 @@
 	glass_name = "nothing"
 	glass_desc = "Absolutely nothing."
 	shot_glass_icon_state = "shotglass"
+
+// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+/datum/reagent/consumable/nothing/on_mob_life(mob/living/carbon/M)
+	if(ishuman(M) && M.mind?.miming)
+		M.silent = max(M.silent, MIMEDRINK_SILENCE_DURATION)
+		M.heal_bodypart_damage(1,1)
+		. = 1
+	..()
+
+/datum/reagent/consumable/laughter
+	name = "Laughter"
+	description = "Some say that this is the best medicine, but recent studies have proven that to be untrue."
+	metabolization_rate = INFINITY
+	color = "#FF4DD2"
+	taste_description = "laughter"
+
+/datum/reagent/consumable/laughter/on_mob_life(mob/living/carbon/M)
+	M.emote("laugh")
+	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "chemical_laughter", /datum/mood_event/chemical_laughter)
+	..()
+
+/datum/reagent/consumable/superlaughter
+	name = "Super Laughter"
+	description = "Funny until you're the one laughing."
+	metabolization_rate = 1.5 * REAGENTS_METABOLISM
+	color = "#FF4DD2"
+	taste_description = "laughter"
+
+/datum/reagent/consumable/superlaughter/on_mob_life(mob/living/carbon/M)
+	if(prob(30))
+		M.visible_message(span_danger("[M] bursts out into a fit of uncontrollable laughter!"), span_userdanger("You burst out in a fit of uncontrollable laughter!"))
+		M.Stun(5)
+		SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "chemical_laughter", /datum/mood_event/chemical_superlaughter)
+	..()
+// [/CELADON-ADD]
 
 /datum/reagent/consumable/potato_juice
 	name = "Potato Juice"
@@ -540,13 +583,14 @@
 	..()
 	if(C?.mind?.get_skill_level(/datum/skill/gaming) >= SKILL_LEVEL_LEGENDARY && method==INGEST && !HAS_TRAIT(C, TRAIT_GAMERGOD))
 		ADD_TRAIT(C, TRAIT_GAMERGOD, "pwr_game")
-		to_chat(C, "<span class='nicegreen'>As you imbibe the PAC-Fuel, your gamer third eye opens... \
-		You feel as though a great secret of the universe has been made known to you...</span>")
+		to_chat(C, span_nicegreen("As you imbibe the PAC-Fuel, your gamer third eye opens... \
+		You feel as though a great secret of the universe has been made known to you..."))
 
 /datum/reagent/consumable/pacfuel/on_mob_life(mob/living/carbon/M)
 	M.adjust_bodytemperature(-2 * TEMPERATURE_DAMAGE_COEFFICIENT, M.get_body_temp_normal(), FALSE)
-	if(prob(10))
-		M?.mind.adjust_experience(/datum/skill/gaming, 5)
+	if(M.mind)
+		if(prob(10))
+			M?.mind.adjust_experience(/datum/skill/gaming, 5)
 	..()
 
 /datum/reagent/consumable/shoal_punch
@@ -930,17 +974,13 @@
 		return ..()
 	var/newsize = pick(0.5, 0.75, 1, 1.50, 2)
 	newsize *= RESIZE_DEFAULT_SIZE
-	H.resize = newsize/current_size
-	current_size = newsize
-	H.update_transform()
+	H.update_transform(newsize/current_size)
 	if(prob(40))
 		H.emote("sneeze")
 	..()
 
 /datum/reagent/consumable/red_queen/on_mob_end_metabolize(mob/living/M)
-	M.resize = RESIZE_DEFAULT_SIZE/current_size
-	current_size = RESIZE_DEFAULT_SIZE
-	M.update_transform()
+	M.update_transform(RESIZE_DEFAULT_SIZE/current_size)
 	..()
 
 /datum/reagent/consumable/bungojuice

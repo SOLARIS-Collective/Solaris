@@ -53,7 +53,7 @@
 	var/fin_mask  = "topfin"
 	var/obj/effect/supplypod_rubble/rubble
 	var/obj/effect/engineglow/glow_effect
-	var/list/reverseOptionList = list("Mobs"=FALSE,"Unanchored"=FALSE,"Anchored"=FALSE,"Underfloor"=FALSE,"Wallmounted"=FALSE,"Floors"=FALSE,"Walls"=FALSE,"Mecha"=FALSE)
+	var/list/reverseOptionList = list("Mobs"=FALSE,"Objects"=FALSE,"Anchored"=FALSE,"Underfloor"=FALSE,"Wallmounted"=FALSE,"Floors"=FALSE,"Walls"=FALSE)
 	var/list/turfs_in_cargo = list()
 
 /obj/structure/closet/supplypod/bluespacepod
@@ -80,7 +80,6 @@
 
 /obj/structure/closet/supplypod/Initialize(mapload, customStyle = FALSE)
 	. = ..()
-	AddComponent(/datum/component/gps, "CR-473", TRUE) //PENTEST ADDITION - GPS component for the supplypod, used to track it and its contents
 	if (!loc)
 		var/area/shipping_lane = GLOB.areas_by_type[/area/centcom/supplypod/supplypod_temp_holding] //temporary holder for supplypods mid-transit
 		forceMove(pick(shipping_lane.contents))
@@ -174,11 +173,10 @@
 	if(decal)
 		. += decal
 
-/obj/structure/closet/supplypod/tool_interact(obj/item/W, mob/user)
+/obj/structure/closet/supplypod/tool_act(mob/living/user, obj/item/I, tool_type)
 	if(bluespace) //We dont want to worry about interacting with bluespace pods, as they are due to delete themselves soon anyways.
 		return FALSE
-	else
-		..()
+	return ..()
 
 /obj/structure/closet/supplypod/ex_act() //Explosions dont do SHIT TO US! This is because supplypods create explosions when they land.
 	return
@@ -219,16 +217,17 @@
 	density = TRUE //Density is originally false so the pod doesn't block anything while it's still falling through the air
 	for (var/mob/living/target_living in turf_underneath)
 		if (iscarbon(target_living)) //If effectLimb is true (which means we pop limbs off when we hit people):
+			var/mob/living/carbon/carbon_target_mob = target_living
+			var/list/mob_bodyparts = carbon_target_mob.get_all_bodyparts()
 			if (effectLimb)
-				var/mob/living/carbon/carbon_target_mob = target_living
-				for (var/bp in carbon_target_mob.bodyparts) //Look at the bodyparts in our poor mob beneath our pod as it lands
-					var/obj/item/bodypart/bodypart = bp
-					if(bodypart.body_part != HEAD && bodypart.body_part != CHEST)//we dont want to kill him, just teach em a lesson!
-						if (bodypart.dismemberable)
-							bodypart.dismember() //Using the power of flextape i've sawed this man's limb in half!
-							break
+				for (var/obj/item/bodypart/bodypart as anything in mob_bodyparts) //Look at the bodyparts in our poor mob beneath our pod as it lands
+					if(bodypart.body_part & HEAD|CHEST)//we dont want to kill him, just teach em a lesson!
+						continue
+					if(!bodypart.dismemberable)
+						bodypart.dismember() //Using the power of flextape i've sawed this man's limb in half!
+						mob_bodyparts -= bodypart
+						break
 			if (effectOrgans) //effectOrgans means remove every organ in our mob
-				var/mob/living/carbon/carbon_target_mob = target_living
 				for(var/organ in carbon_target_mob.internal_organs)
 					var/destination = get_edge_target_turf(turf_underneath, pick(GLOB.alldirs)) //Pick a random direction to toss them in
 					var/obj/item/organ/organ_to_yeet = organ
@@ -236,8 +235,7 @@
 					organ_to_yeet.forceMove(turf_underneath) //Move the organ outta the body
 					organ_to_yeet.throw_at(destination, 2, 3) //Thow the organ at a random tile 3 spots away
 					sleep(1)
-				for (var/bp in carbon_target_mob.bodyparts) //Look at the bodyparts in our poor mob beneath our pod as it lands
-					var/obj/item/bodypart/bodypart = bp
+				for (var/obj/item/bodypart/bodypart in mob_bodyparts) //Look at the bodyparts in our poor mob beneath our pod as it lands
 					var/destination = get_edge_target_turf(turf_underneath, pick(GLOB.alldirs))
 					if (bodypart.dismemberable)
 						bodypart.dismember() //Using the power of flextape i've sawed this man's bodypart in half!
@@ -355,7 +353,6 @@
 		if(mob_to_insert.anchored || mob_to_insert.incorporeal_move)
 			return FALSE
 		mob_to_insert.stop_pulling()
-		return TRUE
 
 	else if(isobj(to_insert))
 		var/obj/obj_to_insert = to_insert
@@ -367,10 +364,6 @@
 			return FALSE
 		if(istype(obj_to_insert, /obj/effect/supplypod_rubble))
 			return FALSE
-		if(ismecha(obj_to_insert))
-			if(!reverseOptionList["Mecha"])
-				return FALSE
-			return TRUE
 		/*
 		if((obj_to_insert.comp_lookup && obj_to_insert.comp_lookup[COMSIG_OBJ_HIDE]) && reverseOptionList["Underfloor"])
 			return TRUE

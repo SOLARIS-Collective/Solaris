@@ -67,13 +67,13 @@
 
 /* This is pointless overhead but required if you want the var to be private.
 /// This mostly exists to keep atom_integrity private. Might be useful in the future.
-/atom/proc/get_integrity()
+/atom/proc/get_crystal_integ_percent()
 	SHOULD_BE_PURE(TRUE)
 	return atom_integrity
 */
 
-/// Similar to get_integrity, but returns the percentage as [0-1] instead.
-/atom/proc/get_integrity_percentage()
+/// Similar to get_crystal_integ_percent, but returns the percentage as [0-1] instead.
+/atom/proc/get_crystal_integ_percent_percentage()
 	SHOULD_BE_PURE(TRUE)
 	return round(atom_integrity / max_integrity, 0.01)
 

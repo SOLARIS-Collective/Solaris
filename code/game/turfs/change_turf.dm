@@ -99,25 +99,26 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	changing_turf = TRUE
 	qdel(src) //Just get the side effects and call Destroy
 	//We do this here so anything that doesn't want to persist can clear itself
-	var/list/old_comp_lookup = comp_lookup?.Copy()
-	var/list/old_signal_procs = signal_procs?.Copy()
+	var/list/old_listen_lookup = _listen_lookup?.Copy()
+	var/list/old_signal_procs = _signal_procs?.Copy()
 	var/turf/W = new path(src, virtual_z)
 
 	// WARNING WARNING
 	// Turfs DO NOT lose their signals when they get replaced, REMEMBER THIS
 	// It's possible because turfs are fucked, and if you have one in a list and it's replaced with another one, the list ref points to the new turf
-	if(old_comp_lookup)
-		LAZYOR(W.comp_lookup, old_comp_lookup)
+	if(old_listen_lookup)
+		LAZYOR(W._listen_lookup, old_listen_lookup)
 	if(old_signal_procs)
-		LAZYOR(W.signal_procs, old_signal_procs)
+		LAZYOR(W._signal_procs, old_signal_procs)
 
 	for(var/datum/callback/callback as anything in post_change_callbacks)
 		callback.InvokeAsync(W)
 
-	if(new_baseturfs)
-		W.baseturfs = baseturfs_string_list(new_baseturfs, W)
-	else
-		W.baseturfs = baseturfs_string_list(old_baseturfs, W) //Just to be safe
+	if(isturf(W))
+		if(new_baseturfs)
+			W.baseturfs = baseturfs_string_list(new_baseturfs, W)
+		else
+			W.baseturfs = baseturfs_string_list(old_baseturfs, W) //Just to be safe
 
 	W.explosion_id = old_exi
 	W.explosion_level = old_exl

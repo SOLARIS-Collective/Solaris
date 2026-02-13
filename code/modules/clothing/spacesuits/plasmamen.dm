@@ -23,14 +23,14 @@
 	if(!istype(H))
 		return
 
-	if(H.fire_stacks)
+	if(H.fire_stacks > 0)
 		if(extinguishes_left)
 			if(next_extinguish > world.time)
 				return
 			next_extinguish = world.time + extinguish_cooldown
 			extinguishes_left--
 			H.visible_message(span_warning("[H]'s suit automatically extinguishes [H.p_them()]!"),span_warning("Your suit automatically extinguishes you."))
-			H.ExtinguishMob()
+			H.extinguish_mob()
 			new /obj/effect/particle_effect/water(get_turf(H))
 
 
@@ -61,7 +61,7 @@
 	flags_cover = HEADCOVERSMOUTH|HEADCOVERSEYES|PEPPERPROOF | SEALS_EYES
 	visor_flags_inv = HIDEEYES|HIDEFACE
 
-	//remove when plasmamen suck less
+	//remove when phorids suck less
 	equip_delay_self = null
 
 // WS Begin - plasmeme command helmets buff - used for RD bomb scanner
@@ -268,6 +268,28 @@
 	icon_state = "janitor_envirohelm"
 	item_state = "janitor_envirohelm"
 
+// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+/obj/item/clothing/head/helmet/space/plasmaman/mime
+	name = "mime envirosuit helmet"
+	desc = "The make-up is painted on, it's a miracle it doesn't chip. It's not very colourful."
+	icon = 'mod_celadon/_storage_icons/icons/other/clown_mime/spacesuits_helmet.dmi'
+	mob_overlay_icon = 'mod_celadon/_storage_icons/icons/other/clown_mime/spacesuits_helmet_on_mob.dmi'
+	icon_state = "mime_envirohelm"
+	item_state = "mime_envirohelm"
+	visor_icon = "mime_envisor"
+
+/obj/item/clothing/head/helmet/space/plasmaman/clown
+	name = "clown envirosuit helmet"
+	desc = "The make-up is painted on, it's a miracle it doesn't chip. <i>'HONK!'</i>"
+	icon = 'mod_celadon/_storage_icons/icons/other/clown_mime/spacesuits_helmet.dmi'
+	mob_overlay_icon = 'mod_celadon/_storage_icons/icons/other/clown_mime/spacesuits_helmet_on_mob.dmi'
+	icon_state = "clown_envirohelm"
+	item_state = "clown_envirohelm"
+	visor_icon = "clown_envisor"
+	smile_state = "clown_smile"
+// [/CELADON-ADD]
+
+// WS BEGIN - plasmeme command helmets buff start
 /obj/item/clothing/head/helmet/space/plasmaman/command
 	name = "captains envirosuit helmet"
 	desc = "An envirosuit helmet made for the most important plasmaman of them all."

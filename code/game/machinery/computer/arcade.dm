@@ -5,7 +5,6 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 		/obj/item/toy/sword = 2,
 		/obj/item/toy/gun = 2,
 		/obj/item/gun/ballistic/shotgun/toy/crossbow = 2,
-		/obj/item/storage/box/fakesyndiesuit = 2,
 		/obj/item/storage/crayons = 2,
 		/obj/item/toy/spinningtoy = 2,
 		/obj/item/toy/prize/ripley = 1,
@@ -13,6 +12,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 		/obj/item/toy/prize/deathripley = 1,
 		/obj/item/toy/prize/gygax = 1,
 		/obj/item/toy/prize/durand = 1,
+		/obj/item/toy/prize/honk = 1,	// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
 		/obj/item/toy/prize/marauder = 1,
 		/obj/item/toy/prize/seraph = 1,
 		/obj/item/toy/prize/touro = 1,
@@ -40,8 +40,10 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 		/obj/item/toy/clockwork_watch = 2,
 		/obj/item/toy/toy_dagger = 2,
 		/obj/item/extendohand/acme = 1,
-		/obj/item/hot_potato/harmless/toy = 1,
 		/obj/item/card/emagfake = 1,
+		// [CELADON-ADD] - CELADON_RETURN_CONTENT_SPAWN
+		/obj/item/clothing/shoes/wheelys = 2,
+		// [/CELADON-ADD]
 		/obj/item/clothing/shoes/kindleKicks = 2,
 		/obj/item/toy/plush/goatplushie/angry/realgoat = 2,
 		/obj/item/toy/plush/moth = 2,
@@ -49,8 +51,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 		/obj/item/storage/belt/military/snack = 2,
 		/obj/item/toy/brokenradio = 2,
 		/obj/item/toy/braintoy = 2,
-		/obj/item/clothing/glasses/trickblindfold = 2,
-		/obj/item/toy/prize/honk = 1)) //PENTEST RESTORED
+		/obj/item/clothing/glasses/trickblindfold = 2))
 
 /obj/machinery/computer/arcade
 	name = "random arcade"
@@ -567,7 +568,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 				if(obj_flags & EMAGGED)
 					var/mob/living/M = user
 					M.adjust_fire_stacks(5)
-					M.IgniteMob() //flew into a star, so you're on fire
+					M.ignite_mob() //flew into a star, so you're on fire
 					to_chat(user, span_userdanger("You feel an immense wave of heat emanate from the arcade machine. Your skin bursts into flames."))
 
 		if(obj_flags & EMAGGED)
@@ -658,7 +659,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 							maxSeverity = 2 //part of gitting gud is rng mitigation
 						var/severity = rand(1,maxSeverity) //pray to RNGesus. PRAY, PIGS
 						if(severity == 1)
-							to_chat(M, span_userdanger("You suddenly feel slightly nauseated.") )
+							to_chat(M, span_userdanger("You suddenly feel slightly nauseated."))
 						if(severity == 2)
 							to_chat(usr, span_userdanger("You suddenly feel extremely nauseated and hunch over until it passes."))
 							M.Stun(60)

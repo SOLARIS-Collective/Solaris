@@ -55,12 +55,12 @@
 
 /datum/mission/New(_location, _mission_index)
 	//source_outpost = _outpost
-	//RegisterSignal(source_outpost, COMSIG_PARENT_QDELETING, PROC_REF(on_vital_delete))
+	//RegisterSignal(source_outpost, COMSIG_QDELETING, PROC_REF(on_vital_delete))
 	mission_index = _mission_index
 
 	if(location_specific)
 		mission_location = _location
-		RegisterSignal(mission_location, COMSIG_PARENT_QDELETING, PROC_REF(on_vital_delete))
+		RegisterSignal(mission_location, COMSIG_QDELETING, PROC_REF(on_vital_delete))
 		RegisterSignal(mission_location, COMSIG_OVERMAP_LOADED, PROC_REF(on_planet_load))
 		if(active)
 			SSmissions.active_ruin_missions += src
@@ -72,9 +72,9 @@
 	return ..()
 
 /datum/mission/Destroy()
-	//UnregisterSignal(source_outpost, COMSIG_PARENT_QDELETING)
+	//UnregisterSignal(source_outpost, COMSIG_QDELETING)
 	if(location_specific)
-		UnregisterSignal(mission_location, COMSIG_PARENT_QDELETING, COMSIG_OVERMAP_LOADED)
+		UnregisterSignal(mission_location, COMSIG_QDELETING, COMSIG_OVERMAP_LOADED)
 		if(active)
 			SSmissions.active_ruin_missions -= src
 		else
@@ -139,7 +139,7 @@
 	SIGNAL_HANDLER
 
 	// Status of mission is handled by items spawned in mission after this
-	UnregisterSignal(mission_location, list(COMSIG_PARENT_QDELETING, COMSIG_OVERMAP_LOADED))
+	UnregisterSignal(mission_location, list(COMSIG_QDELETING, COMSIG_OVERMAP_LOADED))
 	if(!active)
 		qdel(src)
 		return
@@ -216,7 +216,7 @@
 	if(sparks)
 		do_sparks(3, FALSE, get_turf(bound))
 	LAZYSET(bound_atoms, bound, list(fail_on_delete, destroy_cb))
-	RegisterSignal(bound, COMSIG_PARENT_QDELETING, PROC_REF(bound_deleted))
+	RegisterSignal(bound, COMSIG_QDELETING, PROC_REF(bound_deleted))
 	RegisterSignal(bound, COMSIG_ATOM_VIRTUAL_Z_CHANGE, PROC_REF(bound_z_change))
 	bound.AddComponent(/datum/component/mission_important, MISSION_IMPORTANCE_CRITICAL, src)
 	return bound
@@ -265,7 +265,7 @@
  * * bound - The bound atom to remove.
  */
 /datum/mission/proc/remove_bound(atom/movable/bound)
-	UnregisterSignal(bound, list(COMSIG_PARENT_QDELETING, COMSIG_ATOM_VIRTUAL_Z_CHANGE))
+	UnregisterSignal(bound, list(COMSIG_QDELETING, COMSIG_ATOM_VIRTUAL_Z_CHANGE))
 	// delete the callback
 	qdel(LAZYACCESSASSOC(bound_atoms, bound, 2))
 	// remove info from our list

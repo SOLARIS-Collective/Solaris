@@ -3,7 +3,7 @@
 //Largely negative status effects go here, even if they have small benificial effects
 //STUN EFFECTS
 /datum/status_effect/incapacitating
-	tick_interval = 0
+	tick_interval = -1
 	status_type = STATUS_EFFECT_REPLACE
 	alert_type = null
 	var/needs_update_stat = FALSE
@@ -189,16 +189,13 @@
 	. = ..()
 	if(.)
 		update_time_of_death()
-		if(istype(owner, /mob/living/carbon))
-			var/mob/living/carbon/body = owner
-			body.end_metabolization(FALSE)
-		else
-			owner.reagents?.end_metabolization(owner, FALSE)
+		owner.reagents?.end_metabolization(owner, FALSE)
 
 /datum/status_effect/grouped/stasis/on_apply()
 	. = ..()
 	if(!.)
 		return
+	ADD_TRAIT(owner, TRAIT_STASIS, TRAIT_STATUS_EFFECT(id))
 	ADD_TRAIT(owner, TRAIT_IMMOBILIZED, TRAIT_STATUS_EFFECT(id))
 	ADD_TRAIT(owner, TRAIT_HANDS_BLOCKED, TRAIT_STATUS_EFFECT(id))
 	if(iscarbon(owner))
@@ -209,6 +206,7 @@
 	update_time_of_death()
 
 /datum/status_effect/grouped/stasis/on_remove()
+	REMOVE_TRAIT(owner, TRAIT_STASIS, TRAIT_STATUS_EFFECT(id))
 	REMOVE_TRAIT(owner, TRAIT_IMMOBILIZED, TRAIT_STATUS_EFFECT(id))
 	REMOVE_TRAIT(owner, TRAIT_HANDS_BLOCKED, TRAIT_STATUS_EFFECT(id))
 	update_time_of_death()
@@ -222,23 +220,11 @@
 	desc = "Your biological functions have halted. You could live forever this way, but it's pretty boring."
 	icon_state = "stasis"
 
-/datum/status_effect/pacify/on_creation(mob/living/new_owner, set_duration)
-	if(isnum(set_duration))
-		duration = set_duration
-	. = ..()
-
-/datum/status_effect/pacify/on_apply()
-	ADD_TRAIT(owner, TRAIT_PACIFISM, "status_effect")
-	return ..()
-
-/datum/status_effect/pacify/on_remove()
-	REMOVE_TRAIT(owner, TRAIT_PACIFISM, "status_effect")
-
 //OTHER DEBUFFS
 /datum/status_effect/pacify
 	id = "pacify"
 	status_type = STATUS_EFFECT_REPLACE
-	tick_interval = 1
+	tick_interval = 2
 	duration = 100
 	alert_type = null
 
@@ -268,7 +254,14 @@
 		hammer_synced = new_hammer_synced
 
 /datum/status_effect/crusher_mark/on_apply()
-	if(owner.mob_size >= MOB_SIZE_LARGE)
+	// [CELADON-ADD] — CRUSHER_MARK_ON_MOBS
+	if(owner.stat == DEAD)
+		return FALSE
+	// [/CELADON-ADD]
+	// [CELADON-EDIT] — CRUSHER_MARK_ON_MOBS
+	// if(owner.mob_size >= MOB_SIZE_LARGE)
+	if(owner.mob_size >= MOB_SIZE_HUMAN && !(ishuman(owner)))
+	// [/CELADON-EDIT]
 		marked_underlay = mutable_appearance('icons/effects/effects.dmi', "shield2")
 		marked_underlay.pixel_x = -owner.pixel_x
 		marked_underlay.pixel_y = -owner.pixel_y
@@ -614,7 +607,7 @@
 	id = "go_away"
 	duration = 100
 	status_type = STATUS_EFFECT_REPLACE
-	tick_interval = 1
+	tick_interval = 2
 	alert_type = /atom/movable/screen/alert/status_effect/go_away
 	var/direction
 
@@ -637,7 +630,7 @@
 	id = "fake_virus"
 	duration = 1800//3 minutes
 	status_type = STATUS_EFFECT_REPLACE
-	tick_interval = 1
+	tick_interval = 2
 	alert_type = null
 	var/msg_stage = 0//so you dont get the most intense messages immediately
 

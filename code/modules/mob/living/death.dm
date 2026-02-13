@@ -12,6 +12,7 @@
 		spread_bodyparts(no_brain, no_organs)
 
 	spawn_gibs(no_bodyparts)
+	SEND_SIGNAL(src, COMSIG_LIVING_GIBBED)
 	if(!safe_gib)
 		qdel(src)
 
@@ -49,15 +50,6 @@
 
 /mob/living/death(gibbed)
 	var/was_dead_before = stat == DEAD
-
-	// PENTEST ADDITION - START - Log restoration data for players (only on first death, not resurrections)
-	if(!was_dead_before && client && mind && (iscarbon(src) || issilicon(src)))
-		var/death_cause = "Death"
-		if(gibbed)
-			death_cause = "Gibbed"
-		log_gib_for_restoration(src, death_cause)
-	// PENTEST ADDITION - END
-
 	set_stat(DEAD)
 	unset_machine()
 	timeofdeath = world.time
@@ -87,6 +79,7 @@
 	update_health_hud()
 	med_hud_set_health()
 	med_hud_set_status()
+	SEND_SIGNAL(src, COMSIG_LIVING_DEATH)
 	stop_pulling()
 
 	if(typing_indicator)

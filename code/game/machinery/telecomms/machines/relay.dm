@@ -84,29 +84,54 @@
 	network = "irmg_commnet"
 
 /obj/machinery/telecomms/relay/preset/minutemen
-	freq_listening = list(FREQ_EMERGENCY, FREQ_MINUTEMEN)
-	id = "CLIP Relay"
-	network = "clip_commnet"
+	freq_listening = list(FREQ_EMERGENCY, FREQ_RAMZI_SHORT)
+	id = "Ramzi Relay"
+	network = "ramzi_commnet"
 
 /obj/machinery/telecomms/relay/preset/solgov
-	freq_listening = list(FREQ_EMERGENCY, FREQ_SOLGOV)
-	id = "SolGov Relay"
-	network = "solgov_commnet"
+	freq_listening = list(FREQ_EMERGENCY, FREQ_SOLFED)
+	id = "SolFed Relay"
+	network = "solfed_commnet"
 
 /obj/machinery/telecomms/relay/preset/syndicate
 	freq_listening = list(FREQ_EMERGENCY, FREQ_SYNDICATE)
 	id = "Syndicate Relay"
 	network = "synd_commnet"
 
+/obj/machinery/telecomms/relay/preset/cybersun
+	freq_listening = list(FREQ_EMERGENCY, FREQ_SYNDICATE, FREQ_CYBERSUN)
+	id = "Cybersun Relay"
+	network = "cybersun_commnet"
+
+/obj/machinery/telecomms/relay/preset/ngr
+	freq_listening = list(FREQ_EMERGENCY, FREQ_SYNDICATE, FREQ_NGR)
+	id = "New Gorlex Relay"
+	network = "ngr_commnet"
+
+/obj/machinery/telecomms/relay/preset/suns
+	freq_listening = list(FREQ_EMERGENCY, FREQ_SYNDICATE, FREQ_SUNS)
+	id = "SUNS Relay"
+	network = "suns_commnet"
+
 /obj/machinery/telecomms/relay/preset/frontiersmen
-	freq_listening = list(FREQ_EMERGENCY, FREQ_PIRATE)
-	id = "Frontiersmen Relay"
-	network = "frontier_commnet"
+	freq_listening = list(FREQ_EMERGENCY, FREQ_PIRATE_SHORT)
+	id = "Unidentified Relay"
+	network = "unidentified_commnet"
 
 /obj/machinery/telecomms/relay/preset/pgf
-	freq_listening = list(FREQ_EMERGENCY, FREQ_PGF)
-	id = "PGF Relay"
-	network = "pgf_commnet"
+	freq_listening = list(FREQ_EMERGENCY, FREQ_ELYSIUM)
+	id = "Elysium Relay"
+	network = "elysium_commnet"
+
+/obj/machinery/telecomms/relay/preset/vox
+	freq_listening = list(FREQ_EMERGENCY, FREQ_VOX_SHORT)
+	id = "Raider Relay"
+	network = "raider_commnet"
+
+/obj/machinery/telecomms/relay/preset/suns
+	freq_listening = list(FREQ_EMERGENCY, FREQ_SUNS)
+	id = "SUNS Relay"
+	network = "suns_commnet"
 
 //Generic preset relay
 /obj/machinery/telecomms/relay/preset/auto

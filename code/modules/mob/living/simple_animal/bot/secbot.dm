@@ -55,8 +55,7 @@
 
 /mob/living/simple_animal/bot/secbot/beepsky/jr/Initialize()
 	. = ..()
-	resize = 0.8
-	update_transform()
+	update_transform(0.8)
 
 
 /mob/living/simple_animal/bot/secbot/beepsky/explode()
@@ -448,7 +447,7 @@ Auto Patrol: []"},
 				new /obj/item/bodypart/leg/right/robot(Tsec)
 		if(prob(25))//50% chance for a helmet OR vest
 			if(prob(50))
-				new /obj/item/clothing/head/helmet(Tsec)
+				new /obj/item/clothing/head/helmet/m10(Tsec)
 			else
 				new /obj/item/clothing/suit/armor/vest(Tsec)
 	else
@@ -483,4 +482,7 @@ Auto Patrol: []"},
 	. = ..()
 
 /obj/machinery/bot_core/secbot
-	req_access = list(ACCESS_SECURITY)
+// [CELADON-EDIT] - QoL
+//	req_access = list(ACCESS_SECURITY)
+	req_access = 0
+// [/CELADON-EDIT]

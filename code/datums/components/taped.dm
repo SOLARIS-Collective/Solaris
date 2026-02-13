@@ -29,17 +29,17 @@
 	set_tape(added_integrity)
 
 /datum/component/taped/RegisterWithParent()
-	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, PROC_REF(tape_rip))
-	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, PROC_REF(examine_tape))
+	RegisterSignal(parent, COMSIG_ATOM_ATTACKBY, PROC_REF(tape_rip))
+	RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(examine_tape))
 
 /datum/component/taped/UnregisterFromParent()
-	UnregisterSignal(parent, list(COMSIG_PARENT_ATTACKBY, COMSIG_PARENT_EXAMINE))
+	UnregisterSignal(parent, list(COMSIG_ATOM_ATTACKBY, COMSIG_ATOM_EXAMINE))
 
 /datum/component/taped/proc/set_tape(patch_amount)
 	var/obj/I = parent
 	var/icon/tape_marks = icon(initial(I.icon), initial(I.icon_state))
 
-	I.obj_integrity = min((I.obj_integrity + patch_amount), I.max_integrity)
+	I.atom_integrity = min((I.atom_integrity + patch_amount), I.max_integrity)
 	taped_integrity += patch_amount
 
 	tape_marks.Blend("#fff", ICON_ADD)
@@ -61,6 +61,6 @@
 
 /datum/component/taped/proc/remove_tape()
 	var/obj/item/I = parent
-	I.obj_integrity -= taped_integrity
+	I.atom_integrity -= taped_integrity
 	I.cut_overlay(taped_icon)
 	qdel(src)

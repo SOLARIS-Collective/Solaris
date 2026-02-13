@@ -63,7 +63,7 @@
 	friendly_verb_continuous = "grooms"
 	friendly_verb_simple = "groom"
 	mob_size = MOB_SIZE_SMALL
-	movement_type = FLYING
+	is_flying_animal = TRUE
 
 	var/parrot_damage_upper = 10
 	var/parrot_state = PARROT_WANDER //Hunt for a perch when created
@@ -126,7 +126,11 @@
 	if(ears)
 		QDEL_NULL(ears)
 	if(held_item)
-		QDEL_NULL(held_item)
+		// [CELADON-EDIT] - FIXES_PARROT_DROP_ITEM
+		// QDEL_NULL(held_item)	// ORIGINAL
+		held_item.forceMove(drop_location())
+		held_item = null
+		// [/CELADON-EDIT]
 
 	set_perch(null)
 	set_interest(null)
@@ -261,16 +265,28 @@
 								available_channels.Add(RADIO_TOKEN_NANOTRASEN)
 							if(RADIO_CHANNEL_EMERGENCY)
 								available_channels.Add(RADIO_TOKEN_EMERGENCY)
-							if(RADIO_CHANNEL_MINUTEMEN)
-								available_channels.Add(RADIO_TOKEN_MINUTEMEN)
+							if(RADIO_CHANNEL_RAMZI_SHORT)
+								available_channels.Add(RADIO_TOKEN_RAMZI_SHORT)
+							if(RADIO_CHANNEL_ELYSIUM)
+								available_channels.Add(RADIO_TOKEN_ELYSIUM)
 							if(RADIO_CHANNEL_INTEQ)
 								available_channels.Add(RADIO_TOKEN_INTEQ)
-							if(RADIO_CHANNEL_SOLGOV)
-								available_channels.Add(RADIO_TOKEN_SOLGOV)
+							if(RADIO_CHANNEL_SOLFED)
+								available_channels.Add(RADIO_TOKEN_SOLFED)
 							if(RADIO_CHANNEL_SYNDICATE)
 								available_channels.Add(RADIO_TOKEN_SYNDICATE)
-							if(RADIO_CHANNEL_PIRATE)
-								available_channels.Add(RADIO_TOKEN_PIRATE)
+							if(RADIO_CHANNEL_CYBERSUN)
+								available_channels.Add(RADIO_TOKEN_CYBERSUN)
+							if(RADIO_CHANNEL_NGR)
+								available_channels.Add(RADIO_TOKEN_NGR)
+							if(RADIO_CHANNEL_SUNS)
+								available_channels.Add(RADIO_TOKEN_SUNS)
+							if(RADIO_CHANNEL_PIRATE_SHORT)
+								available_channels.Add(RADIO_TOKEN_PIRATE_SHORT)
+							if(RADIO_CHANNEL_VOX_SHORT)
+								available_channels.Add(RADIO_TOKEN_VOX_SHORT)
+							if(RADIO_CHANNEL_SUNS)
+								available_channels.Add(RADIO_TOKEN_SUNS)
 
 					if(headset_to_add.translate_binary)
 						available_channels.Add(MODE_TOKEN_BINARY)
@@ -882,19 +898,19 @@
 
 /mob/living/simple_animal/parrot/proc/set_interest(atom/movable/new_interest)
 	if(parrot_interest)
-		UnregisterSignal(parrot_interest, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(parrot_interest, COMSIG_QDELETING)
 		parrot_interest = null
 	if(new_interest)
 		parrot_interest = new_interest
-		RegisterSignal(parrot_interest, COMSIG_PARENT_QDELETING, PROC_REF(set_interest))
+		RegisterSignal(parrot_interest, COMSIG_QDELETING, PROC_REF(set_interest))
 
 /mob/living/simple_animal/parrot/proc/set_perch(obj/new_perch)
 	if(parrot_perch)
-		UnregisterSignal(parrot_perch, COMSIG_PARENT_QDELETING)
+		UnregisterSignal(parrot_perch, COMSIG_QDELETING)
 		parrot_perch = null
 	if(new_perch)
 		parrot_perch = new_perch
-		RegisterSignal(parrot_perch, COMSIG_PARENT_QDELETING, PROC_REF(set_perch))
+		RegisterSignal(parrot_perch, COMSIG_QDELETING, PROC_REF(set_perch))
 
 /*
  * Sub-types

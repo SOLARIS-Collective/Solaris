@@ -58,9 +58,9 @@
 		RegisterSignal(parent, COMSIG_MODULE_TRIGGERED, PROC_REF(on_module_triggered))
 	else
 		RegisterSignal(parent, COMSIG_ITEM_ATTACK, PROC_REF(on_module_triggered))
-	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, PROC_REF(on_item_interact))
+	RegisterSignal(parent, COMSIG_ATOM_ATTACKBY, PROC_REF(on_item_interact))
 	RegisterSignal(parent, COMSIG_ATOM_TOOL_ACT(TOOL_SCREWDRIVER), PROC_REF(on_screwdriver_act))
-	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, PROC_REF(on_examine))
+	RegisterSignal(parent, COMSIG_ATOM_EXAMINE, PROC_REF(on_examine))
 	RegisterSignal(parent, COMSIG_ATOM_UPDATE_ICON_STATE, PROC_REF(on_update_icon_state))
 
 /datum/component/military_locked_module/UnregisterFromParent()
@@ -69,9 +69,9 @@
 	else
 		UnregisterSignal(parent,COMSIG_MODULE_TRIGGERED)
 	UnregisterSignal(parent, list(
-		COMSIG_PARENT_ATTACKBY,
+		COMSIG_ATOM_ATTACKBY,
 		COMSIG_ATOM_TOOL_ACT(TOOL_SCREWDRIVER),
-		COMSIG_PARENT_EXAMINE,
+		COMSIG_ATOM_EXAMINE,
 		COMSIG_ATOM_UPDATE_ICON_STATE,
 		))
 

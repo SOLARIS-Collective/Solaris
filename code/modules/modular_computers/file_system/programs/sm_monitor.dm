@@ -54,7 +54,7 @@
 		if (!isturf(S.loc) || !S.virtual_z() == T.virtual_z())
 			continue
 		supermatters.Add(S)
-		RegisterSignal(S, COMSIG_PARENT_QDELETING, PROC_REF(react_to_del))
+		RegisterSignal(S, COMSIG_QDELETING, PROC_REF(react_to_del))
 
 /datum/computer_file/program/supermatter_monitor/proc/get_status()
 	. = SUPERMATTER_INACTIVE
@@ -128,7 +128,7 @@
 			return
 
 		data["active"] = TRUE
-		data["SM_integrity"] = active.get_integrity()
+		data["SM_integrity"] = active.get_crystal_integ_percent()
 		data["SM_power"] = active.power
 		data["SM_ambienttemp"] = air.return_temperature()
 		data["SM_ambientpressure"] = air.return_pressure()
@@ -158,7 +158,7 @@
 			if(A)
 				SMS.Add(list(list(
 				"area_name" = A.name,
-				"integrity" = S.get_integrity(),
+				"integrity" = S.get_crystal_integ_percent(),
 				"uid" = S.uid
 				)))
 
@@ -196,4 +196,4 @@
 	supermatters -= matter
 	if(matter == active)
 		active = null
-	UnregisterSignal(matter, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(matter, COMSIG_QDELETING)

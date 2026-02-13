@@ -113,10 +113,10 @@
 	desc = "A module installed into the forearm of the suit, extending into a sturdy shield as needed. \
 		This high-end piece of technology repairs damage done to shield, while it's retracted \
 		using a tremendous amount of power supplied from MOD's core."
-	icon = 'mod_celadon/_storage_icons/icons/items/weapons/eshield.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/items/weapons/eshield.dmi'
 	icon_state = "teleriot1"
-	lefthand_file = 'mod_celadon/_storage_icons/icons/items/weapons/eshield_lefthand.dmi'
-	righthand_file = 'mod_celadon/_storage_icons/icons/items/weapons/eshield_righthand.dmi'
+	lefthand_file = 'modular_mankind/_storage_icons/icons/items/weapons/eshield_lefthand.dmi'
+	righthand_file = 'modular_mankind/_storage_icons/icons/items/weapons/eshield_righthand.dmi'
 	custom_materials = null
 	slot_flags = null
 	force = 3

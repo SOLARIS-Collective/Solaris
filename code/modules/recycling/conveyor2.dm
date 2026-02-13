@@ -52,11 +52,13 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	if(.)
 		operating = TRUE
 		update_appearance()
-		begin_processing()                                              //WS Edit - Auto Conveyor Fix (Issue #331)
+		begin_processing()
 
 // create a conveyor
 /obj/machinery/conveyor/Initialize(mapload, newdir, newid)
 	. = ..()
+	var/static/list/give_turf_traits = list(TRAIT_TURF_IGNORE_SLOWDOWN)
+	AddElement(/datum/element/give_turf_traits, give_turf_traits)
 	if(newdir)
 		setDir(newdir)
 	if(newid)
@@ -201,7 +203,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 // make the conveyor broken
 // also propagate inoperability to any connected conveyor with the same ID
 /obj/machinery/conveyor/proc/broken()
-	obj_break()
+	atom_break()
 	update()
 
 	var/obj/machinery/conveyor/C = locate() in get_step(src, dir)

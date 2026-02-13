@@ -94,7 +94,8 @@
 /obj/item/radio/Destroy()
 	remove_radio_all(src) //Just to be sure
 	QDEL_NULL(wires)
-	QDEL_NULL(keyslot)
+	if(istype(keyslot))
+		QDEL_NULL(keyslot)
 	return ..()
 
 /obj/item/radio/Initialize()
@@ -103,6 +104,8 @@
 		wires.cut(WIRE_TX) // OH GOD WHY
 	secure_radio_connections = new
 	. = ..()
+	if(ispath(keyslot))
+		keyslot = new keyslot()
 	frequency = sanitize_frequency(frequency, freerange)
 	set_frequency(frequency)
 
@@ -115,12 +118,13 @@
 	. = ..()
 	AddComponent(/datum/component/empprotection, EMP_PROTECT_WIRES)
 
+// [CELADON-EDIT] - QOL - Разрешаем использование UI раций в лежачем положении
 /obj/item/radio/AltClick(mob/user)
 	if(headset)
 		. = ..()
 	else if(sectorwide == TRUE) // prevents incompatibility with broadcast cameras
 		return
-	else if(user.canUseTopic(src, !issilicon(user), TRUE, FALSE))
+	else if(user.canUseTopic(src, !issilicon(user), TRUE, FALSE, TRUE)) // floor_okay = TRUE
 		broadcasting = !broadcasting
 		to_chat(user, span_notice("You toggle broadcasting [broadcasting ? "on" : "off"]."))
 
@@ -129,9 +133,10 @@
 		. = ..()
 	else if(sectorwide == TRUE) // prevents incompatibility with broadcast cameras
 		return
-	else if(user.canUseTopic(src, !issilicon(user), TRUE, FALSE))
+	else if(user.canUseTopic(src, !issilicon(user), TRUE, FALSE, TRUE)) // floor_okay = TRUE
 		listening = !listening
 		to_chat(user, span_notice("You toggle speaker [listening ? "on" : "off"]."))
+// [/CELADON-EDIT]
 
 /obj/item/radio/interact(mob/user)
 	if(unscrewed && !isAI(user))
@@ -140,8 +145,10 @@
 	else
 		..()
 
+// [CELADON-EDIT] - QOL - Разрешаем использование UI раций в лежачем положении
 /obj/item/radio/ui_state(mob/user)
-	return GLOB.inventory_state
+	return GLOB.portable_device_state
+// [/CELADON-EDIT]
 
 /obj/item/radio/ui_interact(mob/user, datum/tgui/ui, datum/ui_state/state)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -308,8 +315,15 @@
 	signal.send_to_receivers()
 
 	// If the radio is subspace-only, that's all it can do
-	if (subspace_transmission)
-		return
+	if (subspace_transmission && (freq == FREQ_WIDEBAND))
+		signal.data["compression"] = 0
+		signal.transmission_method = TRANSMISSION_SUPERSPACE
+		signal.map_zones = list(0)  // reaches all Z-levels
+		signal.broadcast()
+		playsound(src, "sound/effects/walkietalkie.ogg", 20, FALSE)
+	else
+		if (subspace_transmission)
+			return
 
 	// Non-subspace radios will check in a couple of seconds, and if the signal
 	// was never received, send a mundane broadcast (no headsets).
@@ -436,7 +450,7 @@
 	. = ..()
 
 /obj/item/radio/borg/syndicate
-	keyslot = new /obj/item/encryptionkey/syndicate
+	keyslot = /obj/item/encryptionkey/syndicate
 
 /obj/item/radio/borg/syndicate/Initialize()
 	. = ..()
@@ -479,3 +493,74 @@
 	name = "old radio"
 	icon_state = "radio"
 	desc = "An old handheld radio. You could use it, if you really wanted to."
+
+// [CELADON-ADD] - FACTION_RADIO
+/obj/item/radio/transceiver
+	name = "transceiver"
+	desc = "A tactical communications device for those times when you need it."
+	icon = 'modular_mankind/_storage_icons/icons/items/misc/radio.dmi'
+	icon_state = "walkietalkiesec"
+	item_state = "walkietalkiesec"
+	freerange = TRUE
+	frequency = FREQ_EMERGENCY
+	freqlock = TRUE
+
+// MARK: Фракционные рации
+// Можно купить в карго
+/obj/item/radio/transceiver/nanotrasen
+	name = "nanotrasen transceiver"
+	icon_state = "walkietalkie_nt"
+	frequency = FREQ_NANOTRASEN_SHORT
+	keyslot = /obj/item/encryptionkey/nanotrasen
+
+/obj/item/radio/transceiver/syndicate
+	name = "syndicate transceiver"
+	icon_state = "walkietalkie_syndi"
+	frequency = FREQ_SYNDICATE_SHORT
+	keyslot = /obj/item/encryptionkey/syndicate
+
+/obj/item/radio/transceiver/solfed
+	name = "solfed transceiver"
+	icon_state = "walkietalkie_sf"
+	frequency = FREQ_SOLFED_SHORT
+	keyslot = /obj/item/encryptionkey/solgov
+
+/obj/item/radio/transceiver/inteq
+	name = "inteq transceiver"
+	icon_state = "walkietalkie_inteq"
+	frequency = FREQ_INTEQ_SHORT
+	keyslot = /obj/item/encryptionkey/inteq
+
+// Не встречаются в игре, нельзя найти
+/obj/item/radio/transceiver/pirate
+	name = "unidentified transceiver"
+	icon_state = "walkietalkie_pirate"
+	frequency = FREQ_PIRATE_SHORT
+	keyslot = /obj/item/encryptionkey/pirate
+
+/obj/item/radio/transceiver/elysium
+	name = "elysium transceiver"
+	icon_state = "walkietalkie_eusm"
+	frequency = FREQ_ELYSIUM_SHORT
+	keyslot = /obj/item/encryptionkey/elysium
+
+/obj/item/radio/transceiver/ramzi
+	name = "ramzi transceiver"
+	icon_state = "walkietalkie_ramzi"
+	frequency = FREQ_RAMZI_SHORT
+	keyslot = /obj/item/encryptionkey/ramzi
+
+/obj/item/radio/transceiver/vox
+	name = "raider transceiver"
+	icon_state = "walkietalkie_vox"
+	frequency = FREQ_VOX_SHORT
+	keyslot = /obj/item/encryptionkey/vox
+
+/obj/item/radio/transceiver/suns
+	name = "suns transceiver"
+	icon_state = "walkietalkie_suns"
+	frequency = FREQ_SUNS_SHORT
+	keyslot = /obj/item/encryptionkey/suns
+	//keyslot2 = /obj/item/encryptionkey/suns
+
+// [/CELADON-ADD]

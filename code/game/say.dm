@@ -3,19 +3,39 @@
 	This file has the basic atom/movable level speech procs.
 	And the base of the send_speech() proc, which is the core of saycode.
 */
+// [CELADON-EDIT] - FACTION-RADIO
 GLOBAL_LIST_INIT(freqtospan, list(
-	"[FREQ_NANOTRASEN]" = "ntradio",
-	"[FREQ_MINUTEMEN]" = "clipradio",
-	"[FREQ_INTEQ]" = "irmgradio",
-	"[FREQ_PGF]" = "pgfradio",
-	"[FREQ_PIRATE]" = "pirradio",
 	"[FREQ_EMERGENCY]" = "emrgradio",
-	"[FREQ_AI_PRIVATE]" = "aiprivradio",
-	"[FREQ_SYNDICATE]" = "syndradio",
 	"[FREQ_CENTCOM]" = "centcomradio",
-	"[FREQ_SOLGOV]" = "solgovradio",
 	"[FREQ_WIDEBAND]" = "widebandradio",
+	"[FREQ_NANOTRASEN]" = "ntradio",
+	"[FREQ_NANOTRASEN_LONG]" = "ntradio_long",
+	"[FREQ_NANOTRASEN_SHORT]" = "ntradio_short",
+	"[FREQ_INTEQ]" = "irmgradio",
+	"[FREQ_INTEQ_LONG]" = "irmgradio_long",
+	"[FREQ_INTEQ_SHORT]" = "irmgradio_short",
+	"[FREQ_ELYSIUM]" = "elysiumradio",
+	"[FREQ_ELYSIUM_LONG]" = "elysiumradio_long",
+	"[FREQ_ELYSIUM_SHORT]" = "elysiumradio_short",
+	"[FREQ_SYNDICATE]" = "syndradio",
+	"[FREQ_SYNDICATE_LONG]" = "syndradio_long",
+	"[FREQ_SYNDICATE_SHORT]" = "syndradio_short",
+	"[FREQ_CYBERSUN]" = "cyradio",
+	"[FREQ_NGR]" = "ngrradio",
+	"[FREQ_SOLFED]" = "solfedradio",
+	"[FREQ_SOLFED_LONG]" = "solfedradio_long",
+	"[FREQ_SOLFED_SHORT]" = "solfedradio_short",
+	"[FREQ_SUNS]" = "sunsradio",
+	"[FREQ_SUNS_LONG]" = "sunsradio_long",
+	"[FREQ_SUNS_SHORT]" = "sunsradio_short",
+	"[FREQ_VOX_LONG]" = "voxradio_long",
+	"[FREQ_VOX_SHORT]" = "voxradio_short",
+	"[FREQ_RAMZI_LONG]" = "ramziradio_long",
+	"[FREQ_RAMZI_SHORT]" = "ramziradio_short",
+	"[FREQ_PIRATE_LONG]" = "pirradio_long",
+	"[FREQ_PIRATE_SHORT]" = "pirradio_short",
 	))
+// [/CELADON-EDIT]
 
 GLOBAL_LIST_INIT(freqcolor, list())
 
@@ -80,7 +100,7 @@ GLOBAL_LIST_INIT(freqcolor, list())
 * If FALSE, this check will always fail if the movable has a mind and is miming.
 * if TRUE, we will check if the movable can speak irregardless
 */
-/atom/movable/proc/can_speak()
+/atom/movable/proc/can_speak(allow_mimes = FALSE)	// /atom/movable/proc/can_speak()	// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
 	//SHOULD_BE_PURE(TRUE)
 	return !HAS_TRAIT(src, TRAIT_MUTE)
 

@@ -6,6 +6,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	MODE_KEY_L_HAND = MODE_L_HAND,
 	MODE_KEY_EXOSUIT = MODE_EXOSUIT,
 	MODE_KEY_INTERCOM = MODE_INTERCOM,
+	MODE_KEY_WIDEBAND = MODE_WIDEBAND,
 
 	// Department
 	MODE_KEY_DEPARTMENT = MODE_DEPARTMENT,
@@ -13,20 +14,25 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 
 	// Faction
 	RADIO_KEY_SYNDICATE = RADIO_CHANNEL_SYNDICATE,
+	RADIO_KEY_CYBERSUN = RADIO_CHANNEL_CYBERSUN,
+	RADIO_KEY_NGR = RADIO_CHANNEL_NGR,
+	RADIO_KEY_SUNS = RADIO_CHANNEL_SUNS,
 	RADIO_KEY_CENTCOM = RADIO_CHANNEL_CENTCOM,
-	RADIO_KEY_SOLGOV = RADIO_CHANNEL_SOLGOV,		//WS Edit - SolGov Rep
+	RADIO_KEY_SOLFED = RADIO_CHANNEL_SOLFED,		//WS Edit - SolGov Rep
 	RADIO_KEY_NANOTRASEN = RADIO_CHANNEL_NANOTRASEN,
-	RADIO_KEY_MINUTEMEN = RADIO_CHANNEL_MINUTEMEN,
-	RADIO_KEY_PGF = RADIO_CHANNEL_PGF,
+	RADIO_KEY_RAMZI_SHORT = RADIO_CHANNEL_RAMZI_SHORT,
+	RADIO_KEY_ELYSIUM = RADIO_CHANNEL_ELYSIUM,
 	RADIO_KEY_INTEQ = RADIO_CHANNEL_INTEQ,
-	RADIO_KEY_PIRATE = RADIO_CHANNEL_PIRATE,
+	RADIO_KEY_PIRATE_SHORT = RADIO_CHANNEL_PIRATE_SHORT,
+	RADIO_KEY_WIDEBAND = RADIO_CHANNEL_WIDEBAND,
+	RADIO_KEY_VOX_SHORT = RADIO_CHANNEL_VOX_SHORT,
+	RADIO_KEY_SUNS = RADIO_CHANNEL_SUNS,
 
 	// Admin
 	MODE_KEY_ADMIN = MODE_ADMIN,
 	MODE_KEY_DEADMIN = MODE_DEADMIN,
 
 	// Misc
-	RADIO_KEY_AI_PRIVATE = RADIO_CHANNEL_AI_PRIVATE, // AI Upload channel
 	MODE_KEY_VOCALCORDS = MODE_VOCALCORDS,		// vocal cords, used by Voice of God
 
 
@@ -45,8 +51,8 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	"å" = RADIO_CHANNEL_SYNDICATE,
 	"í" = RADIO_CHANNEL_CENTCOM,
 	"ò" = RADIO_CHANNEL_NANOTRASEN,
-	"ü" = RADIO_CHANNEL_MINUTEMEN,
-	"û" = RADIO_CHANNEL_PIRATE,
+	"ü" = RADIO_CHANNEL_RAMZI_SHORT,
+	"û" = RADIO_CHANNEL_PIRATE_SHORT,
 	"ì" = RADIO_CHANNEL_INTEQ,
 
 	// Admin
@@ -54,8 +60,9 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	"â" = MODE_ADMIN,
 
 	// Misc
-	"ù" = RADIO_CHANNEL_AI_PRIVATE,
-	"÷" = MODE_VOCALCORDS
+	// "ù" = RADIO_CHANNEL_AI_PRIVATE,
+	"÷" = MODE_VOCALCORDS,
+	"ö" = RADIO_CHANNEL_WIDEBAND
 ))
 
 /mob/living/proc/ellipsis(original_msg, chance = 50, keep_words)
@@ -363,7 +370,10 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	for(var/mob/M in listening)
 		if(M.client && (!M.client.prefs.chat_on_map || (SSlag_switch.measures[DISABLE_RUNECHAT] && !HAS_TRAIT(src, TRAIT_BYPASS_MEASURES))))
 			speech_bubble_recipients.Add(M.client)
-	var/image/I = image('icons/mob/talk.dmi', src, "[bubble_type][say_test(message)]", FLY_LAYER)
+	// [CELADON-EDIT] - CELADON_QOL - Меняем бабл эмоута
+	// var/image/I = image('icons/mob/talk.dmi', src, "[bubble_type][say_test(message)]", FLY_LAYER) // CELADON-EDIT -> ORIGIN
+	var/image/I = image('modular_mankind/_storage_icons/icons/assets/qol/talk.dmi', src, "[bubble_type][say_test(message)]", FLY_LAYER)
+	// [/CELADON-EDIT]
 	I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
 	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(flick_overlay_global), I, speech_bubble_recipients, 3 SECONDS)
 
@@ -407,12 +417,6 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	return TRUE
 
 /mob/living/proc/can_sign(message)
-	// PENTEST ADDITION - START - Mimes can't sign
-	if(mind?.miming)
-		to_chat(src, span_green("You stop yourself from signing in favor of the artform of mimery!"))
-		return FALSE
-	// PENTEST ADDITION - END
-
 	if(HAS_TRAIT(src, TRAIT_RESTRAINED))
 		visible_message("tries to sign, but can't with [p_their()] hands bound!", visible_message_flags = EMOTE_MESSAGE)
 		return FALSE
@@ -497,8 +501,15 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 				exo.radio.talk_into(src, message, , spans, language, message_mods)
 				return ITALICS | REDUCE_RANGE
 
+		// Allows the :i prefix to only work on mounted intercoms, not widebands
 		if(MODE_INTERCOM)
 			for (var/obj/item/radio/intercom/I in view(MODE_RANGE_INTERCOM, null))
+				if (!(istype(I, /obj/item/radio/intercom/wideband)))
+					I.talk_into(src, message, , spans, language, message_mods)
+			return ITALICS | REDUCE_RANGE
+
+		if(MODE_WIDEBAND)
+			for (var/obj/item/radio/intercom/wideband/I in view(MODE_RANGE_INTERCOM, null))
 				I.talk_into(src, message, , spans, language, message_mods)
 			return ITALICS | REDUCE_RANGE
 

@@ -126,8 +126,6 @@
 	to_chat(src, "<B>While observing through a camera, you can use most (networked) devices which you can see, such as computers, APCs, intercoms, doors, etc.</B>")
 	to_chat(src, "To use something, simply click on it.")
 	to_chat(src, "Use say :b to speak to your cyborgs through binary.")
-	show_laws()
-	to_chat(src, "<b>These laws may be changed by other players, or by you being the traitor.</b>")
 
 	job = "AI"
 
@@ -209,10 +207,6 @@
 			if(istype(A, initial(AM.power_type)))
 				qdel(A)
 
-/mob/living/silicon/ai/IgniteMob()
-	fire_stacks = 0
-	. = ..()
-
 /mob/living/silicon/ai/proc/set_core_display_icon(input, client/C)
 	if(client && !C)
 		C = client
@@ -282,11 +276,11 @@
 				if (C && istype(C, /list))
 					var/dat2 = ""
 					for (var/obj/machinery/camera/I in C)
-						dat2 += text("[]<A HREF=?src=[REF(src)];switchcamera=[REF(I)]>[]</A>", (dat2=="") ? "" : " | ", I.c_tag)
+						dat2 += text("[]<A href='byond://?src=[REF(src)];switchcamera=[REF(I)]>[]</A>", (dat2=="") ? "" : " | ", I.c_tag)
 					dat += text("-- [] ([])", A.name, (dat2!="") ? dat2 : "No Camera")
 				else if (C && istype(C, /obj/machinery/camera))
 					var/obj/machinery/camera/Ctmp = C
-					dat += text("-- [] (<A HREF=?src=[REF(src)];switchcamera=[REF(C)]>[]</A>)", A.name, Ctmp.c_tag)
+					dat += text("-- [] (<A href='byond://?src=[REF(src)];switchcamera=[REF(C)]>[]</A>)", A.name, Ctmp.c_tag)
 				else
 					dat += text("-- [] (No Camera)", A.name)
 				if (sources.len > 1)
@@ -500,12 +494,12 @@
 
 	if (cameras)
 		if (cam?.can_use())
-			queueAlarm("--- [class] alarm detected in [home.name]! (<A HREF=?src=[REF(src)];switchcamera=[REF(cam)]>[cam.c_tag]</A>)", class)
+			queueAlarm("--- [class] alarm detected in [home.name]! (<A href='byond://?src=[REF(src)];switchcamera=[REF(cam)]>[cam.c_tag]</A>)", class)
 		else if (our_cams?.len)
 			var/foo = 0
 			var/dat2 = ""
 			for (var/obj/machinery/camera/I in our_cams)
-				dat2 += text("[]<A HREF=?src=[REF(src)];switchcamera=[REF(I)]>[]</A>", (!foo) ? "" : " | ", I.c_tag) //I'm not fixing this shit...
+				dat2 += text("[]<A href='byond://?src=[REF(src)];switchcamera=[REF(I)]>[]</A>", (!foo) ? "" : " | ", I.c_tag) //I'm not fixing this shit...
 				foo = 1
 			queueAlarm(text ("--- [] alarm detected in []! ([])", class, home.name, dat2), class)
 		else
@@ -675,13 +669,7 @@
 				"floating face" = 'icons/mob/ai.dmi',
 				"xeno queen" = 'icons/mob/alien.dmi',
 				"horror" = 'icons/mob/ai.dmi',
-				"clock" = 'icons/mob/ai.dmi',
-				"holo-angel" = 'modular_pentest/modules/robots/icons/mob/aiholo.dmi',
-				"holo-borb" = 'modular_pentest/modules/robots/icons/mob/aiholo.dmi',
-				"holo-biggestfan" = 'modular_pentest/modules/robots/icons/mob/aiholo.dmi',
-				"holo-cloudkat" = 'modular_pentest/modules/robots/icons/mob/aiholo.dmi',
-				"holo-donut" = 'modular_pentest/modules/robots/icons/mob/aiholo.dmi',
-				"holo-frostphoenix" = 'modular_pentest/modules/robots/icons/mob/aiholo.dmi'
+				"clock" = 'icons/mob/ai.dmi'
 				)
 
 			input = input("Please select a hologram:") as null|anything in sortList(icon_list)
@@ -742,11 +730,11 @@
 	for (var/obj/machinery/camera/C in remove)
 		lit_cameras -= C //Removed from list before turning off the light so that it doesn't check the AI looking away.
 		C.Togglelight(0)
-		UnregisterSignal(C, COMSIG_PARENT_QDELETING, PROC_REF(camera_deleted))
+		UnregisterSignal(C, COMSIG_QDELETING, PROC_REF(camera_deleted))
 	for (var/obj/machinery/camera/C in add)
 		C.Togglelight(1)
 		lit_cameras |= C
-		RegisterSignal(C, COMSIG_PARENT_QDELETING, PROC_REF(camera_deleted))
+		RegisterSignal(C, COMSIG_QDELETING, PROC_REF(camera_deleted))
 
 /mob/living/silicon/ai/proc/camera_deleted(obj/machinery/camera/camera)
 	SIGNAL_HANDLER
