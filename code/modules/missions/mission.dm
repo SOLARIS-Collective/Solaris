@@ -248,9 +248,9 @@
  */
 /datum/mission/proc/remove_bound(atom/movable/bound)
 	UnregisterSignal(bound, list(COMSIG_QDELETING, COMSIG_ATOM_VIRTUAL_Z_CHANGE))
-	// delete the callback
-	qdel(LAZYACCESSASSOC(bound_atoms, bound, 2))
-	// remove info from our list
+	var/list/bound_info = bound_atoms?[bound]
+	if(bound_info && length(bound_info) >= 2)
+		qdel(bound_info[2])
 	LAZYREMOVE(bound_atoms, bound)
 
 /datum/mission/proc/get_tgui_info()

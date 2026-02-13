@@ -13,6 +13,9 @@ $color-bg-section: base.$color-bg-section !default;
 
 .Chat {
   color: $text-color;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .Chat__badge {

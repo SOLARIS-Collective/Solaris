@@ -47,15 +47,14 @@ const findNearestScrollableParent = (startingNode) => {
   const body = document.body;
   let node = startingNode;
   while (node && node !== body) {
-    // This definitely has a vertical scrollbar, because it reduces
-    // scrollWidth of the element. Might not work if element uses
-    // overflow: hidden.
-    if (node.scrollWidth < node.offsetWidth) {
+    const style = window.getComputedStyle(node);
+    const overflowY = style.overflowY;
+    if (overflowY === 'auto' || overflowY === 'scroll') {
       return node;
     }
     node = node.parentNode;
   }
-  return window;
+  return startingNode;
 };
 
 const createHighlightNode = (text, color) => {

@@ -1,3 +1,7 @@
+/**
+ * @changes 2026 KOCMOHABT (https://github.com/CeladonSS13/Shiptest/pull/2647)
+ * @TDLR From anything changes, see History in GIT and PR.
+ */
 import { useBackend } from '../backend';
 import {
   Button,
@@ -9,6 +13,9 @@ import {
   Knob,
   LabeledControls,
   NumberInput,
+  Divider,
+  Stack,
+  NoticeBox,
 } from '../components';
 import { Window } from '../layouts';
 import { Table } from '../components/Table';
@@ -18,45 +25,130 @@ export const HelmConsole = (_props, context) => {
   const { data } = useBackend(context);
   const { mapRef, isViewer } = data;
   return (
-    <Window width={1150} height={708} resizable>
-      <div className="CameraConsole__helmleft">
-        <Window.Content>
-          {!isViewer && <ShipControlContent />}
-          <ShipContent />
-        </Window.Content>
-      </div>
-      <div className="CameraConsole__helmcenter">
-        <div className="CameraConsole__toolbar">
-          {!!data.docked && (
-            <div className="NoticeBox">Ship docked to: {data.docked}</div>
-          )}
-        </div>
-        <ByondUi
-          className="CameraConsole__map"
-          params={{
-            id: mapRef,
-            type: 'map',
-          }}
-        />
-      </div>
-      <div className="CameraConsole__helmright">
-        <Window.Content>
-          <SharedContent />
-        </Window.Content>
-      </div>
+    <Window width={1130} height={700}>
+      <Window.Content>
+        <Stack fill>
+          <Stack.Item width="230px" overflowX="auto">
+            {!!data.docked && (
+              <NoticeBox>Ship docked to: {data.docked}</NoticeBox>
+            )}
+            {!isViewer && <ShipControlContent />}
+            <ShipContent />
+          </Stack.Item>
+          <Stack.Item grow>
+            <ByondUi
+              height="100%"
+              width="100%"
+              params={{
+                id: mapRef,
+                type: 'map',
+              }}
+            />
+          </Stack.Item>
+          <Stack.Item width="230px" overflowX="auto">
+            {!!data.docked && (
+              <NoticeBox>Ship docked to: {data.docked}</NoticeBox>
+            )}
+            <SharedContent />
+          </Stack.Item>
+        </Stack>
+      </Window.Content>
     </Window>
   );
 };
 
 const SharedContent = (_props, context) => {
   const { act, data } = useBackend(context);
-  const { isViewer, canRename, shipInfo = [], otherInfo = [] } = data;
+  const { isViewer, canRename, shipInfo = [], otherInfo = [], arpa_ships = [], calibrating } = data;
+  let flyable = !data.docking && !data.docked;
   return (
     <>
-      <Section title="Radar">
+      <Section
+        title={
+          <Button.Input
+            content={decodeHtmlEntities(shipInfo.prefixed)}
+            currentValue={shipInfo.name}
+            disabled={isViewer || !canRename}
+            onCommit={(_e, value) =>
+              act('rename_ship', {
+                newName: value,
+              })
+            }
+          />
+        }
+        buttons={
+          <Button
+              tooltip="Refresh Ship Stats"
+              tooltipPosition="left"
+              icon="sync"
+              disabled={isViewer}
+              onClick={() => act('reload_ship')}
+            />
+        }
+      >
+        <LabeledList>
+          <LabeledList.Item label="Class">{shipInfo.class}</LabeledList.Item>
+          <LabeledList.Item label="Sensor Range">
+            <ProgressBar
+              value={shipInfo.sensor_range}
+              minValue={1}
+              maxValue={8}
+            >
+              <AnimatedNumber value={shipInfo.sensor_range} />
+            </ProgressBar>
+            <Table.Cell>
+              <Button
+                tooltip="Decrease Signal Length"
+                tooltipPosition="right"
+                icon="arrow-left"
+                // [CELADON-ADD] - subshuttle fix
+                disabled={data.issubshuttle != null}
+                // [/CELADON-ADD] - subshuttle fix
+                onClick={() => act('sensor_decrease')}
+              />
+              <Button
+                tooltip="Increase Signal Length"
+                tooltipPosition="right"
+                icon="arrow-right"
+                // [CELADON-ADD] - subshuttle fix
+                disabled={data.issubshuttle != null}
+                // [/CELADON-ADD] - subshuttle fix
+                onClick={() => act('sensor_increase')}
+              />
+            </Table.Cell>
+          </LabeledList.Item>
+          {shipInfo.mass && (
+            <LabeledList.Item label="Mass">
+              {shipInfo.mass + 'tonnes'}
+            </LabeledList.Item>
+          )}
+        </LabeledList>
+      </Section>
+      <Section title="Radar"
+        buttons={
+          <>
+            <Button // [CELADON-ADD] - Signal S.O.S - mod_celadon\wideband\code\signal.dm
+              tooltip="Send S.O.S."
+              tooltipPosition="left"
+              icon="globe"
+              disabled={isViewer}
+              onClick={() => act('send_sos')}
+            />
+            <Button
+              tooltip={calibrating ? 'Cancel Jump' : 'Bluespace Jump'}
+              tooltipPosition="left"
+              icon={calibrating ? 'times' : 'angle-double-right'}
+              color={calibrating ? 'bad' : 'average'}
+              disabled={!flyable}
+              onClick={() => act('bluespace_jump')}
+            />
+          </>
+        }
+		>
         <Table>
           <Table.Row bold>
             <Table.Cell>Name</Table.Cell>
+            {!isViewer && <Table.Cell>Hail</Table.Cell>}
             {!isViewer && <Table.Cell>Act</Table.Cell>}
             {!isViewer && <Table.Cell>Dock</Table.Cell>}
           </Table.Row>
@@ -66,12 +158,30 @@ const SharedContent = (_props, context) => {
               {!isViewer && (
                 <Table.Cell>
                   <Button
-                    tooltip="Interact"
+                    tooltip="Hail"
                     tooltipPosition="left"
                     icon="circle"
+                    disabled={isViewer}
+                    onClick={() =>
+                      act('hail', {
+                        ship_to_act: ship.ref,
+                      })
+                    }
+                  />
+                </Table.Cell>
+              )}
+              {!isViewer && (
+                <Table.Cell>
+                  <Button
+                    tooltip="Interact Dock"
+                    tooltipPosition="left"
+                    icon="anchor"
                     disabled={
-                      // I hate this so much
-                      isViewer
+                      isViewer ||
+                      data.speed > 0 ||
+                      data.docked ||
+                      data.docking ||
+                      !ship.candock
                     }
                     onClick={() =>
                       act('act_overmap', {
@@ -108,46 +218,17 @@ const SharedContent = (_props, context) => {
           ))}
         </Table>
       </Section>
-      <Section
-        title={
-          <Button.Input
-            content={decodeHtmlEntities(shipInfo.prefixed)}
-            currentValue={shipInfo.name}
-            disabled={isViewer || !canRename}
-            onCommit={(_e, value) =>
-              act('rename_ship', {
-                newName: value,
-              })
-            }
-          />
-        }
-        buttons={
-          <Button
-            tooltip="Refresh Ship Stats"
-            tooltipPosition="left"
-            icon="sync"
-            disabled={isViewer}
-            onClick={() => act('reload_ship')}
-          />
-        }
-      >
-        <LabeledList>
-          <LabeledList.Item label="Class">{shipInfo.class}</LabeledList.Item>
-          <LabeledList.Item label="Sensor Range">
-            <ProgressBar
-              value={shipInfo.sensor_range}
-              minValue={1}
-              maxValue={8}
-            >
-              <AnimatedNumber value={shipInfo.sensor_range} />
-            </ProgressBar>
-          </LabeledList.Item>
-          {shipInfo.mass && (
-            <LabeledList.Item label="Mass">
-              {shipInfo.mass + 'tonnes'}
-            </LabeledList.Item>
-          )}
-        </LabeledList>
+      <Section title="ARPA">
+        {arpa_ships.map((ship) => (
+          <Table.Row key={ship.name}>
+            <Table.Cell>{ship.name}</Table.Cell>
+            <Divider vertical hidden />
+            <Table.Cell>BRG:{ship.brg}°</Table.Cell>
+            <Table.Cell>
+              T/CPA:{ship.cpa}m {ship.tcpa}s
+            </Table.Cell>
+          </Table.Row>
+        ))}
       </Section>
     </>
   );
@@ -162,6 +243,7 @@ const ShipContent = (_props, context) => {
     estThrust,
     burnPercentage,
     speed,
+    course,
     heading,
     sector,
     eta,
@@ -184,13 +266,19 @@ const ShipContent = (_props, context) => {
             >
               <AnimatedNumber
                 value={speed}
-                format={(value) => value.toFixed(1)}
+                // [CELADON-EDIT] - CELADON FIXES
+                // format={(value) => value.toFixed(1)} // CELADON-EDIT - ORIGINAL
+                format={(value) => value.toFixed(2)}
+                // [/CELADON-EDIT]
               />
               Gm/s
             </ProgressBar>
           </LabeledList.Item>
           <LabeledList.Item label="Heading">
             <AnimatedNumber value={heading} />
+          </LabeledList.Item>
+          <LabeledList.Item label="Course">
+            <AnimatedNumber value={course} />
           </LabeledList.Item>
           <LabeledList.Item label="Position">
             X
@@ -272,7 +360,10 @@ const ShipContent = (_props, context) => {
             <Table.Cell>Max thrust per second:</Table.Cell>
             <Table.Cell>
               <AnimatedNumber
-                value={estThrust * 500}
+                // [CELADON-EDIT] - CELADON FIXES
+                // value={estThrust * 500} // CELADON-EDIT - ORIGINAL
+                value={estThrust * 1600}
+                // [/CELADON-EDIT]
                 format={(value) => value.toFixed(2)}
               />
               Gm/s²
@@ -288,13 +379,13 @@ const ShipContent = (_props, context) => {
 const ShipControlContent = (_props, context) => {
   const { act, data } = useBackend(context);
   const {
-    calibrating,
     aiControls,
     aiUser,
     burnDirection,
     burnPercentage,
     speed,
     estThrust,
+    rotating,
   } = data;
   let flyable = !data.docking && !data.docked;
 
@@ -319,23 +410,19 @@ const ShipControlContent = (_props, context) => {
             tooltip="Undock"
             tooltipPosition="left"
             icon="sign-out-alt"
-            disabled={!data.docked || data.docking}
+            // [CELADON-EDIT] - subshuttles fix
+            disabled={
+              !data.docked || data.docking || data.motheroutpost != null
+            }
+            // [/CELADON-EDIT] - subshuttles fix
             onClick={() => act('undock')}
           />
           <Button
             tooltip="Dock in Empty Space"
             tooltipPosition="left"
             icon="sign-in-alt"
-            disabled={!flyable}
+            disabled={!flyable || speed}
             onClick={() => act('dock_empty')}
-          />
-          <Button
-            tooltip={calibrating ? 'Cancel Jump' : 'Bluespace Jump'}
-            tooltipPosition="left"
-            icon={calibrating ? 'times' : 'angle-double-right'}
-            color={calibrating ? 'bad' : undefined}
-            disabled={!flyable}
-            onClick={() => act('bluespace_jump')}
           />
           <Button
             tooltip={aiControls ? 'Disable AI Control' : 'Enable AI Control'}
@@ -344,13 +431,6 @@ const ShipControlContent = (_props, context) => {
             color={aiControls ? 'green' : 'red'}
             disabled={aiUser}
             onClick={() => act('toggle_ai_control')}
-          />
-          <Button
-            tooltip="Print Silicon Access Chip"
-            tooltipPosition="left"
-            icon="microchip"
-            color="good"
-            onClick={() => act('PRG_printsiliconaccess')}
           />
         </>
       }
@@ -364,13 +444,9 @@ const ShipControlContent = (_props, context) => {
                   icon="arrow-left"
                   iconRotation={45}
                   mb={1}
-                  color={burnDirection === DIRECTIONS.northwest && 'good'}
+                  color={rotating === -1 && 'good'}
                   disabled={!flyable}
-                  onClick={() =>
-                    act('change_heading', {
-                      dir: DIRECTIONS.northwest,
-                    })
-                  }
+                  onClick={() => act('rotate_left')}
                 />
               </Table.Cell>
               <Table.Cell width={1}>
@@ -391,30 +467,13 @@ const ShipControlContent = (_props, context) => {
                   icon="arrow-right"
                   iconRotation={-45}
                   mb={1}
-                  color={burnDirection === DIRECTIONS.northeast && 'good'}
+                  color={rotating === 1 && 'good'}
                   disabled={!flyable}
-                  onClick={() =>
-                    act('change_heading', {
-                      dir: DIRECTIONS.northeast,
-                    })
-                  }
+                  onClick={() => act('rotate_right')}
                 />
               </Table.Cell>
             </Table.Row>
             <Table.Row height={1}>
-              <Table.Cell width={1}>
-                <Button
-                  icon="arrow-left"
-                  mb={1}
-                  color={burnDirection === DIRECTIONS.west && 'good'}
-                  disabled={!flyable}
-                  onClick={() =>
-                    act('change_heading', {
-                      dir: DIRECTIONS.west,
-                    })
-                  }
-                />
-              </Table.Cell>
               <Table.Cell width={1}>
                 <Button
                   tooltip={burnDirection === 0 ? 'Slow down' : 'Stop thrust'}
@@ -431,35 +490,6 @@ const ShipControlContent = (_props, context) => {
               </Table.Cell>
               <Table.Cell width={1}>
                 <Button
-                  icon="arrow-right"
-                  mb={1}
-                  color={burnDirection === DIRECTIONS.east && 'good'}
-                  disabled={!flyable}
-                  onClick={() =>
-                    act('change_heading', {
-                      dir: DIRECTIONS.east,
-                    })
-                  }
-                />
-              </Table.Cell>
-            </Table.Row>
-            <Table.Row height={1}>
-              <Table.Cell width={1}>
-                <Button
-                  icon="arrow-left"
-                  iconRotation={-45}
-                  mb={1}
-                  color={burnDirection === DIRECTIONS.southwest && 'good'}
-                  disabled={!flyable}
-                  onClick={() =>
-                    act('change_heading', {
-                      dir: DIRECTIONS.southwest,
-                    })
-                  }
-                />
-              </Table.Cell>
-              <Table.Cell width={1}>
-                <Button
                   icon="arrow-down"
                   mb={1}
                   color={burnDirection === DIRECTIONS.south && 'good'}
@@ -467,20 +497,6 @@ const ShipControlContent = (_props, context) => {
                   onClick={() =>
                     act('change_heading', {
                       dir: DIRECTIONS.south,
-                    })
-                  }
-                />
-              </Table.Cell>
-              <Table.Cell width={1}>
-                <Button
-                  icon="arrow-right"
-                  iconRotation={45}
-                  mb={1}
-                  color={burnDirection === DIRECTIONS.southeast && 'good'}
-                  disabled={!flyable}
-                  onClick={() =>
-                    act('change_heading', {
-                      dir: DIRECTIONS.southeast,
                     })
                   }
                 />
@@ -504,15 +520,24 @@ const ShipControlContent = (_props, context) => {
             animated
           />
           <NumberInput
-            value={(burnPercentage / 100) * estThrust * 500}
+            // [CELADON-EDIT] CELADON FIXES
+            // value={(burnPercentage / 100) * estThrust * 500} // CELADON-EDIT - ORIGINAL
+            value={(burnPercentage / 100) * estThrust * 1600}
+            // [/CELADON-EDIT]
             minValue={0.01}
             step={0.01}
             // 5 times a second, 60 seconds in a minute (5 * 60 = 300)
-            maxValue={estThrust * 500}
+            // [CELADON-EDIT] CELADON FIXES
+            // maxValue={estThrust * 500} // CELADON-EDIT - ORIGINAL
+            maxValue={estThrust * 1600}
+            // [/CELADON-EDIT]
             unit="Gm/s²"
             onDrag={(e, value) =>
               act('change_burn_percentage', {
-                percentage: Math.round((value / (estThrust * 500)) * 100),
+                // [CELADON-EDIT] CELADON FIXES
+                // percentage: Math.round((value / (estThrust * 500)) * 100), // CELADON-EDIT - ORIGINAL
+                percentage: Math.round((value / (estThrust * 1600)) * 100),
+                // [/CELADON-EDIT]
               })
             }
             format={(value) => value.toFixed(2)}

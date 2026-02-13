@@ -1,4 +1,4 @@
-import { multiline } from '../../../common/string';
+import { multiline } from 'common/string';
 import { useBackend, useLocalState } from '../../backend';
 import { Button, Divider, Flex, Icon, Input, Section } from '../../components';
 import { Window } from '../../layouts';

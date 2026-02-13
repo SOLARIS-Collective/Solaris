@@ -58,3 +58,8 @@
 
 // tgchat styles
 @include meta.load-css('./tgchat/chat-dark.scss');
+
+// Hide body scrollbars
+html, body {
+  overflow: hidden !important;
+}

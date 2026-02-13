@@ -10,33 +10,47 @@ macro "default"
 
 menu "menu"
 	elem
-		name = "&Меню"
+		name = "&File"
 		command = ""
 		saved-params = "is-checked"
 	elem
-		name = "&Скриншот\tF2"
+		name = "&Quick screenshot\tF2"
 		command = ".screenshot auto"
-		category = "&Меню"
+		category = "&File"
 		saved-params = "is-checked"
 	elem
-		name = "&Сделать скриншот...\tShift+F2"
+		name = "&Save screenshot as...\tShift+F2"
 		command = ".screenshot"
-		category = "&Меню"
+		category = "&File"
 		saved-params = "is-checked"
 	elem
 		name = ""
 		command = ""
-		category = "&Меню"
+		category = "&File"
 		saved-params = "is-checked"
 	elem "reconnectbutton"
-		name = "&Переподключиться"
+		name = "&Reconnect"
 		command = ".reconnect"
-		category = "&Меню"
+		category = "&File"
 		saved-params = "is-checked"
 	elem
-		name = "&Выход\tAlt-F4"
+		name = "&Quit\tAlt-F4"
 		command = ".quit"
-		category = "&Меню"
+		category = "&File"
+		saved-params = "is-checked"
+	elem
+		name = "&Help"
+		command = ""
+		saved-params = "is-checked"
+	elem
+		name = "&Admin Help\tF1"
+		command = "adminhelp"
+		category = "&Help"
+		saved-params = "is-checked"
+	elem
+		name = "&Hotkeys"
+		command = "hotkeys-help"
+		category = "&Help"
 		saved-params = "is-checked"
 
 window "mainwindow"
@@ -50,13 +64,13 @@ window "mainwindow"
 		is-default = true
 		saved-params = "pos;size;is-minimized;is-maximized"
 		statusbar = false
-		icon = 'icons\\celadon_64.png'
+		icon = 'icons\\shiptest_64.png'
 		macro = "default"
 		menu = "menu"
 	elem "split"
 		type = CHILD
-		pos = 0,0
-		size = 640x440
+		pos = 3,0
+		size = 634x440
 		anchor1 = 0,0
 		anchor2 = 100,100
 		background-color = #272727
@@ -111,7 +125,6 @@ window "mapwindow"
 		anchor2 = 100,100
 		font-family = "Arial"
 		font-size = 7
-		right-click = true
 		text-color = none
 		is-default = true
 		saved-params = "zoom;letterbox;zoom-mode"
@@ -197,7 +210,7 @@ window "infowindow"
 		saved-params = "is-checked"
 		text = "Wiki"
 		command = "wiki"
-	elem "github"
+	elem "lore"
 		type = BUTTON
 		pos = 368,5
 		size = 80x20
@@ -207,22 +220,21 @@ window "infowindow"
 		text-color = #ffffff
 		background-color = #40628a
 		saved-params = "is-checked"
-		text = "Github"
-		command = "github"
-	elem "report-issue"
+		text = "Lore"
+		command = "lore"
+	elem "github"
 		type = BUTTON
 		pos = 456,5
 		size = 80x20
 		anchor1 = 66,0
 		anchor2 = 79,0
 		font-family = "Verdana"
-		font-size = 8
 		text-color = #ffffff
 		background-color = #40628a
 		saved-params = "is-checked"
-		text = "Report Bug"
-		command = "report-issue"
-	elem "fullscreen-toggle"
+		text = "Github"
+		command = "github"
+	elem "report-issue"
 		type = BUTTON
 		pos = 544,5
 		size = 80x20
@@ -233,8 +245,8 @@ window "infowindow"
 		text-color = #ffffff
 		background-color = #40628a
 		saved-params = "is-checked"
-		text = "Fullscreen"
-		command = "fullscreen"
+		text = "Report Issue"
+		command = "report-issue"
 
 window "outputwindow"
 	elem "outputwindow"
@@ -286,25 +298,16 @@ window "outputwindow"
 		text = "Me"
 		command = ".winset \"mebutton.is-checked=true ? input.command=\"!me \\\"\" : input.command=\"\"mebutton.is-checked=true ? saybutton.is-checked=false\"\"mebutton.is-checked=true ? oocbutton.is-checked=false\""
 		button-type = pushbox
-	elem "legacy_output_selector"
-		type = CHILD
+	elem "browseroutput"
+		type = BROWSER
 		pos = 0,0
 		size = 640x456
 		anchor1 = 0,0
 		anchor2 = 100,100
-		saved-params = "splitter"
-		left = "output_legacy"
-		is-vert = false
-
-window "output_legacy"
-	elem "output_legacy"
-		type = MAIN
-		pos = 0,0
-		size = 640x456
-		anchor1 = -1,-1
-		anchor2 = -1,-1
-		saved-params = "pos;size;is-minimized;is-maximized"
-		is-pane = true
+		background-color = #ffffff
+		is-visible = false
+		is-disabled = true
+		saved-params = ""
 	elem "output"
 		type = OUTPUT
 		pos = 0,0
@@ -312,23 +315,6 @@ window "output_legacy"
 		anchor1 = 0,0
 		anchor2 = 100,100
 		is-default = true
-		saved-params = ""
-
-window "output_browser"
-	elem "output_browser"
-		type = MAIN
-		pos = 0,0
-		size = 640x456
-		anchor1 = -1,-1
-		anchor2 = -1,-1
-		saved-params = "pos;size;is-minimized;is-maximized"
-		is-pane = true
-	elem "browseroutput"
-		type = BROWSER
-		pos = 0,0
-		size = 640x456
-		anchor1 = 0,0
-		anchor2 = 100,100
 		saved-params = ""
 
 window "popupwindow"
@@ -392,4 +378,3 @@ window "statwindow"
 		tab-font-family = "Verdana"
 		prefix-color = #ebebeb
 		suffix-color = #ebebeb
-
