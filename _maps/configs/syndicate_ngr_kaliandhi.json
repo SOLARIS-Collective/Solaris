@@ -1,22 +1,25 @@
 {
-	"$schema": "https://raw.githubusercontent.com/PentestSS13/Pentest/master/_maps/ship_config_schema.json",
-	"map_name": "Kali Andhi-class Destroyer",
-	"map_short_name": "Kali Andhi-class",
-	"map_path": "_maps/shuttles/syndicate/syndicate_ngr_kaliandhi.dmm",
 	"faction": "/datum/faction/syndicate/ngr",
 	"prefix": "NGRV",
 	"manufacturer": "Hardline Salvage and Mining",
-	"description": "A post-ICW destroyer design commissioned by the New Gorlex Republic and outfitted for general patrol and reclamation duties. The Kali Andhi-class, despite its young age, has been instrumental in securing New Gorlex's modest territorial claims, making them a somewhat unwelcome sight for the PGF's frontier mission.",
-	"tags": [
-		"RP Focus",
-		"Combat"
-	],
 	"namelists": [
 		"GORLEX",
 		"NATURAL_AGGRESSIVE",
 		"BEASTS",
 		"WEAPONS"
 	],
+	"map_name": "Kali Andhi-class Destroyer",
+	"map_short_name": "Kali Andhi-class",
+	"description": "A post-ICW destroyer design commissioned by the New Gorlex Republic and outfitted for general patrol and reclamation duties. The Kali Andhi-class, despite its young age, has been instrumental in securing New Gorlex's modest territorial claims, making them a somewhat unwelcome sight for the PGF's frontier mission.",
+	"tags": [
+		"RP Focus",
+		"Combat"
+	],
+	"map_path": "_maps/shuttles/syndicate/syndicate_ngr_kaliandhi.dmm",
+	"map_id": "syndicate_gorlex_kaliandhi",
+	"token_icon_state": "ship_big_generic",
+	"limit": 1,
+	"starting_funds": 4000,
 	"job_slots": {
 		"Captain": {
 			"outfit": "/datum/outfit/job/syndicate/captain/ngr",
@@ -31,6 +34,10 @@
 		"Ensign": {
 			"outfit": "/datum/outfit/job/syndicate/head_of_personnel/ngr",
 			"officer": true,
+			"slots": 1
+		},
+		"Shuttle Pilot": {
+			"outfit": "/datum/outfit/job/syndicate/security/ngr/pilot/skivvies",
 			"slots": 1
 		},
 		"Medical Doctor": {
@@ -49,20 +56,10 @@
 			"outfit": "/datum/outfit/job/syndicate/security/ngr",
 			"slots": 3
 		},
-		"Initiate": {
+		"Crewman": {
 			"outfit": "/datum/outfit/job/syndicate/assistant/ngr",
 			"slots": 2
 		}
 	},
-	"limit": 1,
-	"starting_funds": 4000,
-	"enabled": true,
-	"space_spawn": false,
-
-	"token_icon_state": "ship_big_generic",
-
-	"architect": "Apogee-dev",
-	"contributors": [
-		"No Contributors"
-	]
+	"enabled": true
 }

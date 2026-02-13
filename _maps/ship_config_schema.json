@@ -18,11 +18,25 @@
 			"description": "A shortened version of the ship class name, used in things such as the manifest. The -class suffix must be lowercase, and the end of the value.",
 			"maxLength": 20
 		},
-		"map_path": {
-			"title": "Map File Path",
+		"description": {
+			"title": "Class Description",
 			"type": "string",
-			"description": "The path to the ship class's map file. Use forward slashes (/) for directories, and include the .dmm extension. Map files must be somewhere under the _maps folder.",
-			"pattern": "^_maps/([a-zA-Z0-9_/.-]*)dmm$"
+			"description": "A description of the ship class, currently only shown to admins on the shuttle manipulator, but will likely be shown to players before ship purchase in the future.",
+			"minLength": 250
+		},
+
+
+		"sensor_range":{
+			"title": "Sensor Range",
+			"type": "number",
+			"description": "A definition of a ships' maximum sensor range."
+		},
+
+
+		"tags": {
+			"title": "Ship Tags",
+			"type": "array",
+			"description": "A list of tags describing the ship's niche, converted into searchable strings."
 		},
 		"faction": {
 			"title": "Ship Faction Datum",
@@ -42,17 +56,6 @@
 			"type": ["null", "string"],
 			"description": "The manufacturer of the ship class, used in autowiki templates."
 		},
-		"description": {
-			"title": "Class Description",
-			"type": "string",
-			"description": "A description of the ship class, currently only shown to admins on the shuttle manipulator, but will likely be shown to players before ship purchase in the future.",
-			"minLength": 250
-		},
-		"tags": {
-			"title": "Ship Tags",
-			"type": "array",
-			"description": "A list of tags describing the ship's niche, converted into searchable strings."
-		},
 		"namelists": {
 			"title": "Namelists",
 			"type": "array",
@@ -68,10 +71,6 @@
 					"SPACE",
 					"NATURAL",
 					"NATURAL_AGGRESSIVE",
-					"SOLGOV",
-					"MOTHIC",
-					"TIZIRAN",
-					"ETHEREAL",
 					"BEASTS",
 					"MYTHOLOGICAL",
 					"HISTORICAL",
@@ -89,18 +88,21 @@
 					"ACLF",
 					"GEC",
 					"DONK",
-					"SELF",
-					"HORIZON",
-					"HERETICAL",
-					"BLUESPACE",
 					"CLIP MINUTEMEN",
 					"SAINT-ROUMAIN",
 					"INSTALLATION",
+					"SOLGOV",
 					"CMM-GOLD",
 					"CLIP-BARD",
 					"PGF"
 				]
 			}
+		},
+		"map_path": {
+			"title": "Map File Path",
+			"type": "string",
+			"description": "The path to the ship class's map file. Use forward slashes (/) for directories, and include the .dmm extension. Map files must be somewhere under the _maps folder.",
+			"pattern": "^_maps/([a-zA-Z0-9_/.-]*)dmm$"
 		},
 		"job_slots": {
 			"title": "Job Slots",
@@ -178,30 +180,6 @@
 			"type": "boolean",
 			"description": "Whether this ship will spawn in space or at the outpost. If true, the ship will be placed randomly in space upon being spawned by the join menu.",
 			"default": false
-		},
-		"ship_icon": {
-			"title": "Ship overmap icon",
-			"type": [ "null", "string" ],
-			"description": "Pentest Exclusive: Select ships have been given custom overmap icons. The icon name is placed here. This is for when moving in space.",
-			"default": null
-		},
-		"empty_space_icon": {
-			"title": "Ship overmap icon",
-			"type": [ "null", "string" ],
-			"description": "Pentest Exclusive: Select ships have been given custom overmap icons. The icon name is placed here. This is for when docked in space.",
-			"default": null
-		},
-		"architect":{
-			"title": "Navel Yard Architect",
-			"type": "string",
-			"description": "Pentest Exclusive: Tribute to the orginal designer.",
-			"default": null
-		},
-		"contributors":{
-			"title": "Contributors",
-			"type": "array",
-			"description": "Pentest Exclusive: Tribute to the all those who contributed to the design.",
-			"default": null
 		}
 	},
 

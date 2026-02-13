@@ -1,12 +1,11 @@
 {
-	"$schema": "https://raw.githubusercontent.com/PentestSS13/Pentest/master/_maps/ship_config_schema.json",
+	"$schema": "https://raw.githubusercontent.com/shiptest-ss13/Shiptest/master/_maps/ship_config_schema.json",
 	"map_name": "Meta-class Freighter",
-	"map_short_name": "Meta-class",
-	"map_path": "_maps/shuttles/nanotrasen/nanotrasen_meta.dmm",
-	"faction": "/datum/faction/nt/ns_logi",
 	"prefix": "NSSV",
+	"faction": "/datum/faction/nt/ns_logi",
 	"manufacturer": "Nanotrasen Spaceworks",
-	"description": "The Meta-class is the mainline freighter of N+S Logistics, boasting incredible cargo capacity, spacious crew areas. It has been through a substantial redesign, aiming to reduce accidents and increase supply throughput. The Meta-class frigate can most often be found in the frontier transporting cargo between outposts, delivering mail, and selling N+S goods and merchandise. N+S is not liable for any health issues, injuries or addictions that may occur while working aboard this vessel.",
+	"map_short_name": "Meta-class",
+	"description": "The Meta-class is the mainline freighter of N+S Logistics, boasting incredible cargo capacity, spacious crew areas, and law-abiding levels of speed. It has been through a substantial redesign compared to its pre-war namesake, aiming to reduce accidents and increase supply throughput to make up for post-war defecits. The Meta-class frigate can most often be found in the frontier transporting cargo between outposts, delivering mail, and selling N+S goods and merchandise. N+S is not liable for any health issues, injuries or addictions that may occur while working aboard this vessel.",
 	"tags": [
 		"Cargo"
 	],
@@ -16,6 +15,8 @@
 		"NANOTRASEN",
 		"HISTORICAL"
 	],
+	"map_path": "_maps/shuttles/nanotrasen/nanotrasen_meta.dmm",
+	"starting_funds": 4000,
 	"job_slots": {
 		"Quartermaster": {
 			"outfit": "/datum/outfit/job/nanotrasen/captain/ns",
@@ -39,18 +40,9 @@
 			"slots": 2
 		}
 	},
-	"limit": 2,
-	"starting_funds": 4000,
-	"enabled": true,
-	"space_spawn": false,
-
 	"token_icon_state": "ship_generic",
 	"tranist_x_offset": -15,
 	"tranist_y_offset": -10,
-
-	"architect": "Zevo",
-	"contributors": [
-		"Unknown"
-	]
+	"enabled": true
 }
 

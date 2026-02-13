@@ -2535,10 +2535,6 @@
 /obj/structure/sign/poster/retro/smile{
 	pixel_x = 28
 	},
-/obj/effect/landmark/mission_poi/main{
-	already_spawned = 1;
-	type_to_spawn = /obj/machinery/syndicatebomb
-	},
 /turf/open/floor/plating,
 /area/overmap_encounter/planetoid/cave/explored)
 "BG" = (
@@ -3737,10 +3733,6 @@
 /obj/machinery/light/small/directional/east,
 /turf/open/floor/plasteel/telecomms_floor,
 /area/ruin/whitesands/cave_base/engi)
-"Nf" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/closed/mineral/random/whitesands,
-/area/overmap_encounter/planetoid/cave/explored)
 "Nj" = (
 /obj/structure/catwalk/over/plated_catwalk/dark,
 /obj/structure/cable{
@@ -7837,7 +7829,7 @@ tX
 mh
 mh
 mh
-Nf
+mh
 hN
 tX
 tX

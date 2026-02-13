@@ -1,8 +1,6 @@
 {
-	"$schema": "https://raw.githubusercontent.com/PentestSS13/Pentest/master/_maps/ship_config_schema.json",
+	"$schema": "https://raw.githubusercontent.com/shiptest-ss13/Shiptest/master/_maps/ship_config_schema.json",
 	"map_name": "Kiwi-class Prospector",
-	"map_short_name": "Kiwi-class",
-	"map_path": "_maps/shuttles/nanotrasen/nanotrasen_kiwi.dmm",
 	"faction": "/datum/faction/nt/ns_logi",
 	"prefix": "NSSV",
 	"manufacturer": "Nanotrasen Spaceworks",
@@ -16,6 +14,9 @@
 		"SPACE",
 		"MYTHOLOGICAL"
 	],
+	"map_short_name": "Kiwi-class",
+	"map_path": "_maps/shuttles/nanotrasen/nanotrasen_kiwi.dmm",
+	"limit": 1,
 	"job_slots": {
 		"Supply Director": {
 			"outfit": "/datum/outfit/job/nanotrasen/captain/ns/empty",
@@ -48,13 +49,5 @@
 			"slots": 1
 		}
 	},
-	"limit": 1,
-	"starting_funds": 2000,
-	"enabled": true,
-	"space_spawn": false,
-
-	"architect": "Moffball19",
-	"contributors": [
-		"No Contributors"
-	]
+	"enabled": true
 }

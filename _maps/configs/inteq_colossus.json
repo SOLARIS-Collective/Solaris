@@ -1,8 +1,6 @@
 {
-	"$schema": "https://raw.githubusercontent.com/PentestSS13/Pentest/master/_maps/ship_config_schema.json",
+	"$schema": "https://raw.githubusercontent.com/shiptest-ss13/Shiptest/master/_maps/ship_config_schema.json",
 	"map_name": "Colossus-class Armored Frigate",
-	"map_short_name": "Colossus-class",
-	"map_path": "_maps/shuttles/inteq/inteq_colossus.dmm",
 	"faction": "/datum/faction/inteq",
 	"prefix": "IRMV",
 	"manufacturer": "Hardline Salvage and Mining",
@@ -17,6 +15,10 @@
 		"NATURAL_AGGRESSIVE",
 		"INTEQ"
 	],
+	"map_short_name": "Colossus-class",
+	"map_path": "_maps/shuttles/inteq/inteq_colossus.dmm",
+	"token_icon_state": "ship_carrier",
+	"limit": 1,
 	"job_slots": {
 		"Vanguard": {
 			"outfit": "/datum/outfit/job/inteq/captain/empty",
@@ -50,13 +52,5 @@
 			"slots": 2
 		}
 	},
-	"limit": 1,
-	"starting_funds": 2000,
-	"enabled": true,
-	"space_spawn": false,
-
-	"architect": "Apogee-dev",
-	"contributors": [
-		"moffball19 - Refit"
-	]
+	"enabled": true
 }

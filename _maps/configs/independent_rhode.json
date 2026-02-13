@@ -1,8 +1,7 @@
 {
-	"$schema": "https://raw.githubusercontent.com/PentestSS13/Pentest/master/_maps/ship_config_schema.json",
+	"$schema": "https://raw.githubusercontent.com/shiptest-ss13/Shiptest/master/_maps/ship_config_schema.json",
 	"map_name": "Rhode-class Cargo Freighter",
 	"map_short_name": "Rhode-class",
-	"map_path": "_maps/shuttles/independent/independent_rhode.dmm",
 	"faction": "/datum/faction/independent",
 	"prefix": "SV",
 	"manufacturer": "Miskilamo Spacefaring",
@@ -16,6 +15,12 @@
 		"GENERAL",
 		"SPACE"
 	],
+	"map_path": "_maps/shuttles/independent/independent_rhode.dmm",
+	"token_icon_state": "ship_small_generic",
+	"limit": 1,
+	"starting_funds": 1500,
+	"tranist_x_offset": -15,
+	"tranist_y_offset": -10,
 	"job_slots": {
 		"Foreman": {
 			"outfit": "/datum/outfit/job/independent/captain/cheap",
@@ -30,17 +35,5 @@
 			"slots": 1
 		}
 	},
-	"limit": 1,
-	"starting_funds": 1500,
-	"enabled": true,
-	"space_spawn": true,
-
-	"token_icon_state": "ship_small_generic",
-	"tranist_x_offset": -15,
-	"tranist_y_offset": -10,
-
-	"architect": "thearbiber",
-	"contributors": [
-		"No Contributors"
-	]
+	"enabled": true
 }

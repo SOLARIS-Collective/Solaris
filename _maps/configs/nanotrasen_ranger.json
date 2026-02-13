@@ -1,25 +1,27 @@
 {
-	"$schema": "https://raw.githubusercontent.com/PentestSS13/Pentest/master/_maps/ship_config_schema.json",
-	"map_name": "Ranger-class Aid Vessel",
-	"map_short_name": "Ranger-class",
-	"map_path": "_maps/shuttles/nanotrasen/nanotrasen_ranger.dmm",
-	"faction": "/datum/faction/nt",
-	"prefix": "NTSV",
+	"$schema": "https://raw.githubusercontent.com/shiptest-ss13/Shiptest/master/_maps/ship_config_schema.json",
+	"prefix": "VISV",
 	"manufacturer": "Nanotrasen Spaceworks",
-	"description": "A Nanotrasen rescue and aid vessel. Equipped with an AI core, moderate combat gear, and equipment fit for rescue and general aid operations. Nanotrasen often deploys these ships in lieu of a proper ERT to aid their allies in the Frontier without committing their full might. The shipowner is the Lieutenant of a Loss Prevention squad, with a Commissioner to aid with operations on the ship proper.",
-	"tags": [
-		"Combat",
-		"Riot",
-		"Robotics",
-		"Medical",
-		"Telecomms",
-		"Generalist"
-	],
+	"map_name": "Ranger-class Aid Vessel",
+	"faction": "/datum/faction/nt/vigilitas",
 	"namelists": [
 		"NANOTRASEN",
 		"NATURAL_AGGRESSIVE",
 		"WEAPONS"
 	],
+	"map_short_name": "Ranger-class",
+	"description": "A Vigilitas Interstellar aid vessel, manufactured by NT Spaceworks. Equipped with a Nanotrasen AI core, moderate combat gear, and equipment fit for rescue and general aid operations. Vigitilas Interstellar often deploys these ships in lieu of a proper ERT to aid their allies in the Frontier without committing their full might. The shipowner is the Lieutenant of a Loss Prevention squad.",
+	"tags": [
+		"Combat",
+		"Medical",
+		"Firefighting",
+		"Telecomms",
+		"Generalist"
+	],
+	"starting_funds": 6000,
+	"map_path": "_maps/shuttles/nanotrasen/nanotrasen_ranger.dmm",
+	"token_icon_state": "ship_generic",
+	"limit": 1,
 	"job_slots": {
 		"LP Lieutenant": {
 			"outfit": "/datum/outfit/job/nanotrasen/captain/lp",
@@ -38,21 +40,14 @@
 			"outfit": "/datum/outfit/job/nanotrasen/doctor/lp",
 			"slots": 1
 		},
+		"N+S Logistics Specialist": {
+			"outfit": "/datum/outfit/job/nanotrasen/quartermaster",
+			"slots": 1
+		},
 		"Intern": {
 			"outfit": "/datum/outfit/job/nanotrasen/assistant",
 			"slots": 1
 		}
 	},
-	"limit": 1,
-	"starting_funds": 4000,
-	"enabled": true,
-	"space_spawn": false,
-
-	"token_icon_state": "ship_generic",
-
-	"architect": "SweetBlueSylveon",
-	"contributors": [
-		"Unknown"
-	]
+	"enabled": true
 }
-

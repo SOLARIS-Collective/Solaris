@@ -1,23 +1,26 @@
 {
-	"$schema": "https://raw.githubusercontent.com/PentestSS13/Pentest/master/_maps/ship_config_schema.json",
+	"$schema": "https://raw.githubusercontent.com/shiptest-ss13/Shiptest/master/_maps/ship_config_schema.json",
 	"map_name": "Scarab-class Heavy Mining Ship",
-	"map_short_name": "Scarab-class",
-	"map_path": "_maps/shuttles/independent/independent_scarab.dmm",
 	"faction": "/datum/faction/independent",
 	"prefix": "SV",
 	"manufacturer": "Hardline Salvage and Mining",
-	"description": "The Scarab-class is a recently-introduced heavy drilling ship built by Hardline Salvage and Mining. Inspired by Hardline's earlier work on the Talos-class refits, the Scarab comes with heavy drilling equipment and facilities for a number of technicians and hired guards instead of the hand-mining equipment typically found on smaller ships. Extra space for storage or potential remodeling lends the Scarab a degree of flexibility few of its peers can afford.",
-	"tags": [
-		"Mining",
-		"Engineering",
-		"Combat"
-	],
 	"namelists": [
 		"GENERAL",
 		"SPACE",
 		"NATURAL",
 		"NATURAL_AGGRESSIVE"
 	],
+	"map_short_name": "Scarab-class",
+	"map_path": "_maps/shuttles/independent/independent_scarab.dmm",
+	"token_icon_state": "ship_mid_generic",
+	"description": "The Scarab-class is a recently-introduced heavy drilling ship built by Hardline Salvage and Mining. Inspired by Hardline's earlier work on the Talos-class refits, the Scarab comes with heavy drilling equipment and facilities for a number of technicians and hired guards instead of the hand-mining equipment typically found on smaller ships. Extra space for storage or potential remodeling lends the Scarab a degree of flexibility few of its peers can afford.",
+	"tags": [
+		"Mining",
+		"Engineering",
+		"Combat"
+	],
+	"starting_funds": 2500,
+	"limit": 1,
 	"job_slots": {
 		"Captain": {
 			"outfit": "/datum/outfit/job/independent/captain",
@@ -42,15 +45,5 @@
 			"slots": 2
 		}
 	},
-	"limit": 1,
-	"starting_funds": 2500,
-	"enabled": true,
-	"space_spawn": false,
-
-	"token_icon_state": "ship_mid_generic",
-
-	"architect": "Sadhorizon",
-	"contributors": [
-		"No Contributors"
-	]
+	"enabled": true
 }

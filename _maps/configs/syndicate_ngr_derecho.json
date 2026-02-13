@@ -1,23 +1,26 @@
 {
-	"$schema": "https://raw.githubusercontent.com/PentestSS13/Pentest/master/_maps/ship_config_schema.json",
-	"map_name": "Derecho-class Wrecking Tug",
-	"map_short_name": "Derecho-class",
-	"map_path": "_maps/shuttles/syndicate/syndicate_ngr_derecho.dmm",
+	"$schema": "https://raw.githubusercontent.com/shiptest-ss13/Shiptest/master/_maps/ship_config_schema.json",
 	"faction": "/datum/faction/syndicate/ngr",
 	"prefix": "NGRV",
 	"manufacturer": "Hardline Salvage and Mining",
-	"description": "The Derecho-class is a series of salvage ships commissioned by the New Gorlex Republic almost as soon as the Republic was founded for the prodigious task of cleaning the space around New Gorlex of countless ICW-era shipwrecks. In recent years, Derechos are operated as auxiliary ships typically tasked with surveying, assessment, and their original mission of salvaging in space controlled or contested by the NGR.",
-	"tags": [
-		"Mining",
-		"Salvage",
-		"Combat"
-	],
 	"namelists": [
 		"GORLEX",
 		"NATURAL_AGGRESSIVE",
 		"BEASTS",
 		"WEAPONS"
 	],
+	"map_name": "Derecho-class Wrecking Tug",
+	"description": "The Derecho-class is a series of salvage ships commissioned by the New Gorlex Republic almost as soon as the Republic was founded for the prodigious task of cleaning the space around New Gorlex of countless ICW-era shipwrecks. In recent years, Derechos are operated as auxiliary ships typically tasked with surveying, assessment, and their original mission of salvaging in space controlled or contested by the NGR.",
+	"tags": [
+		"Mining",
+		"Salvage",
+		"Combat"
+	],
+	"map_short_name": "Derecho-class",
+	"tranist_x_offset": -35,
+	"tranist_y_offset": -25,
+	"map_path": "_maps/shuttles/syndicate/syndicate_ngr_derecho.dmm",
+	"token_icon_state": "ship_generic",
 	"job_slots": {
 		"Captain": {
 			"outfit": "/datum/outfit/job/syndicate/captain/ngr",
@@ -37,20 +40,10 @@
 			"outfit": "/datum/outfit/job/syndicate/miner/ngr",
 			"slots": 2
 		},
-		"Initiate": {
+		"Crewman": {
 			"outfit": "/datum/outfit/job/syndicate/assistant/ngr",
 			"slots": 2
 		}
 	},
-	"limit": 1,
-	"starting_funds": 2000,
-	"enabled": true,
-	"space_spawn": false,
-
-	"token_icon_state": "ship_generic",
-
-	"architect": "Apogee-dev",
-	"contributors": [
-		"No Contributors"
-	]
+	"enabled": true
 }

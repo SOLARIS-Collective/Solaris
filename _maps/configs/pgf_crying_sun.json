@@ -1,20 +1,23 @@
 {
-	"$schema": "https://raw.githubusercontent.com/PentestSS13/Pentest/master/_maps/ship_config_schema.json",
-	"map_name": "Crying Sun-class Light Frigate",
-	"map_short_name": "Crying Sun-class",
-	"map_path": "_maps/shuttles/pgf/pgf_crying_sun.dmm",
+	"$schema": "https://raw.githubusercontent.com/shiptest-ss13/Shiptest/master/_maps/ship_config_schema.json",
 	"faction": "/datum/faction/pgf",
 	"prefix": "PGFN",
 	"manufacturer": "Etherbor Lihmona Shipyards",
+	"map_name": "Crying Sun-class Light Frigate",
+	"namelists": [
+		"PGF"
+	],
+	"map_short_name": "Crying Sun-class",
 	"description": "A light frigate mass produced by the Etherbor PGFN Lihmona Navy Shipyard to carry massive linear mounted warguns while keeping high maneuverability. The weapon mount on this ship has been decommissioned, like so many of its kind when sent out of Kalixcian space. The Crying Sun-class is a dual navy and marine vessel, carrying a shuttle for boarding, excursions, and forward scouting. After decommissioning the primary gun, the engines were swapped out for lower power, while engineering equipment has been generously supplied.",
 	"tags": [
 		"Combat",
 		"Engineering",
 		"RP Focus"
 	],
-	"namelists": [
-		"PGF"
-	],
+	"starting_funds": 2000,
+	"map_path": "_maps/shuttles/pgf/pgf_crying_sun.dmm",
+	"token_icon_state": "ship_big_generic",
+	"limit": 1,
 	"job_slots": {
 		"Captain": {
 			"outfit": "/datum/outfit/job/gezena/captain",
@@ -23,6 +26,7 @@
 		},
 		"Helmsman": {
 			"outfit": "/datum/outfit/job/gezena/assistant/bridge",
+			"officer": true,
 			"slots": 1
 		},
 		"Navy Engineer": {
@@ -47,15 +51,5 @@
 			"slots": 3
 		}
 	},
-	"limit": 1,
-	"starting_funds": 1000,
-	"enabled": true,
-	"space_spawn": false,
-
-	"token_icon_state": "ship_big_generic",
-
-	"architect": "Latentish",
-	"contributors": [
-		"DIB-DOG"
-	]
+	"enabled":true
 }

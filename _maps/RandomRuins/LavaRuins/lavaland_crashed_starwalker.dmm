@@ -310,7 +310,8 @@
 	pixel_x = -9;
 	pixel_y = 6
 	},
-/turf/open/floor/plasteel/stairs/modern/dark{
+/turf/open/floor/plasteel/stairs{
+	icon = 'icons/obj/stairs.dmi';
 	dir = 8
 	},
 /area/ruin/unpowered/crashed_starwalker)
@@ -1235,7 +1236,7 @@
 	pixel_x = 6;
 	pixel_y = 5
 	},
-/obj/item/ammo_box/a357{
+/obj/item/storage/box/ammo/a357{
 	pixel_y = 6
 	},
 /turf/open/floor/plasteel/dark,
@@ -2533,7 +2534,6 @@
 	pixel_x = 32
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/mission_poi/main/blackbox,
 /obj/machinery/blackbox_recorder,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface/lit,
 /area/ruin/unpowered/crashed_starwalker)
@@ -3023,13 +3023,6 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/ruin/unpowered/crashed_starwalker)
-"Xh" = (
-/obj/effect/spawner/structure/window/plasma/reinforced/plastitanium,
-/obj/machinery/door/poddoor/shutters{
-	id = "pcarrier_bridge"
-	},
-/turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ruin/unpowered/crashed_starwalker)
 "Xj" = (
 /turf/open/floor/plating/asteroid/dirt/grass/lavaland,
@@ -4753,7 +4746,7 @@ TI
 TI
 TI
 TI
-Xh
+EV
 tV
 oG
 WM

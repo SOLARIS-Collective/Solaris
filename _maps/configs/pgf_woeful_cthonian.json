@@ -1,20 +1,23 @@
 {
-	"$schema": "https://raw.githubusercontent.com/PentestSS13/Pentest/master/_maps/ship_config_schema.json",
-	"map_name": "Woeful Cthonian-class Patrol Cutter",
-	"map_short_name": "Cthonian-class",
-	"map_path": "_maps/shuttles/pgf/pgf_woeful_cthonian.dmm",
+	"$schema": "https://raw.githubusercontent.com/shiptest-ss13/Shiptest/master/_maps/ship_config_schema.json",
 	"faction": "/datum/faction/pgf",
 	"prefix": "PGFN",
 	"manufacturer": "Axilai Orbital Works",
-	"description": "A new design of patrol ship designed by Etherbor's Lihmona Navy Shipyards and manufactured by Axilai Orbital Works, the Woeful Cthonian is a small ship with average maneuverability and firepower designed for sustained operations in contested space. While it is not able to hold its own in a firefight with proper warships, lacks specialization into any particular field, and carries no proper marine complement. Despite what some would consider shortcomings, it still finds solid usage as a generalist vessel for the Gezenan navy.",
+	"map_name": "Woeful Cthonian-class Patrol Cutter",
+	"namelists": [
+		"PGF"
+	],
+	"map_short_name": "Cthonian-class",
+	"description": "A new design of patrol ship designed by Etherbor's Lihmona Navy Shipyards and manufactured by Axilai Orbital Works, the Woeful Cthonian is a small ship with average maneuverability and firepower designed for sustained operations in contested space. While it is not able to hold its own in a firefight with proper warships, it's strength comes in it's incredibly valuable support characteristics. With a state of the art on board medical bay and integrated telecommunications array, the Woeful Cthonian-class is a welcome sight for Gezenan servicemen everywhere.",
 	"tags": [
 		"RP Focus",
 		"Medical",
 		"Exploration"
 	],
-	"namelists": [
-		"PGF"
-	],
+	"starting_funds": 2000,
+	"map_path": "_maps/shuttles/pgf/pgf_woeful_cthonian.dmm",
+	"token_icon_state": "ship_small_generic",
+	"limit": 1,
 	"job_slots": {
 		"Captain": {
 			"outfit": "/datum/outfit/job/gezena/captain",
@@ -25,7 +28,7 @@
 			"outfit": "/datum/outfit/job/gezena/engineer",
 			"slots": 1
 		},
-		"Navy Doctor": {
+		"Medical Officer": {
 			"outfit": "/datum/outfit/job/gezena/cmo",
 			"officer": true,
 			"slots": 1
@@ -34,20 +37,14 @@
 			"outfit": "/datum/outfit/job/gezena/doctor",
 			"slots": 1
 		},
+		"Navy Security Trooper": {
+			"outfit": "/datum/outfit/job/gezena/assistant/trooper",
+			"slots": 1
+		},
 		"Crewman": {
 			"outfit": "/datum/outfit/job/gezena/assistant",
-			"slots": 3
+			"slots": 1
 		}
 	},
-	"limit": 1,
-	"starting_funds": 1000,
-	"enabled": true,
-	"space_spawn": false,
-
-	"token_icon_state": "ship_small_generic",
-
-	"architect": "Erikafox",
-	"contributors": [
-		"No Contributors"
-	]
+	"enabled":true
 }

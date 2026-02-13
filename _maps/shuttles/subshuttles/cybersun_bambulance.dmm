@@ -1,16 +1,16 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/wall/mineral/titanium,
+/area/ship/bridge)
 "e" = (
-/obj/effect/turf_decal/trimline/opaque/cybersunteal/warning{
-	dir = 8
-	},
 /obj/structure/cable/cyan{
-	icon_state = "6-8"
+	icon_state = "6-9"
 	},
 /obj/structure/cable/cyan{
 	icon_state = "4-8"
 	},
-/obj/effect/turf_decal/borderfloorwhite{
-	dir = 4
+/obj/effect/turf_decal/trimline/opaque/cybersunteal/warning{
+	dir = 8
 	},
 /turf/open/floor/plasteel/mono/white,
 /area/ship/bridge)
@@ -22,7 +22,7 @@
 	name = "blast shutter control"
 	},
 /obj/machinery/button/shieldwallgen{
-	pixel_y = 21;
+	pixel_y = 22;
 	id = "bams"
 	},
 /obj/effect/turf_decal/trimline/opaque/cybersunteal/corner{
@@ -32,12 +32,6 @@
 	dir = 8
 	},
 /obj/structure/chair/handrail,
-/obj/effect/turf_decal/borderfloorwhite{
-	dir = 4
-	},
-/obj/effect/turf_decal/siding/white{
-	dir = 1
-	},
 /turf/open/floor/plasteel/mono/white,
 /area/ship/bridge)
 "i" = (
@@ -50,11 +44,6 @@
 /obj/effect/turf_decal/trimline/opaque/cybersunteal/corner{
 	dir = 1
 	},
-/obj/effect/turf_decal/borderfloorwhite{
-	dir = 4
-	},
-/obj/effect/turf_decal/siding/white,
-/obj/structure/closet/secure_closet/wall/directional/south,
 /turf/open/floor/plasteel/mono/white,
 /area/ship/bridge)
 "o" = (
@@ -90,13 +79,13 @@
 	dir = 1
 	},
 /obj/machinery/door/window/brigdoor/eastleft,
+/obj/structure/cable/cyan{
+	icon_state = "1-2"
+	},
+/obj/structure/cable/cyan{
+	icon_state = "4-8"
+	},
 /obj/machinery/holopad/secure,
-/obj/structure/cable/cyan{
-	icon_state = "1-4"
-	},
-/obj/structure/cable/cyan{
-	icon_state = "2-4"
-	},
 /turf/open/floor/plasteel/patterned/brushed,
 /area/ship/bridge)
 "r" = (
@@ -104,17 +93,17 @@
 /obj/effect/turf_decal/trimline/opaque/cybersunteal/arrow_ccw{
 	dir = 1
 	},
+/obj/structure/cable/cyan{
+	icon_state = "6-8"
+	},
 /obj/machinery/power/apc/auto_name/directional/north,
+/obj/structure/cable/cyan{
+	icon_state = "0-8"
+	},
 /obj/machinery/light_switch{
 	dir = 2;
-	pixel_x = 11;
-	pixel_y = 22
-	},
-/obj/structure/cable/cyan{
-	icon_state = "0-2"
-	},
-/obj/effect/turf_decal/siding/white{
-	dir = 1
+	pixel_x = -12;
+	pixel_y = 20
 	},
 /turf/open/floor/plasteel/mono/white,
 /area/ship/bridge)
@@ -130,11 +119,11 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
-/obj/machinery/power/shieldwallgen/atmos/roundstart{
-	id = "bams"
-	},
 /obj/structure/cable/cyan{
 	icon_state = "0-2"
+	},
+/obj/machinery/power/shieldwallgen/atmos/roundstart{
+	id = "bams"
 	},
 /turf/open/floor/plasteel/tech/grid,
 /area/ship/bridge)
@@ -165,15 +154,18 @@
 	dir = 8
 	},
 /obj/machinery/light/directional/south,
-/obj/effect/turf_decal/siding/white{
-	dir = 10
-	},
 /turf/open/floor/plasteel/mono/white,
 /area/ship/bridge)
 "A" = (
 /turf/template_noop,
 /area/template_noop)
 "C" = (
+/obj/structure/cable/cyan{
+	icon_state = "0-2"
+	},
+/obj/structure/cable/cyan{
+	icon_state = "0-8"
+	},
 /obj/docking_port/mobile{
 	dir = 8;
 	name = "Trauma Team Bambulance";
@@ -190,12 +182,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
-/obj/structure/cable/cyan{
-	icon_state = "1-8"
-	},
-/obj/structure/cable/cyan{
-	icon_state = "2-8"
-	},
+/obj/structure/cable/cyan,
 /turf/open/floor/plasteel/tech/grid,
 /area/ship/bridge)
 "E" = (
@@ -205,12 +192,12 @@
 /obj/machinery/computer/helm{
 	dir = 4
 	},
+/obj/structure/railing/thin,
 /obj/structure/railing/thin{
-	dir = 1;
-	layer = 2.89
+	dir = 1
 	},
-/obj/structure/railing/thin{
-	dir = 10
+/obj/structure/cable/cyan{
+	icon_state = "1-4"
 	},
 /turf/open/floor/plasteel/tech,
 /area/ship/bridge)
@@ -221,40 +208,19 @@
 /obj/structure/window/plasma/reinforced{
 	dir = 4
 	},
-/obj/structure/table/reinforced,
 /obj/machinery/power/terminal{
 	dir = 8
 	},
 /obj/structure/cable/cyan,
 /obj/item/radio/intercom/directional/south,
-/obj/item/megaphone/command{
-	pixel_x = -5;
-	pixel_y = 5
-	},
-/obj/machinery/button/shieldwallgen{
-	pixel_y = -19;
-	id = "bams";
-	dir = 1;
-	pixel_x = -12
-	},
+/obj/machinery/telecomms/relay/preset/cybersun,
 /turf/open/floor/plasteel/patterned/brushed,
-/area/ship/bridge)
-"H" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/fulltile/shuttle,
-/obj/machinery/door/poddoor/shutters{
-	dir = 4;
-	id = "bam2"
-	},
-/turf/open/floor/engine/hull/reinforced,
 /area/ship/bridge)
 "I" = (
 /obj/effect/turf_decal/trimline/opaque/cybersunteal/arrow_cw,
 /obj/effect/turf_decal/trimline/opaque/cybersunteal/arrow_ccw{
 	dir = 1
 	},
-/obj/effect/turf_decal/siding/white,
-/obj/machinery/computer/crew/wall/directional/south,
 /turf/open/floor/plasteel/mono/white,
 /area/ship/bridge)
 "L" = (
@@ -266,6 +232,9 @@
 	},
 /obj/structure/cable/cyan{
 	icon_state = "0-8"
+	},
+/obj/structure/cable/cyan{
+	icon_state = "0-2"
 	},
 /obj/machinery/door/poddoor/shutters{
 	dir = 4;
@@ -279,9 +248,6 @@
 "P" = (
 /obj/structure/cable/cyan{
 	icon_state = "4-8"
-	},
-/obj/structure/cable/cyan{
-	icon_state = "1-8"
 	},
 /turf/open/floor/plasteel/mono/white,
 /area/ship/bridge)
@@ -298,16 +264,17 @@
 /obj/effect/turf_decal/trimline/opaque/cybersunteal/end{
 	dir = 8
 	},
-/obj/machinery/light/directional/north,
-/obj/effect/turf_decal/siding/white{
-	dir = 9
+/obj/structure/cable/cyan{
+	icon_state = "4-8"
 	},
+/obj/machinery/light/directional/north,
 /turf/open/floor/plasteel/mono/white,
 /area/ship/bridge)
 "S" = (
 /obj/structure/cable/cyan{
 	icon_state = "4-9"
 	},
+/obj/structure/cable/cyan,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "bam";
 	dir = 4
@@ -323,17 +290,15 @@
 	id = "bams";
 	dir = 1
 	},
-/obj/structure/cable/cyan{
-	icon_state = "0-1"
-	},
 /turf/open/floor/plasteel/tech/grid,
 /area/ship/bridge)
 "U" = (
 /obj/structure/cable/cyan{
 	icon_state = "4-8"
 	},
-/turf/open/floor/plasteel/stairs/modern/dark{
-	dir = 8
+/turf/open/floor/plasteel/stairs{
+	dir = 8;
+	icon = 'icons/obj/stairs.dmi'
 	},
 /area/ship/bridge)
 "X" = (
@@ -348,11 +313,12 @@
 	dir = 8
 	},
 /obj/structure/cable/cyan{
+	icon_state = "0-4"
+	},
+/obj/structure/cable/cyan{
 	icon_state = "0-2"
 	},
-/obj/item/radio/intercom/wideband/directional/north{
-	pixel_x = 5
-	},
+/obj/item/radio/intercom/wideband/directional/north,
 /obj/item/paper_bin{
 	pixel_x = 5
 	},
@@ -367,8 +333,12 @@
 /obj/machinery/button/door{
 	id = "bam2";
 	pixel_y = 23;
-	pixel_x = -9;
+	pixel_x = -15;
 	name = "engine shutter control"
+	},
+/obj/item/megaphone/command{
+	pixel_x = -8;
+	pixel_y = -5
 	},
 /turf/open/floor/plasteel/patterned/brushed,
 /area/ship/bridge)
@@ -379,7 +349,7 @@
 (1,1,1) = {"
 A
 v
-H
+Y
 v
 A
 "}
@@ -419,9 +389,9 @@ i
 Y
 "}
 (7,1,1) = {"
-Y
+a
 u
 C
 S
-Y
+a
 "}

@@ -1,8 +1,6 @@
 {
-	"$schema": "https://raw.githubusercontent.com/PentestSS13/Pentest/master/_maps/ship_config_schema.json",
+	"$schema": "https://raw.githubusercontent.com/shiptest-ss13/Shiptest/master/_maps/ship_config_schema.json",
 	"map_name": "Vaquero-class Light Frigate",
-	"map_short_name": "Vaquero-class",
-	"map_path": "_maps/shuttles/inteq/inteq_vaquero.dmm",
 	"faction": "/datum/faction/inteq",
 	"prefix": "IRMV",
 	"manufacturer": "Hardline Salvage and Mining",
@@ -14,27 +12,31 @@
 		"BEASTS",
 		"INTEQ"
 	],
+	"map_short_name": "Vaquero-class",
+	"map_path": "_maps/shuttles/inteq/inteq_vaquero.dmm",
+	"token_icon_state": "ship_small_generic",
+	"limit": 1,
 	"job_slots": {
 		"Vanguard": {
 			"outfit": "/datum/outfit/job/inteq/captain/empty",
 			"officer": true,
 			"slots": 1
 		},
-		"Master At Arms": {
-			"outfit": "/datum/outfit/job/inteq/warden",
+		"Enforcer Class One": {
+			"outfit": "/datum/outfit/job/inteq/warden/classone/empty",
 			"officer": true,
 			"slots": 1
 		},
 		"Artificer": {
-			"outfit": "/datum/outfit/job/inteq/engineer",
+			"outfit": "/datum/outfit/job/inteq/engineer/empty",
 			"slots": 1
 		},
 		"Corpsman": {
-			"outfit": "/datum/outfit/job/inteq/paramedic",
+			"outfit": "/datum/outfit/job/inteq/paramedic/empty",
 			"slots": 1
 		},
 		"Enforcer": {
-			"outfit": "/datum/outfit/job/inteq/security",
+			"outfit": "/datum/outfit/job/inteq/security/empty",
 			"slots": 1
 		},
 		"Auxiliary": {
@@ -42,15 +44,5 @@
 			"slots": 1
 		}
 	},
-	"limit": 1,
-	"starting_funds": 2000,
-	"enabled": true,
-	"space_spawn": false,
-
-	"token_icon_state": "ship_small_generic",
-
-	"architect": "Apogee-dev",
-	"contributors": [
-		"No Contributors"
-	]
+	"enabled": true
 }

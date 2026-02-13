@@ -151,15 +151,15 @@
 "bM" = (
 /obj/structure/chair/handrail,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
-/obj/item/reagent_containers/food/drinks/soda_cans/monkey_energy{
+/obj/item/reagent_containers/food/drinks/soda_cans/xeno_energy{
 	pixel_x = -4;
 	pixel_y = 14
 	},
-/obj/item/reagent_containers/food/drinks/soda_cans/monkey_energy{
+/obj/item/reagent_containers/food/drinks/soda_cans/xeno_energy{
 	pixel_x = 6;
 	pixel_y = 9
 	},
-/obj/item/reagent_containers/food/drinks/soda_cans/pwr_game{
+/obj/item/reagent_containers/food/drinks/soda_cans/pacfuel{
 	pixel_x = -3;
 	pixel_y = 2
 	},
@@ -415,12 +415,13 @@
 	pixel_x = -6;
 	pixel_y = 9
 	},
+/obj/item/storage/toolbox/syndicate{
+	name = "syndicate toolbox";
+	pixel_x = 3;
+	pixel_y = 1
+	},
 /obj/structure/sign/warning/nosmoking/circle{
 	pixel_y = -20
-	},
-/obj/item/storage/toolbox/ngr{
-	pixel_x = 4;
-	pixel_y = -1
 	},
 /turf/open/floor/plasteel/mono/dark,
 /area/ship/cargo/office)
@@ -465,7 +466,6 @@
 	pixel_y = 1
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/item/areaeditor/shuttle,
 /turf/open/floor/plasteel/mono/dark,
 /area/ship/cargo/office)
 "eu" = (
@@ -487,8 +487,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
-/turf/open/floor/plasteel/stairs/modern/dark{
-	dir = 8
+/turf/open/floor/plasteel/stairs{
+	dir = 8;
+	icon = 'icons/obj/stairs.dmi'
 	},
 /area/ship/hallway/fore)
 "eA" = (
@@ -755,7 +756,8 @@
 "gK" = (
 /obj/machinery/mineral/processing_unit_console{
 	machinedir = 2;
-	pixel_y = 26
+	pixel_y = 26;
+	dist = 3
 	},
 /obj/effect/turf_decal/techfloor{
 	dir = 1
@@ -816,6 +818,11 @@
 /area/ship/storage/equip)
 "hf" = (
 /obj/structure/table,
+/obj/item/storage/toolbox/syndicate{
+	name = "syndicate toolbox";
+	pixel_x = -3;
+	pixel_y = -2
+	},
 /obj/machinery/cell_charger{
 	pixel_y = 7
 	},
@@ -832,10 +839,6 @@
 	icon_state = "0-8"
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/item/storage/toolbox/ngr{
-	pixel_x = -3;
-	pixel_y = -2
-	},
 /turf/open/floor/pod/dark,
 /area/ship/science/workshop)
 "hg" = (
@@ -941,6 +944,9 @@
 	pixel_x = -7;
 	pixel_y = -8
 	},
+/obj/item/gun_maint_kit,
+/obj/item/gun_maint_kit,
+/obj/item/gun_maint_kit,
 /turf/open/floor/plasteel/mono/dark,
 /area/ship/bridge)
 "iy" = (
@@ -1439,7 +1445,7 @@
 	pixel_x = 20;
 	pixel_y = -3
 	},
-/obj/item/reagent_containers/food/drinks/soda_cans/pwr_game{
+/obj/item/reagent_containers/food/drinks/soda_cans/pacfuel{
 	pixel_x = 10;
 	pixel_y = 16
 	},
@@ -2198,15 +2204,15 @@
 /obj/structure/chair/plastic{
 	dir = 4
 	},
-/obj/item/reagent_containers/food/drinks/soda_cans/monkey_energy{
+/obj/item/reagent_containers/food/drinks/soda_cans/xeno_energy{
 	pixel_x = -2;
 	pixel_y = 20
 	},
-/obj/item/reagent_containers/food/drinks/soda_cans/pwr_game{
+/obj/item/reagent_containers/food/drinks/soda_cans/pacfuel{
 	pixel_x = 9;
 	pixel_y = 17
 	},
-/obj/item/reagent_containers/food/drinks/soda_cans/grey_bull{
+/obj/item/reagent_containers/food/drinks/soda_cans/crosstalk{
 	pixel_x = 3;
 	pixel_y = 14
 	},
@@ -2476,7 +2482,6 @@
 /obj/item/clothing/under/syndicate/ngr/officer,
 /obj/item/clothing/suit/ngr,
 /obj/item/clothing/gloves/color/red/insulated,
-/obj/item/radio/headset/syndicate/alt,
 /obj/item/clothing/head/hardhat/ngr/foreman,
 /obj/item/clothing/glasses/sunglasses,
 /obj/item/clothing/neck/shemagh/ngr,
@@ -2485,6 +2490,8 @@
 /obj/item/megaphone,
 /obj/item/storage/guncase/pistol/pc76,
 /obj/machinery/light/small/directional/west,
+/obj/item/clothing/glasses/hud/security/sunglasses/ngr,
+/obj/item/radio/headset/syndicate/alt/ngr,
 /turf/open/floor/carpet/black,
 /area/ship/crew/dorm)
 "vs" = (
@@ -2588,7 +2595,7 @@
 	a_intent = "help";
 	desc = "A small goliath pup. Its tendrils have not yet fully grown. Someone, somehow, has managed to fit a large dog collar around its neck.";
 	environment_smash = 0;
-	faction = list("neutral","playerSyndicate");
+	faction = list("neutral","New Gorlex Republic");
 	mob_size = 2;
 	move_resist = 1000;
 	name = "David";
@@ -2651,7 +2658,9 @@
 /obj/structure/railing{
 	dir = 8
 	},
-/turf/open/floor/plasteel/stairs/modern/dark,
+/turf/open/floor/plasteel/stairs{
+	icon = 'icons/obj/stairs.dmi'
+	},
 /area/ship/hallway/central)
 "ws" = (
 /obj/effect/turf_decal/techfloor,
@@ -2825,8 +2834,9 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
-/turf/open/floor/plasteel/stairs/modern/dark{
-	dir = 8
+/turf/open/floor/plasteel/stairs{
+	dir = 8;
+	icon = 'icons/obj/stairs.dmi'
 	},
 /area/ship/hallway/fore)
 "yi" = (
@@ -2890,6 +2900,11 @@
 	pixel_x = -9;
 	pixel_y = 3
 	},
+/obj/item/storage/toolbox/syndicate{
+	name = "syndicate toolbox";
+	pixel_x = 8;
+	pixel_y = -2
+	},
 /obj/effect/turf_decal/corner/opaque/red/half{
 	dir = 8
 	},
@@ -2898,10 +2913,6 @@
 	},
 /obj/machinery/firealarm/directional/south,
 /obj/item/radio/intercom/directional/east,
-/obj/item/storage/toolbox/ngr{
-	pixel_x = 3;
-	pixel_y = -2
-	},
 /turf/open/floor/plasteel/mono/dark,
 /area/ship/engineering)
 "yD" = (
@@ -3037,6 +3048,11 @@
 /area/ship/hallway/aft)
 "zB" = (
 /obj/machinery/door/airlock/external,
+/obj/docking_port/mobile{
+	dir = 2;
+	port_direction = 8;
+	preferred_direction = 4
+	},
 /turf/open/floor/plasteel/tech/grid,
 /area/ship/hallway/central)
 "zC" = (
@@ -3347,7 +3363,9 @@
 	pixel_x = 20;
 	pixel_y = 7
 	},
-/turf/open/floor/plasteel/stairs/modern/dark,
+/turf/open/floor/plasteel/stairs{
+	icon = 'icons/obj/stairs.dmi'
+	},
 /area/ship/engineering/electrical)
 "Cs" = (
 /obj/machinery/atmospherics/pipe/simple/dark/visible/layer4,
@@ -3691,18 +3709,20 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/turf/open/floor/plasteel/stairs/modern/dark,
+/turf/open/floor/plasteel/stairs{
+	icon = 'icons/obj/stairs.dmi'
+	},
 /area/ship/hallway/central)
 "ER" = (
 /obj/effect/turf_decal/techfloor{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/cyan/visible/layer4,
-/obj/structure/reagent_dispensers/foamtank,
 /obj/machinery/power/apc/auto_name/directional/east,
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
+/obj/machinery/telecomms/relay/preset/ngr,
 /turf/open/floor/pod/dark,
 /area/ship/engineering/atmospherics)
 "EY" = (
@@ -4036,7 +4056,9 @@
 /obj/docking_port/stationary{
 	dwidth = 15;
 	height = 30;
-	width = 30
+	width = 30;
+	disable_on_owner_ship_dock = 1;
+	name = "Derecho Beam Dock"
 	},
 /turf/template_noop,
 /area/template_noop)
@@ -4541,6 +4563,10 @@
 	},
 /turf/open/floor/plasteel/tech/grid,
 /area/ship/crew/cryo)
+"Oe" = (
+/obj/machinery/telecomms/relay/preset/ngr,
+/turf/template_noop,
+/area/template_noop)
 "Oh" = (
 /obj/effect/turf_decal/techfloor{
 	dir = 1
@@ -4804,6 +4830,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/item/melee/knife/survival,
 /obj/item/clothing/mask/breath/ngr,
+/obj/item/clothing/glasses/hud/security/sunglasses/ngr,
 /turf/open/floor/pod,
 /area/ship/storage/equip)
 "QD" = (
@@ -5174,10 +5201,6 @@
 /obj/effect/turf_decal/industrial/outline{
 	color = "#791500"
 	},
-/obj/structure/closet/secure_closet/engineering_welding{
-	req_access = null;
-	req_access_txt = "11"
-	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
 	},
@@ -5189,6 +5212,7 @@
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
+/obj/structure/reagent_dispensers/foamtank,
 /turf/open/floor/pod/dark,
 /area/ship/engineering/electrical)
 "TC" = (
@@ -5340,6 +5364,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/item/melee/knife/survival,
 /obj/item/clothing/mask/breath/ngr,
+/obj/item/clothing/glasses/hud/security/sunglasses/ngr,
 /turf/open/floor/pod,
 /area/ship/storage/equip)
 "Uv" = (
@@ -5671,7 +5696,8 @@
 	dir = 4;
 	dwidth = 4;
 	height = 30;
-	width = 7
+	width = 7;
+	name = "Derecho Forward Bow Dock"
 	},
 /turf/template_noop,
 /area/template_noop)
@@ -5700,12 +5726,6 @@
 	picked_color = "Lime"
 	},
 /obj/structure/catwalk/over,
-/obj/docking_port/mobile{
-	dir = 4;
-	launch_status = 0;
-	port_direction = 2;
-	preferred_direction = 4
-	},
 /turf/open/floor/plating,
 /area/ship/external/dark)
 "Xx" = (
@@ -5838,7 +5858,6 @@
 /obj/item/clothing/under/syndicate/ngr/officer,
 /obj/item/clothing/suit/armor/ngr/captain,
 /obj/item/clothing/gloves/combat,
-/obj/item/radio/headset/syndicate/alt/captain,
 /obj/item/clothing/head/ngr/peaked,
 /obj/item/clothing/neck/shemagh/ngr,
 /obj/item/clothing/mask/breath/ngr,
@@ -5851,6 +5870,8 @@
 /obj/item/storage/guncase/pistol/a357,
 /obj/machinery/light/small/directional/east,
 /obj/item/storage/belt/military/assault,
+/obj/item/clothing/glasses/hud/security/sunglasses/ngr,
+/obj/item/radio/headset/syndicate/alt/captain/ngr,
 /turf/open/floor/carpet/red_gold,
 /area/ship/crew/dorm/captain)
 "Yq" = (
@@ -6018,7 +6039,7 @@
 (1,1,1) = {"
 ZQ
 ZQ
-ZQ
+Oe
 ZQ
 ZQ
 ZQ
