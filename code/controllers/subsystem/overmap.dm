@@ -376,6 +376,9 @@ SUBSYSTEM_DEF(overmap)
 	/// Datum type for the main outpost spawned here
 	var/default_outpost_type
 
+	///Shape of the orbits: "circle", "ellipse", "spiral", "cluster", "belt", "binary", "rings"
+	var/orbit_shape
+
 	COOLDOWN_DECLARE(dynamic_despawn_cooldown)
 
 /datum/overmap_star_system/New(generate_now=TRUE)
@@ -387,6 +390,11 @@ SUBSYSTEM_DEF(overmap)
 		starname = gen_star_name() //we reuse this for the name of the star if name isnt defined, like a uncharted sector or something
 	if(!name)
 		name = starname //we then give it here
+
+	// Случайный выбор формы орбиты
+	if(!orbit_shape)
+		orbit_shape = pick("circle", "ellipse", "spiral", "cluster", "belt", "binary", "rings")
+
 	overmap_objects = list()
 	controlled_ships = list()
 	outposts = list()
@@ -440,7 +448,9 @@ SUBSYSTEM_DEF(overmap)
 		radius_positions = list()
 		for(var/x in 1 to size)
 			for(var/y in 1 to size)
-				radius_positions["[round(sqrt((x - center.x) ** 2 + (y - center.y) ** 2)) + 1]"] += list(list("x" = x, "y" = y))
+				var/shape_key = calculate_orbit_shape(x, y, center)
+				if(shape_key)
+					radius_positions[shape_key] += list(list("x" = x, "y" = y))
 		if(!hazard_primary_color)
 			hazard_primary_color = center.get_rand_spectral_color(center.spectral_type, center.color_vary)
 		else
@@ -471,6 +481,71 @@ SUBSYSTEM_DEF(overmap)
 	return "[pick(GLOB.star_names)] [pick(GLOB.greek_letters)]"
 
 /**
+ * Calculates orbit shape based on orbit_shape variable
+ * Returns the orbit key (radius) for the given position
+ */
+/datum/overmap_star_system/proc/calculate_orbit_shape(x, y, datum/overmap/star/center)
+	var/dist = sqrt((x - center.x) ** 2 + (y - center.y) ** 2)
+	var/angle = arctan(y - center.y, x - center.x)
+
+	switch(orbit_shape)
+		if("ellipse")
+			var/a = dist
+			var/b = dist * 0.7
+			var/ellipse_dist = sqrt(((x - center.x) ** 2) / (a ** 2) + ((y - center.y) ** 2) / (b ** 2)) * dist
+			return "[round(ellipse_dist) + 1]"
+
+		if("spiral")
+			var/arm_count = 6  // количество рукавов
+			var/arm_width = 15  // ширина рукава
+			var/spiral_tightness = 3  // насколько закручена спираль (меньше = туже)
+
+			var/normalized_angle = (angle + 180) % 360
+
+			for(var/arm in 1 to arm_count)
+				var/arm_angle = (360 / arm_count) * (arm - 1)
+				var/ideal_angle = (arm_angle + dist * spiral_tightness) % 360
+				var/angle_diff = abs(normalized_angle - ideal_angle)
+				if(angle_diff > 180)
+					angle_diff = 360 - angle_diff
+
+				if(angle_diff < arm_width)
+					return "[round(dist) + 1]"
+
+			return null
+
+		if("cluster")
+			var/offset_x = round(size * 0.15)
+			var/offset_y = round(size * 0.15)
+			var/dist1 = sqrt((x - center.x) ** 2 + (y - center.y) ** 2)
+			var/dist2 = sqrt((x - (center.x + offset_x)) ** 2 + (y - center.y) ** 2)
+			var/dist3 = sqrt((x - (center.x - offset_x)) ** 2 + (y - center.y) ** 2)
+			var/dist4 = sqrt((x - center.x) ** 2 + (y - (center.y + offset_y)) ** 2)
+			var/min_dist = min(dist1, dist2, dist3, dist4)
+			return "[round(min_dist) + 1]"
+
+		if("belt")
+			if(dist > size * 0.3 && dist < size * 0.5)
+				return "[round(dist) + 1]"
+			return null
+
+		if("binary")
+			var/center2_x = center.x + round(size * 0.2)
+			var/center2_y = center.y
+			var/dist1 = sqrt((x - center.x) ** 2 + (y - center.y) ** 2)
+			var/dist2 = sqrt((x - center2_x) ** 2 + (y - center2_y) ** 2)
+			return "[round(min(dist1, dist2)) + 1]"
+
+		if("rings")
+			var/ring_dist = round(dist)
+			if(ring_dist % 3 != 0)
+				return null
+			return "[ring_dist + 1]"
+
+		else // "circle"
+			return "[round(dist) + 1]"
+
+/**
  * The proc that creates all the objects on the overmap, split into seperate procs for redundancy.
  */
 /datum/overmap_star_system/proc/create_map()
@@ -496,22 +571,30 @@ SUBSYSTEM_DEF(overmap)
 		spawn_event_cluster(pick(subtypesof(/datum/overmap/event)), get_unused_overmap_square())
 
 /datum/overmap_star_system/proc/spawn_events_in_orbits()
+	if(!length(radius_positions))
+		return
+
 	var/list/orbits = list()
-	for(var/i in 3 to length(radius_positions) / 2) // At least two away to prevent overlap
-		orbits += "[i]"
+	for(var/orbit_key in radius_positions)
+		var/orbit_num = text2num(orbit_key)
+		if(orbit_num >= 3)
+			orbits += orbit_key
+
+	if(!length(orbits))
+		return
 
 	var/max_clusters = CONFIG_GET(number/max_overmap_event_clusters)
 	for(var/i in 1 to max_clusters)
 		if(CONFIG_GET(number/max_overmap_events) <= length(events))
 			return
 		if(!length(orbits))
-			break // Can't fit any more in
+			break
 		var/event_type = pick_weight(GLOB.overmap_event_pick_list)
 		var/selected_orbit = pick(orbits)
 
 		var/list/T = get_unused_overmap_square_in_radius(selected_orbit)
 		if(!T)
-			orbits -= "[selected_orbit]" // This orbit is full, move onto the next
+			orbits -= selected_orbit
 			continue
 
 		var/datum/overmap/event/E = new event_type(T, src)
@@ -928,11 +1011,14 @@ SUBSYSTEM_DEF(overmap)
 	if(isnum(radius))
 		radius = "[radius]"
 
+	if(!radius_positions[radius] || !length(radius_positions[radius]))
+		return null
+
 	for(var/i in 1 to tries)
 		. = pick(radius_positions[radius])
 		if(locate(thing_to_not_have) in overmap_container[.["x"]][.["y"]])
 			continue
-		return // returns . for those who don't know
+		return
 
 	if(!force)
 		. = null

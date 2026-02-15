@@ -500,16 +500,16 @@ ECONOMY
 ## Overmap Settings ##
 
 ## Put max amount of different event clusters you want to spawn here
-MAX_OVERMAP_EVENT_CLUSTERS 27
+MAX_OVERMAP_EVENT_CLUSTERS 90
 
 ## Put the maximum amount of overmap events here
-MAX_OVERMAP_EVENTS 500
+MAX_OVERMAP_EVENTS 1500
 
 ## Put the maximum amount of dynamic (runtime loaded) overmap locations here
-MAX_OVERMAP_DYNAMIC_EVENTS 15
+MAX_OVERMAP_DYNAMIC_EVENTS 50
 
 ## Size of the overmap squared
-OVERMAP_SIZE 30
+OVERMAP_SIZE 100
 
 ## Which overmap generator to use
 ## Valid values are: "random", "solar_system"
