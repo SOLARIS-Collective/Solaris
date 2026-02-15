@@ -62,10 +62,10 @@
 					if(get_active_held_item() == I) //if our attack_hand() picks up the item...
 						visible_message(span_warning("[src] catches [I]!"), \
 										span_userdanger("You catch [I] in mid-air!"))
-						// [CELADON-ADD]
+						// [MANKIND-ADD]
 						update_inv_hands()
 						I.transform = initial(I.transform)
-						// [/CELADON-ADD]
+						// [/MANKIND-ADD]
 						throw_mode_off(THROW_MODE_TOGGLE)
 						return 1
 	..()
@@ -117,10 +117,10 @@
 		return
 
 	var/extra_wound_details = ""
-	// [CELADON-EDIT] - FIXES_RUNTIMES - Проверяем не только конкретный параметр у хит бодипарт, но и самого родителя на наличие
+	// [MANKIND-EDIT] - FIXES_RUNTIMES - Проверяем не только конкретный параметр у хит бодипарт, но и самого родителя на наличие
 	// if(I.damtype == BRUTE && hit_bodypart.can_dismember())	// ORIGINAL
 	if(I.damtype == BRUTE && istype(hit_bodypart, /obj/item/bodypart) && hit_bodypart.can_dismember())
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 		var/mangled_state = hit_bodypart.get_mangled_state()
 		var/bio_state = get_biological_state()
 		if(mangled_state == BODYPART_MANGLED_BOTH)
@@ -616,7 +616,7 @@
 	return embeds
 
 
-/mob/living/carbon/flash_act(intensity = 1, override_blindness_check = 0, affect_silicon = 0, visual = 0, type = /atom/movable/screen/fullscreen/flash, length = 25) // [CELADON-EDIT]
+/mob/living/carbon/flash_act(intensity = 1, override_blindness_check = 0, affect_silicon = 0, visual = 0, type = /atom/movable/screen/fullscreen/flash, length = 25) // [MANKIND-EDIT]
 	var/obj/item/organ/eyes/eyes = getorganslot(ORGAN_SLOT_EYES)
 	if(!eyes) //can't flash what can't see!
 		return
@@ -750,10 +750,10 @@
 		to_chat(src, span_danger("You fail to grasp your [grasped_part.name]."))
 		return
 
-	// [CELADON-ADD] - FIXES_CQC_GRAB
+	// [MANKIND-ADD] - FIXES_CQC_GRAB
 	if(!grasped_part.get_part_bleed_rate())
 		return
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 	var/obj/item/self_grasp/grasp = new
 	if(starting_hand_index != active_hand_index || !put_in_active_hand(grasp))
 		to_chat(src, span_danger("You fail to grasp your [grasped_part.name]."))
@@ -839,7 +839,7 @@
 /mob/living/carbon/bullet_act(obj/projectile/P, def_zone, piercing_hit = FALSE)
 	if(check_concealment(P))
 		return BULLET_ACT_FORCE_PIERCE
-	SEND_SIGNAL(src, COMSIG_ATOM_BULLET_ACT, P, def_zone) // [CELADON-ADD] - CELADON-MODSUITS
+	SEND_SIGNAL(src, COMSIG_ATOM_BULLET_ACT, P, def_zone) // [MANKIND-ADD] - MANKIND_MODSUITS
 	var/armor = run_armor_check(def_zone, P.flag, P.armour_penetration, silent = TRUE)
 	var/on_hit_state = P.on_hit(src, armor, piercing_hit)
 	if(!P.nodamage && on_hit_state != BULLET_ACT_BLOCK && !QDELETED(src)) //QDELETED literally just for the instagib rifle. Yeah.

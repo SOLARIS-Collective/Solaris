@@ -1,6 +1,6 @@
 #### Список PR`ов
 
-- https://github.com/MANKIND-Collective/Pentest/pull/2002 (основной PR - INTERCEPTOR v3-FINAL)
+- https://github.com/CeladonSS13/Shiptest/pull/2002 (основной PR - INTERCEPTOR v3-FINAL)
 
 ## Ship Selection Rework
 
@@ -19,11 +19,11 @@ ID мода: MANKIND_SHIP_SELECTION_REWORK
 
 ### Новые файлы модуля (Enhanced Ship Owner Interface)
 
-- `mod_mankind/ship_selection_rework/code/ship_application_enhanced.dm`:
+- `modular_mankind/ship_selection_rework/code/ship_application_enhanced.dm`:
   - Расширение заявки с фото персонажа и информацией о характеристиках
   - Автоматическая генерация фото через `get_flat_human_icon()`
   - Сбор данных о возрасте, квирках, расе и поле персонажа
-- `mod_mankind/ship_selection_rework/code/ship_owner_enhanced.dm`:
+- `modular_mankind/ship_selection_rework/code/ship_owner_enhanced.dm`:
   - Улучшенный интерфейс владельца корабля
   - Передача расширенных данных о персонаже в UI
   - Использование нового интерфейса `ShipOwnerEnhanced`
@@ -33,7 +33,7 @@ ID мода: MANKIND_SHIP_SELECTION_REWORK
 
 ### Оверрайды
 
-- `mod_mankind/_master_files/code/modules/mob/dead/new_player/ship_select.dm`: 
+- `modular_mankind/_master_files/code/modules/mob/dead/new_player/ship_select.dm`: 
   - `proc/ui_act()` - перехват и защита join/apply_for_job/cancel_job_application actions
   - `proc/ui_data()` - добавление динамических данных о статусах заявок
   - `proc/handle_protected_join()` - защищённая обработка присоединения к кораблю
@@ -57,7 +57,7 @@ ID мода: MANKIND_SHIP_SELECTION_REWORK
 - `tgui/packages/tgui/interfaces/ShipSelect.js` - основной интерфейс выбора кораблей
 - `tgui/packages/tgui/interfaces/FactionButtons.js` - компонент кнопок фракций  
 - `tgui/packages/tgui/interfaces/Application.js` - модальное окно заявки
-- `mod_mankind/_storage_icons/icons/assets/logo/*.png` - логотипы фракций
+- `modular_mankind/_storage_icons/icons/assets/logo/*.png` - логотипы фракций
 
 ### Авторы
 

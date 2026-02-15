@@ -149,14 +149,14 @@
 			return
 		var/image/current_huevo = image(icon = icon, icon_state = "eggbox_eggoverlay")
 		if(egg_count <= 6) //less than 6 eggs
-		// [CELADON-EDIT] - CELADON_RESPRITE
+		// [MANKIND-EDIT] - MANKIND_RESPRITE
 		//	current_huevo.pixel_x = (3*(egg_count-1))
 		//else //if more than 6, make an extra row
 		//	current_huevo.pixel_x = (3*(egg_count-7)) //-7 to 'reset' it
 			current_huevo.pixel_x = (5*(egg_count-1))
 		else //if more than 6, make an extra row
 			current_huevo.pixel_x = (5*(egg_count-7)) //-7 to 'reset' it
-		// [/CELADON-EDIT]
+		// [/MANKIND-EDIT]
 			current_huevo.pixel_y = -3
 		add_overlay(current_huevo)
 
@@ -208,14 +208,14 @@
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 6
-	// [CELADON-ADD] - CELADON_QOL
+	// [MANKIND-ADD] - MANKIND_QOL
 	STR.max_w_class = WEIGHT_CLASS_TINY
 	// STR.storage_flags = STORAGE_FLAGS_VOLUME_DEFAULT
-	// [/CELADON-ADD]
-	// [CELADON-EDIT] - CELADON_QOL
-	// STR.set_holdable(list(/obj/item/clothing/mask/cigarette, /obj/item/lighter)) // CELADON-EDIT - ORIGINAL
+	// [/MANKIND-ADD]
+	// [MANKIND-EDIT] - MANKIND_QOL
+	// STR.set_holdable(list(/obj/item/clothing/mask/cigarette, /obj/item/lighter)) // ORIGINAL
 	STR.set_holdable(list(/obj/item/clothing/mask/cigarette, /obj/item/lighter, /obj/item/cigbutt))
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 
 /obj/item/storage/fancy/cigarettes/examine(mob/user)
 	. = ..()

@@ -31,7 +31,7 @@ ID мода: MANKIND_RETURN_CONTENT_CLOWNS
 
 ### Используется в других проектах?
 - Да
-- mod_mankind/outpost_console/code/supply_pack/independent/costumes_toys.dm
+- modular_mankind/outpost_console/code/supply_pack/independent/costumes_toys.dm
 <!--
   ВНИМАНИЕ!
   Заполняется другими авторами, кто использует этот модпак или
@@ -93,7 +93,7 @@ ID мода: MANKIND_RETURN_CONTENT_CLOWNS
   И то же самое, если ты используешь дефайны, определённые другим модом.
 
   Не используешь - напиши "Отсутствуют"
-  Примеры: `code/__defines/~mod_mankind/return_content_clowns.dm`: `RETURN_CONTENT_CLOWNS_SPEED_MULTIPLIER`, `RETURN_CONTENT_CLOWNS_SPEED_BASE`
+  Примеры: `code/__defines/~modular_mankind/return_content_clowns.dm`: `RETURN_CONTENT_CLOWNS_SPEED_MULTIPLIER`, `RETURN_CONTENT_CLOWNS_SPEED_BASE`
 -->
 
 ### Используемые файлы, не содержащиеся в модпаке

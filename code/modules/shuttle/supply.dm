@@ -25,9 +25,9 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		/obj/structure/disposalpipe,
 		/obj/machinery/camera,
 		/obj/item/gps,
-		//[CELADON-ADD] - CELADON_FIXES - фиксим абуз экономики
+		// [MANKIND-ADD] - MANKIND_FIXES - фиксим абуз экономики
 		/obj/item/stock_parts/cell,
 		/obj/item/computer_hardware,
 		/obj/item/pipe
-		//[/CELADON-ADD]
+		// [/MANKIND-ADD]
 	)))

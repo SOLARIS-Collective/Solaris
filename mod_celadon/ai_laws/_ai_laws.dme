@@ -1,8 +1,0 @@
-#ifndef MODPACK_CELADON_AI_LAWS
-#define MODPACK_CELADON_AI_LAWS
-
-#include "_ai_laws.dm"
-
-#include "code/laws.dm"
-
-#endif

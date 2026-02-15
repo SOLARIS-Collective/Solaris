@@ -1,8 +1,8 @@
 
 #### Список PRов
 
-- https://github.com/MANKIND-Collective/Pentest/pull/1780
-- https://github.com/MANKIND-Collective/Pentest/pull/1836
+- https://github.com/CeladonSS13/Shiptest/pull/1780
+- https://github.com/CeladonSS13/Shiptest/pull/1836
 <!--
   Ссылки на PRы, связанные с модом:
   - Создание
@@ -37,13 +37,13 @@ ID мода: RESKIN_CUSTOMIZATION
 
 ### Используемые файлы, не содержащиеся в модпаке
 
-- `mod_mankind/_storage_icons/icons/items/clothing/head/helmet_mankind.dmi`
-- `mod_mankind/_storage_icons/icons/items/clothing/suit/armor_mankind.dmi`
-- `mod_mankind/_storage_icons/icons/items/clothing/head/overlay/helmet_mankind.dmi`
-- `mod_mankind/_storage_icons/icons/items/clothing/suit/overlay/armor_mankind.dmi`
-- `mod_mankind/_storage_icons/icons/items/weapons/montagne.dmi`
-- `mod_mankind/_storage_icons/icons/items/weapons/in_hands/montagne_lefthand.dmi`
-- `mod_mankind/_storage_icons/icons/items/weapons/in_hands/montagne_righthand.dmi`
+- `modular_mankind/_storage_icons/icons/items/clothing/head/helmet_mankind.dmi`
+- `modular_mankind/_storage_icons/icons/items/clothing/suit/armor_mankind.dmi`
+- `modular_mankind/_storage_icons/icons/items/clothing/head/overlay/helmet_mankind.dmi`
+- `modular_mankind/_storage_icons/icons/items/clothing/suit/overlay/armor_mankind.dmi`
+- `modular_mankind/_storage_icons/icons/items/weapons/montagne.dmi`
+- `modular_mankind/_storage_icons/icons/items/weapons/in_hands/montagne_lefthand.dmi`
+- `modular_mankind/_storage_icons/icons/items/weapons/in_hands/montagne_righthand.dmi`
 
 ### Авторы
 

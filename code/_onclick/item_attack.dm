@@ -181,10 +181,10 @@
 	if(item_flags & NOBLUDGEON)
 		return
 
-	// [CELADON-EDIT] - TWEAK_PACIFIST_TRAIT - Пацифисты не хотят вредить живым существам, но могут бить неживые объекты
+	// [MANKIND-EDIT] - TWEAK_PACIFIST_TRAIT - Пацифисты не хотят вредить живым существам, но могут бить неживые объекты
 	// if(force && HAS_TRAIT(user, TRAIT_PACIFISM))	// ORIGINAL
 	if(force && HAS_TRAIT(user, TRAIT_PACIFISM) && isliving(target_mob) && iscarbon(target_mob))
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 		to_chat(user, span_warning("You don't want to harm other living beings!"))
 		return
 
@@ -196,9 +196,9 @@
 	if(!force)
 		playsound(loc, 'sound/weapons/tap.ogg', get_clamped_volume(), TRUE, -1)
 	else if(hitsound)
-		// [CELADON-ADD] - FIXES_SOUND_LIST_CRASH - Обрабатываем списки звуков (pick из списка) для топоров/следхаммеров
+		// [MANKIND-ADD] - FIXES_SOUND_LIST_CRASH - Обрабатываем списки звуков (pick из списка) для топоров/следхаммеров
 		var/sound_to_play = islist(hitsound) ? pick(hitsound) : hitsound
-		// [/CELADON-ADD]
+		// [/MANKIND-ADD]
 		playsound(loc, sound_to_play, get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
 
 	target_mob.lastattacker = user.real_name

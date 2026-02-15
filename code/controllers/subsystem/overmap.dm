@@ -57,14 +57,14 @@ SUBSYSTEM_DEF(overmap)
 	outposts = list()
 	dynamic_encounters = list()
 	events = list()
-/* // [CELADON-EDIT] - Спасибо, пожалуй откажемся от 2 сектора
+/* // [MANKIND-EDIT] - Спасибо, пожалуй откажемся от 2 сектора
 	var/list/sector_types = pick(subtypesof(/datum/overmap_star_system/safezone))
 	default_system = create_new_star_system(new sector_types)
 	wild_system = create_new_star_system (new /datum/overmap_star_system/shiptest)
 */
 	var/list/sector_types = pick(subtypesof(/datum/overmap_star_system/shiptest/elysium))
 	default_system = create_new_star_system(new sector_types)
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 	return ..()
 
 /datum/controller/subsystem/overmap/proc/spawn_new_star_system(datum/overmap_star_system/system_to_spawn=/datum/overmap_star_system)
@@ -255,14 +255,14 @@ SUBSYSTEM_DEF(overmap)
 	if(our_spawn_location)
 		system_to_spawn_in = our_spawn_location.current_overmap
 
-	// [CELADON-EDIT] - FIXES_SPAWN_SHIP - Изменено, так как корабли с параметром space-spawn: true всё равно спавнились на аванпосту. Изменен порядок приоритетов
+	// [MANKIND-EDIT] - FIXES_SPAWN_SHIP - Изменено, так как корабли с параметром space-spawn: true всё равно спавнились на аванпосту. Изменен порядок приоритетов
 	// if(!ship_loc && template.space_spawn)
 	// 	ship_loc = null
 	// else	// ORIGINAL
 	if(template.space_spawn)
 		ship_loc = null
 	else if(!ship_loc)
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 		ship_loc = SSovermap.outposts[1]
 
 	ship_spawning = TRUE
@@ -357,10 +357,10 @@ SUBSYSTEM_DEF(overmap)
 	var/secondary_structure_color = "#FFFFFF"
 
 	///the tileset we use, just the icon we force tokens to use, override only if nessary
-	// [CELADON-EDIT] - CELADON_OVERMAP
-	// var/tileset = 'icons/misc/overmap.dmi'	// CELADON-EDIT - ORIGINAL
-	var/tileset = 'mod_celadon/_storage_icons/icons/assets/overmap/overmap.dmi'
-	// [/CELADON-EDIT]
+	// [MANKIND-EDIT] - MANKIND_OVERMAP
+	// var/tileset = 'icons/misc/overmap.dmi'	// ORIGINAL
+	var/tileset = 'modular_mankind/_storage_icons/icons/assets/overmap/overmap.dmi'
+	// [/MANKIND-EDIT]
 
 	///This is the flag that makes it so all overmap objects use the same uniform color above. If false, tokens use their default colors
 	var/override_object_colors = FALSE
@@ -630,9 +630,9 @@ SUBSYSTEM_DEF(overmap)
 		QUADRANT_MAP_SIZE
 	)
 
-	// [CELADON-ADD] - CELADON_FIXES
+	// [MANKIND-ADD] - MANKIND_FIXES
 	dynamic_datum.stop_countdown()
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 	vlevel.reserve_margin(QUADRANT_SIZE_BORDER)
 
 	mapgen.pre_generation(dynamic_datum)
@@ -648,10 +648,10 @@ SUBSYSTEM_DEF(overmap)
 				vlevel.low_x+6 + vlevel.reserved_margin,
 				vlevel.high_x-used_ruin.width-6 - vlevel.reserved_margin
 			),
-			// [CELADON-EDIT] - CELADON_MAP_EXPANSION - Координаты спавна руин
+			// [MANKIND-EDIT] - MANKIND_MAP_EXPANSION - Координаты спавна руин
 			// vlevel.high_y-used_ruin.height-6 - vlevel.reserved_margin,	// ORIGINAL
 			vlevel.high_y - used_ruin.height - 60 - vlevel.reserved_margin,
-			// [/CELADON-EDIT]
+			// [/MANKIND-EDIT]
 			vlevel.z_value
 		)
 		used_ruin.load(ruin_turf)
@@ -684,16 +684,16 @@ SUBSYSTEM_DEF(overmap)
 		)
 	// now we need to offset to account for the first dock
 	var/turf/secondary_docking_turf = locate(
-		// [CELADON-EDIT] - CELADON_MAP_EXPANSION - Смещение док порта
+		// [MANKIND-EDIT] - MANKIND_MAP_EXPANSION - Смещение док порта
 		// primary_docking_turf.x+RESERVE_DOCK_MAX_SIZE_LONG+RESERVE_DOCK_DEFAULT_PADDING,
 		// primary_docking_turf.y,
 		primary_docking_turf.x + 60 + RESERVE_DOCK_MAX_SIZE_LONG + RESERVE_DOCK_DEFAULT_PADDING,
 		primary_docking_turf.y + 75 + RESERVE_DOCK_MAX_SIZE_LONG + RESERVE_DOCK_DEFAULT_PADDING,
-		// [/CELADON-EDIT]
+		// [/MANKIND-EDIT]
 		primary_docking_turf.z
 		)
 
-	// [CELADON-ADD] - CELADON_MAP_EXPANSION - Добавление координат для док портов
+	// [MANKIND-ADD] - MANKIND_MAP_EXPANSION - Добавление координат для док портов
 	var/turf/third_docking_turf = locate(
 		primary_docking_turf.x + 60 + RESERVE_DOCK_MAX_SIZE_LONG + RESERVE_DOCK_DEFAULT_PADDING,
 		primary_docking_turf.y,
@@ -705,7 +705,7 @@ SUBSYSTEM_DEF(overmap)
 		primary_docking_turf.y + 75 + RESERVE_DOCK_MAX_SIZE_LONG + RESERVE_DOCK_DEFAULT_PADDING,
 		primary_docking_turf.z
 		)
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 
 	var/list/docking_ports = list()
 
@@ -729,7 +729,7 @@ SUBSYSTEM_DEF(overmap)
 	secondary_dock.adjust_dock_for_landing = TRUE
 	docking_ports += secondary_dock
 
-	// [CELADON-ADD] - CELADON_MAP_EXPANSION - Создание док порта исходя из ранее заданных координат
+	// [MANKIND-ADD] - MANKIND_MAP_EXPANSION - Создание док порта исходя из ранее заданных координат
 	var/obj/docking_port/stationary/third_dock = new(third_docking_turf)
 	third_dock.dir = NORTH
 	third_dock.name = "[encounter_name] docking location #3"
@@ -749,9 +749,9 @@ SUBSYSTEM_DEF(overmap)
 	fourth_dock.dwidth = 0
 	fourth_dock.adjust_dock_for_landing = TRUE
 	docking_ports += fourth_dock
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 
-	// [CELADON-REMOVE] - CELADON_MAP_EXPANSION - Чтобы не возникало лишних док портов
+	// [MANKIND-REMOVE] - MANKIND_MAP_EXPANSION - Чтобы не возникало лишних док портов
 	// if(!used_ruin)
 	// 	// no ruin, so we can make more docks upward
 	// 	var/turf/tertiary_docking_turf = locate(
@@ -792,7 +792,7 @@ SUBSYSTEM_DEF(overmap)
 	//			if(port in docking_ports)
 	//				continue
 	//			docking_ports += port
-	// [/CELADON-REMOVE]
+	// [/MANKIND-REMOVE]
 
 
 	return list(mapzone, docking_ports, ruin_turfs, ruin_templates)
@@ -1126,7 +1126,7 @@ SUBSYSTEM_DEF(overmap)
 	else
 		datum_to_edit.token.add_filter("gloweffect", 5, list("type"="drop_shadow", "color"= "#808080", "size"=2, "offset"=1))
 
-// [CELADON-REMOVE] - CELADON_CONFIGS_MAPS
+// [MANKIND-REMOVE] - MANKIND_CONFIGS_MAPS
 /*
 /datum/overmap_star_system/safezone/ngr
 	name = "Gorlex Controlled - Value of Public Works"
@@ -1230,9 +1230,9 @@ SUBSYSTEM_DEF(overmap)
 	override_object_colors = TRUE
 	overmap_icon_state = "overmap"
 */
-// [/CELADON-REMOVE]
+// [/MANKIND-REMOVE]
 
-// [CELADON-ADD] - NO_STATIC_SECTOR Опасные стартовые сектора
+// [MANKIND-ADD] - NO_STATIC_SECTOR Опасные стартовые сектора
 /datum/overmap_star_system/shiptest/elysium
 	has_outpost = TRUE
 	override_object_colors = FALSE
@@ -1265,7 +1265,7 @@ SUBSYSTEM_DEF(overmap)
 	//hazard colors, used for the overmap hazards and sun
 	hazard_primary_color = "#c13623"
 	hazard_secondary_color = "#943a43"
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 /datum/overmap_star_system/c64
 

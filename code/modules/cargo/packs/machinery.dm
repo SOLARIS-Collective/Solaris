@@ -1,5 +1,5 @@
-/* [CELADON-DELETE] - Убираем инициализацию офовских предметов.
-	Разносим ресурсы по разным фракциям: "mod_celadon\outpost_console\code\supply_pack"
+/* [MANKIND-REMOVE] - Убираем инициализацию офовских предметов.
+	Разносим ресурсы по разным фракциям: "modular_mankind\outpost_console\code\supply_pack"
 
 /datum/supply_pack/machinery
 	category = "Industrial Machines & Parts"
@@ -187,7 +187,7 @@
 	crate_type = /obj/structure/closet/crate/large
 	no_bundle = TRUE
 
-	// [CELADON-REMOVE] - CELADON_QoL - Перенос непопулярного и затерявшегося товара в более видное место, дополнение его материалами и инструкциями
+	// [MANKIND-REMOVE] - MANKIND_QoL - Перенос непопулярного и затерявшегося товара в более видное место, дополнение его материалами и инструкциями
 /*
 /datum/supply_pack/machinery/robotics
 	name = "Robotics Assembly Crate"
@@ -215,7 +215,7 @@
 	crate_type = /obj/structure/closet/crate/science
 	no_bundle = TRUE
 */
-	// [/CELADON-REMOVE]
+	// [/MANKIND-REMOVE]
 
 /*
 		Miscellaneous machines
@@ -267,7 +267,7 @@
 	crate_name = "ion thruster crate"
 	crate_type = /obj/structure/closet/crate/engineering
 
-// [CELADON-REMOVE] - CELADON_OUTPOST_CONSOLE - Удаляем дубликат двигателей
+// [MANKIND-REMOVE] - MANKIND_OUTPOST_CONSOLE - Удаляем дубликат двигателей
 // /datum/supply_pack/machinery/plasma_thruster
 // 	name = "Plasma Thruster Crate"
 // 	desc = "A crate containing a plasma thruster and its heater's electronics. For when you need a lot of extra thrust."
@@ -276,7 +276,7 @@
 // 					/obj/item/circuitboard/machine/shuttle/engine/plasma)
 // 	crate_name = "plasma thruster crate"
 // 	crate_type = /obj/structure/closet/crate/engineering
-// [/CELADON-REMOVE]
+// [/MANKIND-REMOVE]
 
 /datum/supply_pack/machinery/combustion_thruster
 	name = "Combustion Thruster Crate"
@@ -443,4 +443,4 @@
 	cost = 500
 	contains = list(/obj/item/circuitboard/machine/reagentgrinder)
 
-[/CELADON-DELETE] */
+[/MANKIND-REMOVE] */

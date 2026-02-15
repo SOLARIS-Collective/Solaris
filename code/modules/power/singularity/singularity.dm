@@ -482,7 +482,7 @@
 		"left" = CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(_step), src, WEST),
 		"right" = CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(_step), src, EAST)))
 
-// [CELADON-ADD] - CELADON_QOL - добавляем сигулярность без радейки
+// [MANKIND-ADD] - MANKIND_QOL - добавляем сигулярность без радейки
 /obj/singularity/no_radiation
 
 /obj/singularity/no_radiation/process()
@@ -491,4 +491,4 @@
 	check_energy()
 
 	return
-// [/CELADON-ADD]
+// [/MANKIND-ADD]

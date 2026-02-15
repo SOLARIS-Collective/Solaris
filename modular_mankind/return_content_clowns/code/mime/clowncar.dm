@@ -113,7 +113,7 @@
 	switch(randomnum)
 		if(1)
 			// [MANKIND-EDIT] - MANKIND_RETURN_CONTENT_SPAWN - Вот тебе и ЛОЛ
-			// visible_message("<span class='danger'>[user] presses one of the colorful buttons on [src], and doesn't do anything. Oops.</span>")	// MANKIND-EDIT - ORIGINAL
+			// visible_message("<span class='danger'>[user] presses one of the colorful buttons on [src], and doesn't do anything. Oops.</span>")	// ORIGINAL
 			visible_message(span_danger("[user] presses one of the colorful buttons on [src], and doesn't do anything. Oops."))
 			new /obj/item/grown/bananapeel/specialpeel(loc)
 			// [/MANKIND-EDIT]

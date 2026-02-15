@@ -594,7 +594,7 @@
  * [COMSIG_ATOM_GET_EXAMINE_NAME] signal
  */
 /atom/proc/get_examine_name(mob/user)
-// [CELADON-EDIT] - Обновлен legacy код... // Не принимать обновы по нему с оффов код с TG
+// [MANKIND-EDIT] - Обновлен legacy код... // Не принимать обновы по нему с оффов код с TG
 	var/list/override = list(article, null, "<b>[name]</b>")
 	SEND_SIGNAL(src, COMSIG_ATOM_GET_EXAMINE_NAME, user, override)
 
@@ -605,7 +605,7 @@
 		override -= null // There is no article, don't try to join it
 		return "\a [jointext(override, " ")]"
 	return "\a <b>[src]</b>"
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 
 ///Generate the full examine string of this atom (including icon for goonchat)
 /atom/proc/get_examine_string(mob/user, thats = FALSE)
@@ -1479,7 +1479,7 @@
  * * addition - is any additional text, which will be appended to the rest of the log line
  */
 /proc/log_combat(atom/user, atom/target, what_done, atom/object=null, addition=null)
-	// [CELADON-ADD] - FIXES_RUNTIMES - Исправляет рантайм с нуль логами атак
+	// [MANKIND-ADD] - FIXES_RUNTIMES - Исправляет рантайм с нуль логами атак
 	if(!user || !target)
 		return
 	// Resolve weakrefs to actual atoms
@@ -1493,7 +1493,7 @@
 		target = target_ref.resolve()
 		if(!target)
 			return
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 	var/ssource = key_name(user)
 	var/starget = key_name(target)
 

@@ -98,9 +98,9 @@
 				/obj/item/reagent_containers/pill,
 				/obj/item/storage/pill_bottle,
 				/obj/item/paper,
-				// [CELADON-REMOVE] - CELADON_BALANCE - Убираем телескопички
+				// [MANKIND-REMOVE] - MANKIND_BALANCE - Убираем телескопички
 				// /obj/item/melee/classic_baton/telescopic,
-				// [/CELADON-REMOVE]
+				// [/MANKIND-REMOVE]
 				/obj/item/toy,
 				/obj/item/storage/fancy/cigarettes,
 				/obj/item/lighter,

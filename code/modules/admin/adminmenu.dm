@@ -1,8 +1,8 @@
-/datum/verbs/Admin/Generate_list(client/C)	// /datum/verbs/menu/Admin/Generate_list(client/C) // [CELADON-EDIT] - ADMIN-PANEL - НЕ МЕНЯТЬ ЭТО: /menu/
+/datum/verbs/Admin/Generate_list(client/C)	// /datum/verbs/menu/Admin/Generate_list(client/C) // [MANKIND-EDIT] - ADMIN-PANEL - НЕ МЕНЯТЬ ЭТО: /menu/
 	if (C.holder)
 		. = ..()
 
-/datum/verbs/Admin/verb/playerpanel()	// /datum/verbs/menu/Admin/verb/playerpanel()	// [CELADON-EDIT] - ADMIN-PANEL - НЕ МЕНЯТЬ ЭТО: /menu/
+/datum/verbs/Admin/verb/playerpanel()	// /datum/verbs/menu/Admin/verb/playerpanel()	// [MANKIND-EDIT] - ADMIN-PANEL - НЕ МЕНЯТЬ ЭТО: /menu/
 	set name = "Player Panel"
 	set desc = "Player Panel"
 	set category = "Admin.Game"

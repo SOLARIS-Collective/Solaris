@@ -74,12 +74,12 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 		/obj/item/storage/belt/utility/full,
 		/obj/item/clothing/neck/tie/horrible,
 		/obj/item/clothing/suit/jacket/leather,
-		// [CELADON-ADD] - CELADON_RETURN_CONTENT_SPAWN
+		// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_SPAWN
 		/obj/item/clothing/suit/jacket/leather/overcoat,
 		/obj/item/clothing/suit/poncho,
 		/obj/item/clothing/suit/poncho/green,
 		/obj/item/clothing/suit/poncho/red,
-		// [/CELADON-ADD]
+		// [/MANKIND-ADD]
 		/obj/item/clothing/suit/snowman,
 		/obj/item/clothing/head/snowman,
 		)

@@ -22,14 +22,14 @@
 			continue
 		processing_list += thing.contents
 
-// [CELADON-EDIT] - CELADON_FIXES_RADIATION
+// [MANKIND-EDIT] - MANKIND_FIXES_RADIATION
 // /proc/radiation_pulse(atom/source, intensity, range_modifier, log=FALSE, can_contaminate=TRUE)
 // 	// fusion will never ever be balanced. god bless it
 // 	intensity = min(intensity, INFINITY)	// ORIGINAL
 /proc/radiation_pulse(atom/source, intensity, range_modifier, log=FALSE, can_contaminate=TRUE)
 	// Ограничиваем максимальное значение радиации
 	intensity = SSradiation.cap_radiation(intensity)
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 
 	if(!SSradiation.can_fire)
 		return

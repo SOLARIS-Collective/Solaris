@@ -215,7 +215,7 @@
 	. = ..()
 	var/mob/living/M = mob_override || owner.current
 	add_antag_hud(antag_hud_type, antag_hud_name, M)
-	handle_clown_mutation(M, mob_override ? null : "Your training has allowed you to overcome your clownish nature, allowing you to wield weapons without harming yourself.")	// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+	handle_clown_mutation(M, mob_override ? null : "Your training has allowed you to overcome your clownish nature, allowing you to wield weapons without harming yourself.")	// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 	var/mob/living/silicon/ai/A = M
 	if(istype(A) && traitor_kind == TRAITOR_AI)
 		A.hack_software = TRUE
@@ -225,7 +225,7 @@
 	. = ..()
 	var/mob/living/M = mob_override || owner.current
 	remove_antag_hud(antag_hud_type, M)
-	handle_clown_mutation(M, removing = FALSE)	// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+	handle_clown_mutation(M, removing = FALSE)	// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 	var/mob/living/silicon/ai/A = M
 	if(istype(A)  && traitor_kind == TRAITOR_AI)
 		A.hack_software = FALSE
@@ -341,10 +341,10 @@
 
 	var/special_role_text = lowertext(name)
 
-// [CELADON-ADD] - RETURN-CONTRACTOR
+// [MANKIND-ADD] - RETURN-CONTRACTOR
 	if (contractor_hub)
 		result += contractor_round_end()
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 	if(traitorwin)
 		result += span_greentext("The [special_role_text] was successful!")

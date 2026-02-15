@@ -118,12 +118,12 @@
 		. += span_notice("The parts are <b>welded</b> together.")
 	else if(secure && !opened)
 		. += span_notice("Right-click to [locked ? "unlock" : "lock"].")
-	// [CELADON-ADD] - CELADON_RETURN_CONTENT_QUIRKS
+	// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_QUIRKS
 	if(isliving(user))
 		var/mob/living/L = user
 		if(HAS_TRAIT(L, TRAIT_SKITTISH))
 			. += "<span class='notice'>Ctrl-Shift-click [src] to jump inside.</span>"
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 
 /obj/structure/closet/CanAllowThrough(atom/movable/mover, border_dir)
 	. = ..()
@@ -153,12 +153,12 @@
 			if(user)
 				to_chat(user, span_danger("There's something too large in [src], preventing it from closing."))
 			return FALSE
-// [CELADON-ADD] - CELADON_FIXES // Cel-Add - No Mechs in crates
+// [MANKIND-ADD] - MANKIND_FIXES // Cel-Add - No Mechs in crates
 	for(var/obj/mecha/mech in T) // Лучше бы сделал общую проверку предметов, но я хз какой вар сравнивать. Whatever
 		if(user)
 			to_chat(user, "<span class='danger'>There's something too large in [src], preventing it from closing.</span>")
 		return FALSE
-// [/CELADON-ADD] // /Cel-Add
+// [/MANKIND-ADD] // /Cel-Add
 	return TRUE
 
 /obj/structure/closet/dump_contents()
@@ -520,14 +520,14 @@
 	broken = TRUE //applies to secure lockers only
 	open()
 
-// [CELADON-ADD] - CELADON_RETURN_CONTENT_QUIRKS
+// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_QUIRKS
 /obj/structure/closet/CtrlShiftClick(mob/living/user)
 	if(!HAS_TRAIT(user, TRAIT_SKITTISH))
 		return ..()
 	if(!user.canUseTopic(src, BE_CLOSE) || !isturf(user.loc))
 		return
 	dive_into(user)
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 /obj/structure/closet/proc/togglelock(mob/living/user, silent)
 	if(secure && !broken)

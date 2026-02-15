@@ -270,10 +270,10 @@
 			new /obj/item/clothing/suit/wizrobe(drop_location())
 			new /obj/item/clothing/head/wizard(drop_location())
 			new /obj/item/clothing/gloves/combat/wizard(drop_location())
-			// [CELADON-ADD] - CELADON_RETURN_CONTENT_SPAWN
+			// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_SPAWN
 			new /obj/item/clothing/suit/wizrobe/magusblue(drop_location())
 			new /obj/item/clothing/head/wizard/magus(drop_location())
-			// [/CELADON-ADD]
+			// [/MANKIND-ADD]
 			new /obj/item/staff(drop_location())
 			new /obj/structure/mirror/magic(drop_location())
 

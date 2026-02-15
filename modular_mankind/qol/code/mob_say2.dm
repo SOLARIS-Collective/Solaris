@@ -1,4 +1,4 @@
-// Also made a small change in "mod_mankind\_components\code\emotes\emotes_living.dm".
+// Also made a small change in "modular_mankind\_components\code\emotes\emotes_living.dm".
 // `/datum/emote/living/custom/run_emote()` now requires "." to do custom emotes instead of null
 
 

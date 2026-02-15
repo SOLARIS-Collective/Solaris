@@ -30,13 +30,13 @@
 	end_sound = 'sound/machines/generator/generator_end.ogg'
 	volume = 40
 
-// [CELADON-ADD] - CELADON_GRAVGEN
+// [MANKIND-ADD] - MANKIND_GRAVGEN
 /datum/looping_sound/gravity_generator
-	mid_sounds = list('mod_celadon/_storage_sounds/sound/effects/beam.ogg')
+	mid_sounds = list('modular_mankind/_storage_sounds/sound/effects/beam.ogg')
 	mid_length = 40
 	volume = 10
 	falloff_distance = 3
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 /datum/looping_sound/oven
 	start_sound = 'sound/machines/oven/oven_loop_start.ogg'

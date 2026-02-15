@@ -32,10 +32,10 @@ SUBSYSTEM_DEF(title)
 		file_path = "[global.config.directory]/title_screens/images/[pick(title_screens)]"
 
 	if(!file_path)
-//[CELADON-EDIT]- MUSIC_CELADON
-		//file_path = "icons/runtime/default_title.dmi"//CELADON-EDIT-ORIGINAL
-		file_path = "mod_celadon/_storage_icons/icons/assets/default_title.dmi"
-//[/CELADON-EDIT]
+// [MANKIND-EDIT]- MUSIC_MANKIND
+		//file_path = "icons/runtime/default_title.dmi" // ORIGINAL
+		file_path = "modular_mankind/_storage_icons/icons/assets/default_title.dmi"
+// [/MANKIND-EDIT]
 	ASSERT(fexists(file_path))
 
 	icon = new(fcopy_rsc(file_path))

@@ -1,12 +1,12 @@
 /obj/item/storage/wallet
 	name = "wallet"
 	desc = "It can hold a few small and personal things."
-	icon = 'mod_celadon/_storage_icons/icons/resprite/wallet.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/resprite/wallet.dmi'
 	icon_state = "wallet"
 	w_class = WEIGHT_CLASS_SMALL
 	resistance_flags = FLAMMABLE
 	slot_flags = ITEM_SLOT_ID
-	component_type = /datum/component/storage/concrete	// [CELADON-EDIT] - DONT_ALTCLICK_WALLET
+	component_type = /datum/component/storage/concrete	// [MANKIND-EDIT] - DONT_ALTCLICK_WALLET
 
 	var/obj/item/card/id/front_id = null
 	var/list/combined_access
@@ -14,8 +14,8 @@
 
 /obj/item/storage/wallet/ComponentInitialize()
 	. = ..()
-	var/datum/component/storage/STR = GetComponent(/datum/component/storage/concrete)	// [CELADON-EDIT] - DONT_ALTCLICK_WALLET
-	STR.max_items = 5	// [CELADON-EDIT] - CELADON_QOL // STR.max_items = 4 // ORIGINAL
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage/concrete)	// [MANKIND-EDIT] - DONT_ALTCLICK_WALLET
+	STR.max_items = 5	// [MANKIND-EDIT] - MANKIND_QOL // STR.max_items = 4 // ORIGINAL
 	STR.set_holdable(list(
 		/obj/item/spacecash/bundle,
 		/obj/item/holochip,
@@ -36,9 +36,9 @@
 		/obj/item/photo,
 		/obj/item/reagent_containers/dropper,
 		/obj/item/reagent_containers/syringe,
-		// /obj/item/screwdriver,	// [CELADON-REMOVE] - CELADON_QOL
+		// /obj/item/screwdriver,	// [MANKIND-REMOVE] - MANKIND_QOL
 		/obj/item/stamp,
-		// [CELADON-ADD] - CELADON_QOL - Добавляем ключи и нож для писем, сигареты
+		// [MANKIND-ADD] - MANKIND_QOL - Добавляем ключи и нож для писем, сигареты
 		/obj/item/melee/knife/letter_opener,
 		/obj/item/key,
 		/obj/item/clothing/gloves/ring,
@@ -46,7 +46,7 @@
 		/obj/item/clothing/gloves/ring/diamond,
 		/obj/item/clothing/mask/cigarette,
 		/obj/item/stamp),
-		// [/CELADON-ADD]
+		// [/MANKIND-ADD]
 		list(/obj/item/screwdriver/power))
 
 /obj/item/storage/wallet/Exited(atom/movable/AM)
@@ -77,7 +77,7 @@
 /obj/item/storage/wallet/update_overlays()
 	. = ..()
 	cached_flat_icon = null
-	// [CELADON-ADD] - CELADON_RESPRITE_WALLET
+	// [MANKIND-ADD] - MANKIND_RESPRITE_WALLET
 	var/has_cash = FALSE
 	var/has_card = FALSE
 	var/has_key = FALSE
@@ -100,10 +100,10 @@
 				max_chip_value = chip.credits
 		if(istype(I, /obj/item/key/ship))
 			has_key = TRUE
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 
 	if(!front_id)
-	// [CELADON-EDIT] - CELADON_RESPRITE_WALLET
+	// [MANKIND-EDIT] - MANKIND_RESPRITE_WALLET
 	// 	return
 	// . += mutable_appearance(front_id.icon, front_id.icon_state)
 	// . += front_id.overlays
@@ -123,7 +123,7 @@
 		. += mutable_appearance(icon, "keys_overlay")
 	if(has_card)
 		. += mutable_appearance(icon, "cashcard_overlay")
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 
 /obj/item/storage/wallet/proc/get_cash_overlay_state(value)
 	switch(value)

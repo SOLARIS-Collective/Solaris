@@ -224,10 +224,10 @@
 
 /datum/action/item_action/toggle_ammotype
 	name = "Toggle Energy Mode"
-//[CELADON-EDIT] - возвращает иконки лазеров в переключатель
+// [MANKIND-EDIT] - возвращает иконки лазеров в переключатель
 	//icon_icon = 'icons/mob/actions/actions_items.dmi'
-	icon_icon = 'mod_celadon/_storage_icons/icons/actions/actions_items.dmi'
-//[/CELADON-EDIT]
+	icon_icon = 'modular_mankind/_storage_icons/icons/actions/actions_items.dmi'
+// [/MANKIND-EDIT]
 
 
 /datum/action/item_action/rcl_col

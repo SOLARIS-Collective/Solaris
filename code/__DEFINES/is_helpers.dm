@@ -93,11 +93,11 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 #define islarva(A) (istype(A, /mob/living/carbon/alien/larva))
 
 #define isalienadult(A) (istype(A, /mob/living/carbon/alien/humanoid) || istype(A, /mob/living/simple_animal/hostile/alien))
-// [CELADON-ADD] - ALIEN_BALANCE
+// [MANKIND-ADD] - ALIEN_BALANCE
 #define isalien_simple_praetorian(A) (istype(A, /mob/living/simple_animal/hostile/alien/praetorian))
 
 #define isalien_simple_queen(A) (istype(A, /mob/living/simple_animal/hostile/alien/queen))
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 #define isalienhunter(A) (istype(A, /mob/living/carbon/alien/humanoid/hunter))
 
@@ -234,9 +234,9 @@ GLOBAL_LIST_INIT(book_types, typecacheof(list(
 	/obj/item/spellbook,
 	/obj/item/storage/book)))
 
-// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 #define isclown(A) (istype(A, /mob/living/simple_animal/hostile/retaliate/clown))
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 /// Within given range and on the same z level (get dist is WEIRD bro)
 #define IN_GIVEN_RANGE(source, other, given_range) (get_dist(source, other) <= given_range && (get_step(source, 0)?:z) == (get_step(other, 0)?:z))

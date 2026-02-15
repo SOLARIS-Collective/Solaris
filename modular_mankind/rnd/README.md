@@ -85,7 +85,7 @@ ID мода: MANKIND_RND
   И то же самое, если ты используешь дефайны, определённые другим модом.
 
   Не используешь - напиши "Отсутствуют"
-  Примеры: `code/__defines/~mod_mankind/rnd.dm`: `RND_SPEED_MULTIPLIER`, `RND_SPEED_BASE`
+  Примеры: `code/__defines/~modular_mankind/rnd.dm`: `RND_SPEED_MULTIPLIER`, `RND_SPEED_BASE`
 -->
 
 ### Используемые файлы, не содержащиеся в модпаке

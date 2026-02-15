@@ -249,9 +249,9 @@
 /obj/item/organ/proc/get_availability(datum/species/S)
 	return TRUE
 
-// [CELADON-ADD] - CELADON_EMOTES
+// [MANKIND-ADD] - MANKIND_EMOTES
 /obj/item/organ/proc/is_robotic()
 	if(status & ORGAN_ROBOTIC)
 		return TRUE
 	return FALSE
-// [/CELADON-ADD]
+// [/MANKIND-ADD]

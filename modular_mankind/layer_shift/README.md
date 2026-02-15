@@ -73,7 +73,7 @@ ID мода: MANKIND_LAYER_SHIFT
   И то же самое, если ты используешь дефайны, определённые другим модом.
 
   Не используешь - напиши "Отсутствуют"
-  Примеры: `code/__defines/~mod_mankind/layer_shift.dm`: `LAYER_SHIFT_SPEED_MULTIPLIER`, `LAYER_SHIFT_SPEED_BASE`
+  Примеры: `code/__defines/~modular_mankind/layer_shift.dm`: `LAYER_SHIFT_SPEED_MULTIPLIER`, `LAYER_SHIFT_SPEED_BASE`
 -->
 
 ### Используемые файлы, не содержащиеся в модпаке

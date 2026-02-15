@@ -1,8 +1,0 @@
-#ifndef MODPACK_CELADON_STAMPS
-#define MODPACK_CELADON_STAMPS
-
-#include "_stamps.dm"
-
-#include "code/stamps.dm"
-
-#endif

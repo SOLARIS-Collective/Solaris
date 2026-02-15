@@ -148,7 +148,7 @@
 				number_of_alphanumeric++
 				last_char_group = CHARS_DETECTED
 
-			// [CELADON-ADD] Добавляем возможность создания имён персонажей на кирилице.
+			// [MANKIND-ADD] Добавляем возможность создания имён персонажей на кирилице.
 			//А .. Я
 			if(1040 to 1071)
 				number_of_alphanumeric++
@@ -158,7 +158,7 @@
 			if(1072 to 1103)
 				number_of_alphanumeric++
 				last_char_group = CHARS_DETECTED
-			// [/CELADON-ADD]
+			// [/MANKIND-ADD]
 
 			//0 .. 9
 			if(48 to 57)

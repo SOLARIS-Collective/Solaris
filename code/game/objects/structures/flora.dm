@@ -47,22 +47,22 @@
 	if(log_amount && (!(flags_1 & NODECONSTRUCT_1)))
 		if(W.get_sharpness() && W.force > 0)
 			if(W.hitsound)
-				// [CELADON-EDIT] - CELADON_QOL
-				// playsound(get_turf(src), 'sound/weapons/bladeslice.ogg', 100, FALSE, FALSE)		// CELADON-EDIT - ORIGINAL
-				playsound(get_turf(src), pick('mod_celadon/_storage_sounds/sound/trees/treechop1.ogg',
-											'mod_celadon/_storage_sounds/sound/trees/treechop2.ogg',
-											'mod_celadon/_storage_sounds/sound/trees/treechop3.ogg'), 100, FALSE, FALSE)
-				// [/CELADON-EDIT]
+				// [MANKIND-EDIT] - MANKIND_QOL
+				// playsound(get_turf(src), 'sound/weapons/bladeslice.ogg', 100, FALSE, FALSE)		// ORIGINAL
+				playsound(get_turf(src), pick('modular_mankind/_storage_sounds/sound/trees/treechop1.ogg',
+											'modular_mankind/_storage_sounds/sound/trees/treechop2.ogg',
+											'modular_mankind/_storage_sounds/sound/trees/treechop3.ogg'), 100, FALSE, FALSE)
+				// [/MANKIND-EDIT]
 				user.visible_message(span_notice("[user] begins to cut down [src] with [W]."),span_notice("You begin to cut down [src] with [W]."), span_hear("You hear the sound of sawing."))
-			// [CELADON-EDIT] - CELADON_QOL
-			// if(do_after(user, 1000/W.force, target = src)) //5 seconds with 20 force, 8 seconds with a hatchet, 20 seconds with a shard.		// CELADON-EDIT - ORIGINAL
+			// [MANKIND-EDIT] - MANKIND_QOL
+			// if(do_after(user, 1000/W.force, target = src)) //5 seconds with 20 force, 8 seconds with a hatchet, 20 seconds with a shard.		// ORIGINAL
 			if(do_after(user, 2000/W.force, target = src)) //10 seconds with 20 force, 16 seconds with a hatchet, 40 seconds with a shard.
-			// [/CELADON-EDIT]
+			// [/MANKIND-EDIT]
 				user.visible_message(span_notice("[user] fells [src] with the [W]."),span_notice("You fell [src] with the [W]."), span_hear("You hear the sound of a tree falling."))
-				// [CELADON-EDIT] - CELADON_QOL
-				// playsound(get_turf(src), 'sound/effects/meteorimpact.ogg', 100 , FALSE, FALSE) // CELADON-EDIT - ORIGINAL
-				playsound(get_turf(src), 'mod_celadon/_storage_sounds/sound/trees/zvuk-padayuschego-dereva.ogg', 100 , FALSE, FALSE)
-				// [/CELADON-EDIT]
+				// [MANKIND-EDIT] - MANKIND_QOL
+				// playsound(get_turf(src), 'sound/effects/meteorimpact.ogg', 100 , FALSE, FALSE) // ORIGINAL
+				playsound(get_turf(src), 'modular_mankind/_storage_sounds/sound/trees/zvuk-padayuschego-dereva.ogg', 100 , FALSE, FALSE)
+				// [/MANKIND-EDIT]
 				user.log_message("cut down [src] at [AREACOORD(src)]", LOG_ATTACK)
 				for(var/i=1 to log_amount)
 					new /obj/item/grown/log/tree(get_turf(src))
@@ -408,20 +408,20 @@
 
 /obj/item/kirbyplants/random/Initialize()
 	. = ..()
-	// [CELADON-EDIT] - CELADON_FLORA
-	// icon = 'icons/obj/flora/plants.dmi' // CELADON-EDIT - ORIGINAL
-	icon = 'mod_celadon/_storage_icons/icons/structures/obj/flora/plants.dmi'
-	// [/CELADON-EDIT]
+	// [MANKIND-EDIT] - MANKIND_FLORA
+	// icon = 'icons/obj/flora/plants.dmi' // ORIGINAL
+	icon = 'modular_mankind/_storage_icons/icons/structures/obj/flora/plants.dmi'
+	// [/MANKIND-EDIT]
 	if(!states)
 		generate_states()
 	icon_state = pick(states)
 
 /obj/item/kirbyplants/random/proc/generate_states()
 	states = list()
-	// [CELADON-EDIT] - CELADON_FLORA
-	// for(var/i in 1 to 25) // CELADON-EDIT - ORIGINAL
+	// [MANKIND-EDIT] - MANKIND_FLORA
+	// for(var/i in 1 to 25) // ORIGINAL
 	for(var/i in 1 to 43)
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 		var/number
 		if(i < 10)
 			number = "0[i]"

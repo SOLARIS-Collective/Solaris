@@ -63,10 +63,10 @@
 			if(!(martial_art_result == BULLET_ACT_HIT))
 				return martial_art_result
 
-	//[CELADON-FIX] - CELADON_MODSUITS - Actually adding signals, officials ported with MODs
+	//[MANKIND-ADD] - MANKIND_MODSUITS - Actually adding signals, officials ported with MODs
 	if(SEND_SIGNAL(src, COMSIG_HUMAN_CHECK_SHIELDS, src, P) & SHIELD_BLOCK)
 		return BULLET_ACT_FORCE_PIERCE
-	//[/CELADON-FIX]
+	//[/MANKIND-ADD]
 
 	if(!(P.original == src && P.firer == src)) //can't block or reflect when shooting yourself
 		if(P.reflectable & REFLECT_NORMAL)
@@ -96,7 +96,7 @@
 
 				return BULLET_ACT_FORCE_PIERCE // complete projectile permutation
 
-		if(check_shields(P, P.damage, "the [P.name]", PROJECTILE_ATTACK, P.armour_penetration, P.damage_type))	// [CELADON-EDIT] - Вы сейчас серьезно не проверяете что за тип урона?
+		if(check_shields(P, P.damage, "the [P.name]", PROJECTILE_ATTACK, P.armour_penetration, P.damage_type))	// [MANKIND-EDIT] - Вы сейчас серьезно не проверяете что за тип урона?
 			P.on_hit(src, 100, def_zone, piercing_hit)
 			return BULLET_ACT_HIT
 
@@ -119,13 +119,13 @@
 		return TRUE
 	return FALSE
 
-/mob/living/carbon/human/proc/check_shields(atom/AM, damage, attack_text = "the attack", attack_type = MELEE_ATTACK, armour_penetration = 0, damage_type = BRUTE)	// [CELADON-EDIT] - Вы сейчас серьезно не проверяете что за тип урона?
+/mob/living/carbon/human/proc/check_shields(atom/AM, damage, attack_text = "the attack", attack_type = MELEE_ATTACK, armour_penetration = 0, damage_type = BRUTE)	// [MANKIND-EDIT] - Вы сейчас серьезно не проверяете что за тип урона?
 	var/block_chance_modifier = round(damage / -3)
 
 	var/obj/item/shield = get_best_shield()
 	if(shield)
 		var/final_block_chance = shield.block_chance - (clamp((armour_penetration - shield.armour_penetration)/2,0,100)) + block_chance_modifier
-		var/shield_result = shield.hit_reaction(src, AM, attack_text, final_block_chance, damage, attack_type, damage_type)	// [CELADON-EDIT] - Вы сейчас серьезно не проверяете что за тип урона?
+		var/shield_result = shield.hit_reaction(src, AM, attack_text, final_block_chance, damage, attack_type, damage_type)	// [MANKIND-EDIT] - Вы сейчас серьезно не проверяете что за тип урона?
 		if(shield_result >= 1)
 			return TRUE
 		if(shield_result == -1)
@@ -179,10 +179,10 @@
 		throwpower = I.throwforce
 		if(I.thrownby == WEAKREF(src)) //No throwing stuff at yourself to trigger hit reactions
 			return ..()
-	//[CELADON-EDIT] - CELADON_MODSUITS - Actually adding signals for energy shield
+	// [MANKIND-EDIT] - MANKIND_MODSUITS - Actually adding signals for energy shield
 	//if(check_shields(AM, throwpower, "\the [AM.name]", THROWN_PROJECTILE_ATTACK))
 	if(check_shields(AM, throwpower, "\the [AM.name]", THROWN_PROJECTILE_ATTACK) || (SEND_SIGNAL(src, COMSIG_HUMAN_CHECK_SHIELDS, src, AM) & SHIELD_BLOCK))
-	//[/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 		hitpush = FALSE
 		skipcatch = TRUE
 		blocked = TRUE

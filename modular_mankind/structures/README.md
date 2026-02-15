@@ -22,7 +22,7 @@ ID мода: MANKIND_STRUCTURES
 
 Этот мод добавляет новые объекты для карт, а именно: 
 Сам объект статуи Копо -> `code\game\objects\structures\statues.dm` и его иконка "masson_kills" в файле `statue.dmi`
-Логотипы Целадон и Элизиум как turf -> `mod_mankind\structures\code\logo.dm`
+Логотипы Целадон и Элизиум как turf -> `modular_mankind\structures\code\logo.dm`
 
 <!--
   Что он делает, что добавляет: что, куда, зачем и почему - всё здесь.
@@ -64,7 +64,7 @@ ID мода: MANKIND_STRUCTURES
 
 ### Используемые файлы, не содержащиеся в модпаке
 
-- `mod_mankind/_storage_icons/icons/structures`
+- `modular_mankind/_storage_icons/icons/structures`
 <!--
   Будь то немодульный файл или модульный файл, который не содержится в папке,
   принадлежащей этому конкретному моду, он должен быть упомянут здесь.

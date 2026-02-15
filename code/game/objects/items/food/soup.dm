@@ -302,11 +302,11 @@
 	tastes = list("beet" = 1)
 	foodtypes = VEGETABLES
 
-// [CELADON-ADD]
+// [MANKIND-ADD]
 /obj/item/food/soup/traditionalredbeet
 	name = "tradition red beet soup"
 	desc = "A simplified form of borscht soup, notably lacking the meat broth."
-	icon = 'mod_celadon/_storage_icons/icons/items/misc/redbeetsoup.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/items/misc/redbeetsoup.dmi'
 	icon_state = "redbeetsoup"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 18,
@@ -315,7 +315,7 @@
 	)
 	tastes = list("nettles" = 1)
 	foodtypes = GRAIN | MEAT | VEGETABLES
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 /obj/item/food/soup/onion
 	name = "french onion soup"

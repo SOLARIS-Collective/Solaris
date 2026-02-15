@@ -2,7 +2,7 @@
 #define CART_ENGINE (1<<1)
 #define CART_ATMOS (1<<2)
 #define CART_MEDICAL (1<<3)
-// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
+// [MANKIND-EDIT] - MANKIND_RETURN_CONTENT_CLOWNS
 /*
 #define CART_JANITOR (1<<4)
 #define CART_REAGENT_SCANNER (1<<5)
@@ -23,7 +23,7 @@
 #define CART_QUARTERMASTER (1<<12)
 #define CART_HYDROPONICS (1<<13)
 #define CART_DRONEPHONE (1<<14)
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 
 
 /obj/item/cartridge
@@ -196,7 +196,7 @@
 	name = "\improper Value-PAK cartridge"
 	desc = "Now with 350% more value!" //Give the Captain...EVERYTHING! (Except Mime, Clown, and Syndie)
 	icon_state = "cart-c"
-	access = ~(CART_CLOWN | CART_MIME | CART_REMOTE_DOOR | CART_NEWSCASTER)	//access = ~(CART_REMOTE_DOOR | CART_NEWSCASTER)	// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+	access = ~(CART_CLOWN | CART_MIME | CART_REMOTE_DOOR | CART_NEWSCASTER)	//access = ~(CART_REMOTE_DOOR | CART_NEWSCASTER)	// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 	bot_access_flags = SEC_BOT | MULE_BOT | FLOOR_BOT | CLEAN_BOT | MED_BOT | FIRE_BOT
 	spam_enabled = 1
 
@@ -451,7 +451,7 @@ Code:
 		if (54) // Beepsky, Medibot, Floorbot, and Cleanbot access
 			menu = "<h4>[PDAIMG(medbot)] Bots Interlink</h4>"
 			bot_control()
-// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 		if (55) // Emoji Guidebook for mimes
 			menu = "<h4>[PDAIMG(emoji)] Emoji Guidebook</h4>"
 			var/static/list/emoji_icon_states
@@ -467,7 +467,7 @@ Code:
 
 			menu += "<br> To use an emoji in a pda message, refer to the guide and add \":\" around the emoji. Your PDA supports the following emoji:<br>"
 			menu += emoji_table
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 		if (99) //Newscaster message permission error
 			menu = "<h5> ERROR : NOT AUTHORIZED [host_pda.id ? "" : "- ID SLOT EMPTY"] </h5>"

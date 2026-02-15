@@ -84,7 +84,7 @@ ID мода: MANKIND_OUTPOST_CONSOLE
   И то же самое, если ты используешь дефайны, определённые другим модом.
 
   Не используешь - напиши "Отсутствуют"
-  Примеры: `code/__defines/~mod_mankind/outpost_console.dm`: `OUTPOST_CONSOLE_SPEED_MULTIPLIER`, `OUTPOST_CONSOLE_SPEED_BASE`
+  Примеры: `code/__defines/~modular_mankind/outpost_console.dm`: `OUTPOST_CONSOLE_SPEED_MULTIPLIER`, `OUTPOST_CONSOLE_SPEED_BASE`
 -->
 
 ### Используемые файлы, не содержащиеся в модпаке

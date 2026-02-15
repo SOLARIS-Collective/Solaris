@@ -1,5 +1,5 @@
-/* [CELADON-DELETE] - Убираем инициализацию офовских предметов.
-	Разносим ресурсы по разным фракциям: "mod_celadon\outpost_console\code\supply_pack"
+/* [MANKIND-REMOVE] - Убираем инициализацию офовских предметов.
+	Разносим ресурсы по разным фракциям: "modular_mankind\outpost_console\code\supply_pack"
 
 /datum/supply_pack/animal
 	category = "Animals"
@@ -146,4 +146,4 @@
 	for(var/i in 1 to 49)
 		new /mob/living/simple_animal/crab(.)
 
-[/CELADON-DELETE] */
+[/MANKIND-REMOVE] */

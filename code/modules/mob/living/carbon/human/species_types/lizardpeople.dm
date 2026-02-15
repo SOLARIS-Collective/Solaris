@@ -11,7 +11,7 @@
 	mutant_organs = list(/obj/item/organ/tail/lizard)
 	coldmod = 1.5
 	heatmod = 0.67
-	burnmod = 0.85	// [CELADON-ADD] - CELADON_BALANCE_SPECIES - Даем резист к огню на 15%
+	burnmod = 0.85	// [MANKIND-ADD] - MANKIND_BALANCE_SPECIES - Даем резист к огню на 15%
 	default_features = list("mcolor" = "0F0", "tail_lizard" = "Smooth", "face_markings" = "None", "horns" = "None", "frills" = "None", "spines" = "None", "body_markings" = "None")
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN
 	attack_verb = "slash"

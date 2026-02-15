@@ -64,14 +64,14 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 	if(prefs.hearted)
 		var/datum/asset/spritesheet/sheet = get_asset_datum(/datum/asset/spritesheet/chat)
 		keyname = "[sheet.icon_tag("emoji-heart")][keyname]"
-	// [CELADON-ADD] - CELADON_DONATE / Значения GLOB.OOC_COLOR были заменены на COLOR_OOC для возможности замены цвета для donator_tier.
+	// [MANKIND-ADD] - MANKIND_DONATE / Значения GLOB.OOC_COLOR были заменены на COLOR_OOC для возможности замены цвета для donator_tier.
 	var/COLOR_OOC = GLOB.OOC_COLOR
 	if(donator.donator_tier > 0)
-		var/icon/donator_icon = icon('mod_celadon/_storage_icons/icons/assets/vip/ooc_icon.png')
+		var/icon/donator_icon = icon('modular_mankind/_storage_icons/icons/assets/vip/ooc_icon.png')
 		keyname = "[icon2html(donator_icon, world)] " + "[keyname]"
 	if(donator.donator_tier > 1)
 		COLOR_OOC = "CC008C"
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 	//The linkify span classes and linkify=TRUE below make ooc text get clickable chat href links if you pass in something resembling a url
 	for(var/client/C in GLOB.clients)
 		if(C.prefs.chat_toggles & CHAT_OOC)
@@ -116,7 +116,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 			return
 	else
 		GLOB.dooc_allowed = !GLOB.dooc_allowed
-	to_chat(world, "<B>The Dead OOC channel has been globally [GLOB.dooc_allowed ? "enabled" : "disabled"].</B>")	// [CELADON-ADD] - FIX_TOGGLE_DEAD_OOC
+	to_chat(world, "<B>The Dead OOC channel has been globally [GLOB.dooc_allowed ? "enabled" : "disabled"].</B>")	// [MANKIND-ADD] - FIX_TOGGLE_DEAD_OOC
 
 /client/proc/set_ooc(newColor as color)
 	set name = "Set Player OOC Color"
@@ -337,7 +337,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 
 /client/verb/fit_viewport()
 	set name = "Fit Viewport"
-	set category = "Special Verbs" // [CELADON-EDIT] - CELADON_QOL - Очистка вкладки ООС, перенос части в Special Verbs
+	set category = "Special Verbs" // [MANKIND-EDIT] - MANKIND_QOL - Очистка вкладки ООС, перенос части в Special Verbs
 	set desc = "Fit the width of the map window to match the viewport"
 
 	// Fetch aspect ratio
@@ -385,9 +385,9 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 /client/verb/policy()
 	set name = "Show Policy"
 	set desc = "Show special server rules related to your current character."
-	// [CELADON-REMOVE] - CELADON_QOL - Очистка вкладки ООС, перенос части в Special Verbs
+	// [MANKIND-REMOVE] - MANKIND_QOL - Очистка вкладки ООС, перенос части в Special Verbs
 	set category = "OOC"
-	// [/CELADON-REMOVE]
+	// [/MANKIND-REMOVE]
 
 	//Collect keywords
 	var/list/keywords = mob.get_policy_keywords()

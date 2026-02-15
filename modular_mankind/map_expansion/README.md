@@ -65,7 +65,7 @@ ID мода: MAP_EXPANSION
   И то же самое, если ты используешь дефайны, определённые другим модом.
 
   Не используешь - напиши "Отсутствуют"
-  Примеры: `code/__defines/~mod_mankind/map_expansion.dm`: `MAP_EXPANSION_SPEED_MULTIPLIER`, `MAP_EXPANSION_SPEED_BASE`
+  Примеры: `code/__defines/~modular_mankind/map_expansion.dm`: `MAP_EXPANSION_SPEED_MULTIPLIER`, `MAP_EXPANSION_SPEED_BASE`
 -->
 
 ### Используемые файлы, не содержащиеся в модпаке

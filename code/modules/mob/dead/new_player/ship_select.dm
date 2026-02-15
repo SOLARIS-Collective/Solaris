@@ -31,7 +31,7 @@
 				spawnee.new_player_panel()
 				return
 
-			// [CELADON-ADD] - CELADON_FIXES
+			// [MANKIND-ADD] - MANKIND_FIXES
 			// Проверяем дублирование имен при входе на корабль
 			if(!spawnee.client.prefs.randomise[RANDOM_NAME])
 				var/name = spawnee.client.prefs.real_name
@@ -39,7 +39,7 @@
 					to_chat(spawnee, span_warning("Кто-то уже использует это имя для своего корабля."))
 					spawnee.new_player_panel()
 					return
-			// [/CELADON-ADD]
+			// [/MANKIND-ADD]
 			var/did_application = FALSE
 			if(target.join_mode == SHIP_JOIN_MODE_APPLY)
 				var/datum/ship_application/current_application = target.get_application(spawnee)
@@ -93,13 +93,13 @@
 				return
 
 			var/datum/map_template/shuttle/template = SSmapping.ship_purchase_list[params["name"]]
-			// [CELADON-ADD] - CELADON_FIXES - фикс спавна пустых шаттлов (вагинобонд)
+			// [MANKIND-ADD] - MANKIND_FIXES - фикс спавна пустых шаттлов (вагинобонд)
 			// Проверяем дублирование имен в самом начале
 			var/name = spawnee.client.prefs.real_name
 			if(GLOB.real_names_joined.Find(name))
 				to_chat(spawnee, span_warning("Кто-то уже создал корабль с этим именем."))
 				return
-			// [/CELADON-ADD]
+			// [/MANKIND-ADD]
 			if(SSovermap.ship_spawning)
 				to_chat(spawnee, span_danger("Корабль сейчас создаётся. Попробуйте снова через некоторое время."))
 				return
@@ -180,7 +180,7 @@
 		if(!S.is_join_option())
 			continue
 
-		// [CELADON-ADD] - YOU_NOT_SEPARATIST
+		// [MANKIND-ADD] - YOU_NOT_SEPARATIST
 		// Проверка ограничений по видам для кораблей фракции Elysium
 		if(S.source_template.faction.name == FACTION_ELYSIUM)
 			var/species_id = user.client?.prefs?.pref_species?.id
@@ -188,7 +188,7 @@
 				continue
 			if(user.client?.prefs?.features["tail_human"] != "None" || user.client?.prefs?.features["ears"] != "None")
 				continue
-		// [/CELADON-ADD]
+		// [/MANKIND-ADD]
 
 		var/list/ship_jobs = list()
 		for(var/datum/job/job as anything in S.job_slots)
@@ -240,8 +240,8 @@
 			"limit" = T.limit,
 			"curNum" = template_num_lookup[T] || 0,
 			"minTime" = T.get_req_spawn_minutes(),
-			// [CELADON-ADD] - mod_celadon/qol - Берём значение из конфига корабликов.
+			// [MANKIND-ADD] - modular_mankind/qol - Берём значение из конфига корабликов.
 			"shortName" = T.short_name,
-			// [/CELADON-ADD]
+			// [/MANKIND-ADD]
 		)
 		.["templates"] += list(ship_data)

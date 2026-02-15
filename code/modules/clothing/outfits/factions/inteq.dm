@@ -9,9 +9,9 @@
 
 	backpack = /obj/item/storage/backpack
 	satchel = /obj/item/storage/backpack/satchel
-	//[CELADON-REMOVE] - CELADON_OUTFIT
+	// [MANKIND-REMOVE] - MANKIND_OUTFIT
 	//duffelbag = /obj/item/storage/backpack/duffelbag
-	//[/CELADON-REMOVE]
+	// [/MANKIND-REMOVE]
 	courierbag = /obj/item/storage/backpack/messenger/inteq
 
 ///assistants
@@ -47,9 +47,9 @@
 
 	r_pocket = /obj/item/assembly/flash/handheld
 	l_pocket = /obj/item/restraints/handcuffs
-	// [CELADON-REMOVE] - CELADON_BALANCE - Убираем телескопички
+	// [MANKIND-REMOVE] - MANKIND_BALANCE - Убираем телескопички
 	// backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1)
-	// [/CELADON-REMOVE]
+	// [/MANKIND-REMOVE]
 
 /datum/outfit/job/inteq/captain/empty
 	name = "IRMG - Vanguard (Naked)"
@@ -104,10 +104,10 @@
 
 	courierbag = /obj/item/storage/backpack/messenger/inteq
 
-	// [CELADON-EDIT] - CELADON_BALANCE - Убираем телескопички
-	// backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1, /obj/item/modular_computer/tablet/preset/advanced=1)	// CELADON-EDIT - ORIGINAL
+	// [MANKIND-EDIT] - MANKIND_BALANCE - Убираем телескопички
+	// backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1, /obj/item/modular_computer/tablet/preset/advanced=1)	// ORIGINAL
 	backpack_contents = list(/obj/item/modular_computer/tablet/preset/advanced=1)
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 
 ///paramedic
 

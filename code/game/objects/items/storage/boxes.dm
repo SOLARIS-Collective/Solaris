@@ -41,11 +41,11 @@
 /obj/item/storage/box/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	// [CELADON-EDIT]
+	// [MANKIND-EDIT]
 	//STR.storage_flags = STORAGE_FLAGS_VOLUME_DEFAULT
 	//STR.max_volume = STORAGE_VOLUME_CONTAINER_S
 	//STR.max_w_class = WEIGHT_CLASS_SMALL
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 	STR.use_sound = 'sound/items/storage/briefcase.ogg'
 
 /obj/item/storage/box/update_overlays()
@@ -74,7 +74,7 @@
 		return 0
 	return ..()
 
-// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 //Mime spell boxes
 
 /obj/item/storage/box/mime
@@ -94,7 +94,7 @@
 	if (iscarbon(oldLoc))
 		alpha = 0
 	..()
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 //Disk boxes
 
@@ -537,12 +537,12 @@
 	icon_state = "donkpocketbox"
 	illustration=null
 	var/donktype = /obj/item/food/donkpocket
-// [CELADON-EDIT]
+// [MANKIND-EDIT]
 /obj/item/storage/box/donkpockets/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.set_holdable(list(/obj/item/food/donkpocket))
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 /obj/item/storage/box/donkpockets/PopulateContents()
 	for(var/i in 1 to 6)
 		new donktype(src)
@@ -573,13 +573,13 @@
 	icon_state = "monkeycubebox"
 	illustration = null
 	var/cube_type = /obj/item/food/monkeycube
-// [CELADON-EDIT]
+// [MANKIND-EDIT]
 /obj/item/storage/box/monkeycubes/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 7
 	STR.set_holdable(list(/obj/item/food/monkeycube))
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 /obj/item/storage/box/monkeycubes/PopulateContents()
 	for(var/i in 1 to 5)
 		new cube_type(src)
@@ -709,13 +709,13 @@
 	desc = "Eight wrappers of fun! Ages 8 and up. Not suitable for children."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "spbox"
-	// [CELADON-EDIT]
+	// [MANKIND-EDIT]
 /obj/item/storage/box/snappops/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.set_holdable(list(/obj/item/toy/snappop))
 	STR.max_items = 8
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 /obj/item/storage/box/snappops/PopulateContents()
 	SEND_SIGNAL(src, COMSIG_TRY_STORAGE_FILL_TYPE, /obj/item/toy/snappop)
 
@@ -730,13 +730,13 @@
 	drop_sound = 'sound/items/handling/matchbox_drop.ogg'
 	pickup_sound =  'sound/items/handling/matchbox_pickup.ogg'
 	custom_price = 2
-// [CELADON-EDIT]
+// [MANKIND-EDIT]
 /obj/item/storage/box/matches/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 10
 	STR.set_holdable(list(/obj/item/match))
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 /obj/item/storage/box/matches/PopulateContents()
 	SEND_SIGNAL(src, COMSIG_TRY_STORAGE_FILL_TYPE, /obj/item/match)
 
@@ -853,7 +853,7 @@
 	new /obj/item/stack/medical/ointment(src)
 	new /obj/item/reagent_containers/hypospray/medipen(src)
 
-// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNSS
+// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNSS
 // Clown survival box
 /obj/item/storage/box/hug/survival/PopulateContents()
 	new /obj/item/clothing/mask/breath(src)
@@ -863,7 +863,7 @@
 		new /obj/item/tank/internals/emergency_oxygen(src)
 	else
 		new /obj/item/tank/internals/plasmaman/belt(src)
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 /obj/item/storage/box/rubbershot
 	name = "box of rubber shots"
@@ -1468,7 +1468,7 @@
 		)
 	generate_items_inside(items_inside,src)
 
-// [CELADON-REMOVE] - DEBUG_QUALITY
+// [MANKIND-REMOVE] - DEBUG_QUALITY
 /*
 /obj/item/storage/box/debugtools
 	name = "box of debug tools"
@@ -1494,7 +1494,7 @@
 		)
 	generate_items_inside(items_inside,src)
 */
-// [/CELADON-REMOVE]
+// [/MANKIND-REMOVE]
 
 /obj/item/storage/box/plastic
 	name = "plastic box"

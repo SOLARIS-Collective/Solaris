@@ -118,7 +118,7 @@
 	. = ..()
 	AddComponent(/datum/component/empprotection, EMP_PROTECT_WIRES)
 
-// [CELADON-EDIT] - QOL - Разрешаем использование UI раций в лежачем положении
+// [MANKIND-EDIT] - QOL - Разрешаем использование UI раций в лежачем положении
 /obj/item/radio/AltClick(mob/user)
 	if(headset)
 		. = ..()
@@ -136,7 +136,7 @@
 	else if(user.canUseTopic(src, !issilicon(user), TRUE, FALSE, TRUE)) // floor_okay = TRUE
 		listening = !listening
 		to_chat(user, span_notice("You toggle speaker [listening ? "on" : "off"]."))
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 
 /obj/item/radio/interact(mob/user)
 	if(unscrewed && !isAI(user))
@@ -145,10 +145,10 @@
 	else
 		..()
 
-// [CELADON-EDIT] - QOL - Разрешаем использование UI раций в лежачем положении
+// [MANKIND-EDIT] - QOL - Разрешаем использование UI раций в лежачем положении
 /obj/item/radio/ui_state(mob/user)
 	return GLOB.portable_device_state
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 
 /obj/item/radio/ui_interact(mob/user, datum/tgui/ui, datum/ui_state/state)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -487,11 +487,11 @@
 	icon_state = "radio"
 	desc = "An old handheld radio. You could use it, if you really wanted to."
 
-// [CELADON-ADD] - FACTION_RADIO
+// [MANKIND-ADD] - FACTION_RADIO
 /obj/item/radio/transceiver
 	name = "transceiver"
 	desc = "A tactical communications device for those times when you need it."
-	icon = 'mod_celadon/_storage_icons/icons/items/misc/radio.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/items/misc/radio.dmi'
 	icon_state = "walkietalkiesec"
 	item_state = "walkietalkiesec"
 	freerange = TRUE
@@ -556,4 +556,4 @@
 	keyslot = /obj/item/encryptionkey/syndicate/suns
 	//keyslot2 = /obj/item/encryptionkey/suns
 
-// [/CELADON-ADD]
+// [/MANKIND-ADD]

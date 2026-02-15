@@ -34,9 +34,9 @@
 
 	equipping_sound = EQUIP_SOUND_VFAST_GENERIC
 	unequipping_sound = UNEQUIP_SOUND_VFAST_GENERIC
-	// [CELADON-REMOVE] - CELADON_BALANCE_CD
+	// [MANKIND-REMOVE] - MANKIND_BALANCE_CD
 	//equip_delay_self = EQUIP_DELAY_BACK
-	// [/CELADON-REMOVE]
+	// [/MANKIND-REMOVE]
 	equip_delay_other = EQUIP_DELAY_BACK * 1.5
 	strip_delay = EQUIP_DELAY_BACK * 1.5
 	equip_self_flags = EQUIP_ALLOW_MOVEMENT | EQUIP_SLOWDOWN
@@ -50,9 +50,9 @@
 	STR.max_volume = STORAGE_VOLUME_BACKPACK
 	STR.max_w_class = MAX_WEIGHT_CLASS_BACKPACK
 	STR.use_sound = 'sound/items/storage/unzip.ogg'
-	// [CELADON-REMOVE] - CELADON_BALANCE_CD
+	// [MANKIND-REMOVE] - MANKIND_BALANCE_CD
 	// STR.worn_access = FALSE
-	// [/CELADON-REMOVE]
+	// [/MANKIND-REMOVE]
 
 /obj/item/storage/backpack/examine(mob/user)
 	. = ..()
@@ -103,16 +103,16 @@
 	icon_state = "explorerpack"
 	item_state = "explorerpack"
 
-// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 /obj/item/storage/backpack/mime
 	name = "Parcel Parceaux"
-	icon = 'mod_celadon/_storage_icons/icons/other/clown_mime/backpacks.dmi'
-	lefthand_file = 'mod_celadon/_storage_icons/icons/other/clown_mime/backpack_lefthand.dmi'
-	righthand_file = 'mod_celadon/_storage_icons/icons/other/clown_mime/backpack_righthand.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/other/clown_mime/backpacks.dmi'
+	lefthand_file = 'modular_mankind/_storage_icons/icons/other/clown_mime/backpack_lefthand.dmi'
+	righthand_file = 'modular_mankind/_storage_icons/icons/other/clown_mime/backpack_righthand.dmi'
 	desc = "A silent backpack made for those silent workers. Silence Co."
 	icon_state = "mimepack"
 	item_state = "mimepack"
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 /obj/item/storage/backpack/medic
 	name = "medical backpack"
@@ -196,16 +196,16 @@
 	desc = "A spacious backpack with lots of pockets, worn by Janitors of an Emergency Response Team."
 	icon_state = "ert_janitor"
 
-// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 /obj/item/storage/backpack/ert/clown
 	name = "emergency response team clown backpack"
-	icon = 'mod_celadon/_storage_icons/icons/other/clown_mime/backpacks.dmi'
-	lefthand_file = 'mod_celadon/_storage_icons/icons/other/clown_mime/backpack_lefthand.dmi'
-	righthand_file = 'mod_celadon/_storage_icons/icons/other/clown_mime/backpack_righthand.dmi'
-	mob_overlay_icon = 'mod_celadon/_storage_icons/icons/other/clown_mime/backpack_onmob.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/other/clown_mime/backpacks.dmi'
+	lefthand_file = 'modular_mankind/_storage_icons/icons/other/clown_mime/backpack_lefthand.dmi'
+	righthand_file = 'modular_mankind/_storage_icons/icons/other/clown_mime/backpack_righthand.dmi'
+	mob_overlay_icon = 'modular_mankind/_storage_icons/icons/other/clown_mime/backpack_onmob.dmi'
 	desc = "A spacious backpack with lots of pockets, worn by Clowns of an Emergency Response Team."
 	icon_state = "ert_clown"
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 /*
  * Satchel Types
  */
@@ -220,13 +220,13 @@
 
 	equipping_sound = null
 	unequipping_sound = null
-	// [CELADON-REMOVE] - CELADON_BALANCE_CD
+	// [MANKIND-REMOVE] - MANKIND_BALANCE_CD
 	//equip_delay_self = null
-	// [/CELADON-REMOVE]
+	// [/MANKIND-REMOVE]
 	equip_delay_other = EQUIP_DELAY_BACK
 	strip_delay = EQUIP_DELAY_BACK
 
-// [CELADON-REMOVE] - CELADON_BALANCE_CD
+// [MANKIND-REMOVE] - MANKIND_BALANCE_CD
 /*
 /obj/item/storage/backpack/satchel/ComponentInitialize()
 	. = ..()
@@ -235,7 +235,7 @@
 	STR.max_w_class = MAX_WEIGHT_CLASS_M_CONTAINER
 	STR.worn_access = TRUE
 */
-// [CELADON-REMOVE]
+// [MANKIND-REMOVE]
 
 /obj/item/storage/backpack/satchel/leather
 	name = "leather satchel"
@@ -694,7 +694,7 @@
 	new /obj/item/reagent_containers/hypospray/medipen/combat_drug(src)
 	new /obj/item/grenade/syndieminibomb(src)
 
-// [CELADON-ADD] - CELADON_RETURN_CONTENT_SPAWN
+// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_SPAWN
 // For ClownOps.
 /obj/item/storage/backpack/duffelbag/clown/syndie/ComponentInitialize()
 	. = ..()
@@ -709,7 +709,7 @@
 	new /obj/item/clothing/mask/gas/clown_hat(src)
 	new /obj/item/bikehorn(src)
 	new /obj/item/implanter/sad_trombone(src)
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 /obj/item/storage/backpack/henchmen
 	name = "wings"

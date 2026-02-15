@@ -175,7 +175,7 @@
 	update_inv_hands()
 	I.pixel_x = I.base_pixel_x //pixel shifting
 	I.pixel_y = I.base_pixel_y
-	I.transform = initial(I.transform)	// [CELADON-ADD]
+	I.transform = initial(I.transform)	// [MANKIND-ADD]
 	return hand_index
 
 //Puts the item into the first available left hand if possible and calls all necessary triggers/updates. returns 1 on success.
@@ -334,9 +334,9 @@
 			else
 				I.forceMove(newloc)
 		I.dropped(src, silent)
-	//[CELADON-FIX] - CELADON_MODSUITS - fixing MOD magnetic harness.
+	//[MANKIND-ADD] - MANKIND_MODSUITS - fixing MOD magnetic harness.
 	SEND_SIGNAL(src, COMSIG_MOB_UNEQUIPPED_ITEM, I, force, newloc, no_move, invdrop, silent)
-	//[/CELADON-FIX]
+	//[/MANKIND-ADD]
 	return TRUE
 
 //Outdated but still in use apparently. This should at least be a human proc.
@@ -459,7 +459,7 @@
 	if (I)
 		I.equip_to_best_slot(src)
 
-/* // [CELADON-REMOVE] - Equipment-swap - Abuse
+/* // [MANKIND-REMOVE] - Equipment-swap - Abuse
 /mob/verb/equipment_swap()
 	set name = "equipment-swap"
 	set hidden = TRUE
@@ -474,7 +474,7 @@
 			dropItemToGround(I)
 			return
 		I.equip_to_best_slot(src, TRUE)
-*/ // [/CELADON-REMOVE]
+*/ // [/MANKIND-REMOVE]
 
 //used in code for items usable by both carbon and drones, this gives the proper back slot for each mob.(defibrillator, backpack watertank, ...)
 /mob/proc/getBackSlot()

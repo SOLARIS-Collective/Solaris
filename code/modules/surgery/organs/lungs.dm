@@ -101,7 +101,7 @@
 		damage_type = safe_damage_type
 	)
 
-/obj/item/organ/lungs/proc/check_breath(datum/gas_mixture/breath, mob/living/carbon/human/H)		// MOD_CELADON -> mod_celadon\fixes\code\lungs.dm
+/obj/item/organ/lungs/proc/check_breath(datum/gas_mixture/breath, mob/living/carbon/human/H)		// MOD_MANKIND -> modular_mankind\fixes\code\lungs.dm
 //TODO: add lung damage = less oxygen gains
 	var/breathModifier = (5-(5*(damage/maxHealth)/2)) //range 2.5 - 5
 	if(H.status_flags & GODMODE)
@@ -114,10 +114,10 @@
 			return
 		if(H.health >= H.crit_threshold)
 			H.adjustOxyLoss(HUMAN_MAX_OXYLOSS)
-		// [CELADON-ADD] - FIXES - Чиним эмоут удушья
-		if(prob(25)) // [CELADON-ADD]
-			H.emote("gasp") // [CELADON-ADD]
-		// [/CELADON-ADD]
+		// [MANKIND-ADD] - FIXES - Чиним эмоут удушья
+		if(prob(25)) // [MANKIND-ADD]
+			H.emote("gasp") // [MANKIND-ADD]
+		// [/MANKIND-ADD]
 		else if(!HAS_TRAIT(H, TRAIT_NOCRITDAMAGE))
 			H.adjustOxyLoss(HUMAN_CRIT_MAX_OXYLOSS)
 
@@ -465,15 +465,15 @@
 			if(checked_gas.odor[1])
 				to_chat(H, checked_gas.odor[1])
 
-/obj/item/organ/lungs/proc/handle_too_little_breath(mob/living/carbon/human/H = null, breath_pp = 0, safe_breath_min = 0, true_pp = 0)		// MOD_CELADON -> mod_celadon\fixes\code\lungs.dm
+/obj/item/organ/lungs/proc/handle_too_little_breath(mob/living/carbon/human/H = null, breath_pp = 0, safe_breath_min = 0, true_pp = 0)		// MOD_MANKIND -> modular_mankind\fixes\code\lungs.dm
 	. = 0
 	if(!H || !safe_breath_min) //the other args are either: Ok being 0 or Specifically handled.
 		return FALSE
 
-	// [CELADON-EDIT] - FIXES - Починка удушья
-	// if(prob(20)) // CELADON-EDIT - ORIGINAL
+	// [MANKIND-EDIT] - FIXES - Починка удушья
+	// if(prob(20)) // ORIGINAL
 	if(prob(25))
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 		H.emote("gasp")
 	if(breath_pp > 0)
 		var/ratio = safe_breath_min/breath_pp

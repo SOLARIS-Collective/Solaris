@@ -5,7 +5,7 @@
 	elasticity_coeff = 0.3
 	valid_event_target = FALSE
 
-// [CELADON-EDIT]
+// [MANKIND-EDIT]
 // 1% Drop - /asteroid/goliath - (/obj/item/gem/rupee, /obj/item/gem/fdiamond, /obj/item/gem/void, /obj/item/gem/phoron)
 /datum/export/gems/rupee
 	unit_name = "Ruperium"
@@ -48,4 +48,4 @@
 	unit_name = "Strange crystal"
 	cost = 6000		//cost = 4000
 	export_types = list(/obj/item/strange_crystal)
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]

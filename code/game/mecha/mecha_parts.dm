@@ -289,7 +289,7 @@
 	name = "Durand Central Control module (Exosuit Board)"
 	icon_state = "mainboard"
 
-// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNSS
+// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNSS
 /obj/item/circuitboard/mecha/honker/peripherals
 	name = "H.O.N.K Peripherals Control module (Exosuit Board)"
 	icon_state = "mcontroller"
@@ -301,7 +301,7 @@
 /obj/item/circuitboard/mecha/honker/main
 	name = "H.O.N.K Central Control module (Exosuit Board)"
 	icon_state = "mainboard"
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 /obj/item/circuitboard/mecha/odysseus/peripherals
 	name = "200 Series Peripherals Control module (Exosuit Board)"

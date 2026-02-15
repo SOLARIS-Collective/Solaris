@@ -279,7 +279,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		to_chat(target, span_notice("[xeno_name] scrambles into the ventilation ducts!"))
 	qdel(src)
 
-// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 /obj/effect/hallucination/simple/clown
 	image_icon = 'icons/mob/animal.dmi'
 	image_state = "clown"
@@ -291,7 +291,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 
 /obj/effect/hallucination/simple/clown/scary
 	image_state = "scary_clown"
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 /obj/effect/hallucination/simple/bubblegum
 	name = "Bubblegum"

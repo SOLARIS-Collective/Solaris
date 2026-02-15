@@ -103,10 +103,10 @@
 		return FALSE
 	return TRUE
 
-// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 /obj/item/nuclear_challenge/clownops
 	uplink_type = /obj/item/uplink/clownop
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 #undef CHALLENGE_TELECRYSTALS
 #undef CHALLENGE_TIME_LIMIT

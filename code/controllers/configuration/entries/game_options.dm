@@ -413,10 +413,10 @@
 	integer = FALSE
 
 /datum/config_entry/flag/auto_ship_spawn_locking
-	// [CELADON-EDIT] - CELADON_MASTER_FILES - Отключаем автоматику
+	// [MANKIND-EDIT] - MANKIND_MASTER_FILES - Отключаем автоматику
 	// config_entry_value = TRUE	// ORIGINAL
 	config_entry_value = FALSE
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 
 //When the auto ship locking will start counting up, in minutes
 /datum/config_entry/number/ship_locking_starts

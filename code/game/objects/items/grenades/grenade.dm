@@ -42,7 +42,7 @@
 		qdel(src)
 
 /obj/item/grenade/proc/botch_check(mob/living/carbon/human/user)
-// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
+// [MANKIND-EDIT] - MANKIND_RETURN_CONTENT_CLOWNS
 //	if(sticky && prob(50)) // to add risk to sticky tape grenade cheese, no return cause we still prime as normal after
 	var/clumsy = HAS_TRAIT(user, TRAIT_CLUMSY)
 	if(clumsy && (clumsy_check == GRENADE_CLUMSY_FUMBLE))
@@ -55,7 +55,7 @@
 		preprime(user, 5, FALSE)
 		return TRUE
 	else if(sticky && prob(50)) // to add risk to sticky tape grenade cheese, no return cause we still prime as normal after
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 		to_chat(user, span_warning("What the... [src] is stuck to your hand!"))
 		ADD_TRAIT(src, TRAIT_NODROP, STICKY_NODROP)
 

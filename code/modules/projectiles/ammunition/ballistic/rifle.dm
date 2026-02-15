@@ -100,7 +100,7 @@
 
 //.308 (M514 EBR & CM-GAL-S)
 
-//[СELADON-REMOVE] - CELADON_WEAPONS - хватит это терпеть! Теперь эти патроны только в модпаке - mod_celadon\weapons\code\modules\projectiles\ammunition\ballistic\rifle.dm
+//[СELADON-REMOVE] - MANKIND_WEAPONS - хватит это терпеть! Теперь эти патроны только в модпаке - modular_mankind\weapons\code\modules\projectiles\ammunition\ballistic\rifle.dm
 /*
 /obj/item/ammo_casing/a308
 	name = ".308 bullet casing"

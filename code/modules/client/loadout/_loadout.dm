@@ -1,32 +1,32 @@
 GLOBAL_LIST_EMPTY(loadout_categories)
 GLOBAL_LIST_EMPTY(gear_datums)
-GLOBAL_LIST_EMPTY(loadout_parent_categories) // [CELADON-ADD] - CELADON_QOL_LOADOUT - Родительские категории
+GLOBAL_LIST_EMPTY(loadout_parent_categories) // [MANKIND-ADD] - MANKIND_QOL_LOADOUT - Родительские категории
 
 /datum/loadout_category
 	var/category = ""
-	 // [CELADON-ADD] - CELADON_QOL_LOADOUT
+	 // [MANKIND-ADD] - MANKIND_QOL_LOADOUT
 	var/parent_category = "" // Родительская категория
 	var/category_icon = "" // Иконка категории
 	var/category_order = 0 // Порядок сортировки
 	var/list/subcategories = list() // Подкатегории
-	 // [/CELADON-ADD]
+	 // [/MANKIND-ADD]
 	var/list/gear = list()
 
-// [CELADON-EDIT] - CELADON_QOL_LOADOUT
+// [MANKIND-EDIT] - MANKIND_QOL_LOADOUT
 // /datum/loadout_category/New(cat)	// ORIGINAL
 /datum/loadout_category/New(cat, parent = "", icon = "", order = 0)
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 	category = cat
-	// [CELADON-ADD] - CELADON_QOL_LOADOUT
+	// [MANKIND-ADD] - MANKIND_QOL_LOADOUT
 	parent_category = parent
 	category_icon = icon
 	category_order = order
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 	..()
 
 ///Create a list of gear datums to sort
 /proc/populate_gear_list()
-	create_parent_categories()	// [CELADON-ADD] - CELADON_QOL_LOADOUT
+	create_parent_categories()	// [MANKIND-ADD] - MANKIND_QOL_LOADOUT
 
 	for(var/geartype in subtypesof(/datum/gear))
 		var/datum/gear/G = geartype
@@ -44,36 +44,36 @@ GLOBAL_LIST_EMPTY(loadout_parent_categories) // [CELADON-ADD] - CELADON_QOL_LOAD
 			WARNING("Loadout gear [G] is missing path definition")
 			continue
 
-		// [CELADON-ADD] - CELADON_QOL_LOADOUT - Получаем информацию о категории
+		// [MANKIND-ADD] - MANKIND_QOL_LOADOUT - Получаем информацию о категории
 		var/category_info = get_category_info(use_category)
 		var/parent_cat = category_info["parent"]
 		var/cat_icon = category_info["icon"]
 		var/cat_order = category_info["order"]
-		// [/CELADON-ADD]
+		// [/MANKIND-ADD]
 
 		if(!GLOB.loadout_categories[use_category])
-			// [CELADON-EDIT] - CELADON_QOL_LOADOUT
+			// [MANKIND-EDIT] - MANKIND_QOL_LOADOUT
 			// GLOB.loadout_categories[use_category] = new /datum/loadout_category(use_category)	// ORIGINAL
 			GLOB.loadout_categories[use_category] = new /datum/loadout_category(use_category, parent_cat, cat_icon, cat_order)
-			// [/CELADON-EDIT]
+			// [/MANKIND-EDIT]
 
-			// [CELADON-ADD] - CELADON_QOL_LOADOUT - Добавляем в родительскую категорию
+			// [MANKIND-ADD] - MANKIND_QOL_LOADOUT - Добавляем в родительскую категорию
 			if(parent_cat && GLOB.loadout_parent_categories[parent_cat])
 				var/datum/loadout_category/parent_LC = GLOB.loadout_parent_categories[parent_cat]
 				parent_LC.subcategories[use_category] = GLOB.loadout_categories[use_category]
-			// [/CELADON-ADD]
+			// [/MANKIND-ADD]
 
 		var/datum/loadout_category/LC = GLOB.loadout_categories[use_category]
 		GLOB.gear_datums[use_name] = new geartype
 		LC.gear[use_name] = GLOB.gear_datums[use_name]
 
-	// [CELADON-REMOVE] - CELADON_QOL_LOADOUT
+	// [MANKIND-REMOVE] - MANKIND_QOL_LOADOUT
 	// GLOB.loadout_categories = sortAssoc(GLOB.loadout_categories)
 	// for(var/loadout_category in GLOB.loadout_categories)
 	// 	var/datum/loadout_category/LC = GLOB.loadout_categories[loadout_category]
 	// 	LC.gear = sortAssoc(LC.gear)
-	// [/CELADON-REMOVE]
-	sort_categories()	// [CELADON-ADD] - CELADON_QOL_LOADOUT - Сортируем категории
+	// [/MANKIND-REMOVE]
+	sort_categories()	// [MANKIND-ADD] - MANKIND_QOL_LOADOUT - Сортируем категории
 	return 1
 
 /datum/gear
@@ -82,21 +82,21 @@ GLOBAL_LIST_EMPTY(loadout_parent_categories) // [CELADON-ADD] - CELADON_QOL_LOAD
 	///Description of this gear. If left blank will default to the description of the pathed item.
 	var/description
 	///Path to item.
-	// [CELADON-EDIT] - CELADON_QOL
-	// var/path // CELADON-EDIT - ORIGINAL
+	// [MANKIND-EDIT] - MANKIND_QOL
+	// var/path // ORIGINAL
 	var/atom/path
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 	///Slot to equip to.
 	var/slot
-	// [CELADON-REMOVE] - CELADON_QOL_LOADOUT
+	// [MANKIND-REMOVE] - MANKIND_QOL_LOADOUT
 	///Roles that can spawn with this item.
 	var/list/allowed_roles
-	// [/CELADON-REMOVE]
-	// [CELADON-ADD] - CELADON_QOL_LOADOUT
+	// [/MANKIND-REMOVE]
+	// [MANKIND-ADD] - MANKIND_QOL_LOADOUT
 	///Factions that can spawn with this item.
 	var/list/allowed_factions
 	// Примеры 	allowed_factions = list("NanoTrasen", "Syndicate", "Independent", "InteQ", "SolFed", "Pirates", "Elysium")
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 	///Stop certain species from receiving this gear
 	var/list/species_blacklist
 	///Only allow certain species to receive this gear
@@ -107,42 +107,42 @@ GLOBAL_LIST_EMPTY(loadout_parent_categories) // [CELADON-ADD] - CELADON_QOL_LOAD
 	var/sort_category = "General"
 	///for skipping organizational subtypes (optional)
 	var/subtype_path = /datum/gear
-	// [CELADON-ADD] - CELADON_QOL
+	// [MANKIND-ADD] - MANKIND_QOL
 	//It will be generated automaticly
 	var/base64icon
 	//File of icon
 	var/icon
 	//Icon state of item
 	var/icon_state
-	// [/CELADON-ADD]
-	// [CELADON-ADD] - CELADON_QOL_LOADOUT
+	// [/MANKIND-ADD]
+	// [MANKIND-ADD] - MANKIND_QOL_LOADOUT
 	///Tags for search and filtering
 	var/list/tags = list()
 	///Cost in loadout points (if point system is used)
 	var/cost = 0
 	///Large preview icon for detailed view
 	var/preview_icon_large
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 
 /datum/gear/New()
 	..()
 	if(!description)
 		var/obj/O = path
 		description = initial(O.desc)
-	// [CELADON-ADD] - CELADON_QOL
+	// [MANKIND-ADD] - MANKIND_QOL
 	if(!icon || !icon_state)
 		icon_state = initial(path.icon_state)
 		icon = initial(path.icon)
 	base64icon = icon2base64(icon(icon, icon_state, SOUTH, 1, FALSE))
-	// [/CELADON-ADD]
-	// [CELADON-ADD] - CELADON_QOL_LOADOUT
+	// [/MANKIND-ADD]
+	// [MANKIND-ADD] - MANKIND_QOL_LOADOUT
 	// Генерируем большую иконку для превью
 	if(!preview_icon_large)
 		preview_icon_large = icon2base64(icon(icon, icon_state, SOUTH, 1, FALSE))
 	// Автоматически определяем теги на основе категории и слота
 	if(!tags.len)
 		generate_auto_tags()
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 
 ///Called when the gear is first purchased
 /datum/gear/proc/purchase(client/C)
@@ -168,7 +168,7 @@ GLOBAL_LIST_EMPTY(loadout_parent_categories) // [CELADON-ADD] - CELADON_QOL_LOAD
 
 	return new gd.path(gd.location)
 
-// [CELADON-ADD] - CELADON_QOL_LOADOUT
+// [MANKIND-ADD] - MANKIND_QOL_LOADOUT
 ///Создаем родительские категории
 /proc/create_parent_categories()
 	GLOB.loadout_parent_categories["Clothing"] = new /datum/loadout_category("Одежда", "", "icons/obj/clothing/suits.dmi", 1)
@@ -306,4 +306,4 @@ GLOBAL_LIST_EMPTY(loadout_parent_categories) // [CELADON-ADD] - CELADON_QOL_LOAD
 			return TRUE
 
 	return FALSE
-// [/CELADON-ADD]
+// [/MANKIND-ADD]

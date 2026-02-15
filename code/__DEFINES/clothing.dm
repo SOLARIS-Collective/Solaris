@@ -40,7 +40,7 @@
 
 // Base equipment delays
 /// Delay base for full-body coverage suit slot items. (hardsuits, spacesuits, radsuits, etc.)
-// [CELADON-EDIT] - CELADON_BALANCE_CD - Меняем КД на вещи
+// [MANKIND-EDIT] - MANKIND_BALANCE_CD - Меняем КД на вещи
 // #define EQUIP_DELAY_OVERSUIT (6 SECONDS)
 
 // /// Delay base for suit slot items
@@ -85,7 +85,7 @@
 #define EQUIP_DELAY_HAT (0 SECONDS)
 #define EQUIP_DELAY_GLOVES (0 SECONDS)
 #define EQUIP_DELAY_EYEWEAR (0 SECONDS)
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 
 // Flags for self equipping items
 /// Allow movement during equip/unequip

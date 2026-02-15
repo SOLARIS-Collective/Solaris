@@ -15,7 +15,7 @@
 	var/can_use = 1
 	var/obj/effect/dummy/chameleon/active_dummy = null
 	var/saved_appearance = null
-// [CELADON-ADD] - NO-PIXEL-SHIFT-ITEM
+// [MANKIND-ADD] - NO-PIXEL-SHIFT-ITEM
 	var/static/list/black_list_projector = list(
 		/obj/item/radio,
 		/obj/machinery/light,
@@ -30,7 +30,7 @@
 		/obj/structure/sign,
 		/obj/structure/closet/wall,
 		)
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 /obj/item/chameleon/Initialize()
 	. = ..()
@@ -65,8 +65,8 @@
 		return
 	if(istype(target, /obj/structure/falsewall))
 		return
-	if(is_type_in_list(target, black_list_projector))	// [CELADON-ADD] - NO-PIXEL-SHIFT-ITEM
-		return											// [/CELADON-ADD]
+	if(is_type_in_list(target, black_list_projector))	// [MANKIND-ADD] - NO-PIXEL-SHIFT-ITEM
+		return											// [/MANKIND-ADD]
 	if(target.alpha != 255)
 		return
 	if(target.invisibility != 0)

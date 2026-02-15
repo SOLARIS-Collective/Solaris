@@ -71,19 +71,19 @@
 	if(health > 0)
 		return
 	else
-		// [CELADON-ADD] - RETURN_CONTENT_CRUSHER_TROPHY
+		// [MANKIND-ADD] - RETURN_CONTENT_CRUSHER_TROPHY
 		var/datum/status_effect/crusher_damage/C = has_status_effect(STATUS_EFFECT_CRUSHERDAMAGETRACKING)
-		// [/CELADON-ADD]
-		// [CELADON-REMOVE] - RETURN_CONTENT_CRUSHER_TROPHY - Выпилено ради легенды
+		// [/MANKIND-ADD]
+		// [MANKIND-REMOVE] - RETURN_CONTENT_CRUSHER_TROPHY - Выпилено ради легенды
 		// spawn_mob_trophy()
 		// var/datum/status_effect/crusher_damage/crusher = has_status_effect(STATUS_EFFECT_CRUSHERDAMAGETRACKING)
-		// [/CELADON-REMOVE]
+		// [/MANKIND-REMOVE]
 		var/crusher_kill = FALSE
-		// [CELADON-EDIT] - RETURN_CONTENT_CRUSHER_TROPHY
+		// [MANKIND-EDIT] - RETURN_CONTENT_CRUSHER_TROPHY
 		// if(crusher && mob_trophy && crusher.total_damage >= maxHealth * 0.6)
 		if(C && crusher_loot && C.total_damage >= maxHealth * 0.6)
 			spawn_crusher_loot()
-		// [/CELADON-EDIT]
+		// [/MANKIND-EDIT]
 			crusher_kill = TRUE
 		if(true_spawn && !(flags_1 & ADMIN_SPAWNED_1))
 			var/tab = "megafauna_kills"
@@ -94,11 +94,11 @@
 				SSblackbox.record_feedback("tally", tab, 1, "[initial(name)]")
 		..()
 
-// [CELADON-REMOVE] - RETURN_CONTENT_CRUSHER_TROPHY - Выпилено ради легенды
+// [MANKIND-REMOVE] - RETURN_CONTENT_CRUSHER_TROPHY - Выпилено ради легенды
 // /mob/living/simple_animal/hostile/megafauna/proc/spawn_mob_trophy()
 // 	if(mob_trophy)
 		// loot += mob_trophy
-// [/CELADON-REMOVE]
+// [/MANKIND-REMOVE]
 
 /mob/living/simple_animal/hostile/megafauna/gib()
 	if(health > 0)

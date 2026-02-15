@@ -16,7 +16,7 @@ GLOBAL_LIST_EMPTY(dead_players_during_shift)
 /mob/living/carbon/human/spawn_gibs(with_bodyparts)
 	if(with_bodyparts)
 		switch(dna.species.species_gibs)
-			if("lanius")//[CELADON - ADD] LANIUS
+			if("lanius")	// [MANKIND-ADD] LANIUS
 				new /obj/effect/gibspawner(get_turf(src))
 			if("human")
 				new /obj/effect/gibspawner/human(get_turf(src), src, get_static_viruses())
@@ -24,7 +24,7 @@ GLOBAL_LIST_EMPTY(dead_players_during_shift)
 				new /obj/effect/gibspawner/robot(get_turf(src))
 	else
 		switch(dna.species.species_gibs)
-			if("lanius") //[CELADON - ADD] LANIUS
+			if("lanius")	// [MANKIND-ADD] LANIUS
 				new /obj/effect/gibspawner(get_turf(src))
 			if("human")
 				new /obj/effect/gibspawner/human/bodypartless(get_turf(src), src, get_static_viruses())

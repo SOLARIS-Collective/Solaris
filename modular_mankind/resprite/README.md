@@ -42,7 +42,7 @@ JETPACK_RESPRITE
   - `code/game/objects/items.dm`
     - `var/snout_override_icon`
   - `shiptest.dme`
-    - `#include "code\__DEFINES\~mod_mankind\sarathi.dm"`
+    - `#include "code\__DEFINES\~modular_mankind\sarathi.dm"`
 - EDIT:
   - `code/modules/mob/living/carbon/human/update_icons.dm`
     - if(dna.species.bodytype & BODYTYPE_SNOUT)
@@ -93,7 +93,7 @@ MANKIND_RESPRITE_WALLET
 
 ### Дефайны
 
-- `code/__DEFINES/~mod_mankind/sarathi.dm`:
+- `code/__DEFINES/~modular_mankind/sarathi.dm`:
   - `SARATHI_SNOUTED_MASK_PATH`
   - `SARATHI_SNOUTED_HELM_PATH`
 <!--
@@ -106,12 +106,12 @@ MANKIND_RESPRITE_WALLET
 
 ### Используемые файлы, не содержащиеся в модпаке
 
-- `mod_mankind/_storage_icons/icons/resprite`
-- `mod_mankind/_storage_icons/icons/helms_snouted.dmi`
-- `mod_mankind/_storage_icons/icons/mask_snouted.dmi`
-- `mod_mankind/_storage_icons/icons`
-- `mod_mankind/_storage_icons/icons/items/clothing/head/helmet_mankind.dmi`
-- `mod_mankind/_storage_icons/icons/items/weapons/ammo/ammo_boxes.dmi`
+- `modular_mankind/_storage_icons/icons/resprite`
+- `modular_mankind/_storage_icons/icons/helms_snouted.dmi`
+- `modular_mankind/_storage_icons/icons/mask_snouted.dmi`
+- `modular_mankind/_storage_icons/icons`
+- `modular_mankind/_storage_icons/icons/items/clothing/head/helmet_mankind.dmi`
+- `modular_mankind/_storage_icons/icons/items/weapons/ammo/ammo_boxes.dmi`
 <!--
   Будь то немодульный файл или модульный файл, который не содержится в папке,
   принадлежащей этому конкретному моду, он должен быть упомянут здесь.

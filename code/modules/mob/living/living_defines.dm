@@ -15,9 +15,9 @@
 	var/current_size = RESIZE_DEFAULT_SIZE
 	var/lastattacker = null
 	var/lastattackerckey = null
-	// [CELADON-ADD] - CELADON_QOL
+	// [MANKIND-ADD] - MANKIND_QOL
 	var/last_state_of_bubble
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 
 	//Health and life related vars
 	/// Maximum health that should be possible.

@@ -61,13 +61,13 @@ ID мода: MANKIND_FLORA
   И то же самое, если ты используешь дефайны, определённые другим модом.
 
   Не используешь - напиши "Отсутствуют"
-  Примеры: `code/__defines/~mod_mankind/flora.dm`: `FLORA_SPEED_MULTIPLIER`, `FLORA_SPEED_BASE`
+  Примеры: `code/__defines/~modular_mankind/flora.dm`: `FLORA_SPEED_MULTIPLIER`, `FLORA_SPEED_BASE`
 -->
 
 ### Используемые файлы, не содержащиеся в модпаке
 
-- `mod_mankind/_storage_sounds/sound`
-- `mod_mankind/_storage_icons/icons`
+- `modular_mankind/_storage_sounds/sound`
+- `modular_mankind/_storage_icons/icons`
 <!--
   Будь то немодульный файл или модульный файл, который не содержится в папке,
   принадлежащей этому конкретному моду, он должен быть упомянут здесь.

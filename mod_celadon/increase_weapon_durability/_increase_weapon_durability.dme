@@ -1,8 +1,0 @@
-#ifndef MODPACK_CELADON_INCREASE_WEAPON_DURABILITY
-#define MODPACK_CELADON_INCREASE_WEAPON_DURABILITY
-
-#include "_increase_weapon_durability.dm"
-
-#include "code/weapon_durability.dm"
-
-#endif

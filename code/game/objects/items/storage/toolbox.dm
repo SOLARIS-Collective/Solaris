@@ -244,9 +244,9 @@
 		/obj/item/clothing/under/syndicate/bloodred,
 		/obj/item/clothing/gloves/color/latex/nitrile/infiltrator,
 		/obj/item/clothing/mask/infiltrator,
-		// [CELADON-ADD] - CELADON_RETURN_CONTENT_SPAWN
+		// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_SPAWN
 		/obj/item/clothing/shoes/combat/sneakboots,
-		// [/CELADON-ADD]
+		// [/MANKIND-ADD]
 		/obj/item/gun/ballistic/automatic/pistol/ringneck,
 		/obj/item/gun/ballistic/revolver,
 		/obj/item/ammo_box
@@ -258,9 +258,9 @@
 	new /obj/item/clothing/under/syndicate/bloodred(src)
 	new /obj/item/clothing/gloves/color/latex/nitrile/infiltrator(src)
 	new /obj/item/clothing/mask/infiltrator(src)
-	// [CELADON-ADD] - CELADON_RETURN_CONTENT_SPAWN
+	// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_SPAWN
 	new /obj/item/clothing/shoes/combat/sneakboots(src)
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 
 /obj/item/storage/toolbox/bounty
 	name = "defused explosives case"

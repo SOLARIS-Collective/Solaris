@@ -2,11 +2,11 @@
 	name = "prototype gauss rifle"
 	desc = "An experimental Nanotrasen rifle with a high capacity. Useful for putting down crowds. Chambered in ferromagnetic pellets."
 	icon = 'icons/obj/guns/manufacturer/nanotrasen_sharplite/48x32.dmi'
-	lefthand_file = 'mod_celadon/_storage_icons/icons/items/weapons/in_hands/gauss_hands_left.dmi'		// [CELADON-EDIT]
-	righthand_file = 'mod_celadon/_storage_icons/icons/items/weapons/in_hands/gauss_hands_right.dmi'	// [/CELADON-EDIT]
-	mob_overlay_icon = 'mod_celadon/_storage_icons/icons/items/weapons/overlay/pgauss.dmi'	// [/CELADON-EDIT]
+	lefthand_file = 'modular_mankind/_storage_icons/icons/items/weapons/in_hands/gauss_hands_left.dmi'		// [MANKIND-EDIT]
+	righthand_file = 'modular_mankind/_storage_icons/icons/items/weapons/in_hands/gauss_hands_right.dmi'	// [/MANKIND-EDIT]
+	mob_overlay_icon = 'modular_mankind/_storage_icons/icons/items/weapons/overlay/pgauss.dmi'	// [/MANKIND-EDIT]
 	icon_state = "gauss"
-	item_state = "gauss"	// [/CELADON-EDIT]
+	item_state = "gauss"	// [/MANKIND-EDIT]
 	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_SUITSTORE
 	default_ammo_type = /obj/item/ammo_box/magazine/gauss
 	allowed_ammo_types = list(

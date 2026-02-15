@@ -42,10 +42,10 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 	///If set, kepori wearing this use this instead of their clothing file
 	var/kepori_override_icon
 
-	// [CELADON-ADD] - CELADON_RESPRITE
+	// [MANKIND-ADD] - MANKIND_RESPRITE
 	// Добавляет переменную, которая добавляет вариацию предметов для морды сарати
 	var/snout_override_icon
-	// [CELADON-ADD]
+	// [MANKIND-ADD]
 
 	///If set, vox wearing this use this instead of their clothing file
 	var/vox_override_icon
@@ -231,10 +231,10 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 
 	var/canMouseDown = FALSE
 
-	// [CELADON_EDIT] — PRINTED_ITEMS_SELLING_VITO
+	// [MANKIND_EDIT] — PRINTED_ITEMS_SELLING_VITO
 	///Is item printed on any lathe. Sets TRUE in autolathe_crafted()
 	var/autolathe_printed = FALSE
-	// [/CELADON_EDIT]
+	// [/MANKIND_EDIT]
 	var/attack_cooldown = CLICK_CD_MELEE
 
 	/// Has the item been reskinned?
@@ -573,15 +573,15 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 	//Mostly shields
 	if((prob(final_block_chance) && COOLDOWN_FINISHED(src, block_cooldown)) || (prob(final_block_chance) && istype(src, /obj/item/shield)))
 		owner.visible_message(span_danger("[owner] blocks [attack_text] with [src]!"))
-// [CELADON-EDIT] - BALLISTIC_SHIELD - Extended Edition
+// [MANKIND-EDIT] - BALLISTIC_SHIELD - Extended Edition
 //		playsound(src, 'sound/weapons/effects/deflect.ogg', 100)	// Original
 		if(istype(src, /obj/item/shield))
-			playsound(src, pick('mod_celadon/_storage_sounds/sound/gun/shieldhit1.wav', 'mod_celadon/_storage_sounds/sound/gun/shieldhit2.wav'), 100)
+			playsound(src, pick('modular_mankind/_storage_sounds/sound/gun/shieldhit1.wav', 'modular_mankind/_storage_sounds/sound/gun/shieldhit2.wav'), 100)
 		else if(istype(src, /obj/item/melee/sword))
-			playsound(src, pick('mod_celadon/_storage_sounds/sound/gun/sword_p1.ogg', 'mod_celadon/_storage_sounds/sound/gun/sword_p2.ogg', 'mod_celadon/_storage_sounds/sound/gun/sword_p3.ogg'), 100)
+			playsound(src, pick('modular_mankind/_storage_sounds/sound/gun/sword_p1.ogg', 'modular_mankind/_storage_sounds/sound/gun/sword_p2.ogg', 'modular_mankind/_storage_sounds/sound/gun/sword_p3.ogg'), 100)
 		else
 			playsound(src, 'sound/weapons/effects/deflect.ogg', 100)
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 		if(!istype(src, /obj/item/shield))
 			COOLDOWN_START(src, block_cooldown, block_cooldown_time)
 		return TRUE
@@ -649,9 +649,9 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 			A.Grant(user)
 	item_flags |= IN_INVENTORY
 	SEND_SIGNAL(src, COMSIG_ITEM_EQUIPPED, user, slot)
-	//[CELADON-FIX] - CELADON_MODSUITS - Fixing MOD magnetic harness
+	//[MANKIND-ADD] - MANKIND_MODSUITS - Fixing MOD magnetic harness
 	SEND_SIGNAL(user, COMSIG_MOB_EQUIPPED_ITEM, src, slot)
-	//[/CELADON-FIX]
+	//[/MANKIND-ADD]
 	if(!initial)
 		if(equip_sound && (slot_flags & slot))
 			playsound(src, equip_sound, EQUIP_SOUND_VOLUME, TRUE, ignore_walls = FALSE)
@@ -834,12 +834,12 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 	if (callback) //call the original callback
 		. = callback.Invoke()
 	item_flags &= ~IN_INVENTORY
-// [CELADON-ADD]
+// [MANKIND-ADD]
 	if(!(item_flags & NO_ROTATE_RANDOM_THROW))
 		var/matrix/M = matrix(transform)
 		M.Turn(pick(-90, 0, 90, 180))
 		transform = M
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 	if(!pixel_y && !pixel_x && !(item_flags & NO_PIXEL_RANDOM_DROP))
 		pixel_x = rand(-8,8)
 		pixel_y = rand(-8,8)

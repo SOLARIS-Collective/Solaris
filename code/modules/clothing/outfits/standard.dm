@@ -84,12 +84,10 @@
 
 	head = /obj/item/clothing/head/helmet/space/plasmaman
 	uniform = /obj/item/clothing/under/plasmaman
-// [CELADON-EDIT] - QoL Plasmamen
-/* CELADON-EDIT - ORIGINAL
-	r_hand= /obj/item/tank/internals/plasmaman/belt/full
-*/
+	// [MANKIND-EDIT] - MANKIND_QOL_PLASMAMEN
+	// r_hand= /obj/item/tank/internals/plasmaman/belt/full	// ORIGINAL
 	r_pocket= /obj/item/tank/internals/plasmaman/belt/full
-// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 	mask = /obj/item/clothing/mask/breath
 	gloves = /obj/item/clothing/gloves/color/plasmaman
 
@@ -101,9 +99,9 @@
 	ears = /obj/item/radio/headset/headset_cent/commander
 	mask = /obj/item/clothing/mask/gas/welding/up
 	gloves = /obj/item/clothing/gloves/combat/insul
-	belt = /obj/item/storage/belt/utility/chief/debug/full	// [CELADON-EDIT] - OMNI_TOOLS
+	belt = /obj/item/storage/belt/utility/chief/debug/full	// [MANKIND-EDIT] - OMNI_TOOLS
 	shoes = /obj/item/clothing/shoes/magboots/advance
-	id = /obj/item/card/id/debug{icon_state = "admin"}	// [CELADON-EDIT] - CELADON_OUTFIT // id = /obj/item/card/id/debug // ORIGINAL
+	id = /obj/item/card/id/debug{icon_state = "admin"}	// [MANKIND-EDIT] - MANKIND_OUTFIT // id = /obj/item/card/id/debug // ORIGINAL
 	suit_store = /obj/item/tank/internals/oxygen
 	back = /obj/item/storage/backpack/holding/debug
 	box = /obj/item/storage/box/debugtools
@@ -116,10 +114,12 @@
 		)
 
 /datum/outfit/debug/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	// var/obj/item/card/id/W = H.wear_id	// CELADON-REMOVE - CELADON_FIXES - Вызывает рантаймы
+	// [MANKIND-REMOVE] - MANKIND_FIXES - Вызывает рантаймы
+	// var/obj/item/card/id/W = H.wear_id
 	// W.registered_name = H.real_name
-	// W.update_label()	// CELADON-REMOVE
-	// [CELADON-ADD] - CELADON_FACTION
+	// W.update_label()
+	// [/MANKIND-REMOVE]
+	// [MANKIND-ADD] - MANKIND_FACTION
 	H.faction |= list(FACTION_PLAYER_SYNDICATE,
 					FACTION_PLAYER_NANOTRASEN,
 					FACTION_PLAYER_SOLFED,
@@ -144,4 +144,4 @@
 					ROLE_ALIEN,
 					)
 	ADD_TRAIT(H, TRAIT_MINDSHIELD, "status_effect")
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]

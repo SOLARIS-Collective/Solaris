@@ -1,7 +1,7 @@
 
 #### Список PRов
 
-- https://github.com/MANKIND-Collective/Pentest/pulls/1037
+- https://github.com/CeladonSS13/Shiptest/pulls/1037
 
 ## Ланиусы
 
@@ -29,19 +29,19 @@ ID мода: MANKIND_LANIUS
 - EDIT: `code/modules/surgery/organs/stomach.dm` - Отключает возможность ланиусам блевать
 ### Дефайны
 
-- code/__DEFINES/~mod_mankind/lanius.dm
+- code/__DEFINES/~modular_mankind/lanius.dm
 
 
 ### Используемые файлы, не содержащиеся в модпаке
 
-- mod_mankind/_storage_icons/icons/species/lanius/lanius_bodyparts.dmi
-- mod_mankind/_storage_icons/icons/species/lanius/lanius_organs.dmi
-- mod_mankind/_storage_icons/icons/species/lanius/screen_alert.dmi
-- mod_mankind/_storage_sounds/sound/lanius/bp_sfx_RockMan_Thud1_01.ogg
-- mod_mankind/_storage_sounds/sound/lanius/bp_sfx_RockMan_Thud2_01.ogg
-- mod_mankind/_storage_sounds/sound/lanius/bp_sfx_RockMan_Thud2_01.ogg
+- modular_mankind/_storage_icons/icons/species/lanius/lanius_bodyparts.dmi
+- modular_mankind/_storage_icons/icons/species/lanius/lanius_organs.dmi
+- modular_mankind/_storage_icons/icons/species/lanius/screen_alert.dmi
+- modular_mankind/_storage_sounds/sound/lanius/bp_sfx_RockMan_Thud1_01.ogg
+- modular_mankind/_storage_sounds/sound/lanius/bp_sfx_RockMan_Thud2_01.ogg
+- modular_mankind/_storage_sounds/sound/lanius/bp_sfx_RockMan_Thud2_01.ogg
 - config/game_options.txt
-- code/__DEFINES/~mod_mankind/lanius.dm
+- code/__DEFINES/~modular_mankind/lanius.dm
 
 
 

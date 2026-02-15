@@ -80,7 +80,7 @@
 	category = list("Exosuit Modules")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
-// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 /datum/design/board/honker_main
 	name = "\"H.O.N.K\" Central Control module"
 	desc = "Allows for the construction of a \"H.O.N.K\" Central Control module."
@@ -101,7 +101,7 @@
 	id = "honker_targ"
 	build_path = /obj/item/circuitboard/mecha/honker/targeting
 	category = list("Exosuit Modules")
-// [CELADON-ADD]
+// [MANKIND-ADD]
 
 /datum/design/board/phazon_main
 	name = "\"Phazon\" Central Control module"
@@ -384,7 +384,7 @@
 	construction_time = 100
 	category = list("Exosuit Equipment")
 
-// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 /datum/design/mech_mousetrap_mortar
 	name = "H.O.N.K Mousetrap Mortar"
 	id = "mech_mousetrap_mortar"
@@ -411,7 +411,7 @@
 	materials = list(/datum/material/iron=20000,/datum/material/hellstone=7500)
 	construction_time = 400
 	category = list("Exosuit Equipment")
-// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 
 /datum/design/mech_plasma_cutter
 	name = "Exosuit Module Design (217-D Heavy Plasma Cutter)"

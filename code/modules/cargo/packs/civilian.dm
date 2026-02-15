@@ -1,5 +1,5 @@
-/* [CELADON-DELETE] - Убираем инициализацию офовских предметов.
-	Разносим ресурсы по разным фракциям: "mod_celadon\outpost_console\code\supply_pack"
+/* [MANKIND-REMOVE] - Убираем инициализацию офовских предметов.
+	Разносим ресурсы по разным фракциям: "modular_mankind\outpost_console\code\supply_pack"
 
 /datum/supply_pack/civilian
 	category = "Civilian & Decoration"
@@ -371,4 +371,4 @@
 	crate_name = "broadcast camera crate"
 	crate_type = /obj/structure/closet/crate
 
-[/CELADON-DELETE] */
+[/MANKIND-REMOVE] */

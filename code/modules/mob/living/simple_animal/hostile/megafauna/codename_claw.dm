@@ -58,10 +58,10 @@
 	speed = 5
 	move_to_delay = 5
 	speak_emote = list("verbalizes")
-	// [CELADON-REMOVE] - RETURN_CONTENT_CRUSHER_TROPHY - Выпилено и заменено в модуле
+	// [MANKIND-REMOVE] - RETURN_CONTENT_CRUSHER_TROPHY - Выпилено и заменено в модуле
 	// mob_trophy = /obj/item/melee/synthetic_arm_blade
 	// loot = list(/obj/effect/spawner/clawloot)
-	// [/CELADON-REMOVE]
+	// [/MANKIND-REMOVE]
 	health = 2250
 	maxHealth = 2250
 	shouldnt_move = TRUE //we want to show the transforming animation
@@ -312,10 +312,10 @@
 	status_flags &= ~GODMODE
 
 /mob/living/simple_animal/hostile/megafauna/claw/proc/phase2_dramatic()
-	// [CELADON-EDIT] - CELADON_BALANCE_MOBS
-	// explosion(src, 0, 5, 10) // CELADON-EDIT - ORIGINAL
+	// [MANKIND-EDIT] - MANKIND_BALANCE_MOBS
+	// explosion(src, 0, 5, 10) // ORIGINAL
 	explosion(src, 0, 0, 5)
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 	empulse(src, 5, 8)
 	new /obj/effect/gibspawner/human(get_turf(src))
 	qdel(src)

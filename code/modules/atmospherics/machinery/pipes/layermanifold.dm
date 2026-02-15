@@ -11,7 +11,7 @@
 	volume = 260
 	construction_type = /obj/item/pipe/binary
 	pipe_state = "manifoldlayer"
-	alpha = 128	// [CELADON-ADD]
+	alpha = 128	// [MANKIND-ADD]
 
 	FASTDMM_PROP(\
 		pipe_type = PIPE_TYPE_STRAIGHT,\
@@ -138,4 +138,4 @@
 /obj/machinery/atmospherics/pipe/layer_manifold/visible
 	hide = FALSE
 	layer = GAS_PIPE_VISIBLE_LAYER
-	alpha = 255	// [CELADON-ADD]
+	alpha = 255	// [MANKIND-ADD]

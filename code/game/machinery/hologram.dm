@@ -338,7 +338,7 @@ Possible to do for anyone motivated enough:
 		if("hang_up")
 			if(outgoing_call)
 				outgoing_call.Disconnect(src)
-				return TRUE	// [CELADON-ADD] - FIXES_CALL_TO_SHIP
+				return TRUE	// [MANKIND-ADD] - FIXES_CALL_TO_SHIP
 
 /**
  * hangup_all_calls: Disconnects all current holocalls from the holopad

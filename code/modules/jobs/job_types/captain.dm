@@ -30,9 +30,9 @@
 	dcoat = /obj/item/clothing/suit/hooded/wintercoat/captain
 	shoes = /obj/item/clothing/shoes/sneakers/brown
 	head = /obj/item/clothing/head/caphat
-	// [CELADON-REMOVE] - CELADON_BALANCE - Убираем телескопички
+	// [MANKIND-REMOVE] - MANKIND_BALANCE - Убираем телескопички
 	// backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1)
-	// [/CELADON-REMOVE]
+	// [/MANKIND-REMOVE]
 
 	backpack = /obj/item/storage/backpack/captain
 	satchel = /obj/item/storage/backpack/satchel/cap

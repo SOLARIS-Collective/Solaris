@@ -55,9 +55,9 @@
 
 GLOBAL_LIST_INIT(monkey_recipes, list ( \
 	new/datum/stack_recipe("monkey mask", /obj/item/clothing/mask/gas/monkeymask, 1), \
-	// [CELADON-ADD] - CELADON_RETURN_CONTENT_SPAWN
+	// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_SPAWN
 	new/datum/stack_recipe("monkey suit", /obj/item/clothing/suit/monkeysuit, 2), \
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 	))
 
 /obj/item/stack/sheet/animalhide/monkey/get_main_recipes()
@@ -140,9 +140,9 @@ GLOBAL_LIST_INIT(leather_recipes, list ( \
 	new/datum/stack_recipe("leather bandolier", /obj/item/storage/belt/security/military/frontiersmen, 4), \
 	new/datum/stack_recipe("leather jacket", /obj/item/clothing/suit/jacket/leather, 7), \
 	new/datum/stack_recipe("leather shoes", /obj/item/clothing/shoes/laceup, 2), \
-	// [CELADON-ADD] - CELADON_RETURN_CONTENT_SPAWN
+	// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_SPAWN
 	new/datum/stack_recipe("leather overcoat", /obj/item/clothing/suit/jacket/leather/overcoat, 10), \
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 	new/datum/stack_recipe("saddle", /obj/item/saddle, 5), \
 ))
 

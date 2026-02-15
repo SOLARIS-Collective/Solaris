@@ -147,11 +147,11 @@
 	name = "prototype envirogloves"
 	icon_state = "protoplasma"
 
-// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 /obj/item/clothing/gloves/color/plasmaman/clown
 	name = "clown envirogloves"
 	icon_state = "clownplasma"
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 /obj/item/clothing/gloves/combat/wizard
 	name = "enchanted gloves"

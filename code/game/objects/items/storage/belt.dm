@@ -94,7 +94,7 @@
 	icon_state = "utility_ce"
 	item_state = "utility_ce"
 
-// [CELADON-EDIT] - OMNI_TOOLS
+// [MANKIND-EDIT] - OMNI_TOOLS
 /*
 /obj/item/storage/belt/utility/chief/full/PopulateContents()
 	new /obj/item/screwdriver/power(src)
@@ -123,7 +123,7 @@
 	new /obj/item/pipe_dispenser/bluespace(src)
 	new /obj/item/inducer/adv(src)
 	new /obj/item/stack/cable_coil(src,MAXCOIL,"cyan")
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 
 /obj/item/storage/belt/utility/full/PopulateContents()
 	new /obj/item/screwdriver(src)
@@ -227,7 +227,7 @@
 		/obj/item/clothing/mask/breath/medical,
 		/obj/item/scalpel,
 		/obj/item/circular_saw,
-		/obj/item/blood_filter,	// [CELADON-ADD] - CELADON_BALANCE
+		/obj/item/blood_filter,	// [MANKIND-ADD] - MANKIND_BALANCE
 		/obj/item/surgicaldrill,
 		/obj/item/retractor,
 		/obj/item/cautery,
@@ -278,7 +278,7 @@
 /obj/item/storage/belt/medical/surgery/PopulateContents()
 	new /obj/item/scalpel(src)
 	new /obj/item/circular_saw(src)
-	new /obj/item/blood_filter(src)	// [CELADON-ADD] - CELADON_BALANCE
+	new /obj/item/blood_filter(src)	// [MANKIND-ADD] - MANKIND_BALANCE
 	new /obj/item/surgicaldrill(src)
 	new /obj/item/retractor(src)
 	new /obj/item/cautery(src)
@@ -286,7 +286,7 @@
 	new /obj/item/hypospray/mkii(src)
 	update_appearance()
 
-/obj/item/storage/belt/medical/nohypo/PopulateContents() // [CELADON-ADD] - CELADON_BALANCE
+/obj/item/storage/belt/medical/nohypo/PopulateContents() // [MANKIND-ADD] - MANKIND_BALANCE
 	new /obj/item/scalpel(src)
 	new /obj/item/circular_saw(src)
 	new /obj/item/blood_filter(src)
@@ -299,7 +299,7 @@
 /obj/item/storage/belt/medical/webbing/surgery/PopulateContents()
 	new /obj/item/scalpel(src)
 	new /obj/item/circular_saw(src)
-	new /obj/item/blood_filter(src)	// [CELADON-ADD] - CELADON_BALANCE
+	new /obj/item/blood_filter(src)	// [MANKIND-ADD] - MANKIND_BALANCE
 	new /obj/item/surgicaldrill(src)
 	new /obj/item/retractor(src)
 	new /obj/item/cautery(src)
@@ -352,9 +352,9 @@
 		/obj/item/food/donut,
 		/obj/item/melee/knife/combat,
 		/obj/item/flashlight/seclite,
-		// [CELADON-REMOVE] - CELADON_BALANCE - Убираем телескопички
+		// [MANKIND-REMOVE] - MANKIND_BALANCE - Убираем телескопички
 		// /obj/item/melee/classic_baton/telescopic,
-		// [/CELADON-REMOVE]
+		// [/MANKIND-REMOVE]
 		/obj/item/radio,
 		/obj/item/attachment,
 		/obj/item/extinguisher/mini,

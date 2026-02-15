@@ -91,7 +91,7 @@
 
 /obj/item/clothing/attack(mob/M, mob/user, def_zone)
 	if(user.a_intent != INTENT_HARM && moth_edible && ismoth(M))
-		// [CELADON-EDIT] - FIXES_MOTH_EATING_CLOTHING - Убираем создание временных новых объектов еды, обращаемся напрямую к объектам еды
+		// [MANKIND-EDIT] - FIXES_MOTH_EATING_CLOTHING - Убираем создание временных новых объектов еды, обращаемся напрямую к объектам еды
 		// var/obj/item/food/clothing/clothing_as_food = new
 		// clothing_as_food.name = name
 		// if(clothing_as_food.attack(M, user, def_zone))
@@ -110,7 +110,7 @@
 				M.reagents.add_reagent(/datum/reagent/consumable/nutriment, 1)
 				take_damage(15, sound_effect=FALSE)
 				playsound(M.loc,'sound/items/eatfood.ogg', rand(10,50), TRUE)
-	// [CELADON-EDIT]
+	// [MANKIND-EDIT]
 	else
 		return ..()
 
@@ -284,7 +284,7 @@
 /obj/item/clothing/proc/armor_to_protection_class(armor_value)
 	armor_value = round(armor_value,10) / 10
 	switch (armor_value)
-		// [CELADON-EDIT] - CELADON_QOL - Заменяем на числовое значение отображение класса брони
+		// [MANKIND-EDIT] - MANKIND_QOL - Заменяем на числовое значение отображение класса брони
 		// if (1)
 		// 	. = "I"
 		// if (2)
@@ -304,7 +304,7 @@
 		// if (9)
 		// 	. = "IX"
 		// if (10 to INFINITY)
-		// 	. = "X"			// CELADON-EDIT - ORIGINAL
+		// 	. = "X"			// ORIGINAL
 		if (1)
 			. = "1"
 		if (2)
@@ -325,7 +325,7 @@
 			. = "9"
 		if (10 to INFINITY)
 			. = "10"
-		// [/CELADON-EDIT]
+		// [/MANKIND-EDIT]
 	return .
 
 /obj/item/clothing/atom_break(damage_flag)
@@ -368,8 +368,8 @@
 
 	var/icon/human_clothing_icon = icon(file2use, state2use)
 
-	var/list/shifts = get_species_worn_offsets(layer, mob_species)	// [CELADON-EDIT] - Get species-specific offsets
-	if(shifts)														// [/CELADON-EDIT]
+	var/list/shifts = get_species_worn_offsets(layer, mob_species)	// [MANKIND-EDIT] - Get species-specific offsets
+	if(shifts)														// [/MANKIND-EDIT]
 		// This code taken from Baystation 12
 		var/icon/final_I = icon('icons/blanks/64x64.dmi', "nothing")
 

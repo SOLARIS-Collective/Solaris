@@ -22,10 +22,10 @@
 	name = "shuttle atmospherics device"
 	desc = "This does something to do with shuttle atmospherics"
 	icon_state = "heater"
-	// [CELADON-EDIT] - CELADON_BALANCE
-	// icon = 'icons/obj/shuttle.dmi' // CELADON-EDIT - ORIGINAL
-	icon = 'mod_celadon/_storage_icons/icons/structures/shuttle.dmi'
-	// [/CELADON-EDIT]
+	// [MANKIND-EDIT] - MANKIND_BALANCE
+	// icon = 'icons/obj/shuttle.dmi' // ORIGINAL
+	icon = 'modular_mankind/_storage_icons/icons/structures/shuttle.dmi'
+	// [/MANKIND-EDIT]
 	dir = EAST
 
 /obj/machinery/atmospherics/components/unary/shuttle/heater

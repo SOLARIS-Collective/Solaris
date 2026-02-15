@@ -191,11 +191,11 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/item/radio/intercom, 31)
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/item/radio/intercom/wideband, 26)
 
-// [CELADON-ADD]
+// [MANKIND-ADD]
 /obj/item/radio/intercom/faction
 	name = "internal intercom"
 	desc = "A internal intercom. Faction radio included!"
-	icon = 'mod_celadon/_storage_icons/icons/machinery/intercoms_maphelp.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/machinery/intercoms_maphelp.dmi'
 	icon_state = "intercom"
 	keyslot = new /obj/item/encryptionkey/wideband
 	frequency = FREQ_EMERGENCY
@@ -328,7 +328,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/item/radio/intercom/faction/ramzi, 31)
 MAPPING_DIRECTIONAL_HELPERS(/obj/item/radio/intercom/faction/ramzi/command, 31)
 MAPPING_DIRECTIONAL_HELPERS(/obj/item/radio/intercom/faction/pirate, 31)
 MAPPING_DIRECTIONAL_HELPERS(/obj/item/radio/intercom/faction/pirate/command, 31)
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 /obj/item/radio/intercom/wideband/table
 	icon_state = "intercom-wideband-table"

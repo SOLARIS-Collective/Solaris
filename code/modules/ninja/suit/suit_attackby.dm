@@ -5,10 +5,10 @@
 		return ..()
 
 	if(istype(I, /obj/item/reagent_containers/glass))//If it's a glass beaker.
-		// [CELADON-EDIT] - FIXES_ANTAG_NINJA
+		// [MANKIND-EDIT] - FIXES_ANTAG_NINJA
 		// if(I.reagents.has_reagent(/datum/reagent/uranium/radium, a_transfer) && a_boost < a_maxamount)	// ORIGINAL
 		if(I.reagents.has_reagent(/datum/reagent/uranium/radium, a_transfer) && a_boost)
-		// [/CELADON-EDIT]
+		// [/MANKIND-EDIT]
 			I.reagents.remove_reagent(/datum/reagent/uranium/radium, a_transfer)
 			a_boost++;
 			to_chat(U, span_notice("There are now [a_boost] adrenaline boosts remaining."))

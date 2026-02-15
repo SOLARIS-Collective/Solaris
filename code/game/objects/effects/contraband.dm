@@ -1297,10 +1297,10 @@
 	poster_type = /obj/structure/sign/poster/radio/pris
 	icon_state = "rolled_poster"
 
-// [CELADON-REMOVE] - CELADON_OUTFIT - REMOVED BECAUSE ITS PREVENTING NEW /random POSTERS FROM OTHER FILES. EXAMPLE FOR PREVENTED /random POSTER: mod_celadon/stuff_elysium/code/elysiumMerch.dm. LINE 37, random_type = POSTER_SUBTYPES -> ERROR: undefined var
+// [MANKIND-REMOVE] - MANKIND_OUTFIT - REMOVED BECAUSE ITS PREVENTING NEW /random POSTERS FROM OTHER FILES. EXAMPLE FOR PREVENTED /random POSTER: modular_mankind/stuff_elysium/code/elysiumMerch.dm. LINE 37, random_type = POSTER_SUBTYPES -> ERROR: undefined var
 // #undef PLACE_SPEED
 // #undef POSTER_SUBTYPES
 // #undef POSTER_LIST
 // #undef POSTER_ADD_FROM_LIST
-// [/CELADON-REMOVE]
+// [/MANKIND-REMOVE]
 // dont use random radio anywhere but indies or else it might throw up radio gorlex on a PGF ship

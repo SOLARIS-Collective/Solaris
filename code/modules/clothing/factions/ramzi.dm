@@ -119,12 +119,12 @@
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/syndi/ramzi
 	jetpack = null
 	armor = list("melee" = 35, "bullet" = 40, "laser" = 20,"energy" = 40, "bomb" = 10, "bio" = 100, "rad" = 50, "fire" = 75, "acid" = 75, "wound" = 20)
-// [CELADON-EDIT] - TAJARA, CELADON_RIOL, BALANCE
-	//slowdown = 0.7	// [CELADON-REMOVE] - BALANCE
+// [MANKIND-EDIT] - TAJARA, MANKIND_RIOL, BALANCE
+	//slowdown = 0.7	// [MANKIND-REMOVE] - BALANCE
 	jetpack = null
-//	supports_variations = DIGITIGRADE_VARIATION | KEPORI_VARIATION | VOX_VARIATION	// [CELADON-EDIT] - TAJARA, CELADON_RIOL
+//	supports_variations = DIGITIGRADE_VARIATION | KEPORI_VARIATION | VOX_VARIATION	// [MANKIND-EDIT] - TAJARA, MANKIND_RIOL
 	supports_variations = DIGITIGRADE_VARIATION | KEPORI_VARIATION | VOX_VARIATION | TAJARA_VARIATION | RIOL_VARIATION
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 
 //Ramzi Elite Suit
 /obj/item/clothing/head/helmet/space/hardsuit/syndi/ramzi/elite

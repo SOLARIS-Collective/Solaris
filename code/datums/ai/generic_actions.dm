@@ -1,14 +1,14 @@
 
 /datum/ai_behavior/resist/perform(seconds_per_tick, datum/ai_controller/controller)
 	var/mob/living/living_pawn = controller.pawn
-	// [CELADON-ADD] - FIXES_RUNTIMES - Проверяем, что pawn жив перед выполнением resist
+	// [MANKIND-ADD] - FIXES_RUNTIMES - Проверяем, что pawn жив перед выполнением resist
 	if(QDELETED(living_pawn) || living_pawn.stat == DEAD)
 		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
-	// [/CELADON-ADD]
-	// [CELADON-EDIT] - FIXES_RUNTIMES - Используем resist_restraints() вместо resist() verb
+	// [/MANKIND-ADD]
+	// [MANKIND-EDIT] - FIXES_RUNTIMES - Используем resist_restraints() вместо resist() verb
 	// living_pawn.resist()	// ORIGINAL
 	living_pawn.resist_restraints()
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
 
 /datum/ai_behavior/battle_screech

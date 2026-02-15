@@ -124,10 +124,10 @@
 				H.throw_alert("disgust", /atom/movable/screen/alert/gross)
 				SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "disgust", /datum/mood_event/gross)
 				//do the nausea stuff
-				// [CELADON - EDIT] - CELADON_LANIUS
-				// if(prob(pukeprob)) //iT hAndLeS mOrE ThaN PukInG // [CELADON - EDIT] - ORIGANAL
+				// [MANKIND-EDIT] - MANKIND_LANIUS
+				// if(prob(pukeprob)) //iT hAndLeS mOrE ThaN PukInG // [MANKIND-EDIT] - ORIGANAL
 				if(prob(pukeprob))
-				// [/CELADON - EDIT]
+				// [/MANKIND-EDIT]
 					H.vomit(10, 0, 0, 0, 1, 0)
 					H.confused += 2.5
 					H.stuttering += 1

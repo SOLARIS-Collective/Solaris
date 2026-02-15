@@ -125,7 +125,7 @@
 			// itemUser.adjustOxyLoss(-1.5)
 			// itemUser.adjustStaminaLoss(-1.5)
 			// itemUser.adjustOrganLoss(ORGAN_SLOT_BRAIN, -1.5)
-			// itemUser.adjustCloneLoss(-0.5) //Becasue apparently clone damage is the bastion of all health	// MANKIND-EDIT - ORIGINAL
+			// itemUser.adjustCloneLoss(-0.5) //Becasue apparently clone damage is the bastion of all health	// ORIGINAL
 			itemUser.adjustBruteLoss(-1.5, forced = TRUE)
 			itemUser.adjustFireLoss(-1.5, forced = TRUE)
 			itemUser.adjustToxLoss(-1.5, forced = TRUE) //Because Slime People are people too
@@ -146,7 +146,7 @@
 				// L.adjustOxyLoss(-3.5)
 				// L.adjustStaminaLoss(-3.5)
 				// L.adjustOrganLoss(ORGAN_SLOT_BRAIN, -3.5)
-				// L.adjustCloneLoss(-1) //Becasue apparently clone damage is the bastion of all health	// MANKIND-EDIT - ORIGINAL
+				// L.adjustCloneLoss(-1) //Becasue apparently clone damage is the bastion of all health	// ORIGINAL
 				L.adjustBruteLoss(-3.5, forced = TRUE)
 				L.adjustFireLoss(-3.5, forced = TRUE)
 				L.adjustToxLoss(-3.5, forced = TRUE) //Because Slime People are people too

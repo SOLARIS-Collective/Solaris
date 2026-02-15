@@ -30,13 +30,13 @@ MANKIND_COMPONENTS_LOGS
 -->
 
 Глобальные вещи для FOV
-`mod_mankind\_components\code\_globals.dm`
+`modular_mankind\_components\code\_globals.dm`
 
 Математика для FOV
-`mod_mankind\_components\code\maths.dm`
+`modular_mankind\_components\code\maths.dm`
 
 Время для FOV
-`mod_mankind\_components\code\time.dm`
+`modular_mankind\_components\code\time.dm`
 
 ### Изменения *кор кода*
 
@@ -75,11 +75,11 @@ MANKIND_COMPONENTS
 
 ### Дефайны
 
-- `code/__DEFINES/~mod_mankind/prefixes.dm`
-- `code/__DEFINES/~mod_mankind/emote_panel.dm`
-- `code/__DEFINES/~mod_mankind/access.dm`
-- `code/__DEFINES/~mod_mankind/names.dm`
-- `code/__DEFINES/~mod_mankind/donate.dm`
+- `code/__DEFINES/~modular_mankind/prefixes.dm`
+- `code/__DEFINES/~modular_mankind/emote_panel.dm`
+- `code/__DEFINES/~modular_mankind/access.dm`
+- `code/__DEFINES/~modular_mankind/names.dm`
+- `code/__DEFINES/~modular_mankind/donate.dm`
 
 - `#define FACTION_SYNDICATE "Syndicate"`
 - `#define FACTION_SOLFED "SolGov"`
@@ -106,9 +106,9 @@ MANKIND_COMPONENTS
 
 ### Используемые файлы, не содержащиеся в модпаке
 
-- `mod_mankind/_storage_sounds/sound`
+- `modular_mankind/_storage_sounds/sound`
 
-- `mod_mankind/outpost_console/code/console.dm`
+- `modular_mankind/outpost_console/code/console.dm`
 <!--
   Будь то немодульный файл или модульный файл, который не содержится в папке,
   принадлежащей этому конкретному моду, он должен быть упомянут здесь.

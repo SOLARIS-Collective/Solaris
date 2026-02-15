@@ -60,7 +60,7 @@ ID мода: MANKIND_TURRETS
   И то же самое, если ты используешь дефайны, определённые другим модом.
 
   Не используешь - напиши "Отсутствуют"
-  Примеры: `code/__defines/~mod_mankind/turrets.dm`: `TURRETS_SPEED_MULTIPLIER`, `TURRETS_SPEED_BASE`
+  Примеры: `code/__defines/~modular_mankind/turrets.dm`: `TURRETS_SPEED_MULTIPLIER`, `TURRETS_SPEED_BASE`
 -->
 
 ### Используемые файлы, не содержащиеся в модпаке

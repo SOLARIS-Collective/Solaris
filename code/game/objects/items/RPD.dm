@@ -216,7 +216,7 @@ GLOBAL_LIST_INIT(transit_tube_recipes, list(
 	var/static/datum/pipe_info/first_disposal
 	var/static/datum/pipe_info/first_transit
 	var/mode = BUILD_MODE | DESTROY_MODE | WRENCH_MODE
-	var/bluespace = FALSE	// [CELADON-ADD] - OMNI_TOOLS
+	var/bluespace = FALSE	// [MANKIND-ADD] - OMNI_TOOLS
 
 /obj/item/pipe_dispenser/Initialize()
 	. = ..()
@@ -335,9 +335,9 @@ GLOBAL_LIST_INIT(transit_tube_recipes, list(
 		return
 	else if(!user.IsAdvancedToolUser() || istype(A, /turf/open/space/transit))
 		return ..()
-	return try_build_pipe(A, user) // [CELADON-ADD] - OMNI_TOOLS
+	return try_build_pipe(A, user) // [MANKIND-ADD] - OMNI_TOOLS
 
-// [CELADON-EDIT] - OMNI_TOOLS - Пиздец
+// [MANKIND-EDIT] - OMNI_TOOLS - Пиздец
 /obj/item/pipe_dispenser/proc/try_build_pipe(atom/A, mob/user)
 	//So that changing the menu settings doesn't affect the pipes already being built.
 	var/queued_p_type = recipe.id
@@ -475,7 +475,7 @@ GLOBAL_LIST_INIT(transit_tube_recipes, list(
 					return TRUE
 
 	return FALSE
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 
 /obj/item/pipe_dispenser/proc/activate()
 	playsound(get_turf(src), 'sound/items/deconstruct.ogg', 50, TRUE)

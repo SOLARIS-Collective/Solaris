@@ -332,11 +332,11 @@
 
 /obj/item/book/granter/spell/random/Initialize()
 	. = ..()
-// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
+// [MANKIND-EDIT] - MANKIND_RETURN_CONTENT_CLOWNS
 //	var/real_type = pick(subtypesof(/obj/item/book/granter/spell))	//
 	var/static/banned_spells = list(/obj/item/book/granter/spell/mimery_blockade, /obj/item/book/granter/spell/mimery_guns)
 	var/real_type = pick(subtypesof(/obj/item/book/granter/spell) - banned_spells)
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 	new real_type(loc)
 	return INITIALIZE_HINT_QDEL
 
@@ -451,10 +451,10 @@
 	crafting_recipe_types = list(
 		/datum/crafting_recipe/food/berrytart,
 		/datum/crafting_recipe/food/cocoalavatart,
-		// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+		// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 		/datum/crafting_recipe/food/mimetart,
 		// /datum/crafting_recipe/food/clowncake,
-		// [/CELADON-ADD]
+		// [/MANKIND-ADD]
 		/datum/crafting_recipe/food/vanillacake
 	)
 	icon_state = "cooking_learing_sweets"

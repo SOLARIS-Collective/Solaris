@@ -4,9 +4,9 @@
 	icon_state = "boozeomat"
 	icon_deny = "boozeomat-deny"
 	products = list( // All of drink dispenser reagents should be available here.
-		// [CELADON-ADD] - CELADON_FOOD_AND_DRINKS
+		// [MANKIND-ADD] - MANKIND_FOOD_AND_DRINKS
 		/obj/item/reagent_containers/food/drinks/soda_cans/synthanol = 10,
-		// [/CELADON-ADD]
+		// [/MANKIND-ADD]
     /obj/item/reagent_containers/food/drinks/drinkingglass = 30,
 		/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass = 12,
 		/obj/item/reagent_containers/food/drinks/modglass/small = 10,

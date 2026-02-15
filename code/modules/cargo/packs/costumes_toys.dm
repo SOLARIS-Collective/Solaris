@@ -1,5 +1,5 @@
-/* [CELADON-DELETE] - Убираем инициализацию офовских предметов.
-	Разносим ресурсы по разным фракциям: "mod_celadon\outpost_console\code\supply_pack"
+/* [MANKIND-REMOVE] - Убираем инициализацию офовских предметов.
+	Разносим ресурсы по разным фракциям: "modular_mankind\outpost_console\code\supply_pack"
 
 /datum/supply_pack/costumes_toys
 	category = "Costumes & Toys"
@@ -188,4 +188,4 @@
 					/obj/item/gun/energy/buster)
 	crate_name = "collectable merchandise crate"
 
-[/CELADON-DELETE] */
+[/MANKIND-REMOVE] */

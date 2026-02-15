@@ -72,10 +72,10 @@
 			else
 				users_in_range++
 
-	// [CELADON-EDIT] - CELADON_QOL - Делаем юзабельную доску для 1 игрока вместо 2
-	// if(users_in_range < 2)	// CELADON-EDIT - ORIGINAL
+	// [MANKIND-EDIT] - MANKIND_QOL - Делаем юзабельную доску для 1 игрока вместо 2
+	// if(users_in_range < 2)	// ORIGINAL
 	if(users_in_range < 1)
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 		to_chat(M, span_warning("There aren't enough people to use the [src.name]!"))
 		return FALSE
 

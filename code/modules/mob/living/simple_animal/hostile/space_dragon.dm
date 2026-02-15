@@ -75,9 +75,9 @@
 /mob/living/simple_animal/hostile/space_dragon/Initialize(mapload)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_SPACEWALK, INNATE_TRAIT)
-	// [CELADON-ADD] - CELADON_BALANCE
+	// [MANKIND-ADD] - MANKIND_BALANCE
 	ADD_TRAIT(src, TRAIT_HEALS_FROM_CARP_RIFTS, INNATE_TRAIT)
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 	if(small_sprite_type)
 		var/datum/action/small_sprite/small_action = new small_sprite_type()
 		small_action.Grant(src)
@@ -86,9 +86,9 @@
 	rift = new
 	rift.Grant(src)
 	become_hearing_sensitive(ROUNDSTART_TRAIT)
-	// [CELADON-ADD] - CELADON_BALANCE
+	// [MANKIND-ADD] - MANKIND_BALANCE
 	AddSpell(new /obj/effect/proc_holder/spell/targeted/night_vision(src))
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 
 /mob/living/simple_animal/hostile/space_dragon/Life(mapload)
 	. = ..()

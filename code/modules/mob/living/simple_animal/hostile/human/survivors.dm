@@ -31,12 +31,12 @@
 		new /obj/item/mob_trophy/shiny(loc)
 		visible_message("<span class='warning'>You notice a glimmering nugget of shiny metal.</span>")
 	*/
-	// [CELADON-ADD] - RETURN_CONTENT_CRUSHER_TROPHY
+	// [MANKIND-ADD] - RETURN_CONTENT_CRUSHER_TROPHY
 	if(prob(15))
 		new /obj/item/crusher_trophy/shiny(loc)
 		visible_message("<span class='warning'>You notice a glimmering nugget of shiny metal.</span>")
 	..()
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 
 /mob/living/simple_animal/hostile/human/hermit/survivor
 	name = "Hermit Wanderer"

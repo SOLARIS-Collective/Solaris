@@ -3,7 +3,7 @@
  */
 /client/proc/fax_panel()
 	set name = "Send Fax Message"
-	set category = "Admin.Fax" // [CELADON-EDIT] - CELADON_QOL - Очистка вкладки ООС, перенос части в Special Verbs
+	set category = "Admin.Fax" // [MANKIND-EDIT] - MANKIND_QOL - Очистка вкладки ООС, перенос части в Special Verbs
 
 	if(!check_rights(R_ADMIN))
 		return

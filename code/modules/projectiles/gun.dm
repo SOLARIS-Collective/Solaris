@@ -372,10 +372,10 @@
 /obj/item/gun/proc/do_wield(mob/user, instant)
 	user.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/gun, multiplicative_slowdown = wield_slowdown)
 	wield_time = world.time + wield_delay
-// [CELADON-ADD] - CELADON_FIXES
+// [MANKIND-ADD] - MANKIND_FIXES
 	if(azoom)
 		azoom.Grant(user)
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 	if(wield_time > 0 && !instant)
 		if(do_after(
 			user,
@@ -397,10 +397,10 @@
 	wielded = FALSE
 	wielded_fully = FALSE
 	zoom(user, forced_zoom = FALSE)
-// [CELADON-ADD] - CELADON_FIXES
+// [MANKIND-ADD] - MANKIND_FIXES
 	if(azoom)
 		azoom.Remove(user)
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 	user.remove_movespeed_modifier(/datum/movespeed_modifier/gun)
 	if(azoom)
 		azoom.Remove(user)
@@ -914,11 +914,11 @@
 	var/final_spread = 0
 	var/randomized_gun_spread = 0
 	var/randomized_bonus_spread = 0
-	// [CELADON-ADD] - BALLISTIC_SHIELD - Небольшое снижение разброса при использовании щита
+	// [MANKIND-ADD] - BALLISTIC_SHIELD - Небольшое снижение разброса при использовании щита
 	var/obj/item/shield/shield = user.get_inactive_held_item()
 	if(istype(shield) && spread_unwielded > 0)
 		bonus_spread += shield.spread_bonus
-	// [CELADON-ADD]
+	// [MANKIND-ADD]
 
 	final_spread += bonus_spread
 

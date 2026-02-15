@@ -1,6 +1,0 @@
-#ifndef MODPACK_CELADON_STORAGE_ICONS
-#define MODPACK_CELADON_STORAGE_ICONS
-
-#include "_storage_icons.dm"
-
-#endif

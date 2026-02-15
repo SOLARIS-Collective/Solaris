@@ -132,7 +132,7 @@ ID мода: MANKIND_RETURN_CONTENT_SPAWN, MANKIND_RETURN_LANDMINE, RETURN_CHASM
   - `BOSS_MEDAL_SWARMERS`
   - `BOSS_MEDAL_KINGGOAT`
   
-  - `code/__DEFINES/~mod_mankind/traits.dm`
+  - `code/__DEFINES/~modular_mankind/traits.dm`
 		`REVERSE_BEAR_TRAP_TRAIT`
 		`SHAMEBRERO_TRAIT`
 <!--
@@ -141,7 +141,7 @@ ID мода: MANKIND_RETURN_CONTENT_SPAWN, MANKIND_RETURN_LANDMINE, RETURN_CHASM
   И то же самое, если ты используешь дефайны, определённые другим модом.
 
   Не используешь - напиши "Отсутствуют"
-  Примеры: `code/__defines/~mod_mankind/return_content.dm`: `RETURN_CONTENT_SPEED_MULTIPLIER`, `RETURN_CONTENT_SPEED_BASE`
+  Примеры: `code/__defines/~modular_mankind/return_content.dm`: `RETURN_CONTENT_SPEED_MULTIPLIER`, `RETURN_CONTENT_SPEED_BASE`
 -->
 
 ### Используемые файлы, не содержащиеся в модпаке

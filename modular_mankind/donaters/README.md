@@ -20,7 +20,7 @@ ID мода: MANKIND_DONATERS
 
 ### Описание мода
 
-Донатная система Mankind
+Донатная система
 <!--
   Что он делает, что добавляет: что, куда, зачем и почему - всё здесь.
   А также любая полезная информация.
@@ -60,7 +60,7 @@ ID мода: MANKIND_DONATERS
   И то же самое, если ты используешь дефайны, определённые другим модом.
 
   Не используешь - напиши "Отсутствуют"
-  Примеры: `code/__defines/~mod_mankind/donaters.dm`: `DONATERS_SPEED_MULTIPLIER`, `DONATERS_SPEED_BASE`
+  Примеры: `code/__defines/~modular_mankind/donaters.dm`: `DONATERS_SPEED_MULTIPLIER`, `DONATERS_SPEED_BASE`
 -->
 
 ### Используемые файлы, не содержащиеся в модпаке

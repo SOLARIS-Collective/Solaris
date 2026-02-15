@@ -121,10 +121,10 @@
 	item_state = "skm_inteq"
 	manufacturer = MANUFACTURER_INTEQ
 
-// [CELADON-ADD] - Рескинов нету - невидимая СКМ
+// [MANKIND-ADD] - Рескинов нету - невидимая СКМ
 	unique_reskin = null
 	unique_reskin_changes_inhand = FALSE
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 /obj/item/gun/ballistic/automatic/assault/cm82
 	name = "\improper CM-16"

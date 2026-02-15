@@ -109,12 +109,10 @@ other types of metals and chemistry for reagents).
 	pixel_y = base_pixel_y + rand(-5, 5)
 	if(design_name)
 		name = jointext(list(disk_name, design_name), " - ")
-	// [CELADON-EDIT] - CELADON_FIXES - Инициализируем строго индексный массив слотов 1..max_blueprints без ассоциативных ключей
-	// ORIGINAL (commented):
+	// [MANKIND-EDIT] - MANKIND_FIXES - Инициализируем строго индексный массив слотов 1..max_blueprints без ассоциативных ключей. фиксированная длина + раскладка стартовых чертежей по индексам
 	// if(length(starting_blueprints))
 	// 	for(var/design in starting_blueprints)
-	// 		blueprints += new design()
-	// CELADON: фиксированная длина + раскладка стартовых чертежей по индексам
+	// 		blueprints += new design()	// ORIGINAL
 	var/list/fixed_blueprints = list()
 	fixed_blueprints.len = max_blueprints
 	var/idx = 1
@@ -125,7 +123,7 @@ other types of metals and chemistry for reagents).
 			fixed_blueprints[idx] = new path()
 			idx++
 	blueprints = fixed_blueprints
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 
 /obj/item/disk/design_disk/adv
 	name = "Advanced Component Design Disk"

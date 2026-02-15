@@ -23,12 +23,12 @@
 		if(FOOTSTEP_MOB_HUMAN)
 			if(!ishuman(parent))
 				return COMPONENT_INCOMPATIBLE
-			//[CELADON-ADD] - CELADON_LANIUS
+			// [MANKIND-ADD] - MANKIND_LANIUS
 			if(islanius(parent))
 				footstep_sounds = GLOB.heavyfootstep
 				//RegisterSignal(parent, list(COMSIG_MOVABLE_MOVED), PROC_REF(play_simplestep))
 				//return
-			//[/CELADON-ADD]
+			// [/MANKIND-ADD]
 			RegisterSignal(parent, COMSIG_MOVABLE_MOVED, PROC_REF(play_humanstep))
 			return
 		if(FOOTSTEP_MOB_CLAW)
@@ -123,10 +123,10 @@
 			GLOB.footstep[T.footstep][3] + e_range, falloff_distance = 1)
 	else
 		if(H.dna.species.special_step_sounds)
-			//[CELADON - EDIT] - CELADON_LANIUS
-			//playsound(T, pick(H.dna.species.special_step_sounds), 50, TRUE, falloff_distance = 1) //[CELADON - EDIT] - ORIGINAL
+			// [MANKIND-EDIT] - MANKIND_LANIUS
+			//playsound(T, pick(H.dna.species.special_step_sounds), 50, TRUE, falloff_distance = 1) // ORIGINAL
 			playsound(T, pick(H.dna.species.special_step_sounds), 10, TRUE, falloff_distance = 1)
-			//[/CELADON - EDIT]
+			// [/MANKIND-EDIT]
 		else
 			playsound(T, pick(GLOB.barefootstep[T.barefootstep][1]),
 				GLOB.barefootstep[T.barefootstep][2] * volume,

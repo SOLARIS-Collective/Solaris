@@ -396,10 +396,10 @@
 	..()
 
 /obj/machinery/bot_core/floorbot
-// [CELADON-EDIT] - QoL
+// [MANKIND-EDIT] - QoL
 //	req_one_access = list(ACCESS_CONSTRUCTION, ACCESS_ROBOTICS)
 	req_one_access = 0
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 /mob/living/simple_animal/bot/floorbot/UnarmedAttack(atom/A)
 	if(isturf(A))
 		repair(A)

@@ -39,10 +39,10 @@
 
 	for(var/X in internal_organs)
 		var/obj/item/organ/O = X
-		// [CELADON - EDIT] - LANIUS
-		//if(zone == O.zone) - CELADON EDIT - ORIGINAL
+		// [MANKIND-EDIT] - LANIUS
+		//if(zone == O.zone) // ORIGINAL
 		if((zone == O.zone) && (O.useable))
-		// [/CELADON - EDIT] - LANIUS
+		// [/MANKIND-EDIT] - LANIUS
 			returnorg += O
 	return returnorg
 

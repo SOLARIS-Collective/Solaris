@@ -9,7 +9,7 @@
 		current_client.parallax_layers_cached = list()
 		current_client.parallax_layers_cached += new /atom/movable/screen/parallax_layer/layer_1(null, current_client.view)
 		current_client.parallax_layers_cached += new /atom/movable/screen/parallax_layer/layer_2(null, current_client.view)
-		current_client.parallax_layers_cached += new /atom/movable/screen/parallax_layer/layer_3(null, current_client.view)	// [CELADON-EDIT] - PARALLAX-FIX-ASTEROID
+		current_client.parallax_layers_cached += new /atom/movable/screen/parallax_layer/layer_3(null, current_client.view)	// [MANKIND-EDIT] - PARALLAX-FIX-ASTEROID
 		current_client.parallax_layers_cached += new /atom/movable/screen/parallax_layer/planet(null, current_client.view)
 		if(SSparallax.random_layer)
 			current_client.parallax_layers_cached += new SSparallax.random_layer
@@ -244,7 +244,7 @@
 
 /atom/movable/screen/parallax_layer
 	//icon = 'icons/effects/parallax.dmi'
-	icon = 'mod_celadon/_storage_icons/icons/assets/parallax.dmi'	// [CELADON-EDIT]
+	icon = 'modular_mankind/_storage_icons/icons/assets/parallax.dmi'	// [MANKIND-EDIT]
 	var/speed = 1
 	var/offset_x = 0
 	var/offset_y = 0
@@ -319,7 +319,7 @@
 /atom/movable/screen/parallax_layer/planet/update_o()
 	icon_state = "planet"
 
-// [CELADON-ADD] - CELADON_PARALLAX
+// [MANKIND-ADD] - MANKIND_PARALLAX
 // MARK:Random
 /atom/movable/screen/parallax_layer/layer_1/Initialize(mapload)
 	. = ..()
@@ -332,7 +332,7 @@
 /atom/movable/screen/parallax_layer/layer_3/Initialize(mapload)
 	. = ..()
 	icon_state = "layer3_[rand(1, 2)]"
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 //Gas Giant parallaxes
 
 /atom/movable/screen/parallax_layer/gas_giant

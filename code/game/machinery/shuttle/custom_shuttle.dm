@@ -4,10 +4,10 @@
 	density = TRUE
 	atom_integrity = 250
 	max_integrity = 250
-	// [CELADON-EDIT] - CELADON_BALANCE
-	// icon = 'icons/obj/shuttle.dmi' // CELADON-EDIT - ORIGINAL
-	icon = 'mod_celadon/_storage_icons/icons/structures/shuttle.dmi'
-	// [/CELADON-EDIT]
+	// [MANKIND-EDIT] - MANKIND_BALANCE
+	// icon = 'icons/obj/shuttle.dmi' // ORIGINAL
+	icon = 'modular_mankind/_storage_icons/icons/structures/shuttle.dmi'
+	// [/MANKIND-EDIT]
 	icon_state = "burst_plasma"
 	circuit = /obj/item/circuitboard/machine/shuttle/engine
 	var/icon_state_closed = "burst_plasma"

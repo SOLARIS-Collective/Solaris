@@ -52,9 +52,9 @@
 
 		handle_gravity()
 
-		// [CELADON-ADD] - CELADON_FIXES
+		// [MANKIND-ADD] - MANKIND_FIXES
 		magboots_handle_gravity()
-		// [/CELADON-ADD]
+		// [/MANKIND-ADD]
 
 		if(stat != DEAD)
 			handle_traits() // eye, ear, brain damages

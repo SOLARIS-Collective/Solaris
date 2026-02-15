@@ -1,7 +1,7 @@
 
 #### Список PRов
 
-- https://github.com/MANKIND-Collective/Pentest/pull/1020
+- https://github.com/CeladonSS13/Shiptest/pull/1020
 
 ## Фикс крови у Эльзуосов
 

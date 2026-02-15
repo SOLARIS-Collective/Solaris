@@ -48,10 +48,10 @@
 	user.update_inv_head()	//so our mob-overlays update
 
 	set_light_on(on)
-	// [CELADON-ADD] - FIXES_DEBUG_SUIT - фиксим фонарик переключение фонарика
+	// [MANKIND-ADD] - FIXES_DEBUG_SUIT - фиксим фонарик переключение фонарика
 	to_chat(user, span_notice("You turn [on ? "on" : "off"] [src]'s flashlight."))
 	playsound(src, on ? 'sound/weapons/magin.ogg' : 'sound/weapons/magout.ogg', 40, TRUE)
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 
 	for(var/X in actions)
 		var/datum/action/A = X
@@ -220,10 +220,10 @@
 	item_state = "eng_hardsuit"
 	siemens_coefficient = 0
 	armor = list("melee" = 30, "bullet" = 5, "laser" = 10, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 75, "fire" = 100, "acid" = 75, "wound" = 20)
-	// [CELADON-EDIT] - TAJARA, CELADON_RIOL
-	// supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION // CELADON-EDIT - ORIGINAL
+	// [MANKIND-EDIT] - TAJARA, MANKIND_RIOL
+	// supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION // ORIGINAL
 	supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION | TAJARA_VARIATION | RIOL_VARIATION
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/engine
 	resistance_flags = FIRE_PROOF
 
@@ -297,10 +297,10 @@
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/mining
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	custom_price = 2000
-	// [CELADON-EDIT] - TAJARA, CELADON_RIOL
-	// supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION // CELADON-EDIT - ORIGINAL
+	// [MANKIND-EDIT] - TAJARA, MANKIND_RIOL
+	// supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION // ORIGINAL
 	supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION | TAJARA_VARIATION | RIOL_VARIATION
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 
 	//Heavy Mining Hardsuit, bought from Cargo.
 /obj/item/clothing/suit/space/hardsuit/mining/heavy
@@ -336,7 +336,7 @@
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/mining/heavy/ns
 	hardsuit_type = "nsmining"
 	resistance_flags = FIRE_PROOF | ACID_PROOF
-	armor = list("melee" = 65, "bullet" = 30, "laser" = 25, "energy" = 30, "bomb" = 70, "bio" = 100, "rad" = 85, "fire" = 100, "acid" = 100, "wound" = 30) // [CELADON-EDIT] - CELADON_BALANCE - добавил защиту от ваундов
+	armor = list("melee" = 65, "bullet" = 30, "laser" = 25, "energy" = 30, "bomb" = 70, "bio" = 100, "rad" = 85, "fire" = 100, "acid" = 100, "wound" = 30) // [MANKIND-EDIT] - MANKIND_BALANCE - добавил защиту от ваундов
 	supports_variations = KEPORI_VARIATION
 
 /obj/item/clothing/head/helmet/space/hardsuit/mining/heavy/ns
@@ -346,7 +346,7 @@
 	item_state = "hardsuit0-nsmining"
 	hardsuit_type = "nsmining"
 	resistance_flags = FIRE_PROOF | ACID_PROOF
-	armor = list("melee" = 65, "bullet" = 30, "laser" = 25, "energy" = 30, "bomb" = 70, "bio" = 100, "rad" = 85, "fire" = 100, "acid" = 100, "wound" = 30) // [CELADON-EDIT] - CELADON_BALANCE - добавил защиту от ваундов
+	armor = list("melee" = 65, "bullet" = 30, "laser" = 25, "energy" = 30, "bomb" = 70, "bio" = 100, "rad" = 85, "fire" = 100, "acid" = 100, "wound" = 30) // [MANKIND-EDIT] - MANKIND_BALANCE - добавил защиту от ваундов
 	supports_variations = KEPORI_VARIATION
 
 	//Syndicate hardsuit
@@ -381,10 +381,10 @@
 /obj/item/clothing/head/helmet/space/hardsuit/syndi/attack_self(mob/user)
 	on = !on
 	set_light_on(on)
-	// [CELADON-ADD] - FIXES_DEBUG_SUIT - фиксим фонарик переключение фонарика
+	// [MANKIND-ADD] - FIXES_DEBUG_SUIT - фиксим фонарик переключение фонарика
 	to_chat(user, span_notice("You turn [on ? "on" : "off"] [src]'s flashlight."))
 	playsound(src, on ? 'sound/weapons/magin.ogg' : 'sound/weapons/magout.ogg', 40, TRUE)
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 
 /obj/item/clothing/head/helmet/space/hardsuit/syndi/proc/toggle_mode(mob/user) //Toggle Helmet
 	if(!isturf(user.loc))
@@ -430,16 +430,16 @@
 			linkedsuit.name = initial(linkedsuit.name)
 			linkedsuit.desc = initial(linkedsuit.desc)
 			linkedsuit.clothing_flags |= STOPSPRESSUREDAMAGE
-			// [CELADON - ADD] - BALANCE
+			// [MANKIND-ADD] - BALANCE
 			linkedsuit.slowdown = 0.7
-			// [CELADON - ADD]
+			// [MANKIND-ADD]
 			linkedsuit.cold_protection |= CHEST | GROIN | LEGS | FEET | ARMS | HANDS
 		else
 			linkedsuit.name += " (travel)"
 			linkedsuit.desc = linkedsuit.alt_desc
-			// [CELADON - ADD] - BALANCE
+			// [MANKIND-ADD] - BALANCE
 			linkedsuit.slowdown = linkedsuit.combat_slowdown
-			// [CELADON - ADD]
+			// [MANKIND-ADD]
 			linkedsuit.clothing_flags &= ~STOPSPRESSUREDAMAGE
 			linkedsuit.cold_protection &= ~(CHEST | GROIN | LEGS | FEET | ARMS | HANDS)
 			if(linkedsuit.lightweight)
@@ -463,12 +463,12 @@
 	allowed = list(/obj/item/gun, /obj/item/ammo_box,/obj/item/ammo_casing, /obj/item/melee/baton, /obj/item/melee/energy/sword/saber, /obj/item/restraints/handcuffs, /obj/item/tank/internals)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/syndi
 	jetpack = /obj/item/tank/jetpack/suit
-	// [CELADON-EDIT] - TAJARA, CELADON_RIOL, BALANCE
-	// supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION // CELADON-EDIT - ORIGINAL
-	// var/combat_slowdown = 0 //slowdown when in combat mode // [CELADON - EDIT] - ORIGINAL
+	// [MANKIND-EDIT] - TAJARA, MANKIND_RIOL, BALANCE
+	// supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION // ORIGINAL
+	// var/combat_slowdown = 0 //slowdown when in combat mode // [MANKIND-EDIT] - ORIGINAL
 	supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION | TAJARA_VARIATION | RIOL_VARIATION
 	var/combat_slowdown = 0.2
-	// [/CELADON - EDIT]
+	// [/MANKIND-EDIT]
 	slowdown = 0.5
 	var/lightweight = 0 //used for flags when toggling
 
@@ -507,7 +507,7 @@
 	hardsuit_type = "ramzielite"
 	icon_state = "hardsuit1-ramzielite"
 	item_state = "hardsuit1-ramzielite"
-	armor = list("melee" = 50, "bullet" = 60, "laser" = 30, "energy" = 40, "bomb" = 35, "bio" = 100, "rad" = 60, "fire" = 100, "acid" = 80, "wound" = 50) // [CELADON-EDIT] - CELADON_BALANCE
+	armor = list("melee" = 50, "bullet" = 60, "laser" = 30, "energy" = 40, "bomb" = 35, "bio" = 100, "rad" = 60, "fire" = 100, "acid" = 80, "wound" = 50) // [MANKIND-EDIT] - MANKIND_BALANCE
 
 /obj/item/clothing/suit/space/hardsuit/syndi/ramzi/elite
 	name = "elite rust-red hardsuit"
@@ -517,7 +517,7 @@
 	item_state = "hardsuit1-ramzielite"
 	hardsuit_type = "ramzielite"
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/syndi/ramzi/elite
-	armor = list("melee" = 50, "bullet" = 60, "laser" = 30, "energy" = 40, "bomb" = 35, "bio" = 100, "rad" = 60, "fire" = 100, "acid" = 80, "wound" = 50) // [CELADON-EDIT] - CELADON_BALANCE
+	armor = list("melee" = 50, "bullet" = 60, "laser" = 30, "energy" = 40, "bomb" = 35, "bio" = 100, "rad" = 60, "fire" = 100, "acid" = 80, "wound" = 50) // [MANKIND-EDIT] - MANKIND_BALANCE
 	slowdown = 1.25
 //Mayor's Suit
 
@@ -574,10 +574,10 @@
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	resistance_flags = FIRE_PROOF | ACID_PROOF
-	// [CELADON-EDIT] - TAJARA, CELADON_RIOL
-	// supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION // CELADON-EDIT - ORIGINAL
+	// [MANKIND-EDIT] - TAJARA, MANKIND_RIOL
+	// supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION // ORIGINAL
 	supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION | TAJARA_VARIATION | RIOL_VARIATION
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 
 /obj/item/clothing/suit/space/hardsuit/syndi/elite/debug
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite/debug
@@ -592,10 +592,10 @@
 	hardsuit_type = "cybersun"
 	armor = list("melee" = 25, "bullet" = 25, "laser" = 50, "energy" = 50, "bomb" = 25, "bio" = 100, "rad" = 60, "fire" = 60, "acid" = 60, "wound" = 30)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/syndi/cybersun
-	// [CELADON-EDIT] - TAJARA, CELADON_RIOL
-	// supports_variations = VOX_VARIATION // CELADON-EDIT - ORIGINAL
+	// [MANKIND-EDIT] - TAJARA, MANKIND_RIOL
+	// supports_variations = VOX_VARIATION // ORIGINAL
 	supports_variations = VOX_VARIATION | KEPORI_VARIATION | TAJARA_VARIATION | RIOL_VARIATION
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 
 /obj/item/clothing/head/helmet/space/hardsuit/syndi/cybersun
 	name = "neutron-star combat hardsuit helmet"
@@ -614,10 +614,10 @@
 	hardsuit_type = "cyberparamed"
 	armor = list("melee" = 25, "bullet" = 25, "laser" = 35, "energy" = 40, "bomb" = 10, "bio" = 100, "rad" = 65, "fire" = 75, "acid" = 40, "wound" = 20)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/syndi/cybersun/paramed
-	// [CELADON-EDIT] - TAJARA, CELADON_RIOL
-	// supports_variations = VOX_VARIATION // CELADON-EDIT - ORIGINAL
+	// [MANKIND-EDIT] - TAJARA, MANKIND_RIOL
+	// supports_variations = VOX_VARIATION // ORIGINAL
 	supports_variations = VOX_VARIATION | TAJARA_VARIATION | RIOL_VARIATION
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 	jetpack = null
 
 /obj/item/clothing/head/helmet/space/hardsuit/syndi/cybersun/paramed
@@ -648,10 +648,10 @@
 	armor = list("melee" = 30, "bullet" = 5, "laser" = 10, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 60, "fire" = 60, "acid" = 75, "wound" = 20)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/medical
 	slowdown = 0.3
-	// [CELADON-EDIT] - TAJARA, CELADON_RIOL
-	// supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION // CELADON-EDIT - ORIGINAL
+	// [MANKIND-EDIT] - TAJARA, MANKIND_RIOL
+	// supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION // ORIGINAL
 	supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION | TAJARA_VARIATION | RIOL_VARIATION
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 
 /obj/item/clothing/head/helmet/space/hardsuit/medical/cmo
 	name = "chief medical officer's hardsuit helmet"
@@ -715,10 +715,10 @@
 	slowdown = 1
 	armor = list("melee" = 30, "bullet" = 40, "laser" = 10, "energy" = 20, "bomb" = 100, "bio" = 100, "rad" = 60, "fire" = 60, "acid" = 80, "wound" = 40)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/bomb
-	// [CELADON-EDIT] - TAJARA, CELADON_RIOL
-	// supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION // CELADON-EDIT - ORIGINAL
+	// [MANKIND-EDIT] - TAJARA, MANKIND_RIOL
+	// supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION // ORIGINAL
 	supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION | TAJARA_VARIATION | RIOL_VARIATION
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 
 /obj/item/clothing/suit/space/hardsuit/bomb/Initialize()
 	. = ..()
@@ -732,10 +732,10 @@
 	item_state = "sec_helm"
 	hardsuit_type = "sec"
 	armor = list("melee" = 35, "bullet" = 30, "laser" = 30, "energy" = 40, "bomb" = 10, "bio" = 100, "rad" = 50, "fire" = 75, "acid" = 75, "wound" = 20)
-	// [CELADON-EDIT] - CELADON_VOX - WTF у них же есть даже в атласе спрайт...
+	// [MANKIND-EDIT] - MANKIND_VOX - WTF у них же есть даже в атласе спрайт...
 	//supports_variations = SNOUTED_VARIATION
 	supports_variations = SNOUTED_VARIATION | VOX_VARIATION
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 
 /obj/item/clothing/suit/space/hardsuit/security
 	icon_state = "hardsuit-sec"
@@ -745,10 +745,10 @@
 	armor = list("melee" = 35, "bullet" = 30, "laser" = 30, "energy" = 40, "bomb" = 10, "bio" = 100, "rad" = 50, "fire" = 75, "acid" = 75, "wound" = 20)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/security
 	slowdown = 0.5
-	// [CELADON-EDIT] - TAJARA, CELADON_RIOL
-	// supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION // CELADON-EDIT - ORIGINAL
+	// [MANKIND-EDIT] - TAJARA, MANKIND_RIOL
+	// supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION // ORIGINAL
 	supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION | TAJARA_VARIATION | RIOL_VARIATION
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 
 /obj/item/clothing/suit/space/hardsuit/security/Initialize()
 	. = ..()
@@ -770,10 +770,10 @@
 	armor = list("melee" = 50, "bullet" = 45, "laser" = 40, "energy" = 40, "bomb" = 25, "bio" = 100, "rad" = 50, "fire" = 95, "acid" = 95, "wound" = 30)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/security/hos
 	jetpack = /obj/item/tank/jetpack/suit
-	// [CELADON-EDIT] - TAJARA, CELADON_RIOL
-	// supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION // CELADON-EDIT - ORIGINAL
+	// [MANKIND-EDIT] - TAJARA, MANKIND_RIOL
+	// supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION // ORIGINAL
 	supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION | TAJARA_VARIATION | RIOL_VARIATION
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 	slowdown = 0.7
 
 	//SWAT MKII
@@ -782,7 +782,7 @@
 	icon_state = "swat2helm"
 	item_state = "swat2helm"
 	desc = "A tactical SWAT helmet MK.II."
-	armor = list("melee" = 40, "bullet" = 50, "laser" = 50, "energy" = 60, "bomb" = 50, "bio" = 100, "rad" = 50, "fire" = 100, "acid" = 100, "wound" = 40)  // [CELADON-EDIT] - CELADON_BALANCE
+	armor = list("melee" = 40, "bullet" = 50, "laser" = 50, "energy" = 60, "bomb" = 50, "bio" = 100, "rad" = 50, "fire" = 100, "acid" = 100, "wound" = 40)  // [MANKIND-EDIT] - MANKIND_BALANCE
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR //we want to see the mask //this makes the hardsuit not fireproof you genius
 	heat_protection = HEAD
@@ -796,7 +796,7 @@
 	desc = "A MK.II SWAT suit with streamlined joints and armor made out of superior materials, insulated against intense heat if worn with the complementary gas mask. The most advanced tactical armor available."
 	icon_state = "swat2"
 	item_state = "swat2"
-	armor = list("melee" = 40, "bullet" = 50, "laser" = 50, "energy" = 60, "bomb" = 50, "bio" = 100, "rad" = 50, "fire" = 100, "acid" = 100, "wound" = 40)  // [CELADON-EDIT] - CELADON_BALANCE
+	armor = list("melee" = 40, "bullet" = 50, "laser" = 50, "energy" = 60, "bomb" = 50, "bio" = 100, "rad" = 50, "fire" = 100, "acid" = 100, "wound" = 40)  // [MANKIND-EDIT] - MANKIND_BALANCE
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT //this needed to be added a long fucking time ago
@@ -1004,7 +1004,7 @@
 	icon_state = "hardsuit1-syndi"
 	item_state = "syndie_hardsuit"
 	hardsuit_type = "syndi"
-	armor = list("melee" = 40, "bullet" = 50, "laser" = 30, "energy" = 40, "bomb" = 35, "bio" = 100, "rad" = 50, "fire" = 100, "acid" = 100, "wound" = 30) // [CELADON-EDIT] - CELADON_BALANCE
+	armor = list("melee" = 40, "bullet" = 50, "laser" = 30, "energy" = 40, "bomb" = 35, "bio" = 100, "rad" = 50, "fire" = 100, "acid" = 100, "wound" = 30) // [MANKIND-EDIT] - MANKIND_BALANCE
 	allowed = list(/obj/item/gun, /obj/item/ammo_box, /obj/item/ammo_casing, /obj/item/melee/baton, /obj/item/melee/energy/sword/saber, /obj/item/restraints/handcuffs, /obj/item/tank/internals)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/shielded/syndi
 	slowdown = 0.5
@@ -1035,7 +1035,7 @@
 	icon_state = "hardsuit1-syndi"
 	item_state = "syndie_helm"
 	hardsuit_type = "syndi"
-	armor = list("melee" = 40, "bullet" = 50, "laser" = 30, "energy" = 40, "bomb" = 35, "bio" = 100, "rad" = 50, "fire" = 100, "acid" = 100, "wound" = 30) // [CELADON-EDIT] - CELADON_BALANCE
+	armor = list("melee" = 40, "bullet" = 50, "laser" = 30, "energy" = 40, "bomb" = 35, "bio" = 100, "rad" = 50, "fire" = 100, "acid" = 100, "wound" = 30) // [MANKIND-EDIT] - MANKIND_BALANCE
 
 ///SWAT version
 /obj/item/clothing/suit/space/hardsuit/shielded/swat
@@ -1047,7 +1047,7 @@
 	max_charges = 4
 	current_charges = 4
 	recharge_delay = 15
-	armor = list("melee" = 80, "bullet" = 80, "laser" = 50, "energy" = 60, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100, "wound" = 60) // [CELADON-EDIT] - CELADON_BALANCE // armor = list("melee" = 80, "bullet" = 80, "laser" = 50, "energy" = 60, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
+	armor = list("melee" = 80, "bullet" = 80, "laser" = 50, "energy" = 60, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100, "wound" = 60) // [MANKIND-EDIT] - MANKIND_BALANCE // armor = list("melee" = 80, "bullet" = 80, "laser" = 50, "energy" = 60, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
 	strip_delay = 130
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/shielded/swat
@@ -1059,7 +1059,7 @@
 	icon_state = "deathsquad"
 	item_state = "deathsquad"
 	hardsuit_type = "syndi"
-	armor = list("melee" = 80, "bullet" = 80, "laser" = 50, "energy" = 60, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100, "wound" = 60)  // [CELADON-EDIT] - CELADON_BALANCE // armor = list("melee" = 80, "bullet" = 80, "laser" = 50, "energy" = 60, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
+	armor = list("melee" = 80, "bullet" = 80, "laser" = 50, "energy" = 60, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100, "wound" = 60)  // [MANKIND-EDIT] - MANKIND_BALANCE // armor = list("melee" = 80, "bullet" = 80, "laser" = 50, "energy" = 60, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
 	strip_delay = 130
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	actions_types = list()
@@ -1101,17 +1101,17 @@
 	return ..()
 
 /obj/item/clothing/head/helmet/space/light/proc/turn_on(mob/user)
-// [CELADON-ADD] - FIXES_DEBUG_SUIT - фиксим фонарик переключение фонарика
+// [MANKIND-ADD] - FIXES_DEBUG_SUIT - фиксим фонарик переключение фонарика
 	to_chat(user, span_notice("You turn on [src]'s flashlight."))
 	playsound(src, 'sound/weapons/magin.ogg', 40, TRUE)
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 	set_light_on(TRUE)
 
 /obj/item/clothing/head/helmet/space/light/proc/turn_off(mob/user)
-// [/CELADON-ADD] - FIXES_DEBUG_SUIT - фиксим фонарик переключение фонарика
+// [/MANKIND-ADD] - FIXES_DEBUG_SUIT - фиксим фонарик переключение фонарика
 	to_chat(user, span_notice("You turn off [src]'s flashlight."))
 	playsound(src, 'sound/weapons/magout.ogg', 40, TRUE)
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 	set_light_on(FALSE)
 
 ////Independents
@@ -1124,10 +1124,10 @@
 	item_state = "independent_sec_helm"
 	hardsuit_type = "independent-sec"
 	armor = list("melee" = 35, "bullet" = 25, "laser" = 20,"energy" = 40, "bomb" = 10, "bio" = 100, "rad" = 50, "fire" = 75, "acid" = 75, "wound" = 20)
-	// [CELADON-EDIT] - TAJARA, CELADON_RIOL
-	// supports_variations = VOX_VARIATION | SNOUTED_VARIATION // CELADON-EDIT - ORIGINAL
+	// [MANKIND-EDIT] - TAJARA, MANKIND_RIOL
+	// supports_variations = VOX_VARIATION | SNOUTED_VARIATION // ORIGINAL
 	supports_variations = VOX_VARIATION | SNOUTED_VARIATION | TAJARA_VARIATION | RIOL_VARIATION
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 
 /obj/item/clothing/suit/space/hardsuit/security/independent
 	icon_state = "hardsuit-independent-sec"
@@ -1138,10 +1138,10 @@
 	hardsuit_type = "independent-sec"
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/security/independent
 	armor = list("melee" = 35, "bullet" = 25, "laser" = 20, "energy" = 40, "bomb" = 10, "bio" = 100, "rad" = 50, "fire" = 75, "acid" = 75, "wound" = 20)
-	// [CELADON-EDIT] - TAJARA, CELADON_RIOL
-	// supports_variations = VOX_VARIATION | DIGITIGRADE_VARIATION // CELADON-EDIT - ORIGINAL
+	// [MANKIND-EDIT] - TAJARA, MANKIND_RIOL
+	// supports_variations = VOX_VARIATION | DIGITIGRADE_VARIATION // ORIGINAL
 	supports_variations = VOX_VARIATION | DIGITIGRADE_VARIATION | TAJARA_VARIATION | RIOL_VARIATION
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 
 //Mining
 /obj/item/clothing/head/helmet/space/hardsuit/mining/independent

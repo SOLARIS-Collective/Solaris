@@ -40,9 +40,9 @@
 
 /obj/structure/lavaland/ash_walker/deconstruct(disassembled)
 	new /obj/item/assembly/signaler/anomaly (get_step(loc, pick(GLOB.alldirs)))
-	// [CELADON-ADD] - RETURN_CONTENT
+	// [MANKIND-ADD] - RETURN_CONTENT
 	new	/obj/effect/collapse(loc)
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 	return ..()
 
 /obj/structure/lavaland/ash_walker/process(seconds_per_tick)

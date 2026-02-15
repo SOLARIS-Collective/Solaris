@@ -1,5 +1,5 @@
-#ifndef MODPACK_MANKIND_LOBBY_MANKIND
-#define MODPACK_MANKIND_LOBBY_MANKIND
+#ifndef MODPACK_LOBBY_MANKIND
+#define MODPACK_LOBBY_MANKIND
 
 #include "_lobby_mankind.dm"
 

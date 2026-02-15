@@ -74,9 +74,9 @@ GLOBAL_LIST_INIT(plasteel_recipes, list ( \
 		new/datum/stack_recipe("nanoweave (orange)", /obj/item/stack/tile/carpet/nanoweave/orange, 1, 4, 20), \
 	)), \
 	new/datum/stack_recipe("shutters frame", /obj/structure/poddoor_assembly/shutters, 5, time = 50, one_per_turf = 1, on_floor = 1), \
-	// [CELADON-ADD] - CELADON_STRUCTURES - Барикады
+	// [MANKIND-ADD] - MANKIND_STRUCTURES - Барикады
 	new/datum/stack_recipe("plasteel barricade", /obj/structure/deployable_barricade/metal/plasteel, 10, time = 10 SECONDS, one_per_turf = TRUE, on_floor = TRUE), \
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 	new/datum/stack_recipe("blast door frame", /obj/structure/poddoor_assembly, 15, time = 50, one_per_turf = 1, on_floor = 1)
 ))
 
@@ -117,7 +117,7 @@ GLOBAL_LIST_INIT(plasteel_recipes, list ( \
 GLOBAL_LIST_INIT(wood_recipes, list ( \
 	new/datum/stack_recipe("wooden sandals", /obj/item/clothing/shoes/sandal, 1), \
 	new/datum/stack_recipe("wood floor tile", /obj/item/stack/tile/wood, 1, 4, 20), \
-	// [CELADON-ADD] - CRAFTING_RECIPE_SUNS
+	// [MANKIND-ADD] - CRAFTING_RECIPE_SUNS
 	null, \
 	new/datum/stack_recipe_list("SUNS wood tiles", list( \
 		new/datum/stack_recipe("hatched wood tile", /obj/item/stack/tile/suns/hatch, 2), \
@@ -131,7 +131,7 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 		new/datum/stack_recipe("diagonal wood tile", /obj/item/stack/tile/suns/diagonal, 2), \
 		)), \
 	null, \
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 	new/datum/stack_recipe("wood table frame", /obj/structure/table_frame/wood, 2, time = 10), \
 	new/datum/stack_recipe("rifle stock", /obj/item/weaponcrafting/stock, 10, time = 40), \
 	new/datum/stack_recipe("rolling pin", /obj/item/kitchen/rollingpin, 2, time = 30), \
@@ -142,10 +142,10 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	new/datum/stack_recipe("coffin", /obj/structure/closet/crate/coffin, 5, time = 15, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("book case", /obj/structure/bookcase, 4, time = 15, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("drying rack", /obj/machinery/smartfridge/drying_rack, 10, time = 15, one_per_turf = TRUE, on_floor = TRUE), \
-	// [CELADON-EDIT] - CELADON_SAUNA - Замена сауны на нашу, крутую версию
+	// [MANKIND-EDIT] - MANKIND_SAUNA - Замена сауны на нашу, крутую версию
 	// new/datum/stack_recipe("sauna oven", /obj/structure/sauna_oven, 15, time = 15, one_per_turf = TRUE, on_floor = TRUE), \ \\ ORIGINAL
 	new/datum/stack_recipe("sauna oven steam", /obj/structure/sauna_oven_steam, 15, time = 15, one_per_turf = TRUE, on_floor = TRUE), \
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 	new/datum/stack_recipe("wooden barrel", /obj/structure/fermenting_barrel, 8, time = 50, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("dog bed", /obj/structure/bed/dogbed, 10, time = 10, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("dresser", /obj/structure/dresser, 10, time = 15, one_per_turf = TRUE, on_floor = TRUE), \
@@ -178,9 +178,9 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	new/datum/stack_recipe("wooden railing corner", /obj/structure/railing/corner/wood, 1, time = 10, window_checks = TRUE), \
 	new /datum/stack_recipe("wooden computer frame", /obj/structure/frame/computer/solgov, 5, time = 25, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("planter box", /obj/machinery/hydroponics/wooden, 5, time = 8 SECONDS, one_per_turf = TRUE, on_floor = TRUE), \
-	// [CELADON-ADD] - CELADON_STRUCTURES - Барикады
+	// [MANKIND-ADD] - MANKIND_STRUCTURES - Барикады
 	new/datum/stack_recipe("Wooden Half-Barricade", /obj/structure/deployable_barricade/wooden, 10, time = 5 SECONDS, one_per_turf = TRUE, on_floor = TRUE), \
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 	))
 
 /obj/item/stack/sheet/mineral/wood
@@ -288,11 +288,11 @@ GLOBAL_LIST_INIT(cloth_recipes, list ( \
 	new/datum/stack_recipe("23x19 canvas", /obj/item/canvas/twentythreeXnineteen, 4), \
 	new/datum/stack_recipe("23x23 canvas", /obj/item/canvas/twentythreeXtwentythree, 5), \
 	new/datum/stack_recipe("punching bag", /obj/structure/punching_bag, 5, time = 25, one_per_turf = TRUE, on_floor = TRUE), \
-	// [CELADON-ADD] - CELADON_QOL - добавляем рецепты обмоток лап
+	// [MANKIND-ADD] - MANKIND_QOL - добавляем рецепты обмоток лап
 	new/datum/stack_recipe("footwraps white", /obj/item/clothing/shoes/footwraps, 2), \
 	new/datum/stack_recipe("footwraps black", /obj/item/clothing/shoes/footwraps/black, 2), \
 	new/datum/stack_recipe("footwraps brown", /obj/item/clothing/shoes/footwraps/brown, 2), \
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 	))
 
 /obj/item/stack/sheet/cotton/cloth
@@ -475,10 +475,10 @@ GLOBAL_LIST_INIT(bronze_recipes, list ( \
 	new/datum/stack_recipe("pinion airlock assembly", /obj/structure/door_assembly/door_assembly_bronze, 4, time = 50, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("bronze pinion airlock assembly", /obj/structure/door_assembly/door_assembly_bronze/seethru, 4, time = 50, one_per_turf = TRUE, on_floor = TRUE), \
 	new/datum/stack_recipe("bronze hat", /obj/item/clothing/head/bronze), \
-	// [CELADON-ADD] - CELADON_RETURN_CONTENT_SPAWN
+	// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_SPAWN
 	new/datum/stack_recipe("bronze suit", /obj/item/clothing/suit/bronze), \
 	new/datum/stack_recipe("bronze boots", /obj/item/clothing/shoes/bronze), \
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 	null,
 	new/datum/stack_recipe("bronze chair", /obj/structure/chair/comfy/shuttle/bronze, 1, time = 0, one_per_turf = TRUE, on_floor = TRUE), \
 ))

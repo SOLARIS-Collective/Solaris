@@ -91,7 +91,7 @@
 	canSmoothWith = null
 
 
-// [CELADON-ADD]
+// [MANKIND-ADD]
 /turf/closed/wall/r_wall/rust/try_decon(obj/item/W, mob/user, turf/T)
 	switch(d_state)
 		if(INTACT)
@@ -99,7 +99,7 @@
 				if(W.use_tool(src, user, 40, volume=100))
 					W.play_tool_sound(src, 100)
 					d_state = SUPPORT_LINES
-					update_appearance() // [CELADON-EDIT] - PR #1116
+					update_appearance() // [MANKIND-EDIT] - PR #1116
 					to_chat(user, "<span class='notice'>You cut the outer grille.</span>")
 					return 1
 
@@ -123,11 +123,11 @@
 					if(!istype(src, /turf/closed/wall/r_wall) || d_state != COVER)
 						return 1
 					d_state = CUT_COVER
-					update_appearance() // [CELADON-EDIT] - PR #1116
+					update_appearance() // [MANKIND-EDIT] - PR #1116
 					to_chat(user, "<span class='notice'>You press firmly on the cover, dislodging it.</span>")
 					dismantle_wall()
 				return 1
 
 
 	return 0
-// [/CELADON-ADD]
+// [/MANKIND-ADD]

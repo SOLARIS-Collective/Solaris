@@ -128,7 +128,7 @@
 				playsound(Mob, landing_sound, 50)
 
 
-/datum/overmap/dynamic/post_undocked(datum/overmap/dock_requester)	// [OVERWRITE] - FIXES_DOCKING - mod_celadon/fixes/code/dock_empty_space_fix.dm
+/datum/overmap/dynamic/post_undocked(datum/overmap/dock_requester)	// [OVERWRITE] - FIXES_DOCKING - modular_mankind/fixes/code/dock_empty_space_fix.dm
 	start_countdown()
 
 /datum/overmap/dynamic/proc/start_countdown(_lifespan = 60 SECONDS, _color = null)

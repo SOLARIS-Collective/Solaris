@@ -111,7 +111,7 @@
 			. += "*"
 	return sanitize(.)
 
-/* [CELADON REMOVE] - CELADON_QOL - mod_celadon\qol\code\mob_helpers2.dm перенёс т. к. желаю модульность
+/* [MANKIND-REMOVE] - MANKIND_QOL - modular_mankind\qol\code\mob_helpers2.dm перенёс т. к. желаю модульность
 /**
  * Makes you speak like you're drunk
  */
@@ -146,7 +146,7 @@
 				EMPTY_BLOCK_GUARD
 		. += "[newletter]"
 	return sanitize(.)
-	[CELADON REMOVE] */
+	[MANKIND-REMOVE] */
 
 /// Makes you talk like you got cult stunned, which is slurring but with some dark messages
 /proc/cultslur(phrase) // Inflicted on victims of a stun talisman
@@ -195,7 +195,7 @@
 
 #define CLOCK_CULT_SLUR(phrase) sanitize(text2ratvar(phrase))
 
-/* [CELADON REMOVE] - CELADON_QOL - mod_celadon\qol\code\mob_helpers2.dm перенёс т. к. желаю модульность
+/* [MANKIND-REMOVE] - MANKIND_QOL - modular_mankind\qol\code\mob_helpers2.dm перенёс т. к. желаю модульность
 ///Adds stuttering to the message passed in
 /proc/stutter(phrase)
 	phrase = html_decode(phrase)
@@ -213,7 +213,7 @@
 				newletter = "[newletter]-[newletter]"
 		. += newletter
 	return sanitize(.)
-	[CELADON REMOVE] */
+	[MANKIND-REMOVE] */
 
 ///Convert a message to derpy speak
 /proc/derpspeech(message, stuttering)
@@ -618,7 +618,7 @@
 /mob/proc/can_see_reagents()
 	return stat == DEAD || has_unlimited_silicon_privilege //Dead guys and silicons can always see reagents
 
-// [CELADON-ADD] - CELADON_LOAD_PREF
+// [MANKIND-ADD] - MANKIND_LOAD_PREF
 /mob/living/carbon/human/proc/load_client_appearance(client/client)
 	if(!client)
 		client = src.client
@@ -635,4 +635,4 @@
 	log_game("[key_name(src)] has loaded their default appearance for a ghost role.")
 	message_admins("[ADMIN_LOOKUPFLW(src)] has loaded their default appearance for a ghost role.")
 	return
-// [/CELADON-ADD] - CELADON_LOAD_PREF
+// [/MANKIND-ADD] - MANKIND_LOAD_PREF

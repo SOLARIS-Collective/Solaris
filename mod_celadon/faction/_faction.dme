@@ -1,8 +1,0 @@
-#ifndef MODPACK_CELADON_FACTION
-#define MODPACK_CELADON_FACTION
-
-#include "_faction.dm"
-
-#include "code/faction.dm"
-
-#endif

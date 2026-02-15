@@ -2,9 +2,9 @@
 /obj/item/sign/moniq
 	name = "Muz-tv"
 	desc = "Самые топовые хиты этого сезона."
-	icon = 'mod_mankind/moniq/icons/jukebox.dmi'
-	righthand_file = 'mod_mankind/moniq/icons/inhands/righthand.dmi'
-	lefthand_file = 'mod_mankind/moniq/icons/inhands/lefthand.dmi'
+	icon = 'modular_mankind/moniq/icons/jukebox.dmi'
+	righthand_file = 'modular_mankind/moniq/icons/inhands/righthand.dmi'
+	lefthand_file = 'modular_mankind/moniq/icons/inhands/lefthand.dmi'
 	item_state = "moniq"
 	icon_state = "moniq"
 	verb_say = "states"
@@ -160,7 +160,7 @@
 /obj/structure/sign/moniq
 	name = "Muz-tv"
 	desc = "Самые топовые хиты этого сезона."
-	icon = 'mod_mankind/moniq/icons/jukebox.dmi'
+	icon = 'modular_mankind/moniq/icons/jukebox.dmi'
 	icon_state = "moniq_wallmount"
 	verb_say = "states"
 	density = FALSE

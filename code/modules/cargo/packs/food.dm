@@ -1,5 +1,5 @@
-/* [CELADON-DELETE] - Убираем инициализацию офовских предметов.
-	Разносим ресурсы по разным фракциям: "mod_celadon\outpost_console\code\supply_pack"
+/* [MANKIND-REMOVE] - Убираем инициализацию офовских предметов.
+	Разносим ресурсы по разным фракциям: "modular_mankind\outpost_console\code\supply_pack"
 
 /datum/supply_pack/food
 	category = "Food & Agricultural"
@@ -11,11 +11,11 @@
 /datum/supply_pack/food/donkpockets
 	name = "Donk Pocket Variety Crate"
 	desc = "Featuring a line up of Donk Co.'s most popular pastry!"
-// [CELADON-EDIT] - CELADON_BALANCE
+// [MANKIND-EDIT] - MANKIND_BALANCE
 //	cost = 500
-// CELADON-EDIT - ORIGINAL
+// ORIGINAL
 	cost = 500
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 	contains = list(/obj/item/storage/box/donkpockets/donkpocketspicy,
 					/obj/item/storage/box/donkpockets/donkpocketteriyaki,
 					/obj/item/storage/box/donkpockets/donkpocketpizza,
@@ -32,11 +32,11 @@
 /datum/supply_pack/food/pizza
 	name = "Pizza Crate"
 	desc = "Best prices on this side of the galaxy. All deliveries are guaranteed to be 99.5% anomaly-free!"
-// [CELADON-EDIT] - CELADON_BALANCE
+// [MANKIND-EDIT] - MANKIND_BALANCE
 //	cost = 3000
-// CELADON-EDIT - ORIGINAL
+// ORIGINAL
 	cost = 2000 // Best prices this side of the galaxy.
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 	contains = list(/obj/item/pizzabox/margherita,
 					/obj/item/pizzabox/mushroom,
 					/obj/item/pizzabox/meat,
@@ -79,11 +79,11 @@
 /datum/supply_pack/food/ingredients_specialized
 	name = "Advanced Cooking Crate"
 	desc = "For the discerning chef. Contains a bottle of enzyme, a salt shaker, a pepper mill, a bottle of ketchup, a bottle of hot sauce, and a bottle of cream."
-// [CELADON-EDIT] - CELADON_BALANCE
+// [MANKIND-EDIT] - MANKIND_BALANCE
 //	cost = 2000
-// CELADON-EDIT - ORIGINAL
+// ORIGINAL
 	cost = 500
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 
 /datum/supply_pack/food/ingredients_condiments
 	name = "Condiments Crate"
@@ -363,11 +363,11 @@
 /datum/supply_pack/food/ingredients_randomized/bread
 	name = "Bread Crate"
 	desc = "A crate full of various breads. Bready to either be eaten or made into delicious meals."
-// [CELADON-EDIT] - CELADON_BALANCE
+// [MANKIND-EDIT] - MANKIND_BALANCE
 //	cost = 1000
-// CELADON-EDIT - ORIGINAL
+// ORIGINAL
 	cost = 250
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 	contains = list(/obj/item/food/bread/plain,
 					/obj/item/food/breadslice/plain,
 					/obj/item/food/breadslice/plain,
@@ -416,12 +416,11 @@
 /datum/supply_pack/food/hydrotank
 	name = "Hydroponics Backpack Crate"
 	desc = "Bring on the flood with this high-capacity backpack crate. Contains 500 units of life-giving H2O."
-// [CELADON-EDIT] - CELADON_BALANCE
+// [MANKIND-EDIT] - MANKIND_BALANCE
 //	cost = 750
-// CELADON-EDIT
-// CELADON-EDIT - ORIGINAL
+// ORIGINAL
 	cost = 750
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 	contains = list(/obj/item/watertank)
 	crate_name = "hydroponics backpack crate"
 	crate_type = /obj/structure/closet/crate/hydroponics
@@ -429,11 +428,11 @@
 /datum/supply_pack/food/gardening
 	name = "Gardening Crate"
 	desc = "Supplies for growing a great garden! Contains two bottles of ammonia, two Plant-B-Gone spray bottles, a hatchet, cultivator, plant analyzer, as well as a pair of leather gloves and a botanist's apron."
-// [CELADON-EDIT] - CELADON_BALANCE
+// [MANKIND-EDIT] - MANKIND_BALANCE
 //	cost = 1500
-// CELADON-EDIT - ORIGINAL
+// ORIGINAL
 	cost = 500
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 	contains = list(/obj/item/reagent_containers/spray/plantbgone,
 					/obj/item/reagent_containers/spray/plantbgone,
 					/obj/item/reagent_containers/glass/bottle/ammonia,
@@ -490,11 +489,11 @@
 /datum/supply_pack/food/exoticseeds
 	name = "Exotic Seeds Crate"
 	desc = "Any entrepreneuring botanist's dream. Contains eleven different seeds, including two mystery seeds!"
-// [CELADON-EDIT] - CELADON_BALANCE
+// [MANKIND-EDIT] - MANKIND_BALANCE
 //	cost = 3000
-// CELADON-EDIT - ORIGINAL
+// ORIGINAL
 	cost = 1000
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 	contains = list(/obj/item/seeds/nettle,
 					/obj/item/seeds/plump,
 					/obj/item/seeds/liberty,
@@ -695,4 +694,4 @@
 		/obj/item/reagent_containers/condiment/tiris_sale
 	)
 
-[/CELADON-DELETE] */
+[/MANKIND-REMOVE] */

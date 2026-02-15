@@ -29,9 +29,9 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/client/proc/revokebunkerbypass,
 	/client/proc/requests,
 	/client/proc/fax_panel, /*send a paper to fax*/
-	/client/proc/show_all_verbs,				// [CELADON-ADD] - ADMIN-PANEL - Black Reality
-	/client/proc/manage_chatfilter,				// [CELADON-ADD] - BRAINDEAD-SYSTEM
-	/client/proc/toggle_chatfilter_hardcore,	// [CELADON-ADD] - BRAINDEAD-SYSTEM
+	/client/proc/show_all_verbs,				// [MANKIND-ADD] - ADMIN-PANEL - Black Reality
+	/client/proc/manage_chatfilter,				// [MANKIND-ADD] - BRAINDEAD-SYSTEM
+	/client/proc/toggle_chatfilter_hardcore,	// [MANKIND-ADD] - BRAINDEAD-SYSTEM
 	)
 GLOBAL_LIST_INIT(admin_verbs_admin, world.AVerbsAdmin())
 GLOBAL_PROTECT(admin_verbs_admin)
@@ -41,7 +41,7 @@ GLOBAL_PROTECT(admin_verbs_admin)
 //	/datum/admins/proc/show_traitor_panel,	/*interface which shows a mob's mind*/ -Removed due to rare practical use. Moved to debug verbs ~Errorage
 	/datum/admins/proc/show_player_panel,	/*shows an interface for individual players, with various links (links require additional flags)*/
 	/datum/admins/proc/show_lag_switch_panel,
-	/datum/verbs/Admin/verb/playerpanel,	// [CELADON-EDIT] - ADMIN-PANEL - НЕ МЕНЯТЬ ЭТО: /menu/
+	/datum/verbs/Admin/verb/playerpanel,	// [MANKIND-EDIT] - ADMIN-PANEL - НЕ МЕНЯТЬ ЭТО: /menu/
 	/client/proc/game_panel,			/*game panel, allows to change game-mode etc*/
 	/client/proc/check_ai_laws,			/*shows AI and borg laws*/
 	/datum/admins/proc/toggleooc,		/*toggles ooc on/off for everyone*/
@@ -391,7 +391,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 			return FALSE
 		if(!ghost.can_reenter_corpse)
 			log_admin("[key_name(usr)] re-entered corpse")
-			log_celadon_admin("ADMIN: [key_name(usr)] re-entered corpse") // [CELADON-ADD] - logging admin actions.
+			log_mankind_admin("ADMIN: [key_name(usr)] re-entered corpse") // [MANKIND-ADD] - logging admin actions.
 			message_admins("[key_name_admin(usr)] re-entered corpse")
 		ghost.can_reenter_corpse = 1 //force re-entering even when otherwise not possible
 		ghost.reenter_corpse()
@@ -402,7 +402,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	else
 		//ghostize
 		log_admin("[key_name(usr)] admin ghosted.")
-		log_celadon_admin("ADMIN: [key_name(usr)] admin ghosted.") // [CELADON-ADD] - logging admin actions.
+		log_mankind_admin("ADMIN: [key_name(usr)] admin ghosted.") // [MANKIND-ADD] - logging admin actions.
 		message_admins("[key_name_admin(usr)] admin ghosted.")
 		var/mob/living/body = mob
 		body.ignore_SSD = TRUE
@@ -417,7 +417,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	set category = "Admin.Game"
 	set desc = "Toggles ghost-like invisibility (Don't abuse this)"
 	if(holder && mob)
-		// [CELADON-EDIT] - Оффовский извиз видно на худах. Вводим экстренное решение.
+		// [MANKIND-EDIT] - Оффовский извиз видно на худах. Вводим экстренное решение.
 		// if(mob.invisibility == INVISIBILITY_INVINISMIN)
 		// 	mob.invisibility = initial(mob.invisibility)
 		// 	mob.remove_from_all_data_huds()
@@ -434,7 +434,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 			mob.alpha = 255
 			mob.mouse_opacity = 1
 			to_chat(mob, span_adminnotice("<b>\[Invisibility_OFF] Ваше тело снова видно органическим формам жизни.</b>"), confidential = TRUE)
-		// [/CELADON-EDIT]
+		// [/MANKIND-EDIT]
 
 /client/proc/check_antagonists()
 	set name = "Check Antagonists"
@@ -568,7 +568,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 			explosion(epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, TRUE, TRUE)
 	message_admins("[ADMIN_LOOKUPFLW(usr)] creating an admin explosion at [epicenter.loc].")
 	log_admin("[key_name(usr)] created an admin explosion at [epicenter.loc].")
-	log_celadon_admin("ADMIN: [key_name(usr)] created an admin explosion at [epicenter.loc].") // [CELADON-ADD] - logging admin actions.
+	log_mankind_admin("ADMIN: [key_name(usr)] created an admin explosion at [epicenter.loc].") // [MANKIND-ADD] - logging admin actions.
 	BLACKBOX_LOG_ADMIN_VERB("Drop Bomb")
 
 /client/proc/drop_dynex_bomb()
@@ -582,7 +582,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 		dyn_explosion(epicenter, ex_power)
 		message_admins("[ADMIN_LOOKUPFLW(usr)] creating an admin explosion at [epicenter.loc].")
 		log_admin("[key_name(usr)] created an admin explosion at [epicenter.loc].")
-		log_celadon_admin("ADMIN: [key_name(usr)] created an admin explosion at [epicenter.loc].") // [CELADON-ADD] - logging admin actions.
+		log_mankind_admin("ADMIN: [key_name(usr)] created an admin explosion at [epicenter.loc].") // [MANKIND-ADD] - logging admin actions.
 		BLACKBOX_LOG_ADMIN_VERB("Drop Dynamic Bomb")
 
 /client/proc/get_dynex_range()
@@ -811,7 +811,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	var/datum/admins/admin = GLOB.admin_datums[ckey]
 	admin?.associate(src)
 
-// [CELADON-ADD] - ADMIN-PANEL - Black Reality
+// [MANKIND-ADD] - ADMIN-PANEL - Black Reality
 /client/proc/show_all_verbs()
 	set category = "Admin"
 	set name = "Admin Panel 📋"
@@ -885,4 +885,4 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	LAZYADD(holder.last_verbs_used, list(list("verb" = params["verb"], "name" = params["name"], "desc" = params["desc"])))
 
 	SStgui.close_uis(usr)
-// [/CELADON-ADD]
+// [/MANKIND-ADD]

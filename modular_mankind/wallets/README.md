@@ -70,14 +70,14 @@ ID мода: MANKIND_WALLETS
 
 ### Дефайны
 
-- 'code/__DEFINES/~mod_mankind/wallets.dm'
+- 'code/__DEFINES/~modular_mankind/wallets.dm'
 <!--
   Если требовалось добавить какие-либо дефайны, укажи файлы,
   в которые ты их добавил, а также перечисли имена.
   И то же самое, если ты используешь дефайны, определённые другим модом.
 
   Не используешь - напиши "Отсутствуют"
-  Примеры: `code/__defines/~mod_mankind/wallets.dm`: `WALLETS_SPEED_MULTIPLIER`, `WALLETS_SPEED_BASE`
+  Примеры: `code/__defines/~modular_mankind/wallets.dm`: `WALLETS_SPEED_MULTIPLIER`, `WALLETS_SPEED_BASE`
 -->
 
 ### Используемые файлы, не содержащиеся в модпаке

@@ -5,10 +5,10 @@
  */
 /area
 	name = "Space"
-	// [CELADON-EDIT] - CELADON_AREAS - Иначе никак не подсунуть свои зоны
-	// icon = 'icons/turf/areas.dmi' // CELADON-EDIT - ORIGINAL
-	icon = 'mod_celadon/_storage_icons/icons/assets/areas.dmi'
-	// [CELADON-EDIT]
+	// [MANKIND-EDIT] - MANKIND_AREAS - Иначе никак не подсунуть свои зоны
+	// icon = 'icons/turf/areas.dmi' // ORIGINAL
+	icon = 'modular_mankind/_storage_icons/icons/assets/areas.dmi'
+	// [MANKIND-EDIT]
 	icon_state = "unknown"
 	layer = AREA_LAYER
 	//Keeping this on the default plane, GAME_PLANE, will make area overlays fail to render on FLOOR_PLANE.

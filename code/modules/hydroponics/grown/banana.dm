@@ -11,7 +11,7 @@
 	growing_icon = 'icons/obj/hydroponics/growing_fruits.dmi'
 	icon_dead = "banana-dead"
 	genes = list(/datum/plant_gene/trait/slip, /datum/plant_gene/trait/repeated_harvest)
-	mutatelist = list(/obj/item/seeds/banana/mime, /obj/item/seeds/banana/bluespace)	//mutatelist = list(/obj/item/seeds/banana/bluespace)	// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+	mutatelist = list(/obj/item/seeds/banana/mime, /obj/item/seeds/banana/bluespace)	//mutatelist = list(/obj/item/seeds/banana/bluespace)	// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 	reagents_add = list(/datum/reagent/consumable/banana = 0.1, /datum/reagent/potassium = 0.1, /datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/consumable/nutriment = 0.02)
 
 /obj/item/food/grown/banana
@@ -48,13 +48,13 @@
 		else
 			icon_state = "[icon_state]_3"
 
-// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 // Mimana - invisible sprites are totally a feature!
 /obj/item/seeds/banana/mime
 	name = "pack of mimana seeds"
 	desc = "They're seeds that grow into mimana trees. When grown, keep away from mime."
 	icon = 'icons/obj/hydroponics/seeds.dmi'
-	growing_icon = 'mod_celadon/_storage_icons/icons/other/clown_mime/growing_fruits.dmi'
+	growing_icon = 'modular_mankind/_storage_icons/icons/other/clown_mime/growing_fruits.dmi'
 	icon_state = "seed-mimana"
 	species = "mimana"
 	plantname = "Mimana Tree"
@@ -69,9 +69,9 @@
 	seed = /obj/item/seeds/banana/mime
 	name = "mimana"
 	desc = "It's an excellent prop for a mime."
-	icon = 'mod_celadon/_storage_icons/icons/other/clown_mime/harvest.dmi'
-	lefthand_file = 'mod_celadon/_storage_icons/icons/other/clown_mime/food_lefthand.dmi'
-	righthand_file = 'mod_celadon/_storage_icons/icons/other/clown_mime/food_righthand.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/other/clown_mime/harvest.dmi'
+	lefthand_file = 'modular_mankind/_storage_icons/icons/other/clown_mime/food_lefthand.dmi'
+	righthand_file = 'modular_mankind/_storage_icons/icons/other/clown_mime/food_righthand.dmi'
 	icon_state = "mimana"
 	trash_type = /obj/item/grown/bananapeel/mimanapeel
 	filling_color = "#FFFFEE"
@@ -81,12 +81,12 @@
 	seed = /obj/item/seeds/banana/mime
 	name = "mimana peel"
 	desc = "A mimana peel."
-	icon = 'mod_celadon/_storage_icons/icons/other/clown_mime/harvest.dmi'
-	lefthand_file = 'mod_celadon/_storage_icons/icons/other/clown_mime/food_lefthand.dmi'
-	righthand_file = 'mod_celadon/_storage_icons/icons/other/clown_mime/food_righthand.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/other/clown_mime/harvest.dmi'
+	lefthand_file = 'modular_mankind/_storage_icons/icons/other/clown_mime/food_lefthand.dmi'
+	righthand_file = 'modular_mankind/_storage_icons/icons/other/clown_mime/food_righthand.dmi'
 	icon_state = "mimana_peel"
 	item_state = "mimana_peel"
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 // Bluespace Banana
 /obj/item/seeds/banana/bluespace

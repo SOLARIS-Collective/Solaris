@@ -18,9 +18,9 @@
 
 /client/verb/ping()
 	set name = "Ping"
-	// [CELADON-REMOVE] - CELADON_QOL - Очистка вкладки ООС, перенос части в Special Verbs
+	// [MANKIND-REMOVE] - MANKIND_QOL - Очистка вкладки ООС, перенос части в Special Verbs
 	/*
 	set category = "OOC"
 	*/
-	// [/CELADON-REMOVE]
+	// [/MANKIND-REMOVE]
 	winset(src, null, "command=.display_ping+[world.time+world.tick_lag*TICK_USAGE_REAL/100]")

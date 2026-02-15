@@ -12,7 +12,7 @@
 	stationary = TRUE
 	display_name = "Launchpad"
 	teleport_speed = 35
-	range = 45 // MANKIND-EDIT
+	range = 45
 	teleporting = FALSE
 	power_efficiency = 1
 	x_offset = 0

@@ -21,7 +21,7 @@
 /obj/machinery/telecomms/allinone/Initialize()
 	. = ..()
 	if (intercept)
-		freq_listening = list(FREQ_All_RANGE)	//freq_listening = list(FREQ_SYNDICATE) // [CELADON-EDIT] - FACTION_RADIO
+		freq_listening = list(FREQ_All_RANGE)	//freq_listening = list(FREQ_SYNDICATE) // [MANKIND-EDIT] - FACTION_RADIO
 
 #undef FREQ_All_RANGE
 

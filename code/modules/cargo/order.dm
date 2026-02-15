@@ -59,18 +59,18 @@
 	var/obj/item/paper/manifest/manifest_paper = new(container, id, 0)
 
 	manifest_paper.name = "shipping manifest - #[id]"
-// [CELADON-EDIT] - REVERT: Better cargo pack managment (#4419)
-//	var/manifest_text = "<h2>[market.name] Shipping Manifest</h2>" // CELADON-EDIT - ORIGINAL
+// [MANKIND-EDIT] - REVERT: Better cargo pack managment (#4419)
+//	var/manifest_text = "<h2>[market.name] Shipping Manifest</h2>" // ORIGINAL
 	var/manifest_text = "<h2>[command_name()] Shipping Manifest</h2>"
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 	manifest_text += "<hr/>"
 	if(owner && !(owner == "Unknown"))
 		manifest_text += "Direct purchase from [owner]<br/>"
 		manifest_paper.name += " - Purchased by [owner]"
-// [CELADON-EDIT] - REVERT: Better cargo pack managment (#4419)
-//	manifest_text += "Destination: [market.name]<br/>" // CELADON-EDIT - ORIGINAL
+// [MANKIND-EDIT] - REVERT: Better cargo pack managment (#4419)
+//	manifest_text += "Destination: [market.name]<br/>" // ORIGINAL
 	manifest_text += "Destination: [station_name()]<br/>"
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 	manifest_text += "Contents: <br/>"
 	manifest_text += "<ul>"
 	var/container_contents = list() // Associative list with the format (item_name = nº of occurrences, ...)

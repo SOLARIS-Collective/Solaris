@@ -31,9 +31,9 @@ MANKIND_QOL_LOADOUT
 
 Этот мод служит для внесения изменений связаных с улучшением различных вещей, для удобства в общем.
 Добавляется: 
-- прическа ziegler -> `mod_mankind/qol/code/hair.dm`
-- мезонные очки двух видов -> `mod_mankind/qol/code/glasses.dm`
-- бинокль -> `mod_mankind/qol/code/binoculars.dm`
+- прическа ziegler -> `modular_mankind/qol/code/hair.dm`
+- мезонные очки двух видов -> `modular_mankind/qol/code/glasses.dm`
+- бинокль -> `modular_mankind/qol/code/binoculars.dm`
 - переведены законы ИИ, см.ниже
 - изменен размер боевым дробовикам, теперь их можно ложить в слот спины и рюкзака
 - добавлена удобная новая кнопка fix chat 2
@@ -48,7 +48,7 @@ MANKIND_QOL_LOADOUT
 - добавлен вариант "bloodbank" в список для выбора при настройке платы умного холодильника
 - разрешено использование UI раций (переключение режимов) в лежачем положении
 
-**Документация по состояниям UI**: `mod_mankind/states_documentation/` - подробная документация по использованию `portable_device_state` для портативных устройств
+**Документация по состояниям UI**: `modular_mankind/states_documentation/` - подробная документация по использованию `portable_device_state` для портативных устройств
 <!--
   Что он делает, что добавляет: что, куда, зачем и почему - всё здесь.
   А также любая полезная информация.
@@ -57,7 +57,7 @@ MANKIND_QOL_LOADOUT
 ### Изменения *кор кода*
 
 - ADD `code/game/objects/items/storage/wallets.dm`: `/obj/item/storage/wallet/ComponentInitialize()`: `STR.set_holdable`: `/obj/item/melee/knife/letter_opener,`, `/obj/item/key`
-- EDIT `code/modules/mob/dead/new_player/sprite_accessories/hair.dm`: `/datum/sprite_accessory/hair`: `icon` = `mod_mankind/_storage_icons/icons/species/human/human_face.dmi`
+- EDIT `code/modules/mob/dead/new_player/sprite_accessories/hair.dm`: `/datum/sprite_accessory/hair`: `icon` = `modular_mankind/_storage_icons/icons/species/human/human_face.dmi`
 - EDIT `code/game/objects/items/binoculars.dm`: `/obj/item/binoculars`: `slot_flags` = `ITEM_SLOT_NECK`
 - EDIT `code/modules/mob/living/silicon/silicon.dm`: `/mob/living/silicon/proc/checklaws()`
 - EDIT `code/game/objects/items/AI_modules.dm`: `/obj/item/aiModule/core/full/asimov/attack_self(mob/user as mob)`
@@ -131,7 +131,7 @@ MANKIND_QOL_LOADOUT
 - REMOVE `code/modules/tgui_panel/external.dm` Убрана кнопка "Fix chat" со вкладки "ООС". Устаревшая функция.
 Карго
 - REMOVE `code\modules\cargo\packs\machinery.dm` Перемещён Robotics crate в 
-	`mod_mankind\cargo_items\code\space_idea.dm`, на более видное место, дополнил деталями для сборки ботов и инструкции по сборке
+	`modular_mankind\cargo_items\code\space_idea.dm`, на более видное место, дополнил деталями для сборки ботов и инструкции по сборке
 
 - EDIT `code/modules/clothing/clothing.dm` -> `armor_to_protection_class` -> Замена римских цифр на числовые значения
 
@@ -170,7 +170,7 @@ DONT_ALTCLICK_WALLET - Убирает вытаскивание карты на �
 - `code/game/objects/items/storage/wallets.dm` : Убрана отвертка и добавлена сигарета в разрешенные предметы в кошельке
 
 DEBUG_QUALITY
-- DEL `code/game/objects/items/storage/boxes.dm` -> `mod_mankind/qol/code/BluespaceTechnician.dm`
+- DEL `code/game/objects/items/storage/boxes.dm` -> `modular_mankind/qol/code/BluespaceTechnician.dm`
 - EDIT `code/modules/overmap/ships/ship_datum.dm` - Добавлены ковычки для запуска на 516
 
 MANKIND_QOL_LOADOUT
@@ -222,7 +222,7 @@ QOL_ORBIT_MENU
 
 ### Используемые файлы, не содержащиеся в модпаке
 
-- `mod_mankind/_storage_icons/icons/assets/qol`
+- `modular_mankind/_storage_icons/icons/assets/qol`
 <!--
   Будь то немодульный файл или модульный файл, который не содержится в папке,
   принадлежащей этому конкретному моду, он должен быть упомянут здесь.

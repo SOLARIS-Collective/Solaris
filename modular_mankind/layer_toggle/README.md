@@ -74,7 +74,7 @@ ID мода: MANKIND_LAYER_TOGGLE
   И то же самое, если ты используешь дефайны, определённые другим модом.
 
   Не используешь - напиши "Отсутствуют"
-  Примеры: `code/__defines/~mod_mankind/layer_toggle.dm`: `LAYER_TOGGLE_SPEED_MULTIPLIER`, `LAYER_TOGGLE_SPEED_BASE`
+  Примеры: `code/__defines/~modular_mankind/layer_toggle.dm`: `LAYER_TOGGLE_SPEED_MULTIPLIER`, `LAYER_TOGGLE_SPEED_BASE`
 -->
 
 ### Используемые файлы, не содержащиеся в модпаке

@@ -46,23 +46,23 @@
 	icon_state = "botany_envirosuit"
 	item_state = "botany_envirosuit"
 
-// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 /obj/item/clothing/under/plasmaman/mime
 	name = "mime envirosuit"
 	desc = "It's not very colourful."
-	icon = 'mod_celadon/_storage_icons/icons/other/clown_mime/plasmaman.dmi'
-	mob_overlay_icon = 'mod_celadon/_storage_icons/icons/other/clown_mime/plasmaman.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/other/clown_mime/plasmaman.dmi'
+	mob_overlay_icon = 'modular_mankind/_storage_icons/icons/other/clown_mime/plasmaman.dmi'
 	icon_state = "mime_envirosuit"
 	item_state = "mime_envirosuit"
 
 /obj/item/clothing/under/plasmaman/clown
 	name = "clown envirosuit"
 	desc = "<i>'HONK!'</i>"
-	icon = 'mod_celadon/_storage_icons/icons/other/clown_mime/plasmaman.dmi'
-	mob_overlay_icon = 'mod_celadon/_storage_icons/icons/other/clown_mime/plasmaman.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/other/clown_mime/plasmaman.dmi'
+	mob_overlay_icon = 'modular_mankind/_storage_icons/icons/other/clown_mime/plasmaman.dmi'
 	icon_state = "clown_envirosuit"
 	item_state = "clown_envirosuit"
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 /obj/item/clothing/under/plasmaman/prisoner
 	name = "prisoner envirosuit"
@@ -70,7 +70,7 @@
 	icon_state = "prisoner_envirosuit"
 	item_state = "prisoner_envirosuit"
 
-// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 /obj/item/clothing/under/plasmaman/clown/Extinguish(mob/living/carbon/human/H)
 	if(!istype(H))
 		return
@@ -85,7 +85,7 @@
 			H.extinguish_mob()
 			new /obj/effect/particle_effect/foam(loc) //Truely terrifying.
 	return 0
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 /obj/item/clothing/under/plasmaman/command
 	name = "captains plasma envirosuit"
@@ -153,10 +153,10 @@
 	icon_state = "hop_enviroskirt"
 	item_state = "hop_enviroskirt"
 
-// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 /obj/item/clothing/under/plasmaman/mime/skirt //WS edit plasmaman customization
 	name = "mime enviroskirt"
 	desc = "It's very colourful on the inside."
 	icon_state = "mime_enviroskirt"
 	item_state = "mime_enviroskirt"
-// [/CELADON-ADD]
+// [/MANKIND-ADD]

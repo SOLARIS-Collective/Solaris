@@ -7,7 +7,7 @@
 	product_slogans = "Dress for success!;Suited and booted!;It's show time!;Why leave style up to fate? Use AutoDrobe!"
 	vend_reply = "Thank you for using AutoDrobe!"
 	products = list(
-		// [CELADON-ADD] - CELADON_RETURN_CONTENT_SPAWN
+		// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_SPAWN
 		/obj/item/clothing/suit/chickensuit = 1,
 		/obj/item/clothing/head/chicken = 1,
 		/obj/item/clothing/head/beret/vintage = 1,
@@ -52,7 +52,7 @@
 		/obj/item/clothing/under/rank/civilian/clown/sexy = 1,
 		/obj/item/clothing/mask/gas/sexymime = 1,
 		/obj/item/clothing/under/rank/civilian/clown/jester = 1,
-		// [/CELADON-ADD]
+		// [/MANKIND-ADD]
 		/obj/item/clothing/under/costume/gladiator = 1,
 		/obj/item/clothing/head/helmet/gladiator = 1,
 		/obj/item/clothing/under/rank/command/captain/suit = 1,
@@ -96,10 +96,10 @@
 		/obj/item/clothing/under/dress/sundress = 1,
 		/obj/item/staff/broom = 1,
 		/obj/item/staff = 3,
-// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 		/obj/item/clothing/under/rank/civilian/mime/sexy = 1,
 		/obj/item/clothing/under/rank/civilian/mime/skirt = 1,
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 		/obj/item/clothing/mask/rat/bat = 1,
 		/obj/item/clothing/mask/rat/bee = 1,
 		/obj/item/clothing/mask/rat/bear = 1,
@@ -132,7 +132,7 @@
 		/obj/item/clothing/glasses/blindfold = 1,
 		/obj/item/clothing/mask/muzzle = 2)
 	premium = list(
-	// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+	// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 		/obj/item/clothing/under/rank/civilian/clown/rainbow = 1,
 		/obj/item/clothing/suit/chaplainsuit/clownpriest = 1,
 		/obj/item/clothing/head/clownmitre = 1,
@@ -152,7 +152,7 @@
 		/obj/item/clothing/glasses/sunglasses = 2,
 		/obj/item/clothing/glasses/blindfold = 1,
 		/obj/item/clothing/mask/muzzle = 2)
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 	refill_canister = /obj/item/vending_refill/autodrobe
 	default_price = 90
 	extra_price = 180

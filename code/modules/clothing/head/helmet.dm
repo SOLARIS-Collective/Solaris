@@ -170,62 +170,58 @@
 /obj/item/clothing/head/helmet/update_overlays()
 	. = ..()
 	var/mutable_appearance/flashlightlight_overlay
-// [CELADON-EDIT] - Seclite and Google overlay
-/* CELADON-EDIT - ORIGINAL
-	if(!attached_light)
-		return
-	if(attached_light.on)
-		flashlightlight_overlay = mutable_appearance(icon, "[flashlight_state]_on")
-	else
-		flashlightlight_overlay = mutable_appearance(icon, flashlight_state)
-	. += flashlightlight_overlay
-*/
+	// [MANKIND-EDIT] - Seclite and Google overlay
+	// if(!attached_light)
+	// 	return
+	// if(attached_light.on)
+	// 	flashlightlight_overlay = mutable_appearance(icon, "[flashlight_state]_on")
+	// else
+	// 	flashlightlight_overlay = mutable_appearance(icon, flashlight_state)
+	// . += flashlightlight_overlay	// ORIGINAL
 	if(attached_light)
 		if(attached_light.on)
-			flashlightlight_overlay = mutable_appearance('mod_celadon/_storage_icons/icons/items/clothing/head/seclite_overlay.dmi', "[flashlight_state]_on")
+			flashlightlight_overlay = mutable_appearance('modular_mankind/_storage_icons/icons/items/clothing/head/seclite_overlay.dmi', "[flashlight_state]_on")
 		else
-			flashlightlight_overlay = mutable_appearance('mod_celadon/_storage_icons/icons/items/clothing/head/seclite_overlay.dmi', flashlight_state)
+			flashlightlight_overlay = mutable_appearance('modular_mankind/_storage_icons/icons/items/clothing/head/seclite_overlay.dmi', flashlight_state)
 		. += flashlightlight_overlay
 	if(content_overlays)
 		for(var/obj/item/I in contents)
 			. += I.get_helmet_overlays_icon()
 	else
 		return
-// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 
 /obj/item/clothing/head/helmet/worn_overlays(isinhands)
 	. = ..()
 	var/mutable_appearance/flashlightlight_overlay
-// [CELADON-EDIT] - Seclite and Google overlay
-/* CELADON-EDIT - ORIGINAL
+	// [MANKIND-EDIT] - Seclite and Google overlay
+	// if(isinhands)
+	// 	return
+	// if(attached_light)
+	// 	if(attached_light.on)
+	// 		flashlightlight_overlay = mutable_appearance(mob_overlay_icon, "[flashlight_state]_on")
+	// 	else
+	// 		flashlightlight_overlay = mutable_appearance(mob_overlay_icon, flashlight_state)
+	// 	. += flashlightlight_overlay
+	// if(content_overlays)
+	// 	for(var/obj/item/I in contents)
+	// 		. += I.get_helmet_overlay()
+	// else
+	// 	return	// ORIGINAL
 	if(isinhands)
 		return
 	if(attached_light)
 		if(attached_light.on)
-			flashlightlight_overlay = mutable_appearance(mob_overlay_icon, "[flashlight_state]_on")
+			flashlightlight_overlay = mutable_appearance('modular_mankind/_storage_icons/icons/items/clothing/head/overlay/seclite_overlay.dmi', "[flashlight_state]_on")
 		else
-			flashlightlight_overlay = mutable_appearance(mob_overlay_icon, flashlight_state)
-		. += flashlightlight_overlay
-	if(content_overlays)
-		for(var/obj/item/I in contents)
-			. += I.get_helmet_overlay()
-	else
-		return
-*/
-	if(isinhands)
-		return
-	if(attached_light)
-		if(attached_light.on)
-			flashlightlight_overlay = mutable_appearance('mod_celadon/_storage_icons/icons/items/clothing/head/overlay/seclite_overlay.dmi', "[flashlight_state]_on")
-		else
-			flashlightlight_overlay = mutable_appearance('mod_celadon/_storage_icons/icons/items/clothing/head/overlay/seclite_overlay.dmi', flashlight_state)
+			flashlightlight_overlay = mutable_appearance('modular_mankind/_storage_icons/icons/items/clothing/head/overlay/seclite_overlay.dmi', flashlight_state)
 		. += flashlightlight_overlay
 	if(content_overlays)
 		for(var/obj/item/I in contents)
 			. += I.get_helmet_overlays()
 	else
 		return
-// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 
 /obj/item/clothing/head/helmet/bulletproof
 	name = "bulletproof helmet"
@@ -285,14 +281,14 @@
 		)
 	unique_reskin_changes_base_icon_state = TRUE
 
-// [CELADON-ADD]
+// [MANKIND-ADD]
 /obj/item/clothing/head/helmet/riot
-	mob_overlay_icon = 'mod_celadon/_storage_icons/icons/items/clothing/head/overlay/helmet_celadon.dmi'
+	mob_overlay_icon = 'modular_mankind/_storage_icons/icons/items/clothing/head/overlay/helmet_mankind.dmi'
 
 /obj/item/clothing/head/helmet/riot/solfed
 	unique_reskin = null
 	unique_reskin_changes_base_icon_state = FALSE
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 /obj/item/clothing/head/helmet/justice
 	name = "helmet of justice"
@@ -433,7 +429,7 @@
 	desc = "A classic metal helmet."
 	icon_state = "knight_green"
 	item_state = "knight_green"
-	armor = list("melee" = 50, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 80, "wound" = 20)  // [CELADON-EDIT] - CELADON_BALANCE
+	armor = list("melee" = 50, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 80, "wound" = 20)  // [MANKIND-EDIT] - MANKIND_BALANCE
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
 	strip_delay = 80

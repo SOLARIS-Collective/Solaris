@@ -60,12 +60,12 @@ ID мода: MANKIND_PIZZAMAT
   И то же самое, если ты используешь дефайны, определённые другим модом.
 
   Не используешь - напиши "Отсутствуют"
-  Примеры: `code/__defines/~mod_mankind/pizzamat.dm`: `PIZZAMAT_SPEED_MULTIPLIER`, `PIZZAMAT_SPEED_BASE`
+  Примеры: `code/__defines/~modular_mankind/pizzamat.dm`: `PIZZAMAT_SPEED_MULTIPLIER`, `PIZZAMAT_SPEED_BASE`
 -->
 
 ### Используемые файлы, не содержащиеся в модпаке
 
-- `mod_mankind/_storage_icons/icons`
+- `modular_mankind/_storage_icons/icons`
 <!--
   Будь то немодульный файл или модульный файл, который не содержится в папке,
   принадлежащей этому конкретному моду, он должен быть упомянут здесь.

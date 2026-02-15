@@ -6,7 +6,7 @@
 	message = "is strumming the air and headbanging like a safari chimp."
 	hands_use_check = TRUE
 
-// [CELADON-EDIT]
+// [MANKIND-EDIT]
 /// The time it takes for the blink to be removed
 #define BLINK_DURATION 0.5 SECONDS
 #define BLINK_R_DURATION 0.2 SECONDS
@@ -43,7 +43,7 @@
 
 #undef BLINK_DURATION
 #undef BLINK_R_DURATION
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 
 /datum/emote/living/carbon/crack
 	key = "crack"
@@ -186,16 +186,16 @@
 		return
 	var/obj/item/slapper/N = new(user)
 	if(user.put_in_hands(N))
-		// [CELADON-EDIT] - CELADON_COMPONENTS_EMOTE - Эмоции
-		// to_chat(user, "<span class='notice'>You ready your slapping hand.</span>") // CELADON-EDIT - ORIGINAL
+		// [MANKIND-EDIT] - MANKIND_COMPONENTS_EMOTE - Эмоции
+		// to_chat(user, "<span class='notice'>You ready your slapping hand.</span>") // ORIGINAL
 		to_chat(user, span_notice("Вы приготовили свою руку для пощечины."))
-		// [/CELADON-EDIT]
+		// [/MANKIND-EDIT]
 	else
 		qdel(N)
-		// [CELADON-EDIT] - CELADON_COMPONENTS_EMOTE - Эмоции
-		// to_chat(user, "<span class='warning'>You're incapable of slapping in your current state.</span>") // CELADON-EDIT - ORIGINAL
+		// [MANKIND-EDIT] - MANKIND_COMPONENTS_EMOTE - Эмоции
+		// to_chat(user, "<span class='warning'>You're incapable of slapping in your current state.</span>") // ORIGINAL
 		to_chat(user, span_warning("В текущем состоянии ты не можешь дать пощечину."))
-		// [/CELADON-EDIT]
+		// [/MANKIND-EDIT]
 
 /datum/emote/living/carbon/noogie
 	key = "noogie"
@@ -304,10 +304,10 @@
 
 /obj/item/slapper
 	name = "slapper"
-	// [CELADON-EDIT] - CELADON_COMPONENTS_EMOTE - Эмоции
-	// desc = "This is how real men fight." // CELADON-EDIT - ORIGINAL
+	// [MANKIND-EDIT] - MANKIND_COMPONENTS_EMOTE - Эмоции
+	// desc = "This is how real men fight." // ORIGINAL
 	desc = "Именно так дерутся настоящие мужчины."
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 	icon_state = "latexballon"
 	item_state = "nothing"
 	force = 0
@@ -328,16 +328,16 @@
 	var/slap_volume = 50
 	var/datum/status_effect/offering/kiss_check = M.has_status_effect(STATUS_EFFECT_OFFERING)
 	if(kiss_check && istype(kiss_check.offered_item, /obj/item/kisser) && (user in kiss_check.possible_takers))
-		// [CELADON-EDIT] - CELADON_COMPONENTS_EMOTE - Эмоции
-		// user.visible_message(span_danger("[user] scoffs at [M]'s advance, winds up, and smacks [M.p_them()] hard to the ground!"), // CELADON-EDIT - ORIGINAL
-			// span_notice("The nerve! You wind back your hand and smack [M] hard enough to knock [M.p_them()] over!"), // CELADON-EDIT - ORIGINAL
-			// span_hear("You hear someone get the everloving shit smacked out of them!"), ignored_mobs = M) // CELADON-EDIT - ORIGINAL
-		// to_chat(M, span_userdanger("You see [user] scoff and pull back [user.p_their()] arm, then suddenly you're on the ground with an ungodly ringing in your ears!")) // CELADON-EDIT - ORIGINAL
+		// [MANKIND-EDIT] - MANKIND_COMPONENTS_EMOTE - Эмоции
+		// user.visible_message(span_danger("[user] scoffs at [M]'s advance, winds up, and smacks [M.p_them()] hard to the ground!"), // ORIGINAL
+			// span_notice("The nerve! You wind back your hand and smack [M] hard enough to knock [M.p_them()] over!"), // ORIGINAL
+			// span_hear("You hear someone get the everloving shit smacked out of them!"), ignored_mobs = M) // ORIGINAL
+		// to_chat(M, span_userdanger("You see [user] scoff and pull back [user.p_their()] arm, then suddenly you're on the ground with an ungodly ringing in your ears!")) // ORIGINAL
 		user.visible_message(span_danger("[user] издевается над [M]'s, заставляя [M.p_them()] с грохотом упасть на землю!"),
 			span_notice("Нервы! Ты отводишь руку и шлепаешь [M] достаточно сильно, чтобы опрокинуть [M.p_them()]!"),
 			span_hear("Вы слышите как кого-то шлёпают!"), ignored_mobs = M)
 		to_chat(M, span_userdanger("Ты видишь как усмехается [user] и отводишь руку [user.p_their()], иначе рискуешь оказаться на земле с безбожным звоном в ушах!"))
-		// [/CELADON-EDIT]
+		// [/MANKIND-EDIT]
 		slap_volume = 120
 		SEND_SOUND(M, sound('sound/weapons/flash_ring.ogg'))
 		shake_camera(M, 2, 2)
@@ -345,22 +345,22 @@
 		M.confused += 7
 		M.adjustStaminaLoss(40)
 	else if(user.zone_selected == BODY_ZONE_HEAD || user.zone_selected == BODY_ZONE_PRECISE_MOUTH)
-		// [CELADON-EDIT] - CELADON_COMPONENTS_EMOTE - Эмоции
-		// user.visible_message(span_danger("[user] slaps [M] in the face!"), // CELADON-EDIT - ORIGINAL
-			// span_notice("You slap [M] in the face!"), // CELADON-EDIT - ORIGINAL
-			// span_hear("You hear a slap.")) // CELADON-EDIT - ORIGINAL
+		// [MANKIND-EDIT] - MANKIND_COMPONENTS_EMOTE - Эмоции
+		// user.visible_message(span_danger("[user] slaps [M] in the face!"), // ORIGINAL
+			// span_notice("You slap [M] in the face!"), // ORIGINAL
+			// span_hear("You hear a slap.")) // ORIGINAL
 		user.visible_message(span_danger("[user] ударяет пощёчиной [M] по лицу!"),
 			span_notice("Ты шлепаешь [M] по лицу!"),
 			span_hear("Вы слышите пощёчину."))
-		// [/CELADON-EDIT]
+		// [/MANKIND-EDIT]
 	else
-		// user.visible_message(span_danger("[user] slaps [M]!"), // CELADON-EDIT - ORIGINAL
-			// span_notice("You slap [M]!"), // CELADON-EDIT - ORIGINAL
-			// span_hear("You hear a slap.")) // CELADON-EDIT - ORIGINAL
+		// user.visible_message(span_danger("[user] slaps [M]!"), // ORIGINAL
+			// span_notice("You slap [M]!"), // ORIGINAL
+			// span_hear("You hear a slap.")) // ORIGINAL
 		user.visible_message(span_danger("[user] шлёпает [M]!"),
 			span_notice("Ты шлёпаешь [M]!"),
 			span_hear("Вы слышите пощечину."))
-		// [/CELADON-EDIT]
+		// [/MANKIND-EDIT]
 	playsound(M, 'sound/weapons/slap.ogg', slap_volume, TRUE, -1)
 	return
 
@@ -412,10 +412,10 @@
 
 
 /obj/item/kisser
-	// [CELADON-EDIT] - CELADON_COMPONENTS_EMOTE - Эмоции
-	// name = "kiss" // CELADON-EDIT - ORIGINAL
+	// [MANKIND-EDIT] - MANKIND_COMPONENTS_EMOTE - Эмоции
+	// name = "kiss" // ORIGINAL
 	name = "поцелуй"
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 	desc = "I want you all to know, everyone and anyone, to seal it with a kiss."
 	icon = 'icons/mob/animal.dmi'
 	icon_state = "heart"
@@ -431,10 +431,10 @@
 /obj/item/kisser/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
 	var/obj/projectile/blown_kiss = new kiss_type(get_turf(user))
-	// [CELADON-EDIT] - CELADON_COMPONENTS_EMOTE - Эмоции
-	// user.visible_message("<b>[user]</b> blows \a [blown_kiss] at [target]!", span_notice("You blow \a [blown_kiss] at [target]!")) // CELADON-EDIT - ORIGINAL
+	// [MANKIND-EDIT] - MANKIND_COMPONENTS_EMOTE - Эмоции
+	// user.visible_message("<b>[user]</b> blows \a [blown_kiss] at [target]!", span_notice("You blow \a [blown_kiss] at [target]!")) // ORIGINAL
 	user.visible_message("<b>[user]</b> посылает воздушный поцелуй в сторону [target]!", span_notice("Ты посылаешь воздушный поцелуй в сторону [target]!"))
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 
 	//Shooting Code:
 	blown_kiss.original = target
@@ -529,30 +529,30 @@
 	var/roll = rand(1, 3)
 	switch(roll)
 		if(1)
-			// [CELADON-EDIT] - CELADON_COMPONENTS_EMOTE - Эмоции
-			// other_msg = "stumbles slightly, turning a bright red!" // CELADON-EDIT - ORIGINAL
-			// self_msg = "You lose control of your limbs for a moment as your blood rushes to your face, turning it bright red!" // CELADON-EDIT - ORIGINAL
+			// [MANKIND-EDIT] - MANKIND_COMPONENTS_EMOTE - Эмоции
+			// other_msg = "stumbles slightly, turning a bright red!" // ORIGINAL
+			// self_msg = "You lose control of your limbs for a moment as your blood rushes to your face, turning it bright red!" // ORIGINAL
 			other_msg = "слегка спотыкается, становясь ярко-красным!"
 			self_msg = "Вы на мгновение теряете контроль над своими конечностями, когда кровь приливает к лицу, делая его ярко-красным!"
-			// [/CELADON-EDIT]
+			// [/MANKIND-EDIT]
 			living_target.confused += (rand(5, 10))
 		if(2)
-			// [CELADON-EDIT] - CELADON_COMPONENTS_EMOTE - Эмоции
-			// other_msg = "stammers softly for a moment before choking on something!" // CELADON-EDIT - ORIGINAL
-			// self_msg = "You feel your tongue disappear down your throat as you fight to remember how to make words!" // CELADON-EDIT - ORIGINAL
-			// addtimer(CALLBACK(living_target, TYPE_PROC_REF(/atom/movable, say), pick("Uhhh...", "O-oh, uhm...", "I- uhhhhh??", "You too!!", "What?")), rand(0.5 SECONDS, 1.5 SECONDS)) // CELADON-EDIT - ORIGINAL
+			// [MANKIND-EDIT] - MANKIND_COMPONENTS_EMOTE - Эмоции
+			// other_msg = "stammers softly for a moment before choking on something!" // ORIGINAL
+			// self_msg = "You feel your tongue disappear down your throat as you fight to remember how to make words!" // ORIGINAL
+			// addtimer(CALLBACK(living_target, TYPE_PROC_REF(/atom/movable, say), pick("Uhhh...", "O-oh, uhm...", "I- uhhhhh??", "You too!!", "What?")), rand(0.5 SECONDS, 1.5 SECONDS)) // ORIGINAL
 			other_msg = "тихо заикается на мгновение, прежде чем что-то сказать!"
 			self_msg = "Вы чувствуете, как ваш язык исчезает в горле, пока вы пытаетесь вспомнить, как произносить слова!"
 			addtimer(CALLBACK(living_target, TYPE_PROC_REF(/atom/movable, say), pick("Ухх...", "О-ох, хм...", "Я- ухххх..", "Что?")), rand(0.5 SECONDS, 1.5 SECONDS))
-			// [/CELADON-EDIT]
+			// [/MANKIND-EDIT]
 			living_target.stuttering += rand(5, 15)
 		if(3)
-			// [CELADON-EDIT] - CELADON_COMPONENTS_EMOTE - Эмоции
-			// other_msg = "locks up with a stunned look on [living_target.p_their()] face, staring at [firer ? firer : "the ceiling"]!" // CELADON-EDIT - ORIGINAL
-			// self_msg = "Your brain completely fails to process what just happened, leaving you rooted in place staring at [firer ? "[firer]" : "the ceiling"] for what feels like an eternity!" // CELADON-EDIT - ORIGINAL
+			// [MANKIND-EDIT] - MANKIND_COMPONENTS_EMOTE - Эмоции
+			// other_msg = "locks up with a stunned look on [living_target.p_their()] face, staring at [firer ? firer : "the ceiling"]!" // ORIGINAL
+			// self_msg = "Your brain completely fails to process what just happened, leaving you rooted in place staring at [firer ? "[firer]" : "the ceiling"] for what feels like an eternity!" // ORIGINAL
 			other_msg = "пытается откинуть взгляд, при виде [living_target.p_their()], глядя на [firer ? firer : "потолок"]!"
 			self_msg = "Твой мозг совершенно не в состоянии обработать то, что только что произошло. Ты застываешь на месте, глядя на [firer ? "[firer]" : "потолок"] с ощущением что прошла вечность!"
-			// [/CELADON-EDIT]
+			// [/MANKIND-EDIT]
 			living_target.face_atom(firer)
 			living_target.Stun(rand(3 SECONDS, 8 SECONDS))
 

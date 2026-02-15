@@ -20,14 +20,14 @@
 	if(!istype(sign))
 		return
 
-	// [CELADON-ADD] - CELADON_BARSIGNS
+	// [MANKIND-ADD] - MANKIND_BARSIGNS
 	icon_state = sign.icon_state
 
 	if(sign.icon_state == "cyberslyph")
-		icon = 'mod_celadon/_storage_icons/icons/structures/barsigns/barsigns96x96.dmi'
+		icon = 'modular_mankind/_storage_icons/icons/structures/barsigns/barsigns96x96.dmi'
 	else
-		icon = 'mod_celadon/_storage_icons/icons/structures/barsigns/barsigns.dmi'
-	// [/CELADON-ADD]
+		icon = 'modular_mankind/_storage_icons/icons/structures/barsigns/barsigns.dmi'
+	// [/MANKIND-ADD]
 
 	if(sign.name)
 		name = "[initial(name)] ([sign.name])"

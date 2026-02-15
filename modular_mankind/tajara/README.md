@@ -100,23 +100,23 @@ ID мода: TAJARA
 
 ### Оверрайды
 
-- `mod_mankind/tajara/code/preferences/preferences.dm`:
+- `modular_mankind/tajara/code/preferences/preferences.dm`:
   - `/datum/preferences/New()`
   - `/datum/preferences/process_link()`
   - `/datum/preferences/random_character()`
-- `mod_mankind/tajara/code/species/species.dm`:
+- `modular_mankind/tajara/code/species/species.dm`:
   - `/datum/species/start_wagging_tail()`
   - `/datum/species/stop_wagging_tail()`
-- `mod_mankind/tajara/code/tweaks/crates.dm`:
+- `modular_mankind/tajara/code/tweaks/crates.dm`:
   - `/obj/structure/closet/crate/freezer/surplus_limbs/PopulateContents()`
-- `mod_mankind/tajara/code/tweaks/limbgrower.dm`:
+- `modular_mankind/tajara/code/tweaks/limbgrower.dm`:
   - `/obj/machinery/limbgrower/Initialize()`
-- `mod_mankind/tajara/code/tweaks/nanite_program.dm`:
+- `modular_mankind/tajara/code/tweaks/nanite_program.dm`:
   - `/datum/nanite_program/sensor/species/New()`
 
 ### Дефайны
 
-- `code/__DEFINES/~mod_mankind/tajara.dm`:
+- `code/__DEFINES/~modular_mankind/tajara.dm`:
   - `DNA_SKIN_TONE_NOSE_BLOCK`
   - `SKINNOSECOLORS`
   - `SKINTAJARACOLORS`
@@ -136,9 +136,9 @@ ID мода: TAJARA
 ### Используемые файлы, не содержащиеся в модпаке
 
 - `icons/mob/augmentation/augments_lizard.dmi`
-- `mod_mankind/_storage_icons/icons`
-- `mod_mankind/_storage_icons/icons/tajara`
-- `mod_mankind/_storage_sounds/sound`
+- `modular_mankind/_storage_icons/icons`
+- `modular_mankind/_storage_icons/icons/tajara`
+- `modular_mankind/_storage_sounds/sound`
 
 ### Авторы:
 

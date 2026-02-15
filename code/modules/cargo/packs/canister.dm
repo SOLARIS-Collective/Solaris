@@ -1,5 +1,5 @@
-/* [CELADON-DELETE] - Убираем инициализацию офовских предметов.
-	Разносим ресурсы по разным фракциям: "mod_celadon\outpost_console\code\supply_pack"
+/* [MANKIND-REMOVE] - Убираем инициализацию офовских предметов.
+	Разносим ресурсы по разным фракциям: "modular_mankind\outpost_console\code\supply_pack"
 
 /datum/supply_pack/canister
 	category = "Gas Canisters"
@@ -66,4 +66,4 @@
 	contains = list(/obj/machinery/portable_atmospherics/canister/bz)
 	crate_name = "\improper BZ canister crate"
 
-[/CELADON-DELETE] */
+[/MANKIND-REMOVE] */

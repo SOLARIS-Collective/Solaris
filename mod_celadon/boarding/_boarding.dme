@@ -1,8 +1,0 @@
-#ifndef MODPACK_CELADON_BOARDING
-#define MODPACK_CELADON_BOARDING
-
-#include "_boarding.dm"
-
-#include "code/boarding.dm"
-
-#endif

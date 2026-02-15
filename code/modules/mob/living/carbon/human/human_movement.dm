@@ -27,10 +27,10 @@
 	return ..()
 
 /mob/living/carbon/human/mob_negates_gravity()
-// [CELADON-EDIT] - CELADON_FIXES
-// return dna.species.negates_gravity(src) || ..() // CELADON-EDIT - ORIGINAL
+// [MANKIND-EDIT] - MANKIND_FIXES
+// return dna.species.negates_gravity(src) || ..() // ORIGINAL
 	return (shoes && shoes.negates_gravity()) || dna.species.negates_gravity(src) || ..()
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 
 /mob/living/carbon/human/Move(NewLoc, direct)
 	. = ..()

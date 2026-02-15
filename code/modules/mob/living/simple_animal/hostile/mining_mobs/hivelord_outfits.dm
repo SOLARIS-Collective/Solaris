@@ -25,9 +25,9 @@
 		/obj/item/clothing/suit/hooded/wintercoat = 1,
 		/obj/item/clothing/suit/jacket = 1,
 		/obj/item/clothing/suit/jacket/leather = 1,
-		// [CELADON-ADD] - CELADON_RETURN_CONTENT_SPAWN
+		// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_SPAWN
 		/obj/item/clothing/suit/jacket/leather/overcoat = 1,
-		// [/CELADON-ADD]
+		// [/MANKIND-ADD]
 		/obj/item/clothing/suit/jacket/leather/duster = 1,
 		/obj/item/clothing/suit/jacket/miljacket = 1,
 		/obj/item/clothing/suit/gothcoat = 1,
@@ -81,9 +81,9 @@
 			/obj/item/clothing/head/hardhat = 2,
 			/obj/item/clothing/head/hardhat/orange = 2,
 			/obj/item/clothing/head/hardhat/dblue = 2,
-			// [CELADON-ADD] - CELADON_RETURN_CONTENT_SPAWN
+			// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_SPAWN
 			/obj/item/clothing/head/foilhat = 1,
-			// [/CELADON-ADD]
+			// [/MANKIND-ADD]
 			/obj/item/clothing/head/pirate = 1,
 			)
 		)
@@ -180,7 +180,7 @@
 			/obj/item/pickaxe/silver = 4,
 			/obj/item/pickaxe/diamond = 2,
 			/obj/item/gun/energy/kinetic_accelerator = 2,
-			// /obj/item/kinetic_crusher/old = 1 - [CELADON-DELETE] - Баланс
+			// /obj/item/kinetic_crusher/old = 1 - [MANKIND-REMOVE] - Баланс
 			)
 		)
 	if(prob(75))
@@ -245,8 +245,8 @@
 	else if (prob(75))
 		backpack_contents = list()
 		back = pick_weight(list(
-			// /obj/item/kinetic_crusher = 9, - [CELADON-DELETE] - Баланс
-			// /obj/item/kinetic_crusher/old = 1 - [CELADON-DELETE] - Баланс
+			// /obj/item/kinetic_crusher = 9, - [MANKIND-REMOVE] - Баланс
+			// /obj/item/kinetic_crusher/old = 1 - [MANKIND-REMOVE] - Баланс
 			)
 		)
 
@@ -451,7 +451,7 @@
 	if(prob(75))
 		r_pocket = pick(/obj/item/flashlight/seclite, /obj/item/assembly/flash/handheld, /obj/item/restraints/handcuffs)
 	if(prob(50))
-		suit_store = pick(/obj/item/gun/energy/e_gun/e_old, /obj/item/gun/energy/e_gun/e_old/smg) //suit_store = pick(/obj/item/gun/energy/sharplite/x12, /obj/item/gun/energy/sharplite/l305)	// [CELADON-EDIT]
+		suit_store = pick(/obj/item/gun/energy/e_gun/e_old, /obj/item/gun/energy/e_gun/e_old/smg) //suit_store = pick(/obj/item/gun/energy/sharplite/x12, /obj/item/gun/energy/sharplite/l305)	// [MANKIND-EDIT]
 	for(var/i = 1 to 3)
 		if(prob(75))
 			backpack_contents += pick_weight(list(

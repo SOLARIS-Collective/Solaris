@@ -13,10 +13,10 @@
 	var/datum/action/innate/dash/ninja/jaunt
 	var/dash_toggled = TRUE
 
-// [CELADON-EDIT] - FIXES_ANTAG_NINJA
+// [MANKIND-EDIT] - FIXES_ANTAG_NINJA
 // /obj/item/melee/sword/energy_katana/Initialize()	// ORIGINAL
 /obj/item/melee/sword/energy_katana/Initialize(mapload)
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 	. = ..()
 	jaunt = new(src)
 	spark_system = new /datum/effect_system/spark_spread()
@@ -29,7 +29,7 @@
 
 /obj/item/melee/sword/energy_katana/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
-	// [CELADON-ADD] - FIXES_ANTAG_NINJA
+	// [MANKIND-ADD] - FIXES_ANTAG_NINJA
 	if(!ishuman(user))
 		return
 	var/mob/living/carbon/human/H = user
@@ -42,7 +42,7 @@
 	if(ninja_suit.s_coold > 0)
 		to_chat(user, span_warning("<b>ERROR</b>: suit is on cooldown."))
 		return
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 	jaunt.Teleport(user, target)
 	if(proximity_flag && (isobj(target) || issilicon(target)))
 		spark_system.start()
@@ -66,13 +66,13 @@
 //To throw it at the ninja
 /obj/item/melee/sword/energy_katana/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	if(ishuman(hit_atom))
-		// [CELADON-ADD] - FIXES_ANTAG_NINJA
+		// [MANKIND-ADD] - FIXES_ANTAG_NINJA
 		var/mob/living/carbon/human/hit_human = hit_atom
 		if(istype(hit_human.wear_suit, /obj/item/clothing/suit/space/space_ninja))
 			var/obj/item/clothing/suit/space/space_ninja/ninja_suit = hit_human.wear_suit
 			if(ninja_suit.energyKatana == src)
 				returnToOwner(hit_human, 0, 1)
-		// [/CELADON-ADD]
+		// [/MANKIND-ADD]
 				return
 
 	..()
@@ -91,10 +91,10 @@
 	if(user.put_in_hands(src))
 		msg = "Your Energy Katana teleports into your hand!"
 	else if(user.equip_to_slot_if_possible(src, ITEM_SLOT_BELT, 0, 1, 1))
-		// [CELADON-EDIT] - FIXES_ANTAG_NINJA
+		// [MANKIND-EDIT] - FIXES_ANTAG_NINJA
 		// msg = "Your Energy Katana teleports back to you, sheathing itself as it does so!</span>"	// ORIGINAL
 		msg = "Your Energy Katana teleports back to you, sheathing itself as it does so!"
-		// [/CELADON-EDIT]
+		// [/MANKIND-EDIT]
 	else
 		msg = "Your Energy Katana teleports to your location!"
 

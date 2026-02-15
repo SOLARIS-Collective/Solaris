@@ -53,10 +53,10 @@
 	sec_hud_set_ID()
 	sec_hud_set_implants()
 	sec_hud_set_security_status()
-	// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+	// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 	//...fan gear
 	fan_hud_set_fandom()
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 	//...and display them.
 	add_to_all_human_data_huds()
 
@@ -504,7 +504,7 @@
 /mob/living/carbon/human/proc/canUseHUD()
 	return (mobility_flags & MOBILITY_USE)
 
-/* // [CELADON-REMOVE] - NO-HARDER-REPAIR-IPC - Это используется только под IPC - Они и так через фичу обходят этот момент, так что зачем усложнять все?
+/* // [MANKIND-REMOVE] - NO-HARDER-REPAIR-IPC - Это используется только под IPC - Они и так через фичу обходят этот момент, так что зачем усложнять все?
 //ohh god this'll need to be reworked into a zone-by-zone selection, rather than just "are yuor jorts thick"
 
 /mob/living/carbon/human/proc/is_exposed(mob/user, error_msg, target_zone)
@@ -528,7 +528,7 @@
 	if(!. && error_msg && user)
 		// Might need re-wording.
 		to_chat(user, span_alert("There is no exposed flesh or thin material [above_neck(target_zone) ? "on [p_their()] head" : "on [p_their()] body"]."))
-*/ // [/CELADON-REMOVE]
+*/ // [/MANKIND-REMOVE]
 
 /mob/living/carbon/human/can_inject(mob/user, target_zone, injection_flags)
 	. = TRUE // Default to returning true.
@@ -1372,9 +1372,9 @@
 
 /mob/living/carbon/human/species/android
 	race = /datum/species/android
-	// [CELADON-ADD] - CELADON_QOL
+	// [MANKIND-ADD] - MANKIND_QOL
 	bubble_icon = "machine"
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 
 /mob/living/carbon/human/species/dullahan
 	race = /datum/species/dullahan
@@ -1387,9 +1387,9 @@
 
 /mob/living/carbon/human/species/jelly
 	race = /datum/species/jelly
-	// [CELADON-ADD] - CELADON_QOL
+	// [MANKIND-ADD] - MANKIND_QOL
 	bubble_icon = "slime"
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 
 /mob/living/carbon/human/species/jelly/slime
 	race = /datum/species/jelly/slime
@@ -1444,9 +1444,9 @@
 
 /mob/living/carbon/human/species/ipc
 	race = /datum/species/ipc
-	// [CELADON-ADD] - CELADON_QOL
+	// [MANKIND-ADD] - MANKIND_QOL
 	bubble_icon = "machine"
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 
 /mob/living/carbon/human/species/lizard/ashwalker/kobold
 	race = /datum/species/lizard/ashwalker/kobold

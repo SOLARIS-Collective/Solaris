@@ -93,11 +93,11 @@
 	desc = "A close-fitting tactical mask that can be connected to an air supply. This one has an integrated voice changer."
 	var/voice_change = 1
 
-// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 /obj/item/clothing/mask/gas/clown_hat
 	name = "clown wig and mask"
-	icon = 'mod_celadon/_storage_icons/icons/other/clown_mime/masks.dmi'
-	mob_overlay_icon = 'mod_celadon/_storage_icons/icons/other/clown_mime/mask.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/other/clown_mime/masks.dmi'
+	mob_overlay_icon = 'modular_mankind/_storage_icons/icons/other/clown_mime/mask.dmi'
 	desc = "A true prankster's facial attire. A clown is incomplete without his wig and mask."
 	clothing_flags = ALLOWINTERNALS
 	icon_state = "clown"
@@ -146,8 +146,8 @@
 
 /obj/item/clothing/mask/gas/sexyclown
 	name = "sexy-clown wig and mask"
-	icon = 'mod_celadon/_storage_icons/icons/other/clown_mime/masks.dmi'
-	mob_overlay_icon = 'mod_celadon/_storage_icons/icons/other/clown_mime/mask.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/other/clown_mime/masks.dmi'
+	mob_overlay_icon = 'modular_mankind/_storage_icons/icons/other/clown_mime/mask.dmi'
 	desc = "A feminine clown mask for the dabbling crossdressers or female entertainers."
 	clothing_flags = ALLOWINTERNALS
 	icon_state = "sexyclown"
@@ -157,8 +157,8 @@
 
 /obj/item/clothing/mask/gas/mime
 	name = "mime mask"
-	icon = 'mod_celadon/_storage_icons/icons/other/clown_mime/masks.dmi'
-	mob_overlay_icon = 'mod_celadon/_storage_icons/icons/other/clown_mime/mask.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/other/clown_mime/masks.dmi'
+	mob_overlay_icon = 'modular_mankind/_storage_icons/icons/other/clown_mime/mask.dmi'
 	desc = "The traditional mime's mask. It has an eerie facial posture."
 	clothing_flags = ALLOWINTERNALS
 	icon_state = "mime"
@@ -200,7 +200,7 @@
 			A.UpdateButtonIcon()
 		to_chat(user, span_notice("Your Mime Mask has now morphed into [choice]!"))
 		return TRUE
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 /obj/item/clothing/mask/gas/monkeymask
 	name = "monkey mask"
@@ -211,17 +211,17 @@
 	flags_cover = MASKCOVERSEYES
 	resistance_flags = FLAMMABLE
 
-// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 /obj/item/clothing/mask/gas/sexymime
 	name = "sexy mime mask"
-	icon = 'mod_celadon/_storage_icons/icons/other/clown_mime/masks.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/other/clown_mime/masks.dmi'
 	desc = "A traditional female mime's mask."
 	clothing_flags = ALLOWINTERNALS
 	icon_state = "sexymime"
 	item_state = "sexymime"
 	flags_cover = MASKCOVERSEYES
 	resistance_flags = FLAMMABLE
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 /obj/item/clothing/mask/gas/cyborg
 	name = "cyborg visor"

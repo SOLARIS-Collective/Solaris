@@ -1,4 +1,4 @@
-// [CELADON-REMOVE] - CELADON_LAYER_SHIFT - Перемещено в модуль, слишком много надо редактировать
+// [MANKIND-REMOVE] - MANKIND_LAYER_SHIFT - Перемещено в модуль, слишком много надо редактировать
 /*
 #define MOB_LAYERSHIFT_MINIMUM BELOW_MOB_LAYER
 #define MOB_LAYERSHIFT_MAXIMUM ABOVE_MOB_LAYER

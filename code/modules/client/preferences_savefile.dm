@@ -145,10 +145,10 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		addtimer(CALLBACK(src, PROC_REF(announce_conflict), notadded), 5 SECONDS)
 
 /datum/preferences/proc/announce_conflict(list/notadded)
-	// [CELADON-ADD] - CELADON_MASTER_FILES
+	// [MANKIND-ADD] - MANKIND_MASTER_FILES
 	return
-	// [/CELADON-ADD]
-	// [CELADON-REMOVE] - CELADON_MASTER_FILES - Удалено по просьбе Voiko. Его это бесит
+	// [/MANKIND-ADD]
+	// [MANKIND-REMOVE] - MANKIND_MASTER_FILES - Удалено по просьбе Voiko. Его это бесит
 	/*
 	to_chat(parent, "<span class='userdanger'>KEYBINDING CONFLICT!!!\n\
 	There are new keybindings that have defaults bound to keys you already set, They will default to Unbound. You can bind them in Setup Character or Game Preferences\n\
@@ -158,7 +158,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		to_chat(parent, "<span class='userdanger'>[conflicted.category]: [conflicted.full_name] needs updating")
 		LAZYADD(key_bindings["Unbound"], conflicted.name) // set it to unbound to prevent this from opening up again in the future
 	*/
-	// [/CELADON-REMOVE]
+	// [/MANKIND-REMOVE]
 
 
 /datum/preferences/proc/load_path(ckey,filename="preferences.sav")
@@ -469,13 +469,13 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	READ_FILE(S["jumpsuit_style"], jumpsuit_style)
 	READ_FILE(S["exowear"], exowear)
-	READ_FILE(S["wallet"], wallet)	// [CELADON-ADD] - CELADON_WALLETS
+	READ_FILE(S["wallet"], wallet)	// [MANKIND-ADD] - MANKIND_WALLETS
 	READ_FILE(S["feature_moth_fluff"], features["moth_fluff"])
 	READ_FILE(S["feature_spider_legs"], features["spider_legs"])
 	READ_FILE(S["feature_spider_spinneret"], features["spider_spinneret"])
 	READ_FILE(S["feature_spider_mandibles"], features["spider_mandibles"])
 	READ_FILE(S["feature_squid_face"], features["squid_face"])
-	READ_FILE(S["feature_ipc_hair"], features["ipc_hair"]) // [CELADON-ADD] - CELADON_IPC_HAIR
+	READ_FILE(S["feature_ipc_hair"], features["ipc_hair"]) // [MANKIND-ADD] - MANKIND_IPC_HAIR
 	READ_FILE(S["feature_ipc_screen"], features["ipc_screen"])
 	READ_FILE(S["feature_ipc_antenna"], features["ipc_antenna"])
 	READ_FILE(S["feature_ipc_tail"], features["ipc_tail"])
@@ -489,7 +489,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["feature_vox_neck_quills"], features["vox_neck_quills"])
 	READ_FILE(S["feature_elzu_horns"], features["elzu_horns"])
 	READ_FILE(S["feature_tail_elzu"], features["tail_elzu"])
-	// [CELADON-ADD] - TAJARA
+	// [MANKIND-ADD] - TAJARA
 	READ_FILE(S["skin_tone_nose"], features["skin_tone_nose"])
 	READ_FILE(S["feature_tajara_ears"], features["tajara_ears"])
 	READ_FILE(S["feature_tajara_hairs"], features["tajara_hairs"])
@@ -505,7 +505,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["tajara_nose_markings_color"], features["tajara_nose_markings_color"])
 	READ_FILE(S["tajara_chest_markings_color"], features["tajara_chest_markings_color"])
 	READ_FILE(S["tajara_body_markings_color"], features["tajara_body_markings_color"])
-	// [CELADON-ADD] - CELADON_RIOL
+	// [MANKIND-ADD] - MANKIND_RIOL
 	READ_FILE(S["feature_riol_ears"], 				features["riol_ears"])
 	READ_FILE(S["feature_riol_hairs"], 				features["riol_hairs"])
 	READ_FILE(S["feature_riol_ears_markings"], 		features["riol_ears_markings"])
@@ -523,16 +523,16 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["riol_chest_markings_color"], 		features["riol_chest_markings_color"])
 	READ_FILE(S["riol_body_markings_color"], 		features["riol_body_markings_color"])
 	READ_FILE(S["riol_tail_markings_color"], 		features["riol_tail_markings_color"])
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 
 	READ_FILE(S["equipped_gear"], equipped_gear)
 	if(config) //This should *probably* always be there, but just in case.
-		// [CELADON-EDIT] - CELADON_DONATE
+		// [MANKIND-EDIT] - MANKIND_DONATE
 		// if(length(equipped_gear) > CONFIG_GET(number/max_loadout_items))
 		// 	to_chat(parent, span_userdanger("Loadout maximum items exceeded in loaded slot, Your loadout has been cleared! You had [length(equipped_gear)]/[CONFIG_GET(number/max_loadout_items)] equipped items!"))
 		if(length(equipped_gear) > max_loadout_items)
 			to_chat(parent, span_userdanger("Loadout maximum items exceeded in loaded slot, Your loadout has been cleared! You had [length(equipped_gear)]/[max_loadout_items] equipped items!"))
-		// [/CELADON-EDIT]
+		// [/MANKIND-EDIT]
 			equipped_gear = list()
 			WRITE_FILE(S["equipped_gear"], equipped_gear)
 
@@ -594,13 +594,13 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	randomise = SANITIZE_LIST(randomise)
 
-	// [CELADON-EDIT] - TAJARA, CELADON_RIOL
+	// [MANKIND-EDIT] - TAJARA, MANKIND_RIOL
 	//	if(gender == MALE)
 	//		hairstyle								= sanitize_inlist(hairstyle, GLOB.hairstyles_male_list)
 	//		facial_hairstyle						= sanitize_inlist(facial_hairstyle, GLOB.facial_hairstyles_male_list)
 	//	else if(gender == FEMALE)
 	//		hairstyle								= sanitize_inlist(hairstyle, GLOB.hairstyles_female_list)
-	//		facial_hairstyle						= sanitize_inlist(facial_hairstyle, GLOB.facial_hairstyles_female_list) // CELADON-EDIT - ORIGINAL
+	//		facial_hairstyle						= sanitize_inlist(facial_hairstyle, GLOB.facial_hairstyles_female_list) // ORIGINAL
 	if(species_id == "tajara")
 		hairstyle								= sanitize_inlist(hairstyle, GLOB.tajara_hairs_list)
 		facial_hairstyle						= sanitize_inlist(facial_hairstyle, GLOB.tajara_facial_hairs_list)
@@ -609,13 +609,13 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		hairstyle								= sanitize_inlist(hairstyle, GLOB.riol_hairs_list)
 		facial_hairstyle						= sanitize_inlist(facial_hairstyle, GLOB.riol_facial_hairs_list)
 
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 	else
-		// [CELADON-EDIT] - TAJARA - изменения базы
+		// [MANKIND-EDIT] - TAJARA - изменения базы
 		//	hairstyle								= sanitize_inlist(hairstyle, GLOB.hairstyles_list)
 		//	facial_hairstyle						= sanitize_inlist(facial_hairstyle, GLOB.facial_hairstyles_list)
 		//	underwear								= sanitize_inlist(underwear, GLOB.underwear_list)
-		//	undershirt 								= sanitize_inlist(undershirt, GLOB.undershirt_list) // CELADON-EDIT - ORIGINAL
+		//	undershirt 								= sanitize_inlist(undershirt, GLOB.undershirt_list) // ORIGINAL
 		if(gender == MALE)
 			hairstyle								= sanitize_inlist(hairstyle, GLOB.hairstyles_male_list)
 			facial_hairstyle						= sanitize_inlist(facial_hairstyle, GLOB.facial_hairstyles_male_list)
@@ -627,7 +627,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 			facial_hairstyle						= sanitize_inlist(facial_hairstyle, GLOB.facial_hairstyles_list)
 			underwear								= sanitize_inlist(underwear, GLOB.underwear_list)
 			undershirt 								= sanitize_inlist(undershirt, GLOB.undershirt_list)
-		// [/CELADON-EDIT]
+		// [/MANKIND-EDIT]
 
 
 	socks				= sanitize_inlist(socks, GLOB.socks_list)
@@ -640,7 +640,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	backpack			= sanitize_inlist(backpack, GLOB.backpacklist, initial(backpack))
 	jumpsuit_style		= sanitize_inlist(jumpsuit_style, GLOB.jumpsuitlist, initial(jumpsuit_style))
 	exowear				= sanitize_inlist(exowear, GLOB.exowearlist, initial(exowear))
-	wallet				= sanitize_inlist(wallet, GLOB.walletlist, initial(wallet))	// [CELADON-ADD] - CELADON_WALLETS
+	wallet				= sanitize_inlist(wallet, GLOB.walletlist, initial(wallet))	// [MANKIND-ADD] - MANKIND_WALLETS
 	fbp					= sanitize_integer(fbp, FALSE, TRUE, FALSE)
 	height_filter		= sanitize_inlist(height_filter, GLOB.height_filters, "Normal")
 	features["grad_style"]				= sanitize_inlist(features["grad_style"], GLOB.hair_gradients_list)
@@ -662,7 +662,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	features["spider_spinneret"] 		= sanitize_inlist(features["spider_spinneret"], GLOB.spider_spinneret_list, "Plain")
 	features["moth_markings"]			= sanitize_inlist(features["moth_markings"], GLOB.moth_markings_list, "None")
 	features["squid_face"]				= sanitize_inlist(features["squid_face"], GLOB.squid_face_list, "Squidward")
-	features["ipc_hair"]				= sanitize_inlist(features["ipc_hair"], GLOB.ipc_hair_list) // [CELADON-ADD] - CELADON_IPC_HAIR
+	features["ipc_hair"]				= sanitize_inlist(features["ipc_hair"], GLOB.ipc_hair_list) // [MANKIND-ADD] - MANKIND_IPC_HAIR
 	features["ipc_screen"]				= sanitize_inlist(features["ipc_screen"], GLOB.ipc_screens_list)
 	features["ipc_antenna"]				= sanitize_inlist(features["ipc_antenna"], GLOB.ipc_antennas_list)
 	features["ipc_tail"]				= sanitize_inlist(features["ipc_tail"], GLOB.ipc_tail_list)
@@ -678,7 +678,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	features["tail_elzu"]				= sanitize_inlist(features["tail_elzu"], GLOB.tails_list_elzu)
 	features["flavor_text"]				= sanitize_text(features["flavor_text"], initial(features["flavor_text"]))
 
-	// [CELADON-ADD] - TAJARA
+	// [MANKIND-ADD] - TAJARA
 	features["skin_tone_nose"] = sanitize_inlist(features["skin_tone_nose"], GLOB.skin_tones_nose)
 	features["tajara_ears"] = sanitize_inlist(features["tajara_ears"], GLOB.tajara_ears_list, "Plain")
 	features["tajara_hairs"] = sanitize_inlist(features["tajara_hairs"], GLOB.tajara_hairs_list, "Plain")
@@ -694,7 +694,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	features["tajara_nose_markings_color"]				= sanitize_hexcolor(features["tajara_nose_markings_color"])
 	features["tajara_chest_markings_color"]				= sanitize_hexcolor(features["tajara_chest_markings_color"])
 	features["tajara_body_markings_color"]				= sanitize_hexcolor(features["tajara_body_markings_color"])
-	// [CELADON-ADD] - CELADON_RIOL
+	// [MANKIND-ADD] - MANKIND_RIOL
 	features["riol_ears"] 						= sanitize_inlist(features["riol_ears"], GLOB.riol_ears_list, "Plain")
 	features["riol_hairs"] 						= sanitize_inlist(features["riol_hairs"], GLOB.riol_hairs_list, "Plain")
 	features["riol_ears_markings"] 				= sanitize_inlist(features["riol_ears_markings"], GLOB.riol_ears_markings_list, "None")
@@ -712,7 +712,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	features["riol_chest_markings_color"]		= sanitize_hexcolor(features["riol_chest_markings_color"])
 	features["riol_body_markings_color"]		= sanitize_hexcolor(features["riol_body_markings_color"])
 	features["riol_tail_markings_color"]		= sanitize_hexcolor(features["riol_tail_markings_color"])
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 
 	all_quirks = SANITIZE_LIST(all_quirks)
 
@@ -773,14 +773,14 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["feature_moth_markings"]		, features["moth_markings"])
 	WRITE_FILE(S["jumpsuit_style"]				, jumpsuit_style)
 	WRITE_FILE(S["exowear"]						, exowear)
-	WRITE_FILE(S["wallet"]						, wallet)	// [CELADON-ADD] - CELADON_WALLETS
+	WRITE_FILE(S["wallet"]						, wallet)	// [MANKIND-ADD] - MANKIND_WALLETS
 	WRITE_FILE(S["equipped_gear"]				, equipped_gear)
 	WRITE_FILE(S["feature_moth_fluff"]			, features["moth_fluff"])
 	WRITE_FILE(S["feature_spider_legs"]			, features["spider_legs"])
 	WRITE_FILE(S["feature_spider_spinneret"]	, features["spider_spinneret"])
 	WRITE_FILE(S["feature_spider_mandibles"]	, features["spider_mandibles"])
 	WRITE_FILE(S["feature_squid_face"]			, features["squid_face"])
-	WRITE_FILE(S["feature_ipc_hair"]			, features["ipc_hair"]) // [CELADON-ADD] - CELADON_IPC_HAIR
+	WRITE_FILE(S["feature_ipc_hair"]			, features["ipc_hair"]) // [MANKIND-ADD] - MANKIND_IPC_HAIR
 	WRITE_FILE(S["feature_ipc_screen"]			, features["ipc_screen"])
 	WRITE_FILE(S["feature_ipc_antenna"]			, features["ipc_antenna"])
 	WRITE_FILE(S["feature_ipc_tail"] 			, features["ipc_tail"])
@@ -796,7 +796,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["feature_tail_elzu"]			, features["tail_elzu"])
 	WRITE_FILE(S["fbp"]							, fbp)
 
-	// [CELADON-ADD] - TAJARA
+	// [MANKIND-ADD] - TAJARA
 	WRITE_FILE(S["skin_tone_nose"], features["skin_tone_nose"])
 	WRITE_FILE(S["feature_tajara_ears"], features["tajara_ears"])
 	WRITE_FILE(S["feature_tajara_hairs"], features["tajara_hairs"])
@@ -812,7 +812,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["tajara_nose_markings_color"], features["tajara_nose_markings_color"])
 	WRITE_FILE(S["tajara_chest_markings_color"], features["tajara_chest_markings_color"])
 	WRITE_FILE(S["tajara_body_markings_color"], features["tajara_body_markings_color"])
-	// [CELADON-ADD] - CELADON_RIOL
+	// [MANKIND-ADD] - MANKIND_RIOL
 	WRITE_FILE(S["feature_riol_ears"], 				features["riol_ears"])
 	WRITE_FILE(S["feature_riol_hairs"], 			features["riol_hairs"])
 	WRITE_FILE(S["feature_riol_ears_markings"], 	features["riol_ears_markings"])
@@ -830,7 +830,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["riol_chest_markings_color"], 		features["riol_chest_markings_color"])
 	WRITE_FILE(S["riol_body_markings_color"], 		features["riol_body_markings_color"])
 	WRITE_FILE(S["riol_tail_markings_color"], 		features["riol_tail_markings_color"])
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 
 	//Flavor text
 	WRITE_FILE(S["feature_flavor_text"]			, features["flavor_text"])

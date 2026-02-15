@@ -8,11 +8,11 @@
 /datum/export/claymore
 	unit_name = "defused claymores"
 	desc = "The Confederated League maintains an active bounty program for the disposal of UXO. Make the frontier a safer place today!"
-	cost = 500	//cost = 1250 // [CELADON-EDIT]
+	cost = 500	//cost = 1250 // [MANKIND-EDIT]
 	elasticity_coeff = 0.1
 	export_types = list(/obj/item/mine/directional/claymore)
 
-// [CELADON-ADD]
+// [MANKIND-ADD]
 /datum/export/anomaly
 	unit_name = "stabilized anomaly core"
 	cost = 1000
@@ -23,11 +23,11 @@
 	. = ..()
 	desc = "[SSmissions.get_researcher_name()] has requested that we [pick(list("procure", "grab", "acquire", "find", "locate"))] \
 	anomaly cores for [pick(list("research", "analysis", "technical development", "closer inspection", "some reason"))]."
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 // Circuit boards, spare parts, etc.
 
-// [CELADON-EDIT]
+// [MANKIND-EDIT]
 /datum/export/solar
 	elasticity_coeff = 0.05
 
@@ -55,7 +55,7 @@
 	unit_name = "ion thruster board"
 	elasticity_coeff = 0.05
 	export_types = list(/obj/item/circuitboard/machine/shuttle/engine/electric/tech3)
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 
 /*
 //Computer Tablets and Parts

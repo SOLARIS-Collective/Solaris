@@ -652,7 +652,7 @@
 	set_module = /obj/item/robot_module/security
 	icon_state = "sec"
 
-// [CELADIN-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+// [CELADIN-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 /mob/living/silicon/robot/modules/clown
 	set_module = /obj/item/robot_module/clown
 	icon_state = "clown"
@@ -855,9 +855,9 @@
 		else
 			set_stat(CONSCIOUS)
 	diag_hud_set_status()
-// [CELADON-ADD] - FIX_DIAGNISTIC_HUD
+// [MANKIND-ADD] - FIX_DIAGNISTIC_HUD
 	diag_hud_set_health()
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 	diag_hud_set_aishell()
 	update_health_hud()
 

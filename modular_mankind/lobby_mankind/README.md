@@ -1,7 +1,7 @@
 
 #### Список PRов
 
-- https://github.com/MANKIND-Collective/Pentest/pull/751
+- https://github.com/CeladonSS13/Shiptest/pull/751
 <!--
   Ссылки на PRы, связанные с модом:
   - Создание
@@ -9,7 +9,7 @@
 -->
 
 <!-- Название мода. Не важно на русском или на английском. -->
-## Лобби Mankind
+## Лобби MANKIND
 
 ID мода: LOBBY_MANKIND
 <!--
@@ -63,13 +63,13 @@ ID мода: LOBBY_MANKIND
   И то же самое, если ты используешь дефайны, определённые другим модом.
 
   Не используешь - напиши "Отсутствуют"
-  Примеры: `code/__defines/~mod_mankind/music_mankind.dm`: `MUSIC_MANKIND_SPEED_MULTIPLIER`, `MUSIC_MANKIND_SPEED_BASE`
+  Примеры: `code/__defines/~modular_mankind/music_mankind.dm`: `MUSIC_MANKIND_SPEED_MULTIPLIER`, `MUSIC_MANKIND_SPEED_BASE`
 -->
 
 ### Используемые файлы, не содержащиеся в модпаке
 
-- `mod_mankind/_storage_icons/icons`
-- `mod_mankind/_storage_sounds/sound`
+- `modular_mankind/_storage_icons/icons`
+- `modular_mankind/_storage_sounds/sound`
 <!--
   Будь то немодульный файл или модульный файл, который не содержится в папке,
   принадлежащей этому конкретному моду, он должен быть упомянут здесь.

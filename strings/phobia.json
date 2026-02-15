@@ -263,7 +263,7 @@
 		"~"
 	],
 
-	"[CELADON-ADD]": ["TAJARA"],
+	"[MANKIND-ADD]": ["TAJARA"],
 	"cats": [
 		"cat",
 		"pussy",
@@ -280,5 +280,5 @@
 		"purr",
 		"fox"
 	],
-	"[/CELADON-ADD]": ["ends-here"]
+	"[/MANKIND-ADD]": ["ends-here"]
 }

@@ -318,7 +318,7 @@ export const ShipBrowser = (props, context) => {
                     <LabeledList.Item label="Ссылка на карту">
                       <a
                         href={
-                          'https://map.celadon.pro/Shiptest/' +
+                          'https://map.mankind.pro/Shiptest/' +
                           (t?.shortName || t?.name)
                         }
                         target="_blank"
@@ -331,7 +331,7 @@ export const ShipBrowser = (props, context) => {
                       <Collapsible title={'Карта корабля'} key={'Map'}>
                         <img
                           src={
-                            'https://map.celadon.pro/Shiptest/Shuttles/' +
+                            'https://map.mankind.pro/Shiptest/Shuttles/' +
                             (t?.shortName || t?.name) +
                             '.png'
                           }

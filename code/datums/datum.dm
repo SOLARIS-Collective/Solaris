@@ -46,10 +46,10 @@
 	/// List for handling persistent filters.
 	var/list/filter_data
 
-	/// [CELADONE-ADD]
+	/// [MANKIND-ADD]
 	/// russian case forms of atom name in format
 	/// list(NOMINATIVE_CASE, GENITIVE_CASE, DATIVE_CASE, ACCUSATIVE_CASE, ABLATIVE_CASE, PREPOSITIONAL_CASE)
-	/// for usage with CASE macros (code/__DEFINES/~mod_celadon/_translation.dm)
+	/// for usage with CASE macros (code/__DEFINES/~modular_mankind/_translation.dm)
 	var/list/cases = null
 
 #ifdef REFERENCE_TRACKING

@@ -66,7 +66,7 @@ ADD: `code/modules/clothing/factions/solgov.dm`
 Лут с элиток (вместо гритер сундука, выпадает обычный сундук некрополиса)
 EDIT: `code\modules\mob\living\simple_animal\hostile\mining_mobs\elites\elite.dm`: `/obj/structure/elite_tumor/proc/onEliteLoss()` -> var/obj/structure/closet/crate/necropolis/tendril/lootbox = new /obj/structure/closet/crate/necropolis/tendril(loc)
 
-ADD: `code\modules\projectiles\ammunition\_ammunition.dm` : /obj/item/ammo_casing/attackby(obj/item/I, mob/user, params) -> добавлены звук подбора патрона в магазин с пола и задержка в 1 секунду зависящая от кликанья по патронам. Чем быстрее клики - тем быстрее загрузятся патроны. -> перемещено в `mod_mankind/items/code/ammunition.dm`
+ADD: `code\modules\projectiles\ammunition\_ammunition.dm` : /obj/item/ammo_casing/attackby(obj/item/I, mob/user, params) -> добавлены звук подбора патрона в магазин с пола и задержка в 1 секунду зависящая от кликанья по патронам. Чем быстрее клики - тем быстрее загрузятся патроны. -> перемещено в `modular_mankind/items/code/ammunition.dm`
 Очки с зомби и ксеноморфов. Добавлен подтип для королевы и претора.
 REMOVE, EDIT, ADD: `D:\1ss\ShiptestYata\code\modules\surgery\experimental_dissection.dm`: `/datum/surgery_step/dissection/preop` - тэги ALIEN_BALANCE и MANKIND_BALANCE
 Новые дефайны для диссекции:
@@ -114,7 +114,7 @@ BALANCE_CAN_HIT_TARGET
 
 EDIT: `code/modules/modular_computers/file_system/programs/radar.dm` : ставим заглушку, чтобы не пользовались планшетиком с радарчиком, пока кодеры не придумают иной вариант. Главное не забыть
 
-EDIT: `mod_mankind/return_content/code/hivebot.dm` : понизили шанс выпадения ксенобио с 45% до 15% с портала
+EDIT: `modular_mankind/return_content/code/hivebot.dm` : понизили шанс выпадения ксенобио с 45% до 15% с портала
 EDIT: `code/modules/reagents/chemistry/recipes/others.dm` : Меняем кровь слаймоменов в ядрах слаймов на кислоту
 
 EDIT: `code/game/objects/items/storage/briefcase.dm` : Меняем разрешенные вложенные предметы с нормала на смол, чтобы нельзя было вкладывать коробки с и создавать матрешку коробок. 
@@ -190,7 +190,7 @@ OUTPOST_MED_BALANCE
 
 ### Используемые файлы, не содержащиеся в модпаке
 
-- `mod_mankind/_storage_icons/icons`
+- `modular_mankind/_storage_icons/icons`
 <!--
   Будь то немодульный файл или модульный файл, который не содержится в папке,
   принадлежащей этому конкретному моду, он должен быть упомянут здесь.

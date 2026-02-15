@@ -32,9 +32,9 @@
 	shoes = /obj/item/clothing/shoes/laceup
 	neck = /obj/item/clothing/neck/cloak/nanotrasen
 	head = /obj/item/clothing/head/nanotrasen/captain/peaked
-	// [CELADON-REMOVE] - CELADON_BALANCE - Убираем телескопички
+	// [MANKIND-REMOVE] - MANKIND_BALANCE - Убираем телескопички
 	// backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1)
-	// [/CELADON-REMOVE]
+	// [/MANKIND-REMOVE]
 
 	backpack = /obj/item/storage/backpack/captain
 	satchel = /obj/item/storage/backpack/satchel/cap
@@ -141,9 +141,9 @@
 
 	backpack_contents = list(
 						/obj/item/storage/box/ids=1,
-						// [CELADON-REMOVE] - CELADON_BALANCE - Убираем телескопички
+						// [MANKIND-REMOVE] - MANKIND_BALANCE - Убираем телескопички
 						// /obj/item/melee/classic_baton/telescopic=1,
-						// [/CELADON-REMOVE]
+						// [/MANKIND-REMOVE]
 						/obj/item/modular_computer/tablet/preset/advanced = 1,
 						)
 
@@ -383,9 +383,9 @@
 	gloves = /obj/item/clothing/gloves/color/black
 
 	backpack_contents = list(
-						// [CELADON-REMOVE] - CELADON_BALANCE - Убираем телескопички
+						// [MANKIND-REMOVE] - MANKIND_BALANCE - Убираем телескопички
 						// /obj/item/melee/classic_baton/telescopic=1,
-						// [/CELADON-REMOVE]
+						// [/MANKIND-REMOVE]
 						/obj/item/modular_computer/tablet/preset/advanced=1,
 						)
 

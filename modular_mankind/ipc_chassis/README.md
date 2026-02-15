@@ -91,7 +91,7 @@ ID мода: MANKIND_IPC_CHASSIS
 
 ### Используемые файлы, не содержащиеся в модпаке
 
-- `mod_mankind/_storage_icons/icons/species/ipc`
+- `modular_mankind/_storage_icons/icons/species/ipc`
 <!--
   Будь то немодульный файл или модульный файл, который не содержится в папке,
   принадлежащей этому конкретному моду, он должен быть упомянут здесь.

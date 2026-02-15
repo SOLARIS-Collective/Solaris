@@ -5,10 +5,10 @@
 	var/image/areaimage
 
 /datum/buildmode_mode/area_edit/New()
-	// [CELADON-EDIT] - CELADON_AREAS - Иначе никак не подсунуть свои зоны
-	// areaimage = image('icons/turf/areas.dmi', null, "yellow") // CELADON-EDIT - ORIGINAL
-	areaimage = image('mod_celadon/_storage_icons/icons/assets/areas.dmi', null, "yellow")
-	// [CELADON-EDIT]
+	// [MANKIND-EDIT] - MANKIND_AREAS - Иначе никак не подсунуть свои зоны
+	// areaimage = image('icons/turf/areas.dmi', null, "yellow") // ORIGINAL
+	areaimage = image('modular_mankind/_storage_icons/icons/assets/areas.dmi', null, "yellow")
+	// [MANKIND-EDIT]
 	..()
 
 /datum/buildmode_mode/area_edit/enter_mode(datum/buildmode/BM)

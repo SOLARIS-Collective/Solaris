@@ -76,9 +76,9 @@
 
 	backpack_contents = list(
 		/obj/item/storage/box/ids = 1,
-		// [CELADON-REMOVE] - CELADON_BALANCE - Убираем телескопички
+		// [MANKIND-REMOVE] - MANKIND_BALANCE - Убираем телескопички
 		// /obj/item/melee/classic_baton/telescopic = 1,
-		// [/CELADON-REMOVE]
+		// [/MANKIND-REMOVE]
 		/obj/item/modular_computer/tablet/preset/advanced = 1)
 
 /datum/outfit/job/clip/ce
@@ -104,9 +104,9 @@
 	courierbag = /obj/item/storage/backpack/messenger/engi
 	box = /obj/item/storage/box/survival/engineer
 	backpack_contents = list(
-		// [CELADON-REMOVE] - CELADON_BALANCE - Убираем телескопички
+		// [MANKIND-REMOVE] - MANKIND_BALANCE - Убираем телескопички
 		// /obj/item/melee/classic_baton/telescopic=1,
-		// [/CELADON-REMOVE]
+		// [/MANKIND-REMOVE]
 		/obj/item/modular_computer/tablet/preset/advanced = 1
 	)
 
@@ -132,9 +132,9 @@
 
 	backpack_contents = list(
 		/obj/item/storage/box/ids=1,
-		// [CELADON-REMOVE] - CELADON_BALANCE - Убираем телескопички
+		// [MANKIND-REMOVE] - MANKIND_BALANCE - Убираем телескопички
 		// /obj/item/melee/classic_baton/telescopic=1,
-		// [/CELADON-REMOVE]
+		// [/MANKIND-REMOVE]
 		/obj/item/modular_computer/tablet/preset/advanced = 1)
 
 	chameleon_extras = list(/obj/item/gun/energy/sharplite/x12, /obj/item/stamp/officer)
@@ -345,9 +345,9 @@
 	head = /obj/item/clothing/head/clip/slouch/officer
 
 	backpack_contents = list(/obj/item/storage/box/ids=1,
-		// [CELADON-REMOVE] - CELADON_BALANCE - Убираем телескопички
+		// [MANKIND-REMOVE] - MANKIND_BALANCE - Убираем телескопички
 		// /obj/item/melee/classic_baton/telescopic = 1
-		// [/CELADON-REMOVE]
+		// [/MANKIND-REMOVE]
 	)
 
 /datum/outfit/job/clip/minutemen/captain/general
@@ -362,10 +362,10 @@
 	shoes = /obj/item/clothing/shoes/jackboots
 
 	box = /obj/item/storage/box/survival/engineer
-	// [CELADON-EDIT] - CELADON_BALANCE - Убираем телескопички
-	// backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1, /obj/item/gun/ballistic/revolver/rhino=1)	// CELADON-EDIT - ORIGINAL
+	// [MANKIND-EDIT] - MANKIND_BALANCE - Убираем телескопички
+	// backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1, /obj/item/gun/ballistic/revolver/rhino=1)	// ORIGINAL
 	backpack_contents = list(/obj/item/gun/ballistic/revolver/rhino=1)
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 
 /datum/outfit/job/clip/minutemen/captain/general/admiral // for flavor, might remove outright
 	name = "CLIP Minutemen - Admiral"

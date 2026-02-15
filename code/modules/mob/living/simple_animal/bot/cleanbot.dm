@@ -398,10 +398,10 @@
 	on = FALSE
 
 /obj/machinery/bot_core/cleanbot
-// [CELADON-EDIT] - QoL
+// [MANKIND-EDIT] - QoL
 //	req_one_access = list(ACCESS_JANITOR, ACCESS_ROBOTICS)
 	req_one_access = 0
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 
 /mob/living/simple_animal/bot/cleanbot/get_controls(mob/user)
 	var/dat
@@ -436,7 +436,7 @@ Maintenance panel panel is [open ? "opened" : "closed"]"})
 		update_controls()
 
 /obj/machinery/bot_core/cleanbot/medbay
-// [CELADON-EDIT] - QoL
+// [MANKIND-EDIT] - QoL
 //	req_one_access = list(ACCESS_JANITOR, ACCESS_ROBOTICS, ACCESS_MEDICAL)
 	req_one_access = 0
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]

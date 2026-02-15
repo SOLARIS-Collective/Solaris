@@ -55,7 +55,7 @@
 	objective_type = /datum/overmap/event/dust
 */
 
-/datum/overmap/event/carp	// вынесено в mod_mankind/fixes/code/research_mission.dm, оставлено дял того чтобы не удалять кучу зависимостей
+/datum/overmap/event/carp	// вынесено в modular_mankind/fixes/code/research_mission.dm, оставлено дял того чтобы не удалять кучу зависимостей
 	name = "carp migration (moderate)"
 	desc = "A migratory school of space carp. They travel at high speeds, and flying through them may cause them to impact your ship"
 	base_icon_state = "carp_medium_"
@@ -104,7 +104,7 @@
 
 // dust clouds throw dust if you go Way Fast
 
-/datum/overmap/event/dust	// вынесено в mod_mankind/fixes/code/research_mission.dm, оставлено дял того чтобы не удалять кучу зависимостей
+/datum/overmap/event/dust	// вынесено в modular_mankind/fixes/code/research_mission.dm, оставлено дял того чтобы не удалять кучу зависимостей
 	name = "dust cloud"
 	desc = "A cloud of spaceborne dust. Relatively harmless, unless you're travelling at relative speeds"
 	base_icon_state = "dust"

@@ -6,7 +6,7 @@
 	var/key = "" //What calls the emote
 	var/key_third_person = "" //This will also call the emote
 	var/message = "" //Message displayed when emote is used
-	var/message_mime = "" //Message displayed if the user is a mime	// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNSS
+	var/message_mime = "" //Message displayed if the user is a mime	// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNSS
 	var/message_alien = "" //Message displayed if the user is a grown alien
 	var/message_larva = "" //Message displayed if the user is an alien larva
 	var/message_robot = "" //Message displayed if the user is a robot
@@ -29,7 +29,7 @@
 	var/only_forced_audio = FALSE //can only code call this event instead of the player.
 	var/cooldown = 0.8 SECONDS
 	var/static/regex/stop_bypasser = regex(@"says|exclaims|yells|asks")
-	// [CELADON-ADD] - CELADON_EMOTES
+	// [MANKIND-ADD] - MANKIND_EMOTES
 	/// Message with %t at the end to allow adding params to the message, like for mobs doing an emote relatively to something else.
 	/// Set this to EMOTE_PARAM_USE_POSTFIX to just use the postfix.
 	/// Message postfix with %t used when we don't want to use message_param for our targeting. Used for things like message_monkey or message_mime.
@@ -43,7 +43,7 @@
 	var/age_based = FALSE
 	/// How loud is the audio emote?
 	var/volume = 50
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 
 	// Animated emote stuff
 
@@ -82,19 +82,19 @@
 		user.flick_overlay_view(I, emote_length)
 
 	var/tmp_sound = get_sound(user)
-	// [CELADON-ADD] - CELADON_EMOTES
+	// [MANKIND-ADD] - MANKIND_EMOTES
 	var/sound_volume = get_volume(user)
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 	if(tmp_sound && (!only_forced_audio || !intentional))
-		// [CELADON-EDIT] - CELADON_EMOTES
-		// playsound(user, tmp_sound, 50, vary)	// CELADON-EDIT - ORIGINAL
+		// [MANKIND-EDIT] - MANKIND_EMOTES
+		// playsound(user, tmp_sound, 50, vary)	// ORIGINAL
 		playsound(user, tmp_sound, sound_volume, vary)
-		// [/CELADON-EDIT]
+		// [/MANKIND-EDIT]
 
 	var/msg = select_message_type(user, intentional)
 	if(params && message_param)
-		// [CELADON-EDIT] - CELADON_EMOTES
-		// msg = select_param(user, params)	// CELADON-EDIT - ORIGINAL
+		// [MANKIND-EDIT] - MANKIND_EMOTES
+		// msg = select_param(user, params)	// ORIGINAL
 		// In this case, we did make some changes to the message that will be used, and we want to add the postfix on with the new parameters.
 		// This is applicable to things like mimes, who this lets have a target on their canned emote responses.
 		// Note that we only do this if we would otherwise have a message param, meaning there should be some target by default.
@@ -114,10 +114,10 @@
 		if(isnull(msg))
 			to_chat(user, "<span class='warning'>'[params]' isn't a valid parameter for [key].</span>")
 			return TRUE
-		// [/CELADON-EDIT]
+		// [/MANKIND-EDIT]
 	msg = replace_pronoun(user, msg)
 
-	// [CELADON-ADD] - CELADON_EMOTES
+	// [MANKIND-ADD] - MANKIND_EMOTES
 	var/suppressed = FALSE
 
 	// Keep em quiet if they can't speak
@@ -125,7 +125,7 @@
 		var/noise_emitted = pick(muzzled_noises)
 		suppressed = TRUE
 		msg = "издаёт [noise_emitted] звук."
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 
 	if(isliving(user))
 		var/mob/living/L = user
@@ -146,8 +146,8 @@
 		if(M.stat == DEAD && M.client && (M.client.prefs.chat_toggles & CHAT_GHOSTSIGHT) && !(M in viewers(T, null)))
 			M.show_message("[FOLLOW_LINK(M, user)] [dchatmsg]")
 
-	if(isliving(user))	// [CELADON-ADD] - CELADON_EMOTES
-	// [CELADON-EDIT] - CELADON_EMOTES
+	if(isliving(user))	// [MANKIND-ADD] - MANKIND_EMOTES
+	// [MANKIND-EDIT] - MANKIND_EMOTES
 	// if(emote_type & EMOTE_AUDIBLE)
 	// 	user.audible_message(msg, deaf_message = span_emote("You see how <b>[user]</b> [msg]"), audible_message_flags = EMOTE_MESSAGE)
 	// else
@@ -156,11 +156,11 @@
 			user.audible_message(msg, deaf_message = span_emote("Ты видишь как <b>[user]</b> [msg]"), audible_message_flags = EMOTE_MESSAGE)
 		else
 			user.visible_message(msg, blind_message = span_emote("Ты замечаешь как <b>[user]</b> [msg]"), visible_message_flags = EMOTE_MESSAGE)
-	// [/CELADON-EDIT]
-	// [CELADON-ADD] - CELADON_EMOTES
+	// [/MANKIND-EDIT]
+	// [MANKIND-ADD] - MANKIND_EMOTES
 	if(!((emote_type & EMOTE_FORCE_NO_RUNECHAT) || suppressed) && !isobserver(user))
 		to_chat(user, msg)
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 
 /// For handling emote cooldown, return true to allow the emote to happen
 /datum/emote/proc/check_cooldown(mob/user, intentional)
@@ -281,7 +281,7 @@
 	var/static/regex/no_spacing_emote_characters = regex(@"(,|')")
 	return no_spacing_emote_characters.Find(string) ? FALSE : TRUE
 
-// [CELADON-ADD] - CELADON_EMOTES
+// [MANKIND-ADD] - MANKIND_EMOTES
 /**
  * Play the sound effect in an emote.
  * If you want to change the way the playsound call works, override this.
@@ -325,4 +325,4 @@
 	if(copytext(msg, -1) in end_punctuation)
 		msg = copytext(msg, 1, -1)
 	return msg
-// [/CELADON-ADD]
+// [/MANKIND-ADD]

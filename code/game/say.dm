@@ -3,7 +3,7 @@
 	This file has the basic atom/movable level speech procs.
 	And the base of the send_speech() proc, which is the core of saycode.
 */
-// [CELADON-EDIT] - FACTION-RADIO
+// [MANKIND-EDIT] - FACTION-RADIO
 GLOBAL_LIST_INIT(freqtospan, list(
 	"[FREQ_EMERGENCY]" = "emrgradio",
 	"[FREQ_CENTCOM]" = "centcomradio",
@@ -26,7 +26,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	"[FREQ_RAMZI]" = "ramziradio",
 	"[FREQ_PIRATE]" = "pirradio",
 	))
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 
 GLOBAL_LIST_INIT(freqcolor, list())
 
@@ -91,7 +91,7 @@ GLOBAL_LIST_INIT(freqcolor, list())
 * If FALSE, this check will always fail if the movable has a mind and is miming.
 * if TRUE, we will check if the movable can speak irregardless
 */
-/atom/movable/proc/can_speak(allow_mimes = FALSE)	// /atom/movable/proc/can_speak()	// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+/atom/movable/proc/can_speak(allow_mimes = FALSE)	// /atom/movable/proc/can_speak()	// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 	//SHOULD_BE_PURE(TRUE)
 	return !HAS_TRAIT(src, TRAIT_MUTE)
 

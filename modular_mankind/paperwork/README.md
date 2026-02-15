@@ -73,7 +73,7 @@ ID мода: MANKIND_PAPERWORK
   И то же самое, если ты используешь дефайны, определённые другим модом.
 
   Не используешь - напиши "Отсутствуют"
-  Примеры: `code/__defines/~mod_mankind/paperwork.dm`: `PAPERWORK_SPEED_MULTIPLIER`, `PAPERWORK_SPEED_BASE`
+  Примеры: `code/__defines/~modular_mankind/paperwork.dm`: `PAPERWORK_SPEED_MULTIPLIER`, `PAPERWORK_SPEED_BASE`
 -->
 
 ### Используемые файлы, не содержащиеся в модпаке

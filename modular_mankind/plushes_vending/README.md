@@ -73,7 +73,7 @@ ID мода: MANKIND_PLUSHES_VENDING
   И то же самое, если ты используешь дефайны, определённые другим модом.
 
   Не используешь - напиши "Отсутствуют"
-  Примеры: `code/__defines/~mod_mankind/plushes_vending.dm`: `PLUSHES_VENDING_SPEED_MULTIPLIER`, `PLUSHES_VENDING_SPEED_BASE`
+  Примеры: `code/__defines/~modular_mankind/plushes_vending.dm`: `PLUSHES_VENDING_SPEED_MULTIPLIER`, `PLUSHES_VENDING_SPEED_BASE`
 -->
 
 ### Используемые файлы, не содержащиеся в модпаке

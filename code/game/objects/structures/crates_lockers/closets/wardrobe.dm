@@ -37,10 +37,10 @@
 		new /obj/item/clothing/under/color/jumpskirt/black(src)
 	if(prob(25))
 		new /obj/item/clothing/suit/jacket/leather(src)
-	// [CELADON-ADD] - CELADON_RETURN_CONTENT_SPAWN
+	// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_SPAWN
 	if(prob(20))
 		new /obj/item/clothing/suit/jacket/leather/overcoat(src)
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 	for(var/i in 1 to 3)
 		new /obj/item/clothing/shoes/sneakers/black(src)
 	for(var/i in 1 to 3)

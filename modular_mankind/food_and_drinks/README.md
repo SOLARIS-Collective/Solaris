@@ -62,13 +62,13 @@ ID мода: MANKIND_FOOD_AND_DRINKS
   И то же самое, если ты используешь дефайны, определённые другим модом.
 
   Не используешь - напиши "Отсутствуют"
-  Примеры: `code/__defines/~mod_mankind/food_and_drinks.dm`: `FOOD_AND_DRINKS_SPEED_MULTIPLIER`, `FOOD_AND_DRINKS_SPEED_BASE`
+  Примеры: `code/__defines/~modular_mankind/food_and_drinks.dm`: `FOOD_AND_DRINKS_SPEED_MULTIPLIER`, `FOOD_AND_DRINKS_SPEED_BASE`
 -->
 
 ### Используемые файлы, не содержащиеся в модпаке
 
-- `mod_mankind/_storage_sounds/sound`
-- `mod_mankind/_storage_icons/icons`
+- `modular_mankind/_storage_sounds/sound`
+- `modular_mankind/_storage_icons/icons`
 <!--
   Будь то немодульный файл или модульный файл, который не содержится в папке,
   принадлежащей этому конкретному моду, он должен быть упомянут здесь.

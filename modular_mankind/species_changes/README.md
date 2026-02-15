@@ -21,8 +21,8 @@ ID мода: MANKIND_SPECIES_CHANGES
 ### Описание мода
 
 Этот мод служит для изменения особенностей рас.
-Изменены были слаймомены, отображение головы -> `mod_mankind/species_changes/code/jellypeople.dm` 
-иконка ->`mod_mankind/_storage_icons/icons/species/jellyperson/jellypeople.dmi`
+Изменены были слаймомены, отображение головы -> `modular_mankind/species_changes/code/jellypeople.dm` 
+иконка ->`modular_mankind/_storage_icons/icons/species/jellyperson/jellypeople.dmi`
 <!--
   Что он делает, что добавляет: что, куда, зачем и почему - всё здесь.
   А также любая полезная информация.
@@ -62,7 +62,7 @@ ID мода: MANKIND_SPECIES_CHANGES
 
 ### Используемые файлы, не содержащиеся в модпаке
 
-- `mod_mankind/_storage_icons/icons`
+- `modular_mankind/_storage_icons/icons`
 <!--
   Будь то немодульный файл или модульный файл, который не содержится в папке,
   принадлежащей этому конкретному моду, он должен быть упомянут здесь.

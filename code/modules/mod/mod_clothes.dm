@@ -71,7 +71,7 @@
 	obj_flags = IMMUTABLE_SLOW
 	supports_variations = DIGITIGRADE_VARIATION
 	can_be_tied = FALSE
-	// visor_flags_inv = HIDESHOES // [CELADON-DELETE] - CELADON_MODSUITS
+	// visor_flags_inv = HIDESHOES // [MANKIND-REMOVE] - MANKIND_MODSUITS
 
 	equipping_sound = null
 	unequipping_sound = null

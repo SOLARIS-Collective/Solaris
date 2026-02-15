@@ -1,5 +1,5 @@
 //Please use mob or src (not usr) in these procs. This way they can be called in the same fashion as procs.
-/* [CELADON-EDIT] CELADON-INTERFACE
+/* [MANKIND-EDIT] - MANKIND_INTERFACE
 /client/verb/wiki(query as text)
 	set name = "wiki"
 	set desc = "Type what you want to know about.  This will open the wiki in your web browser. Type nothing to go to the main page."
@@ -29,7 +29,7 @@
 		to_chat(src, span_danger("The lore page URL is not set in the server configuration."))
 	return
 
-/* [CELADON-EDIT] - CELADON-INTERFACE Свои конфигурации интерфейса
+/* [MANKIND-EDIT] - MANKIND_INTERFACE Свои конфигурации интерфейса
 /client/verb/rules()
 	set name = "rules"
 	set desc = "Show Server Rules."
@@ -94,7 +94,7 @@
 	return
 */
 
-// [CELADON] - CELADON-INTERFACE: Свои конфигурации интерфейса
+// [MANKIND-ADD] - MANKIND_INTERFACE: Свои конфигурации интерфейса
 /client/verb/wiki(query as text)
 	set name = "wiki"
 	set desc = "Напиши то, что хочешь узнать. Можешь ничего не писать, тогда откроется главная страница."
@@ -194,7 +194,7 @@
 		return
 
 	DIRECT_OUTPUT(src, link(discordurl))
-// [/CELADON-EDIT]
+// [/MANKIND-ADD]
 
 /client/verb/changelog()
 	set name = "Changelog"

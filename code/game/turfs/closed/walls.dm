@@ -22,12 +22,12 @@
 	var/sheet_amount = 2
 	var/obj/girder_type = /obj/structure/girder
 
-	// [CELADON-EDIT] - CELADON_BALANCE - Увеличиваем живучесть стенам
+	// [MANKIND-EDIT] - MANKIND_BALANCE - Увеличиваем живучесть стенам
 	// min_dam = 8
-	// max_integrity = 400	// CELADON-EDIT - ORIGINAL
+	// max_integrity = 400	// ORIGINAL
 	min_dam = 25
 	max_integrity = 800
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 	brute_mod = 1
 	burn_mod = 1
 	var/repair_amount = 50

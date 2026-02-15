@@ -1,5 +1,5 @@
 /datum/mission/acquire
-	desc = "БЛЯТЬ, ОПИСАНИЕ СЛОМАЛОСЬ - СООБЩИТЕ ОБ ЭТОМ СИСТЕМНОМУ АДМИНИСТРАТОРУ!"	//desc = "Get me some things."	// [CELADON-EDIT] - CELADON_ECONOMY - Оповещение об ЯВНОЙ ошибке
+	desc = "БЛЯТЬ, ОПИСАНИЕ СЛОМАЛОСЬ - СООБЩИТЕ ОБ ЭТОМ СИСТЕМНОМУ АДМИНИСТРАТОРУ!"	//desc = "Get me some things."	// [MANKIND-EDIT] - MANKIND_ECONOMY - Оповещение об ЯВНОЙ ошибке
 
 	/// The type of container to be spawned when the mission is accepted.
 	var/atom/movable/container_type
@@ -17,7 +17,7 @@
 
 /datum/mission/acquire/accept(datum/overmap/ship/controlled/acceptor, turf/accept_loc, obj/hangar_crate_spawner/cargo_belt)
 	. = ..()
-// [CELADON-EDIT] - SIMPLED SPAWN DRILL
+// [MANKIND-EDIT] - SIMPLED SPAWN DRILL
 /*
 	if(isnull(cargo_belt))
 		container = spawn_bound(container_type, accept_loc, VARSET_CALLBACK(src, container, null))
@@ -26,7 +26,7 @@
 		container = spawn_bound(container_type, cargo_belt.loc, VARSET_CALLBACK(src, container, null))
 	*/
 	container = spawn_bound(container_type, cargo_belt.loc, VARSET_CALLBACK(src, container, null))
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 	container.name += " ([capitalize(objective_type.name)])"
 
 /datum/mission/acquire/Destroy()

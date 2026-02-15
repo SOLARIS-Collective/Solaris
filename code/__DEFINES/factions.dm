@@ -1,5 +1,5 @@
 //Player Factions
-// [CELADON-REMOVE] - PREFIXES - (Перемещено в code/__DEFINES/~mod_celadon/names.dm)
+// [MANKIND-REMOVE] - PREFIXES - (Перемещено в code/__DEFINES/~modular_mankind/names.dm)
 // #define FACTION_SYNDICATE "Syndicate Coalition"
 // 	#define FACTION_NGR "New Gorlex Republic"
 // 	#define FACTION_CYBERSUN "Cybersun Industries"
@@ -35,7 +35,7 @@
 // #define PREFIX_INDEPENDENT list("SV", "IMV", "ISV", "MSV")
 // #define PREFIX_RAMZI list("RCSV")
 // #define PREFIX_NONE list()
-// [CELADON-REMOVE]
+// [MANKIND-REMOVE]
 
 #define FACTION_SORT_INDEPENDENT 100 // Independents first because of majority
 #define FACTION_SORT_DEFAULT 50 // Everything else in the middle

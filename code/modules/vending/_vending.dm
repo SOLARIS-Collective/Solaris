@@ -167,9 +167,9 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	/// used for narcing on underages
 	var/obj/item/radio/Radio
 
-	// [CELADON-ADD] - VENDING_CASH - Добавляем вендингам аккаунт для денег
+	// [MANKIND-ADD] - VENDING_CASH - Добавляем вендингам аккаунт для денег
 	var/datum/bank_account/vending/bank_account
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 	/// restocks venders every hour if this is true
 	var/restock_hourly = FALSE
 
@@ -203,10 +203,10 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	Radio = new /obj/item/radio(src)
 	Radio.listening = 0
 	// Машины на аванпостах сохранят значение all_items_free = TRUE если оно было установлено на карте.
-	// [CELADON-EDIT] - CELADON_BALANCE_VENDING - Машины на аванпостах сохранят значение all_items_free = TRUE если оно было установлено на карте
+	// [MANKIND-EDIT] - MANKIND_BALANCE_VENDING - Машины на аванпостах сохранят значение all_items_free = TRUE если оно было установлено на карте
 	// if(istype(get_area(src.loc), /area/outpost) || istype(get_area(src.loc), /area/ruin))	// ORIGINAL
 	if(all_items_free && istype(get_area(src.loc), /area/ruin))
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 		all_items_free = FALSE
 
 /obj/machinery/vending/Destroy()
@@ -273,12 +273,12 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	while (found_anything)
 		found_anything = FALSE
 		for(var/record in shuffle(product_records))
-			// [CELADON-ADD] - CELADON_BALANCE - Производители автоматов торговых теряют огромные деньги из-за вандалов-халявщиков
+			// [MANKIND-ADD] - MANKIND_BALANCE - Производители автоматов торговых теряют огромные деньги из-за вандалов-халявщиков
 			if (prob(20))
 				say("Bzzzzzzzz...")
 				found_anything = FALSE
 				break
-			// [/CELADON-ADD]
+			// [/MANKIND-ADD]
 			var/datum/data/vending_product/R = record
 			if(R.amount <= 0) //Try to use a record that actually has something to dump.
 				continue
@@ -374,11 +374,11 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 /obj/machinery/vending/proc/update_canister()
 	if (!component_parts)
 		return
-	// [CELADON-ADD] - CELADON_BALANCE - Проверка на лигитимную разборку
+	// [MANKIND-ADD] - MANKIND_BALANCE - Проверка на лигитимную разборку
 	if (valid == FALSE)
 		return
 	valid = FALSE
-	// [/CELADON-ADD
+	// [/MANKIND-ADD]
 	var/obj/item/vending_refill/R = locate() in component_parts
 	if (!R)
 		CRASH("Constructible vending machine did not have a refill canister")
@@ -399,9 +399,9 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 /obj/machinery/vending/crowbar_act(mob/living/user, obj/item/I)
 	if(!component_parts)
 		return FALSE
-	// [CELADON-ADD] - CELADON_BALANCE - Да, разборка была с помощью инструмента
+	// [MANKIND-ADD] - MANKIND_BALANCE - Да, разборка была с помощью инструмента
 	valid = TRUE
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 	default_deconstruction_crowbar(I)
 	return TRUE
 
@@ -809,31 +809,30 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 				flick(icon_deny,src)
 				vend_ready = TRUE
 				return
-			//[CELADON_EDIT] - VENDING_CASH - Перенёс определение настоящей цены выше
+			//[MANKIND_EDIT] - VENDING_CASH - Перенёс определение настоящей цены выше
 			if(coin_records.Find(R) || hidden_records.Find(R))
 				price_to_use = R.custom_premium_price ? R.custom_premium_price : extra_price
-			//[/CELADON_EDIT]
+			//[/MANKIND_EDIT]
 			if(!all_items_free && ishuman(usr))
 				var/mob/living/carbon/human/H = usr
 				var/obj/item/card/bank/C = H.get_bankcard()
-				//[CELADON-EDIT] - VENDING_CASH - Добавил собственный счёт в вендомат
+				// [MANKIND-EDIT] - VENDING_CASH - Добавил собственный счёт в вендомат
 				var/useMachineAccount = FALSE
 
 				if(bank_account && bank_account.has_money(price_to_use))
 					useMachineAccount = TRUE
 
 				if(!useMachineAccount && !C)
-				//[/CELADON-EDIT]
-				/* if(!C) [/CELADON-EDIT] - ORIGINAL */
+				// [/MANKIND-EDIT]
+				// if(!C) // ORIGINAL
 					say("No card found.")
 					flick(icon_deny,src)
 					vend_ready = TRUE
 					return
-				//[CELADON-EDIT] - VENDING_CASH - Добавил собственный счёт в вендомат
+				// [MANKIND-EDIT] - VENDING_CASH - Добавил собственный счёт в вендомат
+				// else if (!C.registered_account && !mining_point_vendor) // ORIGINAL
 				else if (!useMachineAccount && !C.registered_account && !mining_point_vendor)
-				//[CELADON-EDIT] - VENDING_CASH - Добавил собственный счёт в вендомат
-				/* else if (!C.registered_account && !mining_point_vendor)
-				[/CELADON-EDIT] - ORIGINAL*/
+				// [/MANKIND-EDIT]
 					say("No account found.")
 					flick(icon_deny,src)
 					vend_ready = TRUE
@@ -846,7 +845,7 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 						return
 					C.mining_points -= price_to_use
 				else
-					// [CELADON-EDIT] - CELADON_FIXES
+					// [MANKIND-EDIT] - MANKIND_FIXES
 					// var/datum/bank_account/account = C.registered_account
 					// if(coin_records.Find(R) || hidden_records.Find(R))
 					// 	price_to_use = R.custom_premium_price ? R.custom_premium_price : extra_price
@@ -861,7 +860,7 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 					// 	payment_account.transfer_money(account, price_to_use)
 					// else
 					// 	account.adjust_money(-price_to_use, "vendor_purchase")
-					// SSblackbox.record_feedback("amount", "vending_spent", price_to_use)	// CELADON-EDIT - ORIGINAL
+					// SSblackbox.record_feedback("amount", "vending_spent", price_to_use)	// ORIGINAL
 					// var/datum/bank_account/account = C.registered_account
 					// if(price_to_use)
 					// 	if(account.has_money(price_to_use))
@@ -871,22 +870,22 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 					// 		else
 					// 			account.adjust_money(-price_to_use, "vendor_purchase")
 					// 		SSblackbox.record_feedback("amount", "vending_spent", price_to_use)	// НАШЕ
-					// [/CELADON-EDIT]
+					// [/MANKIND-EDIT]
 
-					//[CELADON-EDIT] - VENDING_CASH - Перенёс определение настоящей цены выше
+					// [MANKIND-EDIT] - VENDING_CASH - Перенёс определение настоящей цены выше
 					/* 	var/datum/bank_account/account = C.registered_account
 						if(coin_records.Find(R) || hidden_records.Find(R))
-					 		price_to_use = R.custom_premium_price ? R.custom_premium_price : extra_price
-					[/CELADON-EDIT-ORIGINAL] */
-					//[/CELADON-EDIT]
+							price_to_use = R.custom_premium_price ? R.custom_premium_price : extra_price
+					*/	// ORIGINAL
+					// [/MANKIND-EDIT]
 
-					//[CELADON-EDIT] - VENDING_CASH - Добавил собственный счёт в вендомат
+					// [MANKIND-EDIT] - VENDING_CASH - Добавил собственный счёт в вендомат
 					var/datum/bank_account/account
 					if(useMachineAccount)
 						account = bank_account
 					else
 						account = C.registered_account
-					//[/CELADON-EDIT]
+					// [/MANKIND-EDIT]
 					if(price_to_use && !account.has_money(price_to_use))
 						say("You do not possess the funds to purchase [R.name].")
 						flick(icon_deny,src)
@@ -912,7 +911,7 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 				to_chat(usr, span_warning("[capitalize(R.name)] falls onto the floor!"))
 			SSblackbox.record_feedback("nested tally", "vending_machine_usage", 1, list("[type]", "[R.product_path]"))
 			vend_ready = TRUE
-		//[CELADON-ADD] - VENDING_CASH Добавил снятие денег с собственного счёта
+		// [MANKIND-ADD] - VENDING_CASH Добавил снятие денег с собственного счёта
 		if("withdrawCash")
 			. = TRUE
 			var/amount = text2num(params["value"])
@@ -926,7 +925,7 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 
 				playsound(src, 'sound/machines/twobeep_high.ogg', 50, TRUE)
 				src.visible_message(span_notice("[src] dispenses a holochip."))
-		//[/CELADON-ADD]
+		// [/MANKIND-ADD]
 
 /obj/machinery/vending/process(seconds_per_tick)
 	if(machine_stat & (BROKEN|NOPOWER))
@@ -975,7 +974,7 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	*/
 /obj/machinery/vending/proc/throw_item()
 	var/obj/throw_item = null
-	// [CELADON-EDIT] - CELADON_BALANCE - Чиним абьюз
+	// [MANKIND-EDIT] - MANKIND_BALANCE - Чиним абьюз
 	// var/mob/living/target = locate() in view(7,src)
 	// if(!target)
 	// 	return 0
@@ -990,7 +989,7 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 		// throw_item = new dump_path(loc)
 		// break
 	// if(!throw_item)
-		// return 0		// CELADON-EDIT - ORIGINAL
+		// return 0		// ORIGINAL
 	var/mob/living/target = locate() in view(1,src)
 	if(!target)
 		return 0
@@ -1026,7 +1025,7 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 			if(91 to 100)
 				visible_message(span_danger("Что-то взрывается внутри автомата, подпрыгивает и падает на [target]!."))
 				tilt(target, crit = TRUE)
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 	return 1
 /**
 	* A callback called before an item is tossed out
@@ -1077,9 +1076,9 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	refill_canister = /obj/item/vending_refill/custom
 	all_items_free = FALSE
 	/// where the money is sent
-	// [CELADON-REMOVE] - CELADON_FIXES - Перемещено в родителя через модульность
+	// [MANKIND-REMOVE] - MANKIND_FIXES - Перемещено в родителя через модульность
 	// var/datum/bank_account/private_a
-	// [/CELADON-REMOVE]
+	// [/MANKIND-REMOVE]
 	/// max number of items that the custom vendor can hold
 	var/max_loaded_items = 20
 	/// Base64 cache of custom icons.

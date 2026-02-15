@@ -66,14 +66,14 @@ ID мода: MANKIND_NEON_PACK
 
 ### Дефайны
 
-- `code/__DEFINES/~mod_mankind/layers.dm` Куча дефайнов для цветов обозначения для неона
+- `code/__DEFINES/~modular_mankind/layers.dm` Куча дефайнов для цветов обозначения для неона
 <!--
   Если требовалось добавить какие-либо дефайны, укажи файлы,
   в которые ты их добавил, а также перечисли имена.
   И то же самое, если ты используешь дефайны, определённые другим модом.
 
   Не используешь - напиши "Отсутствуют"
-  Примеры: `code/__defines/~mod_mankind/neon_pack.dm`: `NEON_PACK_SPEED_MULTIPLIER`, `NEON_PACK_SPEED_BASE`
+  Примеры: `code/__defines/~modular_mankind/neon_pack.dm`: `NEON_PACK_SPEED_MULTIPLIER`, `NEON_PACK_SPEED_BASE`
 -->
 
 ### Используемые файлы, не содержащиеся в модпаке

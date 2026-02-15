@@ -310,10 +310,10 @@
 		set_area_icon_state(N)
 		if(stage == END_STAGE)
 			N.color = null
-			// [CELADON-EDIT] - CELADON_AREAS - Иначе никак не подсунуть свои зоны
-			// N.icon = 'icons/turf/areas.dmi' // CELADON-EDIT - ORIGINAL
-			N.icon = 'mod_celadon/_storage_icons/icons/assets/areas.dmi'
-			// [CELADON-EDIT]
+			// [MANKIND-EDIT] - MANKIND_AREAS - Иначе никак не подсунуть свои зоны
+			// N.icon = 'icons/turf/areas.dmi' // ORIGINAL
+			N.icon = 'modular_mankind/_storage_icons/icons/assets/areas.dmi'
+			// [MANKIND-EDIT]
 			N.layer = initial(N.layer)
 			N.plane = initial(N.plane)
 			N.set_opacity(FALSE)

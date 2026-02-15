@@ -17,7 +17,7 @@
 
 /datum/mission/acquire/industrial_drill/accept(datum/overmap/ship/controlled/acceptor, turf/accept_loc, obj/hangar_crate_spawner/cargo_belt)
 	. = ..()
-// [CELADON-EDIT] - SIMPLED SPAWN DRILL
+// [MANKIND-EDIT] - SIMPLED SPAWN DRILL
 /*
 	if(isnull(cargo_belt))
 		mission_drill = spawn_bound(/obj/machinery/drill/sampler_mission, accept_loc, VARSET_CALLBACK(src, mission_drill, null))
@@ -26,7 +26,7 @@
 		mission_drill = spawn_bound(/obj/machinery/drill/sampler_mission, cargo_belt.loc, VARSET_CALLBACK(src, mission_drill, null))
 */
 	mission_drill = spawn_bound(/obj/machinery/drill/sampler_mission, cargo_belt.loc, VARSET_CALLBACK(src, mission_drill, null))
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 
 /datum/mission/acquire/industrial_drill/turn_in()
 	//You guys gotta bring the expensive drill back.

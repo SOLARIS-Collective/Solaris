@@ -1,7 +1,7 @@
 
 #### Список PRов
 
-- https://github.com/MANKIND-Collective/Pentest/pull/1814
+- https://github.com/CeladonSS13/Shiptest/pull/1814
 <!--
   Ссылки на PRы, связанные с модом:
   - Создание
@@ -40,7 +40,7 @@ ID мода: MANKIND_UNDERWEAR
 
 ### Используемые файлы, не содержащиеся в модпаке
 
-- mod_mankind/_storage_icons/icons/items/clothing/underwear
+- modular_mankind/_storage_icons/icons/items/clothing/underwear
 
 ### Авторы
 

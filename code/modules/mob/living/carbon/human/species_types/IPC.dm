@@ -3,10 +3,10 @@
 	id = SPECIES_IPC
 	species_age_min = 0
 	species_age_max = 300
-	// [CELADON-EDIT] - CELADON_FOOD_AND_DRINKS - Всё для того чтобы ИПС могли пить синтанол и припой
-	// species_traits = list(NOTRANSSTING,NOEYESPRITES,NO_DNA_COPY,TRAIT_EASYDISMEMBER,NOZOMBIE,MUTCOLORS,REVIVESBYHEALING,NOHUSK,NOMOUTH) //all of these + whatever we inherit from the real species		// CELADONE-EDIT - ORIGINAL
+	// [MANKIND-EDIT] - MANKIND_FOOD_AND_DRINKS - Всё для того чтобы ИПС могли пить синтанол и припой
+	// species_traits = list(NOTRANSSTING,NOEYESPRITES,NO_DNA_COPY,TRAIT_EASYDISMEMBER,NOZOMBIE,MUTCOLORS,REVIVESBYHEALING,NOHUSK,NOMOUTH) //all of these + whatever we inherit from the real species	// ORIGINAL
 	species_traits = list(HAIR,NOTRANSSTING,NO_DNA_COPY,TRAIT_EASYDISMEMBER,NOZOMBIE,MUTCOLORS,REVIVESBYHEALING,NOHUSK,NOMOUTH) //all of these + whatever we inherit from the real species
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 	inherent_traits = list(TRAIT_RESISTCOLD,TRAIT_VIRUSIMMUNE,TRAIT_NOBREATH,TRAIT_RADIMMUNE,TRAIT_GENELESS,TRAIT_LIMBATTACHMENT)
 	inherent_biotypes = MOB_ROBOTIC|MOB_HUMANOID
 	mutantbrain = /obj/item/organ/brain/mmi_holder/posibrain
@@ -20,7 +20,7 @@
 	mutantappendix = null
 	mutant_organs = list(/obj/item/organ/cyberimp/arm/power_cord)
 	mutant_bodyparts = list("ipc_screen", "ipc_antenna", "ipc_chassis", "ipc_tail", "ipc_brain")
-	default_features = list("mcolor" = "#7D7D7D", "ipc_screen" = "Static", "ipc_antenna" = "None", "ipc_chassis" = "Morpheus Cyberkinetics (Custom)", "ipc_tail" = "None", "ipc_brain" = "Posibrain", "body_size" = "Normal") // [CELADON-ADD] - CELADON_IPC_HAIR
+	default_features = list("mcolor" = "#7D7D7D", "ipc_screen" = "Static", "ipc_antenna" = "None", "ipc_chassis" = "Morpheus Cyberkinetics (Custom)", "ipc_tail" = "None", "ipc_brain" = "Posibrain", "body_size" = "Normal") // [MANKIND-ADD] - MANKIND_IPC_HAIR
 	meat = /obj/item/stack/sheet/plasteel{amount = 5}
 	skinned_type = /obj/item/stack/sheet/metal{amount = 10}
 	exotic_bloodtype = "Coolant"
@@ -262,11 +262,11 @@
 	if(nutrition < NUTRITION_LEVEL_WELL_FED)
 		adjust_nutrition(amount / 10) // The original amount is capacitor_rating*100
 
-//[CELADON-ADD] - CELADON_FIXES - убираем возможность роботам рыгать
+// [MANKIND-ADD] - MANKIND_FIXES - убираем возможность роботам рыгать
 /mob/living/carbon/human/adjust_disgust(amount)
 	if(dna)
 		if(dna.species)
 			if(dna.species.inherent_biotypes & MOB_ROBOTIC)
 				return
 	. = ..()
-//[/CELADON-ADD]
+// [/MANKIND-ADD]

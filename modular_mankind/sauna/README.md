@@ -60,13 +60,13 @@ ID мода: MANKIND_SAUNA
   И то же самое, если ты используешь дефайны, определённые другим модом.
 
   Не используешь - напиши "Отсутствуют"
-  Примеры: `code/__defines/~mod_mankind/sauna.dm`: `SAUNA_SPEED_MULTIPLIER`, `SAUNA_SPEED_BASE`
+  Примеры: `code/__defines/~modular_mankind/sauna.dm`: `SAUNA_SPEED_MULTIPLIER`, `SAUNA_SPEED_BASE`
 -->
 
 ### Используемые файлы, не содержащиеся в модпаке
 
-- `mod_mankind/effects/code/smoke.dm`
-- `mod_mankind/_storage_icons/icons`
+- `modular_mankind/effects/code/smoke.dm`
+- `modular_mankind/_storage_icons/icons`
 <!--
   Будь то немодульный файл или модульный файл, который не содержится в папке,
   принадлежащей этому конкретному моду, он должен быть упомянут здесь.

@@ -346,8 +346,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/firealarm, 32)
 		return
 	A.party = TRUE
 	if (!party_overlay)
-		// [CELADON-EDIT] - CELADON_AREAS - Иначе никак не подсунуть свои зоны
-		// party_overlay = iconstate2appearance('icons/turf/areas.dmi', "party") // CELADON-EDIT - ORIGINAL
-		party_overlay = iconstate2appearance('mod_celadon/_storage_icons/icons/assets/areas.dmi', "party")
-		// [CELADON-EDIT]
+		// [MANKIND-EDIT] - MANKIND_AREAS - Иначе никак не подсунуть свои зоны
+		// party_overlay = iconstate2appearance('icons/turf/areas.dmi', "party") // ORIGINAL
+		party_overlay = iconstate2appearance('modular_mankind/_storage_icons/icons/assets/areas.dmi', "party")
+		// [MANKIND-EDIT]
 	A.add_overlay(party_overlay)

@@ -90,14 +90,14 @@
 /datum/overmap/star/proc/gen_star_name()
 	return "[pick(GLOB.star_names)] [pick(GLOB.greek_letters)]"
 
-// [CELADON-REMOVE] - CELADON_OVERMAP_ICON - спрайты некросивые получаюца
+// [MANKIND-REMOVE] - MANKIND_OVERMAP_ICON - спрайты некросивые получаюца
 // /datum/overmap/star/alter_token_appearance()
 // 	. = ..()
 // 	if(!custom_color)
 // 		token.add_atom_colour(current_overmap.hazard_primary_color, FIXED_COLOUR_PRIORITY)
 // 		return
 // 	token.add_atom_colour(get_rand_spectral_color(spectral_type, color_vary), FIXED_COLOUR_PRIORITY)
-// [/CELADON-REMOVE]
+// [/MANKIND-REMOVE]
 
 /datum/overmap/star/proc/get_rand_spectral_color(base_spec, vary_amt = 0)
 	var/adj_spec = base_spec + LERP(-vary_amt, vary_amt, rand())
@@ -122,10 +122,10 @@
 
 /datum/overmap/star/dwarf
 	desc = "A red dwarf. Smallest and most numerous of the main-sequence stars, some red dwarves boast trillion-year lifespans; none have yet died of old age."
-	// [CELADON-EDIT] - CELADON_OVERMAP_ICON - спрайты некросивые получаюца
-	// token_icon_state = "star_new"	// CELADON-EDIT - ORIGINAL
+	// [MANKIND-EDIT] - MANKIND_OVERMAP_ICON - спрайты некросивые получаюца
+	// token_icon_state = "star_new"	// ORIGINAL
 	token_icon_state = "dwarf"
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 	interference_power = 10
 	spectral_type = STAR_M
 	color_vary = 0.5
@@ -137,19 +137,19 @@
 
 /datum/overmap/star/dwarf/orange
 	desc = "One of the main sequence stars, this orange dwarf star emits a steady glow, as it has for billions of years."
-	// [CELADON-ADD] - CELADON_OVERMAP_ICON - спрайты некросивые получаюца
+	// [MANKIND-ADD] - MANKIND_OVERMAP_ICON - спрайты некросивые получаюца
 	token_icon_state = "dwarf-orange"
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 	spectral_type = STAR_K
 	color_vary = 0.25
 
 /datum/overmap/star/dwarf/brown
 	desc = "Clocking in at only several dozen septillion tons, this body is much lighter than true stars. " +\
 				"Known as a \"brown dwarf\", it is unable to sustain hydrogen fusion, and is warmed by deuterium fusion instead."
-	// [CELADON-EDIT] - CELADON_OVERMAP_ICON - спрайты некросивые получаюца
-	// token_icon_state = "giant"	// CELADON-EDIT - ORIGINAL
+	// [MANKIND-EDIT] - MANKIND_OVERMAP_ICON - спрайты некросивые получаюца
+	// token_icon_state = "giant"	// ORIGINAL
 	token_icon_state = "dwarf-brown"
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 	spectral_type = STAR_T
 	color_vary = 1
 	events_to_spawn = list(\
@@ -165,9 +165,9 @@
 
 /datum/overmap/star/dwarf/white
 	desc = "The incredibly dense corpse of a former star. Still white-hot, it slowly radiates its remaining heat into space."
-	// [CELADON-ADD] - CELADON_OVERMAP_ICON - спрайты некросивые получаюца
+	// [MANKIND-ADD] - MANKIND_OVERMAP_ICON - спрайты некросивые получаюца
 	token_icon_state = "dwarf-white"
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 	spectral_type = STAR_B
 	color_vary = 1
 
@@ -193,19 +193,19 @@
 
 /datum/overmap/star/medium
 	desc = "A yellow main-sequence star. Deep beneath the surface, its core churns violently in fusion, so dense as to be utterly impenetrable to light or sound." // or Say It Ain't So
-	// [CELADON-EDIT] - CELADON_OVERMAP_ICON - спрайты некросивые получаюца
-	// token_icon_state = "star2"	// CELADON-EDIT - ORIGINAL
+	// [MANKIND-EDIT] - MANKIND_OVERMAP_ICON - спрайты некросивые получаюца
+	// token_icon_state = "star2"	// ORIGINAL
 	token_icon_state = "medium"
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 	spectral_type = STAR_G
 	color_vary = 0.25
 
 /datum/overmap/star/medium/alter_token_appearance()
 	. = ..()
-	// [CELADON-EDIT] - CELADON_OVERMAP
-	// token.icon = 'icons/misc/overmap_large.dmi'	// CELADON-EDIT - ORIGINAL
-	token.icon = 'mod_celadon/_storage_icons/icons/assets/overmap/overmap_large.dmi'
-	// [/CELADON-EDIT]
+	// [MANKIND-EDIT] - MANKIND_OVERMAP
+	// token.icon = 'icons/misc/overmap_large.dmi'	// ORIGINAL
+	token.icon = 'modular_mankind/_storage_icons/icons/assets/overmap/overmap_large.dmi'
+	// [/MANKIND-EDIT]
 	token.bound_height = 64
 	token.bound_width = 64
 	token.pixel_x = -16
@@ -214,30 +214,30 @@
 
 /datum/overmap/star/medium/blue
 	desc = "A young, blue, massive main-sequence star. The reactions at its core are so intense as to whip the entire star into convection waves."
-	// [CELADON-ADD] - CELADON_OVERMAP_ICON - спрайты некросивые получаюца
+	// [MANKIND-ADD] - MANKIND_OVERMAP_ICON - спрайты некросивые получаюца
 	token_icon_state = "medium-blue"
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 	spectral_type = STAR_B
 
 /datum/overmap/star/medium/bluewhite
 	desc = "This main-sequence star is young and large; it burns hot and fast. Though not as blindingly bright as a giant, its glare is still harsh."
-	// [CELADON-ADD] - CELADON_OVERMAP_ICON - спрайты некросивые получаюца
+	// [MANKIND-ADD] - MANKIND_OVERMAP_ICON - спрайты некросивые получаюца
 	token_icon_state = "medium-bluewhite"
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 	spectral_type = STAR_A
 
 /datum/overmap/star/medium/white
 	desc = "A bright white main-sequence star, with a surface temperature of 6,000 to 7,000 Kelvin. The core is much, much hotter."
-	// [CELADON-ADD] - CELADON_OVERMAP_ICON - спрайты некросивые получаюца
+	// [MANKIND-ADD] - MANKIND_OVERMAP_ICON - спрайты некросивые получаюца
 	token_icon_state = "medium-white"
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 	spectral_type = STAR_F
 
 /datum/overmap/star/medium/orange
 	desc = "One of the main sequence stars, this orange dwarf star emits a steady glow, as it has for billions of years."
-	// [CELADON-ADD] - CELADON_OVERMAP_ICON - спрайты некросивые получаюца
+	// [MANKIND-ADD] - MANKIND_OVERMAP_ICON - спрайты некросивые получаюца
 	token_icon_state = "medium-orange"
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 	spectral_type = STAR_K
 
 /*
@@ -246,19 +246,19 @@
 
 /datum/overmap/star/giant
 	desc = "A blue giant star. Though massive and incredibly hot, it can only sustain its intense luminosity for so long."
-	// [CELADON-EDIT] - CELADON_OVERMAP_ICON - спрайты некросивые получаюца
-	// token_icon_state = "star3"	// CELADON-EDIT - ORIGINAL
+	// [MANKIND-EDIT] - MANKIND_OVERMAP_ICON - спрайты некросивые получаюца
+	// token_icon_state = "star3"	// ORIGINAL
 	token_icon_state = "giant"
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 	spectral_type = STAR_B
 	color_vary = 1
 
 /datum/overmap/star/giant/alter_token_appearance()
 	. = ..()
-	// [CELADON-EDIT] - CELADON_OVERMAP
-	// token.icon = 'icons/misc/overmap_larger.dmi'	// CELADON-EDIT - ORIGINAL
-	token.icon = 'mod_celadon/_storage_icons/icons/assets/overmap/overmap_larger.dmi'
-	// [/CELADON-EDIT]
+	// [MANKIND-EDIT] - MANKIND_OVERMAP
+	// token.icon = 'icons/misc/overmap_larger.dmi'	// ORIGINAL
+	token.icon = 'modular_mankind/_storage_icons/icons/assets/overmap/overmap_larger.dmi'
+	// [/MANKIND-EDIT]
 	token.bound_height = 96
 	token.bound_width = 96
 	token.pixel_x = -32
@@ -267,9 +267,9 @@
 
 /datum/overmap/star/giant/yellow
 	desc = "Like many other yellow giants, this dying star \"pulsates\" as its brightness fluctuates rhythmically."
-	// [CELADON-ADD] - CELADON_OVERMAP_ICON - спрайты некросивые получаюца
+	// [MANKIND-ADD] - MANKIND_OVERMAP_ICON - спрайты некросивые получаюца
 	token_icon_state = "giant-yellow"
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 	spectral_type = STAR_G
 	color_vary = 0.25
 
@@ -283,9 +283,9 @@
 
 /datum/overmap/star/giant/red
 	desc = "Huge and imposing, this red giant has exhausted the hydrogen within its core, and has expanded and brightened as a result. It has begun to die."
-	// [CELADON-ADD] - CELADON_OVERMAP_ICON - спрайты некросивые получаюца
+	// [MANKIND-ADD] - MANKIND_OVERMAP_ICON - спрайты некросивые получаюца
 	token_icon_state = "giant-red"
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 	spectral_type = STAR_M
 
 /*
@@ -316,29 +316,29 @@
 		STAR_T,
 	)
 	token.cut_overlays()
-	// [CELADON-EDIT] - CELADON_OVERMAP
-	// token.icon = 'icons/misc/overmap_larger.dmi'	// CELADON-EDIT - ORIGINAL
-	token.icon = 'mod_celadon/_storage_icons/icons/assets/overmap/overmap_larger.dmi'
-	// [/CELADON-EDIT]
+	// [MANKIND-EDIT] - MANKIND_OVERMAP
+	// token.icon = 'icons/misc/overmap_larger.dmi'	// ORIGINAL
+	token.icon = 'modular_mankind/_storage_icons/icons/assets/overmap/overmap_larger.dmi'
+	// [/MANKIND-EDIT]
 	token.bound_height = 96
 	token.bound_width = 96
 	token.pixel_x = -32
 	token.pixel_y = -32
-	// [CELADON-EDIT] - CELADON_OVERMAP_ICON - спрайты некросивые получаюца
+	// [MANKIND-EDIT] - MANKIND_OVERMAP_ICON - спрайты некросивые получаюца
 	// star_1 = mutable_appearance(icon_state = "binary1")
-	// star_2 = mutable_appearance(icon_state = "binary2")	// CELADON-EDIT - ORIGINAL
+	// star_2 = mutable_appearance(icon_state = "binary2")	// ORIGINAL
 	star_1 = mutable_appearance(icon_state = "binary[rand(1, 3)]")
 	star_2 = mutable_appearance(icon_state = "binary[rand(4, 6)]")
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 
-	// [CELADON-REMOVE] - CELADON_OVERMAP_ICON - спрайты некросивые получаюца
+	// [MANKIND-REMOVE] - MANKIND_OVERMAP_ICON - спрайты некросивые получаюца
 	// star_1.color = current_overmap.hazard_primary_color
 	// star_2.color = current_overmap.hazard_primary_color
 
 	// if(custom_color)
 	// 	star_1.color = get_rand_spectral_color(pick(spectral_types), color_vary)
 	// 	star_2.color = get_rand_spectral_color(pick(spectral_types), color_vary)
-	// [/CELADON-REMOVE]
+	// [/MANKIND-REMOVE]
 
 	token.add_overlay(star_1)
 	token.add_overlay(star_2)
@@ -353,10 +353,10 @@
 	name = "black hole"
 	desc = "An incredibly dense astral body, so massive even light cannot escape its gravitational pull past the event horizon."
 	interference_power = 60
-	// [CELADON-EDIT] - CELADON_OVERMAP
-	// token_icon_state = "accretiondisk"	// CELADON-EDIT - ORIGINAL
+	// [MANKIND-EDIT] - MANKIND_OVERMAP
+	// token_icon_state = "accretiondisk"	// ORIGINAL
 	token_icon_state = "blackhole"
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 	spectral_type = STAR_K
 	color_vary = 1
 
@@ -379,10 +379,10 @@
 
 /datum/overmap/star/singularity/alter_token_appearance()
 	. = ..()
-	// [CELADON-EDIT] - CELADON_OVERMAP
-	// token.icon = 'icons/misc/overmap_larger.dmi'	// CELADON-EDIT - ORIGINAL
-	token.icon = 'mod_celadon/_storage_icons/icons/assets/overmap/overmap_larger.dmi'
-	// [/CELADON-EDIT]
+	// [MANKIND-EDIT] - MANKIND_OVERMAP
+	// token.icon = 'icons/misc/overmap_larger.dmi'	// ORIGINAL
+	token.icon = 'modular_mankind/_storage_icons/icons/assets/overmap/overmap_larger.dmi'
+	// [/MANKIND-EDIT]
 	token.bound_height = 96
 	token.bound_width = 96
 	token.pixel_x = -32
@@ -419,10 +419,10 @@
 
 /datum/overmap/star/pulsar/alter_token_appearance()
 	. = ..()
-	// [CELADON-EDIT] - CELADON_OVERMAP
-	// token.icon = 'icons/misc/overmap_larger.dmi'	// CELADON-EDIT - ORIGINAL
-	token.icon = 'mod_celadon/_storage_icons/icons/assets/overmap/overmap_larger.dmi'
-	// [/CELADON-EDIT]
+	// [MANKIND-EDIT] - MANKIND_OVERMAP
+	// token.icon = 'icons/misc/overmap_larger.dmi'	// ORIGINAL
+	token.icon = 'modular_mankind/_storage_icons/icons/assets/overmap/overmap_larger.dmi'
+	// [/MANKIND-EDIT]
 	token.bound_height = 96
 	token.bound_width = 96
 	token.pixel_x = -32

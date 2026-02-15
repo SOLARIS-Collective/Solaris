@@ -421,10 +421,10 @@
 
 /obj/projectile/beam/emitter/hitscan/on_hit(atom/target, blocked = FALSE)
 	. = ..()
-	// [CELADON-ADD] - FIX_BEAM_EMMITER_IGNITE
+	// [MANKIND-ADD] - FIX_BEAM_EMMITER_IGNITE
 	if(istype(target, /obj/machinery/field/generator))
 		return
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 	var/turf/targets_turf = target.loc
 	if(!isopenturf(targets_turf))
 		return

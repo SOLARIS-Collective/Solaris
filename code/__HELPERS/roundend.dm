@@ -285,7 +285,7 @@
 	CHECK_TICK
 
 	//Station Goals
-	// parts += goal_report() [CELADON-DELETE] - Цели не используются. Отключены.
+	// parts += goal_report() [MANKIND-REMOVE] - Цели не используются. Отключены.
 
 	listclearnulls(parts)
 
@@ -299,7 +299,7 @@
 		var/info = statspage ? "<a href='byond://?action=openLink&link=[url_encode(statspage)][GLOB.round_id]'>[GLOB.round_id]</a>" : GLOB.round_id
 		parts += "[FOURSPACES]Round ID: <b>[info]</b>"
 	parts += "[FOURSPACES]Shift Duration: <B>[DisplayTimeText(REALTIMEOFDAY - SSticker.round_start_timeofday)]</B>"
-	// [CELADON-EDIT] - Изменён вывод гринтекста на более правильный для последующего вывода в Discord.
+	// [MANKIND-EDIT] - Изменён вывод гринтекста на более правильный для последующего вывода в Discord.
 	// parts += "[FOURSPACES]Station Integrity: <B>[mode.station_was_nuked ? span_redtext("Destroyed") : "[popcount["station_integrity"]]%"]</B>"
 	parts += "<br><B>[FOURSPACES]Корабли: [length(SSovermap.controlled_ships)]</B>"
 	for(var/datum/overmap/ship/controlled/Ship as anything in SSovermap.controlled_ships)
@@ -318,7 +318,7 @@
 	if(total_players)
 		parts+= "[FOURSPACES]Total Population: <B>[total_players]</B>"
 		parts += "[FOURSPACES]Survival Rate: <B>[PERCENT(popcount[POPCOUNT_SURVIVORS]/total_players)]%</B>"
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 		if(SSblackbox.first_death)
 			var/list/ded = SSblackbox.first_death
 			if(ded.len)

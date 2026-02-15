@@ -106,9 +106,9 @@
 
 		//stuff you can actually use
 		/obj/effect/spawner/random/waste/girder = 600,
-		// [CELADON-ADD] - RETURN_CONTENT
+		// [MANKIND-ADD] - RETURN_CONTENT
 		/obj/structure/reagent_dispensers/fueltank = 100,
-		// [/CELADON-ADD]
+		// [/MANKIND-ADD]
 		/obj/structure/reagent_dispensers/watertank = 200,
 		/obj/item/stack/cable_coil/cut = 500,
 		/obj/structure/closet/crate/secure/loot = 30,
@@ -191,9 +191,9 @@
 		/obj/effect/spawner/random/waste/radiation = 300,
 		/obj/effect/spawner/random/waste/radiation/more_rads = 120,
 		/obj/effect/spawner/random/waste/girder = 600,
-		// [CELADON-ADD] - RETURN_CONTENT
+		// [MANKIND-ADD] - RETURN_CONTENT
 		/obj/structure/reagent_dispensers/fueltank = 100,
-		// [/CELADON-ADD]
+		// [/MANKIND-ADD]
 		/obj/structure/reagent_dispensers/watertank = 200,
 		/obj/item/stack/cable_coil/cut = 500,
 		/obj/structure/closet/crate/secure/loot = 30,
@@ -208,9 +208,9 @@
 		/obj/structure/flora/ash/garden/waste = 300,
 		/obj/structure/flora/ash/glowshroom = 1800,
 		/obj/item/mine/pressure/explosive/rusty/live = 30,
-		// [CELADON - ADD] - CELADON_RETURN_LANDMINE
+		// [MANKIND-ADD] - MANKIND_RETURN_LANDMINE
 		/obj/item/mine/pressure/explosive/shrapnel/live = 30,
-		// [/CELADON - ADD]
+		// [/MANKIND-ADD]
 		/obj/effect/spawner/random/mine = 8,
 	)
 
@@ -247,9 +247,9 @@
 		/obj/effect/spawner/random/waste/radiation = 80,
 		/obj/effect/spawner/random/waste/radiation/more_rads = 20,
 		/obj/effect/spawner/random/waste/girder = 600,
-		// [CELADON-ADD] - RETURN_CONTENT
+		// [MANKIND-ADD] - RETURN_CONTENT
 		/obj/structure/reagent_dispensers/fueltank = 100,
-		// [/CELADON-ADD]
+		// [/MANKIND-ADD]
 		/obj/structure/reagent_dispensers/watertank = 200,
 		/obj/item/stack/cable_coil/cut = 500,
 		/obj/structure/closet/crate/secure/loot = 30,
@@ -266,9 +266,9 @@
 		/obj/effect/spawner/random/waste/atmos_can/rare = 1,
 		/obj/effect/spawner/random/waste/salvageable = 300,
 		/obj/item/mine/pressure/explosive/rusty/live = 30,
-		// [CELADON - ADD] - CELADON_RETURN_LANDMINE
+		// [MANKIND-ADD] - MANKIND_RETURN_LANDMINE
 		/obj/item/mine/pressure/explosive/rad/live = 30,
-		// [/CELADON - ADD]
+		// [/MANKIND-ADD]
 		/obj/effect/spawner/random/mine = 8,
 	)
 	mob_spawn_list = list( //nor organics, more biased towards hivebots though
@@ -315,9 +315,9 @@
 		/obj/effect/spawner/random/waste/radiation = 80,
 		/obj/effect/spawner/random/waste/radiation/more_rads = 10,
 		/obj/effect/spawner/random/waste/girder = 600,
-		// [CELADON-ADD] - RETURN_CONTENT
+		// [MANKIND-ADD] - RETURN_CONTENT
 		/obj/structure/reagent_dispensers/fueltank = 100,
-		// [/CELADON-ADD]
+		// [/MANKIND-ADD]
 		/obj/structure/reagent_dispensers/watertank = 200,
 		/obj/item/stack/cable_coil/cut = 500,
 		/obj/structure/closet/crate/secure/loot = 30,
@@ -333,9 +333,9 @@
 		/obj/structure/flora/ash/garden/waste = 70,
 		/obj/structure/flora/ash/glowshroom = 400, //more common in caves
 		/obj/item/mine/pressure/explosive/rusty/live = 10,
-		// [CELADON - ADD] - CELADON_RETURN_LANDMINE
+		// [MANKIND-ADD] - MANKIND_RETURN_LANDMINE
 		/obj/item/mine/pressure/explosive/rad/live = 30,
-		// [/CELADON - ADD]
+		// [/MANKIND-ADD]
 		/obj/effect/spawner/random/mine = 8,
 	)
 
@@ -388,9 +388,9 @@
 		/obj/effect/spawner/random/waste/atmos_can/rare = 5,
 		/obj/effect/spawner/random/waste/salvageable = 150,
 		/obj/effect/spawner/random/waste/girder = 200,
-		// [CELADON-ADD] - RETURN_CONTENT
+		// [MANKIND-ADD] - RETURN_CONTENT
 		/obj/structure/reagent_dispensers/fueltank = 10,
-		// [/CELADON-ADD]
+		// [/MANKIND-ADD]
 		/obj/structure/reagent_dispensers/watertank = 10,
 		/obj/item/stack/cable_coil/cut = 500,
 		/obj/structure/closet/crate/secure/loot = 30,
@@ -401,9 +401,9 @@
 		/obj/effect/spawner/random/maintenance/four = 200,
 		/obj/structure/flora/ash/glowshroom = 1800,
 		/obj/item/mine/pressure/explosive/rusty/live = 30,
-		// [CELADON - ADD] - CELADON_RETURN_LANDMINE
+		// [MANKIND-ADD] - MANKIND_RETURN_LANDMINE
 		/obj/item/mine/pressure/explosive/rad/live = 30,
-		// [/CELADON - ADD]
+		// [/MANKIND-ADD]
 		/obj/effect/spawner/random/mine = 8,
 	)
 	feature_spawn_chance = 12
@@ -427,9 +427,9 @@
 		/obj/effect/spawner/random/waste/radiation = 32,
 		/obj/effect/spawner/random/waste/radiation/more_rads = 4,
 		/obj/effect/spawner/random/waste/girder = 120,
-		// [CELADON-ADD] - RETURN_CONTENT
+		// [MANKIND-ADD] - RETURN_CONTENT
 		/obj/structure/reagent_dispensers/fueltank = 20,
-		// [/CELADON-ADD]
+		// [/MANKIND-ADD]
 		/obj/structure/reagent_dispensers/watertank = 40,
 		/obj/item/stack/cable_coil/cut = 100,
 		/obj/structure/closet/crate/secure/loot = 6,
@@ -455,7 +455,7 @@
 		/obj/structure/spawner/hivebot = 15
 	)
 
-// [CELADON-ADD] - Для теста отключено
+// [MANKIND-ADD] - Для теста отключено
 /*
 /datum/biome/cave/waste/metal/hivebot
 	flora_spawn_list = list(
@@ -463,9 +463,9 @@
 		/obj/effect/spawner/random/waste/radiation = 16,
 		/obj/effect/spawner/random/waste/radiation/more_rads = 2,
 		/obj/effect/spawner/random/waste/girder = 60,
-		// [CELADON-ADD] - RETURN_CONTENT
+		// [MANKIND-ADD] - RETURN_CONTENT
 		/obj/structure/reagent_dispensers/fueltank = 10,
-		// [/CELADON-ADD]
+		// [/MANKIND-ADD]
 		/obj/structure/reagent_dispensers/watertank = 20,
 		/obj/item/stack/cable_coil/cut = 50,
 		/obj/structure/closet/crate/secure/loot = 3,
@@ -490,7 +490,7 @@
 
 	feature_spawn_chance = 2 //hivebot biomes should have their dongles
 */
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 /datum/biome/cave/waste/conc //da concrete jungle baybee
 	open_turf_types = list(
 		/turf/open/floor/concrete/wasteplanet = 10,
@@ -507,9 +507,9 @@
 		/obj/effect/spawner/random/waste/mechwreck = 20,
 		/obj/effect/spawner/random/trash/decal = 90,
 		/obj/effect/spawner/random/waste/radiation = 16,
-		// [CELADON-ADD] - RETURN_CONTENT
+		// [MANKIND-ADD] - RETURN_CONTENT
 		/obj/structure/reagent_dispensers/fueltank = 10,
-		// [/CELADON-ADD]
+		// [/MANKIND-ADD]
 		/obj/structure/reagent_dispensers/watertank = 20,
 		/obj/item/stack/cable_coil/cut = 50,
 		/obj/structure/closet/crate/secure/loot = 3,

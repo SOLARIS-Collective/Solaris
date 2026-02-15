@@ -3,7 +3,7 @@
 
 //Example usage TOGGLE_CHECKBOX(datum/verbs/menu/Settings/Ghost/chatterbox, toggle_ghost_ears)()
 
-// [CELADON-EDIT] - NEW UI
+// [MANKIND-EDIT] - NEW UI
 /datum/verbs/menu/Settings
 	name = "Настройки"
 
@@ -43,9 +43,9 @@
 	var/client/C = usr.client
 	C?.tgui_panel?.stop_music()
 	SSblackbox.record_feedback("nested tally", "preferences_verb", 1, list("Stop Self Sounds")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 
-// [CELADON-REMOVE]	- NEW UI - Проще использовать отдельные менюшки чем пласт этого кода ниже
+// [MANKIND-REMOVE]	- NEW UI - Проще использовать отдельные менюшки чем пласт этого кода ниже
 /*
 //toggles
 /datum/verbs/menu/Settings/Ghost/chatterbox
@@ -343,7 +343,7 @@ TOGGLE_CHECKBOX(/datum/verbs/menu/Settings, listen_bank_card)()
 /datum/verbs/menu/Settings/listen_bank_card/Get_checked(client/C)
 	return C.prefs.chat_toggles & CHAT_BANKCARD
 */
-// [/CELADON-REMOVE]
+// [/MANKIND-REMOVE]
 
 GLOBAL_LIST_INIT(ghost_forms, sortList(list("ghost","ghostking","ghostian2","skeleghost","ghost_red","ghost_black", \
 							"ghost_blue","ghost_yellow","ghost_green","ghost_pink", \

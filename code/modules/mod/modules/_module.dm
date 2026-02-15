@@ -51,10 +51,10 @@
 	var/allowed_in_phaseout = FALSE
 	/// If we're allowed to use this module while the suit is disabled.
 	var/allowed_inactive = FALSE
-	// [CELADON-ADD] - CELADON_MODSUITS
+	// [MANKIND-ADD] - MANKIND_MODSUITS
 	/// Насколько много мы увеличиваем потребление энергии за шаг у армор ассиста?
 	var/assist_drain_increase = 0
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 	/// Timer for the cooldown
 	COOLDOWN_DECLARE(cooldown_timer)
 
@@ -121,10 +121,10 @@
 		if(toolset)
 			return ui_action_click()
 		if(device)
-			// [CELADON-EDIT] - FIX_MODSUIT - Putting a MODsuit's device in active hand, instead of any hand
+			// [MANKIND-EDIT] - FIX_MODSUIT - Putting a MODsuit's device in active hand, instead of any hand
 			//if(mod.wearer.put_in_hands(device))
 			if(mod.wearer.put_in_hands(device))
-			// [/CELADON-EDIT]
+			// [/MANKIND-EDIT]
 				to_chat(mod.wearer,span_notice("You extend \the [device]."))
 				RegisterSignal(mod.wearer, COMSIG_ATOM_EXITED, PROC_REF(on_exit))
 				RegisterSignal(mod.wearer, COMSIG_KB_MOB_DROPITEM_DOWN, PROC_REF(dropkey))
@@ -177,13 +177,13 @@
 	if(module_type == MODULE_ACTIVE)
 		mod.selected_module = null
 		if(display_message)
-		// [CELADON-EDIT] - CELADON_MODSUIT - Fixes modsuits not retracting items - runtime was here
+		// [MANKIND-EDIT] - MANKIND_MODSUIT - Fixes modsuits not retracting items - runtime was here
 			//to_chat(mod.wearer,span_warning(device ? "You retract \the [device]." : "\The [src] deactivates."))
 			if(device) // Иначе эта штука не работает, увы
 				to_chat(mod.wearer,span_warning("You retract \the [device]."))
 			else
 				to_chat(mod.wearer,span_warning("The [src] deactivates."))
-		// [/CELADON-EDIT]
+		// [/MANKIND-EDIT]
 		if(device)
 			mod.wearer.transferItemToLoc(device, src, force = TRUE)
 			UnregisterSignal(mod.wearer, COMSIG_ATOM_EXITED)
@@ -373,7 +373,7 @@
 /obj/item/mod/module/anomaly_locked
 	name = "MOD anomaly locked module"
 	desc = "A form of a module, locked behind an anomalous core to function."
-	// incompatible_modules = list(/obj/item/mod/module/anomaly_locked) // [CELADON-REMOVE] - CELADON_MODSUITS
+	// incompatible_modules = list(/obj/item/mod/module/anomaly_locked) // [MANKIND-REMOVE] - MANKIND_MODSUITS
 	/// The core item the module runs off.
 	var/obj/item/assembly/signaler/anomaly/core
 	/// Accepted types of anomaly cores.

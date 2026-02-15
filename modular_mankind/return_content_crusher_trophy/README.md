@@ -80,12 +80,12 @@ ID мода: RETURN_CONTENT_CRUSHER_TROPHY, RETURN_GIBTONIT, RETURN_CONTENT_NECR
   И то же самое, если ты используешь дефайны, определённые другим модом.
 
   Не используешь - напиши "Отсутствуют"
-  Примеры: `code/__defines/~mod_mankind/crusher_trophy.dm`: `CRUSHER_TROPHY_SPEED_MULTIPLIER`, `CRUSHER_TROPHY_SPEED_BASE`
+  Примеры: `code/__defines/~modular_mankind/crusher_trophy.dm`: `CRUSHER_TROPHY_SPEED_MULTIPLIER`, `CRUSHER_TROPHY_SPEED_BASE`
 -->
 
 ### Используемые файлы, не содержащиеся в модпаке
 
-- `mod_mankind/balance/code/hostile_mobs.dm` : Перенесены туда части трофеев с фауны
+- `modular_mankind/balance/code/hostile_mobs.dm` : Перенесены туда части трофеев с фауны
 <!--
   Будь то немодульный файл или модульный файл, который не содержится в папке,
   принадлежащей этому конкретному моду, он должен быть упомянут здесь.

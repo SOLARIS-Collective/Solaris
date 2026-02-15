@@ -1,4 +1,4 @@
-// [CELADON-ADD] - CELADON_STRUCTURES - Барикады
+// [MANKIND-ADD] - MANKIND_STRUCTURES - Барикады
 /// All armors, preferable in the order as seen above
 #define ARMOR_LIST_ALL(...) list(MELEE, BULLET, LASER, ENERGY, BOMB, BIO, RAD, FIRE, ACID, MAGIC, WOUND)
 
@@ -15,7 +15,7 @@
 // #define ACID 	"acid"
 #define MAGIC 	"magic"
 //#define WOUND 	"wound"
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 #define ARMORID "armor-[melee]-[bullet]-[laser]-[energy]-[bomb]-[bio]-[rad]-[fire]-[acid]-[magic]-[wound]"
 
 /proc/getArmor(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0, fire = 0, acid = 0, magic = 0, wound = 0)
@@ -23,7 +23,7 @@
 	if (!.)
 		. = new /datum/armor(melee, bullet, laser, energy, bomb, bio, rad, fire, acid, magic, wound)
 
-// [CELADON-ADD] - CELADON_STRUCTURES - Барикады
+// [MANKIND-ADD] - MANKIND_STRUCTURES - Барикады
 /// Assosciative list of type -> armor. Used to ensure we always hold a reference to default armor datums
 GLOBAL_LIST_INIT(armor_by_type, generate_armor_type_cache())
 
@@ -38,7 +38,7 @@ GLOBAL_LIST_INIT(armor_by_type, generate_armor_type_cache())
 /datum/armor/proc/GenerateTag()
 	// ..()
 	tag = replacetext("[type]", "/", "-")
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 /datum/armor
 	datum_flags = DF_USE_TAG
@@ -114,10 +114,10 @@ GLOBAL_LIST_INIT(armor_by_type, generate_armor_type_cache())
 	)
 
 /datum/armor/proc/getRating(rating)
-	// [CELADON-ADD] - CELADON_STRUCTURES - Барикады
+	// [MANKIND-ADD] - MANKIND_STRUCTURES - Барикады
 	if(!(rating in ARMOR_LIST_ALL()))
 		CRASH("Attempted to get a rating '[rating]' that doesnt exist")
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 	return vars[rating]
 
 /datum/armor/proc/getList()
@@ -171,7 +171,7 @@ GLOBAL_LIST_INIT(armor_by_type, generate_armor_type_cache())
 	. = ..()
 	tag = ARMORID // update tag in case armor values were edited
 
-// [CELADON-ADD] - CELADON_STRUCTURES - Барикады
+// [MANKIND-ADD] - MANKIND_STRUCTURES - Барикады
 /// Generate a brand new armor datum with the modifiers given, if ARMOR_ALL is specified only that modifier is used
 /datum/armor/proc/generate_new_with_modifiers(list/modifiers)
 	var/datum/armor/new_armor = new
@@ -211,6 +211,6 @@ GLOBAL_LIST_INIT(armor_by_type, generate_armor_type_cache())
 		else
 			new_armor.vars[armor_rating] = vars[armor_rating]
 	return new_armor
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 #undef ARMORID

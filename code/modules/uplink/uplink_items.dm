@@ -212,7 +212,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/storage/box/syndicate/contract_kit
 	cost = 20
 	player_minimum = 20
-	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//exclude_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//exclude_modes = list(/datum/game_mode/nuclear)	// [MANKIND-EDIT] - MANKIND_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/bundles_TC/bundle_A
 	name = "Syndi-kit Tactical"
@@ -221,7 +221,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			you will receive. May contain discontinued and/or exotic items."
 	item = /obj/item/storage/box/syndicate/bundle_A
 	cost = 20
-	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//exclude_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//exclude_modes = list(/datum/game_mode/nuclear)	// [MANKIND-EDIT] - MANKIND_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/bundles_TC/bundle_B
 	name = "Syndi-kit Special"
@@ -229,7 +229,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			In Syndi-kit Special, you will recieve items used by famous syndicate agents of the past. Collectively worth more than 20 telecrystals, the syndicate loves a good throwback."
 	item = /obj/item/storage/box/syndicate/bundle_B
 	cost = 20
-	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//exclude_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//exclude_modes = list(/datum/game_mode/nuclear)	// [MANKIND-EDIT] - MANKIND_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/bundles_TC/surplus
 	name = "Syndicate Surplus Crate"
@@ -238,7 +238,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/structure/closet/crate
 	cost = 20
 	player_minimum = 25
-	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//exclude_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//exclude_modes = list(/datum/game_mode/nuclear)	// [MANKIND-EDIT] - MANKIND_RETURN_CONTENT_CLOWNS
 	var/starting_crate_value = 50
 
 /datum/uplink_item/bundles_TC/surplus/super
@@ -338,7 +338,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	surplus = 30
 	include_modes = list(/datum/game_mode/nuclear)
 
-// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
+// [MANKIND-EDIT] - MANKIND_RETURN_CONTENT_CLOWNS
 /datum/uplink_item/dangerous/pie_cannon
 	name = "Banana Cream Pie Cannon"
 	desc = "A special pie cannon for a special clown, this gadget can hold up to 20 pies and automatically fabricates one every two seconds!"
@@ -365,7 +365,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 3
 	surplus = 0
 	include_modes = list(/datum/game_mode/nuclear/clown_ops)
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 
 /datum/uplink_item/dangerous/bioterror
 	name = "Biohazardous Chemical Sprayer"
@@ -375,7 +375,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/reagent_containers/spray/chemsprayer/bioterror
 	cost = 20
 	surplus = 0
-	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//include_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//include_modes = list(/datum/game_mode/nuclear)	// [MANKIND-EDIT] - MANKIND_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/dangerous/throwingweapons
 	name = "Box of Throwing Weapons"
@@ -410,7 +410,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/melee/duelenergy/saber
 	player_minimum = 25
 	cost = 16
-	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)	// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)	// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/dangerous/doublesword/get_discount()
 	return pick(4;0.8,2;0.65,1;0.5)
@@ -421,7 +421,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			pocketed when inactive. Activating it produces a loud, distinctive noise."
 	item = /obj/item/melee/energy/sword/saber
 	cost = 8
-	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)	// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)	// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/dangerous/shield
 	name = "Energy Shield"
@@ -488,7 +488,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			with suppressors."
 	item = /obj/item/gun/ballistic/automatic/pistol/ringneck
 	cost = 7
-	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)	// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)	// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/dangerous/bolt_action
 	name = "Surplus Rifle"
@@ -503,7 +503,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/gun/ballistic/revolver/viper
 	cost = 13
 	surplus = 50
-	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)	// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)	// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/dangerous/foamsmg
 	name = "Toy Submachine Gun"
@@ -511,7 +511,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/gun/ballistic/automatic/toy
 	cost = 5
 	surplus = 0
-	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//include_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//include_modes = list(/datum/game_mode/nuclear)	// [MANKIND-EDIT] - MANKIND_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/dangerous/foammachinegun
 	name = "Toy Machine Gun"
@@ -520,7 +520,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/gun/ballistic/automatic/toy
 	cost = 10
 	surplus = 0
-	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//include_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//include_modes = list(/datum/game_mode/nuclear)	// [MANKIND-EDIT] - MANKIND_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/dangerous/foampistol
 	name = "Toy Pistol with Riot Darts"
@@ -549,14 +549,14 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			to teach the martial art of krav maga to the wearer."
 	item = /obj/item/clothing/gloves/krav_maga/combatglovesplus
 	cost = 5
-	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//include_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//include_modes = list(/datum/game_mode/nuclear)	// [MANKIND-EDIT] - MANKIND_RETURN_CONTENT_CLOWNS
 	surplus = 0
 
 /datum/uplink_item/stealthy_weapons/cqc
 	name = "CQC Manual"
 	desc = "A manual that teaches a single user tactical Close-Quarters Combat before self-destructing."
 	item = /obj/item/book/granter/martial/cqc
-	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//include_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//include_modes = list(/datum/game_mode/nuclear)	// [MANKIND-EDIT] - MANKIND_RETURN_CONTENT_CLOWNS
 	cost = 13
 	surplus = 0
 
@@ -589,7 +589,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	player_minimum = 20
 	cost = 17
 	surplus = 0
-	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//exclude_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//exclude_modes = list(/datum/game_mode/nuclear)	// [MANKIND-EDIT] - MANKIND_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/stealthy_weapons/crossbow
 	name = "Miniature Energy Crossbow"
@@ -602,7 +602,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/gun/energy/kinetic_accelerator/crossbow
 	cost = 10
 	surplus = 50
-	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//exclude_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//exclude_modes = list(/datum/game_mode/nuclear)	// [MANKIND-EDIT] - MANKIND_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/stealthy_weapons/origami_kit
 	name = "Boxed Origami Kit"
@@ -637,7 +637,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			falls asleep, they will be able to move and act."
 	item = /obj/item/pen/sleepy
 	cost = 4
-	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//exclude_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//exclude_modes = list(/datum/game_mode/nuclear)	// [MANKIND-EDIT] - MANKIND_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/stealthy_weapons/suppressor
 	name = "Suppressor"
@@ -645,7 +645,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/attachment/silencer
 	cost = 3
 	surplus = 10
-	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)	// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)	// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/stealthy_weapons/holster
 	name = "Syndicate Holster"
@@ -687,7 +687,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "An additional 8-round 10x22mm magazine; compatible with the Ringneck Pistol."
 	item = /obj/item/ammo_box/magazine/m10mm_ringneck
 	cost = 1
-	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)	// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)	// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/ammo/pistolap
 	name = "10x22mm Armour Piercing Magazine"
@@ -695,7 +695,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			These rounds are less effective at injuring the target but penetrate protective gear."
 	item = /obj/item/ammo_box/magazine/m10mm_ringneck
 	cost = 2
-	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)	// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)	// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/ammo/pistolhp
 	name = "10x22mm Hollow Point Magazine"
@@ -703,7 +703,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			These rounds are more damaging but ineffective against armour."
 	item = /obj/item/ammo_box/magazine/m10mm_ringneck
 	cost = 3
-	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)	// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)	// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/ammo/pistolfire
 	name = "10x22mm Incendiary Magazine"
@@ -711,7 +711,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			Loaded with incendiary rounds which inflict little damage, but ignite the target."
 	item = /obj/item/ammo_box/magazine/m10mm_ringneck
 	cost = 2
-	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)	// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)	// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/ammo/shotgun
 	cost = 2
@@ -757,7 +757,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			For when you really need a lot of things dead."
 	item = /obj/item/ammo_box/a357
 	cost = 4
-	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)	// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)	// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 	illegal_tech = FALSE
 
 /datum/uplink_item/ammo/a40mm
@@ -854,7 +854,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			and broca systems, making it impossible for them to move or speak for some time."
 	item = /obj/item/storage/box/syndie_kit/bioterror
 	cost = 6
-	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//include_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//include_modes = list(/datum/game_mode/nuclear)	// [MANKIND-EDIT] - MANKIND_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/ammo/bolt_action
 	name = "Surplus Rifle Clip"
@@ -882,7 +882,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "An additional 20 round 9x18mm magazine for the TEC9."
 	item = /obj/item/ammo_box/magazine/m9mm_rattlesnake
 	cost = 3
-	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)	// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)	// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/ammo/ebr
 	name = "M2514 EBR Magazine"
@@ -903,7 +903,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/grenade/chem_grenade/bioterrorfoam
 	cost = 5
 	surplus = 35
-	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//include_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//include_modes = list(/datum/game_mode/nuclear)	// [MANKIND-EDIT] - MANKIND_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/explosives/buzzkill
 	name = "Buzzkill Grenade Box"
@@ -912,7 +912,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/storage/box/syndie_kit/bee_grenades
 	cost = 15
 	surplus = 35
-	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//include_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//include_modes = list(/datum/game_mode/nuclear)	// [MANKIND-EDIT] - MANKIND_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/explosives/c4
 	name = "Composition C-4"
@@ -962,7 +962,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/storage/box/syndie_kit/tuberculosisgrenade
 	cost = 12
 	surplus = 35
-	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//include_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//include_modes = list(/datum/game_mode/nuclear)	// [MANKIND-EDIT] - MANKIND_RETURN_CONTENT_CLOWNS
 	restricted = TRUE
 
 /datum/uplink_item/explosives/grenadier
@@ -1006,7 +1006,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			the blast radius before using the detonator."
 	item = /obj/item/syndicatedetonator
 	cost = 3
-	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//include_modes = list(/datum/game_mode/nuclear)	S// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//include_modes = list(/datum/game_mode/nuclear)	S// [MANKIND-EDIT] - MANKIND_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/explosives/syndicate_minibomb
 	name = "Syndicate Minibomb"
@@ -1014,7 +1014,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			in addition to dealing high amounts of damage to nearby personnel."
 	item = /obj/item/grenade/syndieminibomb
 	cost = 6
-// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops)
 
 /datum/uplink_item/explosives/tearstache
@@ -1025,7 +1025,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 3
 	surplus = 0
 	include_modes = list(/datum/game_mode/nuclear/clown_ops)
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 
 /datum/uplink_item/explosives/viscerators
 	name = "Viscerator Delivery Grenade"
@@ -1034,7 +1034,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/grenade/spawnergrenade/manhacks
 	cost = 5
 	surplus = 35
-	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//include_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//include_modes = list(/datum/game_mode/nuclear)	// [MANKIND-EDIT] - MANKIND_RETURN_CONTENT_CLOWNS
 
 //Support and Mechs
 /datum/uplink_item/support
@@ -1042,7 +1042,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	surplus = 0
 	include_modes = list(/datum/game_mode/nuclear)
 
-// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 /datum/uplink_item/support/clown_reinforcement
 	name = "Clown Reinforcements"
 	desc = "Call in an additional clown to share the fun, equipped with full starting gear, but no telecrystals."
@@ -1050,7 +1050,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 20
 	include_modes = list(/datum/game_mode/nuclear/clown_ops)
 	restricted = TRUE
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 /datum/uplink_item/support/reinforcement
 	name = "Reinforcements"
@@ -1133,7 +1133,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			Due to budget cuts, the shoes don't provide protection against slipping."
 	item = /obj/item/storage/box/syndie_kit/chameleon
 	cost = 2
-	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//exclude_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//exclude_modes = list(/datum/game_mode/nuclear)	// [MANKIND-EDIT] - MANKIND_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/stealthy_tools/chameleon_proj
 	name = "Chameleon Projector"
@@ -1165,7 +1165,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/reagent_containers/syringe/mulligan
 	cost = 4
 	surplus = 30
-	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//exclude_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//exclude_modes = list(/datum/game_mode/nuclear)	// [MANKIND-EDIT] - MANKIND_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/stealthy_tools/syndigaloshes
 	name = "No-Slip Chameleon Shoes"
@@ -1173,7 +1173,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			They do not work on heavily lubricated surfaces."
 	item = /obj/item/clothing/shoes/chameleon/noslip
 	cost = 2
-	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//exclude_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//exclude_modes = list(/datum/game_mode/nuclear)	// [MANKIND-EDIT] - MANKIND_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/stealthy_tools/syndigaloshes/nuke
 	item = /obj/item/clothing/shoes/chameleon/noslip
@@ -1208,7 +1208,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/storage/toolbox/infiltrator
 	cost = 6
 	limited_stock = 1 //you only get one so you don't end up with too many gun cases
-	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//exclude_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//exclude_modes = list(/datum/game_mode/nuclear)	// [MANKIND-EDIT] - MANKIND_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/suits/space_suit
 	name = "Syndicate Space Suit"
@@ -1227,7 +1227,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			Nanotrasen crew who spot these suits are known to panic."
 	item = /obj/item/clothing/suit/space/hardsuit/syndi
 	cost = 8
-	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops) //you can't buy it in nuke, because the elite hardsuit costs the same while being better	//exclude_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops) //you can't buy it in nuke, because the elite hardsuit costs the same while being better	//exclude_modes = list(/datum/game_mode/nuclear)	// [MANKIND-EDIT] - MANKIND_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/suits/hardsuit/elite
 	name = "Elite Syndicate Hardsuit"
@@ -1235,7 +1235,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			provides the user with superior armor and mobility compared to the standard Syndicate hardsuit."
 	item = /obj/item/clothing/suit/space/hardsuit/syndi/elite
 	cost = 8
-	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//include_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//include_modes = list(/datum/game_mode/nuclear)	// [MANKIND-EDIT] - MANKIND_RETURN_CONTENT_CLOWNS
 	exclude_modes = list()
 
 /datum/uplink_item/suits/hardsuit/shielded
@@ -1244,7 +1244,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			The shields can handle up to three impacts within a short duration and will rapidly recharge while not under fire."
 	item = /obj/item/clothing/suit/space/hardsuit/shielded/syndi
 	cost = 30
-	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//include_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//include_modes = list(/datum/game_mode/nuclear)	// [MANKIND-EDIT] - MANKIND_RETURN_CONTENT_CLOWNS
 	exclude_modes = list()
 
 // Devices and Tools
@@ -1276,7 +1276,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			'Advanced Magboots' slow you down in simulated-gravity environments much like the standard issue variety."
 	item = /obj/item/clothing/shoes/magboots/syndie
 	cost = 2
-	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//include_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//include_modes = list(/datum/game_mode/nuclear)	// [MANKIND-EDIT] - MANKIND_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/device_tools/briefcase_launchpad
 	name = "Briefcase Launchpad"
@@ -1333,7 +1333,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 1
 	surplus = 0
 	restricted = TRUE
-	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//exclude_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//exclude_modes = list(/datum/game_mode/nuclear)	// [MANKIND-EDIT] - MANKIND_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/device_tools/failsafe/spawn_item(spawn_path, mob/user, datum/component/uplink/U)
 	if(!U)
@@ -1377,7 +1377,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			operatives in the fight, even while under fire. Don't cross the streams!"
 	item = /obj/item/gun/medbeam
 	cost = 15
-	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//include_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//include_modes = list(/datum/game_mode/nuclear)	// [MANKIND-EDIT] - MANKIND_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/device_tools/singularity_beacon
 	name = "Power Beacon"
@@ -1413,7 +1413,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			and other supplies helpful for a field medic."
 	item = /obj/item/storage/firstaid/tactical
 	cost = 4
-	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//include_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//include_modes = list(/datum/game_mode/nuclear)	// [MANKIND-EDIT] - MANKIND_RETURN_CONTENT_CLOWNS
 
 /datum/uplink_item/device_tools/soap
 	name = "Syndicate Soap"
@@ -1461,7 +1461,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "Guerilla Gloves"
 	desc = "A pair of highly robust combat gripper gloves that excels at performing takedowns at close range, with an added lining of insulation. Careful not to hit a wall!"
 	item = /obj/item/clothing/gloves/tackler/combat/insulated
-	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//include_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//include_modes = list(/datum/game_mode/nuclear)	// [MANKIND-EDIT] - MANKIND_RETURN_CONTENT_CLOWNS
 	cost = 2
 
 /datum/uplink_item/device_tools/telecrystal/bonemedipen
@@ -1576,7 +1576,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 //Race-specific items
 /datum/uplink_item/race_restricted
 	category = "Species-Restricted"
-	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//exclude_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//exclude_modes = list(/datum/game_mode/nuclear)	// [MANKIND-EDIT] - MANKIND_RETURN_CONTENT_CLOWNS
 	surplus = 0
 
 /datum/uplink_item/race_restricted/syndilamp //WS edit - LepiCorp stuff
@@ -1611,7 +1611,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 // Role-specific items
 /datum/uplink_item/role_restricted
 	category = "Role-Restricted"
-	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//exclude_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//exclude_modes = list(/datum/game_mode/nuclear)	// [MANKIND-EDIT] - MANKIND_RETURN_CONTENT_CLOWNS
 	surplus = 0
 
 /datum/uplink_item/role_restricted/ancient_jumpsuit
@@ -1630,7 +1630,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	restricted_roles = list("Assistant")
 	surplus = 0
 
-// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 /datum/uplink_item/role_restricted/pie_cannon
 	name = "Banana Cream Pie Cannon"
 	desc = "A special pie cannon for a special clown, this gadget can hold up to 20 pies and automatically fabricates one every two seconds!"
@@ -1638,7 +1638,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/pneumatic_cannon/pie/selfcharge
 	restricted_roles = list("Clown")
 	surplus = 0 //No fun unless you're the clown!
-// [//CELADON-ADD]
+// [/MANKIND-ADD]
 
 /datum/uplink_item/role_restricted/blastcannon
 	name = "Blast Cannon"
@@ -1658,7 +1658,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	restricted_roles = list("Medical Doctor", "Chief Medical Officer", "Roboticist")
 	cost = 5
 
-// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 /datum/uplink_item/role_restricted/clumsinessinjector //clown ops can buy this too, but it's in the pointless badassery section for them
 	name = "Clumsiness Injector"
 	desc = "Inject yourself with this to become as clumsy as a clown... or inject someone ELSE with it to make THEM as clumsy as a clown. Useful for clowns who wish to reconnect with their former clownish nature or for clowns who wish to torment and play with their prey before killing them."
@@ -1666,9 +1666,9 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 1
 	restricted_roles = list("Clown")
 	illegal_tech = FALSE
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
-// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 /datum/uplink_item/role_restricted/clowncar
 	name = "Clown Car"
 	desc = "The Clown Car is the ultimate transportation method for any worthy clown! \
@@ -1680,7 +1680,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/vehicle/sealed/car/clowncar
 	cost = 20
 	restricted_roles = list("Clown")
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 /datum/uplink_item/role_restricted/concealed_weapon_bay
 	name = "Concealed Weapon Bay"
@@ -1716,7 +1716,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	surplus = 20
 	restricted_roles = list("Janitor")
 
-// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 /datum/uplink_item/role_restricted/mimery
 	name = "Guide to Advanced Mimery Series"
 	desc = "The classical two part series on how to further hone your mime skills. Upon studying the series, the user should be able to make 3x1 invisible walls, and shoot bullets out of their fingers. \
@@ -1725,7 +1725,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/storage/box/syndie_kit/mimery
 	restricted_roles = list("Mime")
 	surplus = 0
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 /datum/uplink_item/role_restricted/pressure_mod
 	name = "Kinetic Accelerator Pressure Mod"
@@ -1777,7 +1777,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/badass/costumes
 	surplus = 0
-	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//include_modes = list(/datum/game_mode/nuclear)	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)	//include_modes = list(/datum/game_mode/nuclear)	// [MANKIND-EDIT] - MANKIND_RETURN_CONTENT_CLOWNS
 	cost = 4
 	cant_discount = TRUE
 
@@ -1787,12 +1787,12 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			Radio headset does not include encryption key. No gun included."
 	item = /obj/item/storage/box/syndie_kit/centcom_costume
 
-// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 /datum/uplink_item/badass/costumes/clown
 	name = "Clown Costume"
 	desc = "Nothing is more terrifying than clowns with fully automatic weaponry."
 	item = /obj/item/storage/backpack/duffelbag/clown/syndie
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 /datum/uplink_item/badass/balloon
 	name = "Syndicate Balloon"
@@ -1829,7 +1829,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 2
 	illegal_tech = FALSE
 
-// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 /datum/uplink_item/badass/clownopclumsinessinjector //clowns can buy this too, but it's in the role-restricted items section for them
 	name = "Clumsiness Injector"
 	desc = "Inject yourself with this to become as clumsy as a clown... or inject someone ELSE with it to make THEM as clumsy as a clown. Useful for clown operatives who wish to reconnect with their former clownish nature or for clown operatives who wish to torment and play with their prey before killing them."
@@ -1837,7 +1837,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 1
 	include_modes = list(/datum/game_mode/nuclear/clown_ops)
 	illegal_tech = FALSE
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 /datum/uplink_item/badass/tactical_naptime
 	name = "Sleepy Time Pajama Bundle"

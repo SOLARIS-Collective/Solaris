@@ -101,18 +101,18 @@ const SharedContent = (_props, context) => {
                 tooltip="Decrease Signal Length"
                 tooltipPosition="right"
                 icon="arrow-left"
-                // [CELADON-ADD] - subshuttle fix
+                // [MANKIND-ADD] - subshuttle fix
                 disabled={data.issubshuttle != null}
-                // [/CELADON-ADD] - subshuttle fix
+                // [/MANKIND-ADD] - subshuttle fix
                 onClick={() => act('sensor_decrease')}
               />
               <Button
                 tooltip="Increase Signal Length"
                 tooltipPosition="right"
                 icon="arrow-right"
-                // [CELADON-ADD] - subshuttle fix
+                // [MANKIND-ADD] - subshuttle fix
                 disabled={data.issubshuttle != null}
-                // [/CELADON-ADD] - subshuttle fix
+                // [/MANKIND-ADD] - subshuttle fix
                 onClick={() => act('sensor_increase')}
               />
             </Table.Cell>
@@ -127,7 +127,7 @@ const SharedContent = (_props, context) => {
       <Section title="Radar"
         buttons={
           <>
-            <Button // [CELADON-ADD] - Signal S.O.S - mod_celadon\wideband\code\signal.dm
+            <Button // [MANKIND-ADD] - Signal S.O.S - modular_mankind\wideband\code\signal.dm
               tooltip="Send S.O.S."
               tooltipPosition="left"
               icon="globe"
@@ -266,10 +266,10 @@ const ShipContent = (_props, context) => {
             >
               <AnimatedNumber
                 value={speed}
-                // [CELADON-EDIT] - CELADON FIXES
-                // format={(value) => value.toFixed(1)} // CELADON-EDIT - ORIGINAL
+                // [MANKIND-EDIT] - MANKIND_FIXES
+                // format={(value) => value.toFixed(1)} // ORIGINAL
                 format={(value) => value.toFixed(2)}
-                // [/CELADON-EDIT]
+                // [/MANKIND-EDIT]
               />
               Gm/s
             </ProgressBar>
@@ -360,10 +360,10 @@ const ShipContent = (_props, context) => {
             <Table.Cell>Max thrust per second:</Table.Cell>
             <Table.Cell>
               <AnimatedNumber
-                // [CELADON-EDIT] - CELADON FIXES
-                // value={estThrust * 500} // CELADON-EDIT - ORIGINAL
+                // [MANKIND-EDIT] - MANKIND_FIXES
+                // value={estThrust * 500} // ORIGINAL
                 value={estThrust * 1600}
-                // [/CELADON-EDIT]
+                // [/MANKIND-EDIT]
                 format={(value) => value.toFixed(2)}
               />
               Gm/s²
@@ -410,11 +410,11 @@ const ShipControlContent = (_props, context) => {
             tooltip="Undock"
             tooltipPosition="left"
             icon="sign-out-alt"
-            // [CELADON-EDIT] - subshuttles fix
+            // [MANKIND-EDIT] - subshuttles fix
             disabled={
               !data.docked || data.docking || data.motheroutpost != null
             }
-            // [/CELADON-EDIT] - subshuttles fix
+            // [/MANKIND-EDIT] - subshuttles fix
             onClick={() => act('undock')}
           />
           <Button
@@ -520,24 +520,24 @@ const ShipControlContent = (_props, context) => {
             animated
           />
           <NumberInput
-            // [CELADON-EDIT] CELADON FIXES
-            // value={(burnPercentage / 100) * estThrust * 500} // CELADON-EDIT - ORIGINAL
+            // [MANKIND-EDIT] MANKIND_FIXES
+            // value={(burnPercentage / 100) * estThrust * 500} // ORIGINAL
             value={(burnPercentage / 100) * estThrust * 1600}
-            // [/CELADON-EDIT]
+            // [/MANKIND-EDIT]
             minValue={0.01}
             step={0.01}
             // 5 times a second, 60 seconds in a minute (5 * 60 = 300)
-            // [CELADON-EDIT] CELADON FIXES
-            // maxValue={estThrust * 500} // CELADON-EDIT - ORIGINAL
+            // [MANKIND-EDIT] MANKIND_FIXES
+            // maxValue={estThrust * 500} // ORIGINAL
             maxValue={estThrust * 1600}
-            // [/CELADON-EDIT]
+            // [/MANKIND-EDIT]
             unit="Gm/s²"
             onDrag={(e, value) =>
               act('change_burn_percentage', {
-                // [CELADON-EDIT] CELADON FIXES
-                // percentage: Math.round((value / (estThrust * 500)) * 100), // CELADON-EDIT - ORIGINAL
+                // [MANKIND-EDIT] MANKIND_FIXES
+                // percentage: Math.round((value / (estThrust * 500)) * 100), // ORIGINAL
                 percentage: Math.round((value / (estThrust * 1600)) * 100),
-                // [/CELADON-EDIT]
+                // [/MANKIND-EDIT]
               })
             }
             format={(value) => value.toFixed(2)}

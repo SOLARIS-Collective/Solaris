@@ -17,15 +17,15 @@
 	H.underwear = random_underwear(H.gender)
 	H.underwear_color = random_color()
 	H.skin_tone = random_skin_tone()
-	// [CELADON-EDIT] - TAJARA - изменения базы
-	// H.hairstyle = random_hairstyle(H.gender) // CELADON-EDIT - ORIGINAL
-	// H.facial_hairstyle = random_facial_hairstyle(H.gender) // CELADON-EDIT - ORIGINAL
+	// [MANKIND-EDIT] - TAJARA - изменения базы
+	// H.hairstyle = random_hairstyle(H.gender) // ORIGINAL
+	// H.facial_hairstyle = random_facial_hairstyle(H.gender) // ORIGINAL
 	H.hairstyle = H.dna.species.random_hairstyle(H.gender)
 	H.facial_hairstyle = H.dna.species.random_facial_hairstyle(H.gender)
-	// [/CELADON-EDIT]
-	// [CELADON-ADD] - TAJARA
+	// [/MANKIND-EDIT]
+	// [MANKIND-ADD] - TAJARA
 	H.skin_tone_nose = random_skin_tone_nose()
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 	H.hair_color = random_color_natural()
 	H.facial_hair_color = H.hair_color
 	H.eye_color = random_eye_color()
@@ -54,7 +54,7 @@
 	H.dna.features["vox_neck_quills"] = pick(GLOB.vox_neck_quills_list)
 	H.dna.features["elzu_horns"] = pick(GLOB.elzu_horns_list)
 	H.dna.features["tail_elzu"] = pick(GLOB.tails_list_elzu)
-	// [CELADON-ADD] - TAJARA
+	// [MANKIND-ADD] - TAJARA
 	H.dna.features["tajara_ears"] = pick(GLOB.tajara_ears_list)
 	H.dna.features["tajara_hairs"] = pick(GLOB.tajara_hairs_list)
 	H.dna.features["tajara_ears_markings"] = pick(GLOB.tajara_ears_markings_list)
@@ -64,7 +64,7 @@
 	H.dna.features["tajara_chest_markings"] = pick(GLOB.tajara_chest_markings_list)
 	H.dna.features["tajara_body_markings"] = pick(GLOB.tajara_body_markings_list)
 	H.dna.features["tajara_tail"] = pick(GLOB.tajara_tail_list)
-	// [CELADON-ADD] - CELADON_RIOL
+	// [MANKIND-ADD] - MANKIND_RIOL
 	H.dna.features["riol_ears"] = pick(GLOB.riol_ears_list)
 	H.dna.features["riol_hairs"] = pick(GLOB.riol_hairs_list)
 	H.dna.features["riol_ears_markings"] = pick(GLOB.riol_ears_markings_list)
@@ -76,7 +76,7 @@
 	H.dna.features["riol_tail_markings"] = pick(GLOB.riol_tail_markings_list)
 	H.dna.features["riol_tail"] = pick(GLOB.riol_tail_list)
 	H.dna.features["riol_legs"] = pick(GLOB.riol_legs_list)
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 
 	H.update_body()
 	H.update_hair()

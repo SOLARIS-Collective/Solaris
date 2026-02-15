@@ -37,10 +37,10 @@ GLOBAL_LIST_EMPTY(ore_veins)
 	var/max_mobs = 3
 	var/spawn_time = 10 SECONDS
 	var/mob_types = list(
-		// [CELADON-ADD] - RETURN_CONTENT
+		// [MANKIND-ADD] - RETURN_CONTENT
 		/mob/living/simple_animal/hostile/asteroid/goliath/beast/tendril = 60,
 		/mob/living/simple_animal/hostile/asteroid/hivelord/legion/tendril = 20,
-		// [/CELADON-ADD]
+		// [/MANKIND-ADD]
 		/mob/living/simple_animal/hostile/asteroid/goliath/beast/nest = 60,
 		/mob/living/simple_animal/hostile/asteroid/hivelord/legion/nest = 20,
 		/mob/living/simple_animal/hostile/asteroid/brimdemon = 20,
@@ -118,12 +118,12 @@ GLOBAL_LIST_EMPTY(ore_veins)
 	return ..()
 
 /obj/structure/vein/proc/begin_spawning()
-	// [CELADON-ADD] - CELADON_FIXES - FIXES_DRILLCLASS - Проверяем, не завершена ли миссия перед запуском спавна
+	// [MANKIND-ADD] - MANKIND_FIXES - FIXES_DRILLCLASS - Проверяем, не завершена ли миссия перед запуском спавна
 	if(istype(our_drill, /obj/machinery/drill/mission))
 		var/obj/machinery/drill/mission/mission_drill = our_drill
 		if(mission_drill.num_current >= mission_drill.num_wanted)
 			return
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 	currently_spawning = TRUE
 	START_PROCESSING(SSprocessing, src)
 
@@ -138,7 +138,7 @@ GLOBAL_LIST_EMPTY(ore_veins)
 /obj/structure/vein/process(seconds_per_tick)
 	if(!currently_spawning)
 		return
-	// [CELADON-ADD] - CELADON_FIXES - FIXES_DRILLCLASS - Проверяем, существует ли бур
+	// [MANKIND-ADD] - MANKIND_FIXES - FIXES_DRILLCLASS - Проверяем, существует ли бур
 	if(!our_drill || QDELETED(our_drill))
 		stop_spawning()
 		return
@@ -148,7 +148,7 @@ GLOBAL_LIST_EMPTY(ore_veins)
 		if(mission_drill.num_current >= mission_drill.num_wanted)
 			stop_spawning()
 			return
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 	try_spawning_spawner()
 
 /obj/structure/vein/proc/try_spawning_spawner()
@@ -186,7 +186,7 @@ GLOBAL_LIST_EMPTY(ore_veins)
 	return spawning_tile
 
 /obj/structure/vein/proc/increment_wave_tally()
-	// [CELADON-EDIT] - CELADON_FIXES - FIXES_DRILLCLASS - Добавлена проверка QDELETED для защиты от удаленных буров
+	// [MANKIND-EDIT] - MANKIND_FIXES - FIXES_DRILLCLASS - Добавлена проверка QDELETED для защиты от удаленных буров
 	//if(!our_drill || !our_drill.active)
 	//	wave_tally = 0
 	//	return TRUE
@@ -200,7 +200,7 @@ GLOBAL_LIST_EMPTY(ore_veins)
 		if(mission_drill.num_current >= mission_drill.num_wanted)
 			wave_tally = 0
 			return FALSE
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 	wave_tally += 1
 	if(wave_tally > waves_per_break)
 		wave_tally = 0
@@ -246,11 +246,11 @@ GLOBAL_LIST_EMPTY(ore_veins)
 		)
 	max_mobs = 2
 	mob_types = list(
-		// [CELADON-ADD] - RETURN_CONTENT
+		// [MANKIND-ADD] - RETURN_CONTENT
 		/mob/living/simple_animal/hostile/asteroid/goliath/beast/tendril = 60,
 		/mob/living/simple_animal/hostile/asteroid/hivelord/legion/tendril = 30,
 		/mob/living/simple_animal/hostile/asteroid/hivelord/legion/dwarf/tendril = 5,
-		// [/CELADON-ADD]
+		// [/MANKIND-ADD]
 		/mob/living/simple_animal/hostile/asteroid/goliath/beast/nest = 60,
 		/mob/living/simple_animal/hostile/asteroid/hivelord/legion/nest = 30,
 		/mob/living/simple_animal/hostile/asteroid/brimdemon = 20,
@@ -279,11 +279,11 @@ GLOBAL_LIST_EMPTY(ore_veins)
 	max_mobs = 3 //Best not to go past 6 due to balance and lag reasons
 	spawn_time = 8 SECONDS
 	mob_types = list(
-		// [CELADON-ADD] - RETURN_CONTENT
+		// [MANKIND-ADD] - RETURN_CONTENT
 		/mob/living/simple_animal/hostile/asteroid/goliath/beast/tendril = 60,
 		/mob/living/simple_animal/hostile/asteroid/hivelord/legion/tendril = 30,
 		/mob/living/simple_animal/hostile/asteroid/hivelord/legion/dwarf/tendril = 10,
-		// [/CELADON-ADD]
+		// [/MANKIND-ADD]
 		/mob/living/simple_animal/hostile/asteroid/goliath/beast/nest = 60,
 		/mob/living/simple_animal/hostile/asteroid/hivelord/legion/nest = 30,
 		/mob/living/simple_animal/hostile/asteroid/brimdemon = 20,
@@ -305,21 +305,21 @@ GLOBAL_LIST_EMPTY(ore_veins)
 /obj/structure/vein/classfour
 	mining_charges = 30
 	vein_class = 4
-	// [CELADON-ADD] - CELADON_FIXES - FIXES_DRILLCLASS - Балансировка жил класса 4
+	// [MANKIND-ADD] - MANKIND_FIXES - FIXES_DRILLCLASS - Балансировка жил класса 4
 	max_mobs = 4				// Сбалансированное количество мобов (было 6)
 	spawn_time = 12 SECONDS		// Увеличенный интервал спавна (было 8)
 	wave_length = 30 SECONDS	// Уменьшено для более динамичной миссии (было 45)
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 //
 // Ice planets
 
 /obj/structure/vein/ice
 	mob_types = list(
-		// [CELADON-ADD] - RETURN_CONTENT
+		// [MANKIND-ADD] - RETURN_CONTENT
 		/mob/living/simple_animal/hostile/asteroid/hivelord/legion/snow/tendril = 20,
-		// [/CELADON-ADD]
+		// [/MANKIND-ADD]
 		/mob/living/simple_animal/hostile/asteroid/wolf = 30,
-		// /mob/living/simple_animal/hostile/asteroid/polarbear = 30, // [CELADON-REMOVE] - удаляем старый код их
+		// /mob/living/simple_animal/hostile/asteroid/polarbear = 30, // [MANKIND-REMOVE] - удаляем старый код их
 		/mob/living/simple_animal/hostile/asteroid/wolf = 40,
 		/mob/living/basic/bear/polar = 40,
 		/mob/living/simple_animal/hostile/asteroid/hivelord/legion/snow/nest = 20,
@@ -396,11 +396,11 @@ GLOBAL_LIST_EMPTY(ore_veins)
 		/obj/item/stack/ore/bluespace_crystal = 4,
 		/obj/item/stack/ore/ice = 8,
 		)
-	// [CELADON-ADD] - CELADON_FIXES - FIXES_DRILLCLASS - Балансировка жил класса 4 (Ice)
+	// [MANKIND-ADD] - MANKIND_FIXES - FIXES_DRILLCLASS - Балансировка жил класса 4 (Ice)
 	max_mobs = 4				// Уменьшено с 6 до 4
 	spawn_time = 12 SECONDS		// Увеличено с 8 до 12 секунд
 	wave_length = 30 SECONDS	// Уменьшено с 45 до 30 секунд для более динамичной миссии
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 //Jungle
 
 /obj/structure/vein/jungle
@@ -457,7 +457,7 @@ GLOBAL_LIST_EMPTY(ore_veins)
 	mob_types = list(
 		/mob/living/simple_animal/hostile/asteroid/wolf/random = 20,
 		/mob/living/simple_animal/hostile/poison/giant_spider/tarantula = 1,
-		// /mob/living/simple_animal/hostile/jungle/seedling = 5,	// [CELADON-REMOVE] - FIXES_MOB_SPAWNER - Убираем нечестных цветков
+		// /mob/living/simple_animal/hostile/jungle/seedling = 5,	// [MANKIND-REMOVE] - FIXES_MOB_SPAWNER - Убираем нечестных цветков
 		/mob/living/simple_animal/hostile/jungle/mega_arachnid = 20,
 		/mob/living/simple_animal/hostile/jungle/mook = 30,
 	)
@@ -620,11 +620,11 @@ GLOBAL_LIST_EMPTY(ore_veins)
 		/obj/item/stack/ore/uranium = 5,
 		/obj/item/stack/ore/gold = 3,
 		)
-	// [CELADON-EDIT] - CELADON_FIXES - Балансировка жил класса 4 (Rockplanet)
+	// [MANKIND-EDIT] - MANKIND_FIXES - Балансировка жил класса 4 (Rockplanet)
 	max_mobs = 4              // Сбалансированное количество мобов (было 6)
 	spawn_time = 12 SECONDS   // Увеличенный интервал спавна (было 8)
 	wave_length = 30 SECONDS  // Уменьшено для более динамичной миссии (было 45)
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 
 //moons, have a dupe of asteroid but less of an emphasis on  goliaths
 
@@ -775,7 +775,7 @@ GLOBAL_LIST_EMPTY(ore_veins)
 /obj/structure/vein/shrouded
 	mining_charges = 8
 	mob_types = list(
-		/mob/living/simple_animal/hostile/asteroid/royalcrab = 30, // [CELADON-EDIT] - ALIEN_BALANCE // /mob/living/simple_animal/hostile/asteroid/royalcrab = 50,
+		/mob/living/simple_animal/hostile/asteroid/royalcrab = 30, // [MANKIND-EDIT] - ALIEN_BALANCE // /mob/living/simple_animal/hostile/asteroid/royalcrab = 50,
 		/mob/living/simple_animal/hostile/alien = 5,
 		/mob/living/simple_animal/hostile/alien/drone = 5,
 		/mob/living/simple_animal/hostile/alien/sentinel = 1,
@@ -806,7 +806,7 @@ GLOBAL_LIST_EMPTY(ore_veins)
 	mining_charges = 10
 	vein_class = 2
 	mob_types = list(
-		/mob/living/simple_animal/hostile/asteroid/royalcrab = 10, // [CELADON-EDIT] - ALIEN_BALANCE // /mob/living/simple_animal/hostile/asteroid/royalcrab = 30,
+		/mob/living/simple_animal/hostile/asteroid/royalcrab = 10, // [MANKIND-EDIT] - ALIEN_BALANCE // /mob/living/simple_animal/hostile/asteroid/royalcrab = 30,
 		/mob/living/simple_animal/hostile/alien = 5,
 		/mob/living/simple_animal/hostile/alien/drone = 5,
 		/mob/living/simple_animal/hostile/alien/sentinel = 1,
@@ -831,11 +831,11 @@ GLOBAL_LIST_EMPTY(ore_veins)
 	vein_class = 3
 
 	mob_types = list(
-		/mob/living/simple_animal/hostile/asteroid/royalcrab = 5, 	// [CELADON-EDIT] - ALIEN_BALANCE - // /mob/living/simple_animal/hostile/asteroid/royalcrab = 10,
+		/mob/living/simple_animal/hostile/asteroid/royalcrab = 5, 	// [MANKIND-EDIT] - ALIEN_BALANCE - // /mob/living/simple_animal/hostile/asteroid/royalcrab = 10,
 		/mob/living/simple_animal/hostile/alien = 5,
 		/mob/living/simple_animal/hostile/alien/drone = 5,
-		/mob/living/simple_animal/hostile/alien/sentinel = 2, // [CELADON-EDIT] - ALIEN_BALANCE // /mob/living/simple_animal/hostile/alien/sentinel = 1,
-		/mob/living/simple_animal/hostile/alien/praetorian = 1, // [CELADON-ADD] - ALIEN_BALANCE
+		/mob/living/simple_animal/hostile/alien/sentinel = 2, // [MANKIND-EDIT] - ALIEN_BALANCE // /mob/living/simple_animal/hostile/alien/sentinel = 1,
+		/mob/living/simple_animal/hostile/alien/praetorian = 1, // [MANKIND-ADD] - ALIEN_BALANCE
 		)
 
 	ore_list = list(

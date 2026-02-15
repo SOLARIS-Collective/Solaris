@@ -133,36 +133,36 @@
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/gun/energy/attack_hand(mob/user)
-	if(!internal_magazine && !internal_cell && loc == user && user.is_holding(src) && cell && tac_reloads && !(gun_firemodes[firemode_index] == FIREMODE_UNDERBARREL))	// [CELADON-ADD]
+	if(!internal_magazine && !internal_cell && loc == user && user.is_holding(src) && cell && tac_reloads && !(gun_firemodes[firemode_index] == FIREMODE_UNDERBARREL))	// [MANKIND-ADD]
 		eject_cell(user)
 		return
 	return ..()
 
-// [CELADON-ADD] - HOTKEY-RELOAD - Возвращает переключение режимов стрельбы на кнопку перезарядки
+// [MANKIND-ADD] - HOTKEY-RELOAD - Возвращает переключение режимов стрельбы на кнопку перезарядки
 /obj/item/gun/energy/unique_action(mob/living/user)
 	if(ammo_type.len > 1)
 		select_fire(user)
 		update_appearance()
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 /obj/item/gun/energy/attackby(obj/item/A, mob/user, params)
 	if(..())
 		return FALSE
-	if(internal_cell)	// [CELADON-ADD]
-		return			// [/CELADON-ADD]
+	if(internal_cell)	// [MANKIND-ADD]
+		return			// [/MANKIND-ADD]
 	if (!internal_magazine && (A.type in (allowed_ammo_types - blacklisted_ammo_types)))
 		var/obj/item/stock_parts/cell/gun/C = A
 		if (!cell)
-// [CELADON-EDIT] - CELADON BALANCE - продолжаем убирать систему люков оффов
-// 			return insert_cell(user, C) CELADON-EDIT -> ORIGINAL
+// [MANKIND-EDIT] - MANKIND_BALANCE - продолжаем убирать систему люков оффов
+// 			return insert_cell(user, C) MANKIND-EDIT -> ORIGINAL
 			insert_cell(user, C)
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 		else
 			if (tac_reloads)
 				eject_cell(user, C)
 
 /obj/item/gun/energy/proc/insert_cell(mob/user, obj/item/stock_parts/cell/gun/C)
-// [CELADON-EDIT] - CELADON BALANCE - возвращает старый код для перезарядки батареек, убирает новый код люков
+// [MANKIND-EDIT] - MANKIND_BALANCE - возвращает старый код для перезарядки батареек, убирает новый код люков
 // 	if(!latch_closed)
 // 		if(user.transferItemToLoc(C, src))
 // 			cell = C
@@ -174,7 +174,7 @@
 // 			to_chat(user, span_warning("You cannot seem to get \the [src] out of your hands!"))
 // 			return FALSE
 // 		else
-// 			to_chat(user, span_warning("The [src]'s cell retainment clip is latched!")) // CELADON-EDIT -> ORIGINAL
+// 			to_chat(user, span_warning("The [src]'s cell retainment clip is latched!")) // MANKIND-EDIT -> ORIGINAL
 	if(user.transferItemToLoc(C, src))
 		cell = C
 		to_chat(user, span_notice("You load the [C] into \the [src]."))
@@ -184,7 +184,7 @@
 	else
 		to_chat(user, span_warning("You cannot seem to get \the [src] out of your hands!"))
 		return FALSE
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 
 /obj/item/gun/energy/proc/eject_cell(mob/user, obj/item/stock_parts/cell/gun/tac_load = null)
 	playsound(src, load_sound, load_sound_volume, load_sound_vary)
@@ -208,7 +208,7 @@
 		user.put_in_hands(old_cell)
 	update_appearance()
 
-// [CELADON-REMOVE] - CELADON_BALANCE - Ненужная часть кода создающая рантаймы и добавляющая ненужную функцию
+// [MANKIND-REMOVE] - MANKIND_BALANCE - Ненужная часть кода создающая рантаймы и добавляющая ненужную функцию
 // /obj/item/gun/energy/screwdriver_act(mob/living/user, obj/item/I)
 // 	if(cell && !internal_cell)
 // 		to_chat(user, span_notice("You begin unscrewing and pulling out the cell..."))
@@ -216,10 +216,10 @@
 // 			to_chat(user, span_notice("You remove the power cell."))
 // 			eject_cell(user)
 // 	return ..()
-// [/CELADON-REMOVE] // ЕСЛИ БУДЕТ РАНТАЙМИТЬ, СНЕСТИ СНИЗУ
+// [/MANKIND-REMOVE] // ЕСЛИ БУДЕТ РАНТАЙМИТЬ, СНЕСТИ СНИЗУ
 //special is_type_in_list method to counteract problem with current method
 
-// [CELADON-REMOVE] - CELADON BALANCE - часть новой бесполезной системы люков от оффов
+// [MANKIND-REMOVE] - MANKIND_BALANCE - часть новой бесполезной системы люков от оффов
 ///obj/item/gun/energy/unique_action(mob/living/user)
 //	if(..())
 //		return
@@ -289,7 +289,7 @@
 // 			latch_closed = TRUE
 // 			update_appearance()
 // 	return
-// [/CELADON_REMOVE]
+// [/MANKIND_REMOVE]
 /obj/item/gun/energy/can_shoot(visuals)
 	if(safety && !visuals)
 		return FALSE
@@ -328,17 +328,17 @@
 /obj/item/gun/energy/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
 	if(!chambered && can_shoot())
 		process_chamber()	// If the gun was drained and then recharged, load a new shot.
-// [CELADON-REMOVE] - CELADON BALANCE - очередная часть системы оффов
+// [MANKIND-REMOVE] - MANKIND_BALANCE - очередная часть системы оффов
 // 	..() //process the gunshot as normal
 // 	if(!latch_closed && prob(65)) //make the cell slide out if it's fired while the retainment clip is unlatched, with a 65% probability
 // 		to_chat(user, span_warning("The [src]'s cell falls out!"))
 // 		eject_cell()
-// [/CELADON-REMOVE]
+// [/MANKIND-REMOVE]
 
-// [CELADON-EDIT]
-// return // CELADON-EDIT -> ORIGINAL
+// [MANKIND-EDIT]
+// return // MANKIND-EDIT -> ORIGINAL
 	return ..()
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 
 /obj/item/gun/energy/proc/build_ammotypes()
 	for(var/datum/action/item_action/toggle_ammotype/old_ammotype in actions)
@@ -404,10 +404,10 @@
 	return
 
 /obj/item/gun/energy/update_icon_state()
-// [CELADON-ADD] - FIX_HADES_MOB_OVERLAY_STATE
+// [MANKIND-ADD] - FIX_HADES_MOB_OVERLAY_STATE
 	var/skip_inhand = initial(item_state) //only build if we aren't using a preset inhand icon
 	var/skip_worn_icon = initial(mob_overlay_state) //only build if we aren't using a preset worn icon
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 	if(initial(item_state))
 		return ..()
 	var/ratio = get_charge_ratio()
@@ -417,13 +417,13 @@
 		var/obj/item/ammo_casing/energy/shot = ammo_type[select]
 		new_item_state += "[shot.select_name]"
 	new_item_state += "[ratio]"
-// [CELADON-EDIT] - FIX_HADES_MOB_OVERLAY_STATE
-//	item_state = new_item_state // CELADON-EDIT - ORIGINAL
+// [MANKIND-EDIT] - FIX_HADES_MOB_OVERLAY_STATE
+//	item_state = new_item_state // ORIGINAL
 	if(!skip_inhand)
 		item_state = new_item_state
 	if(!skip_worn_icon)
 		mob_overlay_state = new_item_state
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 	return ..()
 
 /obj/item/gun/energy/update_overlays()
@@ -435,7 +435,7 @@
 	var/overlay_icon_state = "[icon_state]_charge"
 	var/obj/item/ammo_casing/energy/shot = ammo_type[modifystate ? select : 1]
 	var/ratio = get_charge_ratio()
-// [CELADON-REMOVE] - CELADON-BALANCE - очередная система люков оффов
+// [MANKIND-REMOVE] - MANKIND_BALANCE - очередная система люков оффов
 // 	if(ismob(loc) && !internal_magazine)
 // 		var/mutable_appearance/latch_overlay
 // 		latch_overlay = mutable_appearance('icons/obj/guns/cell_latch.dmi')
@@ -450,7 +450,7 @@
 // 			else
 // 				latch_overlay.icon_state = "latch-off-empty"
 // 		. += latch_overlay
-// [/CELADON-REMOVE]
+// [/MANKIND-REMOVE]
 	if(cell)
 		. += "[icon_state]_cell"
 		if(ratio == 0)
@@ -466,12 +466,12 @@
 				overlay_icon_state += "_[shot.select_name]"
 			var/mutable_appearance/charge_overlay = mutable_appearance(icon, overlay_icon_state)
 			for(var/i = ratio, i >= 1, i--)
-				// [CELADON-EDIT]
+				// [MANKIND-EDIT]
 				charge_overlay.transform = matrix(transform).Translate(
 					ammo_x_offset * (i - 1),
 					ammo_y_offset * (i - 1)
 				)
-				// [/CELADON-EDIT]
+				// [/MANKIND-EDIT]
 				. += new /mutable_appearance(charge_overlay)
 		else
 			if(modifystate)
@@ -525,10 +525,10 @@
 
 /obj/item/gun/energy/examine(mob/user)
 	. = ..()
-// [CELADON-REMOVE] - CELADON BALANCE - часть плохой системы оффов
+// [MANKIND-REMOVE] - MANKIND_BALANCE - часть плохой системы оффов
 // 	if(!internal_magazine)
 // 		. += "The cell retainment latch is [latch_closed ? span_green("CLOSED") : span_red("OPEN")]. Press the Unique Action Key to toggle the latch. By default, this is <b>space</b>."
-// [CELADON-REMOVE]
+// [MANKIND-REMOVE]
 	var/obj/item/ammo_casing/energy/shot = ammo_type[select]
 	if(ammo_type.len > 1)
 		. += "You can switch ammo modes by pressing the <b>Ammo Toggle</b> button."
@@ -539,9 +539,9 @@
 		. += span_notice("\The [name] doesn't seem to have a cell!")
 
 /obj/item/gun/energy/unsafe_shot(target)
-	// [CELADON-ADD] - FIXES_LOCKER_RECHARGE_ENERGYGUN
+	// [MANKIND-ADD] - FIXES_LOCKER_RECHARGE_ENERGYGUN
 	if(!can_shoot())
 		return
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 	. = ..()
 	process_chamber()

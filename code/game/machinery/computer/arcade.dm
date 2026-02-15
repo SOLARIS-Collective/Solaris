@@ -12,7 +12,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 		/obj/item/toy/prize/deathripley = 1,
 		/obj/item/toy/prize/gygax = 1,
 		/obj/item/toy/prize/durand = 1,
-		/obj/item/toy/prize/honk = 1,	// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+		/obj/item/toy/prize/honk = 1,	// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 		/obj/item/toy/prize/marauder = 1,
 		/obj/item/toy/prize/seraph = 1,
 		/obj/item/toy/prize/touro = 1,
@@ -41,9 +41,9 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 		/obj/item/toy/toy_dagger = 2,
 		/obj/item/extendohand/acme = 1,
 		/obj/item/card/emagfake = 1,
-		// [CELADON-ADD] - CELADON_RETURN_CONTENT_SPAWN
+		// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_SPAWN
 		/obj/item/clothing/shoes/wheelys = 2,
-		// [/CELADON-ADD]
+		// [/MANKIND-ADD]
 		/obj/item/clothing/shoes/kindleKicks = 2,
 		/obj/item/toy/plush/goatplushie/angry/realgoat = 2,
 		/obj/item/toy/plush/moth = 2,

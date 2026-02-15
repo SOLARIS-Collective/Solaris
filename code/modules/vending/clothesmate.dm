@@ -10,7 +10,7 @@
 		/obj/item/storage/backpack = 4,
 		/obj/item/storage/backpack/satchel = 4,
 		/obj/item/storage/backpack/duffelbag = 4,
-		// [CELADON-ADD] - CELADON_RETURN_CONTENT_SPAWN
+		// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_SPAWN
 		/obj/item/clothing/head/beanie/christmas = 3,
 		/obj/item/clothing/head/beanie/rasta = 3,
 		/obj/item/clothing/head/kippah = 3,
@@ -31,7 +31,7 @@
 		/obj/item/clothing/under/el_cloth_3 = 5,
 		/obj/item/clothing/under/el_cloth_4 = 5,
 		/obj/item/clothing/head/beret/elysium = 5,
-		// [/CELADON-ADD]
+		// [/MANKIND-ADD]
 		/obj/item/clothing/head/beanie = 3,
 		/obj/item/clothing/head/soft = 3,
 		/obj/item/clothing/head/beanie/black = 3,
@@ -147,18 +147,18 @@
 		/obj/item/towel = 3,
 		/obj/item/clothing/mask/breath/facemask =3)
 	premium = list(
-		// [CELADON-ADD] - CELADON_RETURN_CONTENT_SPAWN
+		// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_SPAWN
 		/obj/item/clothing/suit/jacket/leather/overcoat = 1,
-		// [/CELADON-ADD]
+		// [/MANKIND-ADD]
 		/obj/item/clothing/under/suit/checkered = 1,
 		/obj/item/clothing/suit/jacket/leather = 1,
 		/obj/item/clothing/suit/jacket/letterman_nanotrasen = 1,
 		/obj/item/instrument/piano_synth/headphones/spacepods = 1)
 	refill_canister = /obj/item/vending_refill/clothing
-	// [CELADON-REMOVE] - CELADON_ECONOMY - Вынесено в модуль. Иначе оверайд будет
+	// [MANKIND-REMOVE] - MANKIND_ECONOMY - Вынесено в модуль. Иначе оверайд будет
 	// default_price = 10
 	// extra_price = 60
-	// [/CELADON-REMOVE]
+	// [/MANKIND-REMOVE]
 	light_mask = "wardrobe-light-mask"
 	light_color = LIGHT_COLOR_ELECTRIC_GREEN
 

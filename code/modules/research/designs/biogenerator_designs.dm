@@ -186,7 +186,7 @@
 	build_path = /obj/item/clothing/accessory/holster
 	category = list("initial","Organic Materials")
 
-// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 /datum/design/rngplant
 	name = "SYNTHESIS"
 	id = "rngplant"
@@ -194,7 +194,7 @@
 	materials = list(/datum/material/biomass= 2000)
 	build_path = /obj/effect/spawner/random/food_or_drink/seed
 	category = list("initial","LIFESEED_2.0")
-// [CELADON-ADD]
+// [MANKIND-ADD]
 
 /datum/design/genesis
 	name = "GENESIS"

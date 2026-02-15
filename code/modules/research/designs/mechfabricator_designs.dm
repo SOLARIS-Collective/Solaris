@@ -430,7 +430,7 @@
 	construction_time = 600
 	category = list("Durand")
 
-// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 //H.O.N.K
 /datum/design/honk_chassis
 	name = "Exosuit Chassis (\"H.O.N.K\")"
@@ -494,7 +494,7 @@
 	materials = list(/datum/material/iron=20000,/datum/material/hellstone=5000)
 	construction_time = 200
 	category = list("H.O.N.K")
-// [CELADON-ADD]
+// [MANKIND-ADD]
 
 //Phazon
 /datum/design/phazon_chassis
@@ -729,7 +729,7 @@
 	construction_time = 120
 	category = list("Cyborg Upgrade Modules")
 
-// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 /datum/design/borg_transform_clown
 	name = "Cyborg Upgrade (Clown Module)"
 	id = "borg_transform_clown"
@@ -738,7 +738,7 @@
 	materials = list(/datum/material/iron = 15000, /datum/material/glass = 15000, /datum/material/hellstone = 1000)
 	construction_time = 120
 	category = list("Cyborg Upgrade Modules")
-// [CELADON-ADD]S
+// [MANKIND-ADD]S
 
 /datum/design/borg_upgrade_selfrepair
 	name = "Cyborg Upgrade (Self-repair)"

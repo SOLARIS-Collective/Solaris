@@ -12,7 +12,7 @@
 
 	if (alert(src, "Are you sure you want to delete:\n[D]\n[coords]?", "Confirmation", "Yes", "No") == "Yes")
 		log_admin("[key_name(usr)] deleted [D] [coords]")
-		log_celadon_admin("ADMIN: [key_name(usr)] deleted [D] [coords]") // [CELADON-ADD] - logging admin actions.
+		log_mankind_admin("ADMIN: [key_name(usr)] deleted [D] [coords]") // [MANKIND-ADD] - logging admin actions.
 		message_admins("[key_name_admin(usr)] deleted [D] [jmp_coords]")
 		BLACKBOX_LOG_ADMIN_VERB("Delete")
 		if(isturf(D))

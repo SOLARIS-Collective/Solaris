@@ -54,7 +54,7 @@ ID мода: MANKIND_FIX_TAIL
 
 ### Оверрайды
 
-- `mod_mankind/fix_tail/code/suits.dm`: `flags_inv`
+- `modular_mankind/fix_tail/code/suits.dm`: `flags_inv`
 <!--
   Если ты добавлял новый модульный оверрайд, его нужно указать здесь.
   Здесь указываются оверрайды в твоём моде и папке `_master_files`
@@ -74,7 +74,7 @@ ID мода: MANKIND_FIX_TAIL
   И то же самое, если ты используешь дефайны, определённые другим модом.
 
   Не используешь - напиши "Отсутствуют"
-  Примеры: `code/__defines/~mod_mankind/fix_tail.dm`: `FIX_TAIL_SPEED_MULTIPLIER`, `FIX_TAIL_SPEED_BASE`
+  Примеры: `code/__defines/~modular_mankind/fix_tail.dm`: `FIX_TAIL_SPEED_MULTIPLIER`, `FIX_TAIL_SPEED_BASE`
 -->
 
 ### Используемые файлы, не содержащиеся в модпаке

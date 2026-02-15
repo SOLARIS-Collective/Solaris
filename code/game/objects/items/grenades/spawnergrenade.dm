@@ -31,10 +31,10 @@
 	spawner_type = /mob/living/simple_animal/hostile/viscerator
 	deliveryamt = 10
 
-// [CELADON-ADD] - RAMZI-RENEGATE
+// [MANKIND-ADD] - RAMZI-RENEGATE
 /obj/item/grenade/spawnergrenade/manhacks/ramzi
 	spawner_type = /mob/living/simple_animal/hostile/viscerator/ramzi
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 /obj/item/grenade/spawnergrenade/spesscarp
 	name = "carp delivery grenade"

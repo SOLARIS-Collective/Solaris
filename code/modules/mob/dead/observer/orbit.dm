@@ -67,7 +67,7 @@
 	var/list/ships = list()
 	var/list/misc = list()
 	var/list/npcs = list()
-	var/list/maps = list() // [CELADON-ADD]	- QOL_ORBIT_MENU
+	var/list/maps = list() // [MANKIND-ADD]	- QOL_ORBIT_MENU
 
 	for(var/name in new_mob_pois)
 		var/list/serialized = list()
@@ -127,7 +127,7 @@
 		if(other_data[2]) // Critical = TRUE
 			critical += misc_data
 
-	// [CELADON-ADD] - QOL_ORBIT_MENU - Добавляем ключевые локации в категорию Maps
+	// [MANKIND-ADD] - QOL_ORBIT_MENU - Добавляем ключевые локации в категорию Maps
 	// Аванпосты на карте
 	for(var/datum/overmap/outpost/outpost in SSovermap.outposts)
 		var/list/outpost_data = list()
@@ -163,7 +163,7 @@
 		outpost_token_data["full_name"] = "Outpost"
 		outpost_token_data["extra"] = "Trading Post"
 		maps += list(outpost_token_data)
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 
 	return list(
 		"alive" = alive,
@@ -174,7 +174,7 @@
 		"ships" = ships,
 		"misc" = misc,
 		"npcs" = npcs,
-		"maps" = maps, // [CELADON-ADD]	- QOL_ORBIT_MENU
+		"maps" = maps, // [MANKIND-ADD]	- QOL_ORBIT_MENU
 	)
 
 /datum/orbit_menu/ui_assets()

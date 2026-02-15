@@ -57,7 +57,7 @@
 	desc = "In the darkest times, we will find our way home."
 	resistance_flags = INDESTRUCTIBLE
 
-// [CELADON-ADD] - CELADON_FIXES_DEBUG_ROOM
+// [MANKIND-ADD] - MANKIND_FIXES_DEBUG_ROOM
 /obj/structure/signpost/salvation/interact(mob/user)
 	if(alert(question,name,"Yes","No") == "Yes" && Adjacent(user))
 		var/turf/T = locate(139, 31, 3)
@@ -71,7 +71,7 @@
 			to_chat(user, span_notice("You blink and find yourself in [get_area_name(T)]."))
 		else
 			to_chat(user, "Nothing happens. You feel that this is a bad sign.")
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 /obj/structure/signpost/exit
 	name = "exit"
 	desc = "Make sure to bring all your belongings with you when you \

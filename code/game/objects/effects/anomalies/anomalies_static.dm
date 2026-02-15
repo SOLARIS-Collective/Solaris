@@ -44,11 +44,9 @@ GLOBAL_LIST_INIT(tvstatic_sayings, list(
 		var/obj/effect/mob_spawn/human/corpse/damaged/legioninfested/vicspawner = new (src)
 		var/mob/living/carbon/victim = (vicspawner.spawned_mob_ref)?.resolve()
 		src.stored_mob = victim
-		//[CELADON-REMOVE]
-		/* CELADON-REMOVE - ORIGINAL
-		victim.forceMove(src)
-		*/
-		// [/CELADON-REMOVE]
+		// [MANKIND-REMOVE]
+		// victim.forceMove(src)
+		// [/MANKIND-REMOVE]
 	. = ..()
 
 

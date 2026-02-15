@@ -1,5 +1,5 @@
-/* [CELADON-DELETE] - Убираем инициализацию офовских предметов.
-	Разносим ресурсы по разным фракциям: "mod_celadon\outpost_console\code\supply_pack"
+/* [MANKIND-REMOVE] - Убираем инициализацию офовских предметов.
+	Разносим ресурсы по разным фракциям: "modular_mankind\outpost_console\code\supply_pack"
 
 s/datum/supply_pack/food/trickwine
 	desc = "Trickwines shipped directly from illestern factories. A good replacement for underequipped Roumain ships."
@@ -38,4 +38,4 @@ s/datum/supply_pack/food/trickwine
 	cost = 500
 	contains = list(/obj/item/reagent_containers/food/drinks/breakawayflask/vintage/prismwine)
 
-[/CELADON-DELETE] */
+[/MANKIND-REMOVE] */

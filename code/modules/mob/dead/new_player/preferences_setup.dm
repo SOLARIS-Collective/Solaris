@@ -29,10 +29,10 @@
 		jumpsuit_style = PREF_SUIT
 	if(randomise[RANDOM_EXOWEAR_STYLE])
 		exowear = PREF_EXOWEAR
-	// [CELADON-ADD] - CELADON_WALLETS
+	// [MANKIND-ADD] - MANKIND_WALLETS
 	if(randomise[RANDOM_WALLET_STYLE])
 		wallet = PREF_WALLET
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 	if(randomise[RANDOM_HAIRSTYLE])
 		hairstyle = random_hairstyle(gender)
 	if(randomise[RANDOM_FACIAL_HAIRSTYLE])

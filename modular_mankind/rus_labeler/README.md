@@ -73,7 +73,7 @@ ID мода: MANKIND_RUS_LABELER
   И то же самое, если ты используешь дефайны, определённые другим модом.
 
   Не используешь - напиши "Отсутствуют"
-  Примеры: `code/__defines/~mod_mankind/rus_labeler.dm`: `RUS_LABELER_SPEED_MULTIPLIER`, `RUS_LABELER_SPEED_BASE`
+  Примеры: `code/__defines/~modular_mankind/rus_labeler.dm`: `RUS_LABELER_SPEED_MULTIPLIER`, `RUS_LABELER_SPEED_BASE`
 -->
 
 ### Используемые файлы, не содержащиеся в модпаке

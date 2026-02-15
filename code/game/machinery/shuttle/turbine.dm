@@ -124,10 +124,10 @@
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
 		. += span_notice("The status display reads: Efficiency at <b>[efficiency*100]%</b>.")
-	// [CELADON-ADD] - CELADON_INTEQ_VENDOR  - добавляем поддержку к мультитулу
+	// [MANKIND-ADD] - MANKIND_INTEQ_VENDOR  - добавляем поддержку к мультитулу
 		. += span_notice("The compressor ID is '<b>[comp_id]</b>'.")
 		. += span_notice("It looks like you can modify the id settings by using a <b>multitool</b> on it.")
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 
 /obj/machinery/power/compressor/attackby(obj/item/I, mob/user, params)
 	if(default_deconstruction_screwdriver(user, initial(icon_state), initial(icon_state), I))
@@ -371,7 +371,7 @@
 			locate_machinery()
 			. = TRUE
 
-// [CELADON-ADD] - CELADON_INTEQ_VENDOR - добавляем поддержку мультитула
+// [MANKIND-ADD] - MANKIND_INTEQ_VENDOR - добавляем поддержку мультитула
 //MARK: Multitool actions
 
 /obj/machinery/power/compressor/multitool_act(mob/living/user, obj/item/I)
@@ -390,7 +390,7 @@
 			to_chat(user, span_notice("You add [src] connection to the multitool's buffer."))
 
 	return TRUE
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -459,7 +459,7 @@
 			locate_machinery()
 			. = TRUE
 
-// [CELADON-ADD] - CELADON_INTEQ_VENDOR - добавляем поддержку мультитула
+// [MANKIND-ADD] - MANKIND_INTEQ_VENDOR - добавляем поддержку мультитула
 //MARK: Multitool actions
 /obj/machinery/computer/turbine_computer/examine(mob/user)
 	. = ..()
@@ -486,7 +486,7 @@
 			else
 				to_chat(user, span_notice("The ID from he [M] is not from the compressor."))
 	return TRUE
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 #undef POWER_TO_THRUST
 #undef COMPFRICTION
 #undef TURBGENQ

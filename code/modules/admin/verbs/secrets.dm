@@ -8,7 +8,7 @@
 	var/datum/secrets_menu/tgui  = new(usr)//create the datum
 	tgui.ui_interact(usr)//datum has a tgui component, here we open the window
 
-	log_celadon_admin("ADMIN: [key_name_admin(holder)] openned Secrets Panel.") // [CELADON_ADD] - logging admin actions.
+	log_mankind_admin("ADMIN: [key_name_admin(holder)] openned Secrets Panel.") // [MANKIND_ADD] - logging admin actions.
 
 /datum/secrets_menu
 	var/client/holder //client of whoever is using this datum
@@ -146,10 +146,10 @@
 			for(var/i in GLOB.human_list)
 				var/mob/living/carbon/human/H = i
 				if(H.ckey)
-// [CELADON-EDIT] - CELADON_BLOOD_DISPLAY
+// [MANKIND-EDIT] - MANKIND_BLOOD_DISPLAY
 //					dat += "<tr><td>[H]</td><td>[H.dna.unique_enzymes]</td><td>[H.dna.blood_type.name]</td></tr>"
 					dat += "<tr><td>[H]</td><td>[H.dna.unique_enzymes]</td><td>[H.get_blood_type_display()]</td></tr>"
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 			dat += "</table>"
 			holder << browse(dat, "window=DNA;size=440x410")
 		if("fingerprints")

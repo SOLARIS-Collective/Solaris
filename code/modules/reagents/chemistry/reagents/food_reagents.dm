@@ -178,9 +178,9 @@
 	reagent_state = SOLID
 	color = "#FFFFFF" // rgb: 255, 255, 255
 	taste_mult = 1.5 // stop sugar drowning out other flavours
-	nutriment_factor = 5 * REAGENTS_METABOLISM			// [CELADON-EDIT] - NERF-SUGAR
+	nutriment_factor = 5 * REAGENTS_METABOLISM			// [MANKIND-EDIT] - NERF-SUGAR
 	metabolization_rate = 2 * REAGENTS_METABOLISM
-	overdose_threshold = 120 // Hyperglycaemic shock	// [CELADON-EDIT] - NERF-SUGAR
+	overdose_threshold = 120 // Hyperglycaemic shock	// [MANKIND-EDIT] - NERF-SUGAR
 	taste_description = "sweetness"
 
 /datum/reagent/consumable/sugar/overdose_start(mob/living/M)
@@ -679,14 +679,14 @@
 		. = TRUE
 	..()
 
-// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNSS
+// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNSS
 /datum/reagent/consumable/clownstears
 	name = "Clown's Tears"
 	description = "The sorrow and melancholy of a thousand bereaved clowns, forever denied their Honkmechs."
 	nutriment_factor = 5 * REAGENTS_METABOLISM
 	color = "#eef442" // rgb: 238, 244, 66
 	taste_description = "mournful honking"
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 /datum/reagent/consumable/liquidelectricity
 	name = "Liquid Electricity"

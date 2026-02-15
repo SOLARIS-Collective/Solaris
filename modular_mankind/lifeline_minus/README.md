@@ -73,7 +73,7 @@ ID мода: MANKIND_LIFELINE_MINUS
   И то же самое, если ты используешь дефайны, определённые другим модом.
 
   Не используешь - напиши "Отсутствуют"
-  Примеры: `code/__defines/~mod_mankind/lifeline_minus.dm`: `LIFELINE_MINUS_SPEED_MULTIPLIER`, `LIFELINE_MINUS_SPEED_BASE`
+  Примеры: `code/__defines/~modular_mankind/lifeline_minus.dm`: `LIFELINE_MINUS_SPEED_MULTIPLIER`, `LIFELINE_MINUS_SPEED_BASE`
 -->
 
 ### Используемые файлы, не содержащиеся в модпаке

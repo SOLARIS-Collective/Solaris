@@ -67,7 +67,7 @@ ID мода: MANKIND_ECONOMY
 
 ### Дефайны
 
-- `..\code\__DEFINES\~mod_mankind\economy.dm` : Содержит множители цен
+- `..\code\__DEFINES\~modular_mankind\economy.dm` : Содержит множители цен
 
 - `code/modules/missions/outpost/acquire_mission.dm` : Дано более понятное ОПИСАНИЕ что что-то сломалось
 <!--
@@ -76,7 +76,7 @@ ID мода: MANKIND_ECONOMY
   И то же самое, если ты используешь дефайны, определённые другим модом.
 
   Не используешь - напиши "Отсутствуют"
-  Примеры: `code/__defines/~mod_mankind/economy.dm`: `ECONOMY_SPEED_MULTIPLIER`, `ECONOMY_SPEED_BASE`
+  Примеры: `code/__defines/~modular_mankind/economy.dm`: `ECONOMY_SPEED_MULTIPLIER`, `ECONOMY_SPEED_BASE`
 -->
 
 ### Используемые файлы, не содержащиеся в модпаке

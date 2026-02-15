@@ -1,9 +1,9 @@
-// Баланс ионок. Снаряд находится в mod_mankind\weapons\code\modules\projectiles\projectile\energy\beams.dm
+// Баланс ионок. Снаряд находится в modular_mankind\weapons\code\modules\projectiles\projectile\energy\beams.dm
 /obj/item/gun/energy/ionrifle
 	w_class = WEIGHT_CLASS_BULKY
 
 // Мьелниз наделал эти изменения.
-// https://github.com/MANKIND-Collective/Pentest/pull/845
+// https://github.com/CeladonSS13/Shiptest/pull/845
 /obj/item/gun/energy/laser/captain
 	internal_cell = TRUE
 

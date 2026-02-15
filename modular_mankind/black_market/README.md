@@ -73,7 +73,7 @@ ID мода: MANKIND_BLACK_MARKET
   И то же самое, если ты используешь дефайны, определённые другим модом.
 
   Не используешь - напиши "Отсутствуют"
-  Примеры: `code/__defines/~mod_mankind/black_market.dm`: `BLACK_MARKET_SPEED_MULTIPLIER`, `BLACK_MARKET_SPEED_BASE`
+  Примеры: `code/__defines/~modular_mankind/black_market.dm`: `BLACK_MARKET_SPEED_MULTIPLIER`, `BLACK_MARKET_SPEED_BASE`
 -->
 
 ### Используемые файлы, не содержащиеся в модпаке

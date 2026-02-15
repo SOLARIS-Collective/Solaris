@@ -41,7 +41,7 @@ ID мода: MANKIND_FACTION
 
 ### Изменения *кор кода*
 
-- ADD `code\__DEFINES\~mod_mankind\access.dm`: `FACTION_PLAYER_ELYSIUM`
+- ADD `code\__DEFINES\~modular_mankind\access.dm`: `FACTION_PLAYER_ELYSIUM`
 <!--
   Если вы редактировали какие-либо процедуры или переменные в кор коде,
   они должны быть указаны здесь.
@@ -66,7 +66,7 @@ ID мода: MANKIND_FACTION
 
 ### Дефайны
 
-- ADD `code\__DEFINES\~mod_mankind\access.dm`: `FACTION_PLAYER_ELYSIUM`
+- ADD `code\__DEFINES\~modular_mankind\access.dm`: `FACTION_PLAYER_ELYSIUM`
 <!--
   Если требовалось добавить какие-либо дефайны, укажи файлы,
   в которые ты их добавил, а также перечисли имена.

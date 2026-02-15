@@ -1,5 +1,5 @@
-/* [CELADON-DELETE] - Убираем инициализацию офовских предметов.
-	Разносим ресурсы по разным фракциям: "mod_celadon\outpost_console\code\supply_pack"
+/* [MANKIND-REMOVE] - Убираем инициализацию офовских предметов.
+	Разносим ресурсы по разным фракциям: "modular_mankind\outpost_console\code\supply_pack"
 
 /datum/supply_pack/chemistry
 	category = "Chemistry"
@@ -203,4 +203,4 @@
 	contains = list(/obj/item/reagent_containers/glass/chem_jug/robustharvestnutriment)
 	crate_name = "bulk Robust Harvest crate"
 
-[/CELADON-DELETE] */
+[/MANKIND-REMOVE] */

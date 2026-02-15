@@ -111,13 +111,13 @@
 		. = max(., time_left_list[i])
 
 /datum/component/wet_floor/process(seconds_per_tick)
-	//[CELADON-ADD] - CELADON_FIXES - вобщем эта залупа рантаймит потому-что почему-то компонент нахуй попадает на /turf/closed который НЕ ДОЛЖЕН ТАМ БЫТЬ
+	// [MANKIND-ADD] - MANKIND_FIXES - вобщем эта залупа рантаймит потому-что почему-то компонент нахуй попадает на /turf/closed который НЕ ДОЛЖЕН ТАМ БЫТЬ
 	if(!isopenturf(parent))
 		STOP_PROCESSING(SSwet_floors, src)
 		var/turf/T = parent
 		T.cut_overlay(current_overlay)
 		qdel(T.GetComponent(/datum/component/slippery))
-	//[/CELADON-ADD]
+	// [/MANKIND-ADD]
 	var/turf/open/T = parent
 	var/diff = world.time - last_process
 	var/decrease = 0

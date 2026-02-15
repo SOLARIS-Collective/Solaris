@@ -18,12 +18,12 @@
 		/datum/language/moffic,
 		/datum/language/monkey,
 		/datum/language/ratvar,
-		// [CELADON-ADD] - CELADON_ITEMS
+		// [MANKIND-ADD] - MANKIND_ITEMS
 		/datum/language/elysm,
 		/datum/language/alquadim,
 		/datum/language/thayoss,
 		/datum/language/fuyo,
-		// [/CELADON-ADD]
+		// [/MANKIND-ADD]
 		/datum/language/codespeak,
 		/datum/language/aphasia
 	))
@@ -71,7 +71,7 @@
 	var/static/regex/lizard_kSS = new(@"(\w)X", "g")
 	var/static/regex/lizard_ecks = new(@"\bx([\-|r|R]|\b)", "g")
 	var/static/regex/lizard_eckS = new(@"\bX([\-|r|R]|\b)", "g")
-	// [CELADON-ADD] - CELADON_ACCENTS_ADD
+	// [MANKIND-ADD] - MANKIND_ACCENTS_ADD
 	var/static/regex/lizard_Extended_hiss = new("с+", "g")
 	var/static/regex/lizard_Extended_hiSS = new("С+", "g")
 	var/static/regex/lizard_Extended_hich = new("ч+", "g")
@@ -80,7 +80,7 @@
 	var/static/regex/lizard_Extended_hiCS = new("Ш+", "g")
 	var/static/regex/lizard_Extended_hiccc = new("щ+", "g")
 	var/static/regex/lizard_Extended_hiCCC = new("Щ+", "g")
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 
 	var/message = speech_args[SPEECH_MESSAGE]
 	if(message[1] != "*")
@@ -90,7 +90,7 @@
 		message = lizard_kSS.Replace(message, "$1KSS")
 		message = lizard_ecks.Replace(message, "ecks$1")
 		message = lizard_eckS.Replace(message, "ECKS$1")
-		// [CELADON-ADD] - CELADON_ACCENTS_ADD
+		// [MANKIND-ADD] - MANKIND_ACCENTS_ADD
 		message = lizard_Extended_hiss.Replace(message, pick("сссс", "ccс", "сс"))
 		message = lizard_Extended_hiSS.Replace(message, pick("СССС", "ССС", "СС"))
 		message = lizard_Extended_hich.Replace(message, pick("щщщ", "щщ", "щ"))
@@ -99,7 +99,7 @@
 		message = lizard_Extended_hiCS.Replace(message, pick("ШШШШ", "ШШШ", "ШШ"))
 		message = lizard_Extended_hiccc.Replace(message, pick("щщ", "щ"))
 		message = lizard_Extended_hiCCC.Replace(message, pick("ЩЩ", "Щ"))
-		// [/CELADON-ADD]
+		// [/MANKIND-ADD]
 
 	speech_args[SPEECH_MESSAGE] = message
 
@@ -244,9 +244,9 @@
 	name = "hindtongue"
 	desc = "Some kind of severed bird tongue."
 	say_mod = "shrieks"
-	// [CELADON-ADD] - CELADON_ACCENTS_ADD
+	// [MANKIND-ADD] - MANKIND_ACCENTS_ADD
 	modifies_speech = TRUE
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 	var/static/list/languages_possible_vox = typecacheof(list(
 		/datum/language/galactic_common,
 		/datum/language/gezena_kalixcian,
@@ -261,7 +261,7 @@
 		/datum/language/vox_pidgin,
 	))
 
-// [CELADON-ADD] - CELADON_ACCENTS_ADD - Добавляем акцент воксам
+// [MANKIND-ADD] - MANKIND_ACCENTS_ADD - Добавляем акцент воксам
 /obj/item/organ/tongue/vox/handle_speech(datum/source, list/speech_args)
 	if(speech_args[SPEECH_LANGUAGE] == /datum/language/vox_pidgin)
 		return
@@ -289,7 +289,7 @@
 			message = vox_ru_ch.Replace_char(message, "чич")
 			message = vox_ru_CH.Replace_char(message, "Чич")
 	speech_args[SPEECH_MESSAGE] = message
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 /obj/item/organ/tongue/vox/Initialize(mapload)
 	. = ..()

@@ -237,10 +237,10 @@
 		var/datum/data/record/M = new()
 		M.fields["id"]			= id
 		M.fields["name"]		= H.real_name
-		// [CELADON-EDIT] - CELADON_BLOOD_DISPLAY
+		// [MANKIND-EDIT] - MANKIND_BLOOD_DISPLAY
 		//M.fields["blood_type"] = H.dna.blood_type.name
 		M.fields["blood_type"]	= H.get_blood_type_display()
-		// [/CELADON-EDIT]
+		// [/MANKIND-EDIT]
 		M.fields["b_dna"]		= H.dna.unique_enzymes
 		M.fields["mi_dis"]		= "None"
 		M.fields["mi_dis_d"]	= "No minor disabilities have been declared."

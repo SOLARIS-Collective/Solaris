@@ -131,7 +131,7 @@
 	move_resist = MOVE_FORCE_VERY_STRONG
 	butcher_results = list(/obj/item/food/meat/slab/bear = 3, /obj/item/stack/sheet/bone = 2)
 	guaranteed_butcher_results = list(/obj/item/stack/sheet/animalhide/goliath_hide/polar_bear_hide = 1)
-	var/mob_trophy = /obj/item/crusher_trophy/bear_paw	// [/CELADON-EDIT] - RETURN_CONTENT_CRUSHER_TROPHY
+	var/mob_trophy = /obj/item/crusher_trophy/bear_paw	// [/MANKIND-EDIT] - RETURN_CONTENT_CRUSHER_TROPHY
 	var/trophy_drop_mod = 25
 	//footstep_type = FOOTSTEP_MOB_CLAW
 	/// Message for when the polar bear starts to attack faster

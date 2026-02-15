@@ -96,28 +96,28 @@
 /datum/asset/spritesheet/simple/paper
 	name = "paper"
 	assets = list(
-		// [CELADON-ADD] - CELADON_STAMPS
-		"stamp-inteq-celadon" = 'mod_celadon/_storage_icons/icons/assets/png/large_stamp-inteq.png',
-		"inteq-mothership-stamp" = 'mod_celadon/_storage_icons/icons/assets/png/inteq_mothership_stamp.png',
-		"solfed-corps-commander-stamp" = 'mod_celadon/_storage_icons/icons/assets/png/sf_commander_stamp.png',
-		"solfed-captain" = 'mod_celadon/_storage_icons/icons/assets/png/sf_captain_stamp.png',
-		"elysium-brigade-captain-stamp" = 'mod_celadon/_storage_icons/icons/assets/png/elysium_brigade_stamp.png',
-		"elysium-republic-stamp" = 'mod_celadon/_storage_icons/icons/assets/png/elysium_republic_stamp.png',
-		"elysium-avanpost-stamp" = 'mod_celadon/_storage_icons/icons/assets/png/elysium_outpost_stamp.png',
-		"nt-cent-command-stamp" = 'mod_celadon/_storage_icons/icons/assets/png/nanotrasen_central_command_stamp.png',
-		"nt-captain-stamp" = 'mod_celadon/_storage_icons/icons/assets/png/nanotrasen_captain_stamp.png',
-		"syndicate-captain-stamp" = 'mod_celadon/_storage_icons/icons/assets/png/syndicate_captain_stamp.png',
-		"stamp-df" = 'mod_celadon/_storage_icons/icons/assets/png/large_stamp-df_generic.png',
-		"stamp-df_captain" = 'mod_celadon/_storage_icons/icons/assets/png/large_stamp-df_captain.png',
-		"stamp-df_meddir" = 'mod_celadon/_storage_icons/icons/assets/png/large_stamp-df_med_dir.png',
-		"stamp-ne" = 'mod_celadon/_storage_icons/icons/assets/png/large_stamp-ne_generic.png',
-		"stamp-ne_captain" = 'mod_celadon/_storage_icons/icons/assets/png/large_stamp-ne_captain.png',
-		"stamp-ne_engdir" = 'mod_celadon/_storage_icons/icons/assets/png/large_stamp-ne_eng_dir.png',
-		// [/CELADON-ADD]
-		// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
-		"stamp-mime" = 'mod_celadon/_storage_icons/icons/assets/png/large_stamp-mime.png',
-		"stamp-clown" = 'mod_celadon/_storage_icons/icons/assets/png/large_stamp-clown.png',
-		// [/CELADON-ADD]
+		// [MANKIND-ADD] - MANKIND_STAMPS
+		"stamp-inteq-mankind" = 'modular_mankind/_storage_icons/icons/assets/png/large_stamp-inteq.png',
+		"inteq-mothership-stamp" = 'modular_mankind/_storage_icons/icons/assets/png/inteq_mothership_stamp.png',
+		"solfed-corps-commander-stamp" = 'modular_mankind/_storage_icons/icons/assets/png/sf_commander_stamp.png',
+		"solfed-captain" = 'modular_mankind/_storage_icons/icons/assets/png/sf_captain_stamp.png',
+		"elysium-brigade-captain-stamp" = 'modular_mankind/_storage_icons/icons/assets/png/elysium_brigade_stamp.png',
+		"elysium-republic-stamp" = 'modular_mankind/_storage_icons/icons/assets/png/elysium_republic_stamp.png',
+		"elysium-avanpost-stamp" = 'modular_mankind/_storage_icons/icons/assets/png/elysium_outpost_stamp.png',
+		"nt-cent-command-stamp" = 'modular_mankind/_storage_icons/icons/assets/png/nanotrasen_central_command_stamp.png',
+		"nt-captain-stamp" = 'modular_mankind/_storage_icons/icons/assets/png/nanotrasen_captain_stamp.png',
+		"syndicate-captain-stamp" = 'modular_mankind/_storage_icons/icons/assets/png/syndicate_captain_stamp.png',
+		"stamp-df" = 'modular_mankind/_storage_icons/icons/assets/png/large_stamp-df_generic.png',
+		"stamp-df_captain" = 'modular_mankind/_storage_icons/icons/assets/png/large_stamp-df_captain.png',
+		"stamp-df_meddir" = 'modular_mankind/_storage_icons/icons/assets/png/large_stamp-df_med_dir.png',
+		"stamp-ne" = 'modular_mankind/_storage_icons/icons/assets/png/large_stamp-ne_generic.png',
+		"stamp-ne_captain" = 'modular_mankind/_storage_icons/icons/assets/png/large_stamp-ne_captain.png',
+		"stamp-ne_engdir" = 'modular_mankind/_storage_icons/icons/assets/png/large_stamp-ne_eng_dir.png',
+		// [/MANKIND-ADD]
+		// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
+		"stamp-mime" = 'modular_mankind/_storage_icons/icons/assets/png/large_stamp-mime.png',
+		"stamp-clown" = 'modular_mankind/_storage_icons/icons/assets/png/large_stamp-clown.png',
+		// [/MANKIND-ADD]
 		"stamp-deny" = 'icons/stamp_icons/large_stamp-deny.png',
 		"stamp-ok" = 'icons/stamp_icons/large_stamp-ok.png',
 		"stamp-void" = 'icons/stamp_icons/large_stamp-void.png',
@@ -219,10 +219,10 @@
 		if (icon != 'icons/misc/language.dmi')
 			var/icon_state = initial(L.icon_state)
 			Insert("language-[icon_state]", icon, icon_state=icon_state)
-	// [CELADON_EDIT] - Переместил вызов родительского прока из цикла
-	// 		..() [CELADON-EDIT] - ORIGINAL
+	// [MANKIND_EDIT] - Переместил вызов родительского прока из цикла
+	// 		..() // ORIGINAL
 	..()
-	// [/CELADON_EDIT]
+	// [/MANKIND_EDIT]
 
 /datum/asset/simple/lobby
 	assets = list(
@@ -282,16 +282,16 @@
 		"meteors" = 'icons/UI_Icons/Achievements/Misc/meteors.png',
 		"timewaste" = 'icons/UI_Icons/Achievements/Misc/timewaste.png',
 		"upgrade" = 'icons/UI_Icons/Achievements/Misc/upgrade.png',
-// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
-		"clownking" = 'mod_celadon/_storage_icons/icons/assets/png/clownking.png',
-		"clownthanks" = 'mod_celadon/_storage_icons/icons/assets/png/clownthanks.png',
-// [/CELADON-ADD]
+// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
+		"clownking" = 'modular_mankind/_storage_icons/icons/assets/png/clownking.png',
+		"clownthanks" = 'modular_mankind/_storage_icons/icons/assets/png/clownthanks.png',
+// [/MANKIND-ADD]
 		"rule8" = 'icons/UI_Icons/Achievements/Misc/rule8.png',
 		"snail" = 'icons/UI_Icons/Achievements/Misc/snail.png',
 		"mining" = 'icons/UI_Icons/Achievements/Skills/mining.png',
-		// [CELADON-ADD] - CELADON_ACHIEVEMENTS
-		"theinnerhell" = 'mod_celadon/_storage_icons/icons/assets/png/theinnerhell.png'
-		// [/CELADON-ADD]
+		// [MANKIND-ADD] - MANKIND_ACHIEVEMENTS
+		"theinnerhell" = 'modular_mankind/_storage_icons/icons/assets/png/theinnerhell.png'
+		// [/MANKIND-ADD]
 	)
 
 /datum/asset/spritesheet/simple/pills
@@ -467,19 +467,19 @@
 		"safe_dial.png" = 'html/safe_dial.png'
 	)
 
-// [CELADON-ADD] - SHIP_SELECTION_REWORK - Добавляем asset для логотипов фракций
+// [MANKIND-ADD] - SHIP_SELECTION_REWORK - Добавляем asset для логотипов фракций
 /datum/asset/simple/faction_logos
 	assets = list(
-		"nanotrasen.png" = 'mod_celadon/_storage_icons/icons/assets/logo/nanotrasen.png',
-		"syndicate.png" = 'mod_celadon/_storage_icons/icons/assets/logo/syndicate.png',
-		"inteq.png" = 'mod_celadon/_storage_icons/icons/assets/logo/inteq.png',
-		"solfed.png" = 'mod_celadon/_storage_icons/icons/assets/logo/solfed.png',
-		"independent.png" = 'mod_celadon/_storage_icons/icons/assets/logo/independent.png',
-		"elysium.png" = 'mod_celadon/_storage_icons/icons/assets/logo/elysium.png',
-		"pirates.png" = 'mod_celadon/_storage_icons/icons/assets/logo/pirates.png',
-		"other.png" = 'mod_celadon/_storage_icons/icons/assets/logo/other.png'
+		"nanotrasen.png" = 'modular_mankind/_storage_icons/icons/assets/logo/nanotrasen.png',
+		"syndicate.png" = 'modular_mankind/_storage_icons/icons/assets/logo/syndicate.png',
+		"inteq.png" = 'modular_mankind/_storage_icons/icons/assets/logo/inteq.png',
+		"solfed.png" = 'modular_mankind/_storage_icons/icons/assets/logo/solfed.png',
+		"independent.png" = 'modular_mankind/_storage_icons/icons/assets/logo/independent.png',
+		"elysium.png" = 'modular_mankind/_storage_icons/icons/assets/logo/elysium.png',
+		"pirates.png" = 'modular_mankind/_storage_icons/icons/assets/logo/pirates.png',
+		"other.png" = 'modular_mankind/_storage_icons/icons/assets/logo/other.png'
 	)
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 /datum/asset/simple/pai
 	assets = list(
@@ -511,10 +511,10 @@
 
 /datum/asset/spritesheet/supplypods/register()
 	for (var/style in 1 to length(GLOB.podstyles))
-		// [CELADON-EDIT] - CELADON_ELYSIUMPOD
-		// var/icon_file = 'icons/obj/supplypods.dmi' // CELADON-EDIT - ORIGINAL
-		var/icon_file = 'mod_celadon/_storage_icons/icons/structures/supplypods.dmi'
-		// [/CELADON-EDIT]
+		// [MANKIND-EDIT] - MANKIND_ELYSIUMPOD
+		// var/icon_file = 'icons/obj/supplypods.dmi' // ORIGINAL
+		var/icon_file = 'modular_mankind/_storage_icons/icons/structures/supplypods.dmi'
+		// [/MANKIND-EDIT]
 		var/states = icon_states(icon_file)
 		if (style == STYLE_SEETHROUGH)
 			Insert("pod_asset[style]", icon(icon_file, "seethrough-icon", SOUTH))

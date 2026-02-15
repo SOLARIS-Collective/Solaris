@@ -1111,7 +1111,7 @@
 //		MARK: Reebe
 //							///
 /datum/map_template/ruin/reebe
-	prefix = "_maps/_mod_mankind/RandomRuins/ReebeRuins/"
+	prefix = "_maps/_modular_mankind/RandomRuins/ReebeRuins/"
 	allow_duplicates = FALSE
 	cost = 5
 	ruin_type = RUINTYPE_YELLOW

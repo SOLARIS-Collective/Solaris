@@ -164,7 +164,7 @@
 	// 0.8 изначально у оффов.
 	// armour_penetration = 20 // У оффов уже изменено до 20
 
-// Здесь были изменения Хейдеса. Искать его в mod_mankind\return_egun\code\e_gun.dm
+// Здесь были изменения Хейдеса. Искать его в modular_mankind\return_egun\code\e_gun.dm
 
 //Honorable mentions
 

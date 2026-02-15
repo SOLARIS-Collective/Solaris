@@ -66,14 +66,14 @@ ID мода: MANKIND_BITE_FERAL
 
 ### Дефайны
 
-- `\code\__DEFINES\~mod_mankind\mood.dm`
+- `\code\__DEFINES\~modular_mankind\mood.dm`
 <!--
   Если требовалось добавить какие-либо дефайны, укажи файлы,
   в которые ты их добавил, а также перечисли имена.
   И то же самое, если ты используешь дефайны, определённые другим модом.
 
   Не используешь - напиши "Отсутствуют"
-  Примеры: `code/__defines/~mod_mankind/example.dm`: `EXAMPLE_SPEED_MULTIPLIER`, `EXAMPLE_SPEED_BASE`
+  Примеры: `code/__defines/~modular_mankind/example.dm`: `EXAMPLE_SPEED_MULTIPLIER`, `EXAMPLE_SPEED_BASE`
 -->
 
 ### Используемые файлы, не содержащиеся в модпаке

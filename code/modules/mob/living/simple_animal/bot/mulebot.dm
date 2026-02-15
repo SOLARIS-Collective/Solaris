@@ -870,7 +870,7 @@
 #undef CHIME
 
 /obj/machinery/bot_core/mulebot
-// [CELADON-EDIT] - QoL
+// [MANKIND-EDIT] - QoL
 //	req_access = list(ACCESS_CARGO)
 	req_access = 0
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]

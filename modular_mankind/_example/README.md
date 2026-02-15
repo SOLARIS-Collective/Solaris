@@ -74,7 +74,7 @@ ID мода: MANKIND_EXAMPLE
   И то же самое, если ты используешь дефайны, определённые другим модом.
 
   Не используешь - напиши "Отсутствуют"
-  Примеры: `code/__defines/~mod_mankind/example.dm`: `EXAMPLE_SPEED_MULTIPLIER`, `EXAMPLE_SPEED_BASE`
+  Примеры: `code/__defines/~modular_mankind/example.dm`: `EXAMPLE_SPEED_MULTIPLIER`, `EXAMPLE_SPEED_BASE`
 -->
 
 ### Используемые файлы, не содержащиеся в модпаке

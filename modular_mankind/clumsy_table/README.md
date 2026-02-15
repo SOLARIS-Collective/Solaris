@@ -1,7 +1,7 @@
 
 #### Список PRов
 
-- https://github.com/MANKIND-Collective/Pentest/pull/
+- https://github.com/CeladonSS13/Shiptest/pull/
 
 ## Раскидывание на столах
 
@@ -12,7 +12,7 @@ ID мода: MANKIND_EMOTES
 Причина по которой на столы не стоит лазать, не стоит по ним бегать, не стоит в них швырять, иначе предметы на них улетят во все стороны.
 
 ### Используется в других проектах?
-- Да, в `mod_mankind/emotes`
+- Да, в `modular_mankind/emotes`
 
 ### Изменения *кор кода*
 

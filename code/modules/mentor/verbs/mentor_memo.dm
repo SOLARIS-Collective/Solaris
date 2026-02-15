@@ -1,5 +1,5 @@
 /client/proc/mentor_memo()
-	// set name = "Mentor Memos" // [CELADON-DELETE] Mentors not works!!!
+	// set name = "Mentor Memos" // [MANKIND-REMOVE] Mentors not works!!!
 	// set category = "Server"
 	if(!check_rights(0))
 		return
@@ -12,7 +12,7 @@
 	mentor_memo_output(memotask)
 
 /client/proc/show_mentor_memo()
-	// set name = "Show Memos" // [CELADON-DELETE] Mentors not works!!!
+	// set name = "Show Memos" // [MANKIND-REMOVE] Mentors not works!!!
 	// set category = "Mentor"
 	if(!check_mentor())
 		return

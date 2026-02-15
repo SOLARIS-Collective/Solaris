@@ -26,11 +26,11 @@
 #define SPOOKY_SKELETON 1
 #define ANGRY_FAITHLESS 2
 #define SCARY_BATS 3
-// [CELADON-EDIT] - CELADON_RETURN_CONTENT_CLOWNS
+// [MANKIND-EDIT] - MANKIND_RETURN_CONTENT_CLOWNS
 //#define HOWLING_GHOST 4
 #define INSANE_CLOWN 4
 #define HOWLING_GHOST 5
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 
 //Spookoween variables
 /obj/structure/closet
@@ -47,11 +47,11 @@
 	trigger_spooky_trap()
 
 /obj/structure/closet/proc/set_spooky_trap()
-// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 	if(prob(0.1))
 		trapped = INSANE_CLOWN
 		return
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 	if(prob(1))
 		trapped = ANGRY_FAITHLESS
 		return
@@ -103,13 +103,13 @@
 		trapped = 0
 		QDEL_IN(F, 120)
 
-	// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+	// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 	else if(trapped == INSANE_CLOWN)
 		visible_message("<span class='userdanger'><font size='5'>...</font></span>")
 		playsound(loc, 'sound/spookoween/scary_clown_appear.ogg', 300, TRUE)
 		spawn_atom_to_turf(/mob/living/simple_animal/hostile/clown_insane, loc, 1, FALSE)
 		trapped = 0
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 
 //don't spawn in crates
 /obj/structure/closet/crate/trigger_spooky_trap()
@@ -190,7 +190,7 @@
 	item = /obj/item/card/emag/halloween
 	surplus = 0
 
-// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 ///////////////////////////
 //Spookoween Insane Clown//
 ///////////////////////////
@@ -265,4 +265,4 @@
 
 /mob/living/simple_animal/hostile/clown_insane/handle_temperature_damage()
 	return
-// [/CELADON-ADD]
+// [/MANKIND-ADD]

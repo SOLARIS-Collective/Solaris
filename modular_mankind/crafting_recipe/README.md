@@ -77,7 +77,7 @@ ID мода: CRAFTING_RECIPE_SUNS
   И то же самое, если ты используешь дефайны, определённые другим модом.
 
   Не используешь - напиши "Отсутствуют"
-  Примеры: `code/__defines/~mod_mankind/crafting_recipe.dm`: `CRAFTING_RECIPE_SPEED_MULTIPLIER`, `CRAFTING_RECIPE_SPEED_BASE`
+  Примеры: `code/__defines/~modular_mankind/crafting_recipe.dm`: `CRAFTING_RECIPE_SPEED_MULTIPLIER`, `CRAFTING_RECIPE_SPEED_BASE`
 -->
 
 ### Используемые файлы, не содержащиеся в модпаке

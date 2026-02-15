@@ -1,8 +1,8 @@
 
 #### Список PRов
 
-- https://github.com/MANKIND-Collective/Pentest/pull/1274
-- https://github.com/MANKIND-Collective/Pentest/pull/1725
+- https://github.com/CeladonSS13/Shiptest/pull/1274
+- https://github.com/CeladonSS13/Shiptest/pull/1725
 
 ## Панель эмоций
 
@@ -33,13 +33,13 @@ ID мода: MANKIND_EMOTES
 
 ### Дефайны
 
-- `code/__DEFINES/~mod_mankind/emote.dm`
-- `code/__DEFINES/~mod_mankind/flags.dm`
+- `code/__DEFINES/~modular_mankind/emote.dm`
+- `code/__DEFINES/~modular_mankind/flags.dm`
 - 
 ### Используемые файлы, не содержащиеся в модпаке
 
-- `mod_mankind/_storage_icons/icons`
-- `mod_mankind/_storage_sounds/sound`
+- `modular_mankind/_storage_icons/icons`
+- `modular_mankind/_storage_sounds/sound`
 
 ### Авторы
 

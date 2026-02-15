@@ -29,10 +29,10 @@
 	pixel_x = -16
 	base_pixel_x = -16
 	health_doll_icon = "broodmother"
-	// [CELADON-REMOVE] - CELADON_BALANCE_MOBS
+	// [MANKIND-REMOVE] - MANKIND_BALANCE_MOBS
 	// maxHealth = 800
 	// health = 800
-	// [/CELADON-REMOVE]
+	// [/MANKIND-REMOVE]
 	melee_damage_lower = 30
 	melee_damage_upper = 30
 	armour_penetration = 30
@@ -46,8 +46,8 @@
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	mouse_opacity = MOUSE_OPACITY_ICON
 	deathmessage = "explodes into gore!"
-	//loot = list(/obj/item/mob_trophy/broodmother_tongue)		// [CELADON-EDIT] - RETURN_CONTENT_CRUSHER_TROPHY
-	loot = list(/obj/item/crusher_trophy/broodmother_tongue)	// [/CELADON-EDIT]
+	//loot = list(/obj/item/mob_trophy/broodmother_tongue)		// [MANKIND-EDIT] - RETURN_CONTENT_CRUSHER_TROPHY
+	loot = list(/obj/item/crusher_trophy/broodmother_tongue)	// [/MANKIND-EDIT]
 
 	attack_action_types = list(/datum/action/innate/elite_attack/tentacle_patch,
 								/datum/action/innate/elite_attack/spawn_children,
@@ -146,9 +146,9 @@
 	ranged_cooldown = world.time + 70
 	playsound(src,'sound/spookoween/insane_low_laugh.ogg', 200, 1)
 	visible_message(span_warning("[src] starts picking up speed!"))
-	// [CELADON-ADD] - CELADON_BALANCE_MOBS
+	// [MANKIND-ADD] - MANKIND_BALANCE_MOBS
 	childragecall = 1
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 	color = "#FF0000"
 	set_varspeed(0)
 	move_to_delay = 3
@@ -216,13 +216,13 @@
 		visible_message(span_warning("[src] digs one of its tentacles under [target]!"))
 		new /obj/effect/temp_visual/goliath_tentacle/broodmother(tturf, src)
 
-// [CELADON-ADD] - Оффы казуалы
+// [MANKIND-ADD] - Оффы казуалы
 /mob/living/simple_animal/hostile/asteroid/elite/broodmother_child/death()
 	. = ..()
 	visible_message(span_warning("[src] explodes!"))
 	explosion(get_turf(loc),0,0,0,flame_range = 3, adminlog = FALSE)
 	gib()
-// [CELADON-ADD]
+// [MANKIND-ADD]
 
 //Tentacles have less stun time compared to regular variant, to balance being able to use them much more often.  Also, 10 more damage.
 /obj/effect/temp_visual/goliath_tentacle/broodmother/trip()

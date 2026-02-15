@@ -224,16 +224,16 @@
  */
 /mob/living/carbon/proc/take(mob/living/carbon/offerer, obj/item/I)
 	clear_alert("[offerer]")
-	// [CELADON-ADD] - FIXES_OFFERING_EFFECTS
+	// [MANKIND-ADD] - FIXES_OFFERING_EFFECTS
 	// Check if offerer still has offering status effect
 	if(!offerer.has_status_effect(STATUS_EFFECT_OFFERING))
 		return
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 	if(get_dist(src, offerer) > 1)
-		// [CELADON-EDIT] - FIXES_OFFERING_EFFECTS
+		// [MANKIND-EDIT] - FIXES_OFFERING_EFFECTS
 		// to_chat(src, span_warning("[offerer] is out of range!"))	// ORIGINAL
 		to_chat(src, span_warning("You moved out of range of [offerer]!"))
-		// [/CELADON-EDIT]
+		// [/MANKIND-EDIT]
 		return
 	if(!I || offerer.get_active_held_item() != I)
 		to_chat(src, span_warning("[offerer] is no longer holding the item they were offering!"))

@@ -1,6 +1,6 @@
 
-/* [CELADON-DELETE] - Убираем инициализацию офовских предметов.
-	Разносим ресурсы по разным фракциям: "mod_celadon\outpost_console\code\supply_pack"
+/* [MANKIND-REMOVE] - Убираем инициализацию офовских предметов.
+	Разносим ресурсы по разным фракциям: "modular_mankind\outpost_console\code\supply_pack"
 
 /// commented out until we figure out what we're doing with modsuits
 /*
@@ -234,4 +234,4 @@
 */
 
 
-[/CELADON-DELETE] */
+[/MANKIND-REMOVE] */

@@ -148,11 +148,11 @@
 #define BODYTYPE_DIGITIGRADE (1<<6) //Lizard legs
 #define BODYTYPE_KEPORI (1<<7) //Just Kepori
 #define BODYTYPE_VOX (1<<8) //Big Vox
-// [CELADON-ADD] - TAJARA
+// [MANKIND-ADD] - TAJARA
 #define BODYTYPE_TAJARA (1<<9) //Fluffy Ass
-// [CELADON-ADD] - RIOL
+// [MANKIND-ADD] - RIOL
 #define BODYTYPE_RIOL (1<<10)
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 // Health/damage defines
 #define MAX_LIVING_HEALTH 100
@@ -391,10 +391,10 @@
 
 // Roundstart trait system
 
-// [CELADON-EDIT] - CELADON_RETURN_CONTENT_QUIRKS
-// #define MAX_QUIRKS 4  // CELADON-EDIT - ORIGINAL
+// [MANKIND-EDIT] - MANKIND_RETURN_CONTENT_QUIRKS
+// #define MAX_QUIRKS 4  // ORIGINAL
 #define MAX_QUIRKS 6 //The maximum amount of quirks one character can have at roundstart
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 
 // AI Toggles
 #define AI_CAMERA_LUMINOSITY 5

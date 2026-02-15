@@ -131,7 +131,7 @@
 /datum/action/vehicle/sealed/remove_key/Trigger()
 	vehicle_entered_target.remove_key(owner)
 
-// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 //CLOWN CAR ACTION DATUMS
 /datum/action/vehicle/sealed/horn
 	name = "Honk Horn"
@@ -203,7 +203,7 @@
 			owner.say("Thank you for the fun ride, [clown.name]!")
 			last_thank_time = world.time
 			C.ThanksCounter()
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 /datum/action/vehicle/ridden/scooter/skateboard/ollie
 	name = "Ollie"

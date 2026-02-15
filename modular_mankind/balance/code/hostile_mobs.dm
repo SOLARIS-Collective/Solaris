@@ -566,7 +566,7 @@ GLOBAL_LIST_INIT(onecardinalwest, WEST)
 	armor = list("melee" = 35, "bullet" = 35, "laser" = 35, "energy" = 15, "bomb" = 15, "bio" = 100, "rad" = 100, "fire" = 50, "acid" = 80)
 
 /*
-Вынесена в mod_mankind/balance/code/elite.dm
+Вынесена в modular_mankind/balance/code/elite.dm
 
 /mob/living/simple_animal/hostile/asteroid/elite
 /mob/living/simple_animal/hostile/asteroid/elite/broodmother

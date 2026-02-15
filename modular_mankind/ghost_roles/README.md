@@ -86,7 +86,7 @@ ID мода: MANKIND_GHOST_ROLES
   И то же самое, если ты используешь дефайны, определённые другим модом.
 
   Не используешь - напиши "Отсутствуют"
-  Примеры: `code/__defines/~mod_mankind/ghost_roles.dm`: `GHOST_ROLES_SPEED_MULTIPLIER`, `GHOST_ROLES_SPEED_BASE`
+  Примеры: `code/__defines/~modular_mankind/ghost_roles.dm`: `GHOST_ROLES_SPEED_MULTIPLIER`, `GHOST_ROLES_SPEED_BASE`
 -->
 
 ### Используемые файлы, не содержащиеся в модпаке

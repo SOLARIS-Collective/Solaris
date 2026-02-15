@@ -102,11 +102,11 @@
 		return FALSE
 
 	if(stored_ammo.len < max_ammo)
-		// [CELADON-ADD] - FIXES_PHYSICS_AMMO_CASING - Останавливаем физику гильз
+		// [MANKIND-ADD] - FIXES_PHYSICS_AMMO_CASING - Останавливаем физику гильз
 		var/datum/component/movable_physics/physics = R.GetComponent(/datum/component/movable_physics)
 		if(physics)
 			qdel(physics)
-		// [/CELADON-ADD]
+		// [/MANKIND-ADD]
 		stored_ammo += R
 		R.forceMove(src)
 		return TRUE
@@ -118,11 +118,11 @@
 				stored_ammo -= AC
 				AC.forceMove(get_turf(src.loc))
 
-				// [CELADON-ADD] - FIXES_PHYSICS_AMMO_CASING - Останавливаем физику гильз
+				// [MANKIND-ADD] - FIXES_PHYSICS_AMMO_CASING - Останавливаем физику гильз
 				var/datum/component/movable_physics/physics = R.GetComponent(/datum/component/movable_physics)
 				if(physics)
 					qdel(physics)
-				// [/CELADON-ADD]
+				// [/MANKIND-ADD]
 				stored_ammo += R
 				R.forceMove(src)
 				return TRUE
@@ -141,11 +141,11 @@
 	if(istype(attacking_obj, /obj/item/ammo_box))
 		var/obj/item/ammo_box/attacking_box = attacking_obj
 		for(var/obj/item/ammo_casing/casing_to_insert in attacking_box.stored_ammo)
-			// [CELADON-EDIT] - FIXES_LONG_RELOAD_AMMO - Явно указываю параметр target для do_after
+			// [MANKIND-EDIT] - FIXES_LONG_RELOAD_AMMO - Явно указываю параметр target для do_after
 			// if(!((instant_load && attacking_box.instant_load) || (stored_ammo.len >= max_ammo) || istype(attacking_obj, /obj/item/ammo_box/magazine/ammo_stack) && do_after(user, 0.5 SECONDS, src)))	// ORIGINAL
 			var/timed_action_flags = (user.is_holding(src) || src.loc == user) ? IGNORE_USER_LOC_CHANGE : NONE
 			if(!((instant_load && attacking_box.instant_load) || (stored_ammo.len >= max_ammo) || istype(attacking_obj, /obj/item/ammo_box/magazine/ammo_stack) && do_after(user, 0.5 SECONDS, target = src, timed_action_flags = timed_action_flags)))
-			// [/CELADON-EDIT]
+			// [/MANKIND-EDIT]
 				break
 			var/did_load = give_round(casing_to_insert, replace_spent)
 			if(!did_load)

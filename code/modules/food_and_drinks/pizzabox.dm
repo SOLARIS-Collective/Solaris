@@ -203,7 +203,7 @@
 	else if(is_wire_tool(I))
 		if(wires && bomb)
 			wires.interact(user)
-	// [CELADON-ADD] - FIXES_PIZZABOX_AND_PIZZA - Пиццу теперь можно положить обратно в коробку!
+	// [MANKIND-ADD] - FIXES_PIZZABOX_AND_PIZZA - Пиццу теперь можно положить обратно в коробку!
 	else if(istype(I, /obj/item/food/pizza))
 		if(open && !pizza)
 			if(!user.transferItemToLoc(I, src))
@@ -216,7 +216,7 @@
 			to_chat(user, span_warning("[src] already has a pizza in it!"))
 		else
 			to_chat(user, span_notice("You need to open [src] first!"))
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 	else if(istype(I, /obj/item/reagent_containers/food))
 		to_chat(user, span_warning("That's not a pizza!"))
 	..()

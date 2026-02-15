@@ -17,7 +17,7 @@
 // Задание переменной начального значения
 #include "code/mob/living.dm"
 
-// Оутфиты для ролей // Префиксы для кораблей ищи в дефайнах ~mod_mankind/names.dm
+// Оутфиты для ролей // Префиксы для кораблей ищи в дефайнах ~modular_mankind/names.dm
 #include "code/_outfits.dm"
 
 // MANKIND_DONATE - Добавляет систему донатных тиров.

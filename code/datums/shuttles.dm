@@ -21,17 +21,17 @@
 	var/enabled
 	var/short_name
 
-	// [CELADON-ADD] - OVERMAP SENSORS
+	// [MANKIND-ADD] - OVERMAP SENSORS
 	var/def_sensor_range = 4
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 
 	var/list/job_slots = list()
 	var/list/name_categories = list("GENERAL")
 	/// The icon state the ship usesship_generic
-	// [CELADON-EDIT] - CELADON_OVERMAP_ICON - спрайты некросивые получаюца
-	// var/token_icon_state = "ship_generic"	// CELADON-EDIT - ORIGINAL
+	// [MANKIND-EDIT] - MANKIND_OVERMAP_ICON - спрайты некросивые получаюца
+	// var/token_icon_state = "ship_generic"	// ORIGINAL
 	var/token_icon_state = "ship"
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 	/// The prefix of the ship's name.
 	var/prefix = "ISV"
 	/// The name of the ship's manufacturer.
@@ -61,10 +61,10 @@
 	if(path)
 		mappath = path
 	else if(category && file_name)
-		// [CELADON-EDIT] - CELADON_CONFIGS_MAPS - Меняем сабшатлы на наши
-		// mappath = "_maps/shuttles/[category]/[file_name].dmm" // CELADON-EDIT - ORIGINAL
-		mappath = "_maps/_mod_celadon/shuttles/[category]/[file_name].dmm"
-		// [/CELADON-EDIT]
+		// [MANKIND-EDIT] - MANKIND_CONFIGS_MAPS - Меняем сабшатлы на наши
+		// mappath = "_maps/shuttles/[category]/[file_name].dmm" // ORIGINAL
+		mappath = "_maps/_modular_mankind/shuttles/[category]/[file_name].dmm"
+		// [/MANKIND-EDIT]
 	. = ..()
 
 /datum/map_template/shuttle/preload_size(path, cache)

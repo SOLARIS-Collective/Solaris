@@ -12,10 +12,10 @@
 	var/outpost_administrator = "Fallback Administration"
 
 /datum/map_template/outpost/New()
-	// [CELADON-EDIT] - CELADON_CONFIGS_MAPS
-	// . = ..(path = "_maps/outpost/[name].dmm") // CELADON-EDIT - ORIGINAL
-	. = ..(path = "_maps/_mod_celadon/outpost/[name].dmm")
-	// [/CELADON-EDIT]
+	// [MANKIND-EDIT] - MANKIND_CONFIGS_MAPS
+	// . = ..(path = "_maps/outpost/[name].dmm") // ORIGINAL
+	. = ..(path = "_maps/_modular_mankind/outpost/[name].dmm")
+	// [/MANKIND-EDIT]
 
 
 /datum/map_template/outpost/hangar
@@ -206,7 +206,7 @@
 /*
 	/datum/overmap/outpost subtypes
 */
-// [CELADON-REMOVE] - CELADON_CONFIGS_MAPS - Отправляется в щитспавн по приказу Head of Maps
+// [MANKIND-REMOVE] - MANKIND_CONFIGS_MAPS - Отправляется в щитспавн по приказу Head of Maps
 /*
 /datum/overmap/outpost/indie_space
 	token_icon_state = "station_cylinder"
@@ -215,7 +215,7 @@
 	faction = FACTION_INDEPENDENT
 	// Uses "default" hangars (indie_space).
 */
-// [/CELADON-REMOVE]
+// [/MANKIND-REMOVE]
 /*
 /datum/overmap/outpost/nanotrasen_asteroid
 	token_icon_state = "station_asteroid_0"
@@ -313,7 +313,7 @@
 		/datum/map_template/outpost/hangar/nt_asteroid_56x40
 	)
 */
-// [CELADON-REMOVE] - CELADON_CONFIGS_MAPS - Перенесено в модуль в maps
+// [MANKIND-REMOVE] - MANKIND_CONFIGS_MAPS - Перенесено в модуль в maps
 // /datum/overmap/outpost/nanotrasen_ice
 // 	token_icon_state = "station_asteroid_0"
 // 	main_template = /datum/map_template/outpost/nanotrasen_ice
@@ -343,4 +343,4 @@
 // 	main_template = null
 // 	elevator_template = /datum/map_template/outpost/elevator_test
 // 	// Uses "test" hangars.
-// [/CELADON-REMOVE]
+// [/MANKIND-REMOVE]

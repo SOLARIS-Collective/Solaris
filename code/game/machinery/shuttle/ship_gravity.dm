@@ -12,17 +12,17 @@
 	idle_power_usage = IDLE_DRAW_MINIMAL
 	active_power_usage = ACTIVE_DRAW_EXTREME
 	circuit = /obj/item/circuitboard/machine/ship_gravity
-	var/datum/looping_sound/gravity_generator/soundloop	// [CELADON-ADD] - CELADON_GRAVGEN
+	var/datum/looping_sound/gravity_generator/soundloop	// [MANKIND-ADD] - MANKIND_GRAVGEN
 	var/charging = FALSE
 	var/active = FALSE
 	var/charge = 0
 
-// [CELADON-ADD] - CELADON_GRAVGEN
+// [MANKIND-ADD] - MANKIND_GRAVGEN
 	light_power = 0
 	light_range = 2
 	light_color = COLOR_GRAY
 	luminosity = 1
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 /obj/machinery/power/ship_gravity/unanchored
 	anchored = FALSE
@@ -36,7 +36,7 @@
 	. = ..()
 	if(anchored)
 		connect_to_network()
-// [CELADON-ADD] - CELADON_GRAVGEN
+// [MANKIND-ADD] - MANKIND_GRAVGEN
 	soundloop = new(list(src), FALSE)
 
 /obj/machinery/power/ship_gravity/Destroy()
@@ -47,7 +47,7 @@
 	. = ..()
 	if(prob(50))
 		set_state(!active)
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 /obj/machinery/power/ship_gravity/process(seconds_per_tick)
 	if(charging && (!active_power_usage || surplus() >= active_power_usage))
@@ -67,24 +67,24 @@
 	if(toggle)
 		active = TRUE
 		playsound(src.loc, 'sound/effects/empulse.ogg', 100, TRUE)
-// [CELADON-ADD] - CELADON_GRAVGEN
+// [MANKIND-ADD] - MANKIND_GRAVGEN
 		soundloop.start()
 		set_light(l_power = 0.5)
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 		visible_message(span_warning("The [src.name] finishes charging!"), blind_message = span_hear("You hear a low hum fade in."))
 	else
 		visible_message(span_danger("The [src.name] shuts down due to lack of power!"), blind_message = span_hear("You hear a low hum fade out."))
 		active = FALSE
-// [CELADON-ADD] - CELADON_GRAVGEN
+// [MANKIND-ADD] - MANKIND_GRAVGEN
 		soundloop.stop()
 		set_light(l_power = 0)
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 		log_game("[src] deactivated due to lack of power at [AREACOORD(src)]", INVESTIGATE_GRAVITY)
 	update_appearance()
 
 /obj/machinery/power/ship_gravity/update_overlays()
 	. = ..()
-// [CELADON-EDIT] - CELADON_GRAVGEN
+// [MANKIND-EDIT] - MANKIND_GRAVGEN
 /* Original code
 		var/mutable_appearance/charge_state
 	if(active)
@@ -101,7 +101,7 @@
 		SSvis_overlays.add_vis_overlay(src, icon, "charge_[charge]", layer, plane, dir)
 		SSvis_overlays.add_vis_overlay(src, icon, "charge_[charge]", layer, EMISSIVE_PLANE, dir)
 		. += "charge_[charge]"
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 
 /obj/machinery/power/ship_gravity/examine(mob/user)
 	. = ..()

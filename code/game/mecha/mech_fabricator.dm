@@ -37,7 +37,7 @@
 								"Cyborg Upgrade Modules",
 								"IPC Components",
 								"Misc",
-								// [CELADON-ADD] - CELADON_MODSUITS
+								// [MANKIND-ADD] - MANKIND_MODSUITS
 								"MOD Suits",
 								"Chassis",
 								"Plating",
@@ -49,7 +49,7 @@
 								"Security Modules",
 								"Supply Modules",
 								"Service Modules"
-								// [/CELADON-ADD]
+								// [/MANKIND-ADD]
 								)
 
 /obj/machinery/mecha_part_fabricator/Initialize(mapload)

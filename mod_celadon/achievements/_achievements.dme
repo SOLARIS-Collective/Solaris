@@ -1,8 +1,0 @@
-#ifndef MODPACK_CELADON_ACHIEVEMENTS
-#define MODPACK_CELADON_ACHIEVEMENTS
-
-#include "_achievements.dm"
-
-#include "code/theinnerhell.dm"
-
-#endif

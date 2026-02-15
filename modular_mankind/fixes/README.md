@@ -22,7 +22,6 @@ FIXES_ICON
 FIXES_SOUND
 MECH_WEAPON
 FIXES_CHAMELEON
-FIXES_GOLIATH_TENTACLES
 FIXES_SHIP_LOGIN_DOUBLE_NAME
 FIXES_WETHIDE
 FIXES_DRILLCLASS
@@ -164,7 +163,7 @@ MECH_WEAPON
 - EDIT: `code/modules/admin/verbs/secrets.dm` : список ДНК показывает корректный тип крови [MANKIND-EDIT]
 
 #### Вид: Elzuose
-- EDIT: `mod_mankind/ethereal_fix/code/ethereal.dm` : `exotic_blood = /datum/reagent/consumable/liquidelectricity`, `exotic_bloodtype = "E"` [MANKIND-EDIT]
+- EDIT: `modular_mankind/ethereal_fix/code/ethereal.dm` : `exotic_blood = /datum/reagent/consumable/liquidelectricity`, `exotic_bloodtype = "E"` [MANKIND-EDIT]
 
 
 - ADD: `code/game/objects/items/food/donut.dm` : Прописано название стандартной иконки, вместо надписи ERROR
@@ -187,8 +186,6 @@ FIXES_SOUND
 FIXES_CHAMELEON
 - EDIT: `code/datums/mutations/chameleon.dm` - Чиним крит баг с вечной невидимостью
 
-FIXES_GOLIATH_TENTACLES
-- ADD: `code/modules/mob/living/simple_animal/hostile/mining_mobs/goliath.dm` : Добавляем прок и прверки на жизненный цикл тентакли и её создателя
 FIXES_SHIP_LOGIN_DOUBLE_NAME
 - ADD: `code/modules/mob/dead/new_player/ship_select.dm` : Поднимаем проверку на одинаковые имена ДО создания корабля, чтобы избежать спавна изолированного корабля
 
@@ -335,7 +332,7 @@ FIXES_CRAFT_MENU
 - `code/datums/components/crafting/crafting.dm` : Обновляем меню крафта автоматически, не в ручную же это делать
 
 FIXES_PHYSICS_AMMO_CASING
-- `mod_mankind/fixes/code/ammo.dm`								: тут прок на то чтобы останавливать физику патрона\гильзы если ты поймал её в руку 
+- `modular_mankind/fixes/code/ammo.dm`								: тут прок на то чтобы останавливать физику патрона\гильзы если ты поймал её в руку 
 - `code/modules/projectiles/guns/ballistic.dm`					: тут прок на то чтобы останавливать физику патрона\гильзы если ты вставил её в оружие
 - `code/modules/projectiles/boxes_magazines/_box_magazine.dm`	: тут прок на то чтобы останавливать физику Патрона\гильзы если ты вставил её в обойму
 
@@ -374,7 +371,7 @@ FIXES_FIRES_OVERLAYES
 
 ### Оверрайды
 
-- `mod_mankind/fixes/code/research_mission.dm` - вроде перезаписывает
+- `modular_mankind/fixes/code/research_mission.dm` - вроде перезаписывает
 
 dock_empty_space_fix.dm:
 - `Dock(datum/overmap/to_dock, datum/docking_ticket/ticket, force = FALSE)`
@@ -396,7 +393,7 @@ dock_empty_space_fix.dm:
 ### Дефайны
 
 <!-- fax_name -->
-<!-- - `code/__defines/~mod_mankind/ship.dm` -->
+<!-- - `code/__defines/~modular_mankind/ship.dm` -->
 - `code/__DEFINES/radio.dm` - Переименование частоты SolGov -> SolFed
 
 <!--
@@ -409,7 +406,7 @@ dock_empty_space_fix.dm:
 
 ### Используемые файлы, не содержащиеся в модпаке
 
-- `mod_mankind/crusher_trophy/code/kinetic_crusher.dm`
+- `modular_mankind/crusher_trophy/code/kinetic_crusher.dm`
 <!--
   Будь то немодульный файл или модульный файл, который не содержится в папке,
   принадлежащей этому конкретному моду, он должен быть упомянут здесь.
@@ -452,7 +449,7 @@ FIXES_TWO_HANDED_CRASH
 - ADD: `code/_onclick/item_attack.dm` - добавлена обработка звуков если приходи не один файл, а лист ( обычно )
 
 FIXES_ADMIN_STEALTH
-- ADD: `mod_mankind/fixes/code/ship_application_stealth_fix.dm` - Фикс заявок на корабль для админов в стелс-моде. Теперь используется реальный ключ игрока для индексации заявок, что позволяет админам менять fakekey без потери доступа к заявкам
+- ADD: `modular_mankind/fixes/code/ship_application_stealth_fix.dm` - Фикс заявок на корабль для админов в стелс-моде. Теперь используется реальный ключ игрока для индексации заявок, что позволяет админам менять fakekey без потери доступа к заявкам
 - `code/modules/overmap/ships/ship_application.dm`		: Если не нашли по текущему ключу, ищем по реальному ключу (для случая смены fakekey)
 - `code/modules/overmap/ships/controlled_ship_datum.dm`
 

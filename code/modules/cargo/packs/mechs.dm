@@ -1,5 +1,5 @@
-/* [CELADON-DELETE] - Убираем инициализацию офовских предметов.
-	Разносим ресурсы по разным фракциям: "mod_celadon\outpost_console\code\supply_pack"
+/* [MANKIND-REMOVE] - Убираем инициализацию офовских предметов.
+	Разносим ресурсы по разным фракциям: "modular_mankind\outpost_console\code\supply_pack"
 
 /datum/supply_pack/mech
 	category = "Exosuit Construction"
@@ -368,4 +368,4 @@ ammo
 	faction = /datum/faction/nt
 	faction_discount = 20
 
-[/CELADON-DELETE] */
+[/MANKIND-REMOVE] */

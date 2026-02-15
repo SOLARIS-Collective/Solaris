@@ -623,7 +623,7 @@
 		to_chat(user, span_warning("There are no more cards to draw!"))
 		return
 	var/obj/item/toy/cards/singlecard/H = new/obj/item/toy/cards/singlecard(user.loc)
-	choice = pick(cards)	// [CELADON-EDIT] - FIXES_CARDS_DRAW_RANDOM
+	choice = pick(cards)	// [MANKIND-EDIT] - FIXES_CARDS_DRAW_RANDOM
 	H.cardname = choice
 	H.parentdeck = src
 	var/O = src
@@ -1207,14 +1207,14 @@
 	icon_state = "chemist"
 	toysay = "Get your pills!"
 
-// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 /obj/item/toy/figure/clown
 	name = "Clown action figure"
-	icon = 'mod_celadon/_storage_icons/icons/other/clown_mime/toy.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/other/clown_mime/toy.dmi'
 	icon_state = "clown"
 	toysay = "Honk!"
 	toysound = 'sound/items/bikehorn.ogg'
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 /obj/item/toy/figure/ian
 	name = "Ian action figure"
@@ -1280,14 +1280,14 @@
 	icon_state = "paramedic"
 	toysay = "And the best part? I'm not even a real doctor!"
 
-// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 /obj/item/toy/figure/mime
 	name = "Mime action figure"
-	icon = 'mod_celadon/_storage_icons/icons/other/clown_mime/toy.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/other/clown_mime/toy.dmi'
 	icon_state = "mime"
 	toysay = "..."
 	toysound = null
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 /obj/item/toy/figure/miner
 	name = "Shaft Miner action figure"

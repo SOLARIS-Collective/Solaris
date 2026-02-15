@@ -61,22 +61,22 @@
 	RegisterSignal(user, COMSIG_MOB_LOGOUT, PROC_REF(clean_user_client))
 	RegisterSignal(user, COMSIG_MOB_LOGIN, PROC_REF(on_user_login))
 	if(!(timed_action_flags & IGNORE_USER_LOC_CHANGE))
-// [CELADON-EDIT] - FIX_MECH
-//		RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(on_moved)) // CELADON-EDIT - ORIGINAL
+// [MANKIND-EDIT] - FIX_MECH
+//		RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(on_moved)) // ORIGINAL
 		RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(on_moved), override = TRUE)
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 		var/obj/mecha/mech = user.loc
 		if(ismecha(user.loc) && user == mech.occupant)
-// [CELADON-EDIT] - FIX_MECH
-//			RegisterSignal(mech, COMSIG_MOVABLE_MOVED, PROC_REF(on_moved)) // CELADON-EDIT - ORIGINAL
+// [MANKIND-EDIT] - FIX_MECH
+//			RegisterSignal(mech, COMSIG_MOVABLE_MOVED, PROC_REF(on_moved)) // ORIGINAL
 			RegisterSignal(mech, COMSIG_MOVABLE_MOVED, PROC_REF(on_moved), override = TRUE)
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 	if(!(timed_action_flags & IGNORE_TARGET_LOC_CHANGE))
 		if(user != target)
-// [CELADON-EDIT] - FIX_MECH
-//			RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(on_moved)) // CELADON-EDIT - ORIGINAL
+// [MANKIND-EDIT] - FIX_MECH
+//			RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(on_moved)) // ORIGINAL
 			RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(on_moved), override = TRUE)
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 	if(!(timed_action_flags & IGNORE_HELD_ITEM))
 		var/obj/item/held = user.get_active_held_item()
 		if(held)

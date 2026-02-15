@@ -853,7 +853,7 @@
 		// 		// new /obj/item/slime_extract/grey(loc)
 		// 		new /mob/living/simple_animal/slime/random(loc)
 		// 	// [MANKIND-EDIT] - MANKIND_BALANCE - Понижаем шанс выпададения платы слаймов
-		// 	// if(prob(45))	// MANKIND-EDIT - ORIGINAL
+		// 	// if(prob(45))	// ORIGINAL
 		// 	if(prob(15))
 		// 	// [/MANKIND-EDIT]
 		// 		// new /obj/item/circuitboard/machine/processor/slime(loc)

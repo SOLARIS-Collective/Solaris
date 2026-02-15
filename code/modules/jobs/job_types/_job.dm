@@ -274,7 +274,7 @@
 	if(text2path(holder) || !holder)
 		suit = text2path(holder)
 
-	// [CELADON-ADD] - CELADON_WALLETS
+	// [MANKIND-ADD] - MANKIND_WALLETS
 	switch(H.wallet)
 		if(PREF_NOWALLET)
 			wallet = null
@@ -286,7 +286,7 @@
 			wallet = /obj/item/storage/wallet/white
 		else
 			wallet = null
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 /datum/outfit/job/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE, client/preference_source = null)
 	if(visualsOnly)
 		return

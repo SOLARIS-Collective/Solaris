@@ -44,9 +44,9 @@
 	suit = /obj/item/clothing/suit/armor/vest/solgov/captain
 	shoes = /obj/item/clothing/shoes/laceup
 	head = /obj/item/clothing/head/solgov/captain
-	// [CELADON-REMOVE] - CELADON_BALANCE - Убираем телескопички
+	// [MANKIND-REMOVE] - MANKIND_BALANCE - Убираем телескопички
 	// backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1)
-	// [/CELADON-REMOVE]
+	// [/MANKIND-REMOVE]
 
 	backpack = /obj/item/storage/backpack/captain
 	satchel = /obj/item/storage/backpack/satchel/cap
@@ -114,11 +114,11 @@
 	suit = /obj/item/clothing/suit/armor/vest/solgov/overseer
 	shoes = /obj/item/clothing/shoes/laceup
 
-	// [CELADON-REMOVE] - CELADON_BALANCE - Убираем телескопички
+	// [MANKIND-REMOVE] - MANKIND_BALANCE - Убираем телескопички
 	// backpack_contents = list(/obj/item/storage/box/ids=1,
-	// /obj/item/melee/classic_baton/telescopic=1, /obj/item/modular_computer/tablet/preset/advanced = 1)	// CELADON-EDIT - ORIGINAL
+	// /obj/item/melee/classic_baton/telescopic=1, /obj/item/modular_computer/tablet/preset/advanced = 1)	// ORIGINAL
 	backpack_contents = list(/obj/item/storage/box/ids=1, /obj/item/modular_computer/tablet/preset/advanced = 1)
-	// [/CELADON-REMOVE]
+	// [/MANKIND-REMOVE]
 
 	chameleon_extras = list(/obj/item/gun/energy/sharplite/x12, /obj/item/stamp/officer)
 

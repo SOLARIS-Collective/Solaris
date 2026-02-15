@@ -120,7 +120,7 @@
 	)
 	valid_event_target = FALSE
 
-// [CELADON-ADD]
+// [MANKIND-ADD]
 /datum/export/material/wood
 	unit_name = "cm3 of wood"
 	cost = 1
@@ -144,4 +144,4 @@
 	unit_name = "cm3 of alien alloy"
 	cost = 500
 	export_types = list(/obj/item/stack/sheet/mineral/abductor)
-// [/CELADON-ADD]
+// [/MANKIND-ADD]

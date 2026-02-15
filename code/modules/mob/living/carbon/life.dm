@@ -142,7 +142,7 @@
 		air_update_turf()
 
 //Third link in a breath chain, calls handle_breath_temperature()
-/mob/living/carbon/proc/check_breath(datum/gas_mixture/breath)	// MOD_CELADON -> mod_celadon\fixes\code\life.dm
+/mob/living/carbon/proc/check_breath(datum/gas_mixture/breath)	// MOD_MANKIND -> modular_mankind\fixes\code\life.dm
 	if(status_flags & GODMODE)
 		return
 	if(HAS_TRAIT(src, TRAIT_NOBREATH))
@@ -177,10 +177,10 @@
 
 	//OXYGEN
 	if(O2_partialpressure < safe_oxy_min) //Not enough oxygen
-		// [CELADON-EDIT] - FIXES - Починка удушения
-		// if(prob(20))	// CELADON-EDIT - ORIGINAL
+		// [MANKIND-EDIT] - FIXES - Починка удушения
+		// if(prob(20))	// ORIGINAL
 		if(prob(25))
-		// [/CELADON-EDIT]
+		// [/MANKIND-EDIT]
 			emote("gasp")
 		if(O2_partialpressure > 0)
 			var/ratio = 1 - O2_partialpressure/safe_oxy_min

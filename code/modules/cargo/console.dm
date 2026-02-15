@@ -33,14 +33,14 @@
 	/// Area instance that cargo pods are sent to
 	var/area/landingzone
 	/// The pod type used to deliver orders
-	var/podType = /obj/structure/closet/supplypod // [CELADON-EDIT] - CELADON_OUTPOST_CONSOLE - instead of "/obj/structure/closet/supplypod/centcompod"
+	var/podType = /obj/structure/closet/supplypod // [MANKIND-EDIT] - MANKIND_OUTPOST_CONSOLE - instead of "/obj/structure/closet/supplypod/centcompod"
 	/// Cooldown to prevent printing supplypod beacon spam
 	var/cooldown = 0
 	/// Is the console in beacon mode? exists to let beacon know when a pod may come in
 	var/use_beacon = FALSE
 	/// The account to charge purchases to, defaults to the cargo budget
 	var/datum/bank_account/charge_account
-	var/pack_data_cooldown = 0  // [CELADON-ADD] - CELADON_FIXES: Cooldown for generating pack data to prevent FPS drops
+	var/pack_data_cooldown = 0  // [MANKIND-ADD] - MANKIND_FIXES: Cooldown for generating pack data to prevent FPS drops
 
 /obj/machinery/computer/cargo/Initialize()
 	. = ..()
@@ -81,7 +81,7 @@
 /obj/machinery/computer/cargo/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "OutpostCommunicationsCeladon", name) // [CELADON-EDIT] - CELADON_OUTPOST_CONSOLE - instead of "OutpostCommunications"
+		ui = new(user, src, "OutpostCommunicationsMankind", name) // [MANKIND-EDIT] - MANKIND_OUTPOST_CONSOLE - instead of "OutpostCommunications"
 		ui.open()
 		if(!charge_account)
 			reconnect()
@@ -89,14 +89,14 @@
 /obj/machinery/computer/cargo/ui_static_data(mob/user)
 	. = ..()
 	outpost_docked = current_ship.docked_to
-	// [CELADON-EDIT] - CELADON_FIXES: Prevent constant pack data generation every tick
+	// [MANKIND-EDIT] - MANKIND_FIXES: Prevent constant pack data generation every tick
 	// if(istype(outpost_docked))
 	if(istype(outpost_docked) && pack_data_cooldown <= world.time)
 		generate_pack_data()
 		pack_data_cooldown = world.time + 50  // Cache for 5 seconds
 	else
 		supply_pack_data = list()
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 
 /obj/machinery/computer/cargo/ui_data(mob/user)
 	var/list/data = list()
@@ -128,12 +128,12 @@
 
 	return data
 
-//[CELADON-ADD] - CELADON_FIXES - Чиним реролл
+// [MANKIND-ADD] - MANKIND_FIXES - Чиним реролл
 /datum/overmap/ship/controlled
 	var/given_up_missions = 0
 	var/giveup_timer = - 15 MINUTES
 	var/giveup_timeout = FALSE
-//[/CELADON-ADD]
+// [/MANKIND-ADD]
 
 /obj/machinery/computer/cargo/ui_act(action, params, datum/tgui/ui)
 	. = ..()
@@ -154,7 +154,7 @@
 				src.visible_message(span_notice("[src] dispenses a holochip."))
 			return TRUE
 
-		//[CELADON-ADD] - CELADON_FIXES - чиним реролл
+		// [MANKIND-ADD] - MANKIND_FIXES - чиним реролл
 		if("payFine")
 			var/val = 3000
 			// no giving yourself money
@@ -169,7 +169,7 @@
 					ship.given_up_missions = 0
 					ship.giveup_timer = world.time-15 MINUTES
 					ship.giveup_timeout = FALSE
-		//[/CELADON-ADD]
+		// [/MANKIND-ADD]
 		// if("add")
 		if("purchase")
 			var/list/purchasing = params["cart"]
@@ -210,7 +210,7 @@
 			else if(mission.servant == ship)
 				if(mission.can_complete())
 					mission.turn_in()
-				//[CELADON-EDIT] - CELADON_FIXES - фиксим ролл миссий
+				// [MANKIND-EDIT] - MANKIND_FIXES - фиксим ролл миссий
 				//else if(tgui_alert(usr, "Give up on [mission]?", src, list("Yes", "No")) == "Yes")
 				// mission.give_up()
 					ship.given_up_missions = 0
@@ -232,7 +232,7 @@
 					else
 						to_chat(usr, "<span class='alert'>Please wait [ceil((ship.giveup_timer-world.time)/600)] minutes before giving up again.</span>")
 						return TRUE
-				//[/CELADON-EDIT]
+				// [/MANKIND-EDIT]
 				return TRUE
 
 /obj/machinery/computer/cargo/attackby(obj/item/W, mob/living/user, params)

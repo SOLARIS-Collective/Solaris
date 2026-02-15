@@ -34,7 +34,7 @@ ID мода: MANKIND_LOADOUT
 ### Изменения *кор кода*
 
 Были заккоментированы шарфы и перчатки, с полным переносом в модульные папки:
-`code\modules\client\loadout\loadout_accessories.dm` -> `mod_mankind\loadout\code\gloves.dm` и `mod_mankind\loadout\code\scarfes.dm`
+`code\modules\client\loadout\loadout_accessories.dm` -> `modular_mankind\loadout\code\gloves.dm` и `modular_mankind\loadout\code\scarfes.dm`
 Убран "briefcase" из лодаута:
 `code\modules\client\loadout\loadout_general.dm`
 <!--

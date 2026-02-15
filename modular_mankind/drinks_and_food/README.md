@@ -73,7 +73,7 @@ ID мода: MANKIND_DRINKS_AND_FOOD
   И то же самое, если ты используешь дефайны, определённые другим модом.
 
   Не используешь - напиши "Отсутствуют"
-  Примеры: `code/__defines/~mod_mankind/drinks_and_food.dm`: `DRINKS_AND_FOOD_SPEED_MULTIPLIER`, `DRINKS_AND_FOOD_SPEED_BASE`
+  Примеры: `code/__defines/~modular_mankind/drinks_and_food.dm`: `DRINKS_AND_FOOD_SPEED_MULTIPLIER`, `DRINKS_AND_FOOD_SPEED_BASE`
 -->
 
 ### Используемые файлы, не содержащиеся в модпаке

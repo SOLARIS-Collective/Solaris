@@ -76,10 +76,10 @@
 				spacer = "\n\t"
 
 		if(cached_slot_flags & ITEM_SLOT_EYES)
-			// [CELADON-EDIT] - CELADON_RETURN_CONTENT_SPAWN
-			// icon_file = 'icons/mob/clothing/eyes/eyes.dmi'	// CELADON-EDIT - ORIGINAL
-			icon_file = 'mod_celadon/_storage_icons/icons/items/clothing/eyes/overlay/eyes.dmi'
-			// [/CELADON-EDIT]
+			// [MANKIND-EDIT] - MANKIND_RETURN_CONTENT_SPAWN
+			// icon_file = 'icons/mob/clothing/eyes/eyes.dmi'	// ORIGINAL
+			icon_file = 'modular_mankind/_storage_icons/icons/items/clothing/eyes/overlay/eyes.dmi'
+			// [/MANKIND-EDIT]
 
 			if(!(icon_state in icon_states(icon_file, 1)))
 				already_warned_icons += icon_state

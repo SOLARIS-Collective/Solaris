@@ -179,12 +179,10 @@
 		O.uniform = text2path(holder)		//WS Edit End
 
 	H.equipOutfit(O, visualsOnly)
-// [CELADON-EDIT] - QoL Plasmamen
-/* CELADON-EDIT - ORIGINAL
-	H.internal = H.get_item_for_held_index(2)
-*/
+	// [MANKIND-EDIT] - MANKIND_QOL_PLASMAMEN
+	// H.internal = H.get_item_for_held_index(2)	// ORIGINAL
 	H.internal = H.get_item_by_slot(ITEM_SLOT_RPOCKET)
-// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 	H.update_internals_hud_icon(1)
 	return 0
 

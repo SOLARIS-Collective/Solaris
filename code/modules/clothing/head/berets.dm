@@ -164,7 +164,7 @@
 	icon_state = "beret_mining"
 
 //Sec
-// [CELADON-EDIT] - CELADON_BALANCE - броня /obj/item/clothing/head/beret/sec переопределена в mod_celadon\balance\code\items.dm
+// [MANKIND-EDIT] - MANKIND_BALANCE - броня /obj/item/clothing/head/beret/sec переопределена в modular_mankind\balance\code\items.dm
 /obj/item/clothing/head/beret/sec
 	name = "security beret"
 	desc = "A robust beret with the security insignia emblazoned on it."

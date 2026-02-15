@@ -115,9 +115,9 @@
 		/obj/item/reagent_containers/glass/beaker,
 		/obj/item/reagent_containers/pill,
 		/obj/item/storage/pill_bottle,
-		// [CELADON-REMOVE] - CELADON_BALANCE - Убираем телескопички
+		// [MANKIND-REMOVE] - MANKIND_BALANCE - Убираем телескопички
 		// /obj/item/melee/classic_baton/telescopic,
-		// [/CELADON-REMOVE]
+		// [/MANKIND-REMOVE]
 		/obj/item/soap,
 		/obj/item/sensor_device,
 		/obj/item/tank/internals/emergency_oxygen,
@@ -200,10 +200,10 @@
 	item_state = "hardsuit-inteq"
 	hardsuit_type = "inteq"
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/security/inteq
-	// [CELADON-EDIT] - TAJARA, CELADON_RIOL
-	// supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION // CELADON-EDIT - ORIGINAL
+	// [MANKIND-EDIT] - TAJARA, MANKIND_RIOL
+	// supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION // ORIGINAL
 	supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION | TAJARA_VARIATION | RIOL_VARIATION
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 	armor = list("melee" = 40, "bullet" = 35, "laser" = 30, "energy" = 40, "bomb" = 10, "bio" = 100, "rad" = 50, "fire" = 75, "acid" = 75, "wound" = 20)
 	supports_variations = DIGITIGRADE_VARIATION
 
@@ -253,10 +253,10 @@
 	icon_state = "hardsuit1-pointman"
 	hardsuit_type = "pointman"
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/syndi/inteq
-	// [CELADON-EDIT] - TAJARA, CELADON_RIOL
-	// supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION // CELADON-EDIT - ORIGINAL
+	// [MANKIND-EDIT] - TAJARA, MANKIND_RIOL
+	// supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION // ORIGINAL
 	supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION | KEPORI_VARIATION | TAJARA_VARIATION | RIOL_VARIATION
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 
 
 /obj/item/clothing/head/helmet/space/hardsuit/syndi/inteq

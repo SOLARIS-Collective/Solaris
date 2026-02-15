@@ -38,14 +38,14 @@
 	hitsound_type = PROJECTILE_HITSOUND_STONE
 
 	min_dam = 5
-	// [CELADON-EDIT] - CELADON_BALANCE - Делаем из картонного камня скалу!
+	// [MANKIND-EDIT] - MANKIND_BALANCE - Делаем из картонного камня скалу!
 	// max_integrity = MINERAL_WALL_INTEGRITY
 	// brute_mod = 1
-	// burn_mod = 1	// CELADON-EDIT - ORIGINAL
+	// burn_mod = 1	// ORIGINAL
 	max_integrity = 1200
 	brute_mod = 0.3
 	burn_mod = 0.3
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 
 	mob_smash_flags = ENVIRONMENT_SMASH_MINERALS
 	proj_bonus_damage_flags = PROJECTILE_BONUS_DAMAGE_MINERALS
@@ -215,9 +215,9 @@
 	var/list/mineralSpawnChanceList = list(/obj/item/stack/ore/uranium = 3, /obj/item/stack/ore/gold = 4,
 		/obj/item/stack/ore/plasma = 40, /obj/item/stack/ore/iron = 65, /obj/item/stack/ore/titanium = 5,
 		/obj/item/stack/ore/bluespace_crystal = 1,
-		// [CELADON-ADD] - RETURN GIBTONITE
+		// [MANKIND-ADD] - RETURN GIBTONITE
 		/turf/closed/mineral/gibtonite = 4
-		// [/CELADON-ADD]
+		// [/MANKIND-ADD]
 		)
 		//Currently, Adamantine won't spawn as it has no uses. -Durandan
 	var/mineralChance = 10

@@ -67,10 +67,10 @@
 			H.dropItemToGround(H.w_uniform)
 			H.dropItemToGround(H.wear_suit)
 			H.dropItemToGround(H.head)
-			// [CELADON-ADD] - CELADON_RETURN_CONTENT_SPAWN
+			// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_SPAWN
 			H.equip_to_slot_or_del(new /obj/item/clothing/suit/wizrobe/black(H), ITEM_SLOT_OCLOTHING)
 			H.equip_to_slot_or_del(new /obj/item/clothing/head/wizard/black(H), ITEM_SLOT_HEAD)
-			// [/CELADON-ADD]
+			// [/MANKIND-ADD]
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/color/black(H), ITEM_SLOT_ICLOTHING)
 
 		// you only get one phylactery.
@@ -135,10 +135,10 @@
 
 	lich.equip_to_slot_or_del(new /obj/item/clothing/shoes/sandal/magic(lich), ITEM_SLOT_FEET)
 	lich.equip_to_slot_or_del(new /obj/item/clothing/under/color/black(lich), ITEM_SLOT_ICLOTHING)
-	// [CELADON-ADD] - CELADON_RETURN_CONTENT_SPAWN
+	// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_SPAWN
 	lich.equip_to_slot_or_del(new /obj/item/clothing/suit/wizrobe/black(lich), ITEM_SLOT_OCLOTHING)
 	lich.equip_to_slot_or_del(new /obj/item/clothing/head/wizard/black(lich), ITEM_SLOT_HEAD)
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 
 	lich.real_name = mind.name
 	mind.transfer_to(lich)

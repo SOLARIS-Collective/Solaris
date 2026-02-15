@@ -53,7 +53,7 @@ ID мода: MANKIND_EFFECTS
 
 ### Дефайны
 
-- `code\__DEFINES\~mod_mankind\generators.dm`
+- `code\__DEFINES\~modular_mankind\generators.dm`
 	GEN_NUM
 	GEN_VECTOR
 	GEN_BOX
@@ -69,12 +69,12 @@ ID мода: MANKIND_EFFECTS
   И то же самое, если ты используешь дефайны, определённые другим модом.
 
   Не используешь - напиши "Отсутствуют"
-  Примеры: `code/__defines/~mod_mankind/effects.dm`: `EFFECTS_SPEED_MULTIPLIER`, `EFFECTS_SPEED_BASE`
+  Примеры: `code/__defines/~modular_mankind/effects.dm`: `EFFECTS_SPEED_MULTIPLIER`, `EFFECTS_SPEED_BASE`
 -->
 
 ### Используемые файлы, не содержащиеся в модпаке
 
-- `mod_mankind/_storage_icons/icons`
+- `modular_mankind/_storage_icons/icons`
 <!--
   Будь то немодульный файл или модульный файл, который не содержится в папке,
   принадлежащей этому конкретному моду, он должен быть упомянут здесь.

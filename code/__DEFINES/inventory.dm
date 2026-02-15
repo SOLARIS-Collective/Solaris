@@ -49,9 +49,9 @@
 #define HIDENECK (1<<10)
 #define HIDEHORNS (1<<11) 	// Used for hiding Sarathi horns.
 #define HIDESNOUT (1<<11)
-// [CELADON-ADD] - CELADON_FIX_TAIL
+// [MANKIND-ADD] - MANKIND_FIX_TAIL
 #define HIDETAIL (1<<12)
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 //bitflags for clothing coverage - also used for limbs
 #define HEAD (1<<0)
@@ -90,11 +90,11 @@
 #define SNOUTED_SMALL_VARIATION (1<<5) //For Elzuose snouts
 #define VOX_VARIATION (1<<6)
 #define KEPORI_VARIATION (1<<7)
-// [CELADON-ADD] - TAJARA
+// [MANKIND-ADD] - TAJARA
 #define TAJARA_VARIATION (1<<8)
-// [CELADON-ADD] - CELADON_RIOL
+// [MANKIND-ADD] - MANKIND_RIOL
 #define RIOL_VARIATION (1<<9)
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 #define NOT_DIGITIGRADE 0
 #define FULL_DIGITIGRADE 1

@@ -82,7 +82,7 @@ ID мода: MANKIND_VENDING_CASH
   И то же самое, если ты используешь дефайны, определённые другим модом.
 
   Не используешь - напиши "Отсутствуют"
-  Примеры: `code/__defines/~mod_mankind/vending_cash.dm`: `VENDING_CASH_SPEED_MULTIPLIER`, `VENDING_CASH_SPEED_BASE`
+  Примеры: `code/__defines/~modular_mankind/vending_cash.dm`: `VENDING_CASH_SPEED_MULTIPLIER`, `VENDING_CASH_SPEED_BASE`
 -->
 
 ### Используемые файлы, не содержащиеся в модпаке

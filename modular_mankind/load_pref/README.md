@@ -76,7 +76,7 @@ ID мода: MANKIND_LOAD_PREF
   И то же самое, если ты используешь дефайны, определённые другим модом.
 
   Не используешь - напиши "Отсутствуют"
-  Примеры: `code/__defines/~mod_mankind/load_pref.dm`: `LOAD_PREF_SPEED_MULTIPLIER`, `LOAD_PREF_SPEED_BASE`
+  Примеры: `code/__defines/~modular_mankind/load_pref.dm`: `LOAD_PREF_SPEED_MULTIPLIER`, `LOAD_PREF_SPEED_BASE`
 -->
 
 ### Используемые файлы, не содержащиеся в модпаке

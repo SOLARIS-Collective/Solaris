@@ -164,7 +164,7 @@
 	force = 10
 	toolspeed = 0.5
 
-// [CELADON-REMOVE] - CELADON_BALANCE - Что это за инструмент шакальный не понятно
+// [MANKIND-REMOVE] - MANKIND_BALANCE - Что это за инструмент шакальный не понятно
 //CODED BY CODY, AGE 7
 // /obj/item/circular_saw/best//BESTESTWEPON
 // 	name = "swabw"
@@ -188,7 +188,7 @@
 // 	attack_verb = list("KILDED", "CUTTED ALL OF THE WAY IN HALF", "STOPPED LIVINGE", "MADE NOT LIFE")
 
 // 	custom_materials = list(/datum/material/diamond=1)
-// [/CELADON-REMOVE]
+// [/MANKIND-REMOVE]
 
 /obj/item/organ_storage //allows medical cyborgs to manipulate organs without hands
 	name = "organ storage bag"

@@ -1,9 +1,0 @@
-#ifndef MODPACK_CELADON_DONATERS
-#define MODPACK_CELADON_DONATERS
-
-#include "_donaters.dm"
-
-#include "code/donator/settings.dm"
-#include "code/items.dm"
-
-#endif

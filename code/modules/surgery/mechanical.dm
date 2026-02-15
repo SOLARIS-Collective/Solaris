@@ -1,4 +1,4 @@
-// [CELADON-REMOVE] - CELADON_IPC_SURGERY - Выносим в mod_celadon/ipc_surgery/code/ipc_surgery.dm
+// [MANKIND-REMOVE] - MANKIND_IPC_SURGERY - Выносим в modular_mankind/ipc_surgery/code/ipc_surgery.dm
 /*\ Mechanical Surgery for IPC's and the augmented \*/
 // /datum/surgery/brain_surgery/mechanic
 // 	name = "Mechanical brain surgery"
@@ -13,7 +13,7 @@
 // 	)
 // 	lying_required = FALSE
 // 	self_operable = TRUE
-// [/CELADON-REMOVE]
+// [/MANKIND-REMOVE]
 
 /datum/surgery_step/fix_brain/mechanic
 	implements = list(

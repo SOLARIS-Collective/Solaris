@@ -153,13 +153,13 @@
 	glass_name = "glass of banana juice"
 	glass_desc = "While staring down at this glass, some part of you wonders what went through the minds of those who decided to add this to milk."
 
-// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNSS
+// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNSS
 /datum/reagent/consumable/banana/on_mob_life(mob/living/carbon/M)
 	if((ishuman(M) && M.job == "Clown") || ismonkey(M))
 		M.heal_bodypart_damage(1,1, 0)
 		. = 1
 	..()
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 /datum/reagent/consumable/nothing
 	name = "Nothing"
@@ -170,7 +170,7 @@
 	glass_desc = "Absolutely nothing."
 	shot_glass_icon_state = "shotglass"
 
-// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 /datum/reagent/consumable/nothing/on_mob_life(mob/living/carbon/M)
 	if(ishuman(M) && M.mind?.miming)
 		M.silent = max(M.silent, MIMEDRINK_SILENCE_DURATION)
@@ -203,7 +203,7 @@
 		M.Stun(5)
 		SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "chemical_laughter", /datum/mood_event/chemical_superlaughter)
 	..()
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 /datum/reagent/consumable/potato_juice
 	name = "Potato Juice"

@@ -259,12 +259,12 @@
 	toxpwr = 0
 	taste_description = "sourness"
 
-// [CELADON-ADD] - CELADON_RETURN_CONTENT_QUIRKS
+// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_QUIRKS
 /datum/reagent/toxin/mindbreaker/on_mob_life(mob/living/carbon/M)
 	if(!M.has_quirk(/datum/quirk/insanity))
 		M.hallucination += 5
 	return ..()
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 /datum/reagent/toxin/plantbgone
 	name = "Plant-B-Gone"
@@ -946,7 +946,7 @@
 		. = 1
 	..()
 
-// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 /datum/reagent/toxin/mimesbane
 	name = "Mime's Bane"
 	description = "A nonlethal neurotoxin that interferes with the victim's ability to gesture."
@@ -960,7 +960,7 @@
 
 /datum/reagent/toxin/mimesbane/on_mob_end_metabolize(mob/living/L)
 	REMOVE_TRAIT(L, TRAIT_EMOTEMUTE, type)
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 /datum/reagent/toxin/bonehurtingjuice //oof ouch
 	name = "Bone Hurting Juice"

@@ -14,11 +14,11 @@
 	mutanttongue = /obj/item/organ/tongue/ethereal
 	siemens_coeff = 0.5 //They thrive on energy
 	attack_type = BURN //burn bish
-	// [CELADON-REMOVE] - CELADON_ETHEREAL_FIX - Тип крови им больше не нужен ибо теперь у них жидкое электричество, перенёс в мод mod_celadon\ethereal_fix\code\ethereal.dm
+	// [MANKIND-REMOVE] - MANKIND_ETHEREAL_FIX - Тип крови им больше не нужен ибо теперь у них жидкое электричество, перенёс в мод modular_mankind\ethereal_fix\code\ethereal.dm
 	/*
 	exotic_bloodtype = "E"
 	*/
-	// [/CELADON-REMOVE]
+	// [/MANKIND-REMOVE]
 	// damage_overlay_type = "" //We are too cool for regular damage overlays
 	species_age_max = 300
 	species_traits = list(DYNCOLORS, HAIR, FACEHAIR, HAS_FLESH, HAS_BONE)
@@ -102,10 +102,10 @@
 	desc = "Root into good soil to gain charge."
 	check_flags = AB_CHECK_CONSCIOUS
 	button_icon_state = "plant-22"
-	// [CELADON-EDIT] - CELADON_FLORA
-	// icon_icon = 'icons/obj/flora/plants.dmi' // CELADON-EDIT - ORIGINAL
-	icon_icon = 'mod_celadon/_storage_icons/icons/structures/obj/flora/plants.dmi'
-	// [/CELADON-EDIT]
+	// [MANKIND-EDIT] - MANKIND_FLORA
+	// icon_icon = 'icons/obj/flora/plants.dmi' // ORIGINAL
+	icon_icon = 'modular_mankind/_storage_icons/icons/structures/obj/flora/plants.dmi'
+	// [/MANKIND-EDIT]
 	background_icon_state = "bg_alien"
 
 /datum/action/innate/root/Activate()

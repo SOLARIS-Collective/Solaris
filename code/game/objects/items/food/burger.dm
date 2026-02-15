@@ -116,7 +116,7 @@
 	)
 	foodtypes = GRAIN | MEAT
 
-// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 /obj/item/food/burger/clown
 	name = "clown burger"
 	desc = "This tastes funny..."
@@ -140,7 +140,7 @@
 		/datum/reagent/consumable/nothing = 6,
 	)
 	foodtypes = GRAIN
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 /obj/item/food/burger/brain
 	name = "brainburger"

@@ -34,12 +34,12 @@
 		ZTRAIT_STATION = TRUE,
 		ZTRAIT_SUN_TYPE = AZIMUTH,
 		ZTRAIT_GRAVITY = STANDARD_GRAVITY,
-		ZTRAIT_SCAN_DISRUPT = TRUE // [CELADON-EDIT] - CELADON_SURVEY_HANDHELD
+		ZTRAIT_SCAN_DISRUPT = TRUE // [MANKIND-EDIT] - MANKIND_SURVEY_HANDHELD
 	)
 	var/list/hangar_ztraits = list(
 		ZTRAIT_SUN_TYPE = STATIC_EXPOSED,
 		ZTRAIT_GRAVITY = STANDARD_GRAVITY,
-		ZTRAIT_SCAN_DISRUPT = TRUE // [CELADON-EDIT] - CELADON_SURVEY_HANDHELD
+		ZTRAIT_SCAN_DISRUPT = TRUE // [MANKIND-EDIT] - MANKIND_SURVEY_HANDHELD
 	)
 
 	/// The mapzone used by the outpost level and hangars. Using a single mapzone means networked radio messages.
@@ -253,10 +253,10 @@
 	var/obj/docking_port/stationary/h_dock
 	var/datum/map_template/outpost/h_template = get_hangar_template(dock_requester.shuttle_port)
 
-	// [CELADON-ADD] - CELADON_COMPONENT - Pirates Update
+	// [MANKIND-ADD] - MANKIND_COMPONENT - Pirates Update
 	if(dock_requester.source_template.category == "Pirates") //Проверка шипа на пиратскую фракцию
 		return new /datum/docking_ticket(_docking_error = "Docking request denied: Unauthorized ship") //Запрет пиратам на стыковку с аванпостом
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 
 	if(src in dock_requester.blacklisted)
 		return new /datum/docking_ticket(_docking_error = "Docking request denied: [dock_requester.blacklisted[src]]")
@@ -314,7 +314,7 @@
 	signal.send_to_receivers()
 	return
 
-// [CELADON-REMOVE] - CELADON_MASTER_FILES - Вырезано, так как создаёт рантаймы при удалении корабля через манипулятор
+// [MANKIND-REMOVE] - MANKIND_MASTER_FILES - Вырезано, так как создаёт рантаймы при удалении корабля через манипулятор
 /*
 /datum/overmap/outpost/post_undocked(datum/overmap/ship/controlled/dock_requester)
 	// just get an arbitrary hangar dock. for the message source. at this point,
@@ -341,7 +341,7 @@
 	)
 	signal.send_to_receivers()
 */
-// [/CELADON-REMOVE]
+// [/MANKIND-REMOVE]
 
 /datum/overmap/outpost/proc/get_hangar_template(obj/docking_port/mobile/request_port)
 	RETURN_TYPE(/datum/map_template/outpost)

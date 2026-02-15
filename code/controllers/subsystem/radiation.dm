@@ -1,12 +1,12 @@
 PROCESSING_SUBSYSTEM_DEF(radiation)
 	name = "Radiation"
-	flags = SS_BACKGROUND	// [CELADON-EDIT] - CELADON_FIXES_RADIATION // flags = SS_NO_INIT | SS_BACKGROUND	// ORIGINAL
+	flags = SS_BACKGROUND	// [MANKIND-EDIT] - MANKIND_FIXES_RADIATION // flags = SS_NO_INIT | SS_BACKGROUND	// ORIGINAL
 	wait = 1 SECONDS
 
 	var/list/warned_atoms = list()
 
-	// Максимальное значение радиации для предотвращения чрезмерного накопления // [CELADON-ADD]
-	var/max_radiation_value = 500000	// [CELADON-ADD] - CELADON_FIXES_RADIATION
+	// Максимальное значение радиации для предотвращения чрезмерного накопления // [MANKIND-ADD]
+	var/max_radiation_value = 500000	// [MANKIND-ADD] - MANKIND_FIXES_RADIATION
 
 /datum/controller/subsystem/processing/radiation/proc/warn(datum/component/radioactive/contamination)
 	if(!contamination || !contamination.parent || QDELETED(contamination))
@@ -20,7 +20,7 @@ PROCESSING_SUBSYSTEM_DEF(radiation)
 	var/msg = "has become contaminated with enough radiation to contaminate other objects. || Source: [contamination.source] || Strength: [contamination.strength]"
 	master.investigate_log(msg, INVESTIGATE_RADIATION)
 
-// [CELADON-ADD] - CELADON_FIXES_RADIATION
+// [MANKIND-ADD] - MANKIND_FIXES_RADIATION
 /datum/controller/subsystem/processing/radiation/Initialize()
 	. = ..()
 	// Проверяем и исправляем существующие высокие значения радиации
@@ -35,4 +35,4 @@ PROCESSING_SUBSYSTEM_DEF(radiation)
 	if(value > max_radiation_value)
 		return max_radiation_value
 	return value
-// [/CELADON-ADD]
+// [/MANKIND-ADD]

@@ -259,12 +259,12 @@
 				if(!(stop_automated_movement_when_pulled && pulledby)) //Some animals don't move when pulled
 					var/anydir = pick(GLOB.cardinals)
 					if(Process_Spacemove(anydir))
-						// [CELADON-EDIT] - FIXES_MOVE_DIAGONAL_MOBS - Проверка на диагональное движение
+						// [MANKIND-EDIT] - FIXES_MOVE_DIAGONAL_MOBS - Проверка на диагональное движение
 						// Move(get_step(src, anydir), anydir) // ORIGINAL
 						var/turf/target = get_step(src, anydir)
 						if(target && can_move_to_turf(target, anydir))
 							Move(target, anydir)
-						// [/CELADON-EDIT]
+						// [/MANKIND-EDIT]
 							turns_since_move = 0
 			return 1
 

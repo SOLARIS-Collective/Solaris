@@ -80,16 +80,16 @@
 	name = "asteroid field (moderate)"
 	desc = "An area of space rich with asteroids, going fast through here could prove dangerous"
 	base_icon_state = "meteor_medium_"
-	// [CELADON-REMOVE] - CELADON_OVERMAP_ICON - спрайты некросивые получаюца
+	// [MANKIND-REMOVE] - MANKIND_OVERMAP_ICON - спрайты некросивые получаюца
 	// default_color = "#a08444"
-	// [/CELADON-REMOVE]
+	// [/MANKIND-REMOVE]
 	chance_to_affect = 15
 	spread_chance = 50
 	chain_rate = 4
 	interference_power = 15
 
 	empty_space_mapgen = /datum/map_generator/planet_generator/asteroid
-	// [CELADON-EDIT] - CELADON_FIXES
+	// [MANKIND-EDIT] - MANKIND_FIXES
 	// var/safe_speed = 3
 	// var/list/meteor_types = list(
 	// 	/obj/effect/meteor/dust=3,
@@ -113,7 +113,7 @@
 		/obj/item/stack/ore/plasma,
 		/obj/item/stack/ore/iron,
 		)
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 
 /datum/overmap/event/meteor/alter_token_appearance()
 	icon_suffix = "[rand(1, 4)]"
@@ -180,13 +180,13 @@
 /datum/overmap/event/emp
 	name = "electromagnetic storm (moderate)"
 	desc = "A heavily ionized area of space, prone to causing electromagnetic pulses in ships"
-	// [CELADON-EDIT] - CELADON_OVERMAP_ICON - спрайты некросивые получаюца
+	// [MANKIND-EDIT] - MANKIND_OVERMAP_ICON - спрайты некросивые получаюца
 	// base_icon_state = "emp_medium_"	// ORIGINAL
 	base_icon_state = "emp_moderate_"
-	// [/CELADON-EDIT]
-	// [CELADON-REMOVE] - CELADON_OVERMAP_ICON - спрайты некросивые получаюца
+	// [/MANKIND-EDIT]
+	// [MANKIND-REMOVE] - MANKIND_OVERMAP_ICON - спрайты некросивые получаюца
 	// default_color = "#4066ff"
-	// [/CELADON-REMOVE]
+	// [/MANKIND-REMOVE]
 	spread_chance = 20
 	chain_rate = 2
 	chance_to_affect = 30
@@ -252,9 +252,9 @@
 	name = "solar flare (moderate)"
 	desc = "A area with very high level of the local ejected mass from the sun, causing fires in ships"
 	base_icon_state = "flare_medium_"
-	// [CELADON-REMOVE] - CELADON_OVERMAP_ICON - спрайты некросивые получаюца
+	// [MANKIND-REMOVE] - MANKIND_OVERMAP_ICON - спрайты некросивые получаюца
 	// default_color = "#f65f00"
-	// [/CELADON-REMOVE]
+	// [/MANKIND-REMOVE]
 	spread_chance = 20
 	chain_rate = 2
 	chance_to_affect = 20
@@ -320,20 +320,20 @@
 	name = "electrical storm (moderate)"
 	desc = "A buildup of static electrity, an unfortunately common sight on the frontier. Disturbing it tends to lead to intense electrical discharges"
 	base_icon_state = "electrical_medium_"
-	// [CELADON-REMOVE] - CELADON_OVERMAP_ICON - спрайты некросивые получаюца
+	// [MANKIND-REMOVE] - MANKIND_OVERMAP_ICON - спрайты некросивые получаюца
 	// default_color = "#e8e85c"
-	// [/CELADON-REMOVE]
+	// [/MANKIND-REMOVE]
 	chance_to_affect = 15
 	spread_chance = 30
 	chain_rate = 3
 	interference_power = 15
-// [CELADON-EDIT] - DANGER_STORM
+// [MANKIND-EDIT] - DANGER_STORM
 	var/zap_flag = ZAP_MINOR_STORM_FLAGS
 	var/max_damage = 3000
 	var/min_damage = 1000
 	var/max_zap_strike = 8
 	var/min_zap_strike = 4
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 
 /datum/overmap/event/electric/alter_token_appearance()
 	icon_suffix = "[rand(1, 4)]"
@@ -342,7 +342,7 @@
 		token.color = current_overmap.hazard_primary_color
 	current_overmap.post_edit_token_state(src)
 
-// [CELADON-EDIT]- DANGER_STORM
+// [MANKIND-EDIT]- DANGER_STORM
 /datum/overmap/event/electric/affect_ship(datum/overmap/ship/controlled/S)
 	if(!(locate(S) in get_nearby_overmap_objects()))
 		return
@@ -362,7 +362,7 @@
 
 		if(i < zap_strike)
 			sleep(1 SECONDS)
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 
 
 /datum/overmap/event/electric/modify_emptyspace_mapgen(datum/overmap/dynamic/our_planet)
@@ -377,8 +377,8 @@
 	chain_rate = 2
 	max_damage = 1000
 	min_damage = 500
-	max_zap_strike = 4	// [CELADON-EDIT] - DANGER_STORM
-	min_zap_strike = 2	// [CELADON-EDIT] - DANGER_STORM
+	max_zap_strike = 4	// [MANKIND-EDIT] - DANGER_STORM
+	min_zap_strike = 2	// [MANKIND-EDIT] - DANGER_STORM
 
 /datum/overmap/event/electric/major
 	name = "electrical storm (major)"
@@ -388,24 +388,24 @@
 	chain_rate = 6
 	max_damage = 5000
 	min_damage = 3000
-// [CELADON-EDIT] - DANGER_STORM
+// [MANKIND-EDIT] - DANGER_STORM
 	zap_flag = ZAP_MAJOR_STORM_FLAGS
 	max_zap_strike = 12
-	min_zap_strike = 6	
-// [/CELADON-EDIT]
+	min_zap_strike = 6
+// [/MANKIND-EDIT]
 
 /datum/overmap/event/nebula
 	name = "nebula"
 	desc = "Beware of modular code."
-	// [CELADON-EDIT] - CELADON_OVERMAP_ICON - спрайты некросивые получаюца
+	// [MANKIND-EDIT] - MANKIND_OVERMAP_ICON - спрайты некросивые получаюца
 	// token_icon_state = "nebula"
-	// base_icon_state = "nebula"	// CELADON-EDIT - ORIGINAL
+	// base_icon_state = "nebula"	// ORIGINAL
 	token_icon_state = "nebula_1"
 	base_icon_state = "nebula_1"
-	// [/CELADON-EDIT]
-	// [CELADON-REMOVE] - CELADON_OVERMAP_ICON - спрайты некросивые получаюца
+	// [/MANKIND-EDIT]
+	// [MANKIND-REMOVE] - MANKIND_OVERMAP_ICON - спрайты некросивые получаюца
 	// default_color = "#c053f3"
-	// [/CELADON-REMOVE]
+	// [/MANKIND-REMOVE]
 
 	chain_rate = 8
 	spread_chance = 75
@@ -421,11 +421,11 @@
 	if(current_overmap.override_object_colors)
 		token.color = current_overmap.hazard_secondary_color
 	token.opacity = TRUE
-// // [CELADON-EDIT] - CELADON_OVERMAP_ICON - спрайты некросивые получаюца
+// // [MANKIND-EDIT] - MANKIND_OVERMAP_ICON - спрайты некросивые получаюца
 // //	token.color = "#c053f3"
-// //	token.light_color = "#c053f3"	// CELADON-EDIT - ORIGINAL
+// //	token.light_color = "#c053f3"	// ORIGINAL
 	token.icon_state = "nebula_[rand(1, 4)]"
-// // [/CELADON-EDIT]
+// // [/MANKIND-EDIT]
 // 	token.update_appearance()
 	current_overmap.post_edit_token_state(src)
 
@@ -507,13 +507,13 @@
 
 //Carp "meteors" - throws carp at the ship
 
-/datum/overmap/event/meteor/carp	// вынесено в mod_celadon/fixes/code/research_mission.dm, оставлено дял того чтобы не удалять кучу зависимостей
+/datum/overmap/event/meteor/carp	// вынесено в modular_mankind/fixes/code/research_mission.dm, оставлено дял того чтобы не удалять кучу зависимостей
 	name = "carp migration (moderate)"
 	desc = "A migratory school of space carp. They travel at high speeds, and flying through them may cause them to impact your ship"
 	base_icon_state = "carp_medium_"
-	// [CELADON-REMOVE] - CELADON_OVERMAP_ICON - спрайты некросивые получаюца
+	// [MANKIND-REMOVE] - MANKIND_OVERMAP_ICON - спрайты некросивые получаюца
 	// default_color = "#7b1ca8"
-	// [/CELADON-REMOVE]
+	// [/MANKIND-REMOVE]
 	chance_to_affect = 15
 	spread_chance = 50
 	chain_rate = 4
@@ -556,13 +556,13 @@
 
 // dust clouds throw dust if you go Way Fast
 
-/datum/overmap/event/meteor/dust	// вынесено в mod_celadon/fixes/code/research_mission.dm, оставлено дял того чтобы не удалять кучу зависимостей
+/datum/overmap/event/meteor/dust	// вынесено в modular_mankind/fixes/code/research_mission.dm, оставлено дял того чтобы не удалять кучу зависимостей
 	name = "dust cloud"
 	desc = "A cloud of spaceborne dust. Relatively harmless, unless you're travelling at relative speeds"
 	base_icon_state = "dust"
-	// [CELADON-REMOVE] - CELADON_OVERMAP_ICON - спрайты некросивые получаюца
+	// [MANKIND-REMOVE] - MANKIND_OVERMAP_ICON - спрайты некросивые получаюца
 	// default_color = "#506469"
-	// [/CELADON-REMOVE]
+	// [/MANKIND-REMOVE]
 	chance_to_affect = 90
 	spread_chance = 50
 	chain_rate = 4
@@ -584,9 +584,9 @@
 	name = "anomaly field"
 	desc = "A highly anomalous area of space, disturbing it leads to the manifestation of odd spatial phenomena"
 	base_icon_state = "anomaly"
-	// [CELADON-REMOVE] - CELADON_OVERMAP_ICON - спрайты некросивые получаюца
+	// [MANKIND-REMOVE] - MANKIND_OVERMAP_ICON - спрайты некросивые получаюца
 	// default_color = "#d6c633"
-	// [/CELADON-REMOVE]
+	// [/MANKIND-REMOVE]
 	chance_to_affect = 10
 	spread_chance = 35
 	chain_rate = 6
@@ -617,19 +617,19 @@ GLOBAL_LIST_INIT(overmap_event_pick_list, list(
 	/datum/overmap/event/electric/minor = 45,
 	/datum/overmap/event/electric = 40,
 	/datum/overmap/event/electric/major = 35,
-	// [CELADON-ADD] - CELADON_OVERMAP - Включаем на овермапе ионные шторма
+	// [MANKIND-ADD] - MANKIND_OVERMAP - Включаем на овермапе ионные шторма
 	/datum/overmap/event/emp/minor = 25,
 	/datum/overmap/event/emp = 20,
 	/datum/overmap/event/emp/major = 25,
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 	/datum/overmap/event/meteor/minor = 45,
 	/datum/overmap/event/meteor = 40,
 	/datum/overmap/event/meteor/major = 35,
-	// [CELADON-EDIT] - CELADON_FIXES - Выносим в свои категории ивенты
+	// [MANKIND-EDIT] - MANKIND_FIXES - Выносим в свои категории ивенты
 	// /datum/overmap/event/meteor/carp/minor = 45,
 	// /datum/overmap/event/meteor/carp = 35,
 	// /datum/overmap/event/meteor/carp/major = 20,
-	// /datum/overmap/event/meteor/dust = 50,	// CELADON-EDIT - ORIGINAL
+	// /datum/overmap/event/meteor/dust = 50,	// ORIGINAL
 	/datum/overmap/event/carp/minor = 45,
 	/datum/overmap/event/carp = 35,
 	/datum/overmap/event/carp/major = 20,
@@ -637,7 +637,7 @@ GLOBAL_LIST_INIT(overmap_event_pick_list, list(
 	// /datum/overmap/event/rad/minor = 20,	// Отключено по причине плохой реализации
 	// /datum/overmap/event/rad = 20,
 	// /datum/overmap/event/rad/major = 20,
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 	/datum/overmap/event/anomaly = 10
 ))
 
@@ -646,9 +646,9 @@ GLOBAL_LIST_INIT(overmap_event_pick_list, list(
 	name = "radiation storm (moderate)"
 	desc = "An area with a high concentration of gamma rays. Better not take long here."
 	base_icon_state = "gamma_medium_"
-	// [CELADON-REMOVE] - CELADON_OVERMAP_ICON - спрайты некросивые получаюца
+	// [MANKIND-REMOVE] - MANKIND_OVERMAP_ICON - спрайты некросивые получаюца
 	// default_color = "#d651c2"
-	// [/CELADON-REMOVE]
+	// [/MANKIND-REMOVE]
 	spread_chance = 20
 	chain_rate = 2
 	chance_to_affect = 60
@@ -697,9 +697,9 @@ GLOBAL_LIST_INIT(overmap_event_pick_list, list(
 	name = "debris field (moderate)"
 	desc = "An area full of scrap metal, going fast through here could prove dangerous"
 	base_icon_state = "debris_medium_"
-	// [CELADON-REMOVE] - CELADON_OVERMAP_ICON - спрайты некросивые получаюца
+	// [MANKIND-REMOVE] - MANKIND_OVERMAP_ICON - спрайты некросивые получаюца
 	// default_color = "#b8ccbf"
-	// [/CELADON-REMOVE]
+	// [/MANKIND-REMOVE]
 	chance_to_affect = 15
 	spread_chance = 50
 	chain_rate = 4
@@ -707,14 +707,14 @@ GLOBAL_LIST_INIT(overmap_event_pick_list, list(
 	var/blocks_sight = TRUE
 
 	empty_space_mapgen = /datum/map_generator/planet_generator/asteroid
-	safe_speed = 3	// [CELADON-ADD] - CELADON_BALANCE_OVERMAP_EVENTS
+	safe_speed = 3	// [MANKIND-ADD] - MANKIND_BALANCE_OVERMAP_EVENTS
 
 /datum/overmap/event/meteor/debris/alter_token_appearance()
 	. = ..()
 	if(blocks_sight)
 		token.opacity = TRUE
 	current_overmap.post_edit_token_state(src)
-	// [CELADON-ADD] - CELADON_BALANCE_OVERMAP_EVENTS
+	// [MANKIND-ADD] - MANKIND_BALANCE_OVERMAP_EVENTS
 	switch(safe_speed)
 		if (1)
 			safe_speed = rand(1, 3)
@@ -722,7 +722,7 @@ GLOBAL_LIST_INIT(overmap_event_pick_list, list(
 			safe_speed = rand(3, 5)
 		if (5)
 			safe_speed = rand(5, 7)
-	// [CELADON-ADD]
+	// [MANKIND-ADD]
 
 /datum/overmap/event/meteor/debris/minor
 	name = "debris field (minor)"
@@ -755,4 +755,4 @@ GLOBAL_LIST_INIT(overmap_event_pick_list, list(
 		/obj/effect/meteor/big=25,
 		/obj/effect/meteor/flaming=10,
 	)
-	safe_speed = 1	// [CELADON-ADD] - CELADON_BALANCE_OVERMAP_EVENTS
+	safe_speed = 1	// [MANKIND-ADD] - MANKIND_BALANCE_OVERMAP_EVENTS

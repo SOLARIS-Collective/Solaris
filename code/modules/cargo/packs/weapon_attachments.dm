@@ -1,5 +1,5 @@
-/* [CELADON-DELETE] - Убираем инициализацию офовских предметов.
-	Разносим ресурсы по разным фракциям: "mod_celadon\outpost_console\code\supply_pack"
+/* [MANKIND-REMOVE] - Убираем инициализацию офовских предметов.
+	Разносим ресурсы по разным фракциям: "modular_mankind\outpost_console\code\supply_pack"
 
 // the ever continuing guncode growth. if only we had this passion for engineering.
 
@@ -112,4 +112,4 @@
 	crate_name = "underbarrel flare gun crate"
 
 
-[/CELADON-DELETE] */
+[/MANKIND-REMOVE] */

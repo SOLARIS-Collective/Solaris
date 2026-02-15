@@ -221,13 +221,13 @@
 	name = "oculine autoinjector"
 	desc = "An autoinjector designed to promote the repair of the cornea and the retina after damage."
 	list_reagents = list(/datum/reagent/medicine/inacusiate = 10)
-	custom_price = 70 // [CELADON-EDIT] - OUTPOST_MED_BALANCE // custom_price = 100
+	custom_price = 70 // [MANKIND-EDIT] - OUTPOST_MED_BALANCE // custom_price = 100
 
 /obj/item/reagent_containers/hypospray/medipen/inacusiate
 	name = "inacusiate autoinjector"
 	desc = "An autoinjector designed to rapidly restore hearing after acute hearing loss."
 	list_reagents = list(/datum/reagent/medicine/inacusiate = 10)
-	custom_price = 70 // [CELADON-EDIT] - OUTPOST_MED_BALANCE // custom_price = 100
+	custom_price = 70 // [MANKIND-EDIT] - OUTPOST_MED_BALANCE // custom_price = 100
 
 /obj/item/reagent_containers/hypospray/medipen/atropine
 	name = "atropine autoinjector"
@@ -236,7 +236,7 @@
 	item_state = "atropen"
 	base_icon_state = "atropen"
 	list_reagents = list(/datum/reagent/medicine/atropine = 10)
-	custom_price = 75 // [CELADON-EDIT] - OUTPOST_MED_BALANCE // custom_price = 100
+	custom_price = 75 // [MANKIND-EDIT] - OUTPOST_MED_BALANCE // custom_price = 100
 
 /obj/item/reagent_containers/hypospray/medipen/pumpup
 	name = "maintenance pump-up"
@@ -270,7 +270,7 @@
 	list_reagents = list(/datum/reagent/medicine/diphenhydramine = 10)
 	volume = 10
 	amount_per_transfer_from_this = 10
-	custom_price = 50 // [CELADON-ADD] - OUTPOST_MED_BALANCE
+	custom_price = 50 // [MANKIND-ADD] - OUTPOST_MED_BALANCE
 
 /obj/item/reagent_containers/hypospray/medipen/psicodine
 	name = "psicodine injector"
@@ -307,7 +307,7 @@
 	icon_state = "morphen"
 	base_icon_state = "morphen"
 	item_state = "morphen"
-	custom_price = 50 // [CELADON-ADD] - OUTPOST_MED_BALANCE
+	custom_price = 50 // [MANKIND-ADD] - OUTPOST_MED_BALANCE
 
 /obj/item/reagent_containers/hypospray/medipen/mannitol
 	name = "mannitol injector"
@@ -318,7 +318,7 @@
 	icon_state = "brainpen"
 	base_icon_state = "brainpen"
 	item_state = "brainpen"
-	custom_price = 70 // [CELADON-ADD] - OUTPOST_MED_BALANCE
+	custom_price = 70 // [MANKIND-ADD] - OUTPOST_MED_BALANCE
 
 /obj/item/reagent_containers/hypospray/medipen/neurine
 	name = "neurine injector"
@@ -329,7 +329,7 @@
 	icon_state = "brainpen"
 	base_icon_state = "brainpen"
 	item_state = "brainpen"
-	custom_price = 70 // [CELADON-ADD] - OUTPOST_MED_BALANCE
+	custom_price = 70 // [MANKIND-ADD] - OUTPOST_MED_BALANCE
 
 /obj/item/reagent_containers/hypospray/medipen/badstop
 	name = "Stabilizer injector"

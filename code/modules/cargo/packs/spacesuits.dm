@@ -1,5 +1,5 @@
-/* [CELADON-DELETE] - Убираем инициализацию офовских предметов.
-	Разносим ресурсы по разным фракциям: "mod_celadon\outpost_console\code\supply_pack"
+/* [MANKIND-REMOVE] - Убираем инициализацию офовских предметов.
+	Разносим ресурсы по разным фракциям: "modular_mankind\outpost_console\code\supply_pack"
 
 /datum/supply_pack/spacesuits
 	category = "Spacesuits"
@@ -437,4 +437,4 @@
 	faction_locked = TRUE
 
 
-[/CELADON-DELETE] */
+[/MANKIND-REMOVE] */

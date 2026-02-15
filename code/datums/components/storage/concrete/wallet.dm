@@ -1,4 +1,4 @@
-/* // [CELADON-REMOVE] - DONT_ALTCLICK_WALLET - Где карта? Нам нужна карта
+/* // [MANKIND-REMOVE] - DONT_ALTCLICK_WALLET - Где карта? Нам нужна карта
 /datum/component/storage/concrete/wallet/open_storage(mob/user)
 	if(!isliving(user) || !user.CanReach(parent) || user.incapacitated())
 		return FALSE

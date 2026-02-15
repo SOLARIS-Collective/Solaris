@@ -295,17 +295,17 @@
 			else if(T.dna.species.is_wagging_tail()) // lizard tail wagging is robust and can swat away assailants!
 				defense_mod += 1
 
-		// [CELADON-ADD] - TAJARA - Tajara without tails are off-balance
+		// [MANKIND-ADD] - TAJARA - Tajara without tails are off-balance
 		if(istajara(T))
 			if(!T.getorganslot(ORGAN_SLOT_TAIL))
 				defense_mod -= 1
-		// [/CELADON-ADD]
+		// [/MANKIND-ADD]
 
-		// [CELADON-ADD] - CELADON_RIOL
+		// [MANKIND-ADD] - MANKIND_RIOL
 		if(isriol(T))
 			if(!T.getorganslot(ORGAN_SLOT_TAIL))
 				defense_mod -= 1
-		// [/CELADON-ADD]
+		// [/MANKIND-ADD]
 
 	// OF-FENSE
 	var/mob/living/carbon/sacker = parent

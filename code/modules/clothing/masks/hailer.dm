@@ -15,15 +15,15 @@
 	visor_flags_cover = MASKCOVERSMOUTH | MASKCOVERSEYES | PEPPERPROOF
 	supports_variations = VOX_VARIATION | SNOUTED_VARIATION | KEPORI_VARIATION
 
-// [CELADON-ADD]
+// [MANKIND-ADD]
 /obj/item/clothing/mask/gas/sechailer/sec
 	name = "security gas mask"
 	desc = "A standard issue Security gas mask. It doesn't cover the eyes."
-	icon = 'mod_celadon/_storage_icons/icons/items/clothing/mask/hailer.dmi'
-	mob_overlay_icon = 'mod_celadon/_storage_icons/icons/items/clothing/mask/overlay/hailer.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/items/clothing/mask/hailer.dmi'
+	mob_overlay_icon = 'modular_mankind/_storage_icons/icons/items/clothing/mask/overlay/hailer.dmi'
 	icon_state = "hailer"
 	item_state = "hailer"
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 /obj/item/clothing/mask/gas/sechailer/swat
 	name = "\improper SWAT mask"

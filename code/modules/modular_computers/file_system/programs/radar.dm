@@ -212,9 +212,9 @@
 	extended_desc = "This program allows for tracking of crew members via their suit sensors."
 	requires_ntnet = TRUE
 	transfer_access = ACCESS_MEDICAL
-	// [CELADON-EDIT] - Lifeline Minus - Отключаем из загрузки через NTNet оригинал
-	// available_on_ntnet = TRUE // CELADON-EDIT - ORIGINAL
-	// [/CELADON-EDIT]
+	// [MANKIND-EDIT] - Lifeline Minus - Отключаем из загрузки через NTNet оригинал
+	// available_on_ntnet = TRUE // ORIGINAL
+	// [/MANKIND-EDIT]
 	available_on_ntnet = FALSE
 	program_icon = "heartbeat"
 

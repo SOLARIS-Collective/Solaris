@@ -76,8 +76,8 @@ ID мода: MANKIND_MOBS
 
 ### Дефайны
 
-- `code/__DEFINES/~mod_mankind/roaches.dm` : `istool(A) istype(A, /obj/item)`
-- `code/__DEFINES/~mod_mankind/roaches.dm` : `isroach(A) istype(A, /mob/living/simple_animal/hostile/asteroid/roach)`
+- `code/__DEFINES/~modular_mankind/roaches.dm` : `istool(A) istype(A, /obj/item)`
+- `code/__DEFINES/~modular_mankind/roaches.dm` : `isroach(A) istype(A, /mob/living/simple_animal/hostile/asteroid/roach)`
 <!--
   Если требовалось добавить какие-либо дефайны, укажи файлы,
   в которые ты их добавил, а также перечисли имена.
@@ -88,8 +88,8 @@ ID мода: MANKIND_MOBS
 
 ### Используемые файлы, не содержащиеся в модпаке
 
-- `mod_mankind/_storage_icons/icons/mobs`
-- `mod_mankind/_storage_sounds/sound`
+- `modular_mankind/_storage_icons/icons/mobs`
+- `modular_mankind/_storage_sounds/sound`
 <!--
   Будь то немодульный файл или модульный файл, который не содержится в папке,
   принадлежащей этому конкретному моду, он должен быть упомянут здесь.

@@ -9,17 +9,17 @@
 /datum/gear/hat/hhat_yellow
 	display_name = "hardhat, yellow"
 	path = /obj/item/clothing/head/hardhat
-	// allowed_roles = list("Chief Engineer", "Engineer", "Atmospheric Technician")	// [CELADON-REMOVE] - CELADON_QOL_LOADOUT
+	// allowed_roles = list("Chief Engineer", "Engineer", "Atmospheric Technician")	// [MANKIND-REMOVE] - MANKIND_QOL_LOADOUT
 
 /datum/gear/hat/hhat_orange
 	display_name = "hardhat, orange"
 	path = /obj/item/clothing/head/hardhat/orange
-	// allowed_roles = list("Chief Engineer", "Engineer", "Atmospheric Technician")	// [CELADON-REMOVE] - CELADON_QOL_LOADOUT
+	// allowed_roles = list("Chief Engineer", "Engineer", "Atmospheric Technician")	// [MANKIND-REMOVE] - MANKIND_QOL_LOADOUT
 
 /datum/gear/hat/hhat_blue
 	display_name = "hardhat, blue"
 	path = /obj/item/clothing/head/hardhat/dblue
-	// allowed_roles = list("Chief Engineer", "Engineer", "Atmospheric Technician")	// [CELADON-REMOVE] - CELADON_QOL_LOADOUT
+	// allowed_roles = list("Chief Engineer", "Engineer", "Atmospheric Technician")	// [MANKIND-REMOVE] - MANKIND_QOL_LOADOUT
 
 //Motorcycle Helmets
 
@@ -75,16 +75,16 @@
 		"Curator" = /obj/item/clothing/head/beret/service,
 		"Janitor" = /obj/item/clothing/head/beret/service,
 		"Lawyer" = /obj/item/clothing/head/beret/service,
-// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 		"Mime" = /obj/item/clothing/head/beret,
 		"Clown" = /obj/item/clothing/head/beret/puce
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 	)
 
 /datum/gear/hat/beret/engineering/hazard
 	display_name = "beret, hazard"
 	path = /obj/item/clothing/head/beret/eng/hazard
-	// allowed_roles = list("Station Engineer", "Atmospheric Technician", "Chief Engineer")	// [CELADON-REMOVE] - CELADON_QOL_LOADOUT
+	// allowed_roles = list("Station Engineer", "Atmospheric Technician", "Chief Engineer")	// [MANKIND-REMOVE] - MANKIND_QOL_LOADOUT
 
 //Soft caps
 

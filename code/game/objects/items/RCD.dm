@@ -48,7 +48,7 @@ RLD
 	if(upgrade & RCD_UPGRADE_SILO_LINK)
 		silo_mats = AddComponent(/datum/component/remote_materials, "RCD", mapload, FALSE)
 
-// [CELADON-EDIT] - OMNI_TOOLS - Добавлены `span_notice() в сообщения`
+// [MANKIND-EDIT] - OMNI_TOOLS - Добавлены `span_notice() в сообщения`
 /obj/item/construction/examine(mob/user)
 	. = ..()
 	. += span_notice("It currently holds [matter]/[max_matter] matter-units.")
@@ -56,7 +56,7 @@ RLD
 		. += span_notice("Remote storage link state: [silo_link ? "[silo_mats.on_hold() ? "ON HOLD" : "ON"]" : "OFF"].")
 		if(silo_link && silo_mats.mat_container && !silo_mats.on_hold())
 			. += span_notice("Remote connection has iron in equivalent to [silo_mats.mat_container.get_material_amount(/datum/material/iron)/500] RCD unit\s.") //1 matter for 1 floor tile, as 4 tiles are produced from 1 metal
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 
 /obj/item/construction/Destroy()
 	QDEL_NULL(spark_system)

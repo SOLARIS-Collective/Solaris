@@ -53,7 +53,7 @@
 
 //data HUD (medhud, sechud) defines
 //Don't forget to update human/New() if you change these!
-// [CELADON-EDIT-FIX] - ФИКС СЕК-ХАДОВ ВРЕМЕННЫЙ
+// [MANKIND-EDIT] - ФИКС СЕК-ХАДОВ ВРЕМЕННЫЙ
 /*
 #define DATA_HUD_SECURITY_BASIC "sec_basic"
 #define DATA_HUD_SECURITY_ADVANCED "sec_adv"
@@ -80,7 +80,7 @@
 #define ANTAG_HUD_FUGITIVE "fugitive"
 #define ANTAG_HUD_GANGSTER "gangster"
 #define ANTAG_HUD_SPACECOP "spacecop"
-*/
+*/ // ORIGINAL
 //data HUD (medhud, sechud) defines
 //Don't forget to update human/New() if you change these!
 #define DATA_HUD_SECURITY_BASIC 1
@@ -108,7 +108,7 @@
 #define ANTAG_HUD_FUGITIVE 21
 #define ANTAG_HUD_GANGSTER 22
 #define ANTAG_HUD_SPACECOP 23
-// [/CELADON-EDIT-FIX]
+// [/MANKIND-EDIT]
 
 // Notification action types
 #define NOTIFY_JUMP "jump"

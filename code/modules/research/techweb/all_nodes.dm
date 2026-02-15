@@ -69,12 +69,12 @@
 	starting_node = TRUE
 	display_name = "Basic Medical Equipment"
 	description = "Basic medical tools and equipment."
-// [CELADON-EDIT] - OMNI_TOOLS
+// [MANKIND-EDIT] - OMNI_TOOLS
 //	design_ids = list("cybernetic_liver", "cybernetic_heart", "cybernetic_lungs", "cybernetic_stomach", "scalpel", "circular_saw", "bonesetter", "surgical_tape", "surgicaldrill", "retractor", "cautery", "hemostat",
 //					"syringe", "plumbing_rcd", "beaker", "large_beaker", "xlarge_beaker", "dropper", "defibmountdefault", "portable_chem_mixer")
 	design_ids = list("cybernetic_liver", "cybernetic_heart", "cybernetic_lungs", "cybernetic_stomach", "scalpel", "circular_saw", "bonesetter", "surgical_tape", "surgicaldrill", "retractor", "cautery", "hemostat",
 					"syringe", "healthanalyzer", "plumbing_rcd", "beaker", "large_beaker", "xlarge_beaker", "dropper", "defibmountdefault", "portable_chem_mixer")
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 
 /////////////////////////Biotech/////////////////////////
 /datum/techweb_node/biotech
@@ -82,10 +82,10 @@
 	display_name = "Biological Technology"
 	description = "What makes us tick."	//the MC, silly!
 	prereq_ids = list("base")
-// [CELADON-EDIT] - OMNI_TOOLS
+// [MANKIND-EDIT] - OMNI_TOOLS
 //	design_ids = list("sleeper", "chem_heater", "chem_master", "pandemic", "defibrillator", "defibmount", "operating", "soda_dispenser", "beer_dispenser", "healthanalyzer", "medigel", "med_spray_bottle", "chem_pack", "blood_pack", "medical_kiosk", "crewpinpointerprox", "medipen_refiller", "prosthetic_l_arm", "prosthetic_r_arm", "prosthetic_l_leg", "prosthetic_r_leg", "kprosthetic_l_arm", "kprosthetic_r_arm", "kprosthetic_l_leg", "kprosthetic_r_leg", "vprosthetic_l_arm", "vprosthetic_r_arm", "vprosthetic_l_leg", "vprosthetic_r_leg", "lprosthetic_l_arm", "lprosthetic_r_arm", "lprosthetic_l_leg", "lprosthetic_r_leg")
 	design_ids = list("sleeper", "chem_heater", "chem_master", "pandemic", "defibrillator", "defibmount", "operating", "soda_dispenser", "beer_dispenser", "healthanalyzer_ranged", "med_spray_bottle", "chem_pack", "blood_pack", "medical_kiosk", "crewpinpointerprox", "medipen_refiller", "prosthetic_l_arm", "prosthetic_r_arm", "prosthetic_l_leg", "prosthetic_r_leg", "kprosthetic_l_arm", "kprosthetic_r_arm", "kprosthetic_l_leg", "kprosthetic_r_leg", "vprosthetic_l_arm", "vprosthetic_r_arm", "vprosthetic_l_leg", "vprosthetic_r_leg", "lprosthetic_l_arm", "lprosthetic_r_arm", "lprosthetic_l_leg", "lprosthetic_r_leg")
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
@@ -103,7 +103,7 @@
 	display_name = "Xeno-organ Biology"
 	description = "Phytosians, even Skeletons... We finally understand the less well known species enough to replicate their anatomy."
 	prereq_ids = list("adv_biotech")
-	design_ids = list("tajaralong", "riollong", "limbdesign_abductor", "limbdesign_fly", "limbdesign_pod", "limbdesign_skeleton", "limbdesign_snail") // [CELADON-EDIT] - Adding tails - PR #1136
+	design_ids = list("tajaralong", "riollong", "limbdesign_abductor", "limbdesign_fly", "limbdesign_pod", "limbdesign_skeleton", "limbdesign_snail") // [MANKIND-EDIT] - Adding tails - PR #1136
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
@@ -175,7 +175,7 @@
 	description = "Big Data, in space!"
 	prereq_ids = list("base")
 	design_ids = list(
-		"survey-handheld-rnd-advanced",	// [CELADON-ADD] - RETURN_SURVEY
+		"survey-handheld-rnd-advanced",	// [MANKIND-ADD] - RETURN_SURVEY
 		"design_disk_adv"
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
@@ -424,7 +424,7 @@
 		"mining",
 		"rdcamera",
 		"seccamera",
-		"survey-handheld-rnd-elite",	// [CELADON-ADD] - RETURN_SURVEY
+		"survey-handheld-rnd-elite",	// [MANKIND-ADD] - RETURN_SURVEY
 		"design_disk_super",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2000)
@@ -455,10 +455,10 @@
 	display_name = "Computerized Recordkeeping"
 	description = "Organized record databases and how they're used."
 	prereq_ids = list("comptech")
-// [CELADON-ADD] - RETURN_SURVEY
+// [MANKIND-ADD] - RETURN_SURVEY
 //	design_ids = list("secdata", "med_data", "prisonmanage", "vendor", "automated_announcement", "design_disk_elite")
 	design_ids = list("secdata", "med_data", "prisonmanage", "vendor", "automated_announcement", "survey-handheld-rnd-exp", "design_disk_elite")
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 1000)
 	export_price = 2000
 
@@ -605,10 +605,10 @@
 	id = "exp_tools"
 	display_name = "Experimental Tools"
 	description = "Highly advanced tools."
-// [CELADON-EDIT] - OMNI_TOOLS
+// [MANKIND-EDIT] - OMNI_TOOLS
 //	design_ids = list("jawsoflife", "handdrill", "laserscalpel", "mechanicalpinches", "searingtool")
 	design_ids = list("jawsoflife", "handdrill", "tricorder", "adv_gas_analazyer", "laserscalpel", "mechanicalpinches", "searingtool")
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 	prereq_ids = list("adv_engi")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
@@ -718,12 +718,12 @@
 	display_name = "Advanced Ballistics"
 	description = "Refined ballistic ammunition for extra combat trauma."
 	prereq_ids = list("ballistic_weapons", "adv_engi")
-	// [CELADON-EDIT] - CELADON_WEAPONS - Новое пушки и патроны
-	// design_ids = list("ap9mm", "ap10mm", "ap45", "hp9mm", "hp10mm", "hp45", "ap556mmHITP", "hp556mmHITP") // CELADON-EDIT - ORIGINAL
-	// research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500) // CELADON-EDIT - ORIGINAL
+	// [MANKIND-EDIT] - MANKIND_WEAPONS - Новое пушки и патроны
+	// design_ids = list("ap9mm", "ap10mm", "ap45", "hp9mm", "hp10mm", "hp45", "ap556mmHITP", "hp556mmHITP") // ORIGINAL
+	// research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500) // ORIGINAL
 	design_ids = list("ap9mm", "ap10mm", "ap45", "hp9mm", "hp10mm", "hp45", "ap556mmHITP", "hp556mmHITP","a556surp","a308_brak")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 7500)
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 
 /datum/techweb_node/exotic_ammo
 	id = "exotic_ammo"
@@ -1137,26 +1137,26 @@
 	description = "Research the technology required to create and use basic shuttles."
 	prereq_ids = list("bluespace_travel", "adv_engi")
 	design_ids = list("engine_plasma", "engine_fire", "engine_ion", "engine_heater", "engine_fire_heater", "engine_smes", "shuttle_helm", "rapid_shuttle_designator")
-	// [CELADON-EDIT] - CELADON_BALANCE - Трогаем РнД
-	// research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000) // CELADON-EDIT - ORIGINAL
-	// export_price = 5000 // CELADON-EDIT - ORIGINAL
+	// [MANKIND-EDIT] - MANKIND_BALANCE - Трогаем РнД
+	// research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000) // ORIGINAL
+	// export_price = 5000 // ORIGINAL
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 2500
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 
 /datum/techweb_node/exp_shuttle_tech
 	id = "exp_shuttle"
 	display_name = "Experimental Shuttle Research"
 	description = "A bunch of engines and related shuttle parts that are likely not really that useful, but could be in strange situations."
-	// [CELADON-EDIT] - CELADON_BALANCE - Трогаем РнД
-	// prereq_ids = list("basic_shuttle") // CELADON-EDIT - ORIGINAL
+	// [MANKIND-EDIT] - MANKIND_BALANCE - Трогаем РнД
+	// prereq_ids = list("basic_shuttle") // ORIGINAL
 	prereq_ids = list("t3_ion")
 	design_ids = list("engine_expulsion")
-	// research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000) // CELADON-EDIT - ORIGINAL
-	// export_price = 2500 // CELADON-EDIT - ORIGINAL
+	// research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000) // ORIGINAL
+	// export_price = 2500 // ORIGINAL
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 7500)
 	export_price = 7500
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 
 ////////////////////// IPC Parts ///////////////////////
 /datum/techweb_node/ipc_organs

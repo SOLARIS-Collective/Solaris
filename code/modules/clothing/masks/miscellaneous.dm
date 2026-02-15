@@ -64,12 +64,12 @@
 	desc = "Express your happiness or hide your sorrows with this laughing face with crying tears of joy cutout."
 	icon_state = "joy"
 
-// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 /obj/item/clothing/mask/spamton
 	name = "Cursed Businessman's Mask"
-	icon = 'mod_celadon/_storage_icons/icons/other/clown_mime/masks.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/other/clown_mime/masks.dmi'
 	icon_state = "big_shot"
-	mob_overlay_icon = 'mod_celadon/_storage_icons/icons/other/clown_mime/mask.dmi'
+	mob_overlay_icon = 'modular_mankind/_storage_icons/icons/other/clown_mime/mask.dmi'
 	item_state = "big_shot"
 	clothing_flags = ALLOWINTERNALS
 	visor_flags = ALLOWINTERNALS
@@ -99,7 +99,7 @@
 	var/message = speech_args[SPEECH_MESSAGE]
 	if(message[1] != "*")
 		message = " [message]"
-		var/list/spamton_words = strings_load("spamton_replacement.json", "spamton", "mod_celadon/return_content_clowns/code/mime")
+		var/list/spamton_words = strings_load("spamton_replacement.json", "spamton", "modular_mankind/return_content_clowns/code/mime")
 
 		for(var/key in spamton_words)
 			var/value = spamton_words[key]
@@ -115,7 +115,7 @@
 /obj/item/clothing/mask/spamton/Initialize()
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NODROP, CURSED_MASK_TRAIT)
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 /obj/item/clothing/mask/pig
 	name = "pig mask"

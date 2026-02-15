@@ -39,11 +39,11 @@
 	alt_suit = /obj/item/clothing/suit/ianshirt
 	dcoat = /obj/item/clothing/suit/hooded/wintercoat/captain //WS Edit - Alt Uniforms
 	shoes = /obj/item/clothing/shoes/sneakers/brown
-	// [CELADON-EDIT] - CELADON_BALANCE - Убираем телескопички
+	// [MANKIND-EDIT] - MANKIND_BALANCE - Убираем телескопички
 	// backpack_contents = list(/obj/item/storage/box/ids=1,
-	// /obj/item/melee/classic_baton/telescopic=1, /obj/item/modular_computer/tablet/preset/advanced = 1)	// CELADON-EDIT - ORIGINAL
+	// /obj/item/melee/classic_baton/telescopic=1, /obj/item/modular_computer/tablet/preset/advanced = 1)	// ORIGINAL
 	backpack_contents = list(/obj/item/storage/box/ids=1, /obj/item/modular_computer/tablet/preset/advanced = 1)
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 
 	backpack = /obj/item/storage/backpack/captain
 	satchel = /obj/item/storage/backpack/satchel/cap

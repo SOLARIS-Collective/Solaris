@@ -551,11 +551,11 @@
 	return
 
 /obj/mecha/proc/handle_unique_action(mob/user)
-// [CELADON-EDIT] - FIX_MECH
-//	mech_unique_action.Activate() // CELADON-EDIT - ORIGINAL
+// [MANKIND-EDIT] - FIX_MECH
+//	mech_unique_action.Activate() // ORIGINAL
 	if(mech_unique_action)
 		mech_unique_action.Activate()
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 	return
 
 
@@ -1001,9 +1001,9 @@
 		else if(user.has_buckled_mobs())
 			to_chat(user, span_warning("You can't enter the exosuit with other creatures attached to you!"))
 		else
-// [CELADON-ADD] - FIX_MECH
+// [MANKIND-ADD] - FIX_MECH
 			ADD_TRAIT(M, TRAIT_HANDS_BLOCKED, VEHICLE_TRAIT)
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 			moved_inside(user)
 	else
 		to_chat(user, span_warning("You stop entering the exosuit!"))
@@ -1011,10 +1011,10 @@
 // wake up should go off here
 /obj/mecha/proc/moved_inside(mob/living/carbon/human/H)
 	. = FALSE
-// [CELADON-ADD] - FIX_MECH
+// [MANKIND-ADD] - FIX_MECH
 	if(ishuman(H) && !Adjacent(H))
 		return FALSE
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 	if(H && H.client && (H in range(1)))
 		occupant = H
 		H.forceMove(src)
@@ -1161,9 +1161,9 @@
 	silicon_pilot = FALSE
 	SEND_SIGNAL(src,COMSIG_MECH_EXITED,L)
 	if(mob_container.forceMove(newloc))//ejecting mob container
-// [CELADON-ADD] - FIX_MECH
+// [MANKIND-ADD] - FIX_MECH
 		REMOVE_TRAIT(L, TRAIT_HANDS_BLOCKED, VEHICLE_TRAIT)
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 		log_message("[mob_container] moved out.", LOG_MECHA)
 		L << browse(null, "window=exosuit")
 
@@ -1345,8 +1345,8 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 /// Sets the direction of the mecha and all of its occcupents, required for FOV. Alternatively one could make a recursive contents registration and register topmost direction changes in the fov component
 /obj/mecha/proc/set_dir_mecha(new_dir)
 	setDir(new_dir)
-// [CELADON-EDIT] - FIX_MECH
-//	occupant.setDir(new_dir) // CELADON-EDIT - ORIGINAL
+// [MANKIND-EDIT] - FIX_MECH
+//	occupant.setDir(new_dir) // ORIGINAL
 	if(!occupant == null)
 		occupant.setDir(new_dir)
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]

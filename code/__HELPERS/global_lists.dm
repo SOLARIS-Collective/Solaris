@@ -32,7 +32,7 @@
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/moth_markings, GLOB.moth_markings_list)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/moth_fluff, GLOB.moth_fluff_list)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/squid_face, GLOB.squid_face_list)
-	init_sprite_accessory_subtypes(/datum/sprite_accessory/ipc_hair, GLOB.ipc_hair_list) // [CELADON-ADD] - CELADON_IPC_HAIR
+	init_sprite_accessory_subtypes(/datum/sprite_accessory/ipc_hair, GLOB.ipc_hair_list) // [MANKIND-ADD] - MANKIND_IPC_HAIR
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/ipc_screens, GLOB.ipc_screens_list)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/ipc_antennas, GLOB.ipc_antennas_list)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/ipc_tail, GLOB.ipc_tail_list)
@@ -49,7 +49,7 @@
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/elzu_horns,GLOB.elzu_horns_list)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/tails/elzu, GLOB.tails_list_elzu)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/tails_animated/elzu, GLOB.animated_tails_list_elzu)
-	// [CELADON-ADD] - TAJARA
+	// [MANKIND-ADD] - TAJARA
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/tajara_chest_markings, GLOB.tajara_chest_markings_list)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/tajara_body_markings, GLOB.tajara_body_markings_list)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/tajara_facial_hairs, GLOB.tajara_facial_hairs_list)
@@ -60,7 +60,7 @@
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/tails_animated/tajara, GLOB.tajara_animated_tail_list)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/tajara_hairs, GLOB.tajara_hairs_list)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/tajara_ears, GLOB.tajara_ears_list)
-	// [CELADON-ADD] - CELADON_RIOL
+	// [MANKIND-ADD] - MANKIND_RIOL
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/riol_chest_markings, 		GLOB.riol_chest_markings_list)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/riol_body_markings, 			GLOB.riol_body_markings_list)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/riol_facial_hairs, 			GLOB.riol_facial_hairs_list)
@@ -74,7 +74,7 @@
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/tails_animated/riol, 		GLOB.riol_animated_tail_list)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/riol_hairs, 					GLOB.riol_hairs_list)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/riol_ears, 					GLOB.riol_ears_list)
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 
 	//Species
 	for(var/spath in subtypesof(/datum/species))

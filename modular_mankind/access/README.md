@@ -30,7 +30,7 @@ ID мода: MANKIND_ACCESS
 -->
 
 ### Используется в других проектах?
-- 'mod_mankind/stuff_elysium/code/outfits.dm'
+- 'modular_mankind/stuff_elysium/code/outfits.dm'
 <!--
   ВНИМАНИЕ!
   Заполняется другими авторами, кто использует этот модпак или
@@ -67,7 +67,7 @@ ID мода: MANKIND_ACCESS
 
 ### Дефайны
 
-- 'code/__DEFINES/~mod_mankind/access.dm'
+- 'code/__DEFINES/~modular_mankind/access.dm'
 - 'define ACCESS_OUTPOST_COMMAND 				8100'
 - 'define ACCESS_OUTPOST_BRIG_SB 				8101'
 - 'define ACCESS_OUTPOST_DETECTIVE 				8102'
@@ -106,7 +106,7 @@ ID мода: MANKIND_ACCESS
   И то же самое, если ты используешь дефайны, определённые другим модом.
 
   Не используешь - напиши "Отсутствуют"
-  Примеры: `code/__defines/~mod_mankind/access.dm`: `ACCESS_SPEED_MULTIPLIER`, `ACCESS_SPEED_BASE`
+  Примеры: `code/__defines/~modular_mankind/access.dm`: `ACCESS_SPEED_MULTIPLIER`, `ACCESS_SPEED_BASE`
 -->
 
 ### Используемые файлы, не содержащиеся в модпаке

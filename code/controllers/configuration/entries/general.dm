@@ -110,7 +110,7 @@
 
 /datum/config_entry/flag/auth_admin_testing // auth server allows admin testing and other actions
 
-/datum/config_entry/flag/DiscordVerify // [CELADON-ADD] - Добавляем систему верификации аккаунтов через Discord
+/datum/config_entry/flag/DiscordVerify // [MANKIND-ADD] - Добавляем систему верификации аккаунтов через Discord
 
 /datum/config_entry/number/vote_delay	// minimum time between voting sessions (deciseconds, 10 minute default)
 	config_entry_value = 6000
@@ -242,10 +242,10 @@
 	config_entry_value = "https://wiki.celadon.pro/index.php/Правила_игры"
 
 /datum/config_entry/string/githuburl
-	config_entry_value = "https://github.com/CeladonSS13/Shiptest"
+	config_entry_value = "https://github.com/MANKIND-Collective/Pentest"
 
 /datum/config_entry/string/discordurl
-	config_entry_value = "https://discord.gg/rxsggTJzY3"
+	config_entry_value = "https://discord.gg/Yg7QhTby"
 
 /datum/config_entry/string/mapviewerurl
 	config_entry_value = "https://map.celadon.pro/"

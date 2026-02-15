@@ -727,7 +727,7 @@
 	. = ..()
 	AddComponent(/datum/component/swarming)
 
-// [CELADON-ADD] - RAMZI-RENEGATE
+// [MANKIND-ADD] - RAMZI-RENEGATE
 /mob/living/simple_animal/hostile/viscerator/ramzi
 	faction = list(FACTION_RAMZI_RENEGADE, FACTION_RAMZI)
-// [/CELADON-ADD]
+// [/MANKIND-ADD]

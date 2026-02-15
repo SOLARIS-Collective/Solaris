@@ -44,13 +44,13 @@ GLOBAL_VAR(tgui_log)
 GLOBAL_PROTECT(tgui_log)
 GLOBAL_VAR(world_shuttle_log)
 GLOBAL_PROTECT(world_shuttle_log)
-GLOBAL_VAR(world_celadon_economic_log) // [CELADON-ADD] - CELADON_COMPONENTS_LOGS
-GLOBAL_PROTECT(world_celadon_economic_log) // [CELADON-ADD] - CELADON_COMPONENTS_LOGS
+GLOBAL_VAR(world_mankind_economic_log) // [MANKIND-ADD] - MANKIND_COMPONENTS_LOGS
+GLOBAL_PROTECT(world_mankind_economic_log) // [MANKIND-ADD] - MANKIND_COMPONENTS_LOGS
 
-// [CELADON-ADD] - Logging for admin actions.
-GLOBAL_VAR(world_celadon_admin_log)
-GLOBAL_PROTECT(world_celadon_admin_log)
-// [/CELADON-ADD]
+// [MANKIND-ADD] - Logging for admin actions.
+GLOBAL_VAR(world_mankind_admin_log)
+GLOBAL_PROTECT(world_mankind_admin_log)
+// [/MANKIND-ADD]
 
 GLOBAL_VAR(perf_log)
 GLOBAL_PROTECT(perf_log)

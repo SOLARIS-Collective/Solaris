@@ -39,11 +39,11 @@
 	if(downloaded_file)
 		return 0
 
-	// [CELADON-ADD] - FIXES_NETWORK_NT - Показываем информацию о отсутвующей сети
+	// [MANKIND-ADD] - FIXES_NETWORK_NT - Показываем информацию о отсутвующей сети
 	if(!ntnet_status)
 		downloaderror = "NETWORK ERROR - No network connection available. Please check your network card and try again."
 		return 0
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 
 	var/datum/computer_file/program/PRG = SSnetworks.station_network.find_ntnet_file_by_name(filename)
 
@@ -100,13 +100,13 @@
 		complete_file_download()
 		return
 
-	// [CELADON-ADD] - FIXES_NETWORK_NT - Показываем информацию о отсутвующей сети
+	// [MANKIND-ADD] - FIXES_NETWORK_NT - Показываем информацию о отсутвующей сети
 	// Check if we lost network connection during download
 	if(!ntnet_status)
 		downloaderror = "NETWORK ERROR - Connection lost during download. Please check your network connection and try again."
 		abort_file_download()
 		return
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 
 	// Download speed according to connectivity state. NTNet server is assumed to be on unlimited speed so we're limited by our local connectivity
 	download_netspeed = 0

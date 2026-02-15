@@ -269,10 +269,10 @@
 
 /mob/living/silicon/proc/checklaws()
 
-	// [CELADON-EDIT] - CELADON_QOL - Перевод законов ИИ
-	// var/list = "<b>Which laws do you want to include when stating them for the crew?</b><br><br>" // CELADON-EDIT -> ORIGINAL
+	// [MANKIND-EDIT] - MANKIND_QOL - Перевод законов ИИ
+	// var/list = "<b>Which laws do you want to include when stating them for the crew?</b><br><br>" // MANKIND-EDIT -> ORIGINAL
 	var/list = "<meta http-equiv='X-UA-Compatible' content='IE=edge' charset='UTF-8'/><b>Which laws do you want to include when stating them for the crew?</b><br><br>"
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 
 	if (laws.zeroth)
 		if (!lawcheck[1])

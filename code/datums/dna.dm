@@ -336,9 +336,9 @@
 			qdel(language_holder)
 			var/species_holder = initial(mrace.species_language_holder)
 			language_holder = new species_holder(src)
-		// [CELADON-ADD] - CELADON_EMOTES
+		// [MANKIND-ADD] - MANKIND_EMOTES
 		client?.init_verbs()
-		// [/CELADON-ADD]
+		// [/MANKIND-ADD]
 
 /mob/living/carbon/human/set_species(datum/species/mrace, icon_update = TRUE, pref_load = FALSE, robotic = FALSE)
 	robotic ||= fbp

@@ -93,7 +93,7 @@
 //.308 WIN (M514 & GAL DMRs)
 
 
-//[СELADON-REMOVE] - CELADON_WEAPONS - хватит это терпеть! Теперь эти патроны только в модпаке - mod_celadon\weapons\code\modules\projectiles\projectile\bullets\rifle.dm
+//[СELADON-REMOVE] - MANKIND_WEAPONS - хватит это терпеть! Теперь эти патроны только в модпаке - modular_mankind\weapons\code\modules\projectiles\projectile\bullets\rifle.dm
 /*
 /obj/projectile/bullet/a308
 	name = ".308 bullet"

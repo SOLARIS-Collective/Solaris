@@ -52,7 +52,7 @@
 /datum/mission/drill/accept(datum/overmap/ship/controlled/acceptor, turf/accept_loc, obj/hangar_crate_spawner/cargo_belt)
 	. = ..()
 	//you shouldn't be accepting this without an outpost but just in case
-// [CELADON-EDIT] - SIMPLED SPAWN DRILL
+// [MANKIND-EDIT] - SIMPLED SPAWN DRILL
 	/*
 	if(isnull(cargo_belt))
 		sampler = spawn_bound(drill_type, accept_loc, VARSET_CALLBACK(src, sampler, null))
@@ -61,7 +61,7 @@
 		sampler = spawn_bound(drill_type, cargo_belt.loc, VARSET_CALLBACK(src, sampler, null))
 	*/
 	sampler = spawn_bound(drill_type, accept_loc, VARSET_CALLBACK(src, sampler, null))
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 	sampler.mission_class = class_wanted
 	sampler.num_wanted = num_wanted
 	sampler.orevein_wanted = available_planets[selected_planet]
@@ -119,14 +119,14 @@
 
 /datum/mission/drill/classtwo
 	name = "Class 2 core sample mission"
-	value = 4000	//value = 4500	// [CELADON-EDIT] - CARGO-REWORK-BALANCE
+	value = 4000	//value = 4500	// [MANKIND-EDIT] - CARGO-REWORK-BALANCE
 	weight = 9
 	class_wanted = 2
 	num_wanted = 6
 
 /datum/mission/drill/classthree
 	name = "Class 3 core sample mission"
-	value = 6000	//value = 8000	// [CELADON-EDIT] - CARGO-REWORK-BALANCE
+	value = 6000	//value = 8000	// [MANKIND-EDIT] - CARGO-REWORK-BALANCE
 	weight = 5
 	class_wanted = 3
 	num_wanted = 8

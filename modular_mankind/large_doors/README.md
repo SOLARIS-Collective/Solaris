@@ -73,7 +73,7 @@ ID мода: MANKIND_LARGE_DOORS
   И то же самое, если ты используешь дефайны, определённые другим модом.
 
   Не используешь - напиши "Отсутствуют"
-  Примеры: `code/__defines/~mod_mankind/large_doors.dm`: `LARGE_DOORS_SPEED_MULTIPLIER`, `LARGE_DOORS_SPEED_BASE`
+  Примеры: `code/__defines/~modular_mankind/large_doors.dm`: `LARGE_DOORS_SPEED_MULTIPLIER`, `LARGE_DOORS_SPEED_BASE`
 -->
 
 ### Используемые файлы, не содержащиеся в модпаке

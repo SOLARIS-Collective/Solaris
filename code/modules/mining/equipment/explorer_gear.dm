@@ -11,10 +11,10 @@
 	heat_protection = CHEST|GROIN|LEGS|ARMS
 	hoodtype = /obj/item/clothing/head/hooded/explorer
 	armor = list("melee" = 15, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 50, "bio" = 100, "rad" = 50, "fire" = 50, "acid" = 50, "wound" = 10)
-	// [CELADON-EDIT] - CELADON_BALANCE
-	// 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/resonator, /obj/item/mining_scanner, /obj/item/t_scanner/adv_mining_scanner, /obj/item/pinpointer/mineral, /obj/item/gun/energy/kinetic_accelerator, /obj/item/pickaxe) // CELADON-EDIT - ORIGINAL
+	// [MANKIND-EDIT] - MANKIND_BALANCE
+	// 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/resonator, /obj/item/mining_scanner, /obj/item/t_scanner/adv_mining_scanner, /obj/item/pinpointer/mineral, /obj/item/gun/energy/kinetic_accelerator, /obj/item/pickaxe) // ORIGINAL
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/resonator, /obj/item/mining_scanner, /obj/item/t_scanner/adv_mining_scanner, /obj/item/pinpointer/mineral, /obj/item/gun/energy/kinetic_accelerator, /obj/item/pickaxe, /obj/item/kinetic_crusher)
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 	resistance_flags = FIRE_PROOF
 	supports_variations = DIGITIGRADE_VARIATION | VOX_VARIATION
 
@@ -48,23 +48,23 @@
 	resistance_flags = FIRE_PROOF
 	supports_variations = SNOUTED_VARIATION | KEPORI_VARIATION
 
-// [CELADON-ADD]
+// [MANKIND-ADD]
 /obj/item/clothing/mask/gas/explorer/legacy
-	icon = 'mod_celadon/_storage_icons/icons/items/clothing/mask/mask_explorer.dmi'
-	mob_overlay_icon = 'mod_celadon/_storage_icons/icons/items/clothing/mask/overlay/mask_explorer.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/items/clothing/mask/mask_explorer.dmi'
+	mob_overlay_icon = 'modular_mankind/_storage_icons/icons/items/clothing/mask/overlay/mask_explorer.dmi'
 	icon_state = "gas_explorer"
 	actions_types = list(/datum/action/item_action/adjust)
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 /obj/item/clothing/mask/gas/explorer/attack_self(mob/user)
 	adjustmask(user)
 
 /obj/item/clothing/mask/gas/explorer/adjustmask(user)
 	..()
-	// [CELADON-EDIT] - CELADON_FIXES
-	// w_class = mask_adjusted ? WEIGHT_CLASS_NORMAL : WEIGHT_CLASS_SMALL // CELADON-EDIT - ORIGINAL
+	// [MANKIND-EDIT] - MANKIND_FIXES
+	// w_class = mask_adjusted ? WEIGHT_CLASS_NORMAL : WEIGHT_CLASS_SMALL // ORIGINAL
 	w_class = mask_adjusted ? WEIGHT_CLASS_SMALL : WEIGHT_CLASS_NORMAL
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 
 /obj/item/clothing/mask/gas/explorer/folded/Initialize()
 	. = ..()
@@ -78,7 +78,7 @@
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	resistance_flags = FIRE_PROOF | LAVA_PROOF
 	slowdown = 0
-	armor = list("melee" = 70, "bullet" = 40, "laser" = 30, "energy" = 45, "bomb" = 70, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100, "wound" = 50)  // [CELADON-EDIT] - CELADON_BALANCE
+	armor = list("melee" = 70, "bullet" = 40, "laser" = 30, "energy" = 45, "bomb" = 70, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100, "wound" = 50)  // [MANKIND-EDIT] - MANKIND_BALANCE
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/resonator, /obj/item/mining_scanner, /obj/item/t_scanner/adv_mining_scanner, /obj/item/pinpointer/mineral, /obj/item/gun/energy/kinetic_accelerator, /obj/item/pickaxe)
 
 /obj/item/clothing/suit/space/hostile_environment/Initialize()
@@ -106,7 +106,7 @@
 	item_state = "hostile_env"
 	w_class = WEIGHT_CLASS_NORMAL
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
-	armor = list("melee" = 75, "bullet" = 40, "laser" = 35, "energy" = 45, "bomb" = 70, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100, "wound" = 50)  // [CELADON-EDIT] - CELADON_BALANCE
+	armor = list("melee" = 75, "bullet" = 40, "laser" = 35, "energy" = 45, "bomb" = 70, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100, "wound" = 50)  // [MANKIND-EDIT] - MANKIND_BALANCE
 	resistance_flags = FIRE_PROOF | LAVA_PROOF
 
 /obj/item/clothing/head/helmet/space/hostile_environment/Initialize()

@@ -20,7 +20,7 @@
 	coldmod = 1.5
 	// brutemod = 1.5
 	// burnmod = 1.5
-	speedmod = -0.30	// [CELADON-EDIT] - CELADON_BALANCE_SPECIES - Было -0.10
+	speedmod = -0.30	// [MANKIND-EDIT] - MANKIND_BALANCE_SPECIES - Было -0.10
 
 	bodytemp_heat_damage_limit = HUMAN_BODYTEMP_HEAT_DAMAGE_LIMIT + 35
 	bodytemp_cold_damage_limit = HUMAN_BODYTEMP_COLD_DAMAGE_LIMIT + 3
@@ -147,12 +147,12 @@
 	if(slot != ITEM_SLOT_MASK)
 		return FALSE
 	//Blocks all items that are equippable to other slots. (block anything with a flag that ISN'T item_slot_mask)
-	if(I.slot_flags && !ITEM_SLOT_KEPORI_BEAK)	// [CELADON-EDIT] - CELADON_FIXES - Было if(I.slot_flags & ~ITEM_SLOT_KEPORI_BEAK)
+	if(I.slot_flags && !ITEM_SLOT_KEPORI_BEAK)	// [MANKIND-EDIT] - MANKIND_FIXES - Было if(I.slot_flags & ~ITEM_SLOT_KEPORI_BEAK)
 		return FALSE
-	// [CELADON-ADD] - FIXES_MASK_ON_KEPORI
+	// [MANKIND-ADD] - FIXES_MASK_ON_KEPORI
 	if(HAS_TRAIT(H.wear_mask, TRAIT_NODROP))
 		return FALSE
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 	if(H.wear_mask && !swap)
 		return FALSE
 	if(I.w_class > WEIGHT_CLASS_SMALL)

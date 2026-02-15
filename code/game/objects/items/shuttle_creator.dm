@@ -1,6 +1,6 @@
-// [CELADON-EDIT] - subshuttles fix
+// [MANKIND-EDIT] - subshuttles fix
 #define SHUTTLE_CREATOR_MAX_SIZE 100
-// [/CELADON-EDIT] - subshuttles fix
+// [/MANKIND-EDIT] - subshuttles fix
 /obj/item/shuttle_creator
 	name = "Rapid Shuttle Designator"
 	icon = 'icons/obj/tools.dmi'

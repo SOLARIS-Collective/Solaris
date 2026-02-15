@@ -60,10 +60,10 @@ ID мода: MECHAS
 
 ### Используемые файлы, не содержащиеся в модпаке
 
-- `mod_mankind\research\code\designs\designs.dm`
-- `mod_mankind\research\code\designs\mechfabricator.dm`
-- `mod_mankind\cargo_items\code\packs\mechs.dm`
-- `mod_mankind/_storage_icons/icons`
+- `modular_mankind\research\code\designs\designs.dm`
+- `modular_mankind\research\code\designs\mechfabricator.dm`
+- `modular_mankind\cargo_items\code\packs\mechs.dm`
+- `modular_mankind/_storage_icons/icons`
 <!--
   Будь то немодульный файл или модульный файл, который не содержится в папке,
   принадлежащей этому конкретному моду, он должен быть упомянут здесь.

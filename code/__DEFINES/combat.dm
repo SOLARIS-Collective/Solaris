@@ -102,10 +102,10 @@
 //slowdown when in softcrit. Note that crawling slowdown will also apply at the same time!
 #define SOFTCRIT_ADD_SLOWDOWN 2
 //slowdown when crawling
-// [CELADON-EDIT] - SLOW_SPEED_REST - Замедляем на 20% ползанье
+// [MANKIND-EDIT] - SLOW_SPEED_REST - Замедляем на 20% ползанье
 //#define CRAWLING_ADD_SLOWDOWN 4 // ORIGINAL
 #define CRAWLING_ADD_SLOWDOWN 4.8
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 
 //Attack types for checking shields/hit reactions
 #define MELEE_ATTACK 1
@@ -113,11 +113,11 @@
 #define PROJECTILE_ATTACK 3
 #define THROWN_PROJECTILE_ATTACK 4
 #define LEAP_ATTACK 5
-//[CELADON-ADD] A little martial arts buff. Adds an attack define for them
+// [MANKIND-ADD] A little martial arts buff. Adds an attack define for them
 #define MARTIAL_ARTS 6
 #define ALL_ATTACK_TYPES list(MELEE_ATTACK, UNARMED_ATTACK, PROJECTILE_ATTACK, THROWN_PROJECTILE_ATTACK, LEAP_ATTACK, MARTIAL_ARTS)
 #define NON_PROJECTILE_ATTACKS list(MELEE_ATTACK, UNARMED_ATTACK, LEAP_ATTACK, MARTIAL_ARTS)
-//[/CELADON-ADD]
+// [/MANKIND-ADD]
 
 //attack visual effects
 #define ATTACK_EFFECT_PUNCH "punch"

@@ -71,13 +71,13 @@
 	freq_listening = list(FREQ_INTEQ, FREQ_COMMON)
 	autolinkers = list("processor4", "inteq", "receiverB", "messaging")
 
-// [CELADON-EDIT] - FACTION_RADIO
+// [MANKIND-EDIT] - FACTION_RADIO
 /obj/machinery/telecomms/bus/preset_five
 	id = "Ramzi Communications Bus"
 	network = "tcommsat"
 	freq_listening = list(FREQ_RAMZI, FREQ_COMMON)
 	autolinkers = list("processor5", "ramzi", "messaging")
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 
 /obj/machinery/telecomms/bus/preset_six
 	id = "Hacked Communications Bus"
@@ -85,13 +85,13 @@
 	freq_listening = list(FREQ_PIRATE, FREQ_COMMON)
 	autolinkers = list("processor6", "pirate", "receiverB", "messaging")
 
-// [CELADON-EDIT] - FACTION_RADIO
+// [MANKIND-EDIT] - FACTION_RADIO
 /obj/machinery/telecomms/bus/preset_seven
 	id = "SolFed Communications Bus"
 	network = "tcommsat"
 	freq_listening = list(FREQ_SOLFED, FREQ_COMMON)
 	autolinkers = list("processor7", "solfed", "receiverA", "messaging")
-// [CELADON-EDIT]
+// [MANKIND-EDIT]
 
 /obj/machinery/telecomms/bus/preset_seven/Initialize()
 	. = ..()

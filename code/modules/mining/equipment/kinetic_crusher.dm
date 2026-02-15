@@ -40,33 +40,33 @@
 	. = ..()
 	. += span_notice("Induce magnetism in an enemy by striking them with a magnetospheric wave, then hit them in melee to force a waveform collapse for <b>[force + detonation_damage]</b> damage.")
 	. += span_notice("Does <b>[force + detonation_damage + backstab_bonus]</b> damage if the target is backstabbed, instead of <b>[force + detonation_damage]</b>.")
-	// [CELADON-ADD] - RETURN_CONTENT_CRUSHER_TROPHY - Возвращаем легенду
+	// [MANKIND-ADD] - RETURN_CONTENT_CRUSHER_TROPHY - Возвращаем легенду
 	for(var/t in trophies)
 		var/obj/item/crusher_trophy/T = t
 		. += "<span class='notice'>It has \a [T] attached, which causes [T.effect_desc()].</span>"
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 
 /obj/item/kinetic_crusher/attack(mob/living/target, mob/living/carbon/user)
 	if(!HAS_TRAIT(src, TRAIT_WIELDED))
 		return
 
-// [CELADON-REMOVE] - CELADON_BALANCE
+// [MANKIND-REMOVE] - MANKIND_BALANCE
 /* ORIGINAL
 	var/atom/throw_target = get_edge_target_turf(target, user.dir)
 	if(!target.anchored)
 		target.throw_at(throw_target, rand(1,2), 2, user, gentle = TRUE)
 */
-// [/CELADON-REMOVE]
+// [/MANKIND-REMOVE]
 
 	var/datum/status_effect/crusher_damage/C = target.has_status_effect(STATUS_EFFECT_CRUSHERDAMAGETRACKING)
 	var/target_health = target.health
 	..()
-	// [CELADON-ADD] - RETURN_CONTENT_CRUSHER_TROPHY - Возвращаем легенду
+	// [MANKIND-ADD] - RETURN_CONTENT_CRUSHER_TROPHY - Возвращаем легенду
 	for(var/t in trophies)
 		if(!QDELETED(target))
 			var/obj/item/crusher_trophy/T = t
 			T.on_melee_hit(target, user)
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 	if(!QDELETED(C) && !QDELETED(target))
 		C.total_damage += target_health - target.health //we did some damage, but let's not assume how much we did
 
@@ -80,11 +80,11 @@
 		if(!isturf(proj_turf))
 			return
 		var/obj/projectile/destabilizer/D = new /obj/projectile/destabilizer(proj_turf)
-		// [CELADON-ADD] - RETURN_CONTENT_CRUSHER_TROPHY - Возвращаем легенду
+		// [MANKIND-ADD] - RETURN_CONTENT_CRUSHER_TROPHY - Возвращаем легенду
 		for(var/t in trophies)
 			var/obj/item/crusher_trophy/T = t
 			T.on_projectile_fire(D, user)
-		// [/CELADON-ADD]
+		// [/MANKIND-ADD]
 		D.preparePixelProjectile(target, user, modifiers)
 		D.firer = user
 		D.hammer_synced = src
@@ -101,11 +101,11 @@
 			return
 		var/datum/status_effect/crusher_damage/C = L.has_status_effect(STATUS_EFFECT_CRUSHERDAMAGETRACKING)
 		var/target_health = L.health
-		// [CELADON-ADD] - RETURN_CONTENT_CRUSHER_TROPHY - Возвращаем легенду
+		// [MANKIND-ADD] - RETURN_CONTENT_CRUSHER_TROPHY - Возвращаем легенду
 		for(var/t in trophies)
 			var/obj/item/crusher_trophy/T = t
 			T.on_mark_detonation(target, user)
-		// [/CELADON-ADD]
+		// [/MANKIND-ADD]
 		if(!QDELETED(L))
 			if(!QDELETED(C))
 				C.total_damage += target_health - L.health //we did some damage, but let's not assume how much we did
@@ -166,21 +166,21 @@
 /obj/projectile/destabilizer/on_hit(atom/target, blocked = FALSE)
 	if(isliving(target))
 		var/mob/living/L = target
-		// [CELADON-ADD] — CRUSHER_MARK_ON_MOBS
+		// [MANKIND-ADD] — CRUSHER_MARK_ON_MOBS
 		if(L.stat == DEAD)
 			return FALSE
-		// [/CELADON-ADD]
-		// [CELADON-ADD] - RETURN_CONTENT_CRUSHER_TROPHY - Возвращаем легенду
+		// [/MANKIND-ADD]
+		// [MANKIND-ADD] - RETURN_CONTENT_CRUSHER_TROPHY - Возвращаем легенду
 		var/had_effect = (L.has_status_effect(STATUS_EFFECT_CRUSHERMARK)) //used as a boolean
 		var/datum/status_effect/crusher_mark/CM = L.apply_status_effect(STATUS_EFFECT_CRUSHERMARK, hammer_synced)
 		if(hammer_synced)
 			for(var/t in hammer_synced.trophies)
 				var/obj/item/crusher_trophy/T = t
 				T.on_mark_application(target, CM, had_effect)
-		// [/CELADON-ADD]
-		// [CELADON-REMOVE] - RETURN_CONTENT_CRUSHER_TROPHY - Удалено в связи возвращения легенды
+		// [/MANKIND-ADD]
+		// [MANKIND-REMOVE] - RETURN_CONTENT_CRUSHER_TROPHY - Удалено в связи возвращения легенды
 		// L.apply_status_effect(STATUS_EFFECT_CRUSHERMARK, hammer_synced)
-		// [/CELADON-REMOVE]
+		// [/MANKIND-REMOVE]
 	var/target_turf = get_turf(target)
 	if(ismineralturf(target_turf))
 		SSblackbox.record_feedback("tally", "pick_used_mining", 1, src.type)
@@ -211,13 +211,13 @@
 	user.changeNext_move(CLICK_CD_MELEE * 2.0)//...slow swinga.
 
 /obj/item/kinetic_crusher/old/update_icon_state()
-	// [CELADON-ADD] - CELADON_FIXES
+	// [MANKIND-ADD] - MANKIND_FIXES
 	..()
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 	item_state = "crusherold[HAS_TRAIT(src, TRAIT_WIELDED)]" // still not supported by 2hcomponent
-	// [CELADON-REMOVE] - CELADON_FIXES
+	// [MANKIND-REMOVE] - MANKIND_FIXES
 	// return ..()
-	// [/CELADON-REMOVE]
+	// [/MANKIND-REMOVE]
 
 //100% original syndicate oc, plz do not steal. More effective against human targets then the typical crusher, with a bit of block chance.
 /obj/item/kinetic_crusher/syndie_crusher
@@ -276,13 +276,13 @@
 	set_light_on(HAS_TRAIT(src, TRAIT_WIELDED))
 
 /obj/item/kinetic_crusher/syndie_crusher/update_icon_state()
-	// [CELADON-ADD] - CELADON_FIXES
+	// [MANKIND-ADD] - MANKIND_FIXES
 	..()
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 	item_state = "crushersyndie[HAS_TRAIT(src, TRAIT_WIELDED)]" // this is not icon_state and not supported by 2hcomponent
-	// [CELADON-REMOVE] - CELADON_FIXES
+	// [MANKIND-REMOVE] - MANKIND_FIXES
 	// return ..()
-	// [/CELADON-REMOVE]
+	// [/MANKIND-REMOVE]
 
 /obj/item/kinetic_crusher/syndie_crusher/update_overlays()
 	. = ..()

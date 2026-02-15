@@ -93,7 +93,7 @@ GENE SCANNER
 	var/mode = SCANNER_VERBOSE
 	var/scanmode = SCANMODE_HEALTH
 	var/advanced = FALSE
-	var/ranged_scan_distance // [/CELADON-ADD] - OMNI_TOOLS
+	var/ranged_scan_distance // [/MANKIND-ADD] - OMNI_TOOLS
 	var/healthmode = "analyzer-1"
 	var/reagentmode = "reagentanalyzer"
 	var/healthmodeinhand = "analyzer"
@@ -417,13 +417,13 @@ GENE SCANNER
 				if(H.is_bleeding())
 					render_list += "<span class='alert ml-1'><b>Subject is bleeding!</b></span>\n"
 			var/blood_percent =  round((C.blood_volume / BLOOD_VOLUME_NORMAL)*100)
-			// [CELADON-EDIT] - CELADON_BLOOD_DISPLAY
+			// [MANKIND-EDIT] - MANKIND_BLOOD_DISPLAY
 			//var/blood_type = C.dna.blood_type.name
 			//if(blood_id != /datum/reagent/blood) // special blood substance
 			//	var/datum/reagent/R = GLOB.chemical_reagents_list[blood_id]
 			//	blood_type = R ? R.name : blood_id
 			var/blood_type = C.get_blood_type_display()
-			// [/CELADON-EDIT]
+			// [/MANKIND-EDIT]
 			if(C.blood_volume <= BLOOD_VOLUME_SAFE && C.blood_volume > BLOOD_VOLUME_OKAY)
 				render_list += "<span class='alert ml-1'>Blood level: LOW [blood_percent] %, [C.blood_volume] cl,</span> [span_info("type: [blood_type]")]\n"
 			else if(C.blood_volume <= BLOOD_VOLUME_OKAY)

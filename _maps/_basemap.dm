@@ -11,6 +11,6 @@
 	#endif
 #endif
 
-// [CELADON-ADD] - CELADON_CONFIGS_MAPS
-#include "_mod_celadon\map_files\centcomm_ship.dmm"
-// [/CELADON-ADD]
+// [MANKIND-ADD] - MANKIND_CONFIGS_MAPS
+#include "_modular_mankind\map_files\centcomm_ship.dmm"
+// [/MANKIND-ADD]

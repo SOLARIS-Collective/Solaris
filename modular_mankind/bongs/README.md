@@ -61,8 +61,8 @@ ID мода: MANKIND_BONGS
 ### Используемые файлы, не содержащиеся в модпаке
 
 - `icons/effects/atmospherics.dmi`
-- `mod_mankind/_storage_sounds/sound`
-- `mod_mankind/_storage_icons/icons/items/bongs`
+- `modular_mankind/_storage_sounds/sound`
+- `modular_mankind/_storage_icons/icons/items/bongs`
 <!--
   Будь то немодульный файл или модульный файл, который не содержится в папке,
   принадлежащей этому конкретному моду, он должен быть упомянут здесь.

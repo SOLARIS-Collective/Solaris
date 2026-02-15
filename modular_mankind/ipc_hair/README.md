@@ -73,7 +73,7 @@ ID мода: MANKIND_IPC_HAIR
   И то же самое, если ты используешь дефайны, определённые другим модом.
 
   Не используешь - напиши "Отсутствуют"
-  Примеры: `code/__defines/~mod_mankind/ipc_hair.dm`: `IPC_HAIR_SPEED_MULTIPLIER`, `IPC_HAIR_SPEED_BASE`
+  Примеры: `code/__defines/~modular_mankind/ipc_hair.dm`: `IPC_HAIR_SPEED_MULTIPLIER`, `IPC_HAIR_SPEED_BASE`
 -->
 
 ### Используемые файлы, не содержащиеся в модпаке

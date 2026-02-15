@@ -2,7 +2,7 @@
 
 #### Список PRов:
 
-- https://github.com/MANKIND-Collective/Pentest/pull/759
+- https://github.com/CeladonSS13/Shiptest/pull/759
 <!--
   Ссылки на PRы, связанные с модом:
   - Создание
@@ -83,13 +83,13 @@ OMNI_TOOLS	-	Обновлены инструменты
 ### Используемые файлы, не содержащиеся в модпаке
 
 - `mods/_master_files/icons/obj/alien.dmi`
-- `mod_mankind/_storage_icons/icons/items`
-- `mod_mankind/_storage_icons/icons/items/weapons/ammo/ammo.dmi`
+- `modular_mankind/_storage_icons/icons/items`
+- `modular_mankind/_storage_icons/icons/items/weapons/ammo/ammo.dmi`
 - `sound/weapons/gun/shotgun/insert_shell.ogg`
-- `mod_mankind/_storage_icons/icons/items/clothing/back/obj.dmi`
-- `mod_mankind/_storage_icons/icons/items/clothing/back/overlay/onmob.dmi`
-- `mod_mankind/_storage_icons/icons/items/clothing/head/overlay/head.dmi`
-- `mod_mankind/_storage_icons/icons/items/clothing/head/hats.dmi`
+- `modular_mankind/_storage_icons/icons/items/clothing/back/obj.dmi`
+- `modular_mankind/_storage_icons/icons/items/clothing/back/overlay/onmob.dmi`
+- `modular_mankind/_storage_icons/icons/items/clothing/head/overlay/head.dmi`
+- `modular_mankind/_storage_icons/icons/items/clothing/head/hats.dmi`
 <!--
   Будь то немодульный файл или модульный файл, который не содержится в папке,
   принадлежащей этому конкретному моду, он должен быть упомянут здесь.

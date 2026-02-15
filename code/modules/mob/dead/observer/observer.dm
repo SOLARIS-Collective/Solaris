@@ -468,11 +468,11 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	var/orbitsize = (I.Width()+I.Height())*0.5
 	orbitsize -= (orbitsize/world.icon_size)*(world.icon_size*0.25)
 
-	// [CELADON-ADD] - logging admin actions.
+	// [MANKIND-ADD] - logging admin actions.
 	if(src.client.holder && istype(target, /mob/living/carbon/human))
 		var/mob/living/carbon/human/target_human = target
-		log_celadon_admin("\[GHOST]: [usr.key] has started orbiting [target_human.key] / [target_human.real_name].")
-	// [/CELADON-ADD]
+		log_mankind_admin("\[GHOST]: [usr.key] has started orbiting [target_human.key] / [target_human.real_name].")
+	// [/MANKIND-ADD]
 
 	var/rot_seg
 

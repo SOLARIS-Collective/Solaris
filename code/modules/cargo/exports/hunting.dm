@@ -28,7 +28,7 @@
 	unit_name = "rare animal hide"
 	desc = "Rare animal hide export. Paid per hide."
 	cost = 250
-	export_types = list(/obj/item/stack/sheet/animalhide/ashdrake)	// [CELADON-EDIT]
+	export_types = list(/obj/item/stack/sheet/animalhide/ashdrake)	// [MANKIND-EDIT]
 
 /datum/export/hunting/stack/leather
 	unit_name = "leather"
@@ -49,7 +49,7 @@
 	cost = 250
 	unit_name = "common hunting trophy"
 	export_types = list(
-// [CELADON-ADD]
+// [MANKIND-ADD]
 		/obj/item/crusher_trophy/shiny,
 		/obj/item/crusher_trophy/legion_skull,
 		/obj/item/crusher_trophy/wolf_ear,
@@ -59,7 +59,7 @@
 		/obj/item/crusher_trophy/brimdemon_fang,
 		/obj/item/crusher_trophy/lobster_claw,
 		/obj/item/mob_trophy/shiny,
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 		/obj/item/mob_trophy/legion_skull,
 		/obj/item/mob_trophy/wolf_ear,
 		/obj/item/mob_trophy/bear_paw,
@@ -74,7 +74,7 @@
 	unit_name = "rare hunting trophy"
 	elasticity_coeff = 0
 	export_types = list(
-// [CELADON-ADD]
+// [MANKIND-ADD]
 		/obj/item/crusher_trophy/watcher_wing_forgotten,
 		/obj/item/crusher_trophy/legion_skull_crystal,
 		/obj/item/crusher_trophy/goliath_crystal,
@@ -92,7 +92,7 @@
 		/obj/item/mob_trophy/watcher_wing_forgotten,
 		/obj/item/mob_trophy/legion_skull_crystal,
 		/obj/item/mob_trophy/goliath_crystal,
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 		/obj/item/mob_trophy/dwarf_skull,
 		/obj/item/mob_trophy/fang,
 		/obj/item/mob_trophy/war_paw,
@@ -108,7 +108,7 @@
 	elasticity_coeff = 0
 	unit_name = "big game hunting trophy"
 	export_types = list(
-// [CELADON-ADD]
+// [MANKIND-ADD]
 		/obj/item/crusher_trophy/legionnaire_spine,
 		/obj/item/crusher_trophy/ash_spike,
 		/obj/item/crusher_trophy/demon_claws,
@@ -118,7 +118,7 @@
 		/obj/item/crusher_trophy/miner_eye,
 		/obj/item/crusher_trophy/vortex_talisman,
 		/obj/item/crusher_trophy/blaster_tubes,
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 		/obj/item/mob_trophy/ash_spike,
 		/obj/item/mob_trophy/demon_claws,
 		/obj/item/mob_trophy/broodmother_tongue,
@@ -128,7 +128,7 @@
 		/obj/item/mob_trophy/blaster_tubes
 	)
 
-// [CELADON-ADD]
+// [MANKIND-ADD]
 // Hides
 /datum/export/hunting/stack
 	desc = "Rawhide of various origins. The more exotic the species, the higher the price."
@@ -176,4 +176,4 @@
 	export_types = list(/obj/item/stack/sheet/animalhide/xeno)
 
 
-// [/CELADON-ADD]
+// [/MANKIND-ADD]

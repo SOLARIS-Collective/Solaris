@@ -108,7 +108,7 @@ While using this makes the system rely on OnFire, it still gives options for tim
 
 /obj/structure/elite_tumor/attack_hand(mob/user)
 	. = ..()
-	// [CELADON-EDIT] - CELADON_BALANCE_MOBS
+	// [MANKIND-EDIT] - MANKIND_BALANCE_MOBS
 	// if(ishuman(user))
 	// 	switch(activity)
 	// 		if(TUMOR_PASSIVE)
@@ -139,7 +139,7 @@ While using this makes the system rely on OnFire, it still gives options for tim
 	// 			else
 	// 				visible_message("<span class='boldwarning'>The stirring stops, and nothing emerges.  Perhaps try again later.</span>")
 	// 				activity = TUMOR_INACTIVE
-	// 				activator = null	// CELADON-EDIT - ORIGINAL
+	// 				activator = null	// ORIGINAL
 	if(!ishuman(user))
 		return
 	switch(activity)
@@ -186,27 +186,27 @@ While using this makes the system rely on OnFire, it still gives options for tim
 				visible_message(span_boldwarning("The stirring stops, and nothing emerges.  Perhaps try again later."))
 				activity = TUMOR_INACTIVE
 				clear_activator(user)
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 
 /obj/structure/elite_tumor/proc/spawn_elite(mob/dead/observer/elitemind)
 	var/selectedspawn = pick(potentialspawns)
 	mychild = new selectedspawn(loc)
 	visible_message(span_boldwarning("[mychild] emerges from [src]!"))
 	playsound(loc,'sound/effects/phasein.ogg', 200, 0, 50, TRUE, TRUE)
-	// [CELADON-ADD] - CELADON_BALANCE_MOBS
+	// [MANKIND-ADD] - MANKIND_BALANCE_MOBS
 	if(iselitefauna(mychild))
 		for(var/mob/living/carbon/C in range(12, src))
 			mychild.maxHealth += 150
 			mychild.health = mychild.maxHealth
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 	if(boosted)
 		mychild.key = elitemind.key
 		mychild.sentience_act()
 		notify_ghosts("\A [mychild] has been awakened in \the [get_area(src)]!", source = mychild, action = NOTIFY_ORBIT, flashwindow = FALSE, header = "Lavaland Elite awakened")
-	// [CELADON-EDIT] - CELADON_BALANCE_MOBS
-	// icon_state = "tumor_popped"	// CELADON-EDIT - ORIGINAL
+	// [MANKIND-EDIT] - MANKIND_BALANCE_MOBS
+	// icon_state = "tumor_popped"	// ORIGINAL
 	icon_state = "[mfauna]tumor_popped"
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 	INVOKE_ASYNC(src, PROC_REF(arena_checks))
 
 /obj/structure/elite_tumor/proc/return_elite()
@@ -227,10 +227,10 @@ While using this makes the system rely on OnFire, it still gives options for tim
 /obj/structure/elite_tumor/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	mychild = null
-	// [CELADON-EDIT] - CELADON_BALANCE_MOBS
-	// activator = null	// CELADON-EDIT - ORIGINAL
+	// [MANKIND-EDIT] - MANKIND_BALANCE_MOBS
+	// activator = null	// ORIGINAL
 	clear_activator(activator)
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 	return ..()
 
 /obj/structure/elite_tumor/process(seconds_per_tick)
@@ -243,24 +243,24 @@ While using this makes the system rely on OnFire, it still gives options for tim
 
 /obj/structure/elite_tumor/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	// [CELADON-EDIT] - CELADON_BALANCE_MOBS
-	// if(istype(I, /obj/item/organ/regenerative_core) && activity == TUMOR_INACTIVE && !boosted)	// CELADON-EDIT - ORIGINAL
+	// [MANKIND-EDIT] - MANKIND_BALANCE_MOBS
+	// if(istype(I, /obj/item/organ/regenerative_core) && activity == TUMOR_INACTIVE && !boosted)	// ORIGINAL
 	if(istype(I, /obj/item/organ/regenerative_core) && activity == TUMOR_INACTIVE && !boosted && !doom)
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 		var/obj/item/organ/regenerative_core/core = I
 		if(!core.preserved)
 			return
-		// [CELADON-EDIT] - CELADON_BALANCE_MOBS
-		// visible_message("<span class='boldwarning'>As [user] drops the core into [src], [src] appears to swell.</span>")		// CELADON-EDIT - ORIGINAL
+		// [MANKIND-EDIT] - MANKIND_BALANCE_MOBS
+		// visible_message("<span class='boldwarning'>As [user] drops the core into [src], [src] appears to swell.</span>")		// ORIGINAL
 		visible_message(span_boldwarning("As [user] drops the core into [src], [src] appears to swell."))
-		// [/CELADON-EDIT]
+		// [/MANKIND-EDIT]
 		icon_state = "advanced_tumor"
 		boosted = TRUE
 		light_range = 6
 		desc = "[desc]  This one seems to glow with a strong intensity."
 		qdel(core)
 		return TRUE
-	// [CELADON-ADD] - CELADON_BALANCE_MOBS
+	// [MANKIND-ADD] - MANKIND_BALANCE_MOBS
 	if(istype(I, /obj/item/gem) && activity == TUMOR_INACTIVE && !boosted && !doom)
 		var/obj/item/gem/gem = I
 		doom = TRUE
@@ -308,7 +308,7 @@ While using this makes the system rely on OnFire, it still gives options for tim
 				visible_message("<span class='boldwarning'>As [user] drops the [gem] into [src], it suddenly changes colors to void black, as a strange energy comes from within. You have awaken something terrible...</span>")
 		qdel(gem)
 		return gem
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 
 /obj/structure/elite_tumor/proc/arena_checks()
 	if(activity != TUMOR_ACTIVE || QDELETED(src))
@@ -329,29 +329,29 @@ While using this makes the system rely on OnFire, it still gives options for tim
 	var/turf/T = get_turf(src)
 	if(loc == null)
 		return
-	// [CELADON-EDIT] - CELADON_BALANCE_MOBS
+	// [MANKIND-EDIT] - MANKIND_BALANCE_MOBS
 	// for(var/t in RANGE_TURFS(12, T))
-	// 	if(get_dist(t, T) == 12)	// CELADON-EDIT - ORIGINAL
+	// 	if(get_dist(t, T) == 12)	// ORIGINAL
 	for(var/t in RANGE_TURFS(10, T))
 		if(get_dist(t, T) == 10)
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 			var/obj/effect/temp_visual/elite_tumor_wall/newwall
 			newwall = new /obj/effect/temp_visual/elite_tumor_wall(t, src)
 			newwall.activator = src.activator
 			newwall.ourelite = src.mychild
 
 /obj/structure/elite_tumor/proc/border_check()
-	// [CELADON-EDIT] - CELADON_BALANCE_MOBS
-	// if(activator != null && get_dist(src, activator) >= 12)	// CELADON-EDIT - ORIGINAL
+	// [MANKIND-EDIT] - MANKIND_BALANCE_MOBS
+	// if(activator != null && get_dist(src, activator) >= 12)	// ORIGINAL
 	if(activator != null && get_dist(src, activator) >= 10)
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 		activator.forceMove(loc)
 		visible_message(span_boldwarning("[activator] suddenly reappears above [src]!"))
 		playsound(loc,'sound/effects/phasein.ogg', 200, 0, 50, TRUE, TRUE)
-	// [CELADON-EDIT] - CELADON_BALANCE_MOBS
-	// if(mychild != null && get_dist(src, mychild) >= 12)	// CELADON-EDIT - ORIGINAL
+	// [MANKIND-EDIT] - MANKIND_BALANCE_MOBS
+	// if(mychild != null && get_dist(src, mychild) >= 12)	// ORIGINAL
 	if(mychild != null && get_dist(src, mychild) >= 10)
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 		mychild.forceMove(loc)
 		visible_message(span_boldwarning("[mychild] suddenly reappears above [src]!"))
 		playsound(loc,'sound/effects/phasein.ogg', 200, 0, 50, TRUE, TRUE)
@@ -360,11 +360,11 @@ While using this makes the system rely on OnFire, it still gives options for tim
 	playsound(loc,'sound/effects/tendril_destroyed.ogg', 200, 0, 50, TRUE, TRUE)
 	visible_message(span_boldwarning("[src] begins to convulse violently before beginning to dissipate."))
 	visible_message(span_boldwarning("As [src] closes, something is forced up from down below."))
-	// [CELADON-EDIT] - CELADON_BALANCE_MOBS - Меняем сундуки на обычные некрополиса
-	// var/obj/structure/closet/crate/necropolis/tendril/greater/lootbox = new /obj/structure/closet/crate/necropolis/tendril/greater(loc) // CELADON-EDIT - ORIGINAL
+	// [MANKIND-EDIT] - MANKIND_BALANCE_MOBS - Меняем сундуки на обычные некрополиса
+	// var/obj/structure/closet/crate/necropolis/tendril/greater/lootbox = new /obj/structure/closet/crate/necropolis/tendril/greater(loc) // ORIGINAL
 	var/obj/structure/closet/crate/necropolis/tendril/lootbox = new /obj/structure/closet/crate/necropolis/tendril(loc)
-	// [/CELADON-EDIT]
-	// [CELADON-EDIT] - CELADON_BALANCE_MOBS
+	// [/MANKIND-EDIT]
+	// [MANKIND-EDIT] - MANKIND_BALANCE_MOBS
 	// if(!boosted)
 	// 	mychild = null
 	// 	activator = null
@@ -372,25 +372,25 @@ While using this makes the system rely on OnFire, it still gives options for tim
 	// 	return
 	// if(mychild.loot_drop != null)
 	// 	new mychild.loot_drop(lootbox)
-	// 	if(prob(25))	// CELADON-EDIT - ORIGINAL
+	// 	if(prob(25))	// ORIGINAL
 	if(boosted)
 		if(mychild.loot_drop != null && prob(50))
 			new mychild.loot_drop(lootbox)
 		else
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 			new /obj/item/tumor_shard(lootbox)
-	// [CELADON-REMOVE] - CELADON_BALANCE_MOBS
+	// [MANKIND-REMOVE] - MANKIND_BALANCE_MOBS
 	// mychild = null
 	// activator = null
-	// [/CELADON-REMOVE]
+	// [/MANKIND-REMOVE]
 	qdel(src)
 
 /obj/structure/elite_tumor/proc/onEliteWon()
 	activity = TUMOR_PASSIVE
-	// [CELADON-EDIT] - CELADON_BALANCE_MOBS
-	// activator = null	// CELADON-EDIT - ORIGINAL
+	// [MANKIND-EDIT] - MANKIND_BALANCE_MOBS
+	// activator = null	// ORIGINAL
 	clear_activator(activator)
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 	mychild.revive(full_heal = TRUE, admin_revive = TRUE)
 	if(boosted)
 		times_won++
@@ -461,22 +461,22 @@ While using this makes the system rely on OnFire, it still gives options for tim
 /obj/effect/temp_visual/elite_tumor_wall/Destroy()
 	if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
 		QUEUE_SMOOTH_NEIGHBORS(src)
-	// [CELADON-REMOVE] - CELADON_BALANCE_MOBS
+	// [MANKIND-REMOVE] - MANKIND_BALANCE_MOBS
 	// activator = null
 	// ourelite = null
-	// [/CELADON-REMOVE]
+	// [/MANKIND-REMOVE]
 	return ..()
 
 /obj/effect/temp_visual/elite_tumor_wall/CanAllowThrough(atom/movable/mover, border_dir)
 	. = ..()
-	// [CELADON-EDIT] - CELADON_BALANCE_MOBS
+	// [MANKIND-EDIT] - MANKIND_BALANCE_MOBS
 	// if(mover == ourelite || mover == activator)
-	// 	return FALSE	// CELADON-EDIT - ORIGINAL
+	// 	return FALSE	// ORIGINAL
 	return FALSE
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 
-// [CELADON-ADD] - CELADON_BALANCE_MOBS
+// [MANKIND-ADD] - MANKIND_BALANCE_MOBS
 #undef TUMOR_ACTIVE
 #undef TUMOR_INACTIVE
 #undef TUMOR_PASSIVE
-// [/CELADON-ADD]
+// [/MANKIND-ADD]

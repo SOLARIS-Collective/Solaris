@@ -79,7 +79,7 @@ SHIP_HAIL_HIMSELF
   И то же самое, если ты используешь дефайны, определённые другим модом.
 
   Не используешь - напиши "Отсутствуют"
-  Примеры: `code/__defines/~mod_mankind/overmap.dm`: `OVERMAP_SPEED_MULTIPLIER`, `OVERMAP_SPEED_BASE`
+  Примеры: `code/__defines/~modular_mankind/overmap.dm`: `OVERMAP_SPEED_MULTIPLIER`, `OVERMAP_SPEED_BASE`
 -->
 
 ### Используемые файлы, не содержащиеся в модпаке

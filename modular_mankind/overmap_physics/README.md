@@ -1,7 +1,7 @@
 
 #### Список PRов
 
-- https://github.com/MANKIND-Collective/Pentest/pull/1045
+- https://github.com/CeladonSS13/Shiptest/pull/1045
 <!--
   Ссылки на PRы, связанные с модом:
   - Создание
@@ -62,7 +62,7 @@ ID мода:
 - icons/misc/overmap_large.dmi, 
 - icons/misc/overmap_larger.dmi, 
 - icons/turf/overmap.dmi, 
-- mod_mankind/maps/code/planet_types.dm, 
+- modular_mankind/maps/code/planet_types.dm, 
 - shiptest.dme, 
 - tgui/packages/tgui/interfaces/HelmConsole.js, 
 <!--
@@ -96,7 +96,7 @@ ID мода:
   И то же самое, если ты используешь дефайны, определённые другим модом.
 
   Не используешь - напиши "Отсутствуют"
-  Примеры: `code/__defines/~mod_mankind/example.dm`: `EXAMPLE_SPEED_MULTIPLIER`, `EXAMPLE_SPEED_BASE`
+  Примеры: `code/__defines/~modular_mankind/example.dm`: `EXAMPLE_SPEED_MULTIPLIER`, `EXAMPLE_SPEED_BASE`
 -->
 
 ### Используемые файлы, не содержащиеся в модпаке
@@ -118,7 +118,7 @@ ID мода:
 - icons/misc/overmap_large.dmi, 
 - icons/misc/overmap_larger.dmi, 
 - icons/turf/overmap.dmi, 
-- mod_mankind/maps/code/planet_types.dm, 
+- modular_mankind/maps/code/planet_types.dm, 
 - shiptest.dme, 
 - tgui/packages/tgui/interfaces/HelmConsole.js, 
 <!--

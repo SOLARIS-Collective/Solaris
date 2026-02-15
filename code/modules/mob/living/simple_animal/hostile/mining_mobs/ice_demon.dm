@@ -47,10 +47,10 @@
 	nodamage = FALSE
 	temperature = -40
 
-// [CELADON-EDIT] - CELADON_BALANCE_MOBS
+// [MANKIND-EDIT] - MANKIND_BALANCE_MOBS
 // /mob/living/simple_animal/hostile/asteroid/ice_demon/OpenFire()
 /mob/living/simple_animal/hostile/asteroid/old_demon/OpenFire()
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 	// Sentient ice demons teleporting has been linked to server crashes
 	if(client)
 		return ..()
@@ -77,10 +77,10 @@
 		new /obj/item/assembly/signaler/anomaly/bluespace(loc)
 	if(prob(5))
 		new /obj/item/gem/fdiamond(loc)
-	// [CELADON-ADD] - RETURN_CONTENT_CRUSHER_TROPHY
+	// [MANKIND-ADD] - RETURN_CONTENT_CRUSHER_TROPHY
 	if(prob(10))
 		new /obj/item/crusher_trophy/ice_wing(loc)
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 	return ..()
 
 /mob/living/simple_animal/hostile/asteroid/old_demon
@@ -127,9 +127,9 @@
 	footstep_type = FOOTSTEP_MOB_CLAW
 	/// Distance the demon will teleport from the target
 	var/teleport_distance = 3
-	// [CELADON-REMOVE] - RETURN_CONTENT_CRUSHER_TROPHY - Выпилено ради легенды
+	// [MANKIND-REMOVE] - RETURN_CONTENT_CRUSHER_TROPHY - Выпилено ради легенды
 	// trophy_drop_mod = 75
-	// [/CELADON-REMOVE]
+	// [/MANKIND-REMOVE]
 
 /obj/projectile/temp/basilisk/ice
 	name = "ice blast"
@@ -164,10 +164,10 @@
 		new /obj/item/assembly/signaler/anomaly/bluespace(loc)
 	if(prob(20))
 		new /obj/item/gem/fdiamond(loc)
-	// [CELADON-ADD] - RETURN_CONTENT_CRUSHER_TROPHY
+	// [MANKIND-ADD] - RETURN_CONTENT_CRUSHER_TROPHY
 	if(prob(50))
 		new /obj/item/crusher_trophy/ice_crystal(loc)
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 	return ..()
 
 /mob/living/simple_animal/hostile/asteroid/ice_demon/random/Initialize()

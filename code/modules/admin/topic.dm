@@ -976,7 +976,7 @@
 		L.revive(full_heal = TRUE, admin_revive = TRUE)
 		message_admins(span_danger("Admin [key_name_admin(usr)] healed / revived [key_name_admin(L)]!"))
 		log_admin("[key_name(usr)] healed / Revived [key_name(L)].")
-		log_celadon_admin("ADMIN: [key_name(usr)] healed / Revived [key_name(L)].") // [CELADON-ADD] - logging admin actions.
+		log_mankind_admin("ADMIN: [key_name(usr)] healed / Revived [key_name(L)].") // [MANKIND-ADD] - logging admin actions.
 
 	else if(href_list["makeai"])
 		if(!check_rights(R_SPAWN))
@@ -1452,10 +1452,10 @@
 		if(target)
 			if(where == "frompod")
 				pod = new()
-			// [CELADON-ADD] - logging admin actions.
+			// [MANKIND-ADD] - logging admin actions.
 			message_admins("[key_name(usr)] spawned [number] x [english_list(paths)] at [where] - [ADMIN_VERBOSEJMP(loc)].")
-			log_celadon_admin("ADMIN: [key_name(usr)] spawned [number] x [english_list(paths)] at [where] - X[target.x]/Y[target.y]/Z[target.z].")
-			// [/CELADON-ADD]
+			log_mankind_admin("ADMIN: [key_name(usr)] spawned [number] x [english_list(paths)] at [where] - X[target.x]/Y[target.y]/Z[target.z].")
+			// [/MANKIND-ADD]
 			for (var/path in paths)
 				for (var/i = 0; i < number; i++)
 					if(path in typesof(/turf))

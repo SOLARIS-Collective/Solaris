@@ -13,10 +13,10 @@ GLOBAL_LIST_INIT(lizard_names_male, world.file2list("strings/names/lizard_male.t
 GLOBAL_LIST_INIT(lizard_names_female, world.file2list("strings/names/lizard_female.txt"))
 GLOBAL_LIST_INIT(spider_names, world.file2list("strings/names/spider_names.txt"))
 GLOBAL_LIST_INIT(kepori_names, world.file2list("strings/names/kepori_names.txt"))
-// [CELADON-ADD] - RETURN_CONTENT - CLOWN_RETURN_CONTENT
-GLOBAL_LIST_INIT(clown_names, world.file2list("mod_celadon/return_content_clowns/code/strings/clown.txt"))
-GLOBAL_LIST_INIT(mime_names, world.file2list("mod_celadon/return_content_clowns/code/strings/mime.txt"))
-// [/CELADON-ADD]
+// [MANKIND-ADD] - RETURN_CONTENT - CLOWN_RETURN_CONTENT
+GLOBAL_LIST_INIT(clown_names, world.file2list("modular_mankind/return_content_clowns/code/strings/clown.txt"))
+GLOBAL_LIST_INIT(mime_names, world.file2list("modular_mankind/return_content_clowns/code/strings/mime.txt"))
+// [/MANKIND-ADD]
 GLOBAL_LIST_INIT(carp_names, world.file2list("strings/names/carp.txt"))
 GLOBAL_LIST_INIT(plasmaman_names, world.file2list("strings/names/plasmaman.txt"))
 GLOBAL_LIST_INIT(squid_names, world.file2list("strings/names/squid.txt"))
@@ -47,8 +47,8 @@ List of configurable names in preferences and their metadata
 GLOBAL_LIST_INIT(preferences_custom_names, list(
 	"cyborg" = list("pref_name" = "Cyborg", "qdesc" = "cyborg name (Leave empty to use default naming scheme)", "group" = "silicons", "allow_null" = TRUE),
 	"ai" = list("pref_name" = "AI", "qdesc" = "ai name", "group" = "silicons", "allow_null" = FALSE),
-	// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+	// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 	"clown" = list("pref_name" = "Clown" , "qdesc" = "clown name", "group" = "fun", "allow_null" = FALSE),
 	"mime" = list("pref_name" = "Mime", "qdesc" = "mime name" , "group" = "fun", "allow_null" = FALSE),
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 ))

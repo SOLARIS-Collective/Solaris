@@ -127,13 +127,13 @@
 	min_cold_protection_temperature = FIRE_HELM_MIN_TEMP_PROTECT
 	dog_fashion = /datum/dog_fashion/head/santa
 
-// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 /obj/item/clothing/head/rice_hat
 	name = "rice hat"
 	desc = "Welcome to the rice fields, motherfucker."
-	icon = 'mod_celadon/_storage_icons/icons/other/clown_mime/hats.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/other/clown_mime/hats.dmi'
 	icon_state = "rice_hat"
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 /obj/item/clothing/head/papersack
 	name = "paper sack hat"
@@ -153,7 +153,7 @@
 	icon_state = "crown"
 	resistance_flags = FIRE_PROOF
 
-// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 /obj/item/clothing/head/frenchberet
 	name = "french beret"
 	desc = "A quality beret, infused with the aroma of chain-smoking, wine-swilling Parisians. You feel less inclined to engage in military conflict, for some reason."
@@ -188,7 +188,7 @@
 		if(prob(3))
 			message += pick(" Honh honh honh!"," Honh!"," Zut Alors!")
 	speech_args[SPEECH_MESSAGE] = trim(message)
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 /obj/item/clothing/head/intern
 	name = "\improper CentCom Head Intern beancap"

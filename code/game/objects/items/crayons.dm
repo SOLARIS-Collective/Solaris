@@ -505,9 +505,9 @@
 	reagent_contents = list(/datum/reagent/consumable/nutriment = 0.5,  /datum/reagent/colorful_reagent/powder/white/crayon = 1.5)
 	dye_color = DYE_WHITE
 
-// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 /obj/item/toy/crayon/mime
-	icon = 'mod_celadon/_storage_icons/icons/other/clown_mime/crayons.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/other/clown_mime/crayons.dmi'
 	icon_state = "crayonmime"
 	desc = "A very sad-looking crayon."
 	paint_color = "#FFFFFF"
@@ -515,7 +515,7 @@
 	reagent_contents = list(/datum/reagent/consumable/nutriment = 0.5, /datum/reagent/colorful_reagent/powder/invisible = 1.5)
 	charges = -1
 	dye_color = DYE_MIME
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 /obj/item/toy/crayon/rainbow
 	icon_state = "crayonrainbow"
@@ -565,7 +565,7 @@
 /obj/item/storage/crayons/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/toy/crayon))
 		var/obj/item/toy/crayon/C = W
-// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 /*
 		if(C.crayon_color == "rainbow")
 			to_chat(usr, span_warning("This crayon is too powerful to be contained in this box!"))
@@ -578,7 +578,7 @@
 			if("rainbow")
 				to_chat(usr, span_warning("This crayon is too powerful to be contained in this box!"))
 				return
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 		if(istype(W, /obj/item/toy/crayon/spraycan))
 			to_chat(user, span_warning("Spraycans are not crayons!"))
 			return
@@ -679,10 +679,10 @@
 
 		return
 
-// [CELADON-EDIT] - UNFUCK_SPRAYCAN
+// [MANKIND-EDIT] - UNFUCK_SPRAYCAN
 	//if(isobj(target) && !istype(target, /obj/effect/decal/cleanable/crayon/gang) && !istype(target, /obj/item/clothing))
 	if(isobj(target) && !istype(target, /obj/effect/decal/cleanable/crayon/gang))
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 		if(actually_paints)
 			if(color_hex2num(paint_color) < 350 && !istype(target, /obj/structure/window) && !istype(target, /obj/effect/decal/cleanable/crayon)) //Colors too dark are rejected
 				to_chat(usr, span_warning("A color that dark on an object like this? Surely not..."))
@@ -731,14 +731,14 @@
 		"engineer" = 'icons/mob/augmentation/augments_engineer.dmi',
 		"security" = 'icons/mob/augmentation/augments_security.dmi',
 		"mining" = 'icons/mob/augmentation/augments_mining.dmi',
-		"bishop" = 'mod_celadon/_storage_icons/icons/mobs/augmentation/augments_bishop.dmi',
-		"shellguard" = 'mod_celadon/_storage_icons/icons/mobs/augmentation/augments_shellguard.dmi',
-		"wardtakahashi" = 'mod_celadon/_storage_icons/icons/mobs/augmentation/augments_wardtakahashi.dmi',
-		"xion" = 'mod_celadon/_storage_icons/icons/mobs/augmentation/augments_xion.dmi',
-		"zenghu" = 'mod_celadon/_storage_icons/icons/mobs/augmentation/augments_zenghu.dmi',
+		"bishop" = 'modular_mankind/_storage_icons/icons/mobs/augmentation/augments_bishop.dmi',
+		"shellguard" = 'modular_mankind/_storage_icons/icons/mobs/augmentation/augments_shellguard.dmi',
+		"wardtakahashi" = 'modular_mankind/_storage_icons/icons/mobs/augmentation/augments_wardtakahashi.dmi',
+		"xion" = 'modular_mankind/_storage_icons/icons/mobs/augmentation/augments_xion.dmi',
+		"zenghu" = 'modular_mankind/_storage_icons/icons/mobs/augmentation/augments_zenghu.dmi',
 		)
 	var/static/list/digitigrade_style_list = list(
-		"digitigrade" = 'mod_celadon/_storage_icons/icons/mobs/augmentation/digitigrade_legs.dmi',
+		"digitigrade" = 'modular_mankind/_storage_icons/icons/mobs/augmentation/digitigrade_legs.dmi',
 		"lizard" = 'icons/mob/augmentation/augments_lizard.dmi',
 		)
 	var/static/list/style_options_list = style_list_icons + digitigrade_style_list
@@ -799,11 +799,11 @@
 	actually_paints = FALSE
 	paint_color = "#000000"
 
-// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 /obj/item/toy/crayon/spraycan/lubecan
 	name = "slippery spraycan"
 	desc = "You can barely keep hold of this thing."
-	icon = 'mod_celadon/_storage_icons/icons/other/clown_mime/crayons.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/other/clown_mime/crayons.dmi'
 	icon_state = "clowncan2_cap"
 	icon_capped = "clowncan2_cap"
 	icon_uncapped = "clowncan2"
@@ -818,7 +818,7 @@
 /obj/item/toy/crayon/spraycan/mimecan
 	name = "silent spraycan"
 	desc = "Art is best seen, not heard."
-	icon = 'mod_celadon/_storage_icons/icons/other/clown_mime/crayons.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/other/clown_mime/crayons.dmi'
 	icon_state = "mimecan_cap"
 	icon_capped = "mimecan_cap"
 	icon_uncapped = "mimecan"
@@ -830,7 +830,7 @@
 	pre_noise = FALSE
 	post_noise = FALSE
 	reagent_contents = list(/datum/reagent/consumable/nothing = 1, /datum/reagent/toxin/mutetoxin = 1)
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 /obj/item/toy/crayon/spraycan/infinite
 	name = "infinite spraycan"

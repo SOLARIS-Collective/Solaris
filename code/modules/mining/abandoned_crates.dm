@@ -140,10 +140,10 @@
 			new /obj/item/storage/fancy/cigarettes/cigpack_cannabis(src)
 		if(6 to 10)
 			new /obj/item/skateboard/pro(src)
-		// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+		// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 		if(11 to 15)
 			new /mob/living/simple_animal/bot/honkbot(src)
-		// [/CELADON-ADD]
+		// [/MANKIND-ADD]
 			new /obj/item/gun/ballistic/automatic/pistol/himehabu(src)
 			new /obj/item/ammo_box/magazine/m22lr_himehabu(src)
 			new /obj/item/ammo_box/magazine/m22lr_himehabu(src)
@@ -192,9 +192,9 @@
 			new /obj/item/reagent_containers/glass/bottle/vial/small/preloaded/stasis(src)
 		if(65 to 66)
 			new /obj/item/clothing/suit/ianshirt(src)
-			// [CELADON-ADD] - CELADON_RETURN_CONTENT_SPAWN
+			// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_SPAWN
 			new /obj/item/clothing/suit/hooded/ian_costume(src)
-			// [/CELADON-ADD]
+			// [/MANKIND-ADD]
 			new /obj/item/tank/jetpack/oxygen/harness(src)
 		if(67 to 68)
 			for(var/i in 1 to 3)

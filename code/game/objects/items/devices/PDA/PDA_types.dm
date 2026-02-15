@@ -11,10 +11,10 @@
 
 /obj/item/pda/clown/ComponentInitialize()
 	. = ..()
-	// [CELADON-EDIT] - CELADON_RETURN_CONTENT_SPAWN
-	// AddComponent(/datum/component/wearertargeting/sitcomlaughter, CALLBACK(src, PROC_REF(after_sitcom_laugh)))	// CELADON-EDIT - ORIGINAL
+	// [MANKIND-EDIT] - MANKIND_RETURN_CONTENT_SPAWN
+	// AddComponent(/datum/component/wearertargeting/sitcomlaughter, CALLBACK(src, PROC_REF(after_sitcom_laugh)))	// ORIGINAL
 	AddComponent(/datum/component/slippery/clowning, 120, NO_SLIP_WHEN_WALKING, CALLBACK(src, PROC_REF(AfterSlip)))
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 
 /obj/item/pda/clown/proc/AfterSlip(mob/living/carbon/human/M)
 	if (istype(M) && (M.real_name != owner))
@@ -52,13 +52,13 @@
 	icon = null
 	ttone = "data"
 
-// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 /obj/item/pda/ai/attack_self(mob/user)
 	if ((honkamt > 0) && (prob(60)))//For clown virus.
 		honkamt--
 		playsound(loc, 'sound/items/bikehorn.ogg', 30, TRUE)
 	return
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 /obj/item/pda/ai/pai
 	ttone = "assist"
@@ -248,9 +248,9 @@
 	default_cartridge = /obj/item/cartridge/medical
 	icon_state = "pda-suns"
 
-// [CELADON-ADD] - scientist-PDA
+// [MANKIND-ADD] - scientist-PDA
 /obj/item/pda/scientist
 	name = "scientist PDA"
 	default_cartridge = /obj/item/cartridge/chemistry
 	icon_state = "pda-science"
-// [/CELADON-ADD]
+// [/MANKIND-ADD]

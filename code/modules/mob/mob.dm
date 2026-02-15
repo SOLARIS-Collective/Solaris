@@ -112,10 +112,10 @@
 			if(HUD_LIST_LIST)
 				hud_list[hud] = list()
 			else
-// [CELADON-EDIT] - CELADON_ADD_HUDS
+// [MANKIND-EDIT] - MANKIND_ADD_HUDS
 //				var/image/I = image('icons/mob/hud.dmi', src, "")
-				var/image/I = image('mod_celadon/_storage_icons/icons/resprite/hud/hud.dmi', src, "")
-// [/CELADON-EDIT]
+				var/image/I = image('modular_mankind/_storage_icons/icons/resprite/hud/hud.dmi', src, "")
+// [/MANKIND-EDIT]
 				I.appearance_flags = RESET_COLOR|RESET_TRANSFORM
 				hud_list[hud] = I
 
@@ -847,7 +847,7 @@
  */
 /mob/verb/cancel_camera()
 	set name = "Cancel Camera View"
-	set category = "Special Verbs" // [CELADON-EDIT] - CELADON_QOL - Очистка вкладки ООС, перенос части в Special Verbs
+	set category = "Special Verbs" // [MANKIND-EDIT] - MANKIND_QOL - Очистка вкладки ООС, перенос части в Special Verbs
 	reset_perspective(null)
 	unset_machine()
 

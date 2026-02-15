@@ -13,8 +13,8 @@
 
 /datum/component/radioactive/Initialize(_strength=0, _source, _half_life=RAD_HALF_LIFE, _can_contaminate=TRUE)
 	// shouldn't ever happen, but it pays to be a little careful
-	// Ограничиваем максимальное значение радиации // [CELADON-ADD]
-	strength = SSradiation.cap_radiation(_strength)	// [CELADON-EDIT] - CELADON_FIXES_RADIATION // strength = min(_strength, INFINITY)	// ORIGINAL
+	// Ограничиваем максимальное значение радиации // [MANKIND-ADD]
+	strength = SSradiation.cap_radiation(_strength)	// [MANKIND-EDIT] - MANKIND_FIXES_RADIATION // strength = min(_strength, INFINITY)	// ORIGINAL
 	source = _source
 	hl3_release_date = _half_life
 	can_contaminate = _can_contaminate
@@ -48,7 +48,7 @@
 	if(!hl3_release_date)
 		return
 
-	// [CELADON-EDIT] - CELADON_FIXES_RADIATION
+	// [MANKIND-EDIT] - MANKIND_FIXES_RADIATION
 	//strength -= strength / hl3_release_date	// ORIGINAL
 	// Ускоренное уменьшение для больших значений
 	if(strength > 1000)
@@ -60,7 +60,7 @@
 		strength -= strength / hl3_release_date
 
 	// Проверка на минимальное значение
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 	if(strength <= RAD_BACKGROUND_RADIATION)
 		qdel(src)
 		return PROCESS_KILL
@@ -77,11 +77,11 @@
 		return
 	if(C)
 		var/datum/component/radioactive/other = C
-	// [CELADON-EDIT] - CELADON_FIXES_RADIATION
+	// [MANKIND-EDIT] - MANKIND_FIXES_RADIATION
 		strength = SSradiation.cap_radiation(max(strength, other.strength))	// strength = max(strength, other.strength) // ORIGINAL
 	else
 		strength = SSradiation.cap_radiation(max(strength, _strength)) // strength = max(strength, _strength) // ORIGINAL
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 
 /datum/component/radioactive/proc/rad_examine(datum/source, mob/user, atom/thing)
 	SIGNAL_HANDLER

@@ -10,21 +10,21 @@
 	speed = 0
 	butcher_results = list(/obj/item/food/meat/slab/xeno = 4,
 							/obj/item/stack/sheet/animalhide/xeno = 1)
-	// [CELADON-EDIT] - ALIEN_BALANCE
+	// [MANKIND-EDIT] - ALIEN_BALANCE
 	// maxHealth = 125
 	// health = 125
 	maxHealth = 250
 	health = 250
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 	harm_intent_damage = 5
 	obj_damage = 60
-	// [CELADON-EDIT] - ALIEN_BALANCE
+	// [MANKIND-EDIT] - ALIEN_BALANCE
 	// melee_damage_lower = 25
 	// melee_damage_upper = 25
 	melee_damage_lower = 8
 	melee_damage_upper = 8
 	armour_penetration = 30
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
 	speak_emote = list("hisses")
@@ -41,7 +41,7 @@
 	unique_name = 1
 	deathsound = 'sound/voice/hiss6.ogg'
 	deathmessage = "lets out a waning guttural screech, green blood bubbling from its maw..."
-	// [CELADON-ADD] - ALIEN_BALANCE
+	// [MANKIND-ADD] - ALIEN_BALANCE
 	sharpness = SHARP_EDGED
 	check_friendly_fire = TRUE
 	dodging = TRUE
@@ -53,7 +53,7 @@
 	charge_cooldown = 8 SECONDS
 	armor = list("melee" = 20, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = -100, "acid" = 80)
 	speed = 0.5
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 
 /mob/living/simple_animal/hostile/alien/asteroid
 	faction = list("mining")
@@ -71,7 +71,7 @@
 	melee_damage_upper = 15
 	var/plant_cooldown = 30
 	var/plants_off = 0
-	charger = FALSE // [CELADON-ADD] - ALIEN_BALANCE
+	charger = FALSE // [MANKIND-ADD] - ALIEN_BALANCE
 
 /mob/living/simple_animal/hostile/alien/drone/handle_automated_action()
 	if(!..()) //AIStatus is off
@@ -96,40 +96,40 @@
 	minimum_distance = 5
 	projectiletype = /obj/projectile/neurotox
 	projectilesound = 'sound/weapons/pierce.ogg'
-	// [CELADON-ADD] - ALIEN_BALANCE
+	// [MANKIND-ADD] - ALIEN_BALANCE
 	charger = FALSE
 	alpha = 100
 	armour_penetration = 25
 	armor = list("melee" = 40, "bullet" = 40, "laser" = 20, "energy" = 20, "bomb" = 20, "bio" = 100, "rad" = 100, "fire" = -100, "acid" = 80)
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 
 /mob/living/simple_animal/hostile/alien/queen
 	name = "alien queen"
 	icon_state = "alienq"
 	icon_living = "alienq"
 	icon_dead = "alienq_dead"
-	// [CELADON-EDIT] - ALIEN_BALANCE
+	// [MANKIND-EDIT] - ALIEN_BALANCE
 	// health = 250
 	// maxHealth = 250
 	health = 600
 	maxHealth = 600
-	// [CELADON-ADD] - ALIEN_BALANCE
+	// [MANKIND-ADD] - ALIEN_BALANCE
 	armour_penetration = 30
 	armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 30, "bomb" = 30, "bio" = 100, "rad" = 100, "fire" = -100, "acid" = 80)
 	charger = FALSE
 	rapid_melee = 1
-	// [/CELADON-ADD]
-	// [CELADON-EDIT] - ALIEN_BALANCE
+	// [/MANKIND-ADD]
+	// [MANKIND-EDIT] - ALIEN_BALANCE
 	// melee_damage_lower = 15
 	// melee_damage_upper = 15
 	melee_damage_lower = 40
 	melee_damage_upper = 40
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 	ranged = 1
-	// [CELADON-DELETE] - ALIEN_BALANCE
+	// [MANKIND-REMOVE] - ALIEN_BALANCE
 	// retreat_distance = 5
 	// minimum_distance = 5
-	// [/CELADON-DELETE]
+	// [/MANKIND-REMOVE]
 	move_to_delay = 4
 	butcher_results = list(/obj/item/food/meat/slab/xeno = 4,
 							/obj/item/stack/sheet/animalhide/xeno = 1)
@@ -179,17 +179,17 @@
 	icon_dead = "alienq_dead"
 	health_doll_icon = "alienq"
 	bubble_icon = "alienroyal"
-	// [CELADON-EDIT] - ALIEN_BALANCE
+	// [MANKIND-EDIT] - ALIEN_BALANCE
 	// maxHealth = 400
 	// health = 400
 	health = 800
 	maxHealth = 800
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 	move_to_delay = 4
-	// [CELADON-ADD] - ALIEN_BALANCE
+	// [MANKIND-ADD] - ALIEN_BALANCE
 	armour_penetration = 35
 	armor = list("melee" = 50, "bullet" = 50, "laser" = 20, "energy" = 50, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = -100, "acid" = 80)
-	// [CELADON-ADD]
+	// [MANKIND-ADD]
 	butcher_results = list(/obj/item/food/meat/slab/xeno = 10,
 							/obj/item/stack/sheet/animalhide/xeno = 2)
 	mob_size = MOB_SIZE_LARGE
@@ -198,11 +198,11 @@
 	name = "neurotoxin"
 	damage = 30
 	icon_state = "toxin"
-	// [CELADON-ADD] - ALIEN_BALANCE
+	// [MANKIND-ADD] - ALIEN_BALANCE
 	slur = 10
 	eyeblur = 10
 	jitter = 5
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 
 /mob/living/simple_animal/hostile/alien/handle_temperature_damage()
 	if(bodytemperature < minbodytemp)

@@ -1,4 +1,4 @@
-//[CELADON-ADD] - CELADON_OUTPOST_CONSOLE
+// [MANKIND-ADD] - MANKIND_OUTPOST_CONSOLE
 #define ACCOUNT_FAC "FAC"
 #define ACCOUNT_FAC_NAME "Faction Budget"
 #define ACCOUNT_SYN "SYN"
@@ -19,7 +19,7 @@
 #define ACCOUNT_IND_3_NAME "Independent 3 Budget"
 #define ACCOUNT_IND_4 "IND_4"
 #define ACCOUNT_IND_4_NAME "Independent 4 Budget"
-//[/CELADON-ADD]
+// [/MANKIND-ADD]
 
 SUBSYSTEM_DEF(economy)
 	name = "Economy"
@@ -34,7 +34,7 @@ SUBSYSTEM_DEF(economy)
 	///Total amount of money in bank accounts
 	var/bank_money = 0
 
-//[CELADON-ADD] - CELADON_OUTPOST_CONSOLE
+// [MANKIND-ADD] - MANKIND_OUTPOST_CONSOLE
 	var/budget_pool = 35000
 	var/list/department_accounts = list(ACCOUNT_FAC = ACCOUNT_FAC_NAME,
 										ACCOUNT_SYN = ACCOUNT_SYN_NAME,
@@ -47,7 +47,7 @@ SUBSYSTEM_DEF(economy)
 										ACCOUNT_IND_3 = ACCOUNT_IND_3_NAME,
 										ACCOUNT_IND_4 = ACCOUNT_IND_4_NAME)
 	var/list/departmental_accounts = list()
-//[/CELADON-ADD]
+// [/MANKIND-ADD]
 
 /datum/controller/subsystem/economy/stat_entry(msg)
 	msg += "{"
@@ -57,7 +57,7 @@ SUBSYSTEM_DEF(economy)
 	msg += "}"
 	return ..()
 
-//[CELADON-ADD] - CELADON_OUTPOST_CONSOLE
+// [MANKIND-ADD] - MANKIND_OUTPOST_CONSOLE
 /datum/bank_account/department
 	account_holder = "Guild Credit Agency"
 	var/department_id = "REPLACE_ME"
@@ -77,4 +77,4 @@ SUBSYSTEM_DEF(economy)
 	for(var/dep_id in department_accounts)
 		new /datum/bank_account/department(dep_id, 0, player_account = FALSE)
 	return 2
-//[/CELADON-ADD]
+// [/MANKIND-ADD]

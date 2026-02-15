@@ -13,7 +13,7 @@
 		/obj/item/food/donkpocket/warm/spicy,
 		/obj/item/food/donkpocket/warm/teriyaki,
 		/obj/item/food/donkpocket/warm/pizza,
-		/obj/item/food/donkpocket/warm/honk,	// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+		/obj/item/food/donkpocket/warm/honk,	// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 		/obj/item/food/donkpocket/warm/berry,
 	)
 
@@ -136,7 +136,7 @@
 	tastes = list("meat" = 2, "dough" = 2, "melty cheese"= 2)
 	foodtypes = GRAIN
 
-// [CELADON-ADD] - CELADON_RETURN_CONTENT_CLOWNS
+// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
 /obj/item/food/donkpocket/honk
 	name = "\improper Honk-pocket"
 	desc = "The award-winning donk-pocket that won the hearts of clowns and humans alike."
@@ -162,7 +162,7 @@
 	)
 	tastes = list("banana" = 2, "dough" = 2, "children's antibiotics" = 1)
 	foodtypes = GRAIN
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 /obj/item/food/donkpocket/berry
 	name = "berry-pocket"

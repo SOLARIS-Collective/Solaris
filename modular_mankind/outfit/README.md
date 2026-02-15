@@ -1,7 +1,7 @@
 
 #### Список PRов
 
-- https://github.com/MANKIND-Collective/Pentest/pull/687 и множество других...
+- https://github.com/CeladonSS13/Shiptest/pull/687 и множество других...
 <!--
   Ссылки на PRы, связанные с модом:
   - Создание
@@ -76,19 +76,19 @@ ID мода: MANKIND_OUTFIT
 
 ### Дефайны
 
-- `code/__defines/~mod_mankind/example.dm`: `EXAMPLE_SPEED_MULTIPLIER`, `EXAMPLE_SPEED_BASE`
+- `code/__defines/~modular_mankind/example.dm`: `EXAMPLE_SPEED_MULTIPLIER`, `EXAMPLE_SPEED_BASE`
 <!--
   Если требовалось добавить какие-либо дефайны, укажи файлы,
   в которые ты их добавил, а также перечисли имена.
   И то же самое, если ты используешь дефайны, определённые другим модом.
 
   Не используешь - напиши "Отсутствуют"
-  Примеры: `code/__defines/~mod_mankind/outfit.dm`: `OUTFIT_SPEED_MULTIPLIER`, `OUTFIT_SPEED_BASE`
+  Примеры: `code/__defines/~modular_mankind/outfit.dm`: `OUTFIT_SPEED_MULTIPLIER`, `OUTFIT_SPEED_BASE`
 -->
 
 ### Используемые файлы, не содержащиеся в модпаке
 
-- `mod_mankind/_storage_icons/icons`
+- `modular_mankind/_storage_icons/icons`
 - `mods/_master_files/icons/obj/alien.dmi`
 - `icons/obj/clothing/belt_overlays.dmi`
 <!--

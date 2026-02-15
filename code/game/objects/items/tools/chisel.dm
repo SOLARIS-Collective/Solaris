@@ -19,17 +19,17 @@
 /obj/item/chisel/pre_attack(atom/target, mob/living/user, params)
 	if(ismob(target))
 		return ..()
-	// [CELADON-ADD] - CELADON_BALANCE_CHISEL - Проверка дистанции только соседние клетки (кроме админского)
+	// [MANKIND-ADD] - MANKIND_BALANCE_CHISEL - Проверка дистанции только соседние клетки (кроме админского)
 	if(get_dist(user, target) > 1 && !istype(src, /obj/item/chisel/advanced/admin))
 		to_chat(user, span_warning("Слишком далеко! Используйте [src] на соседних клетках."))
 		return ..()
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 	if(isturf(target))
-		// [CELADON-ADD] - CELADON_BALANCE_CHISEL - Блокировка неразрушимых стен для обычного долота
+		// [MANKIND-ADD] - MANKIND_BALANCE_CHISEL - Блокировка неразрушимых стен для обычного долота
 		if(istype(target, /turf/closed/indestructible) && !istype(src, /obj/item/chisel/advanced))
 			to_chat(user, span_warning("[src] не может воздействовать на эту поверхность."))
 			return ..()
-		// [/CELADON-ADD]
+		// [/MANKIND-ADD]
 		if(istype(target, /turf/open/floor/concrete))
 			var/turf/open/floor/concrete/conc_floor = target
 			return conc_floor.handle_shape(user)
@@ -147,7 +147,7 @@
 	category = list("initial","Tools","Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SERVICE
 
-// [CELADON-ADD] - CELADON_BALANCE_CHISEL
+// [MANKIND-ADD] - MANKIND_BALANCE_CHISEL
 /obj/item/chisel/advanced
 	name = "advanced chisel"
 	desc = "Продвинутое долото, способное воздействовать на любые поверхности в малом радиусе."
@@ -155,7 +155,7 @@
 /obj/item/chisel/advanced/admin
 	name = "admin chisel"
 	desc = "Административное долото без ограничений дистанции и типа поверхности."
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 #undef OPEN_TURF_ONLY
 #undef CLOSED_TURF_ONLY

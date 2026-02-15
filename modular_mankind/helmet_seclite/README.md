@@ -75,7 +75,7 @@ ID мода: MANKIND_HELMET_SECLITE
   И то же самое, если ты используешь дефайны, определённые другим модом.
 
   Не используешь - напиши "Отсутствуют"
-  Примеры: `code/__defines/~mod_mankind/helmet_seclite.dm`: `HELMET_SECLITE_SPEED_MULTIPLIER`, `HELMET_SECLITE_SPEED_BASE`
+  Примеры: `code/__defines/~modular_mankind/helmet_seclite.dm`: `HELMET_SECLITE_SPEED_MULTIPLIER`, `HELMET_SECLITE_SPEED_BASE`
 -->
 
 ### Используемые файлы, не содержащиеся в модпаке

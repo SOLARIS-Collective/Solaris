@@ -25,10 +25,10 @@
 	icon_dead = "legionnaire_dead"
 	icon_gib = "syndicate_gib"
 	health_doll_icon = "legionnaire"
-	// [CELADON-REMOVE] - CELADON_BALANCE_MOBS
+	// [MANKIND-REMOVE] - MANKIND_BALANCE_MOBS
 	// maxHealth = 800
 	// health = 800
-	// [/CELADON-REMOVE]
+	// [/MANKIND-REMOVE]
 	melee_damage_lower = 30
 	melee_damage_upper = 30
 	attack_verb_continuous = "slashes its arms at"
@@ -40,9 +40,9 @@
 	mouse_opacity = MOUSE_OPACITY_ICON
 	deathsound = 'sound/magic/curse.ogg'
 	deathmessage = "'s arms reach out before it falls apart onto the floor, lifeless."
-	// [CELADON-REMOVE] - RETURN_CONTENT_CRUSHER_TROPHY - Выпилено ради легенды
+	// [MANKIND-REMOVE] - RETURN_CONTENT_CRUSHER_TROPHY - Выпилено ради легенды
 	// loot_drop = /obj/item/mob_trophy/legionnaire_spine
-	// [/CELADON-REMOVE]
+	// [/MANKIND-REMOVE]
 
 	attack_action_types = list(/datum/action/innate/elite_attack/legionnaire_charge,
 								/datum/action/innate/elite_attack/head_detach,
@@ -89,10 +89,10 @@
 			if(SPEW_SMOKE)
 				spew_smoke()
 		return
-	// [CELADON-EDIT] - CELADON_BALANCE_MOBS
-	// var/aiattack = rand(1,4)	// CELADON-EDIT - ORIGINAL
+	// [MANKIND-EDIT] - MANKIND_BALANCE_MOBS
+	// var/aiattack = rand(1,4)	// ORIGINAL
 	var/aiattack = rand(1,3)
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 	switch(aiattack)
 		if(LEGIONNAIRE_CHARGE)
 			legionnaire_charge(target)
@@ -100,10 +100,10 @@
 			head_detach(target)
 		if(BONFIRE_TELEPORT)
 			bonfire_teleport()
-		// [CELADON-REMOVE] - CELADON_BALANCE_MOBS
+		// [MANKIND-REMOVE] - MANKIND_BALANCE_MOBS
 		// if(SPEW_SMOKE)
 		// 	spew_smoke()
-		// [/CELADON-REMOVE]
+		// [/MANKIND-REMOVE]
 /mob/living/simple_animal/hostile/asteroid/elite/legionnaire/proc/legionnaire_charge(target)
 	ranged_cooldown = world.time + 50
 	var/dir_to_target = get_dir(get_turf(src), get_turf(target))
@@ -193,10 +193,10 @@
 		var/turf/legionturf = get_turf(src)
 		var/turf/pileturf = get_turf(mypile)
 		if(legionturf == pileturf)
-			// [CELADON-EDIT] - CELADON_BALANCE_MOBS
-			// mypile.take_damage(100)	// CELADON-EDIT - ORIGINAL
+			// [MANKIND-EDIT] - MANKIND_BALANCE_MOBS
+			// mypile.take_damage(100)	// ORIGINAL
 			mypile.take_damage(50)
-			// [/CELADON-EDIT]
+			// [/MANKIND-EDIT]
 			mypile = null
 			return
 		playsound(pileturf,'sound/items/fultext_deploy.ogg', 200, 1)
@@ -268,14 +268,14 @@
 	var/mob/living/simple_animal/hostile/asteroid/elite/legionnaire/myowner = null
 
 
-// [CELADON-EDIT] - CELADON_BALANCE_MOBS
+// [MANKIND-EDIT] - MANKIND_BALANCE_MOBS
 // /obj/structure/legionnaire_bonfire/Entered(atom/movable/mover, atom/target)
 // 	if(isliving(mover))
-// 		var/mob/living/L = mover	// CELADON-EDIT - ORIGINAL
+// 		var/mob/living/L = mover	// ORIGINAL
 /obj/structure/legionnaire_bonfire/Entered(atom/movable/arrived, atom/target)
 	if(isliving(arrived))
 		var/mob/living/L = arrived
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 		L.adjust_fire_stacks(3)
 		L.ignite_mob()
 	. = ..()
@@ -283,9 +283,9 @@
 /obj/structure/legionnaire_bonfire/Destroy()
 	if(myowner != null)
 		myowner.mypile = null
-	// [CELADON-ADD] - CELADON_BALANCE_MOBS
+	// [MANKIND-ADD] - MANKIND_BALANCE_MOBS
 	new /obj/item/organ/regenerative_core/legion(loc)
-	// [CELADON-ADD]
+	// [MANKIND-ADD]
 	. = ..()
 
 //The visual effect which appears in front of legionnaire when he goes to charge.
@@ -298,7 +298,7 @@
 	transform *= 0.33
 
 // Legionnaire's loot: Legionnaire Spine
-// [CELADON-REMOVE] - RETURN_CONTENT_CRUSHER_TROPHY - Выпилено ради легенды
+// [MANKIND-REMOVE] - RETURN_CONTENT_CRUSHER_TROPHY - Выпилено ради легенды
 /*
 /obj/item/mob_trophy/legionnaire_spine
 	name = "legionnaire spine"
@@ -306,4 +306,4 @@
 	icon = 'icons/obj/lavaland/elite_trophies.dmi'
 	icon_state = "legionnaire_spine"
 */
-// [/CELADON-REMOVE]
+// [/MANKIND-REMOVE]
