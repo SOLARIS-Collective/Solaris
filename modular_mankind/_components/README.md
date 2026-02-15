@@ -55,6 +55,9 @@ MANKIND_COMPONENTS_LOGS
 
 MANKIND_COMPONENTS
 - EDIT: `code/controllers/subsystem/ticker.dm`
+
+NEW_TYPE_SYSTEMS_ORBITS
+- Вводим для тестов несколько типов генерации систем. Тип орбиты: "circle", "ellipse", "spiral", "cluster", "belt", "binary", "rings"
 <!--
   Если вы редактировали какие-либо процедуры или переменные в кор коде,
   они должны быть указаны здесь.

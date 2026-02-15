@@ -376,8 +376,8 @@ SUBSYSTEM_DEF(overmap)
 	/// Datum type for the main outpost spawned here
 	var/default_outpost_type
 
-	///Shape of the orbits: "circle", "ellipse", "spiral", "cluster", "belt", "binary", "rings"
-	var/orbit_shape
+	/// Тип орбиты: "circle", "ellipse", "spiral", "cluster", "belt", "binary", "rings"
+	var/orbit_shape	// [MANKIND-ADD] - NEW_TYPE_SYSTEMS_ORBITS
 
 	COOLDOWN_DECLARE(dynamic_despawn_cooldown)
 
@@ -391,9 +391,10 @@ SUBSYSTEM_DEF(overmap)
 	if(!name)
 		name = starname //we then give it here
 
-	// Случайный выбор формы орбиты
+	// [MANKIND-ADD] - NEW_TYPE_SYSTEMS_ORBITS - Случайный выбор формы орбиты
 	if(!orbit_shape)
 		orbit_shape = pick("circle", "ellipse", "spiral", "cluster", "belt", "binary", "rings")
+	// [/MANKIND-ADD]
 
 	overmap_objects = list()
 	controlled_ships = list()
@@ -448,9 +449,12 @@ SUBSYSTEM_DEF(overmap)
 		radius_positions = list()
 		for(var/x in 1 to size)
 			for(var/y in 1 to size)
+				// [MANKIND-EDIT] - NEW_TYPE_SYSTEMS_ORBITS
+				// radius_positions["[round(sqrt((x - center.x) ** 2 + (y - center.y) ** 2)) + 1]"] += list(list("x" = x, "y" = y))	// ORIGINAL
 				var/shape_key = calculate_orbit_shape(x, y, center)
 				if(shape_key)
 					radius_positions[shape_key] += list(list("x" = x, "y" = y))
+				// [/MANKIND-EDIT]
 		if(!hazard_primary_color)
 			hazard_primary_color = center.get_rand_spectral_color(center.spectral_type, center.color_vary)
 		else
@@ -480,10 +484,7 @@ SUBSYSTEM_DEF(overmap)
 /datum/overmap_star_system/proc/gen_star_name()
 	return "[pick(GLOB.star_names)] [pick(GLOB.greek_letters)]"
 
-/**
- * Calculates orbit shape based on orbit_shape variable
- * Returns the orbit key (radius) for the given position
- */
+// [MANKIND-ADD] - NEW_TYPE_SYSTEMS_ORBITS
 /datum/overmap_star_system/proc/calculate_orbit_shape(x, y, datum/overmap/star/center)
 	var/dist = sqrt((x - center.x) ** 2 + (y - center.y) ** 2)
 	var/angle = arctan(y - center.y, x - center.x)
@@ -544,6 +545,7 @@ SUBSYSTEM_DEF(overmap)
 
 		else // "circle"
 			return "[round(dist) + 1]"
+// [/MANKIND-ADD]
 
 /**
  * The proc that creates all the objects on the overmap, split into seperate procs for redundancy.
@@ -571,10 +573,15 @@ SUBSYSTEM_DEF(overmap)
 		spawn_event_cluster(pick(subtypesof(/datum/overmap/event)), get_unused_overmap_square())
 
 /datum/overmap_star_system/proc/spawn_events_in_orbits()
+	// [MANKIND-ADD] - NEW_TYPE_SYSTEMS_ORBITS
 	if(!length(radius_positions))
 		return
+	// [/MANKIND-ADD]
 
 	var/list/orbits = list()
+	// [MANKIND-EDIT] - NEW_TYPE_SYSTEMS_ORBITS
+	// for(var/i in 3 to length(radius_positions) / 2) // At least two away to prevent overlap
+	// 	orbits += "[i]"	// ORIGINAL
 	for(var/orbit_key in radius_positions)
 		var/orbit_num = text2num(orbit_key)
 		if(orbit_num >= 3)
@@ -582,19 +589,20 @@ SUBSYSTEM_DEF(overmap)
 
 	if(!length(orbits))
 		return
+	// [/MANKIND-EDIT]
 
 	var/max_clusters = CONFIG_GET(number/max_overmap_event_clusters)
 	for(var/i in 1 to max_clusters)
 		if(CONFIG_GET(number/max_overmap_events) <= length(events))
 			return
 		if(!length(orbits))
-			break
+			break // Can't fit any more in
 		var/event_type = pick_weight(GLOB.overmap_event_pick_list)
 		var/selected_orbit = pick(orbits)
 
 		var/list/T = get_unused_overmap_square_in_radius(selected_orbit)
 		if(!T)
-			orbits -= selected_orbit
+			orbits -= selected_orbit // [MANKIND-EDIT] - NEW_TYPE_SYSTEMS_ORBITS - ORIGINAL // orbits -= "[selected_orbit]" // This orbit is full, move onto the next
 			continue
 
 		var/datum/overmap/event/E = new event_type(T, src)
@@ -1011,14 +1019,16 @@ SUBSYSTEM_DEF(overmap)
 	if(isnum(radius))
 		radius = "[radius]"
 
+	// [MANKIND-ADD] - NEW_TYPE_SYSTEMS_ORBITS
 	if(!radius_positions[radius] || !length(radius_positions[radius]))
 		return null
+	// [/MANKIND-ADD]
 
 	for(var/i in 1 to tries)
 		. = pick(radius_positions[radius])
 		if(locate(thing_to_not_have) in overmap_container[.["x"]][.["y"]])
 			continue
-		return
+		return // returns . for those who don't know
 
 	if(!force)
 		. = null
