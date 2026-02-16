@@ -506,7 +506,7 @@ MAX_OVERMAP_EVENT_CLUSTERS 90
 MAX_OVERMAP_EVENTS 1500
 
 ## Put the maximum amount of dynamic (runtime loaded) overmap locations here
-MAX_OVERMAP_DYNAMIC_EVENTS 50
+MAX_OVERMAP_DYNAMIC_EVENTS 60
 
 ## Size of the overmap squared
 OVERMAP_SIZE 100

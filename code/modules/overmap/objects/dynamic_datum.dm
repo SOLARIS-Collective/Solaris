@@ -178,7 +178,10 @@
 /datum/overmap/dynamic/proc/choose_level_type(load_now = TRUE)
 #ifndef NOOVERMAP
 	if(isnull(probabilities))
-		probabilities = current_overmap.dynamic_probabilities
+		// [SOLARIS-EDIT] - NEW_SPAWN_DYNAMIC_EVENT
+		// probabilities = current_overmap.dynamic_probabilities	// ORIGINAL
+		probabilities = get_zone_probabilities()
+		// [/SOLARIS-EDIT]
 	if(!isnull(force_encounter))
 		planet = force_encounter
 	else
@@ -242,6 +245,52 @@
 		token.color = current_overmap.primary_color
 	current_overmap.post_edit_token_state(src)
 #endif
+
+// [SOLARIS-ADD] - NEW_SPAWN_DYNAMIC_EVENT
+/datum/overmap/dynamic/proc/get_zone_probabilities()
+	if(!current_overmap || !current_overmap.orbit_shape)
+		return current_overmap?.dynamic_probabilities || list()
+
+	// if(!(current_overmap.orbit_shape in list("rings", "circle", "belt")))	// Отключил, применяется теперь для всего
+	// 	return current_overmap.dynamic_probabilities
+
+	if(!token?.x || !token?.y)
+		return current_overmap.dynamic_probabilities
+
+	var/distance = sqrt((token.x - 51)**2 + (token.y - 51)**2)
+	var/zone = (distance / 70.7) * 100
+
+	switch(zone)
+		if(0 to 15)
+			return list(
+				DYNAMIC_WORLD_LAVA = 50,
+				DYNAMIC_WORLD_ROCKPLANET = 50
+			)
+		if(15 to 30)
+			return list(
+				DYNAMIC_WORLD_SAND = 50,
+				DYNAMIC_WORLD_DESERT = 50
+			)
+		if(30 to 45)
+			return list(
+				DYNAMIC_WORLD_JUNGLE = 50,
+				DYNAMIC_WORLD_BEACHPLANET = 50
+			)
+		if(45 to 60)
+			return list(
+				DYNAMIC_WORLD_MOON = 50,
+				DYNAMIC_WORLD_WATERPLANET = 50
+			)
+		if(60 to 75)
+			return list(
+				DYNAMIC_WORLD_ICE = 50,
+				DYNAMIC_WORLD_WASTEPLANET = 50
+			)
+		else
+			return list(
+				DYNAMIC_WORLD_SHROUDED = 100
+			)
+// [/SOLARIS-ADD]
 
 ///??? I dont think i ever finished this, and if i do, move to planet_types.dm
 /datum/overmap/dynamic/proc/choose_random_asteroid()
