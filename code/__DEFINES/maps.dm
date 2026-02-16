@@ -130,7 +130,7 @@ require only minor tweaks.
 #define ALLOCATION_OCTODRANT 3
 
 // [MANKIND-EDIT] - MANKIND_MAP_EXPANSION - Увеличиваем рамки аванпоста
-//#define QUADRANT_MAP_SIZE 127	// MANKIND-EDIT -> ORIGINAL
+//#define QUADRANT_MAP_SIZE 127	// ORIGINAL
 #define QUADRANT_MAP_SIZE 191
 // [/MANKIND-EDIT]
 #define OCTODRANT_MAP_SIZE 63

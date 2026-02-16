@@ -9,7 +9,7 @@
 #define RADIO_KEY_EMERGENCY "c"
 #define RADIO_TOKEN_EMERGENCY ":c"
 
-// [MANKIND-EDIT] - FACTION_RADIO
+// [MANKIND-ADD] - FACTION_RADIO
 #define RADIO_CHANNEL_SYNDICATE "Syndicate"
 #define RADIO_CHANNEL_SYNDICATE_LONG "Syndicate (Long-Range)"
 #define RADIO_KEY_SYNDICATE "t"
@@ -63,7 +63,7 @@
 #define RADIO_CHANNEL_PIRATE "Unidentified"
 #define RADIO_KEY_PIRATE "p"
 #define RADIO_TOKEN_PIRATE ":p"
-// [/MANKIND-EDIT]
+// [/MANKIND-ADD]
 
 #define RADIO_CHANNEL_WIDEBAND "Wideband"
 #define RADIO_KEY_WIDEBAND "w"
@@ -76,7 +76,7 @@
 #define MIN_FREE_FREQ 1201 // -------------------------------------------------
 // Frequencies are always odd numbers and range from 1201 to 1599.
 
-// [MANKIND-EDIT] - FACTION_RADIO
+// [MANKIND-ADD] - FACTION_RADIO
 #define FREQ_CENTCOM 1237 // NT-CentCom comms frequency, gray
 
 #define FREQ_CYBERSUN 1203	// Cybersun Industries and Hardliners comms frequency, teal
@@ -110,7 +110,7 @@
 #define FREQ_PIRATE_LONG 1427
 
 #define FREQ_EMERGENCY 1429 // Emergency comms frequency, red
-// [/MANKIND-EDIT]
+// [/MANKIND-ADD]
 
 #define FREQ_HOLOGRID_SOLUTION 1433
 #define FREQ_STATUS_DISPLAYS 1435

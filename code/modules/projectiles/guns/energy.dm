@@ -154,7 +154,7 @@
 		var/obj/item/stock_parts/cell/gun/C = A
 		if (!cell)
 // [MANKIND-EDIT] - MANKIND_BALANCE - продолжаем убирать систему люков оффов
-// 			return insert_cell(user, C) MANKIND-EDIT -> ORIGINAL
+// 			return insert_cell(user, C) ORIGINAL
 			insert_cell(user, C)
 // [/MANKIND-EDIT]
 		else
@@ -174,7 +174,7 @@
 // 			to_chat(user, span_warning("You cannot seem to get \the [src] out of your hands!"))
 // 			return FALSE
 // 		else
-// 			to_chat(user, span_warning("The [src]'s cell retainment clip is latched!")) // MANKIND-EDIT -> ORIGINAL
+// 			to_chat(user, span_warning("The [src]'s cell retainment clip is latched!")) // ORIGINAL
 	if(user.transferItemToLoc(C, src))
 		cell = C
 		to_chat(user, span_notice("You load the [C] into \the [src]."))
@@ -336,7 +336,7 @@
 // [/MANKIND-REMOVE]
 
 // [MANKIND-EDIT]
-// return // MANKIND-EDIT -> ORIGINAL
+// return // ORIGINAL
 	return ..()
 // [/MANKIND-EDIT]
 

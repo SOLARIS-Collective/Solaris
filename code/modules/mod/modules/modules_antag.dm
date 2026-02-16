@@ -12,7 +12,7 @@
 	active_power_cost = DEFAULT_CHARGE_DRAIN * 0.3
 	removable = TRUE
 	// [MANKIND-EDIT] - MANKIND_MODSUITS - Добавляем модуль стелса в список. По-хорошему стоит welding убрать, убрать полностью у армор бустера защиту от флеша...
-	//incompatible_modules = list(/obj/item/mod/module/armor_booster, /obj/item/mod/module/welding)
+	// incompatible_modules = list(/obj/item/mod/module/armor_booster, /obj/item/mod/module/welding)	// ORIGINAL
 	incompatible_modules = list(/obj/item/mod/module/armor_booster, /obj/item/mod/module/welding, /obj/item/mod/module/stealth/military)
 	// [/MANKIND-EDIT] - MANKIND_MODSUITS
 	cooldown_time = 0.5 SECONDS

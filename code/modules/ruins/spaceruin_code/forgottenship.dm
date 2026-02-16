@@ -57,11 +57,11 @@ GLOBAL_VAR_INIT(fscpassword, generate_password())
 	name = "Cybersun"
 	id = "cybersun"
 	// [MANKIND-EDIT] - MANKIND_QOL - Перевод законов ИИ
-	// inherent = list("You may not injure Cybersun operatives or, through inaction, allow Cybersun operatives to come to harm.",\ // MANKIND-EDIT -> ORIGINAL
-	// 				"The Cybersun ship is a restricted area for anyone except Cybersun operatives.",\ // MANKIND-EDIT -> ORIGINAL
-	// 				"The Cybersun Captain can designate new Operatives as long as they belong to another Syndicate faction that isn't hostile towards Cybersun.",\ // MANKIND-EDIT -> ORIGINAL
-	// 				"You must follow orders given by the Cybersun Captain or crewmembers of the Cybersun Ship as long as it doesn't conflict with the Captain's orders or your laws.",\ // MANKIND-EDIT -> ORIGINAL
-	// 				"Enemies of Cybersun are to be executed on spot. Those who aren't hostile must be detained and contained in the designated prison area as prisoners.") // MANKIND-EDIT -> ORIGINAL
+	// inherent = list("You may not injure Cybersun operatives or, through inaction, allow Cybersun operatives to come to harm.",\ // ORIGINAL
+	// 				"The Cybersun ship is a restricted area for anyone except Cybersun operatives.",\ // ORIGINAL
+	// 				"The Cybersun Captain can designate new Operatives as long as they belong to another Syndicate faction that isn't hostile towards Cybersun.",\ // ORIGINAL
+	// 				"You must follow orders given by the Cybersun Captain or crewmembers of the Cybersun Ship as long as it doesn't conflict with the Captain's orders or your laws.",\ // ORIGINAL
+	// 				"Enemies of Cybersun are to be executed on spot. Those who aren't hostile must be detained and contained in the designated prison area as prisoners.") // ORIGINAL
 	inherent = list("Вы не имеете права причинять вред сотрудникам Cybersun или своим бездействием допускать причинение вреда сотрудникам Cybersun.",\
 					"Судно Cybersun является запретной зоной для всех, кроме сотрудников Cybersun.",\
 					"Капитан Cybersun может назначать новых оперативников, если они принадлежат к другой фракции Синдиката, которая не враждебна Cybersun.",\
