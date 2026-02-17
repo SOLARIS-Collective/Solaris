@@ -321,7 +321,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	switch(current_tab)
 		if (0) // Character Setup
-			if(path && fexists(path))
+			if(path)
 				var/savefile/S = new /savefile(path)
 				if(S)
 					dat += "<center>"
@@ -424,7 +424,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<br><b>Wallet Style:</b><BR><a href ='?_src_=prefs;preference=wallet;task=input'>[wallet]</a>"	// [MANKIND-ADD] - MANKIND_WALLETS
 
 		if(1) //Character Appearance
-			if(path && fexists(path))
+			if(path)
 				var/savefile/S = new /savefile(path)
 				if(S)
 					dat += "<center>"
@@ -1222,7 +1222,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					dat += "</table><br>"
 			//[/MANKIND-EDIT]
 		if(2) //Loadout
-			if(path && fexists(path))
+			if(path)
 				var/savefile/S = new /savefile(path)
 				if(S)
 					dat += "<center>"

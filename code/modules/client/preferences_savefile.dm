@@ -331,17 +331,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 /datum/preferences/proc/save_preferences()
 	if(!path)
 		return FALSE
-	
-	// Ensure directory exists by creating a temporary file
-	// BYOND creates directories when you write files to them
-	var/directory = copytext(path, 1, findlasttext(path, "/") + 1)
-	if(directory && !fexists(directory))
-		// Create a temporary file to force directory creation
-		var/temp_file = "[directory].temp"
-		text2file("", temp_file)
-		if(fexists(temp_file))
-			fdel(temp_file)
-	
 	var/savefile/S = new /savefile(path)
 	if(!S)
 		return FALSE
@@ -735,17 +724,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 /datum/preferences/proc/save_character()
 	if(!path)
 		return FALSE
-	
-	// Ensure directory exists by creating a temporary file
-	// BYOND creates directories when you write files to them
-	var/directory = copytext(path, 1, findlasttext(path, "/") + 1)
-	if(directory && !fexists(directory))
-		// Create a temporary file to force directory creation
-		var/temp_file = "[directory].temp"
-		text2file("", temp_file)
-		if(fexists(temp_file))
-			fdel(temp_file)
-	
 	var/savefile/S = new /savefile(path)
 	if(!S)
 		return FALSE
