@@ -487,6 +487,8 @@ SUBSYSTEM_DEF(overmap)
 // [MANKIND-ADD] - NEW_TYPE_SYSTEMS_ORBITS
 /datum/overmap_star_system/proc/calculate_orbit_shape(x, y, datum/overmap/star/center)
 	var/dist = sqrt((x - center.x) ** 2 + (y - center.y) ** 2)
+	if(!dist)
+		return null
 	var/angle = arctan(y - center.y, x - center.x)
 
 	switch(orbit_shape)
