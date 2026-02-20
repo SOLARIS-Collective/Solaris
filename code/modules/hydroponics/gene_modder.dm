@@ -308,22 +308,22 @@
 					repaint_seed()
 				if("extract")
 					if(disk && !disk.read_only)
-						disk.gene = G
-						if(istype(G, /datum/plant_gene/core))
-							var/datum/plant_gene/core/gene = G
-							if(istype(G, /datum/plant_gene/core/potency))
+						disk.gene = G.Copy() // PENTEST CHANGE START - Properly copies the gene to avoid garbage reference issues deleting the data from the disk.
+						if(istype(disk.gene, /datum/plant_gene/core))
+							var/datum/plant_gene/core/gene = disk.gene
+							if(istype(gene, /datum/plant_gene/core/potency))
 								gene.value = min(gene.value, max_potency)
-							else if(istype(G, /datum/plant_gene/core/lifespan))
+							else if(istype(gene, /datum/plant_gene/core/lifespan))
 								gene.value = min(gene.value, max_endurance) //INTENDED
-							else if(istype(G, /datum/plant_gene/core/endurance))
+							else if(istype(gene, /datum/plant_gene/core/endurance))
 								gene.value = min(gene.value, max_endurance)
-							else if(istype(G, /datum/plant_gene/core/production))
+							else if(istype(gene, /datum/plant_gene/core/production))
 								gene.value = max(gene.value, min_production)
-							else if(istype(G, /datum/plant_gene/core/yield))
+							else if(istype(gene, /datum/plant_gene/core/yield))
 								gene.value = min(gene.value, max_yield)
-							else if(istype(G, /datum/plant_gene/core/weed_rate))
+							else if(istype(gene, /datum/plant_gene/core/weed_rate))
 								gene.value = max(gene.value, min_wrate)
-							else if(istype(G, /datum/plant_gene/core/weed_chance))
+							else if(istype(gene, /datum/plant_gene/core/weed_chance)) // PENETEST CHANGE END
 								gene.value = max(gene.value, min_wchance)
 						disk.update_disk_name()
 						// [MANKIND-EDIT] - MANKIND_FIXES
