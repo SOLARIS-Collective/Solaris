@@ -37,9 +37,16 @@
 	..()
 
 /obj/machinery/computer/apc_control/proc/check_apc(obj/machinery/power/apc/APC)
+	// PENTEST ADDITION - START Prevent access to APCs if this console is built in an outpost area
+	if(istype(get_area(src), /area/outpost))
+		return FALSE //PENTEST END
 	return APC.virtual_z() == virtual_z() && !APC.malfhack && !APC.aidisabled && !(APC.obj_flags & EMAGGED) && !APC.machine_stat && !istype(APC.area, /area/ai_monitored) && !APC.area.outdoors
 
 /obj/machinery/computer/apc_control/ui_interact(mob/user, datum/tgui/ui)
+	// PENTEST ADDITION - Prevent usage if built in an outpost area
+	if(istype(get_area(src), /area/outpost))
+		to_chat(user, span_warning("[src] cannot operate in outpost areas due to security restrictions."))
+		return //PENTEST END
 	operator = user
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
