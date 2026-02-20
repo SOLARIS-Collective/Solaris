@@ -1492,7 +1492,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<b>Play Lobby Music:</b> <a href='byond://?_src_=prefs;preference=lobby_music'>[(toggles & SOUND_LOBBY) ? "Enabled":"Disabled"]</a><br>"
 			dat += "<b>Play End of Round Sounds:</b> <a href='byond://?_src_=prefs;preference=endofround_sounds'>[(toggles & SOUND_ENDOFROUND) ? "Enabled":"Disabled"]</a><br>"
 			dat += "<b>See Pull Requests:</b> <a href='byond://?_src_=prefs;preference=pull_requests'>[(chat_toggles & CHAT_PULLR) ? "Enabled":"Disabled"]</a><br>"
-			dat += "<b>Darkened Flashes:</b> (replaces flashes with a black screen) <a href='?_src_=prefs;preference=darkened_flash'>[darkened_flash ? "Enabled":"Disabled"]</a><br>"
+			dat += "<b>Darkened Flashes:</b> (replaces flashes with a black screen) <a href='?_src_=prefs;preference=darkened_flash'>[darkened_flash ? "Enabled":"Disabled"]</a><br>" //PENTEST ADDITION
 			dat += "<b>TGUI Large Buttons:</b> <a href='byond://?_src_=prefs;preference=large_tgui_buttons'>[(large_tgui_buttons) ? "Enabled":"Disabled"]</a><br>"
 			dat += "<b>Swap TGUI Buttons:</b> <a href='byond://?_src_=prefs;preference=swapped_tgui_buttons'>[(swapped_tgui_buttons) ? "Enabled":"Disabled"]</a><br>"
 			dat += "<b>TGUI input toggles:</b> <a href='byond://?_src_=prefs;preference=tgui_input'>[(tgui_input) ? "Enabled":"Disabled"]</a><br>"
@@ -2928,7 +2928,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 							scaling_method = SCALING_METHOD_NORMAL
 					user.client.view_size.setZoomMode()
 
-				if("darkened_flash")
+				if("darkened_flash") //PENTEST ADDITION
 					darkened_flash = !darkened_flash
 
 				if("save")

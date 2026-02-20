@@ -232,7 +232,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["tip_delay"], tip_delay)
 	READ_FILE(S["pda_style"], pda_style)
 	READ_FILE(S["pda_color"], pda_color)
-	READ_FILE(S["darkened_flash"], darkened_flash)
+	READ_FILE(S["darkened_flash"], darkened_flash) //PENTEST ADDITION
 	READ_FILE(S["whois_visible"], whois_visible)
 	READ_FILE(S["tgui_input"], tgui_input)
 	READ_FILE(S["large_tgui_buttons"], large_tgui_buttons)
@@ -307,6 +307,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	key_bindings 	= sanitize_keybindings(key_bindings)
 	favorite_outfits = SANITIZE_LIST(favorite_outfits)
 	equipped_gear	= sanitize_each_inlist(equipped_gear, GLOB.gear_datums)
+	darkened_flash = sanitize_integer(darkened_flash, FALSE, TRUE, initial(darkened_flash)) //PENTEST ADDITION
 
 	if(needs_update >= 0) //save the updated version
 		var/old_default_slot = default_slot
@@ -391,6 +392,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["large_tgui_buttons"], large_tgui_buttons)
 	WRITE_FILE(S["swapped_tgui_buttons"], swapped_tgui_buttons)
 	WRITE_FILE(S["tgui_input"], tgui_input)
+	WRITE_FILE(S["darkened_flash"], darkened_flash) //PENTEST ADDITION
 	return TRUE
 
 /datum/preferences/proc/load_character(slot)
