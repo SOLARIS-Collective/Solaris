@@ -1,0 +1,4 @@
+author: "Ossa88"
+delete-after: True
+changes:
+  - bugfix: "Plant Data Disks no longer forget their information."
