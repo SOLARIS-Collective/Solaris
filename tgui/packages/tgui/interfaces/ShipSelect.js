@@ -69,12 +69,12 @@ export const ShipSelect = (props, context) => {
   return (
     <Window
       key={`shipselect:${currentTab}:${epoch}`}
-      title="Ship Select [INTERCEPTOR v3-FINAL]"
+      title="Ship Select"
       width={860}
-      height={640}
-      resizable
+      height={660}
+      resizable={false}
     >
-      <Window.Content scrollable>
+      <Window.Content>
         <Tabs style={{ display: 'flex', width: '100%' }}>
           {shownTabs.map((tabbing, index) => (
             <Tabs.Tab
