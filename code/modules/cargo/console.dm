@@ -88,9 +88,10 @@
 
 /obj/machinery/computer/cargo/ui_static_data(mob/user)
 	. = ..()
-	outpost_docked = current_ship.docked_to
 	// [MANKIND-EDIT] - MANKIND_FIXES: Prevent constant pack data generation every tick
 	// if(istype(outpost_docked))
+	if(current_ship)
+		outpost_docked = current_ship.docked_to
 	if(istype(outpost_docked) && pack_data_cooldown <= world.time)
 		generate_pack_data()
 		pack_data_cooldown = world.time + 50  // Cache for 5 seconds
@@ -102,7 +103,10 @@
 	var/list/data = list()
 
 	data["onShip"] = !isnull(current_ship)
-	data["shipFaction"] = current_ship.source_template.faction.name
+	// [SOLARIS-EDIT] - FIXES_CARGO_CONSOLE
+	// data["shipFaction"] = current_ship.source_template.faction.name	// ORIGINAL
+	data["shipFaction"] = current_ship ? current_ship.source_template.faction.name : "Unknown"
+	// [/SOLARIS-EDIT]
 	data["numMissions"] = current_ship ? LAZYLEN(current_ship.missions) : 0
 	data["maxMissions"] = current_ship ? current_ship.max_missions : 0
 	data["outpostDocked"] = istype(outpost_docked)
@@ -174,6 +178,10 @@
 		if("purchase")
 			var/list/purchasing = params["cart"]
 			var/total_cost = text2num(params["total"])
+			// [SOLARIS-ADD] - FIXES_CARGO_CONSOLE
+			if(!current_ship)
+				return
+			// [/SOLARIS-ADD]
 			var/datum/overmap/outpost/current_outpost = current_ship.docked_to
 			if(!istype(current_ship.docked_to) || purchasing.len == 0)
 				return
@@ -247,7 +255,10 @@
 /obj/machinery/computer/cargo/proc/generate_pack_data()
 	supply_pack_data = list()
 
-	if(!current_ship.docked_to)
+	// [SOLARIS-EDIT] - FIXES_CARGO_CONSOLE
+	// if(!current_ship.docked_to)	// ORIGINAL
+	if(!current_ship || !current_ship.docked_to)
+	// [/SOLARIS-EDIT]
 		return supply_pack_data
 
 	if(!istype(outpost_docked))

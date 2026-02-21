@@ -35,7 +35,7 @@ export const CargoCatalog = (props, context) => {
 
   const [cart, setCart] = useSharedState(context, 'cart', []);
 
-  const MAX_CART_ITEMS = 20;
+  const MAX_CART_ITEMS = 6;
 
   const cartTotal = cart.reduce(
     (cartTotal, entry) =>

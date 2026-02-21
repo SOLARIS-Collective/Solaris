@@ -368,6 +368,10 @@ FIXES_FLAVOR
 - `tgui/packages/tgui/interfaces/TextInputModal.tsx`
 - `tgui/packages/tgui/styles/components/TextArea.scss`
 
+FIXES_CARGO_CONSOLE
+- `code/modules/cargo/console.dm`
+- `tgui/packages/tgui/interfaces/OutpostCommunicationsMankind/Catalog.js`
+
 <!--
   Если вы редактировали какие-либо процедуры или переменные в кор коде,
   они должны быть указаны здесь.
