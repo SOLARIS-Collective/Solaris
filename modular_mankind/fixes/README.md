@@ -361,6 +361,13 @@ FIXES_FIRES_OVERLAYES
 - `code/datums/elements/perma_fire.dm`					: Добавлен флаг override = TRUE
 - `code/datums/status_effects/debuffs/fire_stacks.dm`	: Добавлен флаг override = TRUE
 
+# SOLARIS
+FIXES_FLAVOR
+- `code/modules/client/preferences.dm`
+- `code/modules/tgui/tgui_input_text.dm`
+- `tgui/packages/tgui/interfaces/TextInputModal.tsx`
+- `tgui/packages/tgui/styles/components/TextArea.scss`
+
 <!--
   Если вы редактировали какие-либо процедуры или переменные в кор коде,
   они должны быть указаны здесь.

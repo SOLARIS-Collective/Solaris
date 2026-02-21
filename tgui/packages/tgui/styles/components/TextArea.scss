@@ -64,6 +64,9 @@ $border-radius: Input.$border-radius !default;
   // Make sure the div and the textarea wrap words in the same way
   word-wrap: break-word;
   overflow: hidden;
+  // [SOLARIS-ADD] - FIXES_FLAVOR - Запрещаем менять размеры
+  resize: none;
+  // [/SOLARIS-ADD]
 
   &:-ms-input-placeholder {
     font-style: italic;

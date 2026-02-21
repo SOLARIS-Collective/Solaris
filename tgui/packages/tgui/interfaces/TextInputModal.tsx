@@ -58,16 +58,16 @@ export const TextInputModal = (props, context) => {
     (message.length && large_buttons ? 5 : 0);
 
   return (
-    <Window title={title} width={325} height={windowHeight}>
+    <Window title={title} width={600} height={400} resizable={false}>
       {timeout && <Loader value={timeout} />}
       <Window.Content
         onKeyDown={(event) => {
           const keyCode = window.event ? event.which : event.keyCode;
           if (keyCode === KEY_ENTER && (!visualMultiline || !event.shiftKey)) {
-            act('submit', { entry: input });
+            act('Применить', { entry: input });
           }
           if (keyCode === KEY_ESCAPE) {
-            act('cancel');
+            act('Отменить');
           }
         }}
       >
@@ -106,16 +106,16 @@ const InputArea = (props, context) => {
       autoSelect
       height={multiline || input.length >= 30 ? '100%' : '1.8rem'}
       maxLength={max_length}
-      onEscape={() => act('cancel')}
+      onEscape={() => act('Отменить')}
       onEnter={(event) => {
         if (visualMultiline && event.shiftKey) {
           return;
         }
         event.preventDefault();
-        act('submit', { entry: input });
+        act('Применить', { entry: input });
       }}
       onInput={(_, value) => onType(value)}
-      placeholder="Type something..."
+      placeholder="Напечатайте что-нибудь..."
       value={input}
     />
   );

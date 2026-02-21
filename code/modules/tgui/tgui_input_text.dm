@@ -140,10 +140,16 @@
 	switch(action)
 		if("submit")
 			if(max_length)
-				if(length_char(params["entry"]) > max_length)
-					CRASH("[usr] typed a text string longer than the max length")
-				if(encode && (length_char(html_encode(params["entry"])) > max_length))
-					to_chat(usr, span_notice("Your message was clipped due to special character usage."))
+				// [SOLARIS-EDIT] - FIXES_FLAVOR
+				// if(length_char(params["entry"]) > max_length)
+				// 	CRASH("[usr] typed a text string longer than the max length")
+				// if(encode && (length_char(html_encode(params["entry"])) > max_length))
+				// 	to_chat(usr, span_notice("Your message was clipped due to special character usage."))	// ORIGINAL
+				var/raw_length = length_char(params["entry"])
+				if(raw_length > max_length)
+					to_chat(usr, span_warning("Your text is too long ([raw_length]/[max_length] characters). Please shorten it."))
+					return FALSE
+				// [/SOLARIS-EDIT]
 			set_entry(params["entry"])
 			closed = TRUE
 			SStgui.close_uis(src)
@@ -162,4 +168,9 @@
 /datum/tgui_input_text/proc/set_entry(entry)
 	if(!isnull(entry))
 		var/converted_entry = encode ? html_encode(entry) : entry
-		src.entry = trim(converted_entry, PREVENT_CHARACTER_TRIM_LOSS(max_length))
+		// [SOLARIS-ADD] - FIXES_FLAVOR - Не обрезаем текст, если он в пределах лимита
+		if(length_char(entry) <= max_length)
+			src.entry = converted_entry
+		else
+		// [/SOLARIS-ADD]
+			src.entry = trim(converted_entry, PREVENT_CHARACTER_TRIM_LOSS(max_length))
