@@ -76,16 +76,15 @@ const SharedContent = (_props, context) => {
             }
           />
         }
-        buttons={
-          <Button
-              tooltip="Refresh Ship Stats"
-              tooltipPosition="left"
-              icon="sync"
-              disabled={isViewer}
-              onClick={() => act('reload_ship')}
-            />
-        }
       >
+        <Button
+          fluid
+          icon="sync"
+          content="Refresh Ship Stats"
+          disabled={isViewer}
+          onClick={() => act('reload_ship')}
+          mb={1}
+        />
         <LabeledList>
           <LabeledList.Item label="Class">{shipInfo.class}</LabeledList.Item>
           <LabeledList.Item label="Sensor Range">
@@ -93,29 +92,34 @@ const SharedContent = (_props, context) => {
               value={shipInfo.sensor_range}
               minValue={1}
               maxValue={8}
+              mb={0.5}
             >
               <AnimatedNumber value={shipInfo.sensor_range} />
             </ProgressBar>
-            <Table.Cell>
-              <Button
-                tooltip="Decrease Signal Length"
-                tooltipPosition="right"
-                icon="arrow-left"
-                // [MANKIND-ADD] - subshuttle fix
-                disabled={data.issubshuttle != null}
-                // [/MANKIND-ADD] - subshuttle fix
-                onClick={() => act('sensor_decrease')}
-              />
-              <Button
-                tooltip="Increase Signal Length"
-                tooltipPosition="right"
-                icon="arrow-right"
-                // [MANKIND-ADD] - subshuttle fix
-                disabled={data.issubshuttle != null}
-                // [/MANKIND-ADD] - subshuttle fix
-                onClick={() => act('sensor_increase')}
-              />
-            </Table.Cell>
+            <Stack>
+                <Stack.Item>
+                  <Button
+                    tooltip="Decrease Signal Length"
+                    tooltipPosition="right"
+                    icon="arrow-left"
+                    // [MANKIND-ADD] - subshuttle fix
+                    disabled={data.issubshuttle != null}
+                    // [/MANKIND-ADD] - subshuttle fix
+                    onClick={() => act('sensor_decrease')}
+                  />
+                </Stack.Item>
+                <Stack.Item>
+                  <Button
+                    tooltip="Increase Signal Length"
+                    tooltipPosition="right"
+                    icon="arrow-right"
+                    // [MANKIND-ADD] - subshuttle fix
+                    disabled={data.issubshuttle != null}
+                    // [/MANKIND-ADD] - subshuttle fix
+                    onClick={() => act('sensor_increase')}
+                  />
+                </Stack.Item>
+            </Stack>
           </LabeledList.Item>
           {shipInfo.mass && (
             <LabeledList.Item label="Mass">
@@ -126,23 +130,27 @@ const SharedContent = (_props, context) => {
       </Section>
       <Section title="Radar"
         buttons={
-          <>
-            <Button // [MANKIND-ADD] - Signal S.O.S - modular_mankind\wideband\code\signal.dm
-              tooltip="Send S.O.S."
-              tooltipPosition="left"
-              icon="globe"
-              disabled={isViewer}
-              onClick={() => act('send_sos')}
-            />
-            <Button
-              tooltip={calibrating ? 'Cancel Jump' : 'Bluespace Jump'}
-              tooltipPosition="left"
-              icon={calibrating ? 'times' : 'angle-double-right'}
-              color={calibrating ? 'bad' : 'average'}
-              disabled={!flyable}
-              onClick={() => act('bluespace_jump')}
-            />
-          </>
+          <Stack>
+            <Stack.Item>
+              <Button // [MANKIND-ADD] - Signal S.O.S - modular_mankind\wideband\code\signal.dm
+                tooltip="Send S.O.S."
+                tooltipPosition="left"
+                icon="globe"
+                disabled={isViewer}
+                onClick={() => act('send_sos')}
+              />
+            </Stack.Item>
+            <Stack.Item>
+              <Button
+                tooltip={calibrating ? 'Cancel Jump' : 'Bluespace Jump'}
+                tooltipPosition="left"
+                icon={calibrating ? 'times' : 'angle-double-right'}
+                color={calibrating ? 'bad' : 'average'}
+                disabled={!flyable}
+                onClick={() => act('bluespace_jump')}
+              />
+            </Stack.Item>
+          </Stack>
         }
 		>
         <Table>
