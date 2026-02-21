@@ -25,7 +25,7 @@ lobby/title0.ogg
 lobby/title1.ogg
 lobby/title2.ogg
 lobby/title3.ogg
-lobby/voiko_law.ogg
+lobby/law.ogg
 
 pickup/accessory.ogg
 

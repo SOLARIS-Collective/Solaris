@@ -571,7 +571,7 @@ SUBSYSTEM_DEF(ticker)
 		'sound/roundend/shiptestingthursday.ogg',
 // [MANKIND-EDIT]- MUSIC_MANKIND
 //		'sound/roundend/gayrights.ogg'\ // ORIGINAL
-		'modular_mankind/_storage_sounds/sound/lobby/voiko_law.ogg'\
+		'modular_mankind/_storage_sounds/sound/lobby/law.ogg'\
 // [/MANKIND-EDIT]
 		)
 	///The reference to the end of round sound that we have chosen.

@@ -148,7 +148,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	// [MANKIND-ADD] - MANKIND_MASTER_FILES
 	return
 	// [/MANKIND-ADD]
-	// [MANKIND-REMOVE] - MANKIND_MASTER_FILES - Удалено по просьбе Voiko. Его это бесит
+	// [MANKIND-REMOVE] - MANKIND_MASTER_FILES
 	/*
 	to_chat(parent, "<span class='userdanger'>KEYBINDING CONFLICT!!!\n\
 	There are new keybindings that have defaults bound to keys you already set, They will default to Unbound. You can bind them in Setup Character or Game Preferences\n\
