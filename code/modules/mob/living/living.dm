@@ -1956,6 +1956,9 @@ GLOBAL_VAR_INIT(ssd_indicator_overlay, mutable_appearance('icons/mob/ssd_indicat
 // /mob/living/set_typing_indicator(state) // ORIGINAL
 /mob/living/set_typing_indicator(state, isMe = null, isSay = null)
 // [/MANKIND-EDIT]
+	// Don't show typing indicator if dead // PENTEST FIX
+	if(state && stat != CONSCIOUS)
+		return // PENTEST FIX END
 	typing_indicator = state
 	// [MANKIND-EDIT] - MANKIND_QOL
 	//var/datum/language/used_language = get_selected_language()
