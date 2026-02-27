@@ -307,6 +307,8 @@
 		things -= I
 		if(I.loc != thing_loc)
 			continue
+		if(I.anchored) // PENTEST FIX Don't pick up anchored items
+			continue
 		if(I.type in rejections) // To limit bag spamming: any given type only complains once
 			continue
 		if(!can_be_inserted(I, stop_messages = TRUE))	// Note can_be_inserted still makes noise when the answer is no
