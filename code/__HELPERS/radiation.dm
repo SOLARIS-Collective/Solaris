@@ -26,6 +26,34 @@
 // /proc/radiation_pulse(atom/source, intensity, range_modifier, log=FALSE, can_contaminate=TRUE)
 // 	// fusion will never ever be balanced. god bless it
 // 	intensity = min(intensity, INFINITY)	// ORIGINAL
+
+// PENTEST ADDITION - RADIATION REFACTOR START - same as base but also returns a list of insulation values. // Принял на свой страх и риск. Будут лаги, убрать
+/proc/get_rad_insulation_contents(atom/location, datum/radiation_wave/src_wave, width = 1)
+	var/static/list/ignored_things = typecacheof(list(
+		/mob/dead,
+		/mob/camera,
+		/obj/effect,
+		/obj/docking_port,
+		/atom/movable/lighting_object,
+		/obj/projectile,
+		))
+	var/list/processing_list = list(location)
+	var/best_insulation = RAD_NO_INSULATION
+	var/return_list = list()
+	while(processing_list.len)
+		var/atom/thing = processing_list[1]
+		processing_list -= thing
+		if(ignored_things[thing.type])
+			continue
+		return_list += thing
+		if (!(SEND_SIGNAL(thing, COMSIG_ATOM_RAD_WAVE_PASSING, src_wave, width) & COMPONENT_RAD_WAVE_HANDLED))
+			best_insulation = min(thing.rad_insulation, best_insulation)
+		if((thing.flags_1 & RAD_PROTECT_CONTENTS_1) || (SEND_SIGNAL(thing, COMSIG_ATOM_RAD_PROBE) & COMPONENT_BLOCK_RADIATION))
+			continue
+		processing_list += thing.contents
+	return list(return_list, best_insulation)
+// PENTEST ADDITION - RADIATION REFACTOR END
+
 /proc/radiation_pulse(atom/source, intensity, range_modifier, log=FALSE, can_contaminate=TRUE)
 	// Ограничиваем максимальное значение радиации
 	intensity = SSradiation.cap_radiation(intensity)

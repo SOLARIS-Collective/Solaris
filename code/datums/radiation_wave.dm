@@ -65,50 +65,69 @@
 		qdel(src)
 		return
 
-	var/list/atoms = get_rad_atoms()
-
-	if(radiate(atoms, FLOOR(min(strength,remaining_contam), 1)))
-		//oof ow ouch
-		remaining_contam = max(0,remaining_contam-((min(strength,remaining_contam)-RAD_MINIMUM_CONTAMINATION) * RAD_CONTAMINATION_STR_COEFFICIENT))
-	check_obstructions(atoms) // reduce our overall strength if there are radiation insulators
-
-/datum/radiation_wave/proc/get_rad_atoms()
-	var/list/atoms = list()
-	var/distance = steps
-	var/cmove_dir = move_dir
-	var/cmaster_turf = master_turf
-
-	if(cmove_dir == NORTH || cmove_dir == SOUTH)
-		distance-- //otherwise corners overlap
-
-	atoms += get_rad_contents(cmaster_turf)
-
-	var/turf/place
-	for(var/dir in __dirs) //There should be just 2 dirs in here, left and right of the direction of movement
-		place = cmaster_turf
-		for(var/i in 1 to distance)
-			place = get_step(place, dir)
-			if(!is_valid_rad_turf(place))
-				break // the break here is important. if a rad wave was travelling parallel to a virtual z edge, and the loop didn't break, it could "clip through"
-			atoms += get_rad_contents(place)
-
-	return atoms
-
-/datum/radiation_wave/proc/check_obstructions(list/atoms)
+	// PENTEST ADDITION - RADIATION REFACTOR - START
 	var/width = steps
 	var/cmove_dir = move_dir
 	if(cmove_dir == NORTH || cmove_dir == SOUTH)
 		width--
 	width = 1+(2*width)
 
-	for(var/k in 1 to atoms.len)
-		var/atom/thing = atoms[k]
-		if(!thing)
-			continue
-		if (SEND_SIGNAL(thing, COMSIG_ATOM_RAD_WAVE_PASSING, src, width) & COMPONENT_RAD_WAVE_HANDLED)
-			continue
-		if (thing.rad_insulation != RAD_NO_INSULATION)
-			intensity *= (1-((1-thing.rad_insulation)/width))
+	var/list/atoms_and_insulation = get_rad_atoms(width)
+	var/list/atoms = atoms_and_insulation[1]
+
+	if(radiate(atoms, FLOOR(min(strength,remaining_contam), 1)))
+		//oof ow ouch
+		remaining_contam = max(0,remaining_contam-((min(strength,remaining_contam)-RAD_MINIMUM_CONTAMINATION) * RAD_CONTAMINATION_STR_COEFFICIENT))
+
+	var/insulation_tally = atoms_and_insulation[2]
+	if(insulation_tally)
+		var/insulation_total = atoms_and_insulation[3]
+		var/average_insulation = insulation_total / insulation_tally
+		// Determines how much the width dilutes the obstacle's effect.
+		// Using the square root of width (width ** 0.5) prevents the obstacles from becoming irrelevant at long distances.
+		var/spread_factor = max(1, width ** 0.5)
+
+		// The exponent calculates the effective "thickness" of the wall relative to the wave size.
+		var/obstacle_density = insulation_tally / spread_factor
+
+		// Apply the reduction.
+		intensity *= (average_insulation ** obstacle_density)
+
+/datum/radiation_wave/proc/get_rad_atoms(width = 1)
+	var/list/atoms = list()
+	var/distance = steps
+	var/cmove_dir = move_dir
+	var/cmaster_turf = master_turf
+	var/insulation_total = 0
+	var/insulation_tally = 0
+
+	if(cmove_dir == NORTH || cmove_dir == SOUTH)
+		distance-- //otherwise corners overlap
+
+	var/list/master_turf_contents = get_rad_insulation_contents(cmaster_turf, src, width)
+	atoms += master_turf_contents[1]
+	var/best_insulation = master_turf_contents[2]
+	if(best_insulation != RAD_NO_INSULATION)
+		insulation_total += best_insulation
+		insulation_tally++
+
+	var/turf/place
+	var/list/place_turf_contents
+	for(var/dir in __dirs) //There should be just 2 dirs in here, left and right of the direction of movement
+		place = cmaster_turf
+		for(var/i in 1 to distance)
+			place = get_step(place, dir)
+			if(!is_valid_rad_turf(place))
+				break // the break here is important. if a rad wave was travelling parallel to a virtual z edge, and the loop didn't break, it could "clip through"
+			place_turf_contents = get_rad_insulation_contents(place, src, width)
+			atoms += place_turf_contents[1]
+			best_insulation = place_turf_contents[2]
+			if(best_insulation != RAD_NO_INSULATION)
+				insulation_total += place_turf_contents[2]
+				insulation_tally++
+
+	return list(atoms, insulation_tally, insulation_total)
+	// PENTEST RADIATION REFACTOR - END
 
 /datum/radiation_wave/proc/radiate(list/atoms, strength)
 	var/can_contam = strength >= RAD_MINIMUM_CONTAMINATION
