@@ -1,0 +1,4 @@
+author: "FslashN"
+delete-after: True
+changes:
+  - refactor: "Refactors some radiation wave code to make radiation waves easier to contain and more sane in their spread."
