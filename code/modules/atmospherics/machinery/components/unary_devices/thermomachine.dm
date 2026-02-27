@@ -23,6 +23,7 @@
 	var/target_temperature = T20C
 	var/heat_capacity = 0
 	var/interactive = TRUE // So mapmakers can disable interaction.
+	var/last_registered_power = 0 // PENTEST FIX - THERMOMACHINE POWER CALCULATION - Track what power draw is registered with the area
 
 /obj/machinery/atmospherics/components/unary/thermomachine/Initialize(mapload)
 	. = ..()
@@ -82,12 +83,26 @@
 		var/combined_energy = heat_capacity * target_temperature + air_heat_capacity * air_contents.return_temperature()
 		air_contents.set_temperature(combined_energy/combined_heat_capacity)
 
-	var/temperature_delta= abs(old_temperature - air_contents.return_temperature())
+// PENTEST FIX - THERMOMACHINE POWER CALCULATION - START
+	var/temperature_delta = abs(old_temperature - air_contents.return_temperature())
+	var/new_power_usage = 0
 	if(temperature_delta > 1)
-		active_power_usage = max((heat_capacity * temperature_delta) / 5 + idle_power_usage, idle_power_usage)
+		// Use absolute value to ensure always positive, and ensure minimum power draw
+		new_power_usage = abs((heat_capacity * temperature_delta) / 5) + idle_power_usage
 		update_parents()
 	else
-		active_power_usage = idle_power_usage
+		new_power_usage = idle_power_usage
+
+	// Update area power registration only if the power usage changed
+	if(new_power_usage != last_registered_power)
+		var/area/A = get_area(src)
+		if(A)
+			// Remove old registration and add new one
+			removeStaticPower(last_registered_power, power_channel + 3, A)
+			addStaticPower(new_power_usage, power_channel + 3, A)
+			last_registered_power = new_power_usage
+	active_power_usage = new_power_usage
+// PENTEST FIX - THERMOMACHINE POWER CALCULATION - END
 	return 1
 
 /obj/machinery/atmospherics/components/unary/thermomachine/attackby(obj/item/I, mob/user, params)
@@ -155,8 +170,10 @@
 			on = !on
 			if(on)
 				set_active_power()
+				last_registered_power = active_power_usage // PENTEST FIX - THERMOMACHINE POWER CALCULATION
 			else
 				set_idle_power()
+				last_registered_power = 0 // PENTEST FIX - THERMOMACHINE POWER CALCULATION
 			investigate_log("was turned [on ? "on" : "off"] by [key_name(usr)]", INVESTIGATE_ATMOS)
 			. = TRUE
 		if("target")
@@ -188,8 +205,10 @@
 	on = !on
 	if(on)
 		set_active_power()
+		last_registered_power = active_power_usage // PENTEST FIX - THERMOMACHINE POWER CALCULATION
 	else
 		set_idle_power()
+		last_registered_power = 0 // PENTEST FIX - THERMOMACHINE POWER CALCULATION
 	investigate_log("was turned [on ? "on" : "off"] by [key_name(user)]", INVESTIGATE_ATMOS)
 	update_appearance()
 	investigate_log("was turned [on ? "on" : "off"] by [key_name(usr)]", INVESTIGATE_ATMOS)
