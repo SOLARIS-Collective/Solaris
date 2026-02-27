@@ -18,12 +18,24 @@ SUBSYSTEM_DEF(statpanels)
 	var/mc_wait = 5
 	///how many full runs this subsystem has completed. used for variable rate refreshes.
 	var/num_fires = 0
+	/// PENTEST ADDITION - cached autotransfer text to avoid recalculating every fire
+	var/cached_autotransfer_text = "Not scheduled"
+	///last time autotransfer text was updated
+	var/last_autotransfer_update = 0 //PENTEST ADDITION END
 
 /datum/controller/subsystem/statpanels/fire(resumed = FALSE)
 	if (!resumed)
 		num_fires++
+
+		// PENTEST ADDITION - Update autotransfer text every 1 minute or if never updated
+		if(world.realtime >= last_autotransfer_update + 60 || !last_autotransfer_update)
+			cached_autotransfer_text = calculate_autotransfer_text()
+			last_autotransfer_update = world.realtime
+		// PENTEST END
+
 		global_data = list(
 			"Round ID: [GLOB.round_id ? GLOB.round_id : "NULL"]",
+			"Next Autotransfer (Updates Every Min): [cached_autotransfer_text]", // PENTEST ADDITION - Display autotransfer schedule status
 			"Time Dilation: [round(SStime_track.time_dilation_current,1)]% AVG:([round(SStime_track.time_dilation_avg_fast,1)]%, [round(SStime_track.time_dilation_avg,1)]%, [round(SStime_track.time_dilation_avg_slow,1)]%)",
 			"\n",
 			"Current Outpost: [SSticker.round_start_timeofday ? SSovermap.get_main_outpost() : "The round hasn't started yet!"]",
@@ -386,3 +398,37 @@ SUBSYSTEM_DEF(statpanels)
 	else
 		client.stat_panel.send_message("remove_listedturf")
 		client.obj_window.stop_turf_tracking()
+
+// PENTEST ADDITION - This proc calculates the time remaining until the next autotransfer and formats it as a string
+/proc/calculate_autotransfer_text()
+	if(!SSautotransfer?.next_transfer_time)
+		return "Not scheduled"
+
+	var/time_remaining = SSautotransfer.next_transfer_time - world.realtime
+	if(time_remaining <= 0)
+		return "Imminent"
+
+	// Convert deciseconds to seconds
+	var/seconds_remaining = time_remaining * 0.1
+	var/minutes = FLOOR(seconds_remaining / 60, 1)
+	var/hours = FLOOR(minutes / 60, 1)
+	minutes = MODULUS(minutes, 60)
+	var/days = FLOOR(hours / 24, 1)
+	hours = hours % 24
+
+	var/dayT = ""
+	if(days)
+		dayT = "[days] day[(days != 1) ? "s" : ""] "
+	var/hourT = ""
+	if(hours)
+		hourT = "[hours] hour[(hours != 1) ? "s" : ""] "
+	var/minuteT = ""
+	if(minutes)
+		minuteT = "[minutes] minute[(minutes != 1) ? "s" : ""]"
+
+	var/extension_text = ""
+	if(SSautotransfer.extend_count > 0)
+		extension_text = " (EXTENDED [SSautotransfer.extend_count]/2)"
+
+	return "[dayT][hourT][minuteT][extension_text]"
+// PENTEST END

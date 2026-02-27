@@ -49,6 +49,8 @@
 
 /datum/vote/transfer_vote/finalize_vote(winning_option)
 	if(winning_option == CHOICE_CONTINUE)
+		if(initiator_name == "The Server") //PENTEST ADDITION - Extend the next transfer time if the vote was forced by the server, since that means the autotransfer subsystem is doing its job.
+			SSautotransfer.extend_next_transfer() // PENTEST END
 		return
 
 	if(winning_option == CHOICE_TRANSFER)

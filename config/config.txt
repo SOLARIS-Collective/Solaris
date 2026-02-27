@@ -199,6 +199,14 @@ VOTE_AUTOTRANSFER_INITIAL 72000
 ##autovote delay (deciseconds) before sequential automatic transfer votes are called (default 30 minutes)
 VOTE_AUTOTRANSFER_INTERVAL 18000
 
+## autovote schedule - comma-separated list of day:time entries for when automatic transfer votes should occur
+## Format: DayOfWeek:HHMM (e.g., Sunday:0000,Wednesday:1200,Friday:0000)
+## Valid days: Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday
+## Times are in 24-hour format based on server's local time
+## If this is set, it overrides VOTE_AUTOTRANSFER_INITIAL and VOTE_AUTOTRANSFER_INTERVAL
+## Example for 3.5 day, 1.5 day, 2 day rounds: Sunday:0000,Wednesday:1200,Friday:0000
+##VOTE_AUTOTRANSFER_SCHEDULE Sunday:0000,Tuesday:0000,Friday:0000
+
 ## prevents dead players from voting or starting votes
 # NO_DEAD_VOTE
 

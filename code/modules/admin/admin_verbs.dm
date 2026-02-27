@@ -205,6 +205,7 @@ GLOBAL_PROTECT(admin_verbs_debug)
 	/client/proc/view_runtimes,
 	/client/proc/pump_random_event,
 	/client/proc/reload_configuration,
+	/client/proc/reload_autotransfer_schedule, // PENTEST - Reload the autotransfer schedule from config
 	/client/proc/jumptoarea,
 	/client/proc/jumptocoord,
 	/client/proc/jumptokey,

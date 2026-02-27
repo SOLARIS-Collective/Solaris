@@ -15,6 +15,8 @@
 	var/list/default_choices
 	/// What message do we want to pass to the player-side vote panel as a tooltip?
 	var/message = "Click to initiate a vote."
+	/// PENTEST ADDITION - The name of who initiated this vote.
+	var/initiator_name
 
 	// Internal values used when tracking ongoing votes.
 	// Don't mess with these, change the above values / override procs for subtypes.
@@ -52,6 +54,7 @@
 	choices_by_ckey.Cut()
 	started_time = null
 	time_remaining = null
+	initiator_name = null // PENTEST ADDITION
 
 /**
  * If this vote has a config associated, toggles it between enabled and disabled.
@@ -108,6 +111,7 @@
 
 	started_time = world.time
 	time_remaining = round(duration / 10)
+	initiator_name = initiator //PENTEST ADDITION
 
 	return "[capitalize(name)] vote started by [initiator || "Central Command"]."
 

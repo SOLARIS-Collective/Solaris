@@ -136,6 +136,9 @@
 	integer = FALSE
 	min_val = 0
 
+/datum/config_entry/string/vote_autotransfer_schedule // PENTEST ADDITION - Schedule for autotransfer votes (e.g., "Sunday:0000,Wednesday:1200,Friday:0000")
+	config_entry_value = null // PENTEST END
+
 
 /datum/config_entry/flag/no_dead_vote	// dead people can't vote
 

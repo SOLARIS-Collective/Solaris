@@ -783,6 +783,31 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	if(alert(usr, "Are you absolutely sure you want to reload the configuration from the default path on the disk, wiping any in-round modificatoins?", "Really reset?", "No", "Yes") == "Yes")
 		config.admin_reload()
 
+//PENTEST ADDITION START - Upgraded date and time based auto transfer system.
+/client/proc/reload_autotransfer_schedule()
+	set category = "Debug"
+	set name = "Reload Autotransfer Schedule"
+	set desc = "Reload autotransfer schedule from config without reloading entire configuration"
+	if(!check_rights(R_DEBUG))
+		return
+
+	log_admin("[key_name_admin(usr)] is reloading the autotransfer schedule.")
+	message_admins("[key_name_admin(usr)] is reloading the autotransfer schedule.")
+
+	SSautotransfer.load_schedule()
+
+	var/schedule_string = CONFIG_GET(string/vote_autotransfer_schedule)
+	message_admins("Config VOTE_AUTOTRANSFER_SCHEDULE: [schedule_string]")
+	message_admins("Current world.realtime: [world.realtime], interpreted time: [time2text(world.realtime, "YYYY-MM-DD hh:mm:ss")]")
+	if(schedule_string)
+		var/next_time_text = time2text(SSautotransfer.next_transfer_time, "DDD, MMM DD YYYY hh:mm")
+		message_admins("Next transfer time value: [SSautotransfer.next_transfer_time], interpreted time: [time2text(SSautotransfer.next_transfer_time, "YYYY-MM-DD hh:mm:ss")]")
+		to_chat(usr, span_notice("Autotransfer schedule reloaded. Next transfer: [next_time_text] (server local time)"))
+	else
+		var/minutes_remaining = round((SSautotransfer.next_transfer_time - world.realtime) / 600)
+		to_chat(usr, span_notice("Autotransfer using legacy cooldown system. Next transfer in approximately [minutes_remaining] minutes."))
+// PENTEST ADDITION END
+
 /// A debug verb to check the sources of currently running timers
 /client/proc/check_timer_sources()
 	set category = "Debug.Debug"
