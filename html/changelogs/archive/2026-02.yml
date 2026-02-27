@@ -40,3 +40,60 @@
   - bugfix: Default Lawset is now Crewmov Lawset
   Summy Sunshine:
   - rscadd: Gorlax Scout-cruiser
+2026-02-21:
+  KOCMODECAHTHUK:
+  - code_imp: Visual distinction for pipes in sDMM for mappers, and appear transparent
+      in-game
+  Ossa88:
+  - bugfix: Plant Data Disks no longer forget their information.
+  - bugfix: Outposts are more secure
+  Ravellon:
+  - bugfix: 'no more wine_flavor taste for you
+
+      :cl:
+
+      <!-- Both :cl:''s are required for the changelog to work! You can put your name
+      to the right of the first :cl: if you want to overwrite your GitHub username
+      as author ingame. -->
+
+      <!-- You can use multiple of the same prefix (they''re only used for the icon
+      ingame) and delete the unneeded ones. Despite some of the tags, changelogs should
+      generally represent how a player might be affected by the changes rather than
+      a summary of the PR''s contents. -->'
+  Ryll/Shaps:
+  - qol: Adds a new preference for photosensitive players in the OOC preferences menu
+      to replace the bright white flash from things like flashes/flashbangs with a
+      solid black screen.
+  nednaZ, Imenvs, RKz:
+  - bugfix: ghosts are now 50% more spooky (they now properly float)
+  - bugfix: ghosts remember they can float after orbiting
+2026-02-27:
+  Constellado:
+  - rscadd: The in game calendar date is now correct!
+  - bugfix: Server restart votes should actually be called at the right time now.
+  FslashN:
+  - bugfix: Fixed glass floor underlaying incorrectly and some other 'ghost turf'
+      issues.
+  - refactor: Refactored and improved turf transparency.
+  - refactor: Refactors some radiation wave code to make radiation waves easier to
+      contain and more sane in their spread.
+  OnlineGirlfriend:
+  - rscadd: bedsheets
+  - rscadd: cheongsam and changshan now available in clothesmate clothing vendor
+  Ossa88:
+  - bugfix: Verbs are initialized on relog
+  - bugfix: Trashbags no longer pick up everything in a tile.
+  - bugfix: The dead have been silenced
+  - bugfix: Blackmarket no longer sells an IOU
+  - bugfix: Better examine text of dead players.
+  - bugfix: fixed a coding error involving power use in freezers
+  - bugfix: Saving Chat Works
+  haydenredacted:
+  - bugfix: fixed a floating extinguisher in the Occult Research Station ruin
+  monsterlord59:
+  - rscadd: Added gunblades. Coming in two flavors, .38, and .357.
+  throwawayuseless:
+  - rscadd: Synthetic species can now become intoxicated by alcohol, and be sobered
+      by antihol.
+  - rscadd: IPCs have been provided with an experimental new I/O port, known as a
+      "Mouth".

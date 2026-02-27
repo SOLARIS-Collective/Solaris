@@ -1,4 +1,0 @@
-author: "Ossa88"
-delete-after: True
-changes:
-  - bugfix: "Trashbags no longer pick up everything in a tile."

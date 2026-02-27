@@ -1,5 +1,0 @@
-author: "Constellado"
-delete-after: True
-changes:
-  - rscadd: "The in game calendar date is now correct!"
-  - bugfix: "Server restart votes should actually be called at the right time now."
