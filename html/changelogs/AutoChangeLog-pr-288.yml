@@ -1,0 +1,5 @@
+author: "FslashN"
+delete-after: True
+changes:
+  - bugfix: "Fixed glass floor underlaying incorrectly and some other 'ghost turf' issues."
+  - refactor: "Refactored and improved turf transparency."
