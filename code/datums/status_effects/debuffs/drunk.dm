@@ -148,7 +148,7 @@
 	//if our drunkenness is over 61 and we have alcohol tolerance, or over 51 and we *dont*, and also prob(3)
 	if(drunk_value >= (HAS_TRAIT(owner,TRAIT_ALCOHOL_TOLERANCE) ? 51 : 61) && prob(3))
 		owner.confused += 7
-		if(iscarbon(owner))
+		if(iscarbon(owner) && !HAS_TRAIT(owner, TRAIT_NOVOMIT)) // PENTEST ADDITION - IPC BOOZE DRINKING - If they are physically or mentally incapible of gag reflex for some reason
 			var/mob/living/carbon/carbon_owner = owner
 			carbon_owner.vomit() // Vomiting clears toxloss - consider this a blessing
 
@@ -158,21 +158,24 @@
 
 	// Over 81, we will gain constant toxloss
 	if(drunk_value >= 81)
-		owner.adjustToxLoss(1)
+		if(!HAS_TRAIT(owner, TRAIT_BOOZE_NODAMAGE)) // PENTEST ADDITION - IPC BOOZE DRINKING - If they are immune to booze damage, they don't gain toxloss either
+			owner.adjustToxLoss(1) // PENTEST END
 		if(owner.stat == CONSCIOUS && prob(5))
 			to_chat(owner, span_warning("Maybe you should lie down for a bit..."))
 
 	// Over 91, we gain even more toxloss, brain damage, and have a chance of dropping into a long sleep
 	if(drunk_value >= 91)
-		owner.adjustToxLoss(1)
-		owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.4)
-		if(owner.stat == CONSCIOUS && prob(20))
-			to_chat(owner, span_warning("Just a quick nap..."))
-			owner.Sleeping(90 SECONDS)
+		if(!HAS_TRAIT(owner, TRAIT_BOOZE_NODAMAGE)) // PENTEST ADDITION - IPC BOOZE DRINKING
+			owner.adjustToxLoss(1)
+			owner.adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.4)
+			if(owner.stat == CONSCIOUS && prob(20))
+				to_chat(owner, span_warning("Just a quick nap..."))
+				owner.Sleeping(90 SECONDS) // PENTEST END
 
 	// And finally, over 100 - let's be honest, you shouldn't be alive by now.
 	if(drunk_value >= 101)
-		owner.adjustToxLoss(2)
+		if(!HAS_TRAIT(owner, TRAIT_BOOZE_NODAMAGE)) // PENTEST ADDITION - IPC BOOZE DRINKING
+			owner.adjustToxLoss(2) // PENTEST END
 
 /// Status effect for being fully drunk (not tipsy).
 /atom/movable/screen/alert/status_effect/drunk
