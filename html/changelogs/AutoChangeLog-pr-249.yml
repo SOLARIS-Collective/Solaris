@@ -1,0 +1,5 @@
+author: "throwawayuseless"
+delete-after: True
+changes:
+  - rscadd: "Synthetic species can now become intoxicated by alcohol, and be sobered by antihol."
+  - rscadd: "IPCs have been provided with an experimental new I/O port, known as a \"Mouth\"."
