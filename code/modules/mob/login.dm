@@ -85,8 +85,17 @@
 	log_message("Client [key_name(src)] has taken ownership of mob [src]([src.type])", LOG_OWNERSHIP)
 	SEND_SIGNAL(src, COMSIG_MOB_CLIENT_LOGIN, client)
 
-	client.initialize_menus()
-	client.init_verbs()
+	if(client) //PENTEST ADDITION - RESTORE VERBS ON LOGIN - START
+		client.stat_panel.reinitialize()
+		// For reconnecting players who already passed the interview stage,
+		// we need to set interviewee to FALSE so menus and verbs initialize properly
+		if(!istype(src, /mob/dead/new_player))
+			client.interviewee = FALSE
+		if(!client.interviewee)
+			client.initialize_menus()
+			client.add_verbs_from_config()
+
+	client.init_verbs() // PENTEST ADDITION - RESTORE VERBS ON LOGIN - END
 
 	return TRUE
 
