@@ -45,6 +45,10 @@
 		"Recruit": {
 			"outfit": "/datum/outfit/job/syndicate/assistant/self",
 			"slots": 1
+		},
+		"MMI Volunteer": {
+			"outfit": "/datum/outfit/job/syndicate/patient/self",
+			"slots": 2
 		}
 	},
 	"limit": 1,
