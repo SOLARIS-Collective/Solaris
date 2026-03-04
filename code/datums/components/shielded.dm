@@ -135,7 +135,7 @@
  * This proc fires when we're hit, and is responsible for checking if we're charged, then deducting one + returning that we're blocking if so.
  * It then runs the callback in [/datum/component/shielded/var/on_hit_effects] which handles the messages/sparks (so the visuals)
  */
-/datum/component/shielded/proc/on_hit_react(datum/source, mob/living/carbon/human/owner, atom/movable/hitby, attack_text, final_block_chance, damage, attack_type)
+/datum/component/shielded/proc/on_hit_react(datum/source, mob/living/carbon/human/owner, atom/movable/hitby, attack_text, damage, attack_type) //PENTEST CORRECTION
 	SIGNAL_HANDLER
 
 	COOLDOWN_START(src, recently_hit_cd, recharge_start_delay)
@@ -167,9 +167,9 @@
 /// Default on_hit proc, since cult robes are stupid and have different descriptions/sparks
 /datum/component/shielded/proc/default_run_hit_callback(mob/living/owner, attack_text, current_charges)
 	do_sparks(2, TRUE, owner)
-	owner.visible_message(span_danger("Щит [owner] отражает [attack_text]!"))
+	owner.visible_message(span_danger("[owner]'s shield deflects [attack_text]!")) //PENTEST CORRECTION
 	if(current_charges <= 0)
-		owner.visible_message(span_warning("Щит [owner] перегружается!"))
+		owner.visible_message(span_warning("[owner]'s shield overloads!")) //PENTEST CORRECTION
 
 /datum/component/shielded/proc/check_recharge_rune(datum/source, obj/item/wizard_armour_charge/recharge_rune, mob/living/user)
 	/*SIGNAL_HANDLER
