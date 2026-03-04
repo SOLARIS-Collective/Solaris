@@ -1,0 +1,5 @@
+author: "monsterlord59"
+delete-after: True
+changes:
+  - rscadd: "Added MMI volunteer job in Pi-class"
+  - rscadd: "Refurbished the Pi-class"
