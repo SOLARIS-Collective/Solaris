@@ -1,0 +1,155 @@
+2026-03-05:
+  FslashN:
+  - bugfix: Modsuit energy shield modules now work properly.
+  KOCMODECAHTHUK:
+  - bugfix: Fixed an exploit that allowed resource ejection from an operating autolathe
+  Ossa88:
+  - balance: Significantly reduced the time ion storms disable APCs for, preventing
+      softlocks
+  - rscadd: 'Garden scanning missions: Take a survey scanner from the outpost and
+      go scan the everliving shit out of some gardens.'
+  - rscadd: Geyser scanning missions. See above
+  - balance: hollow water no longer spawns in geysers
+  - rscadd: Research Handheld and variants
+  - rscdel: Experimental Research Handheld
+  - rscadd: New planet names. Watch out for planet Zorp
+  - bugfix: Planets now get a name again.
+  - rscadd: Drills now spawn a spawner, which in turn spawns the monsters. It's an
+      innovative system really.
+  - bugfix: ACTUALLY FIXED DRILL TURF PLACEMENT THIS TIME
+  - rscadd: resprites ponytail, adds ponytail simple, ponytail over eye
+  - rscadd: resprites pews
+  - bugfix: bone gel on its own now causes bone breaks to heal
+  - balance: replace cirrus rattlesnakes with cobras
+  - bugfix: Brings back the Cthonian revamp
+  - bugfix: Market blockades now work again
+  - bugfix: minor Atira-class QoL tweaks
+  - bugfix: cirrus now has the correct ammo
+  - rscadd: You can dry Seaweed again using the drying rack
+  - rscadd: roll states for ngr uniforms
+  - rscadd: Added new elzuose horn sprite, "branch"
+  - rscadd: resprites various undershirts+adds smooth turtleneck
+  - rscadd: resprites headphones and earmuffs
+  - rscadd: inteq sneaksuit outfit by @thearbiber
+  - rscadd: resprites twintail, adds twintail long and long bun half
+  - rscadd: Adds improvised metal splints
+  - rscadd: Ramzi Blasting Hammer
+  - bugfix: Blank spent shell icons
+  - bugfix: fixed outpost communications console TGUI crash
+  - rscadd: Shortbow-class dropship, Javelin-class Mobile Operations Shuttle
+  - rscdel: Anvil-class Dropship
+  - bugfix: Cleaning up some QA lints
+  - rscadd: Added a door and shutters to the Nail subshuttle
+  - rscadd: Adds cryogenic oversight consoles into the Mercurial Quasar and Woeful
+      Cthonian
+  - rscadd: Outposts now have a special aquarium with fish that don't starve (in 8
+      hours)
+  - bugfix: Machine pistols now have the same wear thresholds across the board
+  - bugfix: Added calls to parent methods where expected
+  - code_imp: turf offset at compile time instead of init
+  - rscadd: Added new hermit sprites and hermit dynamic mobs
+  - balance: Generalized hermit drops across the board to be pretty similar for all
+      mobs
+  - rscdel: Removed prototype explorer gear
+  - rscdel: Removed IPCs from the hermit species pool
+  - bugfix: Tweak the elzu sharp horn (Undocumented ST CL)
+  - rscadd: Adds new hairbows
+  - rscadd: resprites sprinter, adds a variant of sprinter
+  - rscadd: resprites cowboy boots
+  - rscadd: Resprites the RD suit into a normal bombsuit hardsuit
+  - rscadd: Makes factional variants of bombsuit hardsuit
+  - rscadd: Rolldown to inteq sneaksuit, and adds it to alt uniform for loadout
+  - rscadd: Added SSG-08 Saluki, Inteq sniper rifle refit of the F90, chambered in
+      6.5mm
+  - balance: Reduced F90 price to 4000
+  - rscadd: Remapped the Vaquero-class Light Frigate
+  - rscadd: Enforcer Class One outfit
+  - rscadd: no_mag subtype for the Kingsnake
+  - refactor: cows are now basic mobs
+  - bugfix: hive bot mechanics will salvage machines
+  - rscadd: Changed the loadouts and job names of the BARD ERT.
+  - rscadd: CLIP-BARD biosuits.
+  - rscadd: Subtypes of jackboots and combat boots with knives.
+  - rscadd: Minutemen fatigues can now roll down their top AND their sleeves. Revolutionary.
+  - rscadd: Variant of the Minutemen webbing with no suspenders.
+  - rscadd: Two variants of the standard Minuteman helmet, and one variant of the
+      vehicle crewmate helmet.
+  - balance: Price of the Thermal Eyepatch has been increased
+  - bugfix: Taught the black market product lister how to spell trenchcoat.
+  - rscadd: touches up honorable vanguard sprites
+  - rscadd: Girders act like barricades
+  - bugfix: cells now properly overlay their charge
+  - rscadd: Firelock jamming
+  - bugfix: jitter drift
+  - bugfix: greebles are less restricted when spawning. Please report slime girl trafficing
+  - rscadd: Added improved fax spam event
+  - rscadd: Added a flag to areas to toggle light breakage behavior during late initialization
+  - bugfix: human hand sprite
+  - balance: Generalizes shoulder sling behavior.
+  - rscadd: kepori variants to various pants
+  - rscadd: resprites pufferjackets
+  - rscadd: A new IPC frame, the Clover Corporation 'Humaniform'
+  - rscadd: A new FBP sprite unique to humans
+  - bugfix: towels should no longer crash the server
+  - bugfix: Upgraded sutures are craftable
+  - bugfix: Suits with pockets are recolorable again.
+  - rscadd: Subshuttle spawners can now be mapped onto ruins and outpost maps to spawn
+      functional ships.
+  - rscadd: NT has installed proper bathroom locks on their outposts
+  - rscadd: clip outpost
+  - rscadd: Serene Hunts
+  - rscadd: Fire and electrical hazards
+  - rscadd: Legions can be made to spawn specific mobs.
+  - bugfix: Ammo Casing Cookoff
+  - bugfix: Morph Aggro
+  - bugfix: species pants
+  - rscdel: Planetary siding decals have been removed.
+  - rscadd: Every deprecated instance of plating/dirt and plating/grass has been updated
+      to use their /asteroid modern counterparts. Rejoice! Pretty much nothing has
+      changed!
+  - rscadd: Updates beach, jungle, and most rockplanet ruin maps to use the non-deprecated
+      dirt and grass turfs.
+  - bugfix: Removed two duplicate sprites in jungle.dmi that were causing dirt to
+      use the wrong sprites in editor
+  - rscdel: Every deprecated turf under /turf/open/floor/plating/dirt and /turf/open/floor/plating/grass
+  - rscdel: Removed /turf/open/floor/plating/grass. Anything that used it now uses
+      /asteroid/dirt/grass.
+  - server: Cleaned up __byond_version_compat.dm, minimum version is now 515.1644
+  - server: updates .tgs.yml, dependencies.sh, and dockerfile to use 515.1647
+  - bugfix: The Vaquero has re-gained its cryo console.
+  - rscadd: redo of NT ice sauna
+  - rscdel: Removed hivebot metal biome from wastes
+  - balance: Wastes are now significantly less cavey and have much less hivebots.
+      Current cave biomes have less concrete and wall density
+  - balance: Hivebots have a cap on how they can grow from scrap.
+  - rscadd: You can now put paperslips in a pill bottle. Paper slips are craftable
+      by slicing paper with a knife.
+  - refactor: Byond version 515.1644 fixed a nasty bug with in style loops that led
+      to SGTs. Reverting workaround code as prior PR requires 515.1644 or higher.
+  - rscadd: Space ruins use asteroid map gen
+  - rscadd: You can now disassemble wooden barricades with crowbars.
+  - rscadd: Re-added hotdog and gumbo
+  - bugfix: Fixed a few food descriptions / names to not be dumb
+  - rscadd: It's now possible to dip items in barrels.
+  - bugfix: You can no longer see the volume of the content of a closed barrel.
+  - bugfix: Claris actually doesnt generate ghost bullets anymore
+  - rscadd: Frontie ERTs now use their own armour
+  - rscadd: Backpacks, satchels and duffel bags are now in the ClothesMate for 50
+      credits
+  - rscadd: The Wasteplanet Salvage Facility, an old scrapping facility kept operational
+      by autonomous hivebots.
+  - bugfix: Hermit Guardsmen in Nomad's Rest will now become a corpse upon death,
+      as opposed to vanishing in thin air.
+  - bugfix: added proper sharpness values to ramzi melee mobs. they're evil now
+  - rscadd: Added a new ruin, an entrenched Frontiersman group, to the Rock Planet
+      ruin pool.
+  - rscdel: Removed Budgetcuts from the ruin pool.
+  - bugfix: Corrects some ways players could escape the normal outpost boundaries
+  - bugfix: Corrects loot drop in pentest ruin, dangerous research.
+  - bugfix: Independent Box updated
+  - bugfix: Space Ruins surrounding space no longer pops in when placing rods/plates
+  - bugfix: Ice Outpost unmapped APC fixed
+  - rscdel: Knight's Rest Beach ruin removed until I redo its design.
+  monsterlord59:
+  - rscadd: Added MMI volunteer job in Pi-class
+  - rscadd: Refurbished the Pi-class

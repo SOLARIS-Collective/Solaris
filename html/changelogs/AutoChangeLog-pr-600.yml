@@ -1,4 +1,0 @@
-author: "KOCMODECAHTHUK"
-delete-after: True
-changes:
-  - bugfix: "Fixed an exploit that allowed resource ejection from an operating autolathe"
