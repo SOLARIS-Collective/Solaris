@@ -2562,6 +2562,37 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+/obj/item/clothing/head/cybersun{
+	pixel_x = 7;
+	pixel_y = 7
+	},
+/obj/machinery/recharger{
+	pixel_x = 0;
+	pixel_y = 3
+	},
+/turf/open/floor/plasteel/telecomms_floor,
+/area/ruin/rockplanet/rust_base/bridge)
+"dG" = (
+/obj/effect/turf_decal/borderfloor{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/opaque/red/line{
+	dir = 8
+	},
+/obj/structure/closet/emcloset/wall/directional/west,
+/turf/open/floor/plasteel/patterned/grid/dark,
+/area/ruin/rockplanet/rust_base/hallway)
+"dJ" = (
+/obj/effect/turf_decal/borderfloor{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/opaque/red/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel/patterned/grid/dark,
+/area/ruin/rockplanet/rust_base/hallway2)
+"dK" = (
+/obj/effect/turf_decal/industrial/warning,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/mono,
