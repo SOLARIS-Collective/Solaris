@@ -595,6 +595,7 @@
  */
 /atom/proc/get_examine_name(mob/user)
 // [MANKIND-EDIT] - Обновлен legacy код... // Не принимать обновы по нему с оффов код с TG
+//PENTEST EDIT START - RED-BLOOD-EXAMINE - Replaced legacy-code and updated from TG
 	var/list/override = list(article, null, "<b>[name]</b>")
 	SEND_SIGNAL(src, COMSIG_ATOM_GET_EXAMINE_NAME, user, override)
 
@@ -605,6 +606,7 @@
 		override -= null // There is no article, don't try to join it
 		return "\a [jointext(override, " ")]"
 	return "\a <b>[src]</b>"
+//PENTEST EDIT END
 // [/MANKIND-EDIT]
 
 ///Generate the full examine string of this atom (including icon for goonchat)
