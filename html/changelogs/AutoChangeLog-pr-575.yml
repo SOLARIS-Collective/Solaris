@@ -1,0 +1,5 @@
+author: "KOCMODECAHTHUK"
+delete-after: True
+changes:
+  - rscadd: "Bloody items now have highlighted red text color"
+  - rscdel: "Rewritten examine display method to a newer one"
