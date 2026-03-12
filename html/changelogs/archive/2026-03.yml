@@ -156,3 +156,10 @@
 2026-03-11:
   Ossa88:
   - bugfix: IPCs found the hair software again
+2026-03-12:
+  KOCMODECAHTHUK:
+  - rscadd: Bloody items now have highlighted red text color
+  - rscdel: Rewritten examine display method to a newer one
+  Ossa88:
+  - bugfix: Small updates to Schmiedeberg
+  - bugfix: pAI should workh admin stuff
