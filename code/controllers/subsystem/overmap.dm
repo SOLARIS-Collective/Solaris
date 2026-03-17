@@ -493,8 +493,8 @@ SUBSYSTEM_DEF(overmap)
 
 	switch(orbit_shape)
 		if("ellipse")
-			var/a = dist
-			var/b = dist * 0.7
+			var/a = max(dist, 0.001)
+			var/b = max(dist * 0.7, 0.001)
 			var/ellipse_dist = sqrt(((x - center.x) ** 2) / (a ** 2) + ((y - center.y) ** 2) / (b ** 2)) * dist
 			return "[round(ellipse_dist) + 1]"
 
