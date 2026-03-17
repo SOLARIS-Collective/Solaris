@@ -69,7 +69,7 @@
 			"slots": 1
 		},
 		"Clown":{
-			"outfit": "/datum/outfit/job/clown",
+			"outfit": "/datum/outfit/job/cel/independent/clown",
 			"slots": 1
 		},
 		"Mime":{

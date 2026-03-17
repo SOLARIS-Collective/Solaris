@@ -70,7 +70,8 @@
 //Middle right (status indicators)
 #define ui_healthdoll "EAST-1:28,CENTER-2:13"
 #define ui_health "EAST-1:28,CENTER-1:15"
-#define ui_internal "EAST-1:28,CENTER:17"
+//#define ui_internal "EAST-1:28,CENTER:17" //PENTEST REMOVAL
+#define ui_stamina "EAST-1:28,CENTER:17" //PENTEST ADDITION
 #define ui_mood "EAST-1:28,CENTER-3:10"
 
 //Pop-up inventory

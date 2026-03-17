@@ -7,6 +7,9 @@
 /mob/proc/update_icons()
 	return
 
+/mob/proc/update_transform()
+	return
+
 /mob/proc/update_inv_handcuffed()
 	return
 
@@ -41,6 +44,9 @@
 	return
 
 /mob/proc/update_hair()
+	return
+
+/mob/proc/update_fire()
 	return
 
 /mob/proc/update_inv_gloves()

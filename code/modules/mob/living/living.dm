@@ -1185,6 +1185,34 @@
 /mob/living/proc/unfry_mob() //Callback proc to tone down spam from multiple sizzling frying oil dipping.
 	REMOVE_TRAIT(src, TRAIT_OIL_FRIED, "cooking_oil_react")
 
+//Mobs on Fire
+/mob/living/proc/IgniteMob()
+	if(fire_stacks > 0 && !on_fire)
+		on_fire = 1
+		src.visible_message("<span class='warning'>[src] catches fire!</span>", \
+						"<span class='userdanger'>You're set on fire!</span>")
+		new/obj/effect/dummy/lighting_obj/moblight/fire(src)
+		throw_alert("fire", /atom/movable/screen/alert/fire)
+		update_fire()
+		SEND_SIGNAL(src, COMSIG_LIVING_IGNITED,src)
+		return TRUE
+	return FALSE
+
+/mob/living/proc/ExtinguishMob()
+	if(on_fire)
+		on_fire = 0
+		fire_stacks = 0
+		for(var/obj/effect/dummy/lighting_obj/moblight/fire/F in src)
+			qdel(F)
+		clear_alert("fire")
+		SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "on_fire")
+		SEND_SIGNAL(src, COMSIG_LIVING_EXTINGUISHED, src)
+		update_fire()
+
+/mob/living/proc/adjust_fire_stacks(add_fire_stacks) //Adjusting the amount of fire_stacks we have on person
+	fire_stacks = clamp(fire_stacks + add_fire_stacks, -20, 20)
+	if(on_fire && fire_stacks <= 0)
+		ExtinguishMob()
 
 /// Global list that containes cached fire overlays for mobs
 GLOBAL_LIST_EMPTY(fire_appearances)
@@ -1221,10 +1249,10 @@ GLOBAL_LIST_EMPTY(fire_appearances)
  * * fire_type: type Type of fire status effect that we apply, should be subtype of /datum/status_effect/fire_handler/fire_stacks
  */
 
-/mob/living/proc/adjust_fire_stacks(stacks, fire_type = /datum/status_effect/fire_handler/fire_stacks)
-	if(stacks < 0)
-		stacks = max(-fire_stacks, stacks)
-	apply_status_effect(fire_type, stacks)
+// /mob/living/proc/adjust_fire_stacks(stacks, fire_type = /datum/status_effect/fire_handler/fire_stacks)
+// 	if(stacks < 0)
+// 		stacks = max(-fire_stacks, stacks)
+// 	apply_status_effect(fire_type, stacks)
 
 /mob/living/proc/adjust_wet_stacks(stacks, wet_type = /datum/status_effect/fire_handler/wet_stacks)
 	if(stacks < 0)

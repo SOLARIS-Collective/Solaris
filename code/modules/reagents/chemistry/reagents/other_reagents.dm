@@ -224,6 +224,27 @@
 		//You don't belong in this world, monster!
 		chems.remove_reagent(/datum/reagent/water, chems.get_reagent_amount(type))
 
+/datum/reagent/fuel/unholywater		//if you somehow managed to extract this from someone, dont splash it on yourself and have a smoke
+	name = "Unholy Water"
+	description = "Something that shouldn't exist on this plane of existence."
+	taste_description = "suffering"
+
+/datum/reagent/fuel/unholywater/expose_mob(mob/living/M, method=TOUCH, reac_volume)
+	if((method == TOUCH || method == SMOKE) || method == VAPOR)
+		M.reagents.add_reagent(type,reac_volume/4)
+		return
+	return ..()
+
+/datum/reagent/fuel/unholywater/on_mob_life(mob/living/carbon/M)
+	// Will deal about 90 damage when 50 units are thrown
+	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 3, 150)
+	M.adjustToxLoss(2, 0)
+	M.adjustFireLoss(2, 0)
+	M.adjustOxyLoss(2, 0)
+	M.adjustBruteLoss(2, 0)
+	holder.remove_reagent(type, 1)
+	return TRUE
+
 /datum/reagent/water/holywater
 	name = "Holy Water"
 	description = "Water blessed by some deity."

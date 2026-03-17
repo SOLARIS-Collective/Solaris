@@ -170,6 +170,7 @@
 #include "code\__DEFINES\wall_dents.dm"
 #include "code\__DEFINES\wires.dm"
 #include "code\__DEFINES\wounds.dm"
+#include "code\__DEFINES\z_pentest_traits.dm"
 #include "code\__DEFINES\ai\ai.dm"
 #include "code\__DEFINES\ai\ai_blackboard.dm"
 #include "code\__DEFINES\ai\monkey.dm"
@@ -348,6 +349,7 @@
 #include "code\_onclick\hud\screen_objects.dm"
 #include "code\_onclick\hud\screentip.dm"
 #include "code\_onclick\hud\storage.dm"
+#include "code\~PENTEST\~pentest.dme"
 #include "code\controllers\admin.dm"
 #include "code\controllers\controller.dm"
 #include "code\controllers\failsafe.dm"
@@ -3791,7 +3793,8 @@
 #include "interface\menu.dm"
 #include "interface\stylesheet.dm"
 #include "interface\skin.dmf"
-// #include "modular_pentest\~pentest.dme"
+// #include "_maps\PentestMaps\~pentest.dme"
+#include "modular_pentest\~pentest.dme"
 // END_INCLUDE
 
 // MANKIND

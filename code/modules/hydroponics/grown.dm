@@ -29,7 +29,7 @@
 	/// Boozepwr of the wine if NULL distill_reagent
 	var/wine_power = 10
 	///Color of the grown object
-	var/filling_color
+	// var/filling_color
 	//Amount of discovery points given for scanning
 	var/discovery_points = 0
 
