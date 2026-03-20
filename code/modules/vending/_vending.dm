@@ -958,7 +958,7 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	if(!message)
 		return
 
-	say(message, language=/datum/language/galactic_common)
+	say(message, language=/datum/language/common)
 
 /obj/machinery/vending/power_change()
 	. = ..()

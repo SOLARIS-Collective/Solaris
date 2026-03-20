@@ -147,8 +147,8 @@
 	taste_sensitivity = 10 // combined nose + tongue, extra sensitive
 	modifies_speech = TRUE
 	var/static/list/languages_possible_tajara = typecacheof(list(
-		/datum/language/galactic_common,
-		/datum/language/gezena_kalixcian,
+		/datum/language/common,
+		// /datum/language/gezena_kalixcian,
 		/datum/language/codespeak,
 		/datum/language/monkey,
 		// /datum/language/narsie,

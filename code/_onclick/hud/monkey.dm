@@ -89,9 +89,9 @@
 	throw_icon.hud = src
 	hotkeybuttons += throw_icon
 
-	internals = new /atom/movable/screen/internals()
+/*	internals = new /atom/movable/screen/internals() //PENTEST REMOVAL
 	internals.hud = src
-	infodisplay += internals
+	infodisplay += internals*/
 
 	healths = new /atom/movable/screen/healths()
 	healths.hud = src

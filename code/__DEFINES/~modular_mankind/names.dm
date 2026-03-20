@@ -4,6 +4,7 @@
 	#define FACTION_CYBERSUN "CyberSun"
 	#define FACTION_HARDLINERS "Hardliners"
 	#define FACTION_SUNS "Student-Union of Naturalistic Sciences"
+	#define FACTION_SELF "Sentient Engine Liberation Front"	// [MANKIND-ADD]
 #define FACTION_SOLFED "SolFed"
 #define FACTION_SOLCON "SolFed"
 #define FACTION_INTEQ "InteQ"
@@ -42,6 +43,7 @@
 	#define PREFIX_CYBERSUN list("CSSV",)
 	#define PREFIX_HARDLINERS list("HSSV",)
 	#define PREFIX_SUNS list("SUNS",)
+	#define PREFIX_SELF list("SELF",)
 #define PREFIX_SOLCON list("SCSV",)
 #define PREFIX_SOLFED list("SFSV", "BSFSV", "ASFSV", "SSFSV", "MDSFSV", "LSFSV", "MSFSV", "SPSFSV",)
 #define PREFIX_INTEQ list("IRMV", "IQMSSV", "BIQSV", "LIQSV", "SPIQSV",)

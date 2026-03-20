@@ -526,6 +526,11 @@
 	var/glow_intensity = LUMINESCENT_DEFAULT_GLOW
 	var/obj/effect/dummy/luminescent_glow/glow
 	examine_limb_id = SPECIES_JELLYPERSON
+	var/obj/item/slime_extract/current_extract
+	var/datum/action/innate/integrate_extract/integrate_extract
+	var/datum/action/innate/use_extract/extract_minor
+	var/datum/action/innate/use_extract/major/extract_major
+	var/extract_cooldown = 0
 
 //Species datums don't normally implement destroy, but JELLIES SUCK ASS OUT OF A STEEL STRAW
 /datum/species/jelly/luminescent/Destroy(force)

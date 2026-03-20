@@ -62,7 +62,8 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 
 	var/atom/movable/screen/healths
 	var/atom/movable/screen/healthdoll
-	var/atom/movable/screen/internals
+	var/atom/movable/screen/stamina //PENTEST EDIT - START
+	//var/atom/movable/screen/internals //PENTEST EDIT - END
 
 	var/atom/movable/screen/progbar_container/use_timer
 	// subtypes can override this to force a specific UI style
@@ -111,8 +112,9 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	QDEL_LIST(infodisplay)
 
 	healths = null
+	stamina = null //PENTEST ADDITION
 	healthdoll = null
-	internals = null
+	//internals = null //PENTEST REMOVAL
 	lingchemdisplay = null
 	lingstingdisplay = null
 	alien_plasma_display = null

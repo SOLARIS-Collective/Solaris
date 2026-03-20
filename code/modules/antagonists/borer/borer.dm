@@ -572,7 +572,7 @@ GLOBAL_VAR_INIT(total_borer_hosts_needed, 3)
 
 	if(get_language_holder())
 		get_language_holder().remove_all_languages()
-		get_language_holder().grant_language(/datum/language/galactic_common)
+		get_language_holder().grant_language(/datum/language/common)
 
 	GrantBorerActions()
 	RemoveInfestActions()

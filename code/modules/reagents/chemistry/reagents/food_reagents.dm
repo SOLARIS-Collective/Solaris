@@ -282,7 +282,7 @@
 		return
 
 	var/mob/living/carbon/victim = M
-	if(method == TOUCH || method == INHALE || method == VAPOR)
+	if(method == TOUCH || method == SMOKE || method == VAPOR)
 		var/pepper_proof = victim.is_pepper_proof()
 
 		//check for protection
@@ -789,7 +789,7 @@
 		ingested = TRUE
 		return
 	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "pyre_elementum", /datum/mood_event/irritate, name)		// Applied if not eaten
-	if(method == TOUCH || method == INHALE || method == VAPOR)
+	if(method == TOUCH || method == SMOKE || method == VAPOR)
 		M.adjust_fire_stacks(reac_volume / 5)
 		return
 	..()

@@ -151,6 +151,28 @@
 	tastes = list("crust" = 1, "tomato" = 2, "cheese" = 1, "carrot" = 1)
 	foodtypes = GRAIN | VEGETABLES | DAIRY
 
+/obj/item/food/pizza/donkpocket
+	name = "donkpocket pizza"
+	desc = "Who thought this would be a good idea?"
+	icon_state = "donkpocketpizza"
+	food_reagents = list(
+		/datum/reagent/consumable/nutriment = 20,
+		/datum/reagent/consumable/nutriment/protein = 15,
+		/datum/reagent/consumable/tomatojuice = 6,
+		/datum/reagent/medicine/omnizine = 10,
+		/datum/reagent/consumable/nutriment/vitamin = 5,
+	)
+	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "meat" = 1, "laziness" = 1)
+	foodtypes = GRAIN | VEGETABLES | DAIRY | MEAT | JUNKFOOD
+	slice_type = /obj/item/food/pizzaslice/donkpocket
+
+/obj/item/food/pizzaslice/donkpocket
+	name = "donkpocket pizza slice"
+	desc = "Smells like donkpocket."
+	icon_state = "donkpocketpizzaslice"
+	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "meat" = 1, "laziness" = 1)
+	foodtypes = GRAIN | VEGETABLES | DAIRY | MEAT | JUNKFOOD
+
 /obj/item/food/pizza/vegetable/raw
 	name = "raw vegetable pizza"
 	icon_state = "vegetablepizza_raw"

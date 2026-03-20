@@ -44,6 +44,12 @@
 		return FALSE
 	return TRUE
 
+//automatically finds tool behavior if there is only one. requires an extension of the proc if a tool has multiple behaviors
+/obj/item/proc/get_all_tool_behaviours()
+	if (!isnull(tool_behaviour))
+		return list(tool_behaviour)
+	return null
+
 /obj/item/debug/omnitool/attack_self(mob/user)
 	if(!user)
 		return

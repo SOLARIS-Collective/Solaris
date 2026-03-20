@@ -165,6 +165,14 @@
 		if("SolGov Representative") //WS edit sgr
 			O = new /datum/outfit/plasmaman/solgov
 
+		// PENTEST ADDITION - START
+		if("Clown")
+			O = new /datum/outfit/plasmaman/clown
+
+		if("Mime")
+			O = new /datum/outfit/plasmaman/mime
+		// PENTEST ADDITION - END
+
 	var/holder		//WS Edit Begin - Plasma skirtsuit prefs
 	switch(H.jumpsuit_style)
 		if(PREF_SKIRT)
@@ -183,7 +191,8 @@
 	// H.internal = H.get_item_for_held_index(2)	// ORIGINAL
 	H.internal = H.get_item_by_slot(ITEM_SLOT_RPOCKET)
 	// [/MANKIND-EDIT]
-	H.update_internals_hud_icon(1)
+	H.update_action_buttons_icon()
+	//H.update_internals_hud_icon(1) //PENTEST EDIT
 	return 0
 
 /datum/species/plasmaman/random_name(gender,unique,lastname)

@@ -190,7 +190,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/list/learned_languages = list()
 
 	/// This character's native language.
-	var/datum/language/native_language = /datum/language/galactic_common
+	var/datum/language/native_language = /datum/language/common
 
 	/// Associated list with language levels of understanding and their point costs.
 	var/static/list/language_level_costs = list(LANGUAGE_UNKNOWN = 0, LANGUAGE_RECOGNIZED = 1, LANGUAGE_FAMILIAR = 2, LANGUAGE_FLUENT = 3)

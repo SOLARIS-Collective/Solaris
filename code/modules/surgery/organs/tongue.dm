@@ -10,8 +10,8 @@
 	var/taste_sensitivity = 15 // lower is more sensitive.
 	var/modifies_speech = FALSE
 	var/static/list/languages_possible_base = typecacheof(list(
-		/datum/language/galactic_common,
-		/datum/language/gezena_kalixcian,
+		/datum/language/common,
+		// /datum/language/gezena_kalixcian,
 		/datum/language/zohil_kalixcian,
 		/datum/language/teceti_unified,
 		/datum/language/solarian_international,
@@ -116,8 +116,8 @@
 	var/phomeme_type = "sans"
 	var/list/phomeme_types = list("sans", "papyrus")
 	var/static/list/languages_possible_skeleton = typecacheof(list(
-		/datum/language/galactic_common,
-		/datum/language/gezena_kalixcian,
+		/datum/language/common,
+		// /datum/language/gezena_kalixcian,
 		/datum/language/zohil_kalixcian,
 		/datum/language/codespeak,
 		/datum/language/monkey,
@@ -180,8 +180,8 @@
 	attack_verb = list("shocked", "jolted", "zapped")
 	taste_sensitivity = 101 // Not a tongue, they can't taste shit
 	var/static/list/languages_possible_ethereal = typecacheof(list(
-		/datum/language/galactic_common,
-		/datum/language/gezena_kalixcian,
+		/datum/language/common,
+		// /datum/language/gezena_kalixcian,
 		/datum/language/zohil_kalixcian,
 		/datum/language/teceti_unified,
 		/datum/language/solarian_international,
@@ -203,8 +203,8 @@
 	it is effectively vestigial, only useful for speaking buzzwords."
 	say_mod = "flutters"
 	var/static/list/languages_possible_moth = typecacheof(list(
-		/datum/language/galactic_common,
-		/datum/language/gezena_kalixcian,
+		/datum/language/common,
+		// /datum/language/gezena_kalixcian,
 		/datum/language/zohil_kalixcian,
 		/datum/language/teceti_unified,
 		/datum/language/solarian_international,
@@ -223,8 +223,8 @@
 /obj/item/organ/tongue/kepori
 	say_mod = "chirps"
 	var/static/list/languages_possible_kepi = typecacheof(list(
-		/datum/language/galactic_common,
-		/datum/language/gezena_kalixcian,
+		/datum/language/common,
+		// /datum/language/gezena_kalixcian,
 		/datum/language/zohil_kalixcian,
 		/datum/language/teceti_unified,
 		/datum/language/solarian_international,
@@ -248,8 +248,8 @@
 	modifies_speech = TRUE
 	// [/MANKIND-ADD]
 	var/static/list/languages_possible_vox = typecacheof(list(
-		/datum/language/galactic_common,
-		/datum/language/gezena_kalixcian,
+		/datum/language/common,
+		// /datum/language/gezena_kalixcian,
 		/datum/language/zohil_kalixcian,
 		/datum/language/teceti_unified,
 		/datum/language/solarian_international,
@@ -301,8 +301,8 @@
 	desc = "A set of soft, spoon-esque mandibles closer to the mouth opening, that allow for basic speech, and the ability to speak Rachnidian."
 	say_mod = "chitters"
 	var/static/list/languages_possible_arachnid = typecacheof(list(
-		/datum/language/galactic_common,
-		/datum/language/gezena_kalixcian,
+		/datum/language/common,
+		// /datum/language/gezena_kalixcian,
 		/datum/language/zohil_kalixcian,
 		/datum/language/codespeak,
 		/datum/language/monkey,
@@ -342,8 +342,8 @@
 	alpha = 150
 	say_mod = "blorbles"
 	var/static/list/languages_possible_slime = typecacheof(list(
-		/datum/language/galactic_common,
-		/datum/language/gezena_kalixcian,
+		/datum/language/common,
+		// /datum/language/gezena_kalixcian,
 		/datum/language/zohil_kalixcian,
 		/datum/language/teceti_unified,
 		/datum/language/solarian_international,
@@ -407,7 +407,7 @@
 	modifies_speech = TRUE // not really, they just hiss
 	var/static/list/languages_possible_alien = typecacheof(list(
 		/datum/language/xenocommon,
-		/datum/language/galactic_common,
+		/datum/language/common,
 		/datum/language/monkey))
 
 /obj/item/organ/tongue/alien/Initialize(mapload)
@@ -477,8 +477,8 @@
 	taste_sensitivity = 25 // you eat vomit, this is a mercy
 	modifies_speech = TRUE
 	var/static/list/languages_possible_fly = typecacheof(list(
-		/datum/language/galactic_common,
-		/datum/language/gezena_kalixcian,
+		/datum/language/common,
+		// /datum/language/gezena_kalixcian,
 		/datum/language/zohil_kalixcian,
 		/datum/language/teceti_unified,
 		/datum/language/solarian_international,

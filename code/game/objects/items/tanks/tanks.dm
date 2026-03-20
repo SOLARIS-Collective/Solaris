@@ -38,7 +38,7 @@
 	if(breather.internal == src)
 		to_chat(breather, span_notice("You close [src] valve."))
 		breather.internal = null
-		breather.update_internals_hud_icon(0)
+		//breather.update_internals_hud_icon(0) //PENTEST REMOVAL
 	else
 		if(!breather.getorganslot(ORGAN_SLOT_BREATHING_TUBE))
 			var/obj/item/clothing/clothes_check = breather.wear_mask
@@ -64,7 +64,7 @@
 		else
 			to_chat(breather, span_notice("You open [src] valve."))
 		breather.internal = src
-		breather.update_internals_hud_icon(1)
+		//breather.update_internals_hud_icon(1) //PENTEST REMOVAL
 	breather.update_action_buttons_icon()
 
 
@@ -251,7 +251,7 @@
 	// Actually sets the overlay. As of now, this has only been done for smaller emergency tanks
 	// The if statement is set as follows due to the coarse search type that the istype proc conducts, as subtypes count as valid types
 	var/mutable_appearance/status_overlay = mutable_appearance(icon, status_overlay_icon_state)
-	
+
 	if(istype(src, /obj/item/tank/internals/emergency_oxygen/double))
 		status_overlay.pixel_x = 1
 		status_overlay.pixel_y = 2

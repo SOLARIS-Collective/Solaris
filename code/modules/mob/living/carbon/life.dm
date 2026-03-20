@@ -107,8 +107,8 @@
 	//Suffocate
 	if(losebreath >= 1) //You've missed a breath, take oxy damage
 		losebreath--
-		if(prob(10))
-			emote("gasp")
+		//if(prob(10)) //PENTEST CHANGE - Going to set this to 100% chance to trigger the gasp. Because it was so rare in a 5 min test I only saw it twice.
+		emote("gasp")
 		if(istype(loc, /obj/))
 			var/obj/loc_as_obj = loc
 			loc_as_obj.handle_internal_lifeform(src,0)
@@ -285,12 +285,15 @@
 	if(internal)
 		if(internal.loc != src)
 			internal = null
-			update_internals_hud_icon(0)
+			update_action_buttons_icon() //PENTEST EDIT
+			//update_internals_hud_icon(0)
 		else if (!internals && !getorganslot(ORGAN_SLOT_BREATHING_TUBE)) //WS Port - Citadel Internals
 			internal = null
-			update_internals_hud_icon(0)
+			update_action_buttons_icon() //PENTEST EDIT
+			//update_internals_hud_icon(0)
 		else
-			update_internals_hud_icon(1)
+			update_action_buttons_icon() //PENTEST EDIT
+			//update_internals_hud_icon(1)
 			. = internal.remove_air_volume(volume_needed)
 			if(!.)
 				return FALSE //to differentiate between no internals and active, but empty internals
@@ -595,6 +598,28 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	if(!belly)
 		return FALSE
 	return belly.reagents.has_reagent(reagent, amount, needs_metabolizing)
+
+/mob/living/carbon/remove_reagent(reagent, custom_amount, safety)
+	if(!custom_amount)
+		custom_amount = get_reagent_amount(reagent)
+	var/amount_body = reagents.get_reagent_amount(reagent)
+	if(custom_amount <= amount_body)
+		reagents.remove_reagent(reagent, custom_amount, safety)
+		return	TRUE
+	reagents.remove_reagent(reagent, amount_body, safety)
+	custom_amount -= amount_body
+	var/obj/item/organ/stomach/belly = getorganslot(ORGAN_SLOT_STOMACH)
+	if(!belly)
+		return FALSE
+	belly.reagents.remove_reagent(reagent, custom_amount, safety)
+	return TRUE
+
+/mob/living/carbon/get_reagent_amount(reagent)
+	. = ..()
+	var/obj/item/organ/stomach/belly = getorganslot(ORGAN_SLOT_STOMACH)
+	if(!belly)
+		return
+	. += belly.reagents.get_reagent_amount(reagent)
 
 /////////
 //LIVER//

@@ -1,17 +1,16 @@
 // 'basic' language; spoken by default.
-/datum/language/galactic_common
+/datum/language/common
 	name = "Galactic Common"
 	desc = "The common galactic tongue."
 	key = "0"
-	flags = TONGUELESS_SPEECH | LANGUAGE_HIDE_ICON_IF_UNDERSTOOD | ROUNDSTART_LANGUAGE
+	flags = TONGUELESS_SPEECH | LANGUAGE_HIDE_ICON_IF_UNDERSTOOD
 	default_priority = 100
 
 	icon_state = "galcom"
 
 	mutual_understanding = list(
 		/datum/language/solarian_international = 20,
-		/datum/language/gezena_kalixcian = 20,
-		/datum/language/zohil_kalixcian = 15, // similar to gezenan
+		/datum/language/draconic = 20,
 	)
 
 
@@ -24,7 +23,7 @@
 	http://www.sttmedia.com/syllablefrequency-english
 	http://www.chinahighlights.com/travelguide/learning-chinese/pinyin-syllables.htm
 */
-/datum/language/galactic_common/syllables = list(
+/datum/language/common/syllables = list(
 "a", "ai", "an", "ang", "ao", "ba", "bai", "ban", "bang", "bao", "bei", "ben", "beng", "bi", "bian", "biao",
 "bie", "bin", "bing", "bo", "bu", "ca", "cai", "can", "cang", "cao", "ce", "cei", "cen", "ceng", "cha", "chai",
 "chan", "chang", "chao", "che", "chen", "cheng", "chi", "chong", "chou", "chu", "chua", "chuai", "chuan", "chuang", "chui", "chun",
