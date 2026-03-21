@@ -1,0 +1,4 @@
+author: "FslashN"
+delete-after: True
+changes:
+  - bugfix: "It should no longer be possible to suffocate on the Proteus, in the captain's cabin."
