@@ -1,0 +1,4 @@
+author: "Absolucy"
+delete-after: True
+changes:
+  - rscadd: "You can now separate items of the same type from being grouped together in bags (i.e chemistry bags) by labeling or coloring them. Beakers will also be grouped based on what reagents they contain."
