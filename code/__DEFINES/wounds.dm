@@ -126,6 +126,8 @@ GLOBAL_LIST_INIT(global_all_wound_types, list(/datum/wound/blunt/critical, /datu
 #define ACCEPTS_GAUZE (1<<4)
 /// If this wound marks the limb as being allowed to have splints applied
 #define ACCEPTS_SPLINT (1<<5)
+/// PENTEST ADDITION: If this wound requires humanoids to NOT have the NOBLOOD species trait
+#define BLEED_WOUND (1<<6)
 
 /// When a wound is staining the gauze with blood
 #define GAUZE_STAIN_BLOOD 1

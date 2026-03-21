@@ -10,7 +10,7 @@
 	treatable_by = list(/obj/item/stack/medical/suture)
 	treatable_tool = TOOL_CAUTERY
 	base_treat_time = 3 SECONDS
-	wound_flags = (FLESH_WOUND | ACCEPTS_GAUZE | ACCEPTS_SPLINT)
+	wound_flags = (FLESH_WOUND | ACCEPTS_GAUZE | ACCEPTS_SPLINT | BLEED_WOUND) // PENTEST ADDITION: BLEED_WOUND flag
 
 	/// How much blood we start losing when this wound is first applied
 	var/initial_flow
@@ -224,4 +224,4 @@
 	threshold_minimum = 115
 	threshold_penalty = 50
 	status_effect_type = /datum/status_effect/wound/pierce/critical
-	wound_flags = (FLESH_WOUND | ACCEPTS_GAUZE | ACCEPTS_SPLINT | MANGLES_FLESH)
+	wound_flags = (FLESH_WOUND | ACCEPTS_GAUZE | ACCEPTS_SPLINT | MANGLES_FLESH | BLEED_WOUND) // PENTEST ADDITION: BLEED_WOUND flag

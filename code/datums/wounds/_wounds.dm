@@ -115,7 +115,7 @@
 
 	if(ishuman(L.owner))
 		var/mob/living/carbon/human/H = L.owner
-		if(((wound_flags & BONE_WOUND) && !(HAS_BONE in H.dna.species.species_traits)) || ((wound_flags & FLESH_WOUND) && !(HAS_FLESH in H.dna.species.species_traits)))
+		if(((wound_flags & BONE_WOUND) && !(HAS_BONE in H.dna.species.species_traits)) || ((wound_flags & FLESH_WOUND) && !(HAS_FLESH in H.dna.species.species_traits)) || ((wound_flags & BLEED_WOUND) && (NOBLOOD in H.dna.species.species_traits))) // PENTEST ADDITION: add check for BLEED_WOUND flag
 			qdel(src)
 			return
 

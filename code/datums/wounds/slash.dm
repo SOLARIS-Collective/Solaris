@@ -11,7 +11,7 @@
 	treatable_by_grabbed = list(/obj/item/gun/energy/laser)
 	treatable_tool = TOOL_CAUTERY
 	base_treat_time = 3 SECONDS
-	wound_flags = (FLESH_WOUND | ACCEPTS_GAUZE)
+	wound_flags = (FLESH_WOUND | ACCEPTS_GAUZE | BLEED_WOUND) // PENTEST ADDITION: BLEED_WOUND flag
 
 	/// How much blood we start losing when this wound is first applied
 	var/initial_flow
@@ -280,4 +280,4 @@
 	threshold_penalty = 50
 	demotes_to = /datum/wound/slash/severe
 	status_effect_type = /datum/status_effect/wound/slash/critical
-	wound_flags = (FLESH_WOUND | ACCEPTS_GAUZE | MANGLES_FLESH)
+	wound_flags = (FLESH_WOUND | ACCEPTS_GAUZE | MANGLES_FLESH | BLEED_WOUND) // PENTEST ADDITION: BLEED_WOUND flag
