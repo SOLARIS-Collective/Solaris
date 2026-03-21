@@ -1,0 +1,4 @@
+author: "KOCMODECAHTHUK"
+delete-after: True
+changes:
+  - rscadd: "Light Step now ignores blood puddles, keeping your feet less stained with blood"
