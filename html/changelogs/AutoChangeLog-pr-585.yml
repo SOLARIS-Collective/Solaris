@@ -1,7 +1,0 @@
-author: "OnlineGirlfriend"
-delete-after: True
-changes:
-  - rscadd: "lots of posters"
-  - rscadd: "pinup poster crate, wedding poster crate"
-  - refactor: "dreamer posters are now DREAM posters"
-  - spellcheck: "poster descriptions"

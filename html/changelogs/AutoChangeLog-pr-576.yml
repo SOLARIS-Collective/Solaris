@@ -1,5 +1,0 @@
-author: "KOCMODECAHTHUK"
-delete-after: True
-changes:
-  - rscadd: "Add igrore all ship faction debug outfit, and sort in list upper"
-  - bugfix: "fixed runetime error in the spawn from Select Equpment"

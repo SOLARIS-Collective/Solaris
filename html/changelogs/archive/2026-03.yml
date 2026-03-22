@@ -163,3 +163,25 @@
   Ossa88:
   - bugfix: Small updates to Schmiedeberg
   - bugfix: pAI should workh admin stuff
+2026-03-22:
+  Absolucy:
+  - rscadd: You can now separate items of the same type from being grouped together
+      in bags (i.e chemistry bags) by labeling or coloring them. Beakers will also
+      be grouped based on what reagents they contain.
+  - bugfix: Fixed species without blood getting bleed wounds.
+  FslashN:
+  - bugfix: It should no longer be possible to suffocate on the Proteus, in the captain's
+      cabin.
+  KOCMODECAHTHUK:
+  - rscadd: Add igrore all ship faction debug outfit, and sort in list upper
+  - bugfix: fixed runetime error in the spawn from Select Equpment
+  - rscadd: Light Step now ignores blood puddles, keeping your feet less stained with
+      blood
+  OnlineGirlfriend:
+  - rscadd: lots of posters
+  - rscadd: pinup poster crate, wedding poster crate
+  - refactor: dreamer posters are now DREAM posters
+  - spellcheck: poster descriptions
+  Ossa88:
+  - bugfix: Fixes a hole in the Lagoon, Fixes a hole in Wasteplanet_lab
+  - bugfix: Kepori have learned how to wear guns on their backs like others.
