@@ -185,3 +185,8 @@
   Ossa88:
   - bugfix: Fixes a hole in the Lagoon, Fixes a hole in Wasteplanet_lab
   - bugfix: Kepori have learned how to wear guns on their backs like others.
+2026-03-23:
+  OnlineGirlfriend:
+  - spellcheck: potions
+  Ossa88:
+  - bugfix: An exploit which was allowing unlimited cash to be generated

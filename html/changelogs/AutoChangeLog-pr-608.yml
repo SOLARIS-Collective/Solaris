@@ -1,4 +1,0 @@
-author: "Ossa88"
-delete-after: True
-changes:
-  - bugfix: "An exploit which was allowing unlimited cash to be generated"
