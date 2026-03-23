@@ -92,15 +92,15 @@
 		M.modify_projectile(K)
 
 /obj/item/gun/energy/kinetic_accelerator/cyborg
-	name = "chassis_mounted kinetic accelerator"
+	name = "chassis mounted kinetic accelerator" // PENTEST CHANGE
 	icon_state = "kineticgun_b"
 	bad_type = /obj/item/gun/energy/kinetic_accelerator/cyborg
 	holds_charge = TRUE
 	unique_frequency = TRUE
-	max_mod_capacity = 80
+	max_mod_capacity = 100 // PENTEST CHANGE - Allow full capacity
 
 /obj/item/gun/energy/kinetic_accelerator/minebot
-	name = "chassis_mounted kinetic accelerator"
+	name = "chassis mounted kinetic accelerator" // PENTEST CHANGE
 	bad_type = /obj/item/gun/energy/kinetic_accelerator/minebot
 	trigger_guard = TRIGGER_GUARD_ALLOW_ALL
 	overheat_time = 20
