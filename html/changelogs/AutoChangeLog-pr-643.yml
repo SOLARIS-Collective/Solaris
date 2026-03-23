@@ -1,0 +1,4 @@
+author: "FslashN"
+delete-after: True
+changes:
+  - bugfix: "Litieguai officer cabins now have vents to prevent suffocation."
