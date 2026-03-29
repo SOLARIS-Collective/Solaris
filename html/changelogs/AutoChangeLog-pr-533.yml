@@ -1,4 +1,0 @@
-author: "Ossa88"
-delete-after: True
-changes:
-  - balance: "Shuttles no longer gib, and know when they land on people."

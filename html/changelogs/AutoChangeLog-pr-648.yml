@@ -1,4 +1,0 @@
-author: "OnlineGirlfriend"
-delete-after: True
-changes:
-  - bugfix: "added subpath for pjs in loadout"

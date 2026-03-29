@@ -199,3 +199,8 @@
   - balance: Cyborg Kinetic Accelerator can now hold 100% mod capacity instead of
       80%.
   - bugfix: Fixed the Cyborg Kinetic Accelerator's name.
+2026-03-29:
+  OnlineGirlfriend:
+  - bugfix: added subpath for pjs in loadout
+  Ossa88:
+  - balance: Shuttles no longer gib, and know when they land on people.
