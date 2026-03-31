@@ -235,7 +235,7 @@
 		if(GLOB.gas_data.flags[gas] & GAS_FLAG_IRRITANT)
 			inflammatory_kpa += PP_MOLES(breath_moles)
 		if(gas in breath_reagents)
-			var/datum/reagent/breath_reagent = new breath_reagents[gas]
+			var/datum/reagent/R = breath_reagents[gas]
 			H.reagents.add_reagent(R, breath.get_moles(gas) * 2) // 2 represents molarity of O2, we don't have citadel molarity
 			mole_adjustments[gas] = (gas in mole_adjustments) ? mole_adjustments[gas] - breath_moles : -breath_moles
 
