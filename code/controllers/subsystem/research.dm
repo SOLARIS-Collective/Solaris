@@ -80,10 +80,14 @@ SUBSYSTEM_DEF(research)
 		T.recalculate_nodes(TRUE)
 
 /datum/controller/subsystem/research/proc/initialize_all_techweb_nodes(clearall = FALSE)
+	var/list/error_details = list()
+	error_details += "1"
 	if(islist(techweb_nodes) && clearall)
 		QDEL_LIST(techweb_nodes)
+	error_details += "2"
 	if(islist(techweb_nodes_starting && clearall))
 		techweb_nodes_starting.Cut()
+	error_details += "3"
 	var/list/returned = list()
 	for(var/path in subtypesof(/datum/techweb_node))
 		var/datum/techweb_node/TN = path
@@ -101,11 +105,46 @@ SUBSYSTEM_DEF(research)
 		var/datum/techweb_node/TN = techweb_nodes[id]
 		TN.Initialize()
 	techweb_nodes = returned
+	error_details += "4"
 	if (!verify_techweb_nodes())	//Verify all nodes have ids and such.
+		// var/list/error_details = list()
+		for(var/n in techweb_nodes)
+			var/N = techweb_nodes[n]
+			if(!istype(N, /datum/techweb_node))
+				error_details += "BAD NODE: [n]"
+				continue
+			var/datum/techweb_node/TN = N
+			for(var/p in TN.prereq_ids)
+				if(!istype(techweb_nodes[p], /datum/techweb_node))
+					error_details += "BAD PREREQ: [p] in [TN.id]"
+			for(var/d in TN.design_ids)
+				if(!istype(techweb_designs[d], /datum/design))
+					error_details += "BAD DESIGN: [d] in [TN.id]"
+			for(var/u in TN.unlock_ids)
+				if(!istype(techweb_nodes[u], /datum/techweb_node))
+					error_details += "BAD UNLOCK: [u] in [TN.id]"
+		stack_trace("Invalid techweb nodes: [english_list(error_details)]")
 		stack_trace("Invalid techweb nodes detected")
 	calculate_techweb_nodes()
 	calculate_techweb_boost_list()
 	if (!verify_techweb_nodes())		//Verify nodes and designs have been crosslinked properly.
+		// var/list/error_details = list()
+		// for(var/n in techweb_nodes)
+		// 	var/N = techweb_nodes[n]
+		// 	if(!istype(N, /datum/techweb_node))
+		// 		error_details += "BAD NODE: [n]"
+		// 		continue
+		// 	var/datum/techweb_node/TN = N
+		// 	for(var/p in TN.prereq_ids)
+		// 		if(!istype(techweb_nodes[p], /datum/techweb_node))
+		// 			error_details += "BAD PREREQ: [p] in [TN.id]"
+		// 	for(var/d in TN.design_ids)
+		// 		if(!istype(techweb_designs[d], /datum/design))
+		// 			error_details += "BAD DESIGN: [d] in [TN.id]"
+		// 	for(var/u in TN.unlock_ids)
+		// 		if(!istype(techweb_nodes[u], /datum/techweb_node))
+		// 			error_details += "BAD UNLOCK: [u] in [TN.id]"
+		// stack_trace("Invalid techweb nodes: [english_list(error_details)]")
 		CRASH("Invalid techweb nodes detected")
 
 /datum/controller/subsystem/research/proc/initialize_all_techweb_designs(clearall = FALSE)
@@ -214,7 +253,8 @@ SUBSYSTEM_DEF(research)
 		for(var/i in node.design_ids)
 			var/datum/design/D = techweb_designs[i]
 			node.design_ids[i] = TRUE
-			D.unlocked_by += node.id
+			if(D)
+				D.unlocked_by += node.id
 		if(node.hidden)
 			techweb_nodes_hidden[node.id] = TRUE
 		if(node.experimental) //PENTEST REVERT - BEPIS
@@ -229,7 +269,9 @@ SUBSYSTEM_DEF(research)
 	for(var/node_id in techweb_nodes)
 		var/datum/techweb_node/node = techweb_nodes[node_id]
 		for(var/prereq_id in node.prereq_ids)
-			var/datum/techweb_node/prereq_node = techweb_node_by_id(prereq_id)
+			var/datum/techweb_node/prereq_node = techweb_nodes[prereq_id]
+			if(!istype(prereq_node))
+				continue
 			prereq_node.unlock_ids[node.id] = node
 
 /datum/controller/subsystem/research/proc/calculate_techweb_boost_list(clearall = FALSE)

@@ -193,6 +193,8 @@ SUBSYSTEM_DEF(statpanels)
 		atoms_to_display += turf_content
 
 	/// Set the atoms we're meant to display
+	if(!target.obj_window)
+		target.obj_window = new(target)
 	var/datum/object_window_info/obj_window = target.obj_window
 	obj_window.atoms_to_show = atoms_to_display
 	START_PROCESSING(SSobj_tab_items, obj_window)
