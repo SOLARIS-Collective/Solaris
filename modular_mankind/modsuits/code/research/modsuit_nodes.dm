@@ -6,7 +6,6 @@
 	description = "We have the technology to replace him."
 	prereq_ids = list("robotics")
 	design_ids = list(
-		"ssu",
 		"mod_shell",
 		"mod_chestplate",
 		"mod_helmet",
