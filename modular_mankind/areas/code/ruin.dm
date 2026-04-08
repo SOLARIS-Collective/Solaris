@@ -210,15 +210,30 @@
 /area/ruin/jungle/syndifortmed
 	name = "Syndi Fort Medbay"
 	icon_state = "blue"
+
 /area/ruin/jungle/syndifort2
 	name = "Syndi Fort 2"
 	icon_state = "red"
+
 /area/ruin/jungle/syndifort3
 	name = "Syndi Fort 3"
 	icon_state = "yellow"
+
 /area/ruin/jungle/syndifortshuttle
 	name = "Syndi Fort Shuttle"
 	icon_state = "green"
+
+/area/ruin/jungle/aiidea/engineering
+	name = "Egineering"
+	icon_state = "engine"
+
+/area/ruin/jungle/aiidea/bridge
+	name = "Bridge"
+	icon_state = "bridge"
+
+/area/ruin/jungle/aiidea/middle
+	name = "Middle"
+	icon_state = "yellow"
 
 /// MARK: Whitesands
 
@@ -237,21 +252,27 @@
 /area/ruin/whitesands/trainyard/dorm
 	name = "dorm"
 	icon_state = "crew_quarters"
+
 /area/ruin/whitesands/trainyard/hangar
 	name = "hangar"
 	icon_state = "storage"
+
 /area/ruin/whitesands/trainyard/carriage
 	name = "carriage"
 	icon_state = "green"
+
 /area/ruin/whitesands/trainyard/checkpoint
 	name = "checkpoint"
 	icon_state = "red"
+
 /area/ruin/whitesands/trainyard/checkpoint/second
 	name = "checkpoint 2"
 	icon_state = "blue"
+
 /area/ruin/whitesands/trainyard/checkpoint/storage
 	name = "storage"
 	icon_state = "quartstorage"
+
 /area/ruin/whitesands/trainyard/checkpoint/control
 	name = "control room"
 	icon_state = "captain"
