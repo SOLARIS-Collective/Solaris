@@ -66,7 +66,7 @@
 	alpha = 0;
 	mouse_opacity = 0
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -456,7 +456,7 @@
 "alT" = (
 /obj/item/spacecash/bundle/c10,
 /obj/structure/flora/rock/pile/icy,
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -1040,7 +1040,7 @@
 /obj/structure/curtain/cloth/blacknormal/half{
 	dir = 4
 	},
-/obj/effect/spawner/random/mankind_drink,
+/obj/effect/spawner/random/celadon_drink,
 /turf/open/floor/wood/walnut{
 	planetary_atmos = 1
 	},
@@ -1066,7 +1066,7 @@
 /obj/structure/flora/rock/spire{
 	icon_state = "spire1"
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -1199,7 +1199,7 @@
 /area/outpost/operations/outpost_command)
 "aHU" = (
 /obj/structure/rack,
-/obj/item/toy/plush/mankind/separ,
+/obj/item/toy/plush/celadon/separ,
 /obj/machinery/door/window/brigdoor/westright{
 	req_one_access_txt = "8126"
 	},
@@ -1280,14 +1280,14 @@
 /area/outpost/exterior)
 "aKq" = (
 /obj/machinery/light/dim/directional/south,
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
 "aKW" = (
 /obj/structure/flora/stump,
 /obj/effect/decal/cleanable/generic,
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -1480,7 +1480,7 @@
 	dir = 8
 	},
 /obj/structure/flora/rock/pile/icy,
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -1979,7 +1979,7 @@
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -2092,7 +2092,7 @@
 	pixel_y = 8;
 	pixel_x = -8
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.038
 	},
 /area/outpost/exterior)
@@ -2666,7 +2666,7 @@
 	pixel_y = 8;
 	pixel_x = -8
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -2781,7 +2781,7 @@
 /area/outpost/crew/bar/bar_zone)
 "bBa" = (
 /obj/effect/spawner/random/trash/garbage,
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -2905,7 +2905,7 @@
 	dir = 1;
 	layer = 5
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.038
 	},
 /area/outpost/exterior)
@@ -2920,14 +2920,14 @@
 	dir = 1;
 	pixel_y = 3
 	},
-/obj/effect/spawner/random/mankind_drink,
+/obj/effect/spawner/random/celadon_drink,
 /turf/open/floor/plating/rust,
 /area/outpost/vacant_rooms/trash_factory)
 "bGp" = (
 /obj/structure/sign/departments/cargo{
 	pixel_x = 32
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -3096,7 +3096,7 @@
 /area/outpost/fraction/syndi)
 "bNE" = (
 /obj/structure/closet/crate/large,
-/obj/effect/spawner/random/mankind_drink,
+/obj/effect/spawner/random/celadon_drink,
 /turf/open/floor/plating{
 	light_color = "#1B1D2E";
 	light_range = 2
@@ -3126,7 +3126,7 @@
 	color = "#543C30";
 	dir = 8
 	},
-/obj/effect/spawner/random/mankind_drink,
+/obj/effect/spawner/random/celadon_drink,
 /turf/open/floor/carpet/purple{
 	planetary_atmos = 1
 	},
@@ -3246,7 +3246,7 @@
 	dir = 8;
 	layer = 5
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.038
 	},
 /area/outpost/exterior)
@@ -3451,7 +3451,7 @@
 /obj/structure/platform/wood_two/corner{
 	dir = 8
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -3898,7 +3898,7 @@
 "chm" = (
 /obj/item/spacecash/bundle/c10,
 /obj/item/spacecash/bundle/c10,
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -3916,7 +3916,7 @@
 	},
 /obj/item/spacecash/bundle/c10,
 /obj/item/spacecash/bundle/c10,
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -3958,7 +3958,7 @@
 /obj/structure/chair{
 	dir = 1
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -3966,7 +3966,7 @@
 /mob/living/simple_animal/pet/cat{
 	desc = "A little scoundrel."
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -4319,7 +4319,7 @@
 "cuK" = (
 /obj/structure/table/wood/fancy/black,
 /obj/effect/turf_decal/siding/wood,
-/obj/effect/spawner/random/mankind_drink,
+/obj/effect/spawner/random/celadon_drink,
 /turf/open/floor/carpet/black,
 /area/outpost/fraction/nanotrasen)
 "cuV" = (
@@ -4360,7 +4360,7 @@
 /area/outpost/fraction/solfed)
 "cvP" = (
 /obj/structure/table/greyscale,
-/obj/effect/spawner/random/mankind_drink,
+/obj/effect/spawner/random/celadon_drink,
 /turf/open/floor/carpet/cyan,
 /area/outpost/medical/palata_2)
 "cvS" = (
@@ -4381,7 +4381,7 @@
 /obj/structure/platform/wood_two/corner{
 	dir = 4
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 1.999
 	},
 /area/outpost/exterior)
@@ -4680,7 +4680,7 @@
 /obj/item/radio/intercom/wideband/directional/east{
 	pixel_y = 9
 	},
-/obj/effect/spawner/random/mankind_drink,
+/obj/effect/spawner/random/celadon_drink,
 /turf/open/floor/carpet/royalblack,
 /area/outpost/crew/bar/theatre)
 "cGJ" = (
@@ -4926,7 +4926,7 @@
 	pixel_y = -5;
 	network = list("outpostelysium")
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -5116,7 +5116,7 @@
 	dir = 1;
 	pixel_y = 2
 	},
-/obj/item/toy/plush/mankind/rimri/snow,
+/obj/item/toy/plush/celadon/rimri/snow,
 /obj/structure/window/reinforced/spawner{
 	pixel_y = -2
 	},
@@ -5171,7 +5171,7 @@
 /area/outpost/crew/bar)
 "cVx" = (
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -5229,7 +5229,7 @@
 	alpha = 0;
 	mouse_opacity = 0
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 1.999
 	},
 /area/outpost/exterior)
@@ -5249,7 +5249,7 @@
 	pixel_y = -22
 	},
 /obj/structure/plasticflaps/outpost,
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.038
 	},
 /area/outpost/exterior)
@@ -5300,7 +5300,7 @@
 /obj/structure/platform/industrial{
 	pixel_y = 18
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -5327,7 +5327,7 @@
 /area/outpost/fraction/separatist)
 "dal" = (
 /obj/structure/flora/rock/ice,
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -5427,7 +5427,7 @@
 	color = "#543c30"
 	},
 /obj/structure/neon_spline/green,
-/obj/effect/spawner/random/mankind_drink,
+/obj/effect/spawner/random/celadon_drink,
 /turf/open/floor/wood/ebony,
 /area/outpost/crew/bar/bar_zone)
 "dbf" = (
@@ -5465,7 +5465,7 @@
 	pixel_y = -3
 	},
 /obj/structure/table/scrap,
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -5479,7 +5479,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/table/scrap,
-/obj/effect/spawner/random/mankind_drink,
+/obj/effect/spawner/random/celadon_drink,
 /turf/open/floor/plating{
 	light_color = "#1B1D2E";
 	light_range = 2
@@ -5491,7 +5491,7 @@
 	dir = 4;
 	pixel_y = 16
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -6175,7 +6175,7 @@
 	alpha = 0;
 	mouse_opacity = 0
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 1.999
 	},
 /area/outpost/exterior)
@@ -6383,7 +6383,6 @@
 	},
 /obj/effect/turf_decal/trimline/opaque/blue/line,
 /obj/machinery/vending/wallmed{
-	pixel_x = 0;
 	pixel_y = 26;
 	all_items_free = 0
 	},
@@ -6556,8 +6555,7 @@
 	id = "ice_cargo";
 	name = "BOLT CARGO";
 	req_one_access_txt = "8100";
-	pixel_y = 23;
-	pixel_x = 0
+	pixel_y = 23
 	},
 /turf/open/floor/plasteel/tech,
 /area/outpost/cargo)
@@ -6730,7 +6728,7 @@
 /area/outpost/crew/canteen)
 "dLy" = (
 /obj/structure/table/wood/fancy/black,
-/obj/effect/spawner/random/mankind_drink,
+/obj/effect/spawner/random/celadon_drink,
 /turf/open/floor/wood/walnut{
 	planetary_atmos = 1
 	},
@@ -7202,7 +7200,7 @@
 	icon_state = "5,14"
 	},
 /obj/structure/table/wood,
-/obj/effect/spawner/random/mankind_drink,
+/obj/effect/spawner/random/celadon_drink,
 /turf/open/floor/plasteel/sepia,
 /area/outpost/crew/lounge)
 "dWa" = (
@@ -7278,7 +7276,7 @@
 	pixel_y = 8;
 	pixel_x = -8
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.038
 	},
 /area/outpost/exterior)
@@ -7444,7 +7442,7 @@
 	layer = 5;
 	dir = 4
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.038
 	},
 /area/outpost/exterior)
@@ -7452,7 +7450,7 @@
 /obj/structure/flora/grass/both{
 	layer = 3.1
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -8178,7 +8176,7 @@
 /area/outpost/exterior)
 "evH" = (
 /obj/structure/platform/wood_two/corner,
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -8340,7 +8338,7 @@
 	pixel_y = 8;
 	pixel_x = -8
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.038
 	},
 /area/outpost/exterior)
@@ -8476,7 +8474,7 @@
 /obj/structure/window/reinforced/spawner{
 	pixel_y = 2
 	},
-/obj/effect/spawner/random/entertainment/plushie_mankind_all,
+/obj/effect/spawner/random/entertainment/plushie_celadon_all,
 /obj/structure/window/reinforced/spawner/west{
 	pixel_x = -2
 	},
@@ -8905,7 +8903,7 @@
 /obj/structure/flora/tree/pine{
 	icon_state = "pine_4"
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -9128,7 +9126,7 @@
 /obj/structure/window/reinforced/spawner{
 	pixel_y = 2
 	},
-/obj/effect/spawner/random/entertainment/plushie_mankind_all,
+/obj/effect/spawner/random/entertainment/plushie_celadon_all,
 /obj/structure/window/reinforced/spawner/west{
 	pixel_x = -2
 	},
@@ -9273,7 +9271,7 @@
 	},
 /area/outpost/crew/lounge/cab_1)
 "fai" = (
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.038
 	},
 /area/outpost/exterior)
@@ -9561,7 +9559,7 @@
 /obj/structure/platform/wood_two/corner{
 	dir = 4
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -9613,7 +9611,7 @@
 /area/outpost/crew/canteen)
 "flg" = (
 /obj/structure/table/wood/poker,
-/obj/effect/spawner/random/mankind_drink,
+/obj/effect/spawner/random/celadon_drink,
 /turf/open/floor/wood/ebony,
 /area/outpost/crew/bar/theatre)
 "fll" = (
@@ -9956,7 +9954,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.038
 	},
 /area/outpost/exterior)
@@ -10468,7 +10466,7 @@
 	pixel_x = 8;
 	pixel_y = 12
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -10521,7 +10519,7 @@
 /obj/structure/railing/corner{
 	dir = 8
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -10529,7 +10527,7 @@
 /obj/structure/platform{
 	dir = 8
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -10828,7 +10826,7 @@
 /obj/structure/flora/rock/spire{
 	icon_state = "spire2"
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -10838,7 +10836,7 @@
 	pixel_y = 8;
 	pixel_x = -8
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.038
 	},
 /area/outpost/exterior)
@@ -11114,7 +11112,7 @@
 /area/outpost/exterior)
 "fWD" = (
 /obj/structure/railing,
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -11133,7 +11131,7 @@
 /obj/structure/platform/wood_two/corner{
 	dir = 1
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -11184,14 +11182,14 @@
 /obj/structure/neon_spline/green{
 	dir = 4
 	},
-/obj/effect/spawner/random/mankind_drink,
+/obj/effect/spawner/random/celadon_drink,
 /turf/open/floor/wood/ebony,
 /area/outpost/crew/bar/bar_zone)
 "fYj" = (
 /obj/structure/platform{
 	dir = 4
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -11319,7 +11317,7 @@
 /area/outpost/crew/lounge)
 "gaU" = (
 /obj/structure/platform/wood_two,
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -11385,7 +11383,7 @@
 	dir = 8;
 	layer = 4.1
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -11617,7 +11615,7 @@
 	pixel_y = 8;
 	pixel_x = -8
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.038
 	},
 /area/outpost/exterior)
@@ -11701,7 +11699,7 @@
 	density = 0;
 	layer = 2.96
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -11763,7 +11761,7 @@
 /obj/item/light/bulb{
 	pixel_y = 2
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -11793,17 +11791,20 @@
 /turf/open/floor/plasteel/dark,
 /area/outpost/cargo)
 "gok" = (
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
 "gon" = (
+/obj/machinery/telecomms/allinone{
+	intercept = 1
+	},
 /obj/item/radio/intercom/directional/south,
 /turf/open/floor/engine,
 /area/outpost/crew/cryo)
 "goq" = (
 /obj/structure/sign/double/city/museum/left,
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -11828,7 +11829,7 @@
 /area/outpost/crew/lounge/cab_1)
 "gpp" = (
 /obj/structure/table/wood/reinforced/bar,
-/obj/effect/spawner/random/mankind_drink,
+/obj/effect/spawner/random/celadon_drink,
 /turf/open/floor/wood,
 /area/outpost/fraction/solfed)
 "gpq" = (
@@ -11862,7 +11863,7 @@
 "gqx" = (
 /obj/structure/flora/rock/pile/icy_stone,
 /obj/structure/flora/rock/snow,
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -12021,7 +12022,7 @@
 	layer = 5;
 	density = 0
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -12207,7 +12208,7 @@
 	layer = 3.1
 	},
 /obj/structure/flora/rock/pile/icy,
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -12277,7 +12278,7 @@
 	alpha = 0;
 	mouse_opacity = 0
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 1.999
 	},
 /area/outpost/exterior)
@@ -12383,7 +12384,6 @@
 	},
 /obj/machinery/vending/wallmed{
 	pixel_x = -24;
-	pixel_y = 0;
 	all_items_free = 0
 	},
 /turf/open/floor/plasteel/white,
@@ -12430,7 +12430,7 @@
 /area/outpost/exterior)
 "gFU" = (
 /obj/structure/flora/rock/pile/icy,
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -13061,7 +13061,7 @@
 	pixel_y = 9;
 	layer = 5.2
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.038
 	},
 /area/outpost/exterior)
@@ -13112,7 +13112,7 @@
 	alpha = 0;
 	mouse_opacity = 0
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 1.999
 	},
 /area/outpost/exterior)
@@ -13159,7 +13159,7 @@
 /obj/structure/neon_spline/green{
 	dir = 10
 	},
-/obj/effect/spawner/random/mankind_drink,
+/obj/effect/spawner/random/celadon_drink,
 /turf/open/floor/wood/ebony,
 /area/outpost/crew/bar/bar_zone)
 "gZl" = (
@@ -13575,7 +13575,7 @@
 /area/outpost/security/reseption)
 "hnd" = (
 /obj/structure/marker_beacon,
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -13832,7 +13832,7 @@
 	mouse_opacity = 0;
 	dir = 8
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -14018,7 +14018,7 @@
 /area/outpost/fraction/nanotrasen)
 "hzF" = (
 /obj/structure/statue/large/pillar,
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -14249,7 +14249,7 @@
 	density = 0;
 	layer = 5
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.038
 	},
 /area/outpost/exterior)
@@ -14283,7 +14283,7 @@
 	pixel_y = 8;
 	pixel_x = -8
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.038
 	},
 /area/outpost/exterior)
@@ -14414,7 +14414,7 @@
 "hKG" = (
 /obj/effect/floor_decal/crystal/random,
 /obj/item/spacecash/bundle/c10,
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -14761,7 +14761,7 @@
 	alpha = 0;
 	mouse_opacity = 0
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 1.999
 	},
 /area/outpost/exterior)
@@ -14814,7 +14814,7 @@
 /obj/structure/chair{
 	dir = 4
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -15043,7 +15043,7 @@
 	dir = 1;
 	pixel_y = 2
 	},
-/obj/item/toy/plush/mankind/rimri,
+/obj/item/toy/plush/celadon/rimri,
 /obj/structure/window/reinforced/spawner{
 	pixel_y = -2
 	},
@@ -15403,7 +15403,7 @@
 /obj/item/storage/backpack/messenger/gamma,
 /obj/item/storage/belt/security/webbing/gamma,
 /obj/item/clothing/head/helmet/riot/gamma_vision,
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -15793,7 +15793,7 @@
 	pixel_y = 8;
 	pixel_x = -8
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.038
 	},
 /area/outpost/exterior)
@@ -15835,7 +15835,7 @@
 /obj/structure/platform/corner{
 	dir = 4
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -16051,7 +16051,7 @@
 	icon_state = "sakebottle_k";
 	desc = "On the bottle is a picture of a kitsune with nine touchable tails."
 	},
-/obj/effect/spawner/random/mankind_drink,
+/obj/effect/spawner/random/celadon_drink,
 /turf/open/floor/carpet/orange,
 /area/outpost/medical/relax_room)
 "iCZ" = (
@@ -16142,7 +16142,7 @@
 	dir = 1;
 	pixel_y = 2
 	},
-/obj/effect/spawner/random/entertainment/plushie_mankind_all,
+/obj/effect/spawner/random/entertainment/plushie_celadon_all,
 /obj/structure/window/reinforced/spawner/west{
 	pixel_x = -2
 	},
@@ -16366,7 +16366,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
-/obj/effect/spawner/random/mankind_drink,
+/obj/effect/spawner/random/celadon_drink,
 /turf/open/floor/carpet/black,
 /area/outpost/fraction/nanotrasen)
 "iKP" = (
@@ -16594,7 +16594,7 @@
 	dir = 8
 	},
 /obj/structure/railing,
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -16869,7 +16869,7 @@
 /obj/structure/flora/grass/green{
 	layer = 3.1
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -17232,7 +17232,7 @@
 /obj/machinery/light/floor{
 	pixel_y = 3
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -17351,7 +17351,7 @@
 /area/outpost/crew/lounge)
 "jjL" = (
 /obj/effect/spawner/random/trash/garbage,
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/external)
@@ -17529,7 +17529,7 @@
 /turf/open/floor/plating,
 /area/outpost/exterior)
 "jpx" = (
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 1.999
 	},
 /area/outpost/exterior)
@@ -17651,7 +17651,7 @@
 /area/outpost/crew/canteen)
 "jsV" = (
 /obj/effect/floor_decal/crystal/random,
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -17734,7 +17734,7 @@
 /obj/structure/flora/tree/pine{
 	icon_state = "pine_2"
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -18210,7 +18210,7 @@
 "jIs" = (
 /obj/structure/table/wood,
 /obj/item/desk_flag/elysium,
-/obj/effect/spawner/random/mankind_drink,
+/obj/effect/spawner/random/celadon_drink,
 /turf/open/floor/carpet/blue,
 /area/outpost/fraction/solfed)
 "jJr" = (
@@ -18218,7 +18218,7 @@
 /area/outpost/vacant_rooms/office)
 "jJv" = (
 /obj/structure/dirt_pile/safe,
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -18243,7 +18243,7 @@
 /obj/structure/flora/rock/ice{
 	icon_state = "rock_3"
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -18344,7 +18344,7 @@
 /area/outpost/cargo)
 "jPF" = (
 /obj/structure/flora/rock/pile/icy_stone,
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -18398,7 +18398,7 @@
 "jUM" = (
 /obj/structure/flora/ausbushes/brflowers,
 /obj/structure/flora/ausbushes/ppflowers,
-/obj/effect/spawner/random/mankind_drink,
+/obj/effect/spawner/random/celadon_drink,
 /turf/open/floor/grass/fairy/beach,
 /area/outpost/exterior)
 "jUW" = (
@@ -18581,7 +18581,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/table/scrap,
-/obj/effect/spawner/random/mankind_drink,
+/obj/effect/spawner/random/celadon_drink,
 /turf/open/floor/plating/rust,
 /area/outpost/vacant_rooms/trash_factory)
 "jYY" = (
@@ -18880,7 +18880,7 @@
 "kef" = (
 /obj/effect/floor_decal/crystal/random,
 /obj/effect/floor_decal/crystal/random,
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -18956,7 +18956,7 @@
 /obj/machinery/door/window/brigdoor/southleft{
 	req_one_access_txt = "8126"
 	},
-/obj/effect/spawner/random/entertainment/plushie_mankind_all,
+/obj/effect/spawner/random/entertainment/plushie_celadon_all,
 /obj/structure/window/reinforced/spawner/west{
 	pixel_x = -2
 	},
@@ -19033,14 +19033,12 @@
 /obj/effect/turf_decal/industrial/hatch,
 /obj/structure/railing/thick/corner{
 	dir = 4;
-	pixel_x = 0;
 	pixel_y = 5
 	},
 /obj/machinery/computer/electrolyzer_console{
 	density = 0;
 	pixel_y = -20;
-	dir = 1;
-	pixel_x = 0
+	dir = 1
 	},
 /turf/open/floor/plasteel/tech/grid,
 /area/outpost/cargo)
@@ -19234,7 +19232,7 @@
 "kqv" = (
 /obj/structure/disposalpipe/trunk,
 /obj/machinery/disposal/bin,
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -19451,7 +19449,7 @@
 	pixel_y = 8;
 	pixel_x = -8
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.038
 	},
 /area/outpost/exterior)
@@ -19482,7 +19480,7 @@
 	pixel_x = 11
 	},
 /obj/structure/dirt_pile/safe,
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -19650,7 +19648,7 @@
 /area/outpost/operations/outpost_command)
 "kDh" = (
 /mob/living/simple_animal/pet/penguin/emperor,
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -19726,7 +19724,7 @@
 	pixel_y = 8;
 	pixel_x = -8
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.038
 	},
 /area/outpost/exterior)
@@ -19858,7 +19856,7 @@
 	alpha = 0;
 	mouse_opacity = 0
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 1.999
 	},
 /area/outpost/exterior)
@@ -20272,7 +20270,7 @@
 	req_one_access_txt = "8103";
 	layer = 3.2
 	},
-/obj/effect/spawner/random/mankind_drink,
+/obj/effect/spawner/random/celadon_drink,
 /turf/open/floor/plasteel/tech,
 /area/outpost/cargo/office)
 "kST" = (
@@ -20430,7 +20428,7 @@
 /obj/structure/fluff/fokoff_sign{
 	name = "ТУТ ОБИТАЕТ ИСТИННОЕ ЗЛО!"
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -21026,7 +21024,7 @@
 /obj/structure/flora/tree/crystal{
 	icon_state = "gem1"
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -21102,7 +21100,7 @@
 	desc = "By unknown powers, your skeletal remains have been reanimated!";
 	mouse_opacity = 0
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -21217,7 +21215,7 @@
 	dir = 1;
 	layer = 3.1
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.038
 	},
 /area/outpost/exterior)
@@ -21240,7 +21238,7 @@
 	layer = 3.1
 	},
 /obj/structure/dirt_pile/random,
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -21271,7 +21269,7 @@
 /obj/structure/platform/wood_two/corner{
 	dir = 8
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -21371,7 +21369,7 @@
 	pixel_y = 8;
 	pixel_x = -8
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.038
 	},
 /area/outpost/exterior)
@@ -21693,7 +21691,7 @@
 	alpha = 0;
 	mouse_opacity = 0
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 1.999
 	},
 /area/outpost/exterior)
@@ -22025,7 +22023,7 @@
 	pixel_y = 8;
 	pixel_x = -8
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.038
 	},
 /area/outpost/exterior)
@@ -22557,7 +22555,7 @@
 	pixel_x = -8;
 	pixel_y = 8
 	},
-/obj/effect/spawner/random/mankind_drink,
+/obj/effect/spawner/random/celadon_drink,
 /turf/open/floor/plating/asteroid/icerock/temperate,
 /area/outpost/exterior)
 "mkN" = (
@@ -22627,8 +22625,8 @@
 /turf/open/floor/plasteel/tech,
 /area/outpost/security)
 "mmt" = (
-/obj/effect/spawner/random/mankind_drink,
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/obj/effect/spawner/random/celadon_drink,
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -22958,7 +22956,7 @@
 "mwh" = (
 /obj/effect/turf_decal/corner/transparent/bottlegreen/bordercorner,
 /obj/structure/table/glass,
-/obj/effect/spawner/random/mankind_drink,
+/obj/effect/spawner/random/celadon_drink,
 /turf/open/floor/plasteel/dark,
 /area/outpost/medical/morgue)
 "mwn" = (
@@ -22996,7 +22994,7 @@
 	desc = "A near-mythical predator, known to haunt the caverns. Its eyes sparkle with a mixture of intelligence and malice.";
 	health = 1500
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -23153,7 +23151,7 @@
 	pixel_y = 3;
 	dir = 8
 	},
-/obj/effect/spawner/random/mankind_drink,
+/obj/effect/spawner/random/celadon_drink,
 /turf/open/floor/whitesandsdriedair{
 	layer = 2.4;
 	planetary_atmos = 1
@@ -23778,7 +23776,7 @@
 /obj/structure/platform/wood_two/corner{
 	dir = 8
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 1.999
 	},
 /area/outpost/exterior)
@@ -23849,7 +23847,7 @@
 /area/outpost/crew/bar)
 "mVL" = (
 /obj/structure/flora/grass/both,
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -23900,7 +23898,7 @@
 	pixel_y = 8;
 	pixel_x = -8
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.038
 	},
 /area/outpost/exterior)
@@ -23913,7 +23911,7 @@
 	alpha = 0;
 	mouse_opacity = 0
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -24085,7 +24083,7 @@
 	layer = 5;
 	density = 0
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.038
 	},
 /area/outpost/exterior)
@@ -24162,8 +24160,7 @@
 	pixel_y = 4
 	},
 /obj/item/multitool{
-	pixel_x = 4;
-	pixel_y = 0
+	pixel_x = 4
 	},
 /turf/open/floor/plasteel/tech/grid,
 /area/outpost/cargo)
@@ -24284,7 +24281,7 @@
 "nga" = (
 /obj/structure/railing,
 /obj/effect/spawner/random/trash/garbage,
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -24442,7 +24439,7 @@
 /obj/structure/platform/industrial{
 	pixel_y = 18
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.038
 	},
 /area/outpost/exterior)
@@ -24515,7 +24512,7 @@
 /obj/structure/transit_tube/junction{
 	layer = 5
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.038
 	},
 /area/outpost/exterior)
@@ -24605,7 +24602,7 @@
 "nnH" = (
 /obj/effect/floor_decal/crystal/random,
 /obj/structure/flora/rock/pile/icy_stone,
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -24638,7 +24635,7 @@
 /area/outpost/vacant_rooms/office)
 "nnQ" = (
 /obj/structure/barricade/wooden/snowed,
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -25123,7 +25120,7 @@
 /obj/structure/platform/wood_two{
 	dir = 4
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -25183,7 +25180,7 @@
 /area/outpost/medical/hall_2)
 "nCi" = (
 /obj/effect/spawner/random/trash/garbage,
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/space)
@@ -25287,7 +25284,7 @@
 	layer = 3.1
 	},
 /obj/structure/flora/rock/pile/icy,
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -25304,7 +25301,7 @@
 	pixel_y = 16;
 	pixel_x = -9
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -25346,7 +25343,7 @@
 	alpha = 0;
 	mouse_opacity = 0
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -25426,7 +25423,7 @@
 /obj/structure/sign/poster/bay/random{
 	pixel_y = 32
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -25547,7 +25544,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/table/scrap,
 /obj/item/food/grown/meatwheat,
-/obj/effect/spawner/random/mankind_drink,
+/obj/effect/spawner/random/celadon_drink,
 /turf/open/floor/plating{
 	light_color = "#1B1D2E";
 	light_range = 2
@@ -25558,7 +25555,7 @@
 /area/outpost/fraction/separatist)
 "nQq" = (
 /obj/structure/table/wood,
-/obj/effect/spawner/random/mankind_drink,
+/obj/effect/spawner/random/celadon_drink,
 /turf/open/floor/wood/walnut{
 	planetary_atmos = 1
 	},
@@ -26072,7 +26069,7 @@
 /obj/structure/flora/tree/crystal{
 	icon_state = "gem2"
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -26082,7 +26079,7 @@
 	dir = 1;
 	pixel_y = 2
 	},
-/obj/item/toy/plush/mankind/kira,
+/obj/item/toy/plush/celadon/kira,
 /obj/structure/window/reinforced/spawner{
 	pixel_y = -2
 	},
@@ -26148,7 +26145,7 @@
 /area/outpost/medical/hall_2)
 "odK" = (
 /obj/structure/table/wood/fancy/orange,
-/obj/effect/spawner/random/mankind_drink,
+/obj/effect/spawner/random/celadon_drink,
 /turf/open/floor/wood,
 /area/outpost/fraction/solfed)
 "oed" = (
@@ -26322,7 +26319,7 @@
 	pixel_y = 8;
 	pixel_x = -8
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.038
 	},
 /area/outpost/exterior)
@@ -26645,7 +26642,7 @@
 /area/outpost/maintenance/starboard)
 "orv" = (
 /obj/structure/deployable_barricade/guardrail,
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -26761,7 +26758,7 @@
 	alpha = 0;
 	mouse_opacity = 0
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 1.999
 	},
 /area/outpost/exterior)
@@ -26903,7 +26900,7 @@
 /obj/structure/railing{
 	layer = 3.01
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.038
 	},
 /area/outpost/exterior)
@@ -26923,7 +26920,7 @@
 	layer = 5;
 	density = 0
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.038
 	},
 /area/outpost/exterior)
@@ -26946,7 +26943,7 @@
 	pixel_y = 9;
 	layer = 5.2
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -27313,7 +27310,7 @@
 /turf/open/floor/plasteel/white,
 /area/outpost/medical/hall_1)
 "oJE" = (
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/external)
@@ -27505,7 +27502,7 @@
 /obj/structure/railing{
 	layer = 3.07
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -27769,7 +27766,7 @@
 	pixel_y = 6;
 	pixel_x = -8
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -28054,8 +28051,7 @@
 	id = "outpost1"
 	},
 /obj/structure/sign/poster/official/moth/smokey{
-	pixel_x = 27;
-	pixel_y = 0
+	pixel_x = 27
 	},
 /turf/open/floor/engine/hull/reinforced/interior,
 /area/outpost/cargo)
@@ -28370,7 +28366,7 @@
 	layer = 2.36
 	},
 /obj/structure/catwalk/over/plated_catwalk,
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -28391,7 +28387,7 @@
 /area/outpost/crew/garden)
 "pqZ" = (
 /obj/structure/table/wood,
-/obj/effect/spawner/random/mankind_drink,
+/obj/effect/spawner/random/celadon_drink,
 /turf/open/floor/plasteel/sepia,
 /area/outpost/crew/lounge)
 "pra" = (
@@ -29173,7 +29169,7 @@
 /area/outpost/crew/lounge/cab_2)
 "pMN" = (
 /obj/structure/holosign/barrier/infinite,
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -29589,7 +29585,7 @@
 /obj/structure/platform/wood_two{
 	dir = 9
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 1.999
 	},
 /area/outpost/exterior)
@@ -29803,7 +29799,7 @@
 /area/outpost/crew/canteen)
 "qiH" = (
 /obj/structure/flora/rock/snow,
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -29870,7 +29866,7 @@
 	alpha = 0;
 	mouse_opacity = 0
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 1.999
 	},
 /area/outpost/exterior)
@@ -29885,7 +29881,7 @@
 /area/outpost/exterior)
 "qjV" = (
 /obj/structure/flora/tree/pine,
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -29935,7 +29931,7 @@
 /area/outpost/cargo/smeltery)
 "qlB" = (
 /obj/item/stack/sheet/mineral/wood,
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -30104,7 +30100,7 @@
 /obj/structure/window{
 	pixel_y = -9
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -30411,7 +30407,7 @@
 /obj/machinery/door/window/brigdoor/southleft{
 	req_one_access_txt = "8126"
 	},
-/obj/effect/spawner/random/entertainment/plushie_mankind_all,
+/obj/effect/spawner/random/entertainment/plushie_celadon_all,
 /obj/structure/window/reinforced/spawner/west{
 	pixel_x = -2
 	},
@@ -30651,7 +30647,7 @@
 /area/outpost/engineering)
 "qBL" = (
 /obj/structure/rack,
-/obj/item/toy/plush/mankind/rd,
+/obj/item/toy/plush/celadon/rd,
 /obj/structure/window/reinforced/spawner{
 	pixel_y = -2
 	},
@@ -30790,7 +30786,7 @@
 	icon_state = "door1";
 	pixel_x = 5
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 1.999
 	},
 /area/outpost/exterior)
@@ -30873,7 +30869,7 @@
 /obj/structure/sign/neon/strelka/yellow{
 	dir = 4
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -31099,7 +31095,7 @@
 /area/outpost/exterior)
 "qQi" = (
 /obj/item/clothing/head/helmet/space/plasmaman/janitor,
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -31182,7 +31178,7 @@
 /area/outpost/medical/hall_2)
 "qSp" = (
 /obj/structure/flora/rock/icy,
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -31202,7 +31198,7 @@
 /obj/structure/disposalpipe/segment{
 	layer = 1
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -31221,7 +31217,7 @@
 	pixel_y = 8;
 	pixel_x = -8
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.038
 	},
 /area/outpost/exterior)
@@ -31556,7 +31552,7 @@
 "rdP" = (
 /obj/structure/flora/rock/ice,
 /obj/effect/floor_decal/crystal/random,
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -31620,7 +31616,7 @@
 	layer = 5;
 	dir = 1
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.038
 	},
 /area/outpost/exterior)
@@ -31999,7 +31995,7 @@
 /obj/structure/sign/neon/strelka/yellow{
 	dir = 4
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -32102,7 +32098,7 @@
 	icon_state = "pine_4";
 	pixel_y = 25
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -32342,7 +32338,7 @@
 	pixel_y = 8;
 	pixel_x = -8
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.038
 	},
 /area/outpost/exterior)
@@ -32671,7 +32667,7 @@
 /area/outpost/external)
 "rJW" = (
 /obj/structure/table/scrap,
-/obj/effect/spawner/random/mankind_drink,
+/obj/effect/spawner/random/celadon_drink,
 /turf/open/floor/wood/walnut{
 	planetary_atmos = 1
 	},
@@ -32748,7 +32744,7 @@
 /area/outpost/exterior)
 "rKX" = (
 /obj/structure/table/wood/reinforced/bar,
-/obj/effect/spawner/random/mankind_drink,
+/obj/effect/spawner/random/celadon_drink,
 /turf/open/floor/wood,
 /area/outpost/fraction/nanotrasen)
 "rLF" = (
@@ -32764,8 +32760,8 @@
 /obj/structure/chair/pew/right{
 	dir = 4
 	},
-/obj/effect/spawner/random/mankind_drink,
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/obj/effect/spawner/random/celadon_drink,
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -32865,7 +32861,7 @@
 	dir = 1;
 	pixel_y = 2
 	},
-/obj/item/toy/plush/mankind/mira,
+/obj/item/toy/plush/celadon/mira,
 /obj/machinery/door/window/brigdoor/westright{
 	req_one_access_txt = "8126"
 	},
@@ -33244,7 +33240,7 @@
 	pixel_y = 13
 	},
 /obj/structure/neon_spline/green,
-/obj/effect/spawner/random/mankind_drink,
+/obj/effect/spawner/random/celadon_drink,
 /turf/open/floor/wood/ebony,
 /area/outpost/crew/bar/bar_zone)
 "sbh" = (
@@ -34161,7 +34157,7 @@
 	pixel_x = -4;
 	pixel_y = 2
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -34481,7 +34477,7 @@
 /obj/structure/sign/poster/bay/random{
 	pixel_y = 32
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -34694,7 +34690,7 @@
 /obj/structure/platform/wood_two{
 	dir = 1
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 1.999
 	},
 /area/outpost/exterior)
@@ -35571,7 +35567,7 @@
 /area/outpost/crew/garden)
 "tmy" = (
 /obj/structure/flora/rock/spire,
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -35761,7 +35757,7 @@
 	alpha = 0;
 	mouse_opacity = 0
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -36165,7 +36161,7 @@
 	layer = 5;
 	density = 0
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -36879,7 +36875,7 @@
 	pixel_y = -9
 	},
 /obj/structure/dirt_pile/random,
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -36963,7 +36959,7 @@
 /obj/effect/turf_decal/siding/white{
 	dir = 1
 	},
-/obj/item/toy/plush/mankind/separ,
+/obj/item/toy/plush/celadon/separ,
 /obj/structure/chair/office{
 	dir = 1
 	},
@@ -37023,7 +37019,7 @@
 /obj/structure/platform/wood_two{
 	dir = 10
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -37144,7 +37140,7 @@
 	pixel_y = 8;
 	pixel_x = -8
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -37416,7 +37412,7 @@
 	dir = 1;
 	pixel_y = 2
 	},
-/obj/item/toy/plush/mankind/tora,
+/obj/item/toy/plush/celadon/tora,
 /obj/structure/window/reinforced/spawner{
 	pixel_y = -2
 	},
@@ -37714,7 +37710,7 @@
 "uxB" = (
 /obj/item/spacecash/bundle/c10,
 /obj/structure/dirt_pile/random,
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -38282,7 +38278,7 @@
 	light_color = "#ddbbff";
 	layer = 4
 	},
-/obj/effect/spawner/random/mankind_drink,
+/obj/effect/spawner/random/celadon_drink,
 /turf/open/floor/carpet/purple{
 	planetary_atmos = 1
 	},
@@ -38355,7 +38351,7 @@
 /area/outpost/exterior)
 "uNR" = (
 /obj/structure/table/glass,
-/obj/effect/spawner/random/mankind_drink,
+/obj/effect/spawner/random/celadon_drink,
 /turf/open/floor/carpet/purple{
 	planetary_atmos = 1
 	},
@@ -38407,7 +38403,7 @@
 /obj/structure/flora/tree/pine{
 	icon_state = "pine_3"
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -38476,7 +38472,7 @@
 	alpha = 0;
 	mouse_opacity = 0
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 1.999
 	},
 /area/outpost/exterior)
@@ -38831,7 +38827,7 @@
 "veZ" = (
 /obj/structure/bed/pod,
 /obj/item/bedsheet/blue,
-/obj/item/toy/plush/mankind/cat{
+/obj/item/toy/plush/celadon/cat{
 	name = "Leo";
 	desc = "Вы видите чёрного кота. Вам кажется будто за ним наблюдает чёрный таяр с красными глазами. Вам становится не по себе при виде этой картины.";
 	pixel_x = 1;
@@ -39119,7 +39115,6 @@
 "vpE" = (
 /obj/effect/turf_decal/trimline/opaque/blue/corner,
 /obj/structure/chair/bench/grey{
-	pixel_x = 0;
 	pixel_y = 4
 	},
 /obj/effect/turf_decal/corner/transparent/solgovblue/border{
@@ -39177,7 +39172,7 @@
 /area/outpost/medical/hall_2)
 "vqN" = (
 /obj/item/spacecash/bundle/c10,
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -39292,7 +39287,7 @@
 /area/outpost/cargo/office)
 "vyg" = (
 /obj/structure/statue/bronze/masson_kills,
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -39843,9 +39838,7 @@
 /obj/effect/turf_decal/spline/fancy/opaque/black{
 	dir = 6
 	},
-/obj/machinery/telecomms/allinone/indestructible{
-	intercept = 1
-	},
+/obj/machinery/telecomms/allinone/indestructible,
 /turf/open/floor/plasteel/telecomms_floor,
 /area/outpost/operations/outpost_command)
 "vOY" = (
@@ -39900,7 +39893,7 @@
 /area/outpost/exterior)
 "vPV" = (
 /obj/structure/table/scrap,
-/obj/effect/spawner/random/mankind_drink,
+/obj/effect/spawner/random/celadon_drink,
 /turf/open/floor/plasteel/tech,
 /area/outpost/crew/dop_zone_2)
 "vPX" = (
@@ -40236,7 +40229,7 @@
 /obj/structure/platform{
 	dir = 1
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -40352,7 +40345,7 @@
 	dir = 1;
 	pixel_y = 2
 	},
-/obj/effect/spawner/random/entertainment/plushie_mankind_all,
+/obj/effect/spawner/random/entertainment/plushie_celadon_all,
 /obj/structure/window/reinforced/spawner/west{
 	pixel_x = -2
 	},
@@ -40609,7 +40602,7 @@
 /area/outpost/exterior)
 "whF" = (
 /obj/structure/fluff/hedge/opaque,
-/obj/item/toy/plush/mankind/meddrake{
+/obj/item/toy/plush/celadon/meddrake{
 	pixel_y = 8
 	},
 /obj/effect/turf_decal/corner/opaque/blue/half{
@@ -40643,7 +40636,7 @@
 	req_one_access_txt = "8126";
 	dir = 1
 	},
-/obj/effect/spawner/random/entertainment/plushie_mankind_all,
+/obj/effect/spawner/random/entertainment/plushie_celadon_all,
 /obj/structure/window/reinforced/spawner/west{
 	pixel_x = -2
 	},
@@ -40704,7 +40697,7 @@
 /obj/structure/platform/wood_two{
 	dir = 1
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -40757,7 +40750,7 @@
 "wkt" = (
 /obj/structure/chair/sofa/red/old/corner,
 /obj/effect/decal/cleanable/xenoblood,
-/obj/item/toy/plush/mankind/tribal_salamander,
+/obj/item/toy/plush/celadon/tribal_salamander,
 /turf/open/floor/plating/asteroid/icerock/temperate,
 /area/outpost/exterior)
 "wkE" = (
@@ -40860,7 +40853,7 @@
 /obj/structure/flora/rock/ice{
 	icon_state = "rock_3"
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -40869,7 +40862,7 @@
 /obj/structure/platform/wood_two{
 	dir = 4
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -40908,7 +40901,7 @@
 /obj/machinery/newscaster/directional/west{
 	pixel_y = 14
 	},
-/obj/effect/spawner/random/mankind_drink,
+/obj/effect/spawner/random/celadon_drink,
 /turf/open/floor/carpet/red,
 /area/outpost/crew/dop_zone_1)
 "wnE" = (
@@ -41291,7 +41284,7 @@
 /obj/structure/platform/wood_two{
 	dir = 5
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 1.999
 	},
 /area/outpost/exterior)
@@ -41387,7 +41380,7 @@
 /obj/structure/platform/wood_two{
 	dir = 8
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -41440,7 +41433,7 @@
 	pixel_y = 16;
 	pixel_x = 8
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -41501,7 +41494,7 @@
 	dir = 8;
 	network = list("outpostelysium")
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -41754,7 +41747,7 @@
 /obj/structure/flora/rock/ice{
 	icon_state = "rock_3"
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -42018,7 +42011,7 @@
 /obj/structure/platform/industrial{
 	pixel_y = 18
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.038
 	},
 /area/outpost/exterior)
@@ -42064,7 +42057,7 @@
 	pixel_y = 7;
 	layer = 3.2
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -42110,7 +42103,7 @@
 /obj/structure/curtain/cloth/blacknormal/half{
 	dir = 8
 	},
-/obj/effect/spawner/random/mankind_drink,
+/obj/effect/spawner/random/celadon_drink,
 /turf/open/floor/wood/walnut{
 	planetary_atmos = 1
 	},
@@ -42182,7 +42175,7 @@
 	pixel_x = 5
 	},
 /obj/structure/table/scrap,
-/obj/effect/spawner/random/mankind_drink,
+/obj/effect/spawner/random/celadon_drink,
 /turf/open/floor/plating/asteroid/icerock/temperate{
 	light_color = "#1B1D2E";
 	light_range = 2
@@ -42362,7 +42355,7 @@
 	alpha = 0;
 	mouse_opacity = 0
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 1.999
 	},
 /area/outpost/exterior)
@@ -42602,7 +42595,7 @@
 /area/outpost/security/bay)
 "xec" = (
 /obj/structure/table/glass/light_glass,
-/obj/effect/spawner/random/mankind_drink,
+/obj/effect/spawner/random/celadon_drink,
 /turf/open/floor/carpet/green,
 /area/outpost/medical/hall_2)
 "xex" = (
@@ -42679,7 +42672,7 @@
 /area/outpost/fraction/solfed)
 "xgV" = (
 /obj/structure/flora/tree/dead,
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -42922,7 +42915,7 @@
 "xnU" = (
 /obj/structure/flora/tree/pine,
 /obj/item/spacecash/bundle/c10,
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -43156,7 +43149,7 @@
 /area/outpost/exterior)
 "xvR" = (
 /obj/structure/dirt_pile/random,
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -43380,7 +43373,7 @@
 	dir = 1;
 	layer = 3
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.038
 	},
 /area/outpost/exterior)
@@ -43998,7 +43991,7 @@
 /area/outpost/fraction/nanotrasen)
 "xRT" = (
 /obj/effect/floor_decal/snowrocks,
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/outpost/exterior)
@@ -44263,7 +44256,7 @@
 /area/outpost/medical/hall_1)
 "yao" = (
 /obj/structure/chair/pew/right,
-/obj/effect/spawner/random/mankind_drink,
+/obj/effect/spawner/random/celadon_drink,
 /turf/open/floor/whitesandsdriedair{
 	layer = 2.4;
 	planetary_atmos = 1
@@ -44271,7 +44264,7 @@
 /area/outpost/exterior)
 "yar" = (
 /obj/structure/table/wood/reinforced,
-/obj/effect/spawner/random/mankind_drink,
+/obj/effect/spawner/random/celadon_drink,
 /turf/open/floor/wood/walnut{
 	planetary_atmos = 1
 	},
@@ -44391,7 +44384,7 @@
 /obj/item/stack/sheet/mineral/uranium/twenty,
 /obj/structure/closet/crate/radiation,
 /obj/item/pizzabox/bomb,
-/obj/effect/spawner/random/entertainment/plushie_mankind_all,
+/obj/effect/spawner/random/entertainment/plushie_celadon_all,
 /turf/open/floor/plating,
 /area/outpost/exterior)
 "yeO" = (
@@ -44443,7 +44436,7 @@
 	},
 /area/outpost/exterior)
 "yfN" = (
-/turf/open/floor/plating/asteroid/snow/temperatre/snow{
+/turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
 /area/space)
@@ -44537,7 +44530,7 @@
 	req_one_access_txt = "8126";
 	dir = 1
 	},
-/obj/effect/spawner/random/entertainment/plushie_mankind_all,
+/obj/effect/spawner/random/entertainment/plushie_celadon_all,
 /obj/structure/window/reinforced/spawner/west{
 	pixel_x = -2
 	},
