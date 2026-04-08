@@ -136,6 +136,9 @@
 		to_chat(user, span_notice("You fix the damage on [src] with [cloth]."))
 		return TRUE
 
+	if(istype(tool, /obj/item/toy/crayon/spraycan) && user.a_intent == INTENT_HARM)	// [MANKIND-ADD] - Allows coloring clothes with spray can on harm intent
+		return
+
 	return ..()
 
 /obj/item/clothing/dropped(mob/user)
