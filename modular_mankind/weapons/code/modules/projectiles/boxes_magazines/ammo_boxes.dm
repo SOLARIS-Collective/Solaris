@@ -227,3 +227,33 @@ MARK: 5.56x45
 
 /obj/item/ammo_box/magazine/m57_39_sidewinder
 	icon = 'modular_mankind/_storage_icons/icons/items/weapons/ammo/ammo.dmi'
+
+// MARK: 4.6x30
+
+/obj/item/storage/box/ammo/c46x30mm
+	icon = 'modular_mankind/_storage_icons/icons/items/weapons/ammo/ammo_boxes.dmi'
+
+/obj/item/storage/box/ammo/c46x30mm/tesla
+	name = "box of 4.6x30mm tesla ammo"
+	desc = "A box of standard 4.6x30mm tesla ammo."
+	icon_state = "46x30mmbox-tesla"
+
+/obj/item/storage/box/ammo/c46x30mm/tesla/PopulateContents()
+	var/static/items_inside = list(
+		/obj/item/ammo_box/magazine/ammo_stack/prefilled/c46x30mm/tesla = 4)
+	generate_items_inside(items_inside,src)
+
+// MARK: 9x18mm
+
+//why are they not subpaths to c9mm
+/obj/item/storage/box/ammo/c9mm
+	icon = 'modular_mankind/_storage_icons/icons/items/weapons/ammo/ammo_boxes.dmi'
+
+/obj/item/storage/box/ammo/c9mm_ap
+	icon = 'modular_mankind/_storage_icons/icons/items/weapons/ammo/ammo_boxes.dmi'
+
+/obj/item/storage/box/ammo/c9mm_hp
+	icon = 'modular_mankind/_storage_icons/icons/items/weapons/ammo/ammo_boxes.dmi'
+
+/obj/item/storage/box/ammo/c9mm_rubber
+	icon = 'modular_mankind/_storage_icons/icons/items/weapons/ammo/ammo_boxes.dmi'
