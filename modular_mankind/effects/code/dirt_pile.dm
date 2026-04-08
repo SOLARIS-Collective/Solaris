@@ -1,7 +1,7 @@
 /obj/structure/dirt_pile
 	name = "empty dirt pile"
 	desc = "A small pile of dirt. Something might be buried underneath."
-	icon = 'modular_mankind/_storage_icons/icons/structures/snow.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/structures/snow_old.dmi'
 	icon_state = "snowstone"
 	density = FALSE
 	anchored = TRUE

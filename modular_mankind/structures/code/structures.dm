@@ -37,7 +37,7 @@
 // Растительность для снега
 /obj/structure/flora/rock/pile/icy_stone
 	name = "icey stone"
-	icon = 'modular_mankind/_storage_icons/icons/structures/snow.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/structures/snow_old.dmi'
 	icon_state = "snowstone"
 
 /obj/structure/flora/rock/pile/icy_stone/Initialize()
@@ -45,7 +45,7 @@
 	icon_state = "snowstone"
 
 /obj/structure/flora/ausbushes/snowshrub
-	icon = 'modular_mankind/_storage_icons/icons/structures/snow.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/structures/snow_old.dmi'
 	icon_state = "snowshrub"
 
 /obj/structure/flora/ausbushes/snowshrub/Initialize()

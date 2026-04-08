@@ -200,7 +200,7 @@
 /turf/open/floor/plating/snowed
 	name = "snowed-over plating"
 	desc = "A section of heated plating, helps keep the snow from stacking up too high."
-	icon = 'icons/turf/snow.dmi'
+	icon = 'icons/turf/snow_old.dmi'
 	icon_state = "snowplating"
 	initial_gas_mix = FROZEN_ATMOS
 	initial_temperature = 180

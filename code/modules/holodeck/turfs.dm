@@ -149,7 +149,7 @@
 	gender = PLURAL
 	name = "snow"
 	desc = "Looks cold."
-	icon = 'icons/turf/snow.dmi'
+	icon = 'icons/turf/snow_old.dmi'
 	icon_state = "snow"
 	slowdown = 2
 	bullet_sizzle = TRUE
