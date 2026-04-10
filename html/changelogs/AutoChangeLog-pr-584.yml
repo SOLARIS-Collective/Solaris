@@ -1,0 +1,5 @@
+author: "haydenredacted"
+delete-after: True
+changes:
+  - bugfix: "fixed the Aegis' TEG chamber not being able to ignite"
+  - bugfix: "fixed the Aegis' scrubber system dumping everything but oxygen in the O2 tank"
