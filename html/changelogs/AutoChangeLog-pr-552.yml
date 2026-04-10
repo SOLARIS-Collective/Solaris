@@ -1,4 +1,0 @@
-author: "Ossa88"
-delete-after: True
-changes:
-  - bugfix: "Z-Level based issues are fixed. Overmap is not visible via Xray eyes. Black Lines in hangars should no longer exist."
