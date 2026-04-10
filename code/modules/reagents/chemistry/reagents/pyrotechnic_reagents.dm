@@ -307,10 +307,15 @@
 		shock_timer = 0 //immune to shocks
 		M.AdjustAllImmobility(-40)
 		M.adjustStaminaLoss(-2, 0)
-		if(isluminescent(M)) //PENTEST REVERT START
+		if(isluminescent(M)) // PENTEST XENOBIOLOGY - START
 			var/mob/living/carbon/human/H = M
 			var/datum/species/jelly/luminescent/L = H.dna.species
-			L.extract_cooldown = max(0, L.extract_cooldown - 20) //PENTEST REVERT END
+			//Reduce cooldown on extract ability actions (both shared and visual)
+			L.extract_cooldown = max(0, L.extract_cooldown - 20)
+			if(L.extract_minor)
+				L.extract_minor.next_use_time = max(0, L.extract_minor.next_use_time - 20)
+			if(L.extract_major)
+				L.extract_major.next_use_time = max(0, L.extract_major.next_use_time - 20) // PENTEST XENOBIOLOGY - END
 	..()
 
 /datum/reagent/firefighting_foam
