@@ -43,7 +43,7 @@
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 3,
 		/datum/reagent/consumable/nutriment/protein = 2,
-		/datum/reagent/medicine/panacea/effluvial = 6,
+		/datum/reagent/medicine/panacea/effluvial = 6
 	)
 	tastes = list("meat" = 2, "dough" = 2, "laziness" = 1)
 	foodtypes = GRAIN
@@ -83,7 +83,7 @@
 		/datum/reagent/consumable/nutriment = 3,
 		/datum/reagent/consumable/nutriment/protein = 2,
 		/datum/reagent/medicine/panacea/effluvial = 2,
-		/datum/reagent/consumable/capsaicin = 5,
+		/datum/reagent/consumable/capsaicin = 5
 	)
 	tastes = list("meat" = 2, "dough" = 2, "weird spices" = 2)
 	foodtypes = GRAIN
@@ -131,7 +131,7 @@
 		/datum/reagent/consumable/nutriment = 3,
 		/datum/reagent/consumable/nutriment/protein = 2,
 		/datum/reagent/medicine/panacea/effluvial = 2,
-		/datum/reagent/consumable/tomatojuice = 2,
+		/datum/reagent/consumable/tomatojuice = 2
 	)
 	tastes = list("meat" = 2, "dough" = 2, "melty cheese"= 2)
 	foodtypes = GRAIN

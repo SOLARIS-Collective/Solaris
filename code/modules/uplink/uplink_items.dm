@@ -1658,30 +1658,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	restricted_roles = list("Medical Doctor", "Chief Medical Officer", "Roboticist")
 	cost = 5
 
-// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
-/datum/uplink_item/role_restricted/clumsinessinjector //clown ops can buy this too, but it's in the pointless badassery section for them
-	name = "Clumsiness Injector"
-	desc = "Inject yourself with this to become as clumsy as a clown... or inject someone ELSE with it to make THEM as clumsy as a clown. Useful for clowns who wish to reconnect with their former clownish nature or for clowns who wish to torment and play with their prey before killing them."
-	item = /obj/item/dnainjector/clumsymut
-	cost = 1
-	restricted_roles = list("Clown")
-	illegal_tech = FALSE
-// [/MANKIND-ADD]
-
-// [MANKIND-ADD] - MANKIND_RETURN_CONTENT_CLOWNS
-/datum/uplink_item/role_restricted/clowncar
-	name = "Clown Car"
-	desc = "The Clown Car is the ultimate transportation method for any worthy clown! \
-			Simply insert your bikehorn and get in, and get ready to have the funniest ride of your life! \
-			You can ram any spacemen you come across and stuff them into your car, kidnapping them and locking them inside until \
-			someone saves them or they manage to crawl out. Be sure not to ram into any walls or vending machines, as the springloaded seats \
-			are very sensitive. Now with our included lube defense mechanism which will protect you against any angry shitcurity! \
-			Premium features can be unlocked with a cryptographic sequencer!"
-	item = /obj/vehicle/sealed/car/clowncar
-	cost = 20
-	restricted_roles = list("Clown")
-// [/MANKIND-ADD]
-
 /datum/uplink_item/role_restricted/concealed_weapon_bay
 	name = "Concealed Weapon Bay"
 	desc = "A modification for civilian exosuits that allows them to equip one piece of equipment designed for combat exosuits. \

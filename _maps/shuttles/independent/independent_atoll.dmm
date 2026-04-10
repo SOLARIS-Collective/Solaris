@@ -981,6 +981,13 @@
 /obj/effect/turf_decal/corner/opaque/black,
 /turf/open/floor/plasteel/mono,
 /area/ship/hallway/aft)
+"in" = (
+/obj/effect/turf_decal/siding/wood{
+	color = "#543C30"
+	},
+/obj/machinery/airalarm/directional/south,
+/turf/open/floor/wood/walnut,
+/area/ship/crew/office)
 "ir" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -2115,6 +2122,13 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ship/crew/office/lobby)
+"sv" = (
+/obj/structure/fluff/hedge,
+/obj/effect/turf_decal/siding/wood{
+	color = "#543C30"
+	},
+/turf/open/floor/wood/walnut,
+/area/ship/crew/ccommons)
 "sw" = (
 /obj/effect/turf_decal/corner/opaque/bottlegreen/three_quarters{
 	dir = 1
@@ -2175,6 +2189,15 @@
 /obj/machinery/light/directional/east,
 /turf/open/floor/wood/walnut,
 /area/ship/crew/dorm/captain)
+"sX" = (
+/obj/effect/turf_decal/siding/wood{
+	color = "#543C30"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/turf/open/floor/wood/walnut,
+/area/ship/crew/office)
 "sY" = (
 /obj/structure/window/reinforced/fulltile/shuttle,
 /obj/structure/grille,
@@ -2252,6 +2275,12 @@
 	icon_state = "wood-broken2"
 	},
 /area/ship/medical)
+"ux" = (
+/obj/effect/turf_decal/siding/wood{
+	color = "#543C30"
+	},
+/turf/open/floor/wood/walnut,
+/area/ship/crew/ccommons)
 "uB" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
 	dir = 1
@@ -2261,6 +2290,18 @@
 	},
 /turf/open/floor/plasteel/tech,
 /area/ship/engineering/engines/starboard)
+"uL" = (
+/obj/machinery/power/smes/shuttle/precharged,
+/obj/structure/cable/yellow{
+	icon_state = "0-8"
+	},
+/obj/machinery/door/poddoor{
+	dir = 4;
+	id = "atoll_thruster_blast_port";
+	name = "Thruster Shield"
+	},
+/turf/open/floor/plating,
+/area/ship/engineering/engines/port)
 "uP" = (
 /obj/effect/turf_decal/corner/opaque/bottlegreen/half{
 	dir = 4
@@ -2670,6 +2711,12 @@
 	},
 /turf/open/floor/wood/walnut,
 /area/ship/crew/dorm/captain)
+"yA" = (
+/obj/effect/turf_decal/siding/wood{
+	color = "#543C30"
+	},
+/turf/open/floor/wood/walnut,
+/area/ship/crew/office)
 "yB" = (
 /obj/structure/window/reinforced/fulltile/shuttle,
 /obj/structure/grille,
@@ -2680,6 +2727,18 @@
 	},
 /turf/open/floor/plating,
 /area/ship/engineering/engines/port)
+"yF" = (
+/obj/machinery/power/smes/shuttle/precharged,
+/obj/structure/cable/yellow{
+	icon_state = "0-8"
+	},
+/obj/machinery/door/poddoor{
+	dir = 4;
+	id = "atoll_thruster_blast_starboard";
+	name = "Thruster Shield"
+	},
+/turf/open/floor/plating,
+/area/ship/engineering/engines/starboard)
 "yM" = (
 /obj/effect/turf_decal/corner_techfloor_gray{
 	dir = 6
@@ -4789,6 +4848,16 @@
 	},
 /turf/open/floor/plasteel/patterned/ridged,
 /area/ship/crew/office)
+"Rj" = (
+/obj/machinery/power/shuttle/engine/electric,
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
+/area/ship/engineering/engines/port)
 "Rv" = (
 /obj/structure/window/reinforced/fulltile/shuttle,
 /obj/structure/grille,
@@ -4939,6 +5008,37 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ship/crew/ccommons)
+"SS" = (
+/obj/machinery/door/window/southright,
+/obj/structure/table/glass,
+/obj/effect/turf_decal/borderfloorblack/full,
+/obj/item/reagent_containers/glass/bottle{
+	list_reagents = list(/datum/reagent/medicine/rezadone=30);
+	name = "rezadone bottle";
+	pixel_x = -6;
+	pixel_y = 14
+	},
+/obj/item/reagent_containers/glass/bottle/atropine{
+	pixel_x = -6;
+	pixel_y = 8
+	},
+/obj/item/storage/pill_bottle/mannitol{
+	pixel_x = -8
+	},
+/obj/item/storage/pill_bottle/mutadone,
+/obj/item/reagent_containers/glass/bottle/gjalrazine{
+	pixel_y = 14;
+	pixel_x = 6
+	},
+/obj/item/reagent_containers/glass/bottle/morphine{
+	pixel_x = 6;
+	pixel_y = 8
+	},
+/obj/item/storage/pill_bottle/penacid{
+	pixel_x = 8
+	},
+/turf/open/floor/plasteel/mono/dark,
+/area/ship/storage/equip)
 "SU" = (
 /obj/effect/turf_decal/borderfloorwhite/corner{
 	dir = 1
@@ -5055,6 +5155,16 @@
 	},
 /turf/open/floor/carpet,
 /area/ship/crew/ccommons)
+"TZ" = (
+/obj/machinery/power/shuttle/engine/electric,
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
+/area/ship/engineering/engines/starboard)
 "Uk" = (
 /obj/effect/turf_decal/corner/opaque/bottlegreen{
 	dir = 8
@@ -5739,6 +5849,13 @@
 	},
 /turf/open/floor/plating,
 /area/ship/hallway/aft)
+"ZQ" = (
+/obj/effect/turf_decal/siding/wood{
+	color = "#543C30"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/wood/walnut,
+/area/ship/crew/dorm/captain)
 "ZZ" = (
 /obj/effect/turf_decal/corner/opaque/bottlegreen/half{
 	dir = 4

@@ -1311,6 +1311,29 @@
 "kS" = (
 /turf/closed/wall/r_wall,
 /area/ship/engineering/atmospherics)
+"kU" = (
+/obj/effect/turf_decal/corner/opaque/green{
+	dir = 8
+	},
+/obj/structure/closet/secure_closet/wall/directional/east{
+	icon_door = "med_wall";
+	name = "mortuary locker";
+	req_access_txt = "5"
+	},
+/obj/item/reagent_containers/glass/bottle/formaldehyde{
+	pixel_x = 5;
+	pixel_y = 8
+	},
+/obj/item/storage/box/bodybags,
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/item/reagent_containers/glass/bottle/gjalrazine{
+	pixel_x = 5;
+	pixel_y = -8
+	},
+/turf/open/floor/plasteel/white,
+/area/ship/medical)
 "lc" = (
 /obj/structure/cable{
 	icon_state = "2-4"
