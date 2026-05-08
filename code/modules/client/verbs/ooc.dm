@@ -229,7 +229,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 
 		// Use the player's fakekey if they're using one
 		if(C.holder?.fakekey)
-			displayed_key = C.holder.fakekey
+			players["[displayed_key]"] = displayed_key // [SOLARIS-EDIT] - Убираем возможность смотреть кто на каком персонаже играет. ORIGINAL: players["[C.mob]([displayed_key])"] = displayed_key
 
 		// Use the player's key if they're not using a fakekey
 		else
