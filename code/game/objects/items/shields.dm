@@ -1,7 +1,7 @@
 #define BATON_BASH_COOLDOWN (3 SECONDS)
 /*
  * [MANKIND-OVERRIDE] - Файл глоабльно изменен, ID-мода для поиска: BALLISTIC_SHIELD
- * Причина: Переработка механики щитов (https://github.com/CeladonSS13/Shiptest/pull/1901)
+ * Причина: Переработка механики щитов (https://github.com/MANKIND-Collective/Pentest/pull/1901)
  */
 
 /obj/item/shield

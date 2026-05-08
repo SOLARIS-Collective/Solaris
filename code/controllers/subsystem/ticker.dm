@@ -152,9 +152,9 @@ SUBSYSTEM_DEF(ticker)
 			// send2chat("New round starting!", CONFIG_GET(string/chat_announce_new_game))
 			// SSredbot.send_discord_message("ooc", "**A new round is beginning.**")	// ORIGINAL
 			to_chat(world, span_boldnotice("Добро пожаловать на [station_name()]!"))
-			if(CONFIG_GET(string/servername) == "\[RU] Celadon Shiptest: Alpha")
+			if(CONFIG_GET(string/servername) == "\[RU] Solaris Pentest: Alpha")
 				send2chat("<@&1100202952943218738>, запущен новый раунд на сервере: **" + CONFIG_GET(string/servername) + "**!", CONFIG_GET(string/chat_announce_new_game))
-			if(CONFIG_GET(string/servername) == "\[RU] Celadon Shiptest: Beta")
+			if(CONFIG_GET(string/servername) == "\[RU] Solaris Pentest: Beta")
 				send2chat("<@&1226515994332102687>, запущен новый раунд на сервере: **" + CONFIG_GET(string/servername) + "**!", CONFIG_GET(string/chat_announce_new_game))
 			SSredbot.send_discord_message("ooc", "**Новый раунд скоро начнётся.**")
 			// [/MANKIND-EDIT]

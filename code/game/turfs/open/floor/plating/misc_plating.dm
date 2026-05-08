@@ -196,11 +196,11 @@
 
 /turf/open/floor/plating/ice/airless
 	initial_gas_mix = AIRLESS_ATMOS
-
+modular_mankind/_storage_icons/icons/structures/snow.dmi
 /turf/open/floor/plating/snowed
 	name = "snowed-over plating"
 	desc = "A section of heated plating, helps keep the snow from stacking up too high."
-	icon = 'icons/turf/snow_old.dmi'
+	icon = 'icons/turf/snow.dmi'
 	icon_state = "snowplating"
 	initial_gas_mix = FROZEN_ATMOS
 	initial_temperature = 180

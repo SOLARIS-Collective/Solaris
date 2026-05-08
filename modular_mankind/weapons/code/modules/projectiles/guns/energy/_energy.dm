@@ -1,10 +1,10 @@
 // Изменения перезарядки батареек от Мьелниза
-// https://github.com/CeladonSS13/Shiptest/pull/801
+// https://github.com/MANKIND-Collective/Pentest/pull/801
 /obj/item/gun/energy
 	unscrewing_time = FALSE
 	tac_reloads = TRUE
 
-// https://github.com/CeladonSS13/Shiptest/pull/811
+// https://github.com/MANKIND-Collective/Pentest/pull/811
 // Поменяли люди код оффов в code/modules/projectiles/guns/energy.dm
 /obj/item/gun/energy/insert_cell(mob/user, obj/item/stock_parts/cell/gun/C)
 	// if(mag_size == MAG_SIZE_SMALL && !istype(C, /obj/item/stock_parts/cell/gun/mini))	// MANKIND_ТРЕБУЕТСЯ_АДАПТАЦИЯ

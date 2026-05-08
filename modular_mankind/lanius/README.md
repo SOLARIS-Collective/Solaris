@@ -1,7 +1,7 @@
 
 #### Список PRов
 
-- https://github.com/CeladonSS13/Shiptest/pulls/1037
+- https://github.com/MANKIND-Collective/Pentest/pulls/1037
 
 ## Ланиусы
 

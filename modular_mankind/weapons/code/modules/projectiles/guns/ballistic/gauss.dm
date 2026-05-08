@@ -10,7 +10,7 @@
 		/obj/item/stock_parts/cell/gun/sharplite/empty,
 		/obj/item/stock_parts/cell/gun/sharplite/plus/empty
 	)
-// https://github.com/CeladonSS13/Shiptest/pull/1703
+// https://github.com/MANKIND-Collective/Pentest/pull/1703
 // code\modules\projectiles\guns\powered.dm есть изменения
 /obj/item/gun/ballistic/automatic/powered/AltClick(mob/living/user)
 	if(!internal_magazine && loc == user && user.is_holding(src) && cell && tac_reloads && !(gun_firemodes[firemode_index] == FIREMODE_UNDERBARREL))

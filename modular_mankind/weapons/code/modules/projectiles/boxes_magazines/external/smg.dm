@@ -1,4 +1,4 @@
-// https://github.com/CeladonSS13/Shiptest/pull/2461
+// https://github.com/MANKIND-Collective/Pentest/pull/2461
 
 // MARK: 5.7x39
 /obj/item/ammo_box/magazine/m57_39_sidewinder

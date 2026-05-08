@@ -23,7 +23,7 @@
 	if(cached_one_time_token && cached_one_time_token != "")
 		// [MANKIND-EDIT] - DISCORD VERIFY
 		// message = "You already generated your one time token, it is [cached_one_time_token], if you need a new one, you will have to wait until the round ends, or switch to another server, try verifying yourself in discord by using the command <span class=\"warning\">\"/verify one-time-token:[cached_one_time_token]\"</span>"
-		message = "Вы уже сгенерировали свой одноразовый токен. Если вам нужен новый токен, то вам придётся подождать до конца раунда или переключиться на другой сервер. Вы можете верифицировать себя в Discord, используя команду: <br><br><b>/verify code:[cached_one_time_token]</b> <br><br> Celadon Discord: https://discord.com/invite/rxsggTJzY3"
+		message = "Вы уже сгенерировали свой одноразовый токен. Если вам нужен новый токен, то вам придётся подождать до конца раунда или переключиться на другой сервер. Вы можете верифицировать себя в Discord, используя команду: <br><br><b>/verify code:[cached_one_time_token]</b> <br><br> Solaris Discord: https://discord.gg/invite/aFV8dpkAz"
 		// [/MANKIND-EDIT]
 
 	else
@@ -32,7 +32,7 @@
 		SSdiscord.reverify_cache[usr.ckey] = one_time_token
 		// [MANKIND-EDIT] - DISCORD VERIFY
 		// message = "Your one time token is: [one_time_token], Assuming you have the required living minutes in game, you can now verify yourself in discord by using the command <span class=\"warning\">\"!verify [one_time_token]\"</span>"
-		message = "Вы можете верифицировать себя в Discord, используя команду: <br><br><b>/verify code:[one_time_token]</b><br><br> Celadon Discord: https://discord.com/invite/rxsggTJzY3"
+		message = "Вы можете верифицировать себя в Discord, используя команду: <br><br><b>/verify code:[one_time_token]</b><br><br> Solaris Discord: https://discord.gg/invite/aFV8dpkAz"
 		// [/MANKIND-EDIT]
 
 	//Now give them a browse window so they can't miss whatever we told them

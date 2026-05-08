@@ -408,9 +408,9 @@
 	say("Received correspondence from [sender_name].")
 	history_add("Receive", sender_name)
 	addtimer(CALLBACK(src, PROC_REF(vend_item), loaded), 1.9 SECONDS)
-	// [CELADON-ADD] - Вызывает прок, который передаёт в DS администрации информацию о новом факсе, который был получен.
+	// [MANKIND-ADD] - Вызывает прок, который передаёт в DS администрации информацию о новом факсе, который был получен.
 	sendDSFax(sender_name, loaded)
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 
 /**
  * Procedure for animating an object entering or leaving the fax machine.

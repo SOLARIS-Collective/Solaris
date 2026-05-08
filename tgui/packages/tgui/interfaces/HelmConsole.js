@@ -1,5 +1,5 @@
 /**
- * @changes 2026 KOCMOHABT (https://github.com/CeladonSS13/Shiptest/pull/2647)
+ * @changes 2026 KOCMOHABT (https://github.com/MANKIND-Collective/Pentest/pull/2647)
  * @TDLR From anything changes, see History in GIT and PR.
  */
 import { useBackend } from '../backend';

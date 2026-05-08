@@ -3,7 +3,7 @@
 #### Список PRов:
 
 - https://github.com/MysticalFaceLesS/Shiptest/pulls/#####
-- https://github.com/CeladonSS13/Shiptest/pull/2507
+- https://github.com/MANKIND-Collective/Pentest/pull/2507
 <!--
   Ссылки на PRы, связанные с модом:
   - Создание

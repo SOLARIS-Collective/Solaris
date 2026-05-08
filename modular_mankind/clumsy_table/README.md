@@ -1,7 +1,7 @@
 
 #### Список PRов
 
-- https://github.com/CeladonSS13/Shiptest/pull/
+- https://github.com/MANKIND-Collective/Pentest/pull/
 
 ## Раскидывание на столах
 

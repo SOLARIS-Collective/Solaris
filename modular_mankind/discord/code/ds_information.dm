@@ -1,5 +1,7 @@
 // Администрация будет получать оповещения о новых факсах в Discord.
 /obj/machinery/fax/proc/sendDSFax(sender_name, loaded)
+	// Отключил, надо разбираться как работает. Завязан был на секрет папке...
+	/*
 	var/text
 	if(istype(loaded, /obj/item/paper))
 		var/obj/item/paper/text2 = loaded
@@ -21,6 +23,8 @@
 			send2chat(out, "faxes-and-prays")
 	else
 		send2chat(info, "faxes-and-prays")
+		*/
+	return
 
 // Администрация будет получать оповещения о новых Prays в Discord.
 /mob/proc/sendDSPray(msg_tmp)

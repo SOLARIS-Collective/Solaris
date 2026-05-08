@@ -928,7 +928,7 @@
 /area/ship/engineering)
 "go" = (
 /obj/effect/turf_decal/stairs{
-	icon = 'mod_celadon/_storage_icons/icons/structures/floors/stairs.dmi';
+	icon = 'modular_mankind/_storage_icons/icons/structures/floors/stairs.dmi';
 	icon_state = "dark_lr";
 	dir = 8
 	},
@@ -7379,7 +7379,7 @@
 /area/ship/bridge)
 "OY" = (
 /obj/effect/turf_decal/stairs{
-	icon = 'mod_celadon/_storage_icons/icons/structures/floors/stairs.dmi';
+	icon = 'modular_mankind/_storage_icons/icons/structures/floors/stairs.dmi';
 	icon_state = "dark_lr";
 	dir = 9
 	},
@@ -7644,7 +7644,7 @@
 /area/ship/bridge)
 "QL" = (
 /obj/effect/turf_decal/stairs{
-	icon = 'mod_celadon/_storage_icons/icons/structures/floors/stairs.dmi';
+	icon = 'modular_mankind/_storage_icons/icons/structures/floors/stairs.dmi';
 	icon_state = "dark";
 	dir = 9
 	},

@@ -214,8 +214,8 @@ GLOBAL_LIST_INIT(tendrils, list())
 	Even with the weapon destroyed, all the pieces containing the creature have coagulated back together to find a new host."
 	icon = 'icons/obj/lavaland/artefacts.dmi'
 	icon_state = "cursed_katana"
-	lefthand_file = 'mod_celadon/_storage_icons/icons/items/weapons/in_hands/swords_lefthand.dmi'
-	righthand_file = 'mod_celadon/_storage_icons/icons/items/weapons/in_hands/swords_righthand.dmi'
+	lefthand_file = 'modular_mankind/_storage_icons/icons/items/weapons/in_hands/swords_lefthand.dmi'
+	righthand_file = 'modular_mankind/_storage_icons/icons/items/weapons/in_hands/swords_righthand.dmi'
 	force = 15
 	armour_penetration = 30
 	block_chance = 30
@@ -336,7 +336,7 @@ GLOBAL_LIST_INIT(tendrils, list())
 /obj/item/cursed_katana/proc/slice(mob/living/target, mob/user)
 	user.visible_message(span_warning("[user] does a wide slice!"),
 		span_notice("You do a wide slice!"))
-	playsound(src, 'mod_celadon/_storage_sounds/sound/weapons/sword_kill_slash_02.ogg', 50, TRUE)
+	playsound(src, 'modular_mankind/_storage_sounds/sound/weapons/sword_kill_slash_02.ogg', 50, TRUE)
 	var/turf/user_turf = get_turf(user)
 	var/dir_to_target = get_dir(user_turf, get_turf(target))
 	var/static/list/cursed_katana_slice_angles = list(0, -45, 45, -90, 90) //so that the animation animates towards the target clicked and not towards a side target

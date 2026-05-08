@@ -1040,7 +1040,7 @@
 /obj/structure/curtain/cloth/blacknormal/half{
 	dir = 4
 	},
-/obj/effect/spawner/random/celadon_drink,
+/obj/effect/spawner/random/mankind_drink,
 /turf/open/floor/wood/walnut{
 	planetary_atmos = 1
 	},
@@ -1199,7 +1199,7 @@
 /area/outpost/operations/outpost_command)
 "aHU" = (
 /obj/structure/rack,
-/obj/item/toy/plush/celadon/separ,
+/obj/item/toy/plush/mankind/separ,
 /obj/machinery/door/window/brigdoor/westright{
 	req_one_access_txt = "8126"
 	},
@@ -2920,7 +2920,7 @@
 	dir = 1;
 	pixel_y = 3
 	},
-/obj/effect/spawner/random/celadon_drink,
+/obj/effect/spawner/random/mankind_drink,
 /turf/open/floor/plating/rust,
 /area/outpost/vacant_rooms/trash_factory)
 "bGp" = (
@@ -3096,7 +3096,7 @@
 /area/outpost/fraction/syndi)
 "bNE" = (
 /obj/structure/closet/crate/large,
-/obj/effect/spawner/random/celadon_drink,
+/obj/effect/spawner/random/mankind_drink,
 /turf/open/floor/plating{
 	light_color = "#1B1D2E";
 	light_range = 2
@@ -3126,7 +3126,7 @@
 	color = "#543C30";
 	dir = 8
 	},
-/obj/effect/spawner/random/celadon_drink,
+/obj/effect/spawner/random/mankind_drink,
 /turf/open/floor/carpet/purple{
 	planetary_atmos = 1
 	},
@@ -4319,7 +4319,7 @@
 "cuK" = (
 /obj/structure/table/wood/fancy/black,
 /obj/effect/turf_decal/siding/wood,
-/obj/effect/spawner/random/celadon_drink,
+/obj/effect/spawner/random/mankind_drink,
 /turf/open/floor/carpet/black,
 /area/outpost/fraction/nanotrasen)
 "cuV" = (
@@ -4360,7 +4360,7 @@
 /area/outpost/fraction/solfed)
 "cvP" = (
 /obj/structure/table/greyscale,
-/obj/effect/spawner/random/celadon_drink,
+/obj/effect/spawner/random/mankind_drink,
 /turf/open/floor/carpet/cyan,
 /area/outpost/medical/palata_2)
 "cvS" = (
@@ -4680,7 +4680,7 @@
 /obj/item/radio/intercom/wideband/directional/east{
 	pixel_y = 9
 	},
-/obj/effect/spawner/random/celadon_drink,
+/obj/effect/spawner/random/mankind_drink,
 /turf/open/floor/carpet/royalblack,
 /area/outpost/crew/bar/theatre)
 "cGJ" = (
@@ -5116,7 +5116,7 @@
 	dir = 1;
 	pixel_y = 2
 	},
-/obj/item/toy/plush/celadon/rimri/snow,
+/obj/item/toy/plush/mankind/rimri/snow,
 /obj/structure/window/reinforced/spawner{
 	pixel_y = -2
 	},
@@ -5427,7 +5427,7 @@
 	color = "#543c30"
 	},
 /obj/structure/neon_spline/green,
-/obj/effect/spawner/random/celadon_drink,
+/obj/effect/spawner/random/mankind_drink,
 /turf/open/floor/wood/ebony,
 /area/outpost/crew/bar/bar_zone)
 "dbf" = (
@@ -5479,7 +5479,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/table/scrap,
-/obj/effect/spawner/random/celadon_drink,
+/obj/effect/spawner/random/mankind_drink,
 /turf/open/floor/plating{
 	light_color = "#1B1D2E";
 	light_range = 2
@@ -6728,7 +6728,7 @@
 /area/outpost/crew/canteen)
 "dLy" = (
 /obj/structure/table/wood/fancy/black,
-/obj/effect/spawner/random/celadon_drink,
+/obj/effect/spawner/random/mankind_drink,
 /turf/open/floor/wood/walnut{
 	planetary_atmos = 1
 	},
@@ -7200,7 +7200,7 @@
 	icon_state = "5,14"
 	},
 /obj/structure/table/wood,
-/obj/effect/spawner/random/celadon_drink,
+/obj/effect/spawner/random/mankind_drink,
 /turf/open/floor/plasteel/sepia,
 /area/outpost/crew/lounge)
 "dWa" = (
@@ -8474,7 +8474,7 @@
 /obj/structure/window/reinforced/spawner{
 	pixel_y = 2
 	},
-/obj/effect/spawner/random/entertainment/plushie_celadon_all,
+/obj/effect/spawner/random/entertainment/plushie_mankind_all,
 /obj/structure/window/reinforced/spawner/west{
 	pixel_x = -2
 	},
@@ -9126,7 +9126,7 @@
 /obj/structure/window/reinforced/spawner{
 	pixel_y = 2
 	},
-/obj/effect/spawner/random/entertainment/plushie_celadon_all,
+/obj/effect/spawner/random/entertainment/plushie_mankind_all,
 /obj/structure/window/reinforced/spawner/west{
 	pixel_x = -2
 	},
@@ -9611,7 +9611,7 @@
 /area/outpost/crew/canteen)
 "flg" = (
 /obj/structure/table/wood/poker,
-/obj/effect/spawner/random/celadon_drink,
+/obj/effect/spawner/random/mankind_drink,
 /turf/open/floor/wood/ebony,
 /area/outpost/crew/bar/theatre)
 "fll" = (
@@ -11182,7 +11182,7 @@
 /obj/structure/neon_spline/green{
 	dir = 4
 	},
-/obj/effect/spawner/random/celadon_drink,
+/obj/effect/spawner/random/mankind_drink,
 /turf/open/floor/wood/ebony,
 /area/outpost/crew/bar/bar_zone)
 "fYj" = (
@@ -11829,7 +11829,7 @@
 /area/outpost/crew/lounge/cab_1)
 "gpp" = (
 /obj/structure/table/wood/reinforced/bar,
-/obj/effect/spawner/random/celadon_drink,
+/obj/effect/spawner/random/mankind_drink,
 /turf/open/floor/wood,
 /area/outpost/fraction/solfed)
 "gpq" = (
@@ -13159,7 +13159,7 @@
 /obj/structure/neon_spline/green{
 	dir = 10
 	},
-/obj/effect/spawner/random/celadon_drink,
+/obj/effect/spawner/random/mankind_drink,
 /turf/open/floor/wood/ebony,
 /area/outpost/crew/bar/bar_zone)
 "gZl" = (
@@ -15043,7 +15043,7 @@
 	dir = 1;
 	pixel_y = 2
 	},
-/obj/item/toy/plush/celadon/rimri,
+/obj/item/toy/plush/mankind/rimri,
 /obj/structure/window/reinforced/spawner{
 	pixel_y = -2
 	},
@@ -16051,7 +16051,7 @@
 	icon_state = "sakebottle_k";
 	desc = "On the bottle is a picture of a kitsune with nine touchable tails."
 	},
-/obj/effect/spawner/random/celadon_drink,
+/obj/effect/spawner/random/mankind_drink,
 /turf/open/floor/carpet/orange,
 /area/outpost/medical/relax_room)
 "iCZ" = (
@@ -16142,7 +16142,7 @@
 	dir = 1;
 	pixel_y = 2
 	},
-/obj/effect/spawner/random/entertainment/plushie_celadon_all,
+/obj/effect/spawner/random/entertainment/plushie_mankind_all,
 /obj/structure/window/reinforced/spawner/west{
 	pixel_x = -2
 	},
@@ -16366,7 +16366,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
-/obj/effect/spawner/random/celadon_drink,
+/obj/effect/spawner/random/mankind_drink,
 /turf/open/floor/carpet/black,
 /area/outpost/fraction/nanotrasen)
 "iKP" = (
@@ -18210,7 +18210,7 @@
 "jIs" = (
 /obj/structure/table/wood,
 /obj/item/desk_flag/elysium,
-/obj/effect/spawner/random/celadon_drink,
+/obj/effect/spawner/random/mankind_drink,
 /turf/open/floor/carpet/blue,
 /area/outpost/fraction/solfed)
 "jJr" = (
@@ -18398,7 +18398,7 @@
 "jUM" = (
 /obj/structure/flora/ausbushes/brflowers,
 /obj/structure/flora/ausbushes/ppflowers,
-/obj/effect/spawner/random/celadon_drink,
+/obj/effect/spawner/random/mankind_drink,
 /turf/open/floor/grass/fairy/beach,
 /area/outpost/exterior)
 "jUW" = (
@@ -18581,7 +18581,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/table/scrap,
-/obj/effect/spawner/random/celadon_drink,
+/obj/effect/spawner/random/mankind_drink,
 /turf/open/floor/plating/rust,
 /area/outpost/vacant_rooms/trash_factory)
 "jYY" = (
@@ -18956,7 +18956,7 @@
 /obj/machinery/door/window/brigdoor/southleft{
 	req_one_access_txt = "8126"
 	},
-/obj/effect/spawner/random/entertainment/plushie_celadon_all,
+/obj/effect/spawner/random/entertainment/plushie_mankind_all,
 /obj/structure/window/reinforced/spawner/west{
 	pixel_x = -2
 	},
@@ -20270,7 +20270,7 @@
 	req_one_access_txt = "8103";
 	layer = 3.2
 	},
-/obj/effect/spawner/random/celadon_drink,
+/obj/effect/spawner/random/mankind_drink,
 /turf/open/floor/plasteel/tech,
 /area/outpost/cargo/office)
 "kST" = (
@@ -22555,7 +22555,7 @@
 	pixel_x = -8;
 	pixel_y = 8
 	},
-/obj/effect/spawner/random/celadon_drink,
+/obj/effect/spawner/random/mankind_drink,
 /turf/open/floor/plating/asteroid/icerock/temperate,
 /area/outpost/exterior)
 "mkN" = (
@@ -22625,7 +22625,7 @@
 /turf/open/floor/plasteel/tech,
 /area/outpost/security)
 "mmt" = (
-/obj/effect/spawner/random/celadon_drink,
+/obj/effect/spawner/random/mankind_drink,
 /turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
@@ -22956,7 +22956,7 @@
 "mwh" = (
 /obj/effect/turf_decal/corner/transparent/bottlegreen/bordercorner,
 /obj/structure/table/glass,
-/obj/effect/spawner/random/celadon_drink,
+/obj/effect/spawner/random/mankind_drink,
 /turf/open/floor/plasteel/dark,
 /area/outpost/medical/morgue)
 "mwn" = (
@@ -23151,7 +23151,7 @@
 	pixel_y = 3;
 	dir = 8
 	},
-/obj/effect/spawner/random/celadon_drink,
+/obj/effect/spawner/random/mankind_drink,
 /turf/open/floor/whitesandsdriedair{
 	layer = 2.4;
 	planetary_atmos = 1
@@ -25544,7 +25544,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/table/scrap,
 /obj/item/food/grown/meatwheat,
-/obj/effect/spawner/random/celadon_drink,
+/obj/effect/spawner/random/mankind_drink,
 /turf/open/floor/plating{
 	light_color = "#1B1D2E";
 	light_range = 2
@@ -25555,7 +25555,7 @@
 /area/outpost/fraction/separatist)
 "nQq" = (
 /obj/structure/table/wood,
-/obj/effect/spawner/random/celadon_drink,
+/obj/effect/spawner/random/mankind_drink,
 /turf/open/floor/wood/walnut{
 	planetary_atmos = 1
 	},
@@ -26079,7 +26079,7 @@
 	dir = 1;
 	pixel_y = 2
 	},
-/obj/item/toy/plush/celadon/kira,
+/obj/item/toy/plush/mankind/kira,
 /obj/structure/window/reinforced/spawner{
 	pixel_y = -2
 	},
@@ -26145,7 +26145,7 @@
 /area/outpost/medical/hall_2)
 "odK" = (
 /obj/structure/table/wood/fancy/orange,
-/obj/effect/spawner/random/celadon_drink,
+/obj/effect/spawner/random/mankind_drink,
 /turf/open/floor/wood,
 /area/outpost/fraction/solfed)
 "oed" = (
@@ -28387,7 +28387,7 @@
 /area/outpost/crew/garden)
 "pqZ" = (
 /obj/structure/table/wood,
-/obj/effect/spawner/random/celadon_drink,
+/obj/effect/spawner/random/mankind_drink,
 /turf/open/floor/plasteel/sepia,
 /area/outpost/crew/lounge)
 "pra" = (
@@ -30407,7 +30407,7 @@
 /obj/machinery/door/window/brigdoor/southleft{
 	req_one_access_txt = "8126"
 	},
-/obj/effect/spawner/random/entertainment/plushie_celadon_all,
+/obj/effect/spawner/random/entertainment/plushie_mankind_all,
 /obj/structure/window/reinforced/spawner/west{
 	pixel_x = -2
 	},
@@ -30647,7 +30647,7 @@
 /area/outpost/engineering)
 "qBL" = (
 /obj/structure/rack,
-/obj/item/toy/plush/celadon/rd,
+/obj/item/toy/plush/mankind/rd,
 /obj/structure/window/reinforced/spawner{
 	pixel_y = -2
 	},
@@ -32667,7 +32667,7 @@
 /area/outpost/external)
 "rJW" = (
 /obj/structure/table/scrap,
-/obj/effect/spawner/random/celadon_drink,
+/obj/effect/spawner/random/mankind_drink,
 /turf/open/floor/wood/walnut{
 	planetary_atmos = 1
 	},
@@ -32744,7 +32744,7 @@
 /area/outpost/exterior)
 "rKX" = (
 /obj/structure/table/wood/reinforced/bar,
-/obj/effect/spawner/random/celadon_drink,
+/obj/effect/spawner/random/mankind_drink,
 /turf/open/floor/wood,
 /area/outpost/fraction/nanotrasen)
 "rLF" = (
@@ -32760,7 +32760,7 @@
 /obj/structure/chair/pew/right{
 	dir = 4
 	},
-/obj/effect/spawner/random/celadon_drink,
+/obj/effect/spawner/random/mankind_drink,
 /turf/open/floor/plating/asteroid/snow/temperatre{
 	layer = 2.454
 	},
@@ -32861,7 +32861,7 @@
 	dir = 1;
 	pixel_y = 2
 	},
-/obj/item/toy/plush/celadon/mira,
+/obj/item/toy/plush/mankind/mira,
 /obj/machinery/door/window/brigdoor/westright{
 	req_one_access_txt = "8126"
 	},
@@ -33240,7 +33240,7 @@
 	pixel_y = 13
 	},
 /obj/structure/neon_spline/green,
-/obj/effect/spawner/random/celadon_drink,
+/obj/effect/spawner/random/mankind_drink,
 /turf/open/floor/wood/ebony,
 /area/outpost/crew/bar/bar_zone)
 "sbh" = (
@@ -36959,7 +36959,7 @@
 /obj/effect/turf_decal/siding/white{
 	dir = 1
 	},
-/obj/item/toy/plush/celadon/separ,
+/obj/item/toy/plush/mankind/separ,
 /obj/structure/chair/office{
 	dir = 1
 	},
@@ -37412,7 +37412,7 @@
 	dir = 1;
 	pixel_y = 2
 	},
-/obj/item/toy/plush/celadon/tora,
+/obj/item/toy/plush/mankind/tora,
 /obj/structure/window/reinforced/spawner{
 	pixel_y = -2
 	},
@@ -38278,7 +38278,7 @@
 	light_color = "#ddbbff";
 	layer = 4
 	},
-/obj/effect/spawner/random/celadon_drink,
+/obj/effect/spawner/random/mankind_drink,
 /turf/open/floor/carpet/purple{
 	planetary_atmos = 1
 	},
@@ -38351,7 +38351,7 @@
 /area/outpost/exterior)
 "uNR" = (
 /obj/structure/table/glass,
-/obj/effect/spawner/random/celadon_drink,
+/obj/effect/spawner/random/mankind_drink,
 /turf/open/floor/carpet/purple{
 	planetary_atmos = 1
 	},
@@ -38827,7 +38827,7 @@
 "veZ" = (
 /obj/structure/bed/pod,
 /obj/item/bedsheet/blue,
-/obj/item/toy/plush/celadon/cat{
+/obj/item/toy/plush/mankind/cat{
 	name = "Leo";
 	desc = "Вы видите чёрного кота. Вам кажется будто за ним наблюдает чёрный таяр с красными глазами. Вам становится не по себе при виде этой картины.";
 	pixel_x = 1;
@@ -39893,7 +39893,7 @@
 /area/outpost/exterior)
 "vPV" = (
 /obj/structure/table/scrap,
-/obj/effect/spawner/random/celadon_drink,
+/obj/effect/spawner/random/mankind_drink,
 /turf/open/floor/plasteel/tech,
 /area/outpost/crew/dop_zone_2)
 "vPX" = (
@@ -40345,7 +40345,7 @@
 	dir = 1;
 	pixel_y = 2
 	},
-/obj/effect/spawner/random/entertainment/plushie_celadon_all,
+/obj/effect/spawner/random/entertainment/plushie_mankind_all,
 /obj/structure/window/reinforced/spawner/west{
 	pixel_x = -2
 	},
@@ -40602,7 +40602,7 @@
 /area/outpost/exterior)
 "whF" = (
 /obj/structure/fluff/hedge/opaque,
-/obj/item/toy/plush/celadon/meddrake{
+/obj/item/toy/plush/mankind/meddrake{
 	pixel_y = 8
 	},
 /obj/effect/turf_decal/corner/opaque/blue/half{
@@ -40636,7 +40636,7 @@
 	req_one_access_txt = "8126";
 	dir = 1
 	},
-/obj/effect/spawner/random/entertainment/plushie_celadon_all,
+/obj/effect/spawner/random/entertainment/plushie_mankind_all,
 /obj/structure/window/reinforced/spawner/west{
 	pixel_x = -2
 	},
@@ -40750,7 +40750,7 @@
 "wkt" = (
 /obj/structure/chair/sofa/red/old/corner,
 /obj/effect/decal/cleanable/xenoblood,
-/obj/item/toy/plush/celadon/tribal_salamander,
+/obj/item/toy/plush/mankind/tribal_salamander,
 /turf/open/floor/plating/asteroid/icerock/temperate,
 /area/outpost/exterior)
 "wkE" = (
@@ -40901,7 +40901,7 @@
 /obj/machinery/newscaster/directional/west{
 	pixel_y = 14
 	},
-/obj/effect/spawner/random/celadon_drink,
+/obj/effect/spawner/random/mankind_drink,
 /turf/open/floor/carpet/red,
 /area/outpost/crew/dop_zone_1)
 "wnE" = (
@@ -42103,7 +42103,7 @@
 /obj/structure/curtain/cloth/blacknormal/half{
 	dir = 8
 	},
-/obj/effect/spawner/random/celadon_drink,
+/obj/effect/spawner/random/mankind_drink,
 /turf/open/floor/wood/walnut{
 	planetary_atmos = 1
 	},
@@ -42175,7 +42175,7 @@
 	pixel_x = 5
 	},
 /obj/structure/table/scrap,
-/obj/effect/spawner/random/celadon_drink,
+/obj/effect/spawner/random/mankind_drink,
 /turf/open/floor/plating/asteroid/icerock/temperate{
 	light_color = "#1B1D2E";
 	light_range = 2
@@ -42595,7 +42595,7 @@
 /area/outpost/security/bay)
 "xec" = (
 /obj/structure/table/glass/light_glass,
-/obj/effect/spawner/random/celadon_drink,
+/obj/effect/spawner/random/mankind_drink,
 /turf/open/floor/carpet/green,
 /area/outpost/medical/hall_2)
 "xex" = (
@@ -44256,7 +44256,7 @@
 /area/outpost/medical/hall_1)
 "yao" = (
 /obj/structure/chair/pew/right,
-/obj/effect/spawner/random/celadon_drink,
+/obj/effect/spawner/random/mankind_drink,
 /turf/open/floor/whitesandsdriedair{
 	layer = 2.4;
 	planetary_atmos = 1
@@ -44264,7 +44264,7 @@
 /area/outpost/exterior)
 "yar" = (
 /obj/structure/table/wood/reinforced,
-/obj/effect/spawner/random/celadon_drink,
+/obj/effect/spawner/random/mankind_drink,
 /turf/open/floor/wood/walnut{
 	planetary_atmos = 1
 	},
@@ -44384,7 +44384,7 @@
 /obj/item/stack/sheet/mineral/uranium/twenty,
 /obj/structure/closet/crate/radiation,
 /obj/item/pizzabox/bomb,
-/obj/effect/spawner/random/entertainment/plushie_celadon_all,
+/obj/effect/spawner/random/entertainment/plushie_mankind_all,
 /turf/open/floor/plating,
 /area/outpost/exterior)
 "yeO" = (
@@ -44530,7 +44530,7 @@
 	req_one_access_txt = "8126";
 	dir = 1
 	},
-/obj/effect/spawner/random/entertainment/plushie_celadon_all,
+/obj/effect/spawner/random/entertainment/plushie_mankind_all,
 /obj/structure/window/reinforced/spawner/west{
 	pixel_x = -2
 	},

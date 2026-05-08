@@ -53,7 +53,7 @@
 	wield_delay = 0.65 SECONDS
 NO_MAG_GUN_HELPER(automatic/assault/saiga)
 
-//https://github.com/CeladonSS13/Shiptest/pull/1739
+//https://github.com/MANKIND-Collective/Pentest/pull/1739
 /obj/item/gun/ballistic/shotgun/automatic/combat
 	name = "combat shotgun"
 	desc = "A semi-automatic shotgun with tactical furniture and six-shell capacity underneath."

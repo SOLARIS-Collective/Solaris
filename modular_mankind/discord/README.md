@@ -1,11 +1,11 @@
 
 #### Список PRов
 
-- https://github.com/CeladonSS13/Shiptest/pulls/#####
+- https://github.com/MANKIND-Collective/Pentest/pulls/#####
 
 ## НАЗВАНИЕ_МОДА
 
-ID мода: CELADON_DISCORD
+ID мода: MANKIND_DISCORD
 
 ### Описание мода
 

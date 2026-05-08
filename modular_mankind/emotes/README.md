@@ -1,8 +1,8 @@
 
 #### Список PRов
 
-- https://github.com/CeladonSS13/Shiptest/pull/1274
-- https://github.com/CeladonSS13/Shiptest/pull/1725
+- https://github.com/MANKIND-Collective/Pentest/pull/1274
+- https://github.com/MANKIND-Collective/Pentest/pull/1725
 
 ## Панель эмоций
 

@@ -86,7 +86,7 @@ GLOBAL_LIST_INIT(pglass_recipes, list ( \
 	new/datum/stack_recipe("fulltile window", /obj/structure/window/plasma/fulltile/unanchored, 2, time = 2.5 SECONDS, on_floor = TRUE, window_checks = TRUE), \
 	new/datum/stack_recipe("plasma glass shard", /obj/item/shard/plasma, 1) \
 ))
-// [CELADON-EDIT] - NO-MOMENTAL-CRAFT
+// [MANKIND-EDIT] - NO-MOMENTAL-CRAFT
 
 /obj/item/stack/sheet/plasmaglass
 	name = "plasma glass"

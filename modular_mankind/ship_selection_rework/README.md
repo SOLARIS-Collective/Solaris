@@ -1,6 +1,6 @@
 #### Список PR`ов
 
-- https://github.com/CeladonSS13/Shiptest/pull/2002 (основной PR - INTERCEPTOR v3-FINAL)
+- https://github.com/MANKIND-Collective/Pentest/pull/2002 (основной PR - INTERCEPTOR v3-FINAL)
 
 ## Ship Selection Rework
 

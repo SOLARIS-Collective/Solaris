@@ -1,6 +1,6 @@
 // MARK: Autolathe Designs
 
-// Для добавления новых датумов используйте другой файл: mod_celadon\balance\code\designs\autolathe_new_designs.dm
+// Для добавления новых датумов используйте другой файл: modular_mankind\balance\code\designs\autolathe_new_designs.dm
 // Коркод файл с design для автолата: code\modules\research\designs\autolathe_designs.dm
 
 /datum/design/bucket

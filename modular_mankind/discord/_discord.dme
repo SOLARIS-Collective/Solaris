@@ -1,5 +1,5 @@
-#ifndef MODPACK_CELADON_DISCORD
-#define MODPACK_CELADON_DISCORD
+#ifndef MODPACK_MANKIND_DISCORD
+#define MODPACK_MANKIND_DISCORD
 
 #include "_discord.dm"
 

@@ -1,7 +1,7 @@
 
 #### Список PRов
 
-- https://github.com/CeladonSS13/Shiptest/pull/1045
+- https://github.com/MANKIND-Collective/Pentest/pull/1045
 <!--
   Ссылки на PRы, связанные с модом:
   - Создание
