@@ -75,8 +75,9 @@
 	air_contents.set_temperature(T20C)
 
 	populate_gas()
-
+	// [MANKIND-ADD] - ADD: Ovelays Oxygen tank, and pressure alert system - modular_mankind\items\code\tank.dm
 	update_appearance(UPDATE_OVERLAYS)
+	// [/MANKIND-ADD]
 	START_PROCESSING(SSobj, src)
 
 	addtimer(CALLBACK(src, PROC_REF(pressure_alerts)), 5 SECONDS, TIMER_STOPPABLE|TIMER_LOOP|TIMER_DELETE_ME)
@@ -229,6 +230,9 @@
 	//Allow for reactions
 	air_contents.react()
 	check_status()
+	// [CELADON-ADD] - ADD: Ovelays Oxygen tank, and pressure alert system - mod_celadon\items\code\tank.dm
+	pressure_alerts()
+	// [/CELADON-ADD]
 
 /obj/item/tank/update_overlays()
 	. = ..()
