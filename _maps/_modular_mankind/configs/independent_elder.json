@@ -7,7 +7,7 @@
 	"map_id": "srm_elder",
 	"enabled": true,
 	"limit": 1,
-	"sensor_range": 4,
+	"sensor_range": 9,
 	"prefix": "ЕSV",
 	"faction": "/datum/faction/independent",
 	"tags": [

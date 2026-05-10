@@ -6,7 +6,7 @@
 	"map_path": "_maps/_modular_mankind/shuttles/elysium/elysium_aldaama.dmm",
 	"enabled": true,
 	"limit": 1,
-	"sensor_range": 4,
+	"_range": 4,
 	"prefix": "ESV",
 	"faction": "/datum/faction/elysium",
 	"tags": [

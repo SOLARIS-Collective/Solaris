@@ -6,7 +6,7 @@
 	"map_path": "_maps/_modular_mankind/shuttles/independent/independent_kilo.dmm",
 	"enabled": true,
 	"limit": 1,
-	"sensor_range": 3,
+	"sensor_range": 6,
 	"starting_funds": 1500,
 	"prefix": "ЕSV",
 	"faction": "/datum/faction/independent",

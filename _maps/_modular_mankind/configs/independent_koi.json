@@ -6,7 +6,7 @@
 	"map_path": "_maps/_modular_mankind/shuttles/independent/independent_koi.dmm",
 	"enabled": true,
 	"limit": 1,
-	"sensor_range": 4,
+	"sensor_range": 8,
 	"prefix": "IMV",
 	"faction": "/datum/faction/independent",
 	"tags": [

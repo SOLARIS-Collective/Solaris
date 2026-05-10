@@ -6,7 +6,7 @@
 	"map_path": "_maps/_modular_mankind/shuttles/independent/independent_shepherd.dmm",
 	"enabled": true,
 	"limit": 1,
-	"sensor_range": 3,
+	"sensor_range": 7,
 	"prefix": "ЕSV",
 	"faction": "/datum/faction/independent",
 	"tags": [
