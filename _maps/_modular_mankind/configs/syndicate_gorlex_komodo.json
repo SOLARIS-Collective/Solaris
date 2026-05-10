@@ -7,7 +7,7 @@
 	"map_id": "syndicate_gorlex_komodo",
 	"enabled": false,
 	"limit": 1,
-	"sensor_range": 3,
+	"sensor_range": 7,
 	"prefix": "BSSV",
 	"faction": "/datum/faction/syndicate",
 	"tags": ["Боевой"],
