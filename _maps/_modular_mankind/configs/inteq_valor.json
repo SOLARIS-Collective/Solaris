@@ -7,7 +7,7 @@
 	"subshuttle": "Haste",
 	"enabled": true,
 	"limit": 1,
-	"sensor_range": 5,
+	"sensor_range": 10,
 	"prefix": "SPIQSV",
 	"faction": "/datum/faction/inteq",
 	"tags": ["Медицинское", "Суб-шаттл"],

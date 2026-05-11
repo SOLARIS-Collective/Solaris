@@ -6,7 +6,7 @@
 	"map_path": "_maps/_modular_mankind/shuttles/inteq/inteq_iron_maiden.dmm",
 	"enabled": true,
 	"limit": 1,
-	"sensor_range": 3,
+	"sensor_range": 7,
 	"prefix": "LIQSV",
 	"faction": "/datum/faction/inteq",
 	"tags": ["Боевой"],

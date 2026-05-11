@@ -9,7 +9,7 @@
 	"subshuttle": "Tadpole",
 	"enabled": true,
 	"limit": 1,
-	"sensor_range": 5,
+	"sensor_range": 10,
 	"prefix": "BIQSV",
 	"faction": "/datum/faction/inteq",
 	"tags": [

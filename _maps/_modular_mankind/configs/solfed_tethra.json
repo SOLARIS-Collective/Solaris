@@ -6,7 +6,7 @@
 	"map_path": "_maps/_modular_mankind/shuttles/solfed/solfed_tethra.dmm",
 	"enabled": false,
 	"limit": 1,
-	"sensor_range": 5,
+	"sensor_range": 11,
 	"starting_funds": 2000,
 	"prefix": "BSFSV",
 	"faction": "/datum/faction/solgov",

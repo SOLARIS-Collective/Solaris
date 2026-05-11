@@ -7,7 +7,7 @@
 	"subshuttle": "Feather",
 	"enabled": true,
 	"limit": 1,
-	"sensor_range": 4,
+	"sensor_range": 8,
 	"prefix": "SSFSV",
 	"faction": "/datum/faction/solgov",
 	"tags": ["Специализированный", "Суб-шаттл"],

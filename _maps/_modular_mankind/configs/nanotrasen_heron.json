@@ -8,7 +8,7 @@
 	"subshuttle": "Falcon",
 	"enabled": false,
 	"limit": 1,
-	"sensor_range": 4,
+	"sensor_range": 8,
 	"prefix": "NTSV",
 	"faction": "/datum/faction/nt",
 	"namelists": [

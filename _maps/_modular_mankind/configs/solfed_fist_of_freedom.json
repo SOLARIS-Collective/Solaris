@@ -6,7 +6,7 @@
 	"map_path": "_maps/_modular_mankind/shuttles/solfed/solfed_fist_of_freedom.dmm",
 	"enabled": true,
 	"limit": 1,
-	"sensor_range": 5,
+	"sensor_range": 11,
 	"prefix": "ASFSV",
 	"faction": "/datum/faction/solgov",
 	"tags": ["Флагман", "Административный"],

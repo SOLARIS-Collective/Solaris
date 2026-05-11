@@ -6,7 +6,7 @@
 	"map_path": "_maps/_modular_mankind/shuttles/inteq/inteq_colossus.dmm",
 	"enabled": true,
 	"limit": 1,
-	"sensor_range": 5,
+	"sensor_range": 10,
 	"prefix": "BIQSV",
 	"faction": "/datum/faction/inteq",
 	"tags": [

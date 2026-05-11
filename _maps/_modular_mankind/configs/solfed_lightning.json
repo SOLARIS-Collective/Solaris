@@ -6,7 +6,7 @@
 	"map_path": "_maps/_modular_mankind/shuttles/solfed/solfed_lightning.dmm",
 	"enabled": false,
 	"limit": 1,
-	"sensor_range": 7,
+	"sensor_range": 15,
 	"starting_funds": 2000,
 	"prefix": "MSFSV",
 	"faction": "/datum/faction/solgov",

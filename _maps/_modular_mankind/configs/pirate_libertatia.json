@@ -6,7 +6,7 @@
 	"map_path": "_maps/_modular_mankind/shuttles/pirate/pirate_libertatia.dmm",
 	"enabled": true,
 	"limit": 1,
-	"sensor_range": 4,
+	"sensor_range": 10,
 	"space_spawn": true,
 	"prefix": "RSV",
 	"faction": "/datum/faction/pirate",

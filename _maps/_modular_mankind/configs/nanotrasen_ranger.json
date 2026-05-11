@@ -6,7 +6,7 @@
 	"map_path": "_maps/_modular_mankind/shuttles/nanotrasen/nanotrasen_ranger.dmm",
 	"enabled": true,
 	"limit": 1,
-	"sensor_range": 5,
+	"sensor_range": 10,
 	"starting_funds": 3000,
 	"prefix": "NTBSV",
 	"faction": "/datum/faction/nt",

@@ -7,7 +7,7 @@
 	"subshuttle": "Rider",
 	"enabled": true,
 	"limit": 1,
-	"sensor_range": 4,
+	"sensor_range": 8,
 	"starting_funds": 1000,
 	"prefix": "NTSPSV",
 	"faction": "/datum/faction/nt",
