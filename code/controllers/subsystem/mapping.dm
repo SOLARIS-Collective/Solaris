@@ -183,7 +183,7 @@ SUBSYSTEM_DEF(mapping)
 	ship_purchase_list = list()
 	// [MANKIND-EDIT] - MANKIND_CONFIGS_MAPS
 	// var/list/filelist = flist("_maps/configs/") // ORIGINAL
-	var/list/filelist = flist("_maps/_modular_mankind/configs/")
+	var/list/filelist = flist("_maps/_modular_solaris/configs/")
 	// [/MANKIND-EDIT]
 
 	filelist = sortList(filelist)
@@ -191,7 +191,7 @@ SUBSYSTEM_DEF(mapping)
 	for(var/filename in filelist)
 		// [MANKIND-EDIT] - MANKIND_CONFIGS_MAPS
 		// var/file = file("_maps/configs/" + filename) // ORIGINAL
-		var/file = file("_maps/_modular_mankind/configs/" + filename)
+		var/file = file("_maps/_modular_solaris/configs/" + filename)
 		// [/MANKIND-EDIT]
 		if(!file)
 			stack_trace("Could not open map config: [filename]")

@@ -14,7 +14,7 @@
 /datum/map_template/outpost/New()
 	// [MANKIND-EDIT] - MANKIND_CONFIGS_MAPS
 	// . = ..(path = "_maps/outpost/[name].dmm") // ORIGINAL
-	. = ..(path = "_maps/_modular_mankind/outpost/[name].dmm")
+	. = ..(path = "_maps/_modular_solaris/outpost/[name].dmm")
 	// [/MANKIND-EDIT]
 
 
