@@ -1,0 +1,6 @@
+#ifndef MODPACK_SOLARIS__master_files
+#define MODPACK_SOLARIS__master_files
+
+#include "__master_files.dm"
+
+#endif

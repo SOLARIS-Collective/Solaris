@@ -1,0 +1,6 @@
+#ifndef MODPACK_SOLARIS_STORAGE_ICONS
+#define MODPACK_SOLARIS_STORAGE_ICONS
+
+#include "_storage_icons.dm"
+
+#endif

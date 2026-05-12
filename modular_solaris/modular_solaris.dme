@@ -1,0 +1,50 @@
+#include "_master_files/__master_files.dme"
+
+
+// Соблюдаем алфавитный порядок при добавлении путей!
+// Пример пути: #include "example/_example.dme"
+
+// --- MAINTENANCE --- //
+#include "_components/__components.dme"
+#include "_storage_sounds/_storage_sounds.dme"
+#include "_storage_icons/_storage_icons.dme"
+
+// --- SECRET --- //
+
+#if fexists("../+secret/__secret.dme") && !defined(DISABLE_SECRETS)
+#include "../+secret/__secret.dme"
+#else
+#include "_secrets/__secret_public.dme"
+#endif
+
+// --- ICONS --- //
+
+// --- SOUNDS --- //
+
+// --- OBJECTS --- //
+
+// --- MOBS --- //
+
+// --- MISC --- //
+
+// --- RETURNS --- //
+
+// --- DONATORS --- //
+
+// --- MAPS --- //
+
+// --- OUTFIT --- //
+
+// --- ПОСЛЕДНЯЯ ИНСТАНЦИЯ (BALANCE) --- //
+
+// --- EVENTS --- //
+
+// --- UNUSED MODS --- //
+/*------------------------------------------------------------------
+	Почему UNUSED MODS стоит хранить?
+	Потому что никто не проверяет использование тех или иных файлов
+	в коде, и мод просто исчезнет из поля зрения, когда находясь здесь
+	он всегда напоминает о своём существовании. Небольшая библиотека,
+	если так вообще можно выразиться. Чтобы включить модпак, перенеси
+	его выше.*/
+

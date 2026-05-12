@@ -1,0 +1,6 @@
+#ifndef MODPACK_SOLARIS_STORAGE_SOUNDS
+#define MODPACK_SOLARIS_STORAGE_SOUNDS
+
+#include "_storage_sounds.dm"
+
+#endif

@@ -3808,3 +3808,5 @@
 // MANKIND
 #include "modular_mankind\modular_mankind.dme"
 
+// SOLARIS
+#include "modular_solaris\modular_solaris.dme"

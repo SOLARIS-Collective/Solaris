@@ -31,13 +31,13 @@
 #include "wallets/_wallets.dme"
 #include "discord/_discord.dme"
 
-// --- SECRET --- //
+// // --- SECRET --- // Переехали в солярис
 
-#if fexists("../+secret/__secret.dme") && !defined(DISABLE_SECRETS)
-#include "../+secret/__secret.dme"
-#else
-#include "_secrets/__secret_public.dme"
-#endif
+// #if fexists("../+secret/__secret.dme") && !defined(DISABLE_SECRETS)
+// #include "../+secret/__secret.dme"
+// #else
+// #include "_secrets/__secret_public.dme"
+// #endif
 
 // --- ICONS --- //
 #include "resprite/_resprite.dme"
