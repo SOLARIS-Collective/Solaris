@@ -3805,6 +3805,9 @@
 #include "modular_pentest\~pentest.dme"
 // END_INCLUDE
 
+#include ".\_modpack.dm"
+#include ".\_modpacks.dm"
+
 // MANKIND
 #include "modular_mankind\modular_mankind.dme"
 

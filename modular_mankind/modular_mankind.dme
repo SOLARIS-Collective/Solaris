@@ -1,5 +1,3 @@
-#include "_modpack.dm"
-#include "_modpacks.dm"
 #include "_master_files/__master_files.dme"
 
 
