@@ -1,0 +1,8 @@
+#ifndef MODPACK_SOLARIS_MOBS
+#define MODPACK_SOLARIS_MOBS
+
+#include "_mobs.dm"
+
+#include "code/gigachad_inteq.dm"
+
+#endif

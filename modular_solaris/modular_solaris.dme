@@ -24,6 +24,7 @@
 // --- OBJECTS --- //
 
 // --- MOBS --- //
+#include "mobs/_mobs.dme"
 
 // --- MISC --- //
 
