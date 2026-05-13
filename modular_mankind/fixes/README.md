@@ -32,6 +32,7 @@ FIXES_MONKEY_STOPPED_DEAD
 FIXES_MONKEY_STOPPED_PICKPOCKET
 FIXES_ANTAG_NINJA
 FIXES_MEDBOT_RUNTIME_PATH_NULL
+FIXES_SLOW_LANDING_MOVE
 <!--
   Название модпака прописными буквами, СОЕДИНЁННЫМИ_ПОДЧЁРКИВАНИЕМ,
   которое ты будешь использовать для обозначения файлов.
@@ -371,6 +372,9 @@ FIXES_FLAVOR
 FIXES_CARGO_CONSOLE
 - `code/modules/cargo/console.dm`
 - `tgui/packages/tgui/interfaces/OutpostCommunicationsMankind/Catalog.js`
+
+FIXES_SLOW_LANDING_MOVE
+- `code/datums/elements/immerse.dm`
 
 <!--
   Если вы редактировали какие-либо процедуры или переменные в кор коде,

@@ -128,8 +128,10 @@ GLOBAL_LIST_INIT(immerse_ignored_movable, typecacheof(list(
 	var/atom/movable/to_check = buckled || movable
 	if(!(to_check.movement_type & MOVETYPES_NOT_TOUCHING_GROUND) && !movable.throwing)
 		remove_immerse_overlay(movable)
-	if(buckled)
-		return
+	// [SOLARIS-REMOVE] - FIXES_SLOW_LANDING_MOVE - фиксим приземление на планеты с водой, чтобы не замедляло
+	// if(buckled)
+	// 	return
+	// [/SOLARIS-REMOVE]
 	if(isliving(movable))
 		var/mob/living/living_mob = movable
 		living_mob.remove_movespeed_modifier(/datum/movespeed_modifier/wading)
