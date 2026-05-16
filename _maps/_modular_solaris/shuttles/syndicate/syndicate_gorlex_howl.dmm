@@ -484,6 +484,10 @@
 /area/ship/engineering/engines/port)
 "mO" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/obj/machinery/light_switch{
+	pixel_x = -10;
+	pixel_y = 22
+	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ship/crew/cryo)
 "mX" = (
@@ -636,6 +640,11 @@
 /obj/machinery/light/directional/south,
 /turf/open/floor/plasteel/dark,
 /area/ship/bridge)
+"qD" = (
+/obj/structure/table/optable,
+/obj/item/storage/backpack/duffelbag/med/surgery,
+/turf/open/floor/mineral/plastitanium/red,
+/area/ship/medical)
 "qH" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
@@ -1352,10 +1361,6 @@
 /obj/item/storage/backpack,
 /obj/item/storage/backpack,
 /obj/item/storage/backpack,
-/obj/machinery/light_switch{
-	pixel_x = 7;
-	pixel_y = 23
-	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ship/crew/cryo)
 "FX" = (
@@ -1540,11 +1545,6 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ship/cargo)
-"KE" = (
-/obj/structure/table/optable,
-/obj/item/storage/backpack/duffelbag/med/surgery,
-/turf/open/floor/mineral/plastitanium/red,
-/area/ship/medical)
 "KU" = (
 /obj/structure/guncloset,
 /obj/item/gun/ballistic/automatic/smg/cobra/indie{
@@ -1629,6 +1629,11 @@
 	dir = 8
 	},
 /obj/machinery/door/firedoor,
+/obj/machinery/door/poddoor/shutters/preopen{
+	dir = 4;
+	id = "howlprivate";
+	name = "Privacy Shutters"
+	},
 /obj/machinery/door/airlock/command{
 	dir = 8;
 	name = "Bridge";
@@ -1639,11 +1644,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
-	},
-/obj/machinery/door/poddoor/shutters/preopen{
-	dir = 4;
-	id = "howlprivate";
-	name = "Privacy Shutters"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ship/bridge)
@@ -1806,7 +1806,6 @@
 "Ni" = (
 /obj/machinery/light/directional/south,
 /obj/effect/turf_decal/spline/fancy/opaque/syndiered,
-/obj/machinery/holopad/emergency/command,
 /turf/open/floor/plasteel/dark,
 /area/ship/bridge)
 "Nm" = (
@@ -1852,10 +1851,6 @@
 /obj/effect/turf_decal/spline/fancy/opaque/syndiered,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 5
-	},
-/obj/structure/chair/comfy/shuttle{
-	dir = 4;
-	name = "Helm"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ship/bridge)
@@ -2281,16 +2276,6 @@
 /obj/machinery/light/directional/north,
 /turf/open/floor/plating,
 /area/ship/engineering/engines/starboard)
-"WG" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/fulltile,
-/obj/machinery/door/poddoor/shutters/preopen{
-	dir = 1;
-	id = "howlprivate";
-	name = "Privacy Shutters"
-	},
-/turf/open/floor/plating,
-/area/ship/bridge)
 "WX" = (
 /obj/machinery/power/terminal{
 	dir = 8
@@ -2684,7 +2669,7 @@ Mp
 Xr
 Nb
 rK
-WG
+Xr
 mO
 vf
 dC
@@ -2722,7 +2707,7 @@ eD
 (15,1,1) = {"
 vU
 Ot
-KE
+qD
 qH
 oc
 Ot
@@ -2799,7 +2784,7 @@ vU
 Xr
 kq
 XP
-WG
+Lb
 xa
 ih
 KU

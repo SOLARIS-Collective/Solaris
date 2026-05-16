@@ -1,0 +1,46 @@
+{
+	"$schema": "https://raw.githubusercontent.com/CeladonSS13/Shiptest/beta-dev/_maps/_modular_solaris/ship_config_schema.json",
+	"map_name": "Scout-class Assault Howler",
+	"map_short_name": "Howl",
+	"description": " «Howl» — созданный корабль на...",
+	"map_path": "_maps/_modular_solaris/shuttles/syndicate/syndicate_gorlex_howl.dmm",
+	"enabled" : true,
+	"limit": 1,
+	"sensor_range": 7,
+	"faction": "/datum/faction/syndicate",
+	"prefix": "BSSV",
+	"tags": [
+		"Боевой"
+	],
+	"namelists": [
+		"GORLEX",
+		"NATURAL_AGGRESSIVE",
+		"BEASTS",
+		"WEAPONS",
+		"ACLF"
+	],
+	"job_slots": {
+		"Commander": {
+			"outfit": "/datum/outfit/job/syndicate/captain/ngr",
+			"officer": true,
+			"slots": 1
+		},
+		"Hardliner Consultant": {
+			"outfit": "/datum/outfit/job/syndicate/hos/gorlex",
+			"officer": true,
+			"slots": 1
+		},
+		"hardliner Operatives": {
+			"outfit": "/datum/outfit/job/syndicate/security/gorlex",
+			"slots": 2
+		},
+		"Combat Mechanic": {
+			"outfit": "/datum/outfit/job/syndicate/engineer/ngr",
+			"slots": 1
+		},
+		"Cargo Suppliers": {
+			"outfit": "/datum/outfit/job/syndicate/miner/gorlex",
+			"slots": 1
+		}
+	}
+}
