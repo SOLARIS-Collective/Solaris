@@ -7,7 +7,7 @@
 	"subshuttle": "Brawler",
 	"enabled": false,
 	"limit": 1,
-	"sensor_range": 4,
+	"sensor_range": 10,
 	"prefix": "RSV",
 	"faction": "/datum/faction/pirate",
 	"tags": [
