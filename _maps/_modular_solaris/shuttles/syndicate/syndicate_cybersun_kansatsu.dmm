@@ -244,34 +244,11 @@
 /turf/open/floor/plasteel/tech/grid,
 /area/ship/engineering)
 "gl" = (
-/obj/structure/table/reinforced,
-/obj/machinery/button/door{
-	desc = "A remote control switch.";
-	id = "scbay";
-	name = "Cargo Bay Doors";
-	pixel_x = -7;
-	pixel_y = 9
-	},
-/obj/machinery/button/shieldwallgen{
-	id = "scholo";
-	name = "Holofield Controls";
-	pixel_x = -9;
-	pixel_y = -3
-	},
-/obj/machinery/button/door{
-	id = "scbridge";
-	name = "Bridge Blast Shutters";
-	pixel_x = 5;
-	pixel_y = 9
-	},
-/obj/machinery/button/door{
-	id = "intelwindow";
-	name = "Window lockdown";
-	pixel_x = 5;
-	pixel_y = -1
-	},
 /obj/structure/sign/poster/retro/we_watch{
 	pixel_x = 32
+	},
+/obj/machinery/vending/boozeomat/syndicate_access{
+	all_items_free = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/ship/bridge)
@@ -339,16 +316,9 @@
 	dir = 1
 	},
 /obj/structure/window/reinforced/spawner/east,
-/obj/item/storage/box/syndie_kit/chameleon,
-/obj/item/storage/box/syndie_kit/chameleon,
-/obj/item/chameleon,
 /obj/structure/rack,
-/obj/item/clothing/gloves/combat,
-/obj/item/clothing/gloves/combat,
-/obj/item/chameleon,
 /obj/item/pinpointer/crew/contractor,
-/obj/item/card/id/syndicate,
-/obj/item/card/id/syndicate,
+/obj/item/uplink/old,
 /turf/open/floor/plasteel/dark,
 /area/ship/bridge)
 "hP" = (
@@ -1013,11 +983,6 @@
 	},
 /turf/open/floor/plating,
 /area/ship/engineering)
-"xl" = (
-/obj/effect/turf_decal/spline/plain/opaque/syndiered,
-/obj/structure/easel,
-/turf/open/floor/plasteel/dark,
-/area/ship/crew)
 "xo" = (
 /obj/effect/turf_decal/industrial/stand_clear,
 /obj/effect/turf_decal/industrial/warning{
@@ -1321,8 +1286,6 @@
 	icon_state = "implanter1"
 	},
 /obj/item/melee/knife/combat,
-/obj/item/clothing/glasses/thermal/syndi,
-/obj/item/clothing/glasses/thermal/syndi,
 /obj/item/card/emag/limited{
 	uses_left = 3
 	},
@@ -1637,13 +1600,11 @@
 "MY" = (
 /obj/machinery/airalarm/directional/north,
 /obj/machinery/firealarm/directional/west,
-/obj/machinery/vending/boozeomat/syndicate_access{
-	all_items_free = 1
-	},
 /obj/structure/sign/poster/contraband/red_rum{
 	pixel_y = 32;
 	pixel_x = -32
 	},
+/obj/structure/easel,
 /turf/open/floor/plasteel/dark,
 /area/ship/crew)
 "Nd" = (
@@ -1798,10 +1759,32 @@
 /obj/effect/turf_decal/spline/fancy/opaque/syndiered{
 	dir = 6
 	},
-/obj/machinery/computer/cargo{
-	dir = 8
+/obj/structure/table/reinforced,
+/obj/machinery/button/door{
+	desc = "A remote control switch.";
+	id = "scbay";
+	name = "Cargo Bay Doors";
+	pixel_x = -7;
+	pixel_y = 9
 	},
-/obj/effect/turf_decal/industrial/outline/red,
+/obj/machinery/button/shieldwallgen{
+	id = "scholo";
+	name = "Holofield Controls";
+	pixel_x = -9;
+	pixel_y = -3
+	},
+/obj/machinery/button/door{
+	id = "scbridge";
+	name = "Bridge Blast Shutters";
+	pixel_x = 5;
+	pixel_y = 9
+	},
+/obj/machinery/button/door{
+	id = "intelwindow";
+	name = "Window lockdown";
+	pixel_x = 5;
+	pixel_y = -1
+	},
 /turf/open/floor/plasteel/dark,
 /area/ship/bridge)
 "Rj" = (
@@ -1955,18 +1938,12 @@
 /area/ship/engineering)
 "Wh" = (
 /obj/structure/table/wood,
-/obj/item/modular_computer/tablet/preset/advanced,
-/obj/item/modular_computer/tablet/preset/advanced{
-	pixel_x = 3
-	},
-/obj/item/modular_computer/tablet/preset/advanced{
-	pixel_x = 6
-	},
 /obj/item/paper{
 	default_raw_text = "Congratulations on your purchase of Cybersun G-1010 Long Range Communication Tables (Chat client installed seperately)";
 	pixel_x = 5
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/obj/item/modular_computer/tablet/syndicate_contract_uplink,
 /turf/open/floor/carpet/red_gold,
 /area/ship/crew)
 "WB" = (
@@ -2027,11 +2004,9 @@
 /obj/item/ammo_box/magazine/m10mm_ringneck,
 /obj/item/storage/box/ammo/c10mm_ap,
 /obj/item/ammo_box/magazine/m10mm_ringneck,
-/obj/item/book/granter/martial/cqc,
-/obj/item/camera_bug,
 /obj/item/attachment/silencer,
 /obj/item/storage/box/handcuffs,
-/obj/item/gun/energy/kinetic_accelerator/crossbow,
+/obj/item/uplink/nuclear,
 /turf/open/floor/plasteel/stairs{
 	dir = 4
 	},
@@ -2400,7 +2375,7 @@ wQ
 wQ
 wQ
 fo
-xl
+zJ
 nY
 Wh
 sF

@@ -1987,7 +1987,7 @@
 "KO" = (
 /obj/structure/cable/yellow,
 /obj/machinery/power/port_gen/pacman,
-/obj/item/stack/sheet/mineral/plasma/five,
+/obj/item/stack/sheet/mineral/plasma/twenty,
 /turf/open/floor/plasteel/mono/dark,
 /area/ship/engineering)
 "KP" = (
@@ -2238,7 +2238,7 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/power/port_gen/pacman,
-/obj/item/stack/sheet/mineral/plasma/five,
+/obj/item/stack/sheet/mineral/plasma/twenty,
 /turf/open/floor/plasteel/mono/dark,
 /area/ship/engineering)
 "Qv" = (
