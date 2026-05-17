@@ -11,10 +11,6 @@
 /obj/item/clothing/mask/gas/sechailer/swat,
 /obj/item/clothing/mask/gas/sechailer/sec,
 /obj/item/clothing/mask/gas/sechailer/sec,
-/obj/item/clothing/suit/armor/nanotrasen,
-/obj/item/clothing/suit/armor/nanotrasen,
-/obj/item/clothing/suit/armor/nanotrasen,
-/obj/item/clothing/suit/armor/nanotrasen,
 /obj/item/clothing/head/fedora/det_hat,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 9
@@ -22,9 +18,46 @@
 /obj/effect/turf_decal/trimline/opaque/vired/warning{
 	dir = 4
 	},
-/obj/item/clothing/head/helmet/bulletproof/x11/nanotrasen,
-/obj/item/clothing/head/helmet/bulletproof/x11/nanotrasen,
-/obj/item/clothing/head/helmet/bulletproof/x11/nanotrasen,
+/obj/item/clothing/head/helmet/riot/nanotrasen{
+	pixel_x = -10;
+	pixel_y = 6;
+	name = "Vigilitas Riot Helmet"
+	},
+/obj/item/clothing/head/helmet/riot/nanotrasen{
+	pixel_x = -10;
+	pixel_y = 6;
+	name = "Vigilitas Riot Helmet"
+	},
+/obj/item/clothing/head/helmet/riot/nanotrasen{
+	pixel_x = -10;
+	pixel_y = 6;
+	name = "Vigilitas Riot Helmet"
+	},
+/obj/item/clothing/head/helmet/riot/nanotrasen{
+	pixel_x = -10;
+	pixel_y = 6;
+	name = "Vigilitas Riot Helmet"
+	},
+/obj/item/clothing/suit/armor/vest/security/officer{
+	pixel_y = 6;
+	armor = list("melee" = 50, "bullet" = 45, "laser" = 45, "energy" = 40, "bomb" = 45, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50, "wound" = 10);
+	name = "security officer's mod. darect jacket"
+	},
+/obj/item/clothing/suit/armor/vest/security/officer{
+	pixel_y = 6;
+	armor = list("melee" = 50, "bullet" = 45, "laser" = 45, "energy" = 40, "bomb" = 45, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50, "wound" = 10);
+	name = "security officer's mod. darect jacket"
+	},
+/obj/item/clothing/suit/armor/nanotrasen{
+	name = "armor mod. darect vest";
+	armor = list("melee" = 50, "bullet" = 45, "laser" = 45, "energy" = 40, "bomb" = 45, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50, "wound" = 10);
+	pixel_x = 6
+	},
+/obj/item/clothing/suit/armor/nanotrasen{
+	name = "armor mod. darect vest";
+	armor = list("melee" = 50, "bullet" = 45, "laser" = 45, "energy" = 40, "bomb" = 45, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50, "wound" = 10);
+	pixel_x = 6
+	},
 /turf/open/floor/mineral/plastitanium,
 /area/ship/security/armory)
 "bf" = (
@@ -1383,6 +1416,8 @@
 /obj/effect/turf_decal/trimline/opaque/vired/warning{
 	dir = 8
 	},
+/obj/item/ammo_box/magazine/wt550m9,
+/obj/item/ammo_box/magazine/wt550m9,
 /turf/open/floor/mineral/plastitanium,
 /area/ship/security/armory)
 "yE" = (
@@ -1648,14 +1683,15 @@
 	pixel_y = -9
 	},
 /obj/item/gun/ballistic/automatic/smg/wt550,
-/obj/item/gun/ballistic/automatic/powered/gauss{
-	pixel_y = 9
-	},
 /obj/effect/turf_decal/corner/opaque/vired/half{
 	dir = 4
 	},
 /obj/effect/turf_decal/trimline/opaque/vired/warning{
 	dir = 8
+	},
+/obj/item/gun/ballistic/automatic/powered/gauss/horizon{
+	fire_delay = 2;
+	name = "Horizon 'Darect' gauss rifle"
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ship/security/armory)
@@ -2107,8 +2143,8 @@
 	},
 /obj/machinery/suit_storage_unit/inherit,
 /obj/item/tank/internals/oxygen,
-/obj/item/clothing/suit/space/hardsuit/medical,
 /obj/item/clothing/mask/breath/medical,
+/obj/item/clothing/suit/space/hardsuit/ert/lp/med,
 /turf/open/floor/plasteel/dark,
 /area/ship/medical)
 "JE" = (
@@ -2339,7 +2375,9 @@
 /obj/item/clothing/suit/armor/nanotrasen/sec_director,
 /obj/item/clothing/under/nanotrasen/security/director,
 /obj/item/clothing/glasses/hud/security/night,
-/obj/item/clothing/suit/armor/nanotrasen,
+/obj/item/clothing/suit/armor/nanotrasen{
+	name = "armor mod. darect vest"
+	},
 /obj/item/clothing/gloves/combat,
 /obj/item/melee/knife/switchblade,
 /obj/machinery/light/directional/east,
