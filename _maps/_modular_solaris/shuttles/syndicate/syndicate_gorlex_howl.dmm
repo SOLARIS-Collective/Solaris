@@ -34,7 +34,6 @@
 /turf/open/floor/plasteel/dark,
 /area/ship/hallway/central)
 "aX" = (
-/obj/effect/turf_decal/box,
 /obj/machinery/light/directional/south,
 /turf/open/floor/mineral/plastitanium,
 /area/ship/cargo)
@@ -107,13 +106,36 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ship/cargo)
+"dv" = (
+/obj/structure/crate_shelf,
+/obj/effect/turf_decal/box,
+/obj/structure/closet/crate,
+/obj/item/clothing/mask/gas/explorer,
+/obj/item/clothing/mask/gas/explorer,
+/obj/item/clothing/suit/hooded/explorer,
+/obj/item/clothing/suit/hooded/explorer,
+/obj/item/tank/internals/emergency_oxygen/double,
+/obj/item/tank/internals/emergency_oxygen/double,
+/obj/item/clothing/head/hardhat/ngr/foreman,
+/obj/item/clothing/head/hardhat/ngr/foreman,
+/obj/item/clothing/gloves/explorer,
+/obj/item/clothing/gloves/explorer,
+/obj/item/flashlight/seclite,
+/obj/item/flashlight/seclite,
+/turf/open/floor/mineral/plastitanium/red,
+/area/ship/cargo)
 "dB" = (
 /obj/effect/turf_decal/box,
+/obj/structure/ore_box,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ship/cargo)
 "dC" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
+	},
+/obj/structure/chair/comfy/shuttle{
+	dir = 1;
+	name = "Helm"
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ship/crew/cryo)
@@ -484,6 +506,7 @@
 /area/ship/engineering/engines/port)
 "mO" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
+/obj/structure/chair/comfy/shuttle,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ship/crew/cryo)
 "mX" = (
@@ -553,17 +576,17 @@
 /turf/open/floor/plating/airless,
 /area/ship/external/dark)
 "pp" = (
+/obj/structure/crate_shelf,
+/obj/effect/turf_decal/box,
 /obj/structure/closet/crate{
 	name = "Mining Crate"
 	},
-/obj/item/pickaxe/emergency,
-/obj/item/pickaxe/emergency,
-/obj/item/mining_scanner,
-/obj/item/mining_scanner,
 /obj/item/storage/bag/ore,
 /obj/item/storage/bag/ore,
-/obj/machinery/light/directional/south,
-/turf/open/floor/mineral/plastitanium,
+/obj/item/pickaxe/mini,
+/obj/item/pickaxe/mini,
+/obj/item/pickaxe/drill/jackhammer/demonic,
+/turf/open/floor/mineral/plastitanium/red,
 /area/ship/cargo)
 "pt" = (
 /obj/structure/catwalk/over/plated_catwalk/dark,
@@ -628,7 +651,7 @@
 /area/ship/crew/cryo)
 "qs" = (
 /obj/structure/chair/comfy/shuttle{
-	dir = 4;
+	dir = 1;
 	name = "Helm"
 	},
 /obj/effect/landmark/start/captain,
@@ -762,6 +785,7 @@
 /obj/machinery/atmospherics/pipe/simple/general/hidden{
 	dir = 4
 	},
+/obj/structure/sign/flag/syndie/directional/south,
 /turf/open/floor/plasteel/dark,
 /area/ship/hallway/central)
 "tH" = (
@@ -772,6 +796,11 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /turf/open/floor/mineral/plastitanium,
 /area/ship/crew)
+"tU" = (
+/obj/effect/turf_decal/box,
+/obj/machinery/ore_silo,
+/turf/open/floor/mineral/plastitanium/red,
+/area/ship/cargo)
 "ur" = (
 /obj/structure/catwalk/over/plated_catwalk/dark,
 /obj/machinery/airalarm/directional/north{
@@ -808,7 +837,6 @@
 /turf/open/floor/mineral/plastitanium,
 /area/ship/engineering/engines/port)
 "uK" = (
-/obj/effect/turf_decal/box,
 /obj/machinery/light/directional/north,
 /turf/open/floor/mineral/plastitanium,
 /area/ship/cargo)
@@ -1021,13 +1049,6 @@
 	},
 /obj/item/clothing/head/ngr/peaked{
 	armor = list("melee" = 45, "bullet" = 40, "laser" = 45, "energy" = 40, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 70, "acid" = 50, "wound" = 30)
-	},
-/obj/item/clothing/suit/space/hardsuit/syndi/hl{
-	armor = list("melee" = 40, "bullet" = 50, "laser" = 50, "energy" = 40, "bomb" = 35, "bio" = 100, "rad" = 50, "fire" = 50, "acid" = 90, "wound" = 30);
-	name = "white-red mod. Howl hardsuit"
-	},
-/obj/machinery/suit_storage_unit/inherit{
-	pixel_y = 12
 	},
 /turf/open/floor/plasteel/dark,
 /area/ship/bridge)
@@ -1260,7 +1281,9 @@
 /turf/open/floor/mineral/plastitanium,
 /area/ship/cargo)
 "Dy" = (
-/obj/structure/closet/crate/medical,
+/obj/structure/closet/crate/freezer/blood{
+	pixel_y = -11
+	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ship/medical)
 "DN" = (
@@ -1414,7 +1437,10 @@
 /obj/effect/turf_decal/trimline/opaque/bar/filled/corner{
 	dir = 4
 	},
-/obj/effect/turf_decal/box,
+/obj/structure/chair/comfy/shuttle{
+	dir = 8;
+	name = "Helm"
+	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ship/cargo)
 "Hx" = (
@@ -1490,6 +1516,12 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/box,
+/obj/structure/closet/crate{
+	name = "Water Crate"
+	},
+/obj/item/reagent_containers/food/drinks/waterbottle/large,
+/obj/item/reagent_containers/food/drinks/waterbottle/large,
+/obj/item/reagent_containers/food/drinks/waterbottle/large,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ship/cargo)
 "Jn" = (
@@ -1567,6 +1599,7 @@
 	name = "Cobra-22";
 	fire_delay = 1.2
 	},
+/obj/structure/sign/flag/syndie/directional/east,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ship/security/armory)
 "Lb" = (
@@ -1592,6 +1625,9 @@
 /obj/structure/table,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 1
+	},
+/obj/machinery/microwave{
+	pixel_y = 5
 	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ship/crew)
@@ -1719,16 +1755,11 @@
 /obj/machinery/power/apc/auto_name/directional/east{
 	name = "Cargo APC"
 	},
-/obj/structure/closet/crate{
-	name = "Water Crate"
-	},
-/obj/item/reagent_containers/food/drinks/waterbottle/large,
-/obj/item/reagent_containers/food/drinks/waterbottle/large,
-/obj/item/reagent_containers/food/drinks/waterbottle/large,
-/obj/item/reagent_containers/food/drinks/waterbottle/large,
-/obj/item/reagent_containers/food/drinks/waterbottle/large,
 /obj/effect/turf_decal/trimline/opaque/bar/filled/corner,
-/obj/effect/turf_decal/box,
+/obj/structure/chair/comfy/shuttle{
+	dir = 8;
+	name = "Helm"
+	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ship/cargo)
 "Mp" = (
@@ -1802,10 +1833,7 @@
 /obj/item/storage/belt/security/webbing/hardliners/sidewinder,
 /obj/item/gun/ballistic/automatic/smg/sidewinder,
 /obj/item/clothing/suit/armor/hardliners/sergeant,
-/obj/item/mod/control/pre_equipped/hardliner,
-/obj/machinery/suit_storage_unit/inherit{
-	pixel_y = 12
-	},
+/obj/item/clothing/head/helmet/hardliners/swat,
 /turf/open/floor/plasteel/dark,
 /area/ship/bridge)
 "Nc" = (
@@ -1840,16 +1868,43 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
 	},
+/obj/structure/sign/flag/syndie/directional/south,
 /turf/open/floor/plasteel/dark,
 /area/ship/hallway/central)
 "Ob" = (
 /turf/closed/wall/r_wall/plastitanium,
 /area/ship/external/dark)
 "Os" = (
-/obj/structure/table,
+/obj/item/gps,
+/obj/structure/closet/wall/white/directional/south,
+/obj/item/clothing/gloves/color/latex/nitrile/evil,
+/obj/item/storage/box/bodybags{
+	pixel_x = -1
+	},
+/obj/item/defibrillator/compact/combat/loaded,
+/obj/item/roller,
+/obj/item/roller,
+/obj/item/storage/backpack/satchel/med,
+/obj/item/clothing/under/utility,
+/obj/item/pinpointer/crew,
+/obj/item/storage/backpack/medic,
+/obj/item/clothing/under/syndicate/tacticool,
+/obj/item/clothing/shoes/jackboots,
+/obj/item/clothing/under/syndicate/medic/skirt,
+/obj/item/storage/belt/medical/surgery,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 1
 	},
+/obj/item/clothing/head/helmet/medical{
+	name = "improper trauma team helmet";
+	armor = list("melee" = 40, "bullet" = 60, "laser" = 35, "energy" = 35, "bomb" = 40, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
+	},
+/obj/item/clothing/suit/armor/vest/trauma{
+	name = "Gorlex trauma team armor mod. Howl vest";
+	armor = list("melee" = 50, "bullet" = 60, "laser" = 55, "energy" = 25, "bomb" = 60, "bio" = 100, "fire" = 70, "acid" = 50, "wound" = 20)
+	},
+/obj/item/clothing/glasses/hud/health/sunglasses,
+/obj/item/flashlight/seclite,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ship/medical)
 "Ot" = (
@@ -1865,7 +1920,7 @@
 	dir = 5
 	},
 /obj/structure/chair/comfy/shuttle{
-	dir = 4;
+	dir = 1;
 	name = "Helm"
 	},
 /turf/open/floor/plasteel/dark,
@@ -2036,7 +2091,7 @@
 /area/ship/medical)
 "Rt" = (
 /obj/effect/turf_decal/trimline/opaque/bar/filled/corner,
-/obj/effect/turf_decal/box,
+/obj/machinery/vending/mining_equipment,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ship/cargo)
 "RP" = (
@@ -2048,6 +2103,17 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/plasteel/dark,
 /area/ship/hallway/central)
+"Sa" = (
+/obj/machinery/suit_storage_unit/inherit{
+	pixel_x = -16;
+	pixel_y = 20
+	},
+/obj/item/clothing/suit/space/hardsuit/syndi/hl{
+	armor = list("melee" = 40, "bullet" = 50, "laser" = 50, "energy" = 40, "bomb" = 35, "bio" = 100, "rad" = 50, "fire" = 50, "acid" = 90, "wound" = 30);
+	name = "white-red mod. Howl hardsuit"
+	},
+/turf/closed/wall/r_wall/plastitanium,
+/area/ship/bridge)
 "Sd" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -2064,8 +2130,8 @@
 /turf/open/floor/plasteel/dark,
 /area/ship/hallway/central)
 "Sm" = (
-/obj/structure/crate_shelf,
 /obj/effect/turf_decal/box,
+/obj/machinery/mineral/ore_redemption,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ship/cargo)
 "SB" = (
@@ -2094,6 +2160,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/sign/flag/syndie/directional/east,
 /turf/open/floor/plasteel/dark,
 /area/ship/hallway/central)
 "TK" = (
@@ -2126,6 +2193,8 @@
 	pixel_x = 9;
 	pixel_y = 2
 	},
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ship/crew)
 "Uc" = (
@@ -2178,6 +2247,13 @@
 /obj/machinery/light/directional/north,
 /turf/open/floor/mineral/plastitanium,
 /area/ship/crew)
+"UT" = (
+/obj/machinery/suit_storage_unit/inherit{
+	pixel_x = 12
+	},
+/obj/item/mod/control/pre_equipped/hardliner,
+/turf/closed/wall/r_wall/plastitanium,
+/area/ship/bridge)
 "UU" = (
 /obj/structure/table,
 /obj/machinery/cell_charger{
@@ -2295,6 +2371,10 @@
 "WG" = (
 /obj/structure/table/optable,
 /obj/item/storage/backpack/duffelbag/med/surgery,
+/obj/machinery/vending/wallmed/ship{
+	pixel_y = 28;
+	pixel_x = 3
+	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ship/medical)
 "WX" = (
@@ -2509,7 +2589,7 @@ DV
 hU
 hU
 Hj
-pp
+aX
 bG
 vU
 xz
@@ -2532,7 +2612,7 @@ DV
 Sm
 dB
 iI
-Sm
+dv
 bG
 vU
 xz
@@ -2552,10 +2632,10 @@ vU
 bG
 yQ
 eR
+tU
 dB
-Sm
 iI
-Sm
+pp
 bG
 vU
 xz
@@ -2666,7 +2746,7 @@ Cg
 tz
 Xr
 LE
-Xr
+UT
 Xr
 ZF
 co
@@ -2736,7 +2816,7 @@ vU
 qg
 yH
 Ox
-Xr
+Sa
 FS
 wq
 GB

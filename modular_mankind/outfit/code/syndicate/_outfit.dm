@@ -57,7 +57,7 @@
 	id = /obj/item/card/id/cel/syndicate/captain
 	ears = /obj/item/radio/headset/syndicate/alt/captain
 	uniform = /obj/item/clothing/under/syndicate/ngr/officer
-	shoes = /obj/item/clothing/shoes/jackboots
+	shoes = /obj/item/clothing/shoes/combat
 	head = /obj/item/clothing/head/HoS/syndicate
 	gloves = /obj/item/clothing/gloves/combat
 	suit = /obj/item/clothing/suit/armor/vest/capcarapace/syndicate
@@ -93,7 +93,7 @@
 	id = /obj/item/card/id/cel/syndicate/command_cmo
 	uniform = /obj/item/clothing/under/rank/medical/chief_medical_officer
 	ears = /obj/item/radio/headset/syndicate/alt/captain
-	shoes = /obj/item/clothing/shoes/jackboots
+	shoes = /obj/item/clothing/shoes/combat
 	l_pocket = /obj/item/pinpointer/crew
 	head = /obj/item/clothing/head/beret/cmo
 	suit = /obj/item/clothing/suit/toggle/labcoat/raincoat
@@ -110,7 +110,7 @@
 	id = /obj/item/card/id/cel/syndicate/command_hop
 	ears = /obj/item/radio/headset/syndicate/alt
 	uniform = /obj/item/clothing/under/syndicate
-	shoes = /obj/item/clothing/shoes/jackboots
+	shoes = /obj/item/clothing/shoes/combat
 	head = /obj/item/clothing/head/HoS/beret/syndicate
 	gloves = /obj/item/clothing/gloves/color/white
 	r_pocket = /obj/item/melee/knife/survival
@@ -127,8 +127,8 @@
 	ears = /obj/item/radio/headset/syndicate/alt
 	uniform = /obj/item/clothing/under/syndicate/combat
 	head = /obj/item/clothing/head/HoS/syndicate
-	suit = /obj/item/clothing/suit/armor/vest/syndie
-	shoes = /obj/item/clothing/shoes/jackboots
+	suit = /obj/item/clothing/suit/armor/hardliners
+	shoes = /obj/item/clothing/shoes/combat
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
 
 /datum/outfit/job/cel/syndicate/quartermaster	// Не юзается
@@ -193,6 +193,7 @@
 	id = /obj/item/card/id/cel/syndicate/crew/cargo_tech
 	uniform = /obj/item/clothing/under/syndicate/donk
 	suit = /obj/item/clothing/suit/hazardvest/donk
+	shoes = /obj/item/clothing/shoes/combat
 
 	alt_suit = /obj/item/clothing/suit/hazardvest
 	l_hand = /obj/item/export_scanner
@@ -207,6 +208,7 @@
 	id = /obj/item/card/id/cel/syndicate/crew/atmos
 	belt = /obj/item/storage/belt/utility/atmostech
 	uniform = /obj/item/clothing/under/rank/engineering/atmospheric_technician
+	shoes = /obj/item/clothing/shoes/combat
 	alt_uniform = /obj/item/clothing/under/rank/engineering/engineer/hazard
 	alt_suit = /obj/item/clothing/suit/hazardvest
 	dcoat = /obj/item/clothing/suit/hooded/wintercoat/engineering
@@ -242,7 +244,7 @@
 
 	id = /obj/item/card/id/cel/syndicate/crew/doctor
 	uniform = /obj/item/clothing/under/syndicate
-	shoes = /obj/item/clothing/shoes/jackboots
+	shoes = /obj/item/clothing/shoes/combat
 	alt_suit = /obj/item/clothing/suit/apron/surgical
 	backpack = /obj/item/storage/backpack/medic
 	satchel = /obj/item/storage/backpack/satchel/med
@@ -262,6 +264,7 @@
 
 	head = /obj/item/clothing/head/soft/paramedic
 	suit =  /obj/item/clothing/suit/toggle/labcoat/paramedic
+	shoes = /obj/item/clothing/shoes/combat
 	alt_suit = /obj/item/clothing/suit/apron/surgical
 	gloves = /obj/item/clothing/gloves/color/latex/nitrile/evil
 	belt = /obj/item/storage/belt/medical/paramedic
@@ -303,11 +306,11 @@
 	uniform = /obj/item/clothing/under/syndicate
 	ears = /obj/item/radio/headset/alt
 	gloves = /obj/item/clothing/gloves/color/black
-	shoes = /obj/item/clothing/shoes/jackboots
+	shoes = /obj/item/clothing/shoes/combat
 	l_pocket = /obj/item/restraints/handcuffs
 	r_pocket = /obj/item/assembly/flash/handheld
 
-/datum/outfit/job/cel/syndicate/miner	// Не юзается
+/datum/outfit/job/cel/syndicate/miner
 	name = "Syndi - Miner"
 	jobtype = /datum/job/mining
 
@@ -315,7 +318,7 @@
 
 	id = /obj/item/card/id/cel/syndicate/crew/miner
 	ears = /obj/item/radio/headset/headset_cargo/mining
-	shoes = /obj/item/clothing/shoes/workboots/mining
+	shoes = /obj/item/clothing/shoes/combat
 	gloves = /obj/item/clothing/gloves/explorer
 	uniform = /obj/item/clothing/under/rank/cargo/miner/lavaland
 	r_pocket = /obj/item/storage/bag/ore
@@ -338,7 +341,7 @@
 	alt_uniform = /obj/item/clothing/under/syndicate/gec
 	accessory = /obj/item/clothing/accessory/armband/engine
 	glasses = /obj/item/clothing/glasses/sunglasses
-	shoes = /obj/item/clothing/shoes/jackboots
+	shoes = /obj/item/clothing/shoes/combat
 
 	belt = /obj/item/storage/belt/utility/full/engi
 	head = /obj/item/clothing/head/hardhat/dblue
