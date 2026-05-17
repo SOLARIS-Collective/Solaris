@@ -318,7 +318,6 @@
 /obj/structure/window/reinforced/spawner/east,
 /obj/structure/rack,
 /obj/item/pinpointer/crew/contractor,
-/obj/item/uplink/old,
 /turf/open/floor/plasteel/dark,
 /area/ship/bridge)
 "hP" = (
@@ -1943,7 +1942,6 @@
 	pixel_x = 5
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
-/obj/item/modular_computer/tablet/syndicate_contract_uplink,
 /turf/open/floor/carpet/red_gold,
 /area/ship/crew)
 "WB" = (
@@ -2006,7 +2004,6 @@
 /obj/item/ammo_box/magazine/m10mm_ringneck,
 /obj/item/attachment/silencer,
 /obj/item/storage/box/handcuffs,
-/obj/item/uplink/nuclear,
 /turf/open/floor/plasteel/stairs{
 	dir = 4
 	},
