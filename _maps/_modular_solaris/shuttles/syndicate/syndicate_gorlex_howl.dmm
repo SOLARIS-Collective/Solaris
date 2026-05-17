@@ -106,24 +106,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ship/cargo)
-"dv" = (
-/obj/structure/crate_shelf,
-/obj/effect/turf_decal/box,
-/obj/structure/closet/crate,
-/obj/item/clothing/mask/gas/explorer,
-/obj/item/clothing/mask/gas/explorer,
-/obj/item/clothing/suit/hooded/explorer,
-/obj/item/clothing/suit/hooded/explorer,
-/obj/item/tank/internals/emergency_oxygen/double,
-/obj/item/tank/internals/emergency_oxygen/double,
-/obj/item/clothing/head/hardhat/ngr/foreman,
-/obj/item/clothing/head/hardhat/ngr/foreman,
-/obj/item/clothing/gloves/explorer,
-/obj/item/clothing/gloves/explorer,
-/obj/item/flashlight/seclite,
-/obj/item/flashlight/seclite,
-/turf/open/floor/mineral/plastitanium/red,
-/area/ship/cargo)
 "dB" = (
 /obj/effect/turf_decal/box,
 /obj/structure/ore_box,
@@ -576,16 +558,8 @@
 /turf/open/floor/plating/airless,
 /area/ship/external/dark)
 "pp" = (
-/obj/structure/crate_shelf,
 /obj/effect/turf_decal/box,
-/obj/structure/closet/crate{
-	name = "Mining Crate"
-	},
-/obj/item/storage/bag/ore,
-/obj/item/storage/bag/ore,
-/obj/item/pickaxe/mini,
-/obj/item/pickaxe/mini,
-/obj/item/pickaxe/drill/jackhammer/demonic,
+/obj/machinery/ore_silo,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ship/cargo)
 "pt" = (
@@ -668,6 +642,17 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ship/medical)
+"qU" = (
+/obj/machinery/suit_storage_unit/inherit{
+	pixel_x = -16;
+	pixel_y = 20
+	},
+/obj/item/clothing/suit/space/hardsuit/syndi/hl{
+	armor = list("melee" = 40, "bullet" = 50, "laser" = 50, "energy" = 40, "bomb" = 35, "bio" = 100, "rad" = 50, "fire" = 50, "acid" = 90, "wound" = 30);
+	name = "white-red mod. Howl hardsuit"
+	},
+/turf/closed/wall/r_wall/plastitanium,
+/area/ship/bridge)
 "rv" = (
 /obj/machinery/light/directional/east,
 /obj/machinery/atmospherics/pipe/layer_manifold{
@@ -740,6 +725,13 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ship/crew)
+"sB" = (
+/obj/machinery/suit_storage_unit/inherit{
+	pixel_x = 12
+	},
+/obj/item/mod/control/pre_equipped/hardliner,
+/turf/closed/wall/r_wall/plastitanium,
+/area/ship/bridge)
 "ti" = (
 /obj/structure/catwalk/over/plated_catwalk/dark,
 /obj/structure/table,
@@ -796,11 +788,6 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /turf/open/floor/mineral/plastitanium,
 /area/ship/crew)
-"tU" = (
-/obj/effect/turf_decal/box,
-/obj/machinery/ore_silo,
-/turf/open/floor/mineral/plastitanium/red,
-/area/ship/cargo)
 "ur" = (
 /obj/structure/catwalk/over/plated_catwalk/dark,
 /obj/machinery/airalarm/directional/north{
@@ -911,11 +898,6 @@
 /turf/template_noop,
 /area/template_noop)
 "vW" = (
-/obj/machinery/door/airlock/security{
-	dir = 4;
-	name = "Armory";
-	req_access_txt = "3"
-	},
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -930,6 +912,10 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
+	},
+/obj/machinery/door/airlock/security{
+	dir = 4;
+	name = "Armory"
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ship/security/armory)
@@ -1602,6 +1588,24 @@
 /obj/structure/sign/flag/syndie/directional/east,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ship/security/armory)
+"KY" = (
+/obj/structure/crate_shelf,
+/obj/effect/turf_decal/box,
+/obj/structure/closet/crate,
+/obj/item/clothing/mask/gas/explorer,
+/obj/item/clothing/mask/gas/explorer,
+/obj/item/clothing/suit/hooded/explorer,
+/obj/item/clothing/suit/hooded/explorer,
+/obj/item/tank/internals/emergency_oxygen/double,
+/obj/item/tank/internals/emergency_oxygen/double,
+/obj/item/clothing/head/hardhat/ngr/foreman,
+/obj/item/clothing/head/hardhat/ngr/foreman,
+/obj/item/clothing/gloves/explorer,
+/obj/item/clothing/gloves/explorer,
+/obj/item/flashlight/seclite,
+/obj/item/flashlight/seclite,
+/turf/open/floor/mineral/plastitanium/red,
+/area/ship/cargo)
 "Lb" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/fulltile,
@@ -2094,6 +2098,19 @@
 /obj/machinery/vending/mining_equipment,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ship/cargo)
+"RI" = (
+/obj/structure/crate_shelf,
+/obj/effect/turf_decal/box,
+/obj/structure/closet/crate{
+	name = "Mining Crate"
+	},
+/obj/item/storage/bag/ore,
+/obj/item/storage/bag/ore,
+/obj/item/pickaxe/mini,
+/obj/item/pickaxe/mini,
+/obj/item/pickaxe/drill/jackhammer/demonic,
+/turf/open/floor/mineral/plastitanium/red,
+/area/ship/cargo)
 "RP" = (
 /obj/machinery/door/airlock{
 	dir = 4;
@@ -2103,17 +2120,6 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/plasteel/dark,
 /area/ship/hallway/central)
-"Sa" = (
-/obj/machinery/suit_storage_unit/inherit{
-	pixel_x = -16;
-	pixel_y = 20
-	},
-/obj/item/clothing/suit/space/hardsuit/syndi/hl{
-	armor = list("melee" = 40, "bullet" = 50, "laser" = 50, "energy" = 40, "bomb" = 35, "bio" = 100, "rad" = 50, "fire" = 50, "acid" = 90, "wound" = 30);
-	name = "white-red mod. Howl hardsuit"
-	},
-/turf/closed/wall/r_wall/plastitanium,
-/area/ship/bridge)
 "Sd" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -2247,13 +2253,6 @@
 /obj/machinery/light/directional/north,
 /turf/open/floor/mineral/plastitanium,
 /area/ship/crew)
-"UT" = (
-/obj/machinery/suit_storage_unit/inherit{
-	pixel_x = 12
-	},
-/obj/item/mod/control/pre_equipped/hardliner,
-/turf/closed/wall/r_wall/plastitanium,
-/area/ship/bridge)
 "UU" = (
 /obj/structure/table,
 /obj/machinery/cell_charger{
@@ -2612,7 +2611,7 @@ DV
 Sm
 dB
 iI
-dv
+KY
 bG
 vU
 xz
@@ -2632,10 +2631,10 @@ vU
 bG
 yQ
 eR
-tU
+pp
 dB
 iI
-pp
+RI
 bG
 vU
 xz
@@ -2746,7 +2745,7 @@ Cg
 tz
 Xr
 LE
-UT
+sB
 Xr
 ZF
 co
@@ -2816,7 +2815,7 @@ vU
 qg
 yH
 Ox
-Sa
+qU
 FS
 wq
 GB
