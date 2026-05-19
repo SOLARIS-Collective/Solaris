@@ -3718,6 +3718,7 @@
 /obj/structure/plaque/static_plaque/atmos{
 	pixel_x = 32
 	},
+/obj/item/stack/sheet/mineral/uranium/ten,
 /turf/open/floor/plasteel/dark,
 /area/ship/engineering)
 "Dh" = (

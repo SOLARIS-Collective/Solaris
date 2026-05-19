@@ -1690,8 +1690,9 @@
 	dir = 8
 	},
 /obj/item/gun/ballistic/automatic/powered/gauss/horizon{
-	fire_delay = 2;
-	name = "Horizon 'Darect' gauss rifle"
+	fire_delay = 2.5;
+	name = "Horizon 'Darect' gauss rifle";
+	gun_firemodes = list("single","auto")
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ship/security/armory)
