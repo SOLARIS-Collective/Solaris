@@ -1,6 +1,4 @@
-# Pentest Codebase
-
-[![Checks](https://github.com/pentestss13/pentest/workflows/Checks/badge.svg)](https://github.com/pentestss13/pentestss13/actions/workflows/ci_suite.yml) [![Percentage of issues still open](http://isitmaintained.com/badge/open/pentestss13/pentest.svg)](http://isitmaintained.com/project/pentestss13/pentest "Percentage of issues still open")[![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/pentestss13/pentest.svg)](http://isitmaintained.com/project/pentestss13/pentest "Average time to resolve an issue") [![GitHub issues](https://img.shields.io/github/issues/pentestss13/pentest)](https://github.com/pentestss13/pentestss13/issues) ![GitHub top language](https://img.shields.io/github/languages/top/pentestss13/pentest)
+# Solaris Codebase
 
 [![forthebadge](https://forthebadge.com/images/badges/built-with-resentment.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/contains-technical-debt.svg)](https://user-images.githubusercontent.com/8171642/50290880-ffef5500-043a-11e9-8270-a2e5b697c86c.png) [![forinfinityandbyond](https://user-images.githubusercontent.com/5211576/29499758-4efff304-85e6-11e7-8267-62919c3688a9.gif)](https://www.reddit.com/r/SS13/comments/5oplxp/what_is_the_main_problem_with_byond_as_an_engine/dclbu1a)
 
@@ -10,7 +8,7 @@
 -   **Pentest's Discord:** <https://discord.gg/ydGPEejXZB>
 -   **Coderbus Discord:** <https://discord.gg/Vh8TJp9>
 
-This is Constellado's fork of Shiptest. 
+Этот репозиторий находится по форком Pentest. Называется он Solaris.
 
 Pentest is a 2D game built on BYOND in which you fly spaceships in a star system with your friends! Explore, find stuff, fight stuff, upgrade your ship with said stuff and roleplay a character!
 
