@@ -110,6 +110,14 @@
 		GLOB.name_occupations[new_job.name] = new_job
 		GLOB.type_occupations[path] = new_job
 
+	// [SOLARIS-ADD] - SOLARIS_W_TTS_VOICES
+	for(var/path in subtypesof(/datum/w_tts_voices))
+		var/datum/w_tts_voices/B = new path()
+		GLOB.w_tts_voices_list[B.id] = B
+		if(B.allow_random)
+			GLOB.w_tts_voices_random_list[B.id] = B
+	// [/SOLARIS-ADD]
+
 	// Keybindings
 	init_keybindings()
 

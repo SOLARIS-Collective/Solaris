@@ -139,7 +139,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 							"vox_neck_quills" = "Plain",
 							"elzu_horns" = "None",
 							"elzu_tail" = "None",
-							"flavor_text" = ""
+							"flavor_text" = "",
+							"wttsvoicessound" = "mutedc3",	// [SOLARIS-ADD] - SOLARIS_W_TTS_VOICES
+							"wttsvoicesspeed" = "4",
+							"wttsvoicespitch" = "2",
+							"wttsvoicesvary" = "0",	// [/SOLARIS-ADD]
 						)
 	var/height_filter = "Normal"
 	var/list/randomise = list(
@@ -196,7 +200,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/static/list/language_level_costs = list(LANGUAGE_UNKNOWN = 0, LANGUAGE_RECOGNIZED = 1, LANGUAGE_FAMILIAR = 2, LANGUAGE_FLUENT = 3)
 
 	// 0 = character settings, 1 = game preferences
-	var/current_tab = 0
+	var/current_tab = CHAR_SETUP_TAB	// [SOLARIS-EDIT] - SOLARIS_W_TTS_VOICES - Упрощаем понимание кода // ORIGINAL // var/current_tab = 0
 
 	var/show_gear = TRUE
 	var/show_loadout = TRUE
@@ -261,6 +265,14 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	///
 	var/hearted_until
 
+	// [SOLARIS-ADD] - SOLARIS_W_TTS_VOICES
+	// Vocal voice prefs
+	var/w_tts_voices_id = "mutedc3"
+	var/w_tts_voices_speed = 4
+	var/w_tts_voices_pitch = 1
+	var/w_tts_voices_variance = 0.2
+	COOLDOWN_DECLARE(w_tts_voices_previewing)
+	// [/SOLARIS-ADD]
 
 
 /datum/preferences/New(client/C)
@@ -306,12 +318,21 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	update_preview_icon(show_gear, show_loadout)
 	var/list/dat = list("<center>")
 
-	dat += "<a href='byond://?_src_=prefs;preference=tab;tab=0' [current_tab == 0 ? "class='linkOn'" : ""]>Character Setup</a>"
-	dat += "<a href='byond://?_src_=prefs;preference=tab;tab=1' [current_tab == 1 ? "class='linkOn'" : ""]>Character Appearance</a>"
-	dat += "<a href='byond://?_src_=prefs;preference=tab;tab=2' [current_tab == 2 ? "class='linkOn'" : ""]>Gear</a>"
-	dat += "<a href='byond://?_src_=prefs;preference=tab;tab=3' [current_tab == 3 ? "class='linkOn'" : ""]>Game Preferences</a>"
-	dat += "<a href='byond://?_src_=prefs;preference=tab;tab=4' [current_tab == 4 ? "class='linkOn'" : ""]>OOC Preferences</a>"
-	dat += "<a href='byond://?_src_=prefs;preference=tab;tab=5' [current_tab == 5 ? "class='linkOn'" : ""]>Custom Keybindings</a>"
+	// [SOLARIS-EDIT] - SOLARIS_W_TTS_VOICES - Упрощаем понимание кода
+	// dat += "<a href='byond://?_src_=prefs;preference=tab;tab=0' [current_tab == 0 ? "class='linkOn'" : ""]>Character Setup</a>"
+	// dat += "<a href='byond://?_src_=prefs;preference=tab;tab=1' [current_tab == 1 ? "class='linkOn'" : ""]>Character Appearance</a>"
+	// dat += "<a href='byond://?_src_=prefs;preference=tab;tab=2' [current_tab == 2 ? "class='linkOn'" : ""]>Gear</a>"
+	// dat += "<a href='byond://?_src_=prefs;preference=tab;tab=3' [current_tab == 3 ? "class='linkOn'" : ""]>Game Preferences</a>"
+	// dat += "<a href='byond://?_src_=prefs;preference=tab;tab=4' [current_tab == 4 ? "class='linkOn'" : ""]>OOC Preferences</a>"
+	// dat += "<a href='byond://?_src_=prefs;preference=tab;tab=5' [current_tab == 5 ? "class='linkOn'" : ""]>Custom Keybindings</a>"	// ORIGINAL
+	dat += "<a href='byond://?_src_=prefs;preference=character_tab;tab=[CHAR_SETUP_TAB]' [current_tab == CHAR_SETUP_TAB ? "class='linkOn'" : ""]>Character Setup</a>"
+	dat += "<a href='byond://?_src_=prefs;preference=character_tab;tab=[CHAR_APPEARANCE_TAB]' [current_tab == CHAR_APPEARANCE_TAB ? "class='linkOn'" : ""]>Character Appearance</a>"
+	dat += "<a href='byond://?_src_=prefs;preference=character_tab;tab=[CHAR_LOADOUT_TAB]' [current_tab == CHAR_LOADOUT_TAB ? "class='linkOn'" : ""]>Gear</a>"
+	dat += "<a href='byond://?_src_=prefs;preference=character_tab;tab=[CHAR_GAMEPREFERENCES_TAB]' [current_tab == CHAR_GAMEPREFERENCES_TAB ? "class='linkOn'" : ""]>Game Preferences</a>"
+	dat += "<a href='byond://?_src_=prefs;preference=character_tab;tab=[CHAR_OOC_TAB]' [current_tab == CHAR_OOC_TAB ? "class='linkOn'" : ""]>OOC Preferences</a>"
+	dat += "<a href='byond://?_src_=prefs;preference=character_tab;tab=[CHAR_KEYBINDINGS_TAB]' [current_tab == CHAR_KEYBINDINGS_TAB ? "class='linkOn'" : ""]>Custom Keybindings</a>"
+	dat += "<a href='byond://?_src_=prefs;preference=character_tab;tab=[CHAR_SPEECH_TAB]' [current_tab == CHAR_SPEECH_TAB ? "class='linkOn'" : ""]>Speech</a>"
+	// [/SOLARIS-EDIT]
 
 	if(!path)
 		dat += "<div class='notice'>Please create an account to save your preferences</div>"
@@ -320,7 +341,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	dat += "<HR>"
 
 	switch(current_tab)
-		if (0) // Character Setup
+		if(CHAR_SETUP_TAB) // Character Setup // [SOLARIS-EDIT] - SOLARIS_W_TTS_VOICES - Упрощаем понимание кода // ORIGINAL // if (0)
 			if(path)
 				var/savefile/S = new /savefile(path)
 				if(S)
@@ -423,7 +444,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 			dat += "<br><b>Wallet Style:</b><BR><a href ='?_src_=prefs;preference=wallet;task=input'>[wallet]</a>"	// [MANKIND-ADD] - MANKIND_WALLETS
 
-		if(1) //Character Appearance
+		if(CHAR_APPEARANCE_TAB) //Character Appearance // [SOLARIS-EDIT] - SOLARIS_W_TTS_VOICES - Упрощаем понимание кода // ORIGINAL // if(1)
 			if(path)
 				var/savefile/S = new /savefile(path)
 				if(S)
@@ -1221,7 +1242,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						dat += "<td><a href='byond://?_src_=prefs;preference=limbs;customize_limb=[index]'>[prosthetic_limbs[index]]</a></td></tr>"
 					dat += "</table><br>"
 			//[/MANKIND-EDIT]
-		if(2) //Loadout
+
+		if(CHAR_LOADOUT_TAB) //Loadout // [SOLARIS-EDIT] - SOLARIS_W_TTS_VOICES - Упрощаем понимание кода // ORIGINAL // if(2)
 			if(path)
 				var/savefile/S = new /savefile(path)
 				if(S)
@@ -1359,7 +1381,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "</table>"
 			// [/MANKIND-EDIT]
 
-		if (3) // Game Preferences
+		if(CHAR_GAMEPREFERENCES_TAB) // Game Preferences // [SOLARIS-EDIT] - SOLARIS_W_TTS_VOICES - Упрощаем понимание кода // ORIGINAL // if (3)
 			dat += "<table><tr><td width='340px' height='300px' valign='top'>"
 			dat += "<h2>General Settings</h2>"
 			dat += "<b>UI Style:</b> <a href='byond://?_src_=prefs;task=input;preference=ui'>[UI_style]</a><br>"
@@ -1483,7 +1505,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<br>"
 			dat += "<b>Midround Antagonist:</b> <a href='byond://?_src_=prefs;preference=allow_midround_antag'>[(toggles & MIDROUND_ANTAG) ? "Enabled" : "Disabled"]</a><br>"
 			dat += "</td></tr></table>"
-		if(4) //OOC Preferences
+
+		if(CHAR_OOC_TAB) //OOC Preferences // [SOLARIS-EDIT] - SOLARIS_W_TTS_VOICES - Упрощаем понимание кода // ORIGINAL // if(4)
 			dat += "<table><tr><td width='340px' height='300px' valign='top'>"
 			dat += "<h2>OOC Settings</h2>"
 			dat += "<b>Window Flashing:</b> <a href='byond://?_src_=prefs;preference=winflash'>[(windowflashing) ? "Enabled":"Disabled"]</a><br>"
@@ -1566,7 +1589,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				dat += "</td>"
 			dat += "</tr></table>"
-		if(5) // Custom keybindings
+
+		if(CHAR_KEYBINDINGS_TAB) // Custom keybindings // [SOLARIS-EDIT] - SOLARIS_W_TTS_VOICES - Упрощаем понимание кода // ORIGINAL // if(5)
 			// Create an inverted list of keybindings -> key
 			var/list/user_binds = list()
 			for (var/key in key_bindings)
@@ -1607,6 +1631,21 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<br><br>"
 			dat += "<a href ='?_src_=prefs;preference=keybindings_reset'>\[Reset to default\]</a>"
 			dat += "</body>"
+
+		// [SOLARIS-ADD] - SOLARIS_W_TTS_VOICES - Упрощаем понимание кода
+		if(CHAR_SPEECH_TAB)	// The voices
+			dat += "<td width='340px' height='300px' valign='top'>"
+			dat += "<h2>Vocal Voice preferences</h2>"
+			var/datum/w_tts_voices/B = GLOB.w_tts_voices_list[w_tts_voices_id]
+			dat += "<b>Vocal Voice Sound:</b><BR>"
+			dat += "<a style='display:block;width:200px' href='?_src_=prefs;preference=wttsvoicessound;task=input'>[B ? initial(B.name) : "INVALID"]</a><BR>"
+			dat += "<b>Vocal Voice Speed:</b> <a href='byond://?_src_=prefs;preference=wttsvoicesspeed;task=input'>[w_tts_voices_speed]</a><BR>"
+			dat += "<b>Vocal Voice Pitch:</b> <a href='byond://?_src_=prefs;preference=wttsvoicespitch;task=input'>[w_tts_voices_pitch]</a><BR>"
+			dat += "<b>Vocal Voice Variance:</b> <a href='byond://?_src_=prefs;preference=wttsvoicesvary;task=input'>[w_tts_voices_variance]</a><BR>"
+			dat += "<BR><a href='byond://?_src_=prefs;preference=wttsvoicespreview'>Preview Voice</a><BR>"
+			dat += "</td>"
+			dat += "</tr></table>"
+		// [/SOLARIS-ADD]
 	dat += "<hr><center>"
 
 	if(!IsGuestKey(user.key))
@@ -2638,7 +2677,43 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					var/desiredlength = input(user, "Choose the max character length of shown Runechat messages. Valid range is 1 to [CHAT_MESSAGE_MAX_LENGTH] (default: [initial(max_chat_length)]))", "Character Preference", max_chat_length)  as null|num
 					if (!isnull(desiredlength))
 						max_chat_length = clamp(desiredlength, 1, CHAT_MESSAGE_MAX_LENGTH)
+				// [SOLARIS-ADD] - SOLARIS_W_TTS_VOICES
+				if("wttsvoicessound")
+					var/list/list_voices = list()
+					for(var/path in GLOB.w_tts_voices_list)
+						var/datum/w_tts_voices/B = GLOB.w_tts_voices_list[path]
+						if(initial(B.ignore))
+							continue
+						if(initial(B.ckeys_allowed))
+							var/list/allowed = initial(B.ckeys_allowed)
+							if(!allowed.Find(user.client.ckey))
+								continue
+						list_voices[initial(B.name)] = initial(B.id)
+					var/new_voice = input(user, "Choose your desired vocal voices:", "Character Preference") as null|anything in list_voices
+					if(new_voice)
+						w_tts_voices_id = list_voices[new_voice]
+						var/datum/w_tts_voices/B = GLOB.w_tts_voices_list[w_tts_voices_id] //Now we need sanitization to take into account w_tts_voices-specific min/max values
+						w_tts_voices_speed = round(clamp(w_tts_voices_speed, initial(B.minspeed), initial(B.maxspeed)), 1)
+						w_tts_voices_pitch = clamp(w_tts_voices_pitch, initial(B.minpitch), initial(B.maxpitch))
+						w_tts_voices_variance = clamp(w_tts_voices_variance, initial(B.minvariance), initial(B.maxvariance))
+				if("wttsvoicesspeed")
+					var/datum/w_tts_voices/B = GLOB.w_tts_voices_list[w_tts_voices_id]
+					var/voiceset = input(user, "Choose your desired voices speed (Higher is slower, lower is faster). Min: [initial(B.minspeed)]. Max: [initial(B.maxspeed)]", "Character Preference") as num|null
+					if(voiceset)
+						w_tts_voices_speed = round(clamp(voiceset, initial(B.minspeed), initial(B.maxspeed)), 1)
 
+				if("wttsvoicespitch")
+					var/datum/w_tts_voices/B = GLOB.w_tts_voices_list[w_tts_voices_id]
+					var/voiceset = input(user, "Choose your desired baseline voices pitch. Min: [initial(B.minpitch)]. Max: [initial(B.maxpitch)]", "Character Preference") as num|null
+					if(voiceset)
+						w_tts_voices_pitch = clamp(voiceset, initial(B.minpitch), initial(B.maxpitch))
+
+				if("wttsvoicesvary")
+					var/datum/w_tts_voices/B = GLOB.w_tts_voices_list[w_tts_voices_id]
+					var/voiceset = input(user, "Choose your desired baseline voices pitch. Min: [initial(B.minvariance)]. Max: [initial(B.maxvariance)]", "Character Preference") as num|null
+					if(voiceset)
+						w_tts_voices_variance = clamp(voiceset, initial(B.minvariance), initial(B.maxvariance))
+				// [/SOLARIS-ADD]
 		else
 			switch(href_list["preference"])
 				if("showgear")
@@ -2832,6 +2907,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if("endofround_sounds")
 					toggles ^= SOUND_ENDOFROUND
 
+				// [SOLARIS-ADD] - SOLARIS_W_TTS_VOICES - От порядка зависит в каком месте покажется настройка
+				if("sound_w_tts_voices")
+					toggles ^= SOUND_THE_VOICE
+				// [/SOLARIS-ADD]
+
 				if("ghost_ears")
 					chat_toggles ^= CHAT_GHOSTEARS
 
@@ -2931,6 +3011,25 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 							scaling_method = SCALING_METHOD_NORMAL
 					user.client.view_size.setZoomMode()
 
+				// [SOLARIS-ADD] - SOLARIS_W_TTS_VOICES
+				if("wttsvoicespreview")
+					if(SSticker.current_state == GAME_STATE_STARTUP) //Timers don't tick at all during game startup, so let's just give an error message
+						to_chat(user, "<span class='warning'>Voice previews can't play during initialization!</span>")
+						return
+					if(!COOLDOWN_FINISHED(src, w_tts_voices_previewing))
+						return
+					if(!parent || !parent.mob)
+						return
+					COOLDOWN_START(src, w_tts_voices_previewing, (5 SECONDS))
+					var/atom/movable/voicebox = new(get_turf(parent.mob))
+					voicebox.set_w_tts_voices(w_tts_voices_id)
+					var/total_delay
+					for(var/i in 1 to (round((32 / w_tts_voices_speed)) + 1))
+						addtimer(CALLBACK(voicebox, /atom/movable/proc/w_tts_voices, list(parent.mob), 7, 70, rand((w_tts_voices_pitch * 100), (w_tts_voices_pitch*100) + (w_tts_voices_variance*100)) / 100), total_delay)
+						total_delay += rand(DS2TICKS(w_tts_voices_speed/4), DS2TICKS(w_tts_voices_speed/4) + DS2TICKS(w_tts_voices_speed/4)) TICKS
+					QDEL_IN(voicebox, total_delay)
+				// [/SOLARIS-ADD]
+
 				if("darkened_flash") //PENTEST ADDITION
 					darkened_flash = !darkened_flash
 
@@ -2948,10 +3047,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						real_name = random_unique_name(gender)
 						save_character()
 
-				if("tab")
+				if("character_tab") // [CELADON-EDIT] - CELADON_W_TTS_VOICES - Улучшаем понимание кода // ORIGINAL // if("tab")
 					if (href_list["tab"])
 						current_tab = text2num(href_list["tab"])
-						if(current_tab == 2)
+						if(current_tab == CHAR_LOADOUT_TAB) // [CELADON-EDIT] - CELADON_W_TTS_VOICES - Улучшаем понимание кода // ORIGINAL // if(current_tab == 2)
 							show_loadout = TRUE
 
 				if("clear_heart")
@@ -3007,6 +3106,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	// [MANKIND-ADD] - MANKIND_RIOL
 	character.skin_tone_riol = skin_tone_riol
 	// [/MANKIND-ADD]
+	// [CELADON-ADD] - CELADON_W_TTS_VOICES
+	character.set_w_tts_voices(w_tts_voices_id)
+	character.vocal_speed = w_tts_voices_speed
+	character.vocal_pitch = w_tts_voices_pitch
+	character.vocal_pitch_range = w_tts_voices_variance
+	// [/CELADON-ADD]
 	character.underwear = underwear
 	character.underwear_color = underwear_color
 	character.undershirt = undershirt

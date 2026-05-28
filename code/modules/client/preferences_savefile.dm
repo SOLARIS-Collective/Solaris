@@ -5,7 +5,7 @@
 //	You do not need to raise this if you are adding new values that have sane defaults.
 //	Only raise this value when changing the meaning/format/name/layout of an existing value
 //	where you would want the updater procs below to run
-#define SAVEFILE_VERSION_MAX 42
+#define SAVEFILE_VERSION_MAX 43	// [SOLARIS-EDIT] - SOLARIS_W_TTS_VOICES // ORIGINAL // #define SAVEFILE_VERSION_MAX 42
 
 /*
 SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Carn
@@ -93,6 +93,11 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 			toggles &= ~FAST_MC_REFRESH
 
 		toggles |= SOUND_RADIO
+
+	// [SOLARIS-ADD] - SOLARIS_W_TTS_VOICES
+	if(current_version < 43) //Bitflag toggles don't set their defaults when they're added, always defaulting to off instead.
+		toggles |= SOUND_THE_VOICE
+	// [/SOLARIS-ADD]
 
 /datum/preferences/proc/update_character(current_version, savefile/S)
 	if(current_version < 39)
@@ -572,6 +577,14 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	//Flavor Text
 	S["feature_flavor_text"]		>> features["flavor_text"]
 
+	// [SOLARIS-ADD] - SOLARIS_W_TTS_VOICES
+	// Voices
+	S["w_tts_voices_id"] >> w_tts_voices_id
+	S["w_tts_voices_speed"] >> w_tts_voices_speed
+	S["w_tts_voices_pitch"] >> w_tts_voices_pitch
+	S["w_tts_voices_variance"] >> w_tts_voices_variance
+	// [/SOLARIS-ADD]
+
 	//try to fix any outdated data if necessary
 	//preference updating will handle saving the updated data for us.
 	if(needs_update >= 0)
@@ -716,6 +729,14 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	features["riol_tail_markings_color"]		= sanitize_hexcolor(features["riol_tail_markings_color"])
 	// [/MANKIND-ADD]
 
+	// [SOLARIS-ADD] - SOLARIS_W_TTS_VOICES
+	w_tts_voices_id = sanitize_inlist(w_tts_voices_id, GLOB.w_tts_voices_list, pick(GLOB.w_tts_voices_random_list))
+	var/datum/w_tts_voices/w_tts_voices_path = GLOB.w_tts_voices_list[w_tts_voices_id]
+	w_tts_voices_speed = sanitize_num_clamp(w_tts_voices_speed, initial(w_tts_voices_path.minspeed), initial(w_tts_voices_path.maxspeed), initial(w_tts_voices_speed))
+	w_tts_voices_pitch = sanitize_num_clamp(w_tts_voices_pitch, initial(w_tts_voices_path.minpitch), initial(w_tts_voices_path.maxpitch), W_TTS_VOICES_PITCH_RAND(gender))
+	w_tts_voices_variance = sanitize_num_clamp(w_tts_voices_variance, initial(w_tts_voices_path.minvariance), initial(w_tts_voices_path.maxvariance), W_TTS_VOICES_VARIANCE_RAND)
+	// [/SOLARIS-ADD]
+
 	all_quirks = SANITIZE_LIST(all_quirks)
 
 //Make sure all quirks are compatible
@@ -833,6 +854,13 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["riol_body_markings_color"], 		features["riol_body_markings_color"])
 	WRITE_FILE(S["riol_tail_markings_color"], 		features["riol_tail_markings_color"])
 	// [/MANKIND-ADD]
+
+	// [SOLARIS-ADD] - SOLARIS_W_TTS_VOICES
+	WRITE_FILE(S["w_tts_voices_id"], 						w_tts_voices_id)
+	WRITE_FILE(S["w_tts_voices_speed"], 					w_tts_voices_speed)
+	WRITE_FILE(S["w_tts_voices_pitch"], 					w_tts_voices_pitch)
+	WRITE_FILE(S["w_tts_voices_variance"], 					w_tts_voices_variance)
+	// [/SOLARIS-ADD]
 
 	//Flavor text
 	WRITE_FILE(S["feature_flavor_text"]			, features["flavor_text"])
