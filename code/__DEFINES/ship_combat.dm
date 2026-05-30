@@ -241,3 +241,24 @@ GLOBAL_LIST_EMPTY(ship_fire_control_consoles)
 
 /// Глобальная процедура для логирования боевых действий
 #define LOG_SHIP_COMBAT(message) log_game("КОСМИЧЕСКИЙ БОЙ: [message]"); message_admins("КОСМИЧЕСКИЙ БОЙ: [message]")
+
+
+// ==================== VV ДЕФАЙНЫ ====================
+
+#define VV_HK_VIEW_COMBAT_STATS "view_combat_stats"
+#define VV_HK_UPDATE_COMBAT_STATS "update_combat_stats"
+#define VV_HK_HEAL_SHIP "heal_ship"
+
+// ==================== ЗНАЧЕНИЯ ПО УМОЛЧАНИЮ ====================
+
+/// Размер корабля по умолчанию (в тайлах)
+#define SHIP_DEFAULT_SIZE 50
+
+/// Здоровье корпуса по умолчанию (для неизвестных кораблей)
+#define SHIP_DEFAULT_HULL_HEALTH 2500
+
+/// Прочность щитов по умолчанию
+#define SHIP_DEFAULT_SHIELD_STRENGTH 1500
+
+/// Броня по умолчанию (%)
+#define SHIP_DEFAULT_ARMOR 10

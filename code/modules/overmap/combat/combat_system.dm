@@ -56,10 +56,10 @@
 	. = ..()
 	ship = ship_ref
 	initialize_weapons()
-	START_PROCESSING(SSovermap, src)
+	START_PROCESSING(SSprocessing, src)
 
 /datum/ship_combat_system/Destroy()
-	STOP_PROCESSING(SSovermap, src)
+	STOP_PROCESSING(SSprocessing, src)
 	weapons.Cut()
 	target = null
 	control_console = null
@@ -72,13 +72,16 @@
  */
 /datum/ship_combat_system/proc/initialize_weapons()
 	for(var/obj/machinery/ship_weapon/weapon in GLOB.machines)
-		if(weapon.loc && istype(get_area(weapon.loc), /area/ship))
-			// Проверяем, что оружие на нашем корабле
-			var/area/weapon_area = get_area(weapon.loc)
-			if(weapon_area.related_ship == ship)
-				weapons += weapon
-				weapon.combat_system = src
-				weapon.initialize_weapon()
+		if(!weapon.loc)
+			continue
+		var/area/ship/weapon_area = get_area(weapon.loc)
+		if(!istype(weapon_area))
+			continue
+		// Проверяем, что оружие на нашем корабле через mobile_port
+		if(weapon_area.mobile_port?.current_ship == ship)
+			weapons += weapon
+			weapon.combat_system = src
+			weapon.initialize_weapon()
 
 /**
  * Поиск и захват цели
@@ -102,10 +105,6 @@
 	target = target_ref
 	target_lock_status = SHIP_TARGET_LOCK_ACQUIRING
 	target_lock_start_time = world.time
-
-	// Оповещаем консоль
-	if(control_console)
-		control_console.update_target_status()
 
 	return TRUE
 
@@ -249,11 +248,13 @@
  * Оповещение о попадании
  */
 /datum/ship_combat_system/proc/broadcast_hit_notification(obj/projectile/ship_projectile/projectile, damage)
-	// Оповещаем наш корабль
-	if(ship.shuttle_port)
-		var/area/ship_area = get_area(ship.shuttle_port)
-		for(var/mob/living/L in ship_area)
-			to_chat(L, span_danger("[icon2html(projectile.weapon, L)] [projectile.weapon.name] попадает в [projectile.target.name]! Нанесено урона: [damage]"))
+	// Оповещаем наш корабль (если это управляемый корабль)
+	if(istype(ship, /datum/overmap/ship/controlled))
+		var/datum/overmap/ship/controlled/firing_ship = ship
+		if(firing_ship.shuttle_port)
+			var/area/ship_area = get_area(firing_ship.shuttle_port)
+			for(var/mob/living/L in ship_area)
+				to_chat(L, span_danger("[icon2html(projectile.weapon, L)] [projectile.weapon.name] попадает в [projectile.target.name]! Нанесено урона: [damage]"))
 
 	// Оповещаем цель (если это игрок)
 	if(istype(projectile.target, /datum/overmap/ship/controlled))

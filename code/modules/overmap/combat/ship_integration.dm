@@ -53,11 +53,26 @@
 	/// Максимальное количество записей в списке атакующих
 	var/max_attacker_records = 5
 
+	/// Значение брони (процент поглощаемого урона)
+	var/armor_value = 0
+
 	/// Флаг, указывающий что корабль уничтожен
 	var/destroyed = FALSE
 
 	/// Время уничтожения
 	var/destroyed_time = 0
+
+	/// Кастомный технологический уровень (опционально)
+	var/tech_level = null
+
+	/// Кастомный тип брони (опционально)
+	var/custom_armor_type = null
+
+	/// Список отсеков корабля
+	var/list/compartments = list()
+
+	/// Список уникальных типов зон корабля (используется для создания отсеков)
+	var/list/ship_unique_areas = list()
 
 	/// Причина уничтожения
 	var/destruction_cause = ""
@@ -115,15 +130,30 @@
 
 	// Проверяем щиты
 	if(shields_active && shield_strength > 0)
-		damage_blocked = min(shield_strength, actual_damage * 0.7) // Щиты блокируют 70% урона
+		// Применяем множитель урона по щитам, если оружие его имеет
+		var/shield_damage = actual_damage
+		if(weapon && weapon.shield_damage_multiplier)
+			shield_damage = actual_damage * weapon.shield_damage_multiplier
+		
+		damage_blocked = min(shield_strength, shield_damage * 0.7) // Щиты блокируют 70% урона
 		shield_strength -= damage_blocked
-		actual_damage -= damage_blocked
+		actual_damage -= damage_blocked / (weapon?.shield_damage_multiplier || 1.0)
 
 		// Если щиты опустились до 0, деактивируем их
 		if(shield_strength <= 0)
 			shield_strength = 0
 			shields_active = FALSE
 			on_shields_down()
+
+	// Применяем броню и пробитие брони
+	if(actual_damage > 0 && armor_value > 0)
+		var/effective_armor = armor_value
+		// Учитываем пробитие брони, если оружие его имеет
+		if(weapon && weapon.armor_penetration)
+			effective_armor = max(0, armor_value - weapon.armor_penetration)
+		
+		var/armor_reduction = actual_damage * (effective_armor / 100)
+		actual_damage -= armor_reduction
 
 	// Наносим урон корпусу
 	if(actual_damage > 0)
@@ -300,8 +330,8 @@
 		token.remove_filter("shield_down")
 
 	// Оповещение экипажа
-	if(docked)
-		var/area/ship_area = get_area(docked)
+	if(docked_to)
+		var/area/ship_area = get_area(docked_to)
 		for(var/mob/living/L in ship_area)
 			to_chat(L, span_green("Щиты корабля восстановлены."))
 
@@ -316,14 +346,31 @@
 		addtimer(CALLBACK(token, TYPE_PROC_REF(/atom, update_icon)), 5)
 
 	// Звуковой эффект
-	playsound_global('sound/effects/explosion1.ogg', 30)
+	playsound('sound/effects/explosion1.ogg', 30)
 
 	// Оповещение экипажа
-	if(docked)
-		var/area/ship_area = get_area(docked)
+	if(docked_to)
+		var/area/ship_area = get_area(docked_to)
 		for(var/message in get_damage_messages(damage, blocked))
 			for(var/mob/living/L in ship_area)
 				to_chat(L, message)
+
+/**
+ * Обработка критического повреждения (здоровье корпуса ниже 30%)
+ */
+/datum/overmap/ship/proc/on_critical_damage()
+	// Визуальные эффекты
+	if(token)
+		token.add_filter("critical_damage", 1, list("type" = "outline", "color" = "#ff000080", "size" = 3))
+
+	// Звуковой эффект тревоги
+	playsound('sound/effects/alert.ogg', 50)
+
+	// Оповещение экипажа
+	if(docked_to)
+		var/area/ship_area = get_area(docked_to)
+		for(var/mob/living/L in ship_area)
+			to_chat(L, span_userdanger("КРИТИЧЕСКОЕ ПОВРЕЖДЕНИЕ КОРПУСА! Целостность: [round((hull_health / max_hull_health) * 100)]%"))
 
 /**
  * Обработка повреждения системы
@@ -333,8 +380,8 @@
 	var/damage_text = get_damage_level_text(damage_level)
 
 	// Оповещение экипажа
-	if(docked)
-		var/area/ship_area = get_area(docked)
+	if(docked_to)
+		var/area/ship_area = get_area(docked_to)
 		for(var/mob/living/L in ship_area)
 			to_chat(L, span_danger("Система [system_name] повреждена! Уровень: [damage_text]"))
 
@@ -360,11 +407,11 @@
 		explosion.y = y
 
 	// Звуковой эффект
-	playsound_global('sound/effects/explosion2.ogg', 100)
+	playsound('sound/effects/explosion2.ogg', 100)
 
 	// Оповещение экипажа
-	if(docked)
-		var/area/ship_area = get_area(docked)
+	if(docked_to)
+		var/area/ship_area = get_area(docked_to)
 		for(var/mob/living/L in ship_area)
 			to_chat(L, span_userdanger("КОРАБЛЬ УНИЧТОЖЕН! ПРИГОТОВЬТЕСЬ К ЭВАКУАЦИИ!"))
 
@@ -376,14 +423,14 @@
 		return
 
 	// Оповещаем все корабли в системе
-	for(var/datum/overmap/ship/other_ship in current_overmap.overmap_ships)
-		if(other_ship == src || !other_ship.docked)
+	for(var/datum/overmap/ship/controlled/other_ship in SSovermap.controlled_ships)
+		if(other_ship == src || !other_ship.docked_to)
 			continue
 
-		var/area/other_area = get_area(other_ship.docked)
+		var/area/other_area = get_area(other_ship.docked_to)
 		for(var/mob/living/L in other_area)
 			if(attacker)
-				to_chat(L, span_boldnotice("[name] был уничтожен [attacker.name]!"))
+				to_chat(L, span_boldnotice("[name] был уничтожен!"))
 			else
 				to_chat(L, span_boldnotice("[name] был уничтожен!"))
 
@@ -525,7 +572,7 @@
  * Глобальная процедура для обработки боя на овермапе
  */
 /proc/process_overmap_combat()
-	for(var/datum/overmap/ship/ship in GLOB.overmap_ships)
+	for(var/datum/overmap/ship/controlled/ship in SSovermap.controlled_ships)
 		if(ship.destroyed)
 			continue
 

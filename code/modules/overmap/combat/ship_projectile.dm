@@ -54,7 +54,7 @@
 /obj/projectile/ship_projectile/Initialize()
 	. = ..()
 	// Снаряды для космического боя не используют стандартную систему движения
-	movement_type = UNSTOPPABLE
+	movement_type = PHASING
 	SET_PLANE_EXPLICIT(src, PLANE_SPACE, src)
 
 /obj/projectile/ship_projectile/Destroy()
@@ -74,8 +74,8 @@
  * @param flight_duration - время полета
  * @param chance_to_hit - шанс попадания
  */
-/obj/projectile/ship_projectile/proc/setup_projectile(datum/overmap/ship/firer, datum/overmap/ship/target_ship, 
-													  obj/machinery/ship_weapon/firing_weapon, 
+/obj/projectile/ship_projectile/proc/setup_projectile(datum/overmap/ship/firer, datum/overmap/ship/target_ship,
+													  obj/machinery/ship_weapon/firing_weapon,
 													  flight_duration, chance_to_hit)
 	firer_ship = firer
 	target = target_ship
@@ -162,11 +162,13 @@
 	if(!firer_ship || !target)
 		return
 
-	// Оповещаем стреляющий корабль
-	if(firer_ship.shuttle_port)
-		var/area/firer_area = get_area(firer_ship.shuttle_port)
-		for(var/mob/living/L in firer_area)
-			to_chat(L, span_notice("[icon2html(weapon, L)] [weapon.name] запущен! Время до попадания: [flight_time/10] секунд."))
+	// Оповещаем стреляющий корабль (если это управляемый корабль)
+	if(istype(firer_ship, /datum/overmap/ship/controlled))
+		var/datum/overmap/ship/controlled/firing_ship = firer_ship
+		if(firing_ship.shuttle_port)
+			var/area/firer_area = get_area(firing_ship.shuttle_port)
+			for(var/mob/living/L in firer_area)
+				to_chat(L, span_notice("[icon2html(weapon, L)] [weapon.name] запущен! Время до попадания: [flight_time/10] секунд."))
 
 	// Оповещаем цель (если это игрок)
 	if(istype(target, /datum/overmap/ship/controlled))
@@ -316,10 +318,12 @@
 		impact.y = target.y
 
 	// Звук попадания (если есть игроки в зоне)
-	if(target.shuttle_port)
-		var/area/target_area = get_area(target.shuttle_port)
-		for(var/mob/living/L in target_area)
-			playsound(L, get_impact_sound(), 50, TRUE)
+	if(istype(target, /datum/overmap/ship/controlled))
+		var/datum/overmap/ship/controlled/target_ship = target
+		if(target_ship.shuttle_port)
+			var/area/target_area = get_area(target_ship.shuttle_port)
+			for(var/mob/living/L in target_area)
+				playsound(L, get_impact_sound(), 50, TRUE)
 
 /**
  * Создание эффектов промаха
@@ -376,8 +380,8 @@
  */
 /obj/overmap/projectile
 	name = "снаряд"
-	icon = 'icons/obj/overmap.dmi'
-	icon_state = "projectile"
+	icon = 'icons/obj/projectiles_tracer.dmi'
+	icon_state = "bolt"
 	layer = OVERMAP_LAYER_PROJECTILE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
@@ -415,19 +419,19 @@
 	// Меняем иконку в зависимости от типа снаряда
 	switch(projectile.weapon?.weapon_type)
 		if(SHIP_WEAPON_TYPE_LASER)
-			icon_state = "projectile_laser"
+			icon_state = "xray"
 			color = COLOR_CYAN
 		if(SHIP_WEAPON_TYPE_KINETIC)
-			icon_state = "projectile_kinetic"
+			icon_state = "bolt"
 			color = COLOR_GRAY
 		if(SHIP_WEAPON_TYPE_MISSILE)
-			icon_state = "projectile_missile"
+			icon_state = "big"
 			color = COLOR_RED
 		if(SHIP_WEAPON_TYPE_ENERGY)
-			icon_state = "projectile_energy"
+			icon_state = "solar"
 			color = COLOR_PURPLE
 		else
-			icon_state = "projectile"
+			icon_state = "beam_omni"
 			color = COLOR_WHITE
 
 	// Прозрачность в зависимости от прогресса полета

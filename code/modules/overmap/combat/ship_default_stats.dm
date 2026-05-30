@@ -32,20 +32,46 @@
  * Расчет размера корабля на основе карты
  */
 /datum/overmap/ship/proc/calculate_ship_size_from_map()
-	// Если есть shuttle_port, используем его зону
-	if(shuttle_port && shuttle_port.area)
-		var/area/ship_area = shuttle_port.area
-		if(ship_area.x && ship_area.x2 && ship_area.y && ship_area.y2)
-			var/width = ship_area.x2 - ship_area.x
-			var/height = ship_area.y2 - ship_area.y
-			return width * height
-	
-	// Если есть source_template, используем его размер
-	if(source_template && source_template.width && source_template.height)
-		return source_template.width * source_template.height
+	// Для управляемых кораблей используем shuttle_port или source_template
+	if(istype(src, /datum/overmap/ship/controlled))
+		var/datum/overmap/ship/controlled/controlled_ship = src
+		
+		// Если есть shuttle_port, используем его зону
+		if(controlled_ship.shuttle_port)
+			// Получаем зону шаттла через shuttle_areas
+			var/list/areas = controlled_ship.shuttle_port.shuttle_areas
+			if(length(areas))
+				var/area/ship_area = areas[1]
+				// Рассчитываем размер зоны на основе содержимого
+				var/min_x = INFINITY
+				var/max_x = -INFINITY
+				var/min_y = INFINITY
+				var/max_y = -INFINITY
+				var/tile_count = 0
+				
+				for(var/turf/T in ship_area.contents)
+					tile_count++
+					if(T.x < min_x)
+						min_x = T.x
+					if(T.x > max_x)
+						max_x = T.x
+					if(T.y < min_y)
+						min_y = T.y
+					if(T.y > max_y)
+						max_y = T.y
+				
+				if(tile_count > 0)
+					var/width = max_x - min_x + 1
+					var/height = max_y - min_y + 1
+					return width * height
+		
+		// Если есть source_template, используем его размер
+		if(controlled_ship.source_template)
+			// Используем размеры шаблона
+			return controlled_ship.source_template.width * controlled_ship.source_template.height
 	
 	// По умолчанию - маленький корабль (50 тайлов)
-	return SHIP_DEFAULT_SIZE
+	return 50  // SHIP_DEFAULT_SIZE
 
 /**
  * Определение класса корабля по размеру
@@ -93,20 +119,6 @@
 	
 	// Обновляем визуальные эффекты
 	update_damage_effects()
-
-// ==================== ЗНАЧЕНИЯ ПО УМОЛЧАНИЮ ====================
-
-/// Размер корабля по умолчанию (в тайлах)
-#define SHIP_DEFAULT_SIZE 50
-
-/// Здоровье корпуса по умолчанию (для неизвестных кораблей)
-#define SHIP_DEFAULT_HULL_HEALTH 2500
-
-/// Прочность щитов по умолчанию
-#define SHIP_DEFAULT_SHIELD_STRENGTH 1500
-
-/// Броня по умолчанию (%)
-#define SHIP_DEFAULT_ARMOR 10
 
 // ==================== ПРИМЕНЕНИЕ ПРИ СОЗДАНИИ КОРАБЛЯ ====================
 
@@ -164,9 +176,6 @@
 		else
 			return 5  // Стандарт
 
-/// Кастомный технологический уровень (опционально)
-/datum/overmap/ship/var/tech_level = null
-
 /**
  * Получение типа брони в зависимости от класса корабля
  */
@@ -185,9 +194,6 @@
 			return "heavy"    // Тяжелая броня
 		else
 			return "medium"   // По умолчанию
-
-/// Кастомный тип брони (опционально)
-/datum/overmap/ship/var/custom_armor_type = null
 
 // ==================== ПРИМЕРЫ ДЛЯ КОНФИГУРАЦИИ ====================
 
@@ -273,7 +279,3 @@
 		initialize_system_damage()
 		update_damage_effects()
 		to_chat(usr, span_notice("Корабль полностью восстановлен."))
-
-#define VV_HK_VIEW_COMBAT_STATS "view_combat_stats"
-#define VV_HK_UPDATE_COMBAT_STATS "update_combat_stats"
-#define VV_HK_HEAL_SHIP "heal_ship"

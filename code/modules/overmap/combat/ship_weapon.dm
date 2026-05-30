@@ -7,8 +7,8 @@
 /obj/machinery/ship_weapon
 	name = "корабельное оружие"
 	desc = "Базовая система вооружения для космического корабля."
-	icon = 'icons/obj/weapons.dmi'
-	icon_state = "ship_weapon_base"
+	icon = 'code/modules/overmap/combat/system_weapons.dmi'
+	icon_state = "laser"
 	density = TRUE
 	anchored = TRUE
 	use_power = IDLE_POWER_USE
@@ -29,6 +29,12 @@
 
 	/// Тип урона (BRUTE, BURN, и т.д.)
 	var/damage_type = BRUTE
+
+	/// Пробитие брони (0-100%)
+	var/armor_penetration = 0
+
+	/// Множитель урона по щитам
+	var/shield_damage_multiplier = 1.0
 
 	/// Базовая точность (0-100)
 	var/base_accuracy = 75
@@ -57,17 +63,11 @@
 	/// Скорость перезарядки (заряд в тик)
 	var/recharge_rate = 1
 
+	/// Потребление энергии за выстрел
+	var/power_usage_per_shot = 300
+
 	/// Тип создаваемого снаряда
 	var/projectile_type = /obj/projectile/ship_projectile/kinetic
-
-	/// Потребление энергии за выстрел
-	var/power_usage_per_shot = 500
-
-	/// Требуемый навык для использования
-	var/required_skill = SKILL_WEAPONS
-
-	/// Уровень навыка для эффективного использования
-	var/required_skill_level = SKILL_LEVEL_NOVICE
 
 	/// Флаг, указывающий на повреждение оружия
 	var/damaged = FALSE
@@ -81,8 +81,15 @@
 	/// Таймер починки
 	var/repair_timer = 0
 
+	/// Система искр для эффектов повреждения
+	var/datum/effect_system/spark_spread/spark_system
+
 /obj/machinery/ship_weapon/Initialize()
 	. = ..()
+	// Инициализация системы искр
+	spark_system = new /datum/effect_system/spark_spread()
+	spark_system.set_up(5, 0, src)
+	spark_system.attach(src)
 	// Автоматически ищем систему боя при инициализации
 	addtimer(CALLBACK(src, PROC_REF(find_combat_system)), 1 SECONDS)
 
@@ -94,15 +101,15 @@
  * Поиск и привязка к системе боя корабля
  */
 /obj/machinery/ship_weapon/proc/find_combat_system()
-	var/area/A = get_area(src)
-	if(istype(A, /area/ship))
-		var/area/ship/ship_area = A
-		if(ship_area.related_ship)
-			var/datum/ship_combat_system/CS = get_ship_combat_system(ship_area.related_ship)
-			if(CS)
-				combat_system = CS
-				CS.weapons += src
-				initialize_weapon()
+	var/area/ship/ship_area = get_area(src)
+	if(!istype(ship_area))
+		return
+	if(ship_area.mobile_port?.current_ship)
+		var/datum/ship_combat_system/CS = get_ship_combat_system(ship_area.mobile_port.current_ship)
+		if(CS)
+			combat_system = CS
+			CS.weapons += src
+			initialize_weapon()
 
 /**
  * Инициализация оружия после привязки к системы
@@ -124,7 +131,7 @@
 	. = ..()
 
 	var/mutable_appearance/status_overlay = mutable_appearance(icon, "[icon_state]_status")
-	
+
 	switch(weapon_state)
 		if(SHIP_WEAPON_STATE_READY)
 			status_overlay.color = SHIP_COLOR_GOOD
@@ -236,10 +243,10 @@
 		if(SHIP_WEAPON_TYPE_KINETIC)
 			return 'sound/weapons/gun/shotgun/shot.ogg'
 		if(SHIP_WEAPON_TYPE_MISSILE)
-			return 'sound/weapons/rocket.ogg'
+			return 'sound/effects/explosion_large1.ogg'
 		if(SHIP_WEAPON_TYPE_ENERGY)
 			return 'sound/weapons/emitter.ogg'
-	return 'sound/weapons/gun/general/gunshot.ogg'
+	return 'sound/weapons/gun/rifle/skm_smg.ogg'
 
 /**
  * Процесс п��резарядки и обслуживания
@@ -341,6 +348,8 @@
 	weapon_type = SHIP_WEAPON_TYPE_KINETIC
 	damage = 30
 	damage_type = BRUTE
+	armor_penetration = 20
+	shield_damage_multiplier = 0.8
 	base_accuracy = 70
 	optimal_range = 8
 	max_range = 25
@@ -355,6 +364,8 @@
 	weapon_type = SHIP_WEAPON_TYPE_LASER
 	damage = 25
 	damage_type = BURN
+	armor_penetration = 5
+	shield_damage_multiplier = 1.5
 	base_accuracy = 85
 	optimal_range = 12
 	max_range = 35
@@ -370,6 +381,8 @@
 	weapon_type = SHIP_WEAPON_TYPE_MISSILE
 	damage = 50
 	damage_type = BRUTE
+	armor_penetration = 40
+	shield_damage_multiplier = 1.0
 	base_accuracy = 90 // Ракеты имеют наведение
 	optimal_range = 15
 	max_range = 40
@@ -385,6 +398,8 @@
 	weapon_type = SHIP_WEAPON_TYPE_ENERGY
 	damage = 40
 	damage_type = BURN
+	armor_penetration = 25
+	shield_damage_multiplier = 1.2
 	base_accuracy = 80
 	optimal_range = 10
 	max_range = 30
