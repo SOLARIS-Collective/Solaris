@@ -3168,7 +3168,7 @@
 #include "code\modules\overmap\overmap_turf.dm"
 #include "code\modules\overmap\transponder.dm"
 #include "code\modules\overmap\combat\combat_system.dm"
-#include "code\modules\overmap\combat\examples.dm"
+// #include "code\modules\overmap\combat\examples.dm"
 #include "code\modules\overmap\combat\fire_control_console.dm"
 #include "code\modules\overmap\combat\ship_damage_system.dm"
 #include "code\modules\overmap\combat\ship_default_stats.dm"

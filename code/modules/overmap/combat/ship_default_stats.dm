@@ -13,18 +13,18 @@
 /datum/overmap/ship/proc/auto_initialize_combat_stats()
 	// Определяем размер корабля
 	var/ship_size = calculate_ship_size_from_map()
-	
+
 	// Определяем класс корабля на основе размера
 	var/detected_class = detect_ship_class(ship_size)
-	
+
 	// Устанавливаем тип корабля, если не задан
 	if(!ship_type)
 		ship_type = detected_class
-	
+
 	// Устанавливаем фракцию, если не задана
 	if(!faction)
 		faction = SHIP_FACTION_INDEPENDENT
-	
+
 	// Рассчитываем боевые характеристики
 	initialize_combat_stats(ship_size)
 
@@ -35,7 +35,7 @@
 	// Для управляемых кораблей используем shuttle_port или source_template
 	if(istype(src, /datum/overmap/ship/controlled))
 		var/datum/overmap/ship/controlled/controlled_ship = src
-		
+
 		// Если есть shuttle_port, используем его зону
 		if(controlled_ship.shuttle_port)
 			// Получаем зону шаттла через shuttle_areas
@@ -48,7 +48,7 @@
 				var/min_y = INFINITY
 				var/max_y = -INFINITY
 				var/tile_count = 0
-				
+
 				for(var/turf/T in ship_area.contents)
 					tile_count++
 					if(T.x < min_x)
@@ -59,17 +59,17 @@
 						min_y = T.y
 					if(T.y > max_y)
 						max_y = T.y
-				
+
 				if(tile_count > 0)
 					var/width = max_x - min_x + 1
 					var/height = max_y - min_y + 1
 					return width * height
-		
+
 		// Если есть source_template, используем его размер
 		if(controlled_ship.source_template)
 			// Используем размеры шаблона
 			return controlled_ship.source_template.width * controlled_ship.source_template.height
-	
+
 	// По умолчанию - маленький корабль (50 тайлов)
 	return 50  // SHIP_DEFAULT_SIZE
 
@@ -98,25 +98,25 @@
 		max_hull_health = calculate_max_hull_health(ship_size, ship_type)
 	if(!hull_health)
 		hull_health = max_hull_health
-	
+
 	// === ЩИТЫ ===
 	if(!max_shield_strength)
 		max_shield_strength = calculate_max_shield_strength(ship_size, get_tech_level())
 	if(!shield_strength)
 		shield_strength = max_shield_strength
-	
+
 	// === БРОНЯ ===
 	if(!armor_value)
 		armor_value = calculate_armor_value(ship_type, get_armor_type())
-	
+
 	// === СИСТЕМЫ ===
 	initialize_system_damage()
-	
+
 	// === СИСТЕМА БОЯ ===
 	// Создаем систему боя для управляемых кораблей
 	if(istype(src, /datum/overmap/ship/controlled) && !combat_system)
 		combat_system = new /datum/ship_combat_system(src)
-	
+
 	// Обновляем визуальные эффекты
 	update_damage_effects()
 
@@ -127,7 +127,7 @@
  */
 /datum/overmap/ship/New(location, system)
 	. = ..()
-	
+
 	// Автоматически инициализируем боевые параметры
 	// Задержка нужна для того, чтобы shuttle_port успел инициализироваться
 	addtimer(CALLBACK(src, PROC_REF(auto_initialize_combat_stats)), 1 SECONDS)
@@ -139,7 +139,7 @@
  */
 /datum/overmap/ship/controlled/connect_new_shuttle_port(obj/docking_port/mobile/new_port)
 	. = ..()
-	
+
 	// Переинициализируем боевые параметры при подключении нового порта
 	if(new_port)
 		addtimer(CALLBACK(src, PROC_REF(auto_initialize_combat_stats)), 1 SECONDS)
@@ -149,7 +149,7 @@
  */
 /datum/overmap/ship/controlled/Rename(new_name, force = FALSE)
 	. = ..()
-	
+
 	// При переименовании обновляем визуальные эффекты
 	update_damage_effects()
 
@@ -162,7 +162,7 @@
 	// Проверяем, есть ли кастомный уровень технологий
 	if(tech_level)
 		return tech_level
-	
+
 	// Определяем по фракции
 	switch(faction)
 		if(SHIP_FACTION_NANOTRASEN)
@@ -183,7 +183,7 @@
 	// Проверяем, есть ли кастомный тип брони
 	if(custom_armor_type)
 		return custom_armor_type
-	
+
 	// Определяем по классу корабля
 	switch(ship_type)
 		if(SHIP_TYPE_FRIGATE, SHIP_TYPE_TRANSPORT, SHIP_TYPE_MINING, SHIP_TYPE_SCIENCE)
@@ -200,7 +200,7 @@
 /*
  * Если вы хотите задать конкретные параметры в конфигурации корабля,
  * добавьте следующие поля в JSON файл:
- * 
+ *
  * {
  *   "combat_stats": {
  *     "hull_health": 60000,           // Здоровье корпуса
@@ -211,7 +211,7 @@
  *     "armor_type": "heavy"           // Тип брони
  *   }
  * }
- * 
+ *
  * Если поля не указаны, система автоматически рассчитает параметры
  * на основе размера корабля и его фракции.
  */
@@ -229,7 +229,7 @@
  */
 /datum/overmap/ship/proc/get_combat_stats()
 	var/list/stats = list()
-	
+
 	stats["hull_health"] = hull_health
 	stats["max_hull_health"] = max_hull_health
 	stats["shield_strength"] = shield_strength
@@ -239,7 +239,7 @@
 	stats["faction"] = faction
 	stats["combat_status"] = combat_status
 	stats["destroyed"] = destroyed
-	
+
 	if(combat_system)
 		stats["weapons_count"] = length(combat_system.weapons)
 		stats["active_projectiles"] = length(combat_system.active_projectiles)
@@ -248,7 +248,7 @@
 		stats["weapons_count"] = 0
 		stats["active_projectiles"] = 0
 		stats["target"] = null
-	
+
 	return stats
 
 // ==================== VV ПОДДЕРЖКА ====================
@@ -262,14 +262,14 @@
 
 /datum/overmap/ship/vv_do_topic(list/href_list)
 	. = ..()
-	
+
 	if(href_list[VV_HK_VIEW_COMBAT_STATS])
 		usr << browse(json_encode(get_combat_stats()), "window=combat_stats")
-	
+
 	if(href_list[VV_HK_UPDATE_COMBAT_STATS])
 		update_combat_stats()
 		to_chat(usr, span_notice("Боевые характеристики обновлены."))
-	
+
 	if(href_list[VV_HK_HEAL_SHIP])
 		hull_health = max_hull_health
 		shield_strength = max_shield_strength

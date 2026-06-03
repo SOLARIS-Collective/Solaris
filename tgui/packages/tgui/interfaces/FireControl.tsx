@@ -93,8 +93,8 @@ const WeaponType = {
   energy: 'Энергетическое',
 };
 
-export const FireControl = (props) => {
-  const { act, data } = useBackend<FireControlData>();
+export const FireControl = (props, context) => {
+  const { act, data } = useBackend<FireControlData>(context);
 
   if (!data.active) {
     return (
@@ -135,8 +135,8 @@ export const FireControl = (props) => {
   );
 };
 
-const ShipStatusSection = (props) => {
-  const { act, data } = useBackend<FireControlData>();
+const ShipStatusSection = (props, context) => {
+  const { act, data } = useBackend<FireControlData>(context);
 
   return (
     <Section title="Статус корабля">
@@ -165,8 +165,8 @@ const ShipStatusSection = (props) => {
   );
 };
 
-const TargetSection = (props) => {
-  const { act, data } = useBackend<FireControlData>();
+const TargetSection = (props, context) => {
+  const { act, data } = useBackend<FireControlData>(context);
 
   const renderTargetInfo = () => {
     if (!data.target) {
@@ -264,8 +264,8 @@ const TargetSection = (props) => {
   );
 };
 
-const WeaponsSection = (props) => {
-  const { act, data } = useBackend<FireControlData>();
+const WeaponsSection = (props, context) => {
+  const { act, data } = useBackend<FireControlData>(context);
 
   const renderWeapon = (weapon: WeaponData) => {
     const canFire = weapon.canFire && data.target?.lockStatus === 'locked';
@@ -373,8 +373,8 @@ const WeaponsSection = (props) => {
   );
 };
 
-const ProjectilesSection = (props) => {
-  const { act, data } = useBackend<FireControlData>();
+const ProjectilesSection = (props, context) => {
+  const { act, data } = useBackend<FireControlData>(context);
 
   const renderProjectile = (projectile: ProjectileData) => {
     return (
@@ -414,8 +414,8 @@ const ProjectilesSection = (props) => {
   );
 };
 
-const CombatStatsSection = (props) => {
-  const { act, data } = useBackend<FireControlData>();
+const CombatStatsSection = (props, context) => {
+  const { act, data } = useBackend<FireControlData>(context);
 
   return (
     <Section title="Боевая статистика">

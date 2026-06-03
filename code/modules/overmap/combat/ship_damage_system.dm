@@ -345,17 +345,17 @@
 /datum/overmap/ship/proc/get_compartments_info()
 	if(!length(compartments))
 		return "Информация об отсеках недоступна"
-	
+
 	var/info = "<div class='compartments-info'><h3>Отсеки корабля [name]</h3>"
 	info += "<table class='compartments-table'>"
 	info += "<tr><th>№</th><th>Отсек</th><th>Состояние</th><th>Риск пожара</th><th>Риск разгерметизации</th></tr>"
-	
+
 	for(var/i = 1 to length(compartments))
 		var/datum/ship_compartment/compartment = compartments[i]
 		var/health_percent = round((compartment.health / compartment.max_health) * 100)
 		var/health_color = health_percent > 70 ? "green" : health_percent > 30 ? "orange" : "red"
 		var/health_text = "<span style='color: [health_color]'>[health_percent]%</span>"
-		
+
 		info += "<tr>"
 		info += "<td>[i]</td>"
 		info += "<td><b>[compartment.name]</b></td>"
@@ -363,11 +363,11 @@
 		info += "<td>[compartment.fire_risk]%</td>"
 		info += "<td>[compartment.breach_risk]%</td>"
 		info += "</tr>"
-	
+
 	info += "</table>"
 	info += "<p>Всего отсеков: [length(compartments)]</p>"
 	info += "</div>"
-	
+
 	return info
 
 /**
@@ -376,7 +376,7 @@
 /datum/overmap/ship/proc/show_compartments_to(mob/user)
 	if(!user)
 		return
-	
+
 	var/info = get_compartments_info()
 	to_chat(user, boxed_message(info))
 
@@ -386,12 +386,12 @@
 /datum/overmap/ship/proc/get_compartments_summary()
 	if(!length(compartments))
 		return "Нет информации об отсеках"
-	
+
 	var/damaged_count = 0
 	var/destroyed_count = 0
 	var/total_health = 0
 	var/total_max_health = 0
-	
+
 	for(var/datum/ship_compartment/compartment in compartments)
 		total_health += compartment.health
 		total_max_health += compartment.max_health
@@ -399,18 +399,18 @@
 			damaged_count++
 		if(compartment.destroyed)
 			destroyed_count++
-	
+
 	var/overall_health = total_max_health > 0 ? round((total_health / total_max_health) * 100) : 0
 	var/health_color = overall_health > 70 ? "green" : overall_health > 30 ? "orange" : "red"
-	
+
 	var/summary = "<span style='color: [health_color]'><b>Общее состояние отсеков: [overall_health]%</b></span>\n"
 	summary += "Отсеков: [length(compartments)]"
-	
+
 	if(damaged_count > 0)
 		summary += ", <span style='color: orange'>повреждено: [damaged_count]</span>"
 	if(destroyed_count > 0)
 		summary += ", <span style='color: red'>уничтожено: [destroyed_count]</span>"
-	
+
 	return summary
 
 /**
@@ -420,7 +420,7 @@
 /datum/overmap/ship/controlled/proc/command_show_compartments(mob/user)
 	if(!user || !user.client)
 		return
-	
+
 	show_compartments_to(user)
 	to_chat(user, span_notice("Информация об отсеках корабля [name] отображена."))
 
@@ -1095,28 +1095,28 @@
 
 	return max(10, ship_tile_count)  // Минимум 10 тайлов
 
-/*
- * Получение технологического уровня корабля
-*/
-/datum/overmap/ship/proc/get_tech_level()
-	// Можно расширить для разных фракций
-	switch(faction)
-		if(SHIP_FACTION_NANOTRASEN)
-			return 8  // Высокие технологии
-		if(SHIP_FACTION_SYNDICATE)
-			return 7  // Хорошие технологии
-		if(SHIP_FACTION_SOLGOV)
-			return 6  // Средние технологии
-		if(SHIP_FACTION_PIRATE)
-			return 4  // Низкие технологии
-		else
-			return 5  // Стандарт
+// /*
+//  * Получение технологического уровня корабля
+// */
+// /datum/overmap/ship/proc/get_tech_level()
+// 	// Можно расширить для разных фракций
+// 	switch(faction)
+// 		if(SHIP_FACTION_NANOTRASEN)
+// 			return 8  // Высокие технологии
+// 		if(SHIP_FACTION_SYNDICATE)
+// 			return 7  // Хорошие технологии
+// 		if(SHIP_FACTION_SOLGOV)
+// 			return 6  // Средние технологии
+// 		if(SHIP_FACTION_PIRATE)
+// 			return 4  // Низкие технологии
+// 		else
+// 			return 5  // Стандарт
 
-/*
- * Получение типа брони
-*/
-/datum/overmap/ship/proc/get_armor_type()
-	// Можно настроить для разных кораблей
-	return "medium" // По умолчанию средняя броня
+// /*
+//  * Получение типа брони
+// */
+// /datum/overmap/ship/proc/get_armor_type()
+// 	// Можно настроить для разных кораблей
+// 	return "medium" // По умолчанию средняя броня
 
 

@@ -150,7 +150,7 @@
 	flight_progress = 0
 
 	// Запускаем обработку полета
-	START_PROCESSING(SSovermap, src)
+	START_PROCESSING(SSfastprocess, src)
 
 	// Оповещаем о запуске
 	broadcast_launch_notification()
@@ -229,7 +229,7 @@
 		return
 
 	in_flight = FALSE
-	STOP_PROCESSING(SSovermap, src)
+	STOP_PROCESSING(SSfastprocess, src)
 
 	// Проверяем, жива ли цель
 	if(!target || QDELETED(target))

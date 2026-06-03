@@ -68,13 +68,20 @@
 
 	available_targets.Cut()
 
-	// Ищем все корабли в текущей системе овермапа
-	for(var/datum/overmap/ship/controlled/other_ship in combat_system.ship.current_overmap.controlled_ships)
-		// Пропускаем наш корабль и уничтоженные корабли
-		if(other_ship == combat_system.ship || QDELETED(other_ship))
+	// Отладочная информация
+	message_admins("FIRE_CONTROL DEBUG: ship at [combat_system.ship.x], [combat_system.ship.y], total ships: [SSovermap.controlled_ships.len]")
+	var/list/my_overmap_objects = combat_system.ship.current_overmap.overmap_container[combat_system.ship.x][combat_system.ship.y]
+	message_admins("FIRE_CONTROL DEBUG: objects in my cell: [my_overmap_objects.len]")
+
+	// Ищем все корабли в той же системе (как в examples.dm)
+	for(var/datum/overmap/ship/controlled/other_ship in SSovermap.controlled_ships)
+		// Пропускаем наш корабль, уничтоженные корабли и корабли в другой системе
+		if(other_ship == combat_system.ship || QDELETED(other_ship) || other_ship.destroyed)
+			continue
+		if(other_ship.current_overmap != combat_system.ship.current_overmap)
 			continue
 
-		// Проверяем расстояние
+		// Проверяем расстояние (в тайлах овермапа)
 		var/distance = combat_system.get_overmap_distance(combat_system.ship, other_ship)
 		if(distance <= combat_system.max_target_range)
 			var/list/target_info = list(
@@ -311,7 +318,12 @@
 
 		if("select_target")
 			var/target_ref = params["target"]
-			var/datum/overmap/ship/controlled/target_ship = locate(target_ref) in combat_system.ship.current_overmap.controlled_ships
+			// Ищем цель в той же системе (как в update_available_targets)
+			var/datum/overmap/ship/controlled/target_ship
+			for(var/datum/overmap/ship/controlled/S in SSovermap.controlled_ships)
+				if(REF(S) == target_ref && S.current_overmap == combat_system.ship.current_overmap)
+					target_ship = S
+					break
 			if(target_ship && combat_system.acquire_target(target_ship))
 				selected_target = target_ship
 				playsound(src, 'sound/machines/terminal_prompt.ogg', 50, TRUE)

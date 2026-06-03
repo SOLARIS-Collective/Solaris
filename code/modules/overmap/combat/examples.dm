@@ -15,7 +15,7 @@
 
 /obj/effect/map_helper/ship_setup/frigate_combat/initialize()
 	. = ..()
-	
+
 	// Ищем зону корабля
 	var/area/ship/ship_area = locate() in get_area(src)
 	if(!ship_area || !ship_area.related_ship)
@@ -49,7 +49,7 @@
 
 /obj/effect/map_helper/ship_setup/cruiser_combat/initialize()
 	. = ..()
-	
+
 	var/area/ship/ship_area = locate() in get_area(src)
 	if(!ship_area || !ship_area.related_ship)
 		return
@@ -91,13 +91,13 @@
 		return
 
 	demo_active = TRUE
-	
+
 	// Создаем тестовые корабли
 	create_test_ships()
-	
+
 	// Настраиваем вооружение
 	setup_weapons()
-	
+
 	// Запускаем демонстрацию
 	begin_combat_demo()
 
@@ -132,15 +132,15 @@
 	// Добавляем оружие на игровой корабль
 	var/area/ship_area = get_area(player_ship.shuttle_port)
 	var/turf/weapon_turf = locate(2, 2, ship_area.z)
-	
+
 	if(weapon_turf)
 		// Кинетическая пушка
 		new /obj/machinery/ship_weapon/kinetic(weapon_turf)
-		
+
 		// Лазерная пушка
 		weapon_turf = locate(3, 2, ship_area.z)
 		new /obj/machinery/ship_weapon/laser(weapon_turf)
-		
+
 		// Консоль управления огнем
 		weapon_turf = locate(1, 1, ship_area.z)
 		new /obj/machinery/computer/ship/fire_control(weapon_turf)
@@ -152,7 +152,7 @@
 	// Шаг 1: Захват цели
 	to_chat(world, span_boldnotice("=== ДЕМОНСТРАЦИЯ СИСТЕМЫ БОЯ ==="))
 	to_chat(world, span_info("Шаг 1: Захват цели противника"))
-	
+
 	// Даем время для захвата
 	addtimer(CALLBACK(src, PROC_REF(step2_fire_weapons)), 5 SECONDS)
 
@@ -161,37 +161,37 @@
 		return
 
 	to_chat(world, span_info("Шаг 2: Открытие огня"))
-	
+
 	// Захватываем цель
 	player_ship.combat_system.acquire_target(enemy_ship)
-	
+
 	// Ждем захвата
 	addtimer(CALLBACK(src, PROC_REF(step3_process_hit)), 8 SECONDS)
 
 /datum/combat_demo/proc/step3_process_hit()
 	to_chat(world, span_info("Шаг 3: Обработка попадания"))
-	
+
 	// Имитируем попадание
 	if(enemy_ship)
 		enemy_ship.take_damage(25, BRUTE, player_ship)
-	
+
 	// Показываем урон
 	addtimer(CALLBACK(src, PROC_REF(step4_show_damage)), 3 SECONDS)
 
 /datum/combat_demo/proc/step4_show_damage()
 	to_chat(world, span_info("Шаг 4: Отображение повреждений"))
-	
+
 	if(enemy_ship)
 		to_chat(world, span_info("Здоровье противника: [enemy_ship.hull_health]/[enemy_ship.max_hull_health]"))
 		to_chat(world, span_info("Щиты противника: [enemy_ship.shield_strength]/[enemy_ship.max_shield_strength]"))
-	
+
 	// Завершаем демонстрацию
 	addtimer(CALLBACK(src, PROC_REF(end_demo)), 5 SECONDS)
 
 /datum/combat_demo/proc/end_demo()
 	to_chat(world, span_boldnotice("Демонстрация завершена!"))
 	demo_active = FALSE
-	
+
 	// Очищаем тестовые корабли
 	if(enemy_ship && enemy_ship.current_overmap)
 		enemy_ship.current_overmap.remove_ship(enemy_ship)
@@ -360,7 +360,7 @@
 	to_chat(world, span_userdanger("Пиратский корабль атакует [player_ship.name]!"))
 
 	// Запускаем периодические атаки
-	START_PROCESSING(SSovermap_events, src)
+	START_PROCESSING(SSprocessing, src)
 
 /datum/overmap_event/pirate_attack/process()
 	if(!pirate_ship || pirate_ship.destroyed)
@@ -384,7 +384,7 @@
 
 /datum/overmap_event/pirate_attack/stop()
 	. = ..()
-	STOP_PROCESSING(SSovermap_events, src)
+	STOP_PROCESSING(SSprocessing, src)
 
 	if(pirate_ship && pirate_ship.current_overmap)
 		pirate_ship.current_overmap.remove_ship(pirate_ship)

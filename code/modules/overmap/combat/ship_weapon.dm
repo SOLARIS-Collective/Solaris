@@ -252,7 +252,7 @@
  * Процесс п��резарядки и обслуживания
  * Вызывается каждый тик из системы боя
  */
-/obj/machinery/ship_weapon/proc/process()
+/obj/machinery/ship_weapon/process()
 	// Перезарядка
 	if(current_charge < max_charge)
 		current_charge = min(max_charge, current_charge + recharge_rate)
@@ -268,7 +268,7 @@
  *
  * @param severity - серьезность повреждения (1-100)
  */
-/obj/machinery/ship_weapon/proc/take_damage(severity = 25)
+/obj/machinery/ship_weapon/take_damage(severity = 25)
 	if(damaged)
 		return // Уже повреждено
 
