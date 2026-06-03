@@ -90,6 +90,9 @@
 				"distance" = distance
 			)
 			available_targets += list(target_info)
+			message_admins("FIRE_CONTROL DEBUG: Added target [other_ship.name] at distance [distance], max range: [combat_system.max_target_range]")
+
+	message_admins("FIRE_CONTROL DEBUG: Final available_targets count: [available_targets.len]")
 
 	last_target_scan = world.time
 
