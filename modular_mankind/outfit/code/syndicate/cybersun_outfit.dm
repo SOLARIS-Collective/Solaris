@@ -142,7 +142,7 @@
 	glasses = /obj/item/clothing/glasses/sunglasses
 	backpack_contents = list(
 						/obj/item/stack/telecrystal/five,
-						/obj/item/stack/telecrystal/five
+						/obj/item/stack/telecrystal/five,
 						/obj/item/uplink/old)
 
 /datum/outfit/job/cel/syndicate/miner/cybersunk
