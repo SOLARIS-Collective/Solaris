@@ -199,10 +199,10 @@
 	name = "\improper CM-24"
 	desc = "An obsolete and very rugged assault rifle with a heavy projectile and slow action for its class. Once standard assault rifle of entire humanity, produced in phenomenal numbers for the \"mostly unknown reasons\", if rare, battle rifle. Chambered in 7.62x40mm."
 
-	icon = 'modular_mankind/_storage_icons/icons/resprite/clip_guns/clip_48x32.dmi'
-	lefthand_file = 'modular_mankind/_storage_icons/icons/resprite/clip_guns/clip_lefthand.dmi'
-	righthand_file = 'modular_mankind/_storage_icons/icons/resprite/clip_guns/clip_righthand.dmi'
-	mob_overlay_icon = 'modular_mankind/_storage_icons/icons/resprite/clip_guns/clip_onmob.dmi'
+	icon = 'modular_pentest/master_files/icons/obj/guns/manufacturer/frontier_import/48x32.dmi'
+	lefthand_file = 'modular_pentest/master_files/icons/obj/guns/manufacturer/frontier_import/lefthand.dmi'
+	righthand_file = 'modular_pentest/master_files/icons/obj/guns/manufacturer/frontier_import/righthand.dmi'
+	mob_overlay_icon = 'modular_pentest/master_files/icons/obj/guns/manufacturer/frontier_import/onmob.dmi'
 	icon_state = "cm24"
 	item_state = "cm24"
 	unique_reskin = list(\
