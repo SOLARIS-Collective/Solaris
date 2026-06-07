@@ -64,8 +64,8 @@
 	cost = 700
 	contains = list(/obj/item/ammo_box/a858/empty)
 
-/* 
-	MARK: 5.56x45mm 
+/*
+	MARK: 5.56x45mm
 */
 
 /datum/supply_pack/faction/solfed/magazine/g36_sh
@@ -106,6 +106,12 @@
 	contains = list(/obj/item/ammo_box/magazine/gar/empty)
 	cost = 500
 
+/datum/supply_pack/faction/solfed/magazine/gar_ammo
+	name = "Solarian 'GAR' - upgrade Magazine (FE lance)"
+	desc = "Contains a ferromagnetic lance upgrade magazine for the GAR rifle, with a capacity of 52 rounds."
+	contains = list(/obj/item/ammo_box/upgrade_magazine/gar/empty)
+	cost = 1000
+
 /datum/supply_pack/faction/solfed/magazine/claris_ammo
 	name = "Claris - Speedloader (FE pellet)"
 	desc = "Contains a ferromagnetic pellet speedloader for the Claris rifle, with a capacity of 22 rounds."
@@ -141,3 +147,9 @@
 	desc = "Contains a Solar Federation weapon cell, compatible with gauss weaponry."
 	contains = list(/obj/item/stock_parts/cell/gun/solgov)
 	cost = 500
+
+/datum/supply_pack/faction/solfed/magazine/solgovcell
+	name = "Solar Federation Weapon upgrade Cell"
+	desc = "Contains a Solar Federation weapon upgrade cell, compatible with gauss weaponry."
+	contains = list(/obj/item/stock_parts/upgrade_cell/gun/solgov)
+	cost = 1000
