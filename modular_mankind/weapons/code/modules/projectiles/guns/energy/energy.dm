@@ -316,11 +316,11 @@
 
 /obj/item/stock_parts/cell/gun/solgov
 	icon = 'icons/obj/power.dmi'
-	reskin = FALSE
+	reskin = TRUE
 
 /obj/item/stock_parts/upgrade_cell/gun/solgov
 	icon = 'icons/obj/power.dmi'
-	reskin = FALSE
+	reskin = TRUE
 
 /obj/item/stock_parts/cell/gun/large
 	icon = 'icons/obj/power.dmi'
