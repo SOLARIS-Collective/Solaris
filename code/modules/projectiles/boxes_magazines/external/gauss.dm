@@ -49,7 +49,7 @@
 
 /obj/item/ammo_box/upgrade_magazine/gar/update_icon()
 	. = ..()
-	icon_state = "upgrade-gar-mag-[!!ammo_count()]"
+	icon_state = "upgrade-gar-mag-0"
 
 /obj/item/ammo_box/upgrade_magazine/gar/empty
 	start_empty = TRUE
