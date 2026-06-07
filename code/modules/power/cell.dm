@@ -490,7 +490,7 @@
 /obj/item/stock_parts/upgrade_cell/gun/solgov
 	name = "SolGov upgrade power cell"
 	icon_state = "upgrade-g-sg-cell"
-	maxcharge = 30000
+	maxcharge = 15000
 
 /obj/item/stock_parts/cell/gun/large
 	name = "extra-large weapon power cell"
