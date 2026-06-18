@@ -2,7 +2,7 @@
 /obj/item/stock_parts/cell/gun/solgov
 	name = "SolFed power cell"
 
-/obj/item/stock_parts/upgrade_cell/gun/solgov
+/obj/item/stock_parts/cell/gun/upgrade_cell/solgov
 	name = "SolFed power upgrade cell"
 
 /obj/item/storage/box/ammo/c556mm

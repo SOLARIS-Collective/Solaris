@@ -111,7 +111,7 @@
 	default_cell_type = /obj/item/stock_parts/cell/gun/solgov
 	allowed_cell_types = list(
 		/obj/item/stock_parts/cell/gun/solgov,
-		/obj/item/stock_parts/upgrade_cell/gun/solgov,
+		/obj/item/stock_parts/cell/gun/upgrade_cell/solgov
 	)
 	fire_delay = 0.4 SECONDS
 	bolt_type = BOLT_TYPE_NO_BOLT
@@ -155,7 +155,7 @@
 	default_cell_type = /obj/item/stock_parts/cell/gun/solgov
 	allowed_cell_types = list(
 		/obj/item/stock_parts/cell/gun/solgov,
-		/obj/item/stock_parts/upgrade_cell/gun/solgov,
+		/obj/item/stock_parts/cell/gun/upgrade_cell/solgov
 	)
 	burst_size = 1
 

@@ -151,5 +151,5 @@
 /datum/supply_pack/faction/solfed/magazine/solgovcell
 	name = "Solar Federation Weapon upgrade Cell"
 	desc = "Contains a Solar Federation weapon upgrade cell, compatible with gauss weaponry."
-	contains = list(/obj/item/stock_parts/upgrade_cell/gun/solgov)
+	contains = list(/obj/item/stock_parts/cell/gun/upgrade_cell/solgov)
 	cost = 1000
