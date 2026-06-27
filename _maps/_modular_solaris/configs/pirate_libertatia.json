@@ -40,5 +40,16 @@
 			"outfit": "/datum/outfit/job/cel/pirate/assistant",
 			"slots": 2
 		}
+	},
+	"ship_type": "destroyer",
+	"combat_stats": {
+		"hull_health": 45000,
+		"shield_strength": 12000,
+		"shield_recharge_rate": 5,
+		"armor_value": 35,
+		"armor_type": "medium",
+		"tech_level": 7,
+		"max_target_range": 25,
+		"target_lock_time": 40
 	}
 }

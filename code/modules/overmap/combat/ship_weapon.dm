@@ -163,28 +163,26 @@
  * @return TRUE если можно стрелять, FALSE если нет
  */
 /obj/machinery/ship_weapon/proc/can_fire()
-	if(weapon_state != SHIP_WEAPON_STATE_READY)
+	if(weapon_state != SHIP_WEAPON_STATE_READY && weapon_state != SHIP_WEAPON_STATE_FIRING)
 		return FALSE
 
+	/* [ТЕСТОВЫЙ РЕЖИМ] - Временно отключено для проверки базовой стрельбы
 	if(world.time < next_fire_time)
-		return FALSE
-
-	if(current_charge < power_usage_per_shot)
 		return FALSE
 
 	if(damaged && prob(misfire_chance))
 		return FALSE
 
-	if(!combat_system)
-		message_admins("DEBUG: Weapon [name] has no combat_system")
-		return FALSE
-
-	if(!combat_system.target)
-		return FALSE
-
 	// Проверка расстояния до цели
 	var/distance = combat_system.get_overmap_distance(combat_system.ship, combat_system.target)
 	if(distance > max_range)
+		return FALSE
+	*/
+
+	if(current_charge < power_usage_per_shot)
+		return FALSE
+
+	if(!combat_system || !combat_system.target)
 		return FALSE
 
 	return TRUE

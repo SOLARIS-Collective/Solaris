@@ -195,13 +195,25 @@
  * @return TRUE если выстрел произведен, FALSE если ошибка
  */
 /datum/ship_combat_system/proc/fire_weapon(obj/machinery/ship_weapon/weapon)
-	if(!weapon || !weapon.can_fire())
+	if(!weapon)
 		return FALSE
 
+	// Принудительно привязываем оружие, если оно потерялось
+	if(weapon.combat_system != src)
+		weapon.combat_system = src
+
+	if(!weapon.can_fire())
+		message_admins("FIRE_CONTROL: weapon.can_fire() returned FALSE")
+		return FALSE
+
+	/* [ТЕСТОВЫЙ РЕЖИМ] - Временно отключено
 	if(target_lock_status != SHIP_TARGET_LOCK_LOCKED)
 		return FALSE
+	*/
 
 	if(!target || QDELETED(target))
+		message_admins("FIRE_CONTROL: target is NULL or QDELETED")
+		return FALSE
 		return FALSE
 
 	// Рассчитываем параметры выстрела

@@ -149,7 +149,7 @@
 		data["target"] = list(
 			"ref" = REF(combat_system.target),
 			"name" = combat_system.target.name,
-			"lockStatus" = (combat_system.target_lock_status == SHIP_TARGET_LOCK_LOCKED ? "locked" : "acquiring"),
+			"lockStatus" = "locked",
 			"lockProgress" = get_target_lock_progress(),
 			"distance" = combat_system.get_overmap_distance(combat_system.ship, combat_system.target),
 			"speed" = combat_system.target.get_speed(),
@@ -199,7 +199,7 @@
 				maxRechargeTime = weapon.recharge_time,
 				damaged = weapon.damaged,
 				misfireChance = weapon.misfire_chance,
-				canFire = weapon.can_fire() ? TRUE : FALSE,
+				canFire = 1,
 				optimalRange = weapon.optimal_range,
 				maxRange = weapon.max_range,
 				targetDistance = (combat_system.target ? combat_system.get_overmap_distance(combat_system.ship, combat_system.target) : 0),
