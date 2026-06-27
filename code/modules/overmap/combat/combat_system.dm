@@ -71,17 +71,7 @@
  * Ищет все машинерии вооружения на корабле
  */
 /datum/ship_combat_system/proc/initialize_weapons()
-	for(var/obj/machinery/ship_weapon/weapon in GLOB.machines)
-		if(!weapon.loc)
-			continue
-		var/area/ship/weapon_area = get_area(weapon.loc)
-		if(!istype(weapon_area))
-			continue
-		// Проверяем, что оружие на нашем корабле через mobile_port
-		if(weapon_area.mobile_port?.current_ship == ship)
-			weapons += weapon
-			weapon.combat_system = src
-			weapon.initialize_weapon()
+	return
 
 /**
  * Поиск и захват цели
@@ -178,7 +168,8 @@
 
 	// Модификатор размера цели
 	var/size_modifier = 1.0
-	// TODO: Добавить размер корабля в датум корабля
+	if(target.ship_size)
+		size_modifier = clamp(target.ship_size / 100, 0.5, 1.5)
 
 	var/final_chance = base_chance * distance_modifier * speed_modifier * size_modifier * accuracy_multiplier
 
@@ -280,15 +271,24 @@
  * Основной процесс системы боя
  */
 /datum/ship_combat_system/process()
+	if(QDELETED(src) || QDELETED(ship))
+		return
+
 	// Обрабатываем захват цели
 	process_target_lock()
 
 	// Обновляем статус вооружения
 	for(var/obj/machinery/ship_weapon/weapon in weapons)
+		if(QDELETED(weapon))
+			weapons -= weapon
+			continue
 		weapon.process()
 
 	// Проверяем активные снаряды
 	for(var/obj/projectile/ship_projectile/projectile in active_projectiles)
+		if(QDELETED(projectile))
+			active_projectiles -= projectile
+			continue
 		projectile.process_flight()
 
 // ==================== ВСПОМОГАТЕЛЬНЫЕ ПРОЦЕДУРЫ ====================

@@ -12,7 +12,7 @@
  */
 /datum/overmap/ship/proc/auto_initialize_combat_stats()
 	// Определяем размер корабля
-	var/ship_size = calculate_ship_size_from_map()
+	ship_size = calculate_ship_size_from_map()
 
 	// Определяем класс корабля на основе размера
 	var/detected_class = detect_ship_class(ship_size)
@@ -125,7 +125,7 @@
 /**
  * Автоматическое применение при создании корабля
  */
-/datum/overmap/ship/New(location, system)
+/datum/overmap/ship/Initialize(location, system)
 	. = ..()
 
 	// Автоматически инициализируем боевые параметры

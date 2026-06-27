@@ -101,6 +101,8 @@
  * Поиск и привязка к системе боя корабля
  */
 /obj/machinery/ship_weapon/proc/find_combat_system()
+	if(QDELETED(src))
+		return
 	var/area/ship/ship_area = get_area(src)
 	if(!istype(ship_area))
 		return
@@ -108,7 +110,7 @@
 		var/datum/ship_combat_system/CS = get_ship_combat_system(ship_area.mobile_port.current_ship)
 		if(CS)
 			combat_system = CS
-			CS.weapons += src
+			CS.weapons |= src
 			initialize_weapon()
 
 /**

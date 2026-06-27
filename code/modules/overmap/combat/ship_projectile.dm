@@ -183,7 +183,11 @@
  * Вызывается каждый тик
  */
 /obj/projectile/ship_projectile/proc/process_flight()
-	if(!in_flight)
+	if(!in_flight || QDELETED(src))
+		return
+
+	if(QDELETED(firer_ship) || QDELETED(target))
+		miss()
 		return
 
 	if(world.time >= flight_timer)
@@ -206,7 +210,7 @@
  * Обновление позиции снаряда на овермапе
  */
 /obj/projectile/ship_projectile/proc/update_position()
-	if(!target || QDELETED(target))
+	if(QDELETED(target) || QDELETED(firer_ship))
 		return
 
 	// Линейная интерполяция между стартовой позицией и текущей позицией цели

@@ -41,6 +41,9 @@
 	/// Тип корабля
 	var/ship_type = SHIP_TYPE_FRIGATE
 
+	/// Размер корабля в тайлах
+	var/ship_size = 50
+
 	/// Боевой статус корабля
 	var/combat_status = SHIP_COMBAT_STATUS_PEACEFUL
 
@@ -77,7 +80,7 @@
 	/// Причина уничтожения
 	var/destruction_cause = ""
 
-/datum/overmap/ship/New(location, system)
+/datum/overmap/ship/Initialize(location, system)
 	. = ..()
 	// Инициализация системы повреждений
 	initialize_system_damage()
@@ -134,7 +137,7 @@
 		var/shield_damage = actual_damage
 		if(weapon && weapon.shield_damage_multiplier)
 			shield_damage = actual_damage * weapon.shield_damage_multiplier
-		
+
 		damage_blocked = min(shield_strength, shield_damage * 0.7) // Щиты блокируют 70% урона
 		shield_strength -= damage_blocked
 		actual_damage -= damage_blocked / (weapon?.shield_damage_multiplier || 1.0)
@@ -151,7 +154,7 @@
 		// Учитываем пробитие брони, если оружие его имеет
 		if(weapon && weapon.armor_penetration)
 			effective_armor = max(0, armor_value - weapon.armor_penetration)
-		
+
 		var/armor_reduction = actual_damage * (effective_armor / 100)
 		actual_damage -= armor_reduction
 

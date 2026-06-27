@@ -64,7 +64,7 @@ examples.dm               # Примеры использования
 
 ### 2.2. Добавьте инициализацию в New()
 ```dm
-/datum/overmap/ship/New(location, system)
+/datum/overmap/ship/Initialize(location, system)
     . = ..()
     // Инициализация системы повреждений
     initialize_system_damage()
