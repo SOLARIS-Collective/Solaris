@@ -71,7 +71,20 @@
  * Ищет все машинерии вооружения на корабле
  */
 /datum/ship_combat_system/proc/initialize_weapons()
-	return
+	weapons.Cut()
+	var/datum/overmap/ship/controlled/our_ship = ship
+	if(!our_ship || !our_ship.shuttle_port)
+		return
+
+	var/obj/docking_port/mobile/our_port = our_ship.shuttle_port
+
+	for(var/obj/machinery/ship_weapon/W in GLOB.machines)
+		if(QDELETED(W) || !W.loc)
+			continue
+		var/area/ship/A = get_area(W)
+		if(istype(A) && A.mobile_port == our_port)
+			weapons |= W
+			W.combat_system = src
 
 /**
  * Поиск и захват цели
@@ -93,7 +106,7 @@
 		return TRUE // Цель уже захвачена
 
 	target = target_ref
-	target_lock_status = SHIP_TARGET_LOCK_ACQUIRING
+	target_lock_status = SHIP_TARGET_LOCK_LOCKED
 	target_lock_start_time = world.time
 
 	return TRUE

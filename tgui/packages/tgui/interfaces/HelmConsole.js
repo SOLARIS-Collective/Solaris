@@ -103,7 +103,7 @@ const SharedContent = (_props, context) => {
                     tooltipPosition="right"
                     icon="arrow-left"
                     // [MANKIND-ADD] - subshuttle fix
-                    disabled={data.issubshuttle != null}
+                    disabled={data.issubshuttle !== null}
                     // [/MANKIND-ADD] - subshuttle fix
                     onClick={() => act('sensor_decrease')}
                   />
@@ -114,7 +114,7 @@ const SharedContent = (_props, context) => {
                     tooltipPosition="right"
                     icon="arrow-right"
                     // [MANKIND-ADD] - subshuttle fix
-                    disabled={data.issubshuttle != null}
+                    disabled={data.issubshuttle !== null}
                     // [/MANKIND-ADD] - subshuttle fix
                     onClick={() => act('sensor_increase')}
                   />
@@ -420,7 +420,7 @@ const ShipControlContent = (_props, context) => {
             icon="sign-out-alt"
             // [MANKIND-EDIT] - subshuttles fix
             disabled={
-              !data.docked || data.docking || data.motheroutpost != null
+              !data.docked || data.docking || data.motheroutpost !== null
             }
             // [/MANKIND-EDIT] - subshuttles fix
             onClick={() => act('undock')}

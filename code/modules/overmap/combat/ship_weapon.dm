@@ -103,9 +103,11 @@
 /obj/machinery/ship_weapon/proc/find_combat_system()
 	if(QDELETED(src))
 		return
+
 	var/area/ship/ship_area = get_area(src)
 	if(!istype(ship_area))
 		return
+
 	if(ship_area.mobile_port?.current_ship)
 		var/datum/ship_combat_system/CS = get_ship_combat_system(ship_area.mobile_port.current_ship)
 		if(CS)
@@ -173,7 +175,11 @@
 	if(damaged && prob(misfire_chance))
 		return FALSE
 
-	if(!combat_system || !combat_system.target)
+	if(!combat_system)
+		message_admins("DEBUG: Weapon [name] has no combat_system")
+		return FALSE
+
+	if(!combat_system.target)
 		return FALSE
 
 	// Проверка расстояния до цели

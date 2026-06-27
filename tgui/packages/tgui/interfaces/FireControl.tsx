@@ -1,6 +1,7 @@
 import { useBackend } from '../backend';
-import { Box, Button, LabeledList, ProgressBar, Section, Stack, Table, Tabs } from '../components';
+import { Box, Button, LabeledList, ProgressBar, Section, Stack, Table } from '../components';
 import { Window } from '../layouts';
+
 
 interface WeaponData {
   ref: string;
@@ -112,24 +113,32 @@ export const FireControl = (props, context) => {
 
   return (
     <Window width={1000} height={800}>
-      <Window.Content>
-        <Stack fill>
-          <Stack.Item grow={1}>
-            <ShipStatusSection />
+      <Window.Content scrollable>
+        <Stack vertical fill>
+          <Stack.Item>
+            <Stack fill>
+              <Stack.Item grow={1}>
+                <ShipStatusSection />
+              </Stack.Item>
+              <Stack.Item grow={2}>
+                <TargetSection />
+              </Stack.Item>
+            </Stack>
           </Stack.Item>
-          <Stack.Item grow={2}>
-            <TargetSection />
+          <Stack.Item grow={1}>
+            <Stack fill>
+              <Stack.Item grow={1}>
+                <WeaponsSection />
+              </Stack.Item>
+              <Stack.Item grow={1}>
+                <ProjectilesSection />
+              </Stack.Item>
+            </Stack>
+          </Stack.Item>
+          <Stack.Item>
+            <CombatStatsSection />
           </Stack.Item>
         </Stack>
-        <Stack fill>
-          <Stack.Item grow={1}>
-            <WeaponsSection />
-          </Stack.Item>
-          <Stack.Item grow={1}>
-            <ProjectilesSection />
-          </Stack.Item>
-        </Stack>
-        <CombatStatsSection />
       </Window.Content>
     </Window>
   );
@@ -218,13 +227,26 @@ const TargetSection = (props, context) => {
     <Section
       title="Управление целью"
       buttons={
-        <Button
-          icon="sync"
-          onClick={() => act('update_targets')}
-          tooltip="Обновить список целей"
-        >
-          Обновить
-        </Button>
+        <Stack>
+          <Stack.Item>
+            <Button
+              icon="mouse-pointer"
+              onClick={() => act('select_target_manual')}
+              tooltip="Выбрать цель из списка вручную"
+            >
+              Выбрать вручную
+            </Button>
+          </Stack.Item>
+          <Stack.Item>
+            <Button
+              icon="sync"
+              onClick={() => act('update_targets')}
+              tooltip="Обновить список целей"
+            >
+              Обновить
+            </Button>
+          </Stack.Item>
+        </Stack>
       }
     >
       <Stack fill>
@@ -233,6 +255,9 @@ const TargetSection = (props, context) => {
         </Stack.Item>
         <Stack.Item grow={1}>
           <Section title="Доступные цели" scrollable fill>
+            <Box mb={1} fontFamily="monospace" fontSize="10px">
+              RAW: {JSON.stringify(data.availableTargets)}
+            </Box>
             <Table>
               <Table.Row header>
                 <Table.Cell>Название</Table.Cell>
@@ -240,7 +265,7 @@ const TargetSection = (props, context) => {
                 <Table.Cell>Тип</Table.Cell>
                 <Table.Cell>Действие</Table.Cell>
               </Table.Row>
-              {data.availableTargets.map((target) => (
+              {data.availableTargets && data.availableTargets.map((target) => (
                 <Table.Row key={target.ref}>
                   <Table.Cell>{target.name}</Table.Cell>
                   <Table.Cell>{target.distance.toFixed(1)}</Table.Cell>
@@ -269,7 +294,7 @@ const WeaponsSection = (props, context) => {
 
   const renderWeapon = (weapon: WeaponData) => {
     const canFire = weapon.canFire && data.target?.lockStatus === 'locked';
-    const isDamaged = weapon.damaged;
+    const isDamaged = !!weapon.damaged;
 
     return (
       <Section
@@ -332,12 +357,12 @@ const WeaponsSection = (props, context) => {
               {Math.round(weapon.rechargeTime / 10)}с
             </ProgressBar>
           </LabeledList.Item>
-          {weapon.damaged && (
+          {!!weapon.damaged && (
             <LabeledList.Item label="Шанс осечки">
               <Box color="bad">{weapon.misfireChance}%</Box>
             </LabeledList.Item>
           )}
-          {data.target && (
+          {!!data.target && (
             <>
               <LabeledList.Item label="Расстояние до цели">
                 {weapon.targetDistance.toFixed(1)} тайлов
@@ -361,8 +386,21 @@ const WeaponsSection = (props, context) => {
   };
 
   return (
-    <Section title="Вооружение" scrollable fill>
-      {data.weapons.length === 0 ? (
+    <Section
+      title="Вооружение"
+      scrollable
+      fill
+      buttons={
+        <Button
+          icon="sync"
+          onClick={() => act('refresh_weapons')}
+          tooltip="Обновить список вооружения на корабле"
+        >
+          Обновить
+        </Button>
+      }
+    >
+      {!data.weapons || data.weapons.length === 0 ? (
         <Box color="average" textAlign="center">
           Вооружение не обнаружено
         </Box>
@@ -394,7 +432,7 @@ const ProjectilesSection = (props, context) => {
 
   return (
     <Section title="Активные снаряды" scrollable fill>
-      {data.activeProjectiles.length === 0 ? (
+      {(!data.activeProjectiles || data.activeProjectiles.length === 0) ? (
         <Box color="average" textAlign="center">
           Нет активных снарядов
         </Box>
@@ -407,7 +445,7 @@ const ProjectilesSection = (props, context) => {
             <Table.Cell>Время до попадания</Table.Cell>
             <Table.Cell>Шанс попадания</Table.Cell>
           </Table.Row>
-          {data.activeProjectiles.map(renderProjectile)}
+          {data.activeProjectiles.map((projectile) => renderProjectile(projectile))}
         </Table>
       )}
     </Section>

@@ -49,9 +49,13 @@
  * Поиск и привязка к системе боя корабля
  */
 /obj/machinery/computer/ship/fire_control/proc/find_combat_system()
+	if(QDELETED(src))
+		return
+
 	var/area/ship/ship_area = get_area(src)
 	if(!istype(ship_area))
 		return
+
 	if(ship_area.mobile_port?.current_ship)
 		var/datum/ship_combat_system/CS = get_ship_combat_system(ship_area.mobile_port.current_ship)
 		if(CS)
@@ -66,33 +70,25 @@
 	if(!combat_system || !combat_system.ship || !combat_system.ship.current_overmap)
 		return
 
-	available_targets.Cut()
+	available_targets = list()
 
-	// Отладочная информация
-	message_admins("FIRE_CONTROL DEBUG: ship at [combat_system.ship.x], [combat_system.ship.y], total ships: [SSovermap.controlled_ships.len]")
-	var/list/my_overmap_objects = combat_system.ship.current_overmap.overmap_container[combat_system.ship.x][combat_system.ship.y]
-	message_admins("FIRE_CONTROL DEBUG: objects in my cell: [my_overmap_objects.len]")
-
-	// Ищем все корабли в той же системе (как в examples.dm)
 	for(var/datum/overmap/ship/controlled/other_ship in SSovermap.controlled_ships)
-		// Пропускаем наш корабль, уничтоженные корабли и корабли в другой системе
 		if(other_ship == combat_system.ship || QDELETED(other_ship) || other_ship.destroyed)
 			continue
 		if(other_ship.current_overmap != combat_system.ship.current_overmap)
 			continue
 
-		// Проверяем расстояние (в тайлах овермапа)
 		var/distance = combat_system.get_overmap_distance(combat_system.ship, other_ship)
 		if(distance <= combat_system.max_target_range)
 			var/list/target_info = list(
-				"ref" = REF(other_ship),
-				"name" = other_ship.name,
-				"distance" = distance
+				ref = REF(other_ship),
+				name = other_ship.name,
+				distance = distance,
+				type = other_ship.ship_type || "Неизвестно",
+				speed = other_ship.get_speed(),
+				heading = dir2text(other_ship.get_heading())
 			)
 			available_targets += list(target_info)
-			message_admins("FIRE_CONTROL DEBUG: Added target [other_ship.name] at distance [distance], max range: [combat_system.max_target_range]")
-
-	message_admins("FIRE_CONTROL DEBUG: Final available_targets count: [available_targets.len]")
 
 	last_target_scan = world.time
 
@@ -113,18 +109,18 @@
 		data["shipName"] = combat_system.ship.name
 		data["shipSpeed"] = combat_system.ship.get_speed()
 		data["shipHeading"] = dir2text(combat_system.ship.get_heading())
-		
+
 		// Информация об отсеках корабля
 		var/datum/overmap/ship/ship = combat_system.ship
 		if(ship.compartments && length(ship.compartments) > 0)
 			data["compartmentsCount"] = length(ship.compartments)
-			
+
 			// Рассчитываем общее состояние отсеков
 			var/total_health = 0
 			var/total_max_health = 0
 			var/damaged_count = 0
 			var/destroyed_count = 0
-			
+
 			for(var/datum/ship_compartment/compartment in ship.compartments)
 				total_health += compartment.health
 				total_max_health += compartment.max_health
@@ -132,27 +128,28 @@
 					damaged_count++
 				if(compartment.destroyed)
 					destroyed_count++
-			
+
 			var/overall_health = total_max_health > 0 ? round((total_health / total_max_health) * 100) : 0
 			data["compartmentsHealth"] = overall_health
 			data["compartmentsDamaged"] = damaged_count
 			data["compartmentsDestroyed"] = destroyed_count
-			
+
 			// Информация о критических отсеках
 			var/list/critical_compartments = list()
 			for(var/datum/ship_compartment/compartment in ship.compartments)
 				if(compartment.health < compartment.max_health * 0.5) // Менее 50% здоровья
 					critical_compartments += compartment.name
-			
+
 			if(length(critical_compartments) > 0)
 				data["criticalCompartments"] = jointext(critical_compartments, ", ")
 
 	// Информация о цели
 	if(combat_system && combat_system.target)
+		message_admins("FIRE_CONTROL: Target [combat_system.target.name] status: [combat_system.target_lock_status]")
 		data["target"] = list(
 			"ref" = REF(combat_system.target),
 			"name" = combat_system.target.name,
-			"lockStatus" = combat_system.target_lock_status,
+			"lockStatus" = (combat_system.target_lock_status == SHIP_TARGET_LOCK_LOCKED ? "locked" : "acquiring"),
 			"lockProgress" = get_target_lock_progress(),
 			"distance" = combat_system.get_overmap_distance(combat_system.ship, combat_system.target),
 			"speed" = combat_system.target.get_speed(),
@@ -162,27 +159,69 @@
 		data["target"] = null
 
 	// Список доступных целей
-	data["availableTargets"] = available_targets
+	var/list/targets_list = list()
+	if(combat_system && combat_system.ship && combat_system.ship.current_overmap)
+		for(var/datum/overmap/ship/controlled/other_ship in SSovermap.controlled_ships)
+			if(other_ship == combat_system.ship || QDELETED(other_ship) || other_ship.destroyed)
+				continue
+			if(other_ship.current_overmap != combat_system.ship.current_overmap)
+				continue
+
+			var/distance = combat_system.get_overmap_distance(combat_system.ship, other_ship)
+			if(distance <= combat_system.max_target_range)
+				var/list/target_info = list(
+					ref = REF(other_ship),
+					name = other_ship.name,
+					distance = distance,
+					type = other_ship.ship_type || "Неизвестно",
+					speed = other_ship.get_speed(),
+					heading = dir2text(other_ship.get_heading())
+				)
+				targets_list[++targets_list.len] = target_info
+	data["availableTargets"] = targets_list
 
 	// Список вооружения
-	data["weapons"] = list()
+	var/list/weapons_list = list()
 	if(combat_system)
 		for(var/obj/machinery/ship_weapon/weapon in combat_system.weapons)
-			data["weapons"] += list(weapon.get_ui_data())
+			if(QDELETED(weapon))
+				continue
+			var/list/W = list(
+				ref = REF(weapon),
+				name = weapon.name,
+				type = weapon.weapon_type,
+				state = weapon.weapon_state,
+				damage = weapon.damage,
+				accuracy = weapon.base_accuracy,
+				charge = weapon.current_charge,
+				maxCharge = weapon.max_charge,
+				rechargeTime = max(0, weapon.next_fire_time - world.time),
+				maxRechargeTime = weapon.recharge_time,
+				damaged = weapon.damaged,
+				misfireChance = weapon.misfire_chance,
+				canFire = weapon.can_fire() ? TRUE : FALSE,
+				optimalRange = weapon.optimal_range,
+				maxRange = weapon.max_range,
+				targetDistance = (combat_system.target ? combat_system.get_overmap_distance(combat_system.ship, combat_system.target) : 0),
+				inRange = (combat_system.target ? (combat_system.get_overmap_distance(combat_system.ship, combat_system.target) <= weapon.max_range) : FALSE)
+			)
+			weapons_list += list(W)
+	data["weapons"] = weapons_list
 
 	// Активные снаряды
-	data["activeProjectiles"] = list()
+	var/list/projectiles_list = list()
 	if(combat_system)
 		for(var/obj/projectile/ship_projectile/projectile in combat_system.active_projectiles)
-			var/list/proj_data = list(
-				"ref" = REF(projectile),
-				"weapon" = projectile.weapon?.name || "Неизвестно",
-				"target" = projectile.target?.name || "Неизвестно",
-				"flightProgress" = projectile.flight_progress * 100,
-				"timeRemaining" = max(0, projectile.flight_timer - world.time),
-				"hitChance" = projectile.hit_chance
+			var/list/P = list(
+				ref = REF(projectile),
+				weapon = projectile.weapon?.name || "Неизвестно",
+				target = projectile.target?.name || "Неизвестно",
+				flightProgress = projectile.flight_progress * 100,
+				timeRemaining = max(0, projectile.flight_timer - world.time),
+				hitChance = projectile.hit_chance
 			)
-			data["activeProjectiles"] += list(proj_data)
+			projectiles_list += list(P)
+	data["activeProjectiles"] = projectiles_list
 
 	// Статистика боя
 	data["combatStats"] = list(
@@ -300,11 +339,13 @@
 /obj/machinery/computer/ship/fire_control/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "FireControl", name)
+		ui = new(user, src, "FireControl", "СУО v2.1 [DEBUG]")
 		ui.open()
 
 /obj/machinery/computer/ship/fire_control/ui_data(mob/user)
-	return get_ui_data()
+	var/list/data = get_ui_data()
+	to_chat(user, span_notice("DEBUG: Sending [length(data["weapons"])] weapons and [length(data["availableTargets"])] targets"))
+	return data
 
 /obj/machinery/computer/ship/fire_control/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
@@ -345,6 +386,7 @@
 		if("fire_weapon")
 			var/weapon_ref = params["weapon"]
 			var/obj/machinery/ship_weapon/weapon = locate(weapon_ref) in combat_system?.weapons
+			message_admins("FIRE_CONTROL: Attempting to fire weapon [weapon_ref]. Found: [weapon ? weapon.name : "NULL"]")
 			if(weapon && combat_system.fire_weapon(weapon))
 				playsound(src, 'sound/machines/terminal_prompt.ogg', 50, TRUE)
 				say("[weapon.name] открыл огонь!")
@@ -367,6 +409,37 @@
 			playsound(src, 'sound/machines/terminal_prompt.ogg', 50, TRUE)
 			. = TRUE
 
+		if("select_target_manual")
+			var/list/targets = list()
+			for(var/datum/overmap/ship/controlled/S in SSovermap.controlled_ships)
+				if(S == combat_system.ship || QDELETED(S) || S.destroyed)
+					continue
+				if(S.current_overmap != combat_system.ship.current_overmap)
+					continue
+				var/distance = combat_system.get_overmap_distance(combat_system.ship, S)
+				if(distance <= combat_system.max_target_range)
+					targets[S.name] = S
+
+			if(!length(targets))
+				to_chat(usr, span_warning("Цели не обнаружены."))
+				return
+
+			var/selected = tgui_input_list(usr, "Выберите цель для захвата", "СУО", targets)
+			if(selected && targets[selected])
+				var/datum/overmap/ship/target_ship = targets[selected]
+				if(combat_system.acquire_target(target_ship))
+					selected_target = target_ship
+					playsound(src, 'sound/machines/terminal_prompt.ogg', 50, TRUE)
+					say("Захват цели: [target_ship.name]")
+			. = TRUE
+
+		if("refresh_weapons")
+			if(combat_system)
+				combat_system.initialize_weapons()
+				playsound(src, 'sound/machines/terminal_prompt.ogg', 50, TRUE)
+				say("Список вооружения обновлен.")
+			. = TRUE
+
 	// Обновляем интерфейс после действий
 	if(.)
 		updateUsrDialog()
@@ -378,6 +451,18 @@
 	if(!combat_system)
 		return UI_CLOSE
 	return ..()
+
+/obj/machinery/computer/ship/fire_control/proc/get_lock_status_text(status)
+	switch(status)
+		if(SHIP_TARGET_LOCK_NONE)
+			return "none"
+		if(SHIP_TARGET_LOCK_ACQUIRING)
+			return "acquiring"
+		if(SHIP_TARGET_LOCK_LOCKED)
+			return "locked"
+		if(SHIP_TARGET_LOCK_LOST)
+			return "lost"
+	return "none"
 
 // ==================== ПЛАШКА И ЦИФРОВАЯ ПЛАТА ====================
 
@@ -395,7 +480,7 @@
 	desc = "Отображает состояние всех отсеков корабля и их уязвимости."
 	icon_screen = "engine"
 	icon_keyboard = "tech_key"
-	
+
 	/// Ссылка на корабль
 	var/datum/overmap/ship/controlled/linked_ship
 
@@ -415,7 +500,7 @@
 	var/area/ship/ship_area = get_area(src)
 	if(!istype(ship_area))
 		return
-	
+
 	if(ship_area.mobile_port)
 		linked_ship = ship_area.mobile_port.current_ship
 
@@ -424,22 +509,22 @@
  */
 /obj/machinery/computer/ship/compartments_monitor/proc/get_ui_data()
 	var/list/data = list()
-	
+
 	data["active"] = !!linked_ship
-	
+
 	if(linked_ship)
 		data["shipName"] = linked_ship.name
 		data["shipType"] = linked_ship.ship_type
 		data["shipSize"] = linked_ship.calculate_ship_size()
-		
+
 		// Информация об отсеках
 		if(linked_ship.compartments && length(linked_ship.compartments) > 0)
 			data["compartments"] = list()
-			
+
 			for(var/i = 1 to length(linked_ship.compartments))
 				var/datum/ship_compartment/compartment = linked_ship.compartments[i]
 				var/health_percent = round((compartment.health / compartment.max_health) * 100)
-				
+
 				var/list/compartment_data = list(
 					"id" = i,
 					"name" = compartment.name,
@@ -450,11 +535,11 @@
 					"destroyed" = compartment.destroyed,
 					"status" = compartment.destroyed ? "destroyed" : compartment.damaged ? "damaged" : health_percent > 70 ? "good" : health_percent > 30 ? "warning" : "critical"
 				)
-				
+
 				data["compartments"] += list(compartment_data)
-			
+
 			data["totalCompartments"] = length(linked_ship.compartments)
-			
+
 			// Статистика
 			var/total_health = 0
 			var/total_max_health = 0
@@ -462,7 +547,7 @@
 			var/destroyed_count = 0
 			var/high_fire_risk = 0
 			var/high_breach_risk = 0
-			
+
 			for(var/datum/ship_compartment/compartment in linked_ship.compartments)
 				total_health += compartment.health
 				total_max_health += compartment.max_health
@@ -474,14 +559,14 @@
 					high_fire_risk++
 				if(compartment.breach_risk >= 15)
 					high_breach_risk++
-			
+
 			var/overall_health = total_max_health > 0 ? round((total_health / total_max_health) * 100) : 0
 			data["overallHealth"] = overall_health
 			data["damagedCount"] = damaged_count
 			data["destroyedCount"] = destroyed_count
 			data["highFireRisk"] = high_fire_risk
 			data["highBreachRisk"] = high_breach_risk
-	
+
 	return data
 
 // ==================== TGUI ИНТЕРФЕЙС ====================
@@ -499,7 +584,7 @@
 	. = ..()
 	if(.)
 		return
-	
+
 	switch(action)
 		if("refresh")
 			find_ship()
