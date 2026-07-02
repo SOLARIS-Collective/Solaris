@@ -214,7 +214,6 @@
 	if(!target || QDELETED(target))
 		message_admins("FIRE_CONTROL: target is NULL or QDELETED")
 		return FALSE
-		return FALSE
 
 	// Рассчитываем параметры выстрела
 	var/flight_time = calculate_flight_time(weapon)
