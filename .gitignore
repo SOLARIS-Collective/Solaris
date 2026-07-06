@@ -202,6 +202,3 @@ check_regex_output.txt
 
 # Autowiki
 /tools/autowiki/node_modules
-
-# Private
-/code/__DEFINES/~modular_solaris/private_config_solaris.dm

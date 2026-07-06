@@ -11,10 +11,12 @@
 
 // --- PRIVATE --- //
 
-#if fexists("_private/__private.dme") && !defined(PRIVATE_CONFIG_ENABLED)
+// #define OMNI_ACCESS // Требуется ОМНИ доступ
+
+#ifdef OMNI_ACCESS
 	#include "_private/__private.dme"
 #else
-	#include "_public/__public.dme"
+	#include "_public/__public.dm"
 #endif
 
 // --- ICONS --- //
