@@ -11,10 +11,10 @@
 
 // --- PRIVATE --- //
 
-#if fexists("../+secret/__secret.dme") && !defined(DISABLE_SECRETS)
-#include "../+secret/__secret.dme"
+#if fexists("modular_solaris/_private/__private.dme") && !defined(DISABLE_SECRETS)
+	#include "modular_solaris/_private/__private.dme"
 #else
-#include "_private/__public.dme"
+	#include "_private/__public.dme"
 #endif
 
 // --- ICONS --- //

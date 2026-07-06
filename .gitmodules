@@ -1,3 +1,3 @@
-[submodule "modular_solaris/modular_solaris/_private"]
-	path = modular_solaris/modular_solaris/_private
+[submodule "modular_solaris/_private"]
+	path = modular_solaris/_private
 	url = https://github.com/SOLARIS-Collective/Solaris_Private.git
