@@ -15,7 +15,7 @@ $purple: #463191;
 
 $light-gray: #c3c3c3;
 $dark-gray: #858585;
-$scrollbar-color-multiplier: 0.5;
+
 
 @use '../colors.scss' with (
   $primary: black,
@@ -89,36 +89,20 @@ $scrollbar-color-multiplier: 0.5;
   }
   .Layout,
   .Layout * {
-    // Fancy scrollbar
-    scrollbar-base-color: color.scale(
-      #454255,
-      $lightness: -25% * $scrollbar-color-multiplier
-    );
-    scrollbar-face-color: color.scale(
-      #454255,
-      $lightness: 10% * $scrollbar-color-multiplier
-    );
+    scrollbar-color: rgba(0, 0, 0, 0.35) rgba(0, 0, 0, 0.1);
+    scrollbar-width: thin;
 
-    scrollbar-3dlight-color: color.scale(
-      orange,
-      $lightness: 0% * $scrollbar-color-multiplier
-    );
-    scrollbar-highlight-color: color.scale(
-      orange,
-      $lightness: 0% * $scrollbar-color-multiplier
-    );
-    scrollbar-track-color: color.scale(
-      #ba753a,
-      $lightness: -25% * $scrollbar-color-multiplier
-    );
-    scrollbar-arrow-color: color.scale(
-      orange,
-      $lightness: 50% * $scrollbar-color-multiplier
-    );
-    scrollbar-shadow-color: color.scale(
-      #454255,
-      $lightness: 10% * $scrollbar-color-multiplier
-    );
+    &::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: rgba(0, 0, 0, 0.35);
+      border-radius: 3px;
+    }
+    &::-webkit-scrollbar-track {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
   }
   .Tab {
     color: rgb(255, 132, 153);

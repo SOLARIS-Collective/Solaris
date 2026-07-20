@@ -7,16 +7,24 @@ body {
 	overflow-y: auto;
 }
 
-body.dark {
+	body.dark {
 	background-color: #131313;
 	color: #b2c4dd;
-	scrollbar-base-color: #1c1c1c;
-	scrollbar-face-color: #3b3b3b;
-	scrollbar-3dlight-color: #252525;
-	scrollbar-highlight-color: #252525;
-	scrollbar-track-color: #1c1c1c;
-	scrollbar-arrow-color: #929292;
-	scrollbar-shadow-color: #3b3b3b;
+	scrollbar-color: rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.06);
+	scrollbar-width: thin;
+}
+
+body.dark::-webkit-scrollbar {
+	width: 6px;
+}
+
+body.dark::-webkit-scrollbar-thumb {
+	background-color: rgba(255, 255, 255, 0.25);
+	border-radius: 3px;
+}
+
+body.dark::-webkit-scrollbar-track {
+	background-color: rgba(255, 255, 255, 0.06);
 }
 
 #menu {
