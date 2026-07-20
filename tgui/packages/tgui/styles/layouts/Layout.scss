@@ -6,7 +6,7 @@
 @use 'sass:color';
 @use '../base.scss';
 
-$scrollbar-color-multiplier: 1 !default;
+$scrollbar-color-multiplier: 0.1 !default;
 
 .Layout,
 .Layout * {
@@ -52,6 +52,6 @@ $scrollbar-color-multiplier: 1 !default;
 }
 
 .Layout__content--scrollable {
-  overflow-y: scroll;
+  overflow-y: auto;
   margin-bottom: 0;
 }
