@@ -86,7 +86,7 @@ $background-color: base.$color-bg !default;
   align-content: flex-start;
   max-height: 20rem;
   overflow: auto;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .Dialog__FileEntry {

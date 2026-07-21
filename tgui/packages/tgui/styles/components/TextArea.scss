@@ -38,7 +38,7 @@ $border-radius: Input.$border-radius !default;
 .TextArea__textarea.TextArea__textarea--scrollable {
   overflow: auto;
   overflow-x: hidden;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .TextArea__textarea {
