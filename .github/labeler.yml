@@ -2,12 +2,6 @@
   - any-glob-to-any-file:
     - 'code/modules/admin/**'
 
-# Any file within the config subfolder
-'🔮 Конфиги':
-- changed-files:
-  - any-glob-to-any-file:
-    - 'config/**'
-
 '📌 Зависимости':
 - changed-files:
   - any-glob-to-any-file:
@@ -88,12 +82,6 @@
   - any-glob-to-any-file:
     - 'tgui/**'
 
-# Changes to the .Github subfolder
-'🏭 Github':
-- changed-files:
-  - any-glob-to-any-file:
-    - '.github/**'
-
 # Any changes if not in modulare folder
 '🪓 ТРОГАЛИ CORE-CODE':
 - changed-files:
@@ -110,12 +98,6 @@
   - any-glob-to-any-file:
     - 'config/**/*'
     - 'config/example/**/*'
-
-# Changes to a .dm or anything in the code subfolder
-'🧱 Код':
-- changed-files:
-  - any-glob-to-any-file:
-    - '**/*.dm'
 
 # Changes to the .Github subfolder
 '🏭 Github':
@@ -138,3 +120,21 @@
     - 'LICENSE'
     - 'README.md'
     - 'SpacemanDMM.toml'
+
+'SOL':
+- changed-files:
+  - any-glob-to-any-file:
+    - 'modular_solaris/*'
+    - 'code/__DEFINES/~modular_solaris/*'
+
+'PEN':
+- changed-files:
+  - any-glob-to-any-file:
+    - 'modular_pentest/*'
+    - 'code/~PENTEST/*'
+
+'MND':
+- changed-files:
+  - any-glob-to-any-file:
+    - 'modular_mankind/*'
+    - 'code/__DEFINES/~modular_mankind/*'
