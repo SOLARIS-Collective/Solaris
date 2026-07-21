@@ -205,3 +205,6 @@ check_regex_output.txt
 
 # Private
 /code/__DEFINES/~modular_solaris/private_config_solaris.dm
+
+# Sevices
+/.kodik/*
