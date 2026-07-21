@@ -97,6 +97,9 @@ $dark-gray: #858585;
       background-color: rgba(0, 0, 0, 0.35);
       border-radius: 3px;
     }
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: rgba(0, 0, 0, 0.35);
+    }
     &::-webkit-scrollbar-track {
       background-color: rgba(0, 0, 0, 0.1);
     }
