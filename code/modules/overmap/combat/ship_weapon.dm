@@ -55,10 +55,10 @@
 	var/next_fire_time = 0
 
 	/// Текущий заряд (для энергетического оружия)
-	var/current_charge = 100
+	var/current_charge = 1000
 
 	/// Максимальный заряд
-	var/max_charge = 100
+	var/max_charge = 1000
 
 	/// Скорость перезарядки (заряд в тик)
 	var/recharge_rate = 1
@@ -114,6 +114,9 @@
 			combat_system = CS
 			CS.weapons |= src
 			initialize_weapon()
+	else
+		// Если корабль еще не инициализирован, попробуем снова через 5 секунд
+		addtimer(CALLBACK(src, PROC_REF(find_combat_system)), 5 SECONDS)
 
 /**
  * Инициализация оружия после привязки к системы

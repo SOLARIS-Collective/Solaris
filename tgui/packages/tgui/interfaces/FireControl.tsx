@@ -1,5 +1,5 @@
-import { useBackend } from '../backend';
-import { Box, Button, LabeledList, ProgressBar, Section, Stack, Table } from '../components';
+import { useBackend, useLocalState } from '../backend';
+import { Box, Button, LabeledList, ProgressBar, Section, Stack, Table, Icon } from '../components';
 import { Window } from '../layouts';
 
 
@@ -70,6 +70,10 @@ interface FireControlData {
   weapons: WeaponData[];
   activeProjectiles: ProjectileData[];
   combatStats: CombatStats;
+  connectionStatus?: string;
+  syncStatus?: string;
+  lastUpdateTime?: number;
+  eventCount?: number;
 }
 
 const WeaponState = {
@@ -87,6 +91,20 @@ const TargetLockStatus = {
   lost: 'Потеряно',
 };
 
+const ConnectionStatus = {
+  connected: 'Подключено',
+  fallback: 'Ограниченный режим',
+  disconnected: 'Отключено',
+  error: 'Ошибка соединения',
+};
+
+const SyncStatus = {
+  synced: 'Синхронизировано',
+  syncing: 'Синхронизация...',
+  error: 'Ошибка синхронизации',
+  delayed: 'Задержка',
+};
+
 const WeaponType = {
   laser: 'Лазер',
   kinetic: 'Кинетическое',
@@ -96,6 +114,25 @@ const WeaponType = {
 
 export const FireControl = (props, context) => {
   const { act, data } = useBackend<FireControlData>(context);
+  const [lastUpdate, setLastUpdate] = useLocalState(context, 'firecontrol-lastupdate', Date.now());
+  const [connectionQuality, setConnectionQuality] = useLocalState(context, 'firecontrol-quality', 'good' as 'good' | 'average' | 'bad');
+
+  // Отслеживаем обновления данных
+  if (data.lastUpdateTime) {
+    setLastUpdate(data.lastUpdateTime);
+
+    // Оцениваем качество соединения на основе времени последнего обновления
+    const now = Date.now();
+    const updateDelay = now - data.lastUpdateTime;
+
+    if (updateDelay < 1000) {
+      setConnectionQuality('good');
+    } else if (updateDelay < 3000) {
+      setConnectionQuality('average');
+    } else {
+      setConnectionQuality('bad');
+    }
+  }
 
   if (!data.active) {
     return (
@@ -115,6 +152,15 @@ export const FireControl = (props, context) => {
     <Window width={1000} height={800}>
       <Window.Content scrollable>
         <Stack vertical fill>
+          <Stack.Item>
+            <ConnectionStatusSection
+              connectionStatus={data.connectionStatus}
+              syncStatus={data.syncStatus}
+              connectionQuality={connectionQuality}
+              lastUpdate={lastUpdate}
+              eventCount={data.eventCount}
+            />
+          </Stack.Item>
           <Stack.Item>
             <Stack fill>
               <Stack.Item grow={1}>
@@ -174,6 +220,63 @@ const ShipStatusSection = (props, context) => {
   );
 };
 
+const ConnectionStatusSection = (props) => {
+  const { connectionStatus, syncStatus, connectionQuality, lastUpdate, eventCount } = props;
+
+  const getConnectionColor = () => {
+    switch (connectionQuality) {
+      case 'good': return 'good';
+      case 'average': return 'average';
+      case 'bad': return 'bad';
+      default: return 'default';
+    }
+  };
+
+  const getConnectionIcon = () => {
+    switch (connectionQuality) {
+      case 'good': return 'wifi';
+      case 'average': return 'signal';
+      case 'bad': return 'exclamation-triangle';
+      default: return 'question';
+    }
+  };
+
+  const formatLastUpdate = () => {
+    if (!lastUpdate) return 'Нет данных';
+    const now = Date.now();
+    const diff = now - lastUpdate;
+    if (diff < 1000) return 'Только что';
+    if (diff < 60000) return `${Math.floor(diff / 1000)} сек назад`;
+    return `${Math.floor(diff / 60000)} мин назад`;
+  };
+
+  return (
+    <Section
+      title="Статус соединения"
+      buttons={
+        <Box>
+          <Icon name={getConnectionIcon()} color={getConnectionColor()} mr={1} />
+          <Box style={{ color: getConnectionColor() === 'good' ? '#00FF00' : getConnectionColor() === 'average' ? '#FFFF00' : '#FF0000' }}>
+            {ConnectionStatus[connectionStatus] || connectionStatus}
+          </Box>
+        </Box>
+      }
+    >
+      <LabeledList>
+        <LabeledList.Item label="Синхронизация">
+          {SyncStatus[syncStatus] || syncStatus}
+        </LabeledList.Item>
+        <LabeledList.Item label="Последнее обновление">
+          {formatLastUpdate()}
+        </LabeledList.Item>
+        <LabeledList.Item label="События">
+          {eventCount || 0}
+        </LabeledList.Item>
+      </LabeledList>
+    </Section>
+  );
+};
+
 const TargetSection = (props, context) => {
   const { act, data } = useBackend<FireControlData>(context);
 
@@ -186,6 +289,17 @@ const TargetSection = (props, context) => {
       );
     }
 
+    // Определяем цвет статуса захвата
+    const getLockStatusColor = () => {
+      if (!data.target) return 'default';
+      switch (data.target.lockStatus) {
+        case 'locked': return 'good';
+        case 'acquiring': return 'average';
+        case 'lost': return 'bad';
+        default: return 'default';
+      }
+    };
+
     return (
       <>
         <LabeledList>
@@ -193,7 +307,9 @@ const TargetSection = (props, context) => {
             {data.target.name}
           </LabeledList.Item>
           <LabeledList.Item label="Статус захвата">
-            {TargetLockStatus[data.target.lockStatus] || data.target.lockStatus}
+            <Box color={getLockStatusColor()}>
+              {TargetLockStatus[data.target.lockStatus] || data.target.lockStatus}
+            </Box>
             {data.target.lockStatus === 'acquiring' && (
               <ProgressBar value={data.target.lockProgress} maxValue={100}>
                 {Math.round(data.target.lockProgress)}%
@@ -222,6 +338,9 @@ const TargetSection = (props, context) => {
       </>
     );
   };
+
+  // Оптимизация: ограничиваем количество отображаемых целей
+  const visibleTargets = data.availableTargets?.slice(0, 8) || [];
 
   return (
     <Section
@@ -255,9 +374,6 @@ const TargetSection = (props, context) => {
         </Stack.Item>
         <Stack.Item grow={1}>
           <Section title="Доступные цели" scrollable fill>
-            <Box mb={1} fontFamily="monospace" fontSize="10px">
-              RAW: {JSON.stringify(data.availableTargets)}
-            </Box>
             <Table>
               <Table.Row header>
                 <Table.Cell>Название</Table.Cell>
@@ -265,22 +381,39 @@ const TargetSection = (props, context) => {
                 <Table.Cell>Тип</Table.Cell>
                 <Table.Cell>Действие</Table.Cell>
               </Table.Row>
-              {data.availableTargets && data.availableTargets.map((target) => (
-                <Table.Row key={target.ref}>
-                  <Table.Cell>{target.name}</Table.Cell>
-                  <Table.Cell>{target.distance.toFixed(1)}</Table.Cell>
-                  <Table.Cell>{target.type}</Table.Cell>
-                  <Table.Cell>
-                    <Button
-                      icon="crosshairs"
-                      onClick={() => act('select_target', { target: target.ref })}
-                      disabled={!!data.target}
-                    >
-                      Выбрать
-                    </Button>
+              {visibleTargets.length === 0 ? (
+                <Table.Row>
+                  <Table.Cell colSpan={4} textAlign="center">
+                    <Box color="average">Цели не обнаружены</Box>
                   </Table.Cell>
                 </Table.Row>
-              ))}
+              ) : (
+                visibleTargets.map((target) => (
+                  <Table.Row key={target.ref}>
+                    <Table.Cell>{target.name}</Table.Cell>
+                    <Table.Cell>{target.distance.toFixed(1)}</Table.Cell>
+                    <Table.Cell>{target.type}</Table.Cell>
+                    <Table.Cell>
+                      <Button
+                        icon="crosshairs"
+                        onClick={() => act('select_target', { target: target.ref })}
+                        disabled={!!data.target}
+                      >
+                        Выбрать
+                      </Button>
+                    </Table.Cell>
+                  </Table.Row>
+                ))
+              )}
+              {data.availableTargets?.length > 8 && (
+                <Table.Row>
+                  <Table.Cell colSpan={4} textAlign="center">
+                    <Box color="average" fontSize="10px">
+                      Показано 8 из {data.availableTargets.length} целей
+                    </Box>
+                  </Table.Cell>
+                </Table.Row>
+              )}
             </Table>
           </Section>
         </Stack.Item>
@@ -296,10 +429,27 @@ const WeaponsSection = (props, context) => {
     const canFire = weapon.canFire && data.target?.lockStatus === 'locked';
     const isDamaged = !!weapon.damaged;
 
+    // Определяем цвет состояния
+    const getStateColor = () => {
+      if (isDamaged) return 'bad';
+      if (weapon.state === 'charging') return 'average';
+      if (weapon.state === 'firing') return 'bad';
+      return 'good';
+    };
+
     return (
       <Section
         key={weapon.ref}
-        title={weapon.name}
+        title={
+          <Box>
+            {weapon.name}
+            <Icon
+              name={isDamaged ? 'exclamation-triangle' : 'check-circle'}
+              color={getStateColor()}
+              ml={1}
+            />
+          </Box>
+        }
         buttons={
           <Stack>
             {isDamaged && (
@@ -333,7 +483,7 @@ const WeaponsSection = (props, context) => {
             {WeaponType[weapon.type] || weapon.type}
           </LabeledList.Item>
           <LabeledList.Item label="Состояние">
-            <Box color={weapon.state === 'damaged' ? 'bad' : 'good'}>
+            <Box color={getStateColor()}>
               {WeaponState[weapon.state] || weapon.state}
             </Box>
           </LabeledList.Item>
@@ -385,6 +535,9 @@ const WeaponsSection = (props, context) => {
     );
   };
 
+  // Оптимизация: рендерим только видимые элементы
+  const visibleWeapons = data.weapons?.slice(0, 10) || [];
+
   return (
     <Section
       title="Вооружение"
@@ -405,7 +558,14 @@ const WeaponsSection = (props, context) => {
           Вооружение не обнаружено
         </Box>
       ) : (
-        data.weapons.map(renderWeapon)
+        <>
+          {visibleWeapons.map(renderWeapon)}
+          {data.weapons.length > 10 && (
+            <Box color="average" textAlign="center" mt={1}>
+              Показано 10 из {data.weapons.length} единиц вооружения
+            </Box>
+          )}
+        </>
       )}
     </Section>
   );
