@@ -1,5 +1,5 @@
 /obj/item/mod/construction/plating
-	icon = 'mod_celadon/_storage_icons/icons/items/clothing/mod_suit/mod_construction.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/items/clothing/mod_suit/mod_construction.dmi'
 
 /obj/item/mod/construction/plating/locked
 	desc = "Внешнее покрытие, используемое для создания боевых МОДсьютов. Требует детали из RnD для завершения."

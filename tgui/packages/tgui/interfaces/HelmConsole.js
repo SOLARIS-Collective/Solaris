@@ -101,7 +101,7 @@ const SharedContent = (_props, context) => {
                 tooltip="Decrease Signal Length"
                 tooltipPosition="right"
                 icon="arrow-left"
-                // [CELADON-ADD] - subshuttle fix
+                // [MANKIND-ADD] - subshuttle fix
                 disabled={data.issubshuttle !== null}
                 // [/CELADON-ADD] - subshuttle fix
                 onClick={() => act('sensor_decrease')}
@@ -110,7 +110,7 @@ const SharedContent = (_props, context) => {
                 tooltip="Increase Signal Length"
                 tooltipPosition="right"
                 icon="arrow-right"
-                // [CELADON-ADD] - subshuttle fix
+                // [MANKIND-ADD] - subshuttle fix
                 disabled={data.issubshuttle !== null}
                 // [/CELADON-ADD] - subshuttle fix
                 onClick={() => act('sensor_increase')}
@@ -127,7 +127,7 @@ const SharedContent = (_props, context) => {
       <Section title="Radar"
         buttons={
           <>
-            <Button // [CELADON-ADD] - Signal S.O.S - mod_celadon\wideband\code\signal.dm
+            <Button // [MANKIND-ADD] - Signal S.O.S - modular_mankind\wideband\code\signal.dm
               tooltip="Send S.O.S."
               tooltipPosition="left"
               icon="globe"

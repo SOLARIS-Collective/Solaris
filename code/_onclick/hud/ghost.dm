@@ -47,19 +47,19 @@
 	var/mob/dead/observer/G = usr
 	G.dead_tele()
 
-/atom/movable/screen/ghost/hudbox/pai // [CELADON-EDIT] - UPDATE GHOST HUDS - OLD CODE: /atom/movable/screen/ghost/pai
+/atom/movable/screen/ghost/hudbox/pai // [MANKIND-EDIT] - UPDATE GHOST HUDS - OLD CODE: /atom/movable/screen/ghost/pai
 	name = "pAI Candidate"
-	hud_icon_state = "pai" // [CELADON-EDIT] - UPDATE GHOST HUDS - OLD CODE: icon_state = "pai"
+	hud_icon_state = "pai" // [MANKIND-EDIT] - UPDATE GHOST HUDS - OLD CODE: icon_state = "pai"
 
-/atom/movable/screen/ghost/hudbox/pai/Click() // [CELADON-EDIT] - UPDATE GHOST HUDS - OLD CODE: /atom/movable/screen/ghost/pai/Click()
+/atom/movable/screen/ghost/hudbox/pai/Click() // [MANKIND-EDIT] - UPDATE GHOST HUDS - OLD CODE: /atom/movable/screen/ghost/pai/Click()
 	var/mob/dead/observer/G = usr
 	G.register_pai()
 
-/atom/movable/screen/ghost/hudbox/spawner_menu // [CELADON-EDIT] - UPDATE GHOST HUDS - OLD CODE: /atom/movable/screen/ghost/spawner_menu
+/atom/movable/screen/ghost/hudbox/spawner_menu // [MANKIND-EDIT] - UPDATE GHOST HUDS - OLD CODE: /atom/movable/screen/ghost/spawner_menu
 	name = "Spawner Menu"
 	hud_icon_state = "spawner_menu"
 
-/atom/movable/screen/ghost/hudbox/spawner_menu/Click() // [CELADON-EDIT] - UPDATE GHOST HUDS - OLD CODE: /atom/movable/screen/ghost/spawner_menu/Click()
+/atom/movable/screen/ghost/hudbox/spawner_menu/Click() // [MANKIND-EDIT] - UPDATE GHOST HUDS - OLD CODE: /atom/movable/screen/ghost/spawner_menu/Click()
 	var/mob/dead/observer/G = usr
 	G.open_spawners_menu()
 
@@ -81,7 +81,7 @@
 	using.screen_loc = ui_ghost_reenter_corpse
 	using.hud = src
 	static_inventory += using
-	// [CELADON-EDIT] - UPDATE GHOST HUDS - OLD CODE:
+	// [MANKIND-EDIT] - UPDATE GHOST HUDS - OLD CODE:
 	/*
 	using = new /atom/movable/screen/ghost/teleport()
 	using.screen_loc = ui_ghost_teleport
@@ -134,7 +134,7 @@
 		return
 	var/mob/screenmob = viewmob || mymob
 	if(!screenmob.client.prefs.ghost_hud)
-		// [CELADON-EDIT] - OLD CODE: screenmob.client.screen -= static_inventory
+		// [MANKIND-EDIT] - OLD CODE: screenmob.client.screen -= static_inventory
 		screenmob.client.screen |= static_inventory
 		for(var/atom/movable/screen/ghost/hudbox/hud in static_inventory)
 			hud.update_appearance()

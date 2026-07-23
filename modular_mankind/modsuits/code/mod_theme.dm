@@ -348,7 +348,7 @@
 <<<<<<<< HEAD:modular_mankind/modsuits/code/mod_theme.dm
 	charge_drain = DEFAULT_CHARGE_DRAIN // [MANKIND-ADD] - MANKIND_MODSUITS
 ========
-	charge_drain = DEFAULT_CHARGE_DRAIN // [CELADON-ADD] - CELADON_MODSUITS
+	charge_drain = DEFAULT_CHARGE_DRAIN // [MANKIND-ADD] - CELADON_MODSUITS
 >>>>>>>> b735b167cf (ADD: Modsuits by Erring (#2870)):modular_mankind/modsuits/code/research/mod_theme.dm
 	slowdown_inactive = 1
 	slowdown_active = 0.65

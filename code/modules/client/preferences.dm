@@ -456,7 +456,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 			if(!(NO_UNDERWEAR in pref_species.species_traits))
 				dat += "<b>Underwear:</b><br><a href ='?_src_=prefs;preference=underwear;task=input'>[underwear]</a>"
-				// [CELADON-ADD] - Добавление кнопки для смены одежды.
+				// [MANKIND-ADD] - Добавление кнопки для смены одежды.
 				dat += "<br>"
 				dat += "<a href='byond://?_src_=prefs;preference=previous_underwear;task=input'>&lt;</a> <a href='byond://?_src_=prefs;preference=next_underwear;task=input'>&gt;</a>"
 				// [/CELADON-ADD]
@@ -466,7 +466,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "<a href='byond://?_src_=prefs;preference=toggle_random;random_type=[RANDOM_UNDERWEAR_COLOR]'>[(randomise[RANDOM_UNDERWEAR_COLOR]) ? "Lock" : "Unlock"]</A><br>"
 
 				dat += "<b>Undershirt:</b><br><a href ='?_src_=prefs;preference=undershirt;task=input'>[undershirt]</a>"
-				// [CELADON-ADD] - Добавление кнопки для смены одежды.
+				// [MANKIND-ADD] - Добавление кнопки для смены одежды.
 				dat += "<br>"
 				dat += "<a href='byond://?_src_=prefs;preference=previous_undershirt;task=input'>&lt;</a> <a href='byond://?_src_=prefs;preference=next_undershirt;task=input'>&gt;</a>"
 				// [/CELADON-ADD]
@@ -476,7 +476,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "<a href='byond://?_src_=prefs;preference=toggle_random;random_type=[RANDOM_UNDERSHIRT_COLOR]'>[(randomise[RANDOM_UNDERSHIRT_COLOR]) ? "Lock" : "Unlock"]</A><br>"
 
 				dat += "<b>Socks:</b><br><a href ='?_src_=prefs;preference=socks;task=input'>[socks]</a>"
-				// [CELADON-ADD] - Добавление кнопки для смены одежды.
+				// [MANKIND-ADD] - Добавление кнопки для смены одежды.
 				dat += "<br>"
 				dat += "<a href='byond://?_src_=prefs;preference=previous_socks;task=input'>&lt;</a> <a href='byond://?_src_=prefs;preference=next_socks;task=input'>&gt;</a>"
 				// [/CELADON-ADD]
@@ -532,7 +532,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "<h3>Hairstyle</h3>"
 
 				dat += "<a href='byond://?_src_=prefs;preference=hairstyle;task=input'>[hairstyle]</a>"
-				dat += "<br>" // [CELADON-ADD]
+				dat += "<br>" // [MANKIND-ADD]
 				dat += "<a href='byond://?_src_=prefs;preference=previous_hairstyle;task=input'>&lt;</a> <a href='byond://?_src_=prefs;preference=next_hairstyle;task=input'>&gt;</a>"
 				dat += "<a href='byond://?_src_=prefs;preference=toggle_random;random_type=[RANDOM_HAIRSTYLE]'>[(randomise[RANDOM_HAIRSTYLE]) ? "Lock" : "Unlock"]</A>"
 
@@ -543,7 +543,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				dat += "<a href='byond://?_src_=prefs;preference=hair_gradient_style;task=input'>[features["grad_style"]]</a>"
 
-				dat += "<br>" // [CELADON-ADD]
+				dat += "<br>" // [MANKIND-ADD]
 				dat += "<a href='byond://?_src_=prefs;preference=previous_hair_gradient_style;task=input'>&lt;</a> <a href='byond://?_src_=prefs;preference=next_hair_gradient_style;task=input'>&gt;</a><BR>"
 
 				dat += "<span style='border:1px solid #161616; background-color: #[features["grad_color"]];'>&nbsp;&nbsp;&nbsp;</span> <a href='byond://?_src_=prefs;preference=hair_gradient;task=input'>Change</a>"
@@ -553,7 +553,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "<BR><h3>Facial Hairstyle</h3>"
 
 				dat += "<a href='byond://?_src_=prefs;preference=facial_hairstyle;task=input'>[facial_hairstyle]</a>"
-				dat += "<br>" // [CELADON-ADD]
+				dat += "<br>" // [MANKIND-ADD]
 				dat += "<a href='byond://?_src_=prefs;preference=previous_facehairstyle;task=input'>&lt;</a> <a href='byond://?_src_=prefs;preference=next_facehairstyle;task=input'>&gt;</a>"
 				dat += "<a href='byond://?_src_=prefs;preference=toggle_random;random_type=[RANDOM_FACIAL_HAIRSTYLE]'>[(randomise[RANDOM_FACIAL_HAIRSTYLE]) ? "Lock" : "Unlock"]</A>"
 
@@ -1187,7 +1187,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "</td>"
 				mutant_category = 0
 
-			// [CELADON-EDIT] - CELADON_PROSTHETIC
+			// [MANKIND-EDIT] - CELADON_PROSTHETIC
 			// var/metal_skin = fbp || pref_species.inherent_biotypes & MOB_ROBOTIC
 			// dat += metal_skin ? "<h3>Chassis Customization</h3>" : "<h3>Prosthetic Limbs</h3>"
 			// dat += "<a href='byond://?_src_=prefs;preference=fbp'>Full Body Prosthesis: [fbp ? "Yes" : "No"]</a><br>"
@@ -2279,7 +2279,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					if(new_underwear)
 						underwear = new_underwear
 
-				// [CELADON-ADD] - Добавление кнопки для смены одежды.
+				// [MANKIND-ADD] - Добавление кнопки для смены одежды.
 				if("previous_underwear")
 					underwear = previous_list_item(underwear, GLOB.underwear_list)
 

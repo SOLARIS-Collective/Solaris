@@ -4,7 +4,7 @@
 	set name = "Who"
 	set category = "OOC"
 
-	// [CELADON-EDIT] - Replaced with staffwho verb
+	// [MANKIND-EDIT] - Replaced with staffwho verb
 	// OLD_CODE: var/msg = "<b>Current Players:</b>\n"
 	var/msg = ""
 	// [/CELADON-EDIT]
@@ -19,7 +19,7 @@
 			if(!G.started_as_observer)//If you aghost to do this, KorPhaeron will deadmin you in your sleep.
 				log_admin("[key_name(usr)] checked advanced who in-round")
 			for(var/client/C in GLOB.clients)
-				// [CELADON-EDIT] - Replaced with staffwho verb
+				// [MANKIND-EDIT] - Replaced with staffwho verb
 				// OLD_CODE: var/entry = "\t[C.key]"
 				var/entry = "• [C.key]"
 				// [/CELADON-EDIT]
@@ -76,13 +76,13 @@
 	msg += "</tr></table>"
 
 	msg += "<b>Total Players: [length(Lines)]</b>"
-	// [CELADON-EDIT] - Replaced with staffwho verb
+	// [MANKIND-EDIT] - Replaced with staffwho verb
 	// OLD_CODE: to_chat(src, span_infoplain("[msg]"))
 	to_chat(src, fieldset_block(span_bold("Current Players"), span_infoplain(msg), "boxed_message"), type = MESSAGE_TYPE_OOC)
 	// [/CELADON-EDIT]
 
 /client/verb/adminwho()
-	// [CELADON-REMOVE] - На замену этого было сделано это: mod_celadon\qol\code\adminwho.dm
+	// [MANKIND-REMOVE] - На замену этого было сделано это: mod_celadon\qol\code\adminwho.dm
 	set category = "Admin"
 	set name = "Adminwho"
 	// [/CELADON-REMOVE]

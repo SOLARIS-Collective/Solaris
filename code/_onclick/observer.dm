@@ -51,7 +51,7 @@
 	if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_GHOST, user) & COMPONENT_NO_ATTACK_HAND)
 		return TRUE
 	if(user.client)
-		// [CELADON-EDIT] - OLD CODE: if(user.gas_scan && atmosanalyzer_scan(user, src))
+		// [MANKIND-EDIT] - OLD CODE: if(user.gas_scan && atmosanalyzer_scan(user, src))
 		if((user.ghost_hud_flags & GHOST_GAS) && atmosanalyzer_scan(user, src))
 		// [/CELADON-EDIT]
 			return TRUE
@@ -62,7 +62,7 @@
 	return FALSE
 
 /mob/living/attack_ghost(mob/dead/observer/user)
-	// [CELADON-EDIT] - OLD CODE:
+	// [MANKIND-EDIT] - OLD CODE:
 	/*
 	if(user.client && user.health_scan)
 		healthscan(user, src, 2, TRUE, TRUE)

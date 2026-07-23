@@ -30,7 +30,7 @@
 /obj/item/grenade/mirage
 	name = "mirage grenade"
 	desc = "A special device that, when activated, produces a small stray of active mesh in form of a grenade that creates a static copy of the user."
-	icon = 'mod_celadon/_storage_icons/icons/items/weapons/grenade.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/items/weapons/grenade.dmi'
 	icon_state = "mirage"
 	item_state = "flashbang"
 	det_time = 3 SECONDS

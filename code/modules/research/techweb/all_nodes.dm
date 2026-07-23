@@ -1135,7 +1135,7 @@
 	id = "basic_shuttle"
 	display_name = "Basic Shuttle Research"
 	description = "Research the technology required to create and use basic shuttles."
-	// [CELADON-EDIT] - CELADON_BALANCE - Трогаем РнД ещё раз
+	// [MANKIND-EDIT] - CELADON_BALANCE - Трогаем РнД ещё раз
 	// prereq_ids = list("bluespace_travel", "adv_engi")
 	prereq_ids = list("bluespace_basic","regulated_bluespace", "engineering")
 	// [/CELADON-EDIT]

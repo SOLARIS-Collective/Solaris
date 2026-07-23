@@ -6,7 +6,7 @@
 
 
 /atom/movable/screen/ghost
-	icon = 'mod_celadon/_storage_icons/icons/assets/hud/screen_ghost.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/assets/hud/screen_ghost.dmi'
 
 /atom/movable/screen/ghost/dnr
 	name = "Do Not Resuscitate"

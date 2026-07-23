@@ -230,7 +230,7 @@
 	//Allow for reactions
 	air_contents.react()
 	check_status()
-	// [CELADON-ADD] - ADD: Ovelays Oxygen tank, and pressure alert system - mod_celadon\items\code\tank.dm
+	// [MANKIND-ADD] - ADD: Ovelays Oxygen tank, and pressure alert system - mod_celadon\items\code\tank.dm
 	pressure_alerts()
 	// [/CELADON-ADD]
 

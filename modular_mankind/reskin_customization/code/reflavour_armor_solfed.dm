@@ -53,8 +53,8 @@
 	name = "\improper SolFed officer suit jacket"
 	desc = "A fancy buttoned dress jacket issued to officers of Solar Federation's."
 
-	icon = 'mod_celadon/_storage_icons/icons/resprite/clip_armor/suits.dmi'
-	mob_overlay_icon = 'mod_celadon/_storage_icons/icons/resprite/clip_armor/overlay/suits.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/resprite/clip_armor/suits.dmi'
+	mob_overlay_icon = 'modular_mankind/_storage_icons/icons/resprite/clip_armor/overlay/suits.dmi'
 
 	icon_state = "suitjacket_clip"
 	item_state = "suitjacket_navy"
@@ -72,8 +72,8 @@
 	name = "Solar Federation general coat"
 	desc = "This flamboyant overwear is employed by the field generals of the Solar Federation's."
 
-	icon = 'mod_celadon/_storage_icons/icons/resprite/clip_armor/suits.dmi'
-	mob_overlay_icon = 'mod_celadon/_storage_icons/icons/resprite/clip_armor/overlay/suits.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/resprite/clip_armor/suits.dmi'
+	mob_overlay_icon = 'modular_mankind/_storage_icons/icons/resprite/clip_armor/overlay/suits.dmi'
 
 	icon_state = "clip_general"
 	item_state = "clip_general"
@@ -89,8 +89,8 @@
 	name = "black riot suit"
 	desc = "A charcoal-painted suit of bulky, heavy armor designed for close-quarters fighting and riot control. The armor of choice for SolFed-BARD members, but used universally by SolFed. Helps the wearer resist shoving in close quarters."
 
-	icon = 'mod_celadon/_storage_icons/icons/resprite/clip_armor/suits.dmi'
-	mob_overlay_icon = 'mod_celadon/_storage_icons/icons/resprite/clip_armor/overlay/suits.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/resprite/clip_armor/suits.dmi'
+	mob_overlay_icon = 'modular_mankind/_storage_icons/icons/resprite/clip_armor/overlay/suits.dmi'
 
 	icon_state = "riot_clip"
 
@@ -98,8 +98,8 @@
 	name = "\improper SolFed trenchcoat"
 	desc = "A trenchcoat in Solar Federation colors. Despite its reputation as a military officer coat, it's used by all divisions within SolFed. Has a lot of pockets."
 
-	icon = 'mod_celadon/_storage_icons/icons/resprite/clip_armor/suits.dmi'
-	mob_overlay_icon = 'mod_celadon/_storage_icons/icons/resprite/clip_armor/overlay/suits.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/resprite/clip_armor/suits.dmi'
+	mob_overlay_icon = 'modular_mankind/_storage_icons/icons/resprite/clip_armor/overlay/suits.dmi'
 
 	icon_state = "clip_trenchcoat"
 	item_state = "trenchcoat_solgov"
@@ -108,8 +108,8 @@
 	name = "Solar Federation captain's coat"
 	desc = "The coat issued to all Solar Federation's officers worthy of the rank of Captain. Features thick padding which, while protective, does not replace proper armor."
 
-	icon = 'mod_celadon/_storage_icons/icons/resprite/clip_armor/suits.dmi'
-	mob_overlay_icon = 'mod_celadon/_storage_icons/icons/resprite/clip_armor/overlay/suits.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/resprite/clip_armor/suits.dmi'
+	mob_overlay_icon = 'modular_mankind/_storage_icons/icons/resprite/clip_armor/overlay/suits.dmi'
 
 	icon_state = "clip_captaincoat"
 	item_state = "clip_captaincoat"
@@ -118,8 +118,8 @@
 	name = "\improper correspondent armor vest"
 	desc = "A slim Type I armored vest that provides decent protection against most types of damage. The white letters on the front read \"PRESS\" in SolFed - Kalixcian."
 
-	icon = 'mod_celadon/_storage_icons/icons/resprite/clip_armor/suits.dmi'
-	mob_overlay_icon = 'mod_celadon/_storage_icons/icons/resprite/clip_armor/overlay/suits.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/resprite/clip_armor/suits.dmi'
+	mob_overlay_icon = 'modular_mankind/_storage_icons/icons/resprite/clip_armor/overlay/suits.dmi'
 	vox_override_icon = 'icons/mob/clothing/faction/clip/vox.dmi'
 
 	icon_state = "armor_correspondant"
@@ -131,8 +131,8 @@
 	name = "BARD-440 bio suit"
 	desc = "The iconic biosuit of SolFed-BARD agents on the frontier and elsewhere."
 
-	icon = 'mod_celadon/_storage_icons/icons/resprite/clip_armor/suits.dmi'
-	mob_overlay_icon = 'mod_celadon/_storage_icons/icons/resprite/clip_armor/overlay/suits.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/resprite/clip_armor/suits.dmi'
+	mob_overlay_icon = 'modular_mankind/_storage_icons/icons/resprite/clip_armor/overlay/suits.dmi'
 
 	icon_state = "armor_correspondant"
 	item_state = "armor_correspondant"
@@ -141,8 +141,8 @@
 	name = "BARD-434 bio hood"
 	desc = "A simple but effective and lightweight hood for use with SolFed-BARD's biosuits."
 
-	icon = 'mod_celadon/_storage_icons/icons/resprite/clip_armor/head.dmi'
-	mob_overlay_icon = 'mod_celadon/_storage_icons/icons/resprite/clip_armor/overlay/head.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/resprite/clip_armor/head.dmi'
+	mob_overlay_icon = 'modular_mankind/_storage_icons/icons/resprite/clip_armor/overlay/head.dmi'
 
 	icon_state = "clip_bard_biosuit"
 
@@ -169,8 +169,8 @@
 	name = "SolFed space suit"
 	desc = "A popular suit manufactured by the colonial league, rated for hazardous, low-pressure environments and high temperature alike. Often worn by various workers and civilians hired by the league."
 
-	icon = 'mod_celadon/_storage_icons/icons/resprite/clip_armor/suits.dmi'
-	mob_overlay_icon = 'mod_celadon/_storage_icons/icons/resprite/clip_armor/overlay/suits.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/resprite/clip_armor/suits.dmi'
+	mob_overlay_icon = 'modular_mankind/_storage_icons/icons/resprite/clip_armor/overlay/suits.dmi'
 
 	icon_state = "space-clip"
 	item_state = "space-clip"
@@ -179,8 +179,8 @@
 	name = "SolFed space helmet"
 	desc = "A space helmet manufactured by the colonial league, rated for hazardous, low pressure environments and minor impacts. Often worn by various workers and civilians hired by the league."
 
-	icon = 'mod_celadon/_storage_icons/icons/resprite/clip_armor/head.dmi'
-	mob_overlay_icon = 'mod_celadon/_storage_icons/icons/resprite/clip_armor/overlay/head.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/resprite/clip_armor/head.dmi'
+	mob_overlay_icon = 'modular_mankind/_storage_icons/icons/resprite/clip_armor/overlay/head.dmi'
 
 	icon_state = "space-clip"
 	item_state = "space-clip"
@@ -203,8 +203,8 @@
 	name = "\improper CM-410 'Patroller' EVA Hardsuit"
 	desc = "An older-issue SolFed hardsuit, adapted from an even older design. Widely utilized in reconnaissance duty and skirmishing due to its lightweight construction."
 
-	icon = 'mod_celadon/_storage_icons/icons/resprite/clip_armor/suits.dmi'
-	mob_overlay_icon = 'mod_celadon/_storage_icons/icons/resprite/clip_armor/overlay/suits.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/resprite/clip_armor/suits.dmi'
+	mob_overlay_icon = 'modular_mankind/_storage_icons/icons/resprite/clip_armor/overlay/suits.dmi'
 
 	icon_state = "hardsuit-clip-patrol"
 	hardsuit_type = "hardsuit-clip-patrol"
@@ -213,8 +213,8 @@
 	name = "\improper CM-410 'Patroller' EVA Hardsuit helmet"
 	desc = "The helmet for the Patroller hardsuit. The wide visor allows for higher visibility than afforded to standard combat hardsuits."
 
-	icon = 'mod_celadon/_storage_icons/icons/resprite/clip_armor/head.dmi'
-	mob_overlay_icon = 'mod_celadon/_storage_icons/icons/resprite/clip_armor/overlay/head.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/resprite/clip_armor/head.dmi'
+	mob_overlay_icon = 'modular_mankind/_storage_icons/icons/resprite/clip_armor/overlay/head.dmi'
 
 	icon_state = "hardsuit0-clip-patrol"
 	hardsuit_type = "clip-patrol"
@@ -223,8 +223,8 @@
 	name = "CM-490 'Spotter' Combat Hardsuit"
 	desc = "SolFed's newer, standard-issue extra-vehicular combat hardsuit. The heavy plating is uncomfortable, and slows the wearer down."
 
-	icon = 'mod_celadon/_storage_icons/icons/resprite/clip_armor/suits.dmi'
-	mob_overlay_icon = 'mod_celadon/_storage_icons/icons/resprite/clip_armor/overlay/suits.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/resprite/clip_armor/suits.dmi'
+	mob_overlay_icon = 'modular_mankind/_storage_icons/icons/resprite/clip_armor/overlay/suits.dmi'
 
 	icon_state = "clip_spotter"
 	hardsuit_type = "clip_spotter"
@@ -233,8 +233,8 @@
 	name = "CM-490 'Spotter' Combat Hardsuit Helmet"
 	desc = "The helmet for the Spotter hardsuit. Features a very distinctive 'Spider-Eyes' visor."
 
-	icon = 'mod_celadon/_storage_icons/icons/resprite/clip_armor/head.dmi'
-	mob_overlay_icon = 'mod_celadon/_storage_icons/icons/resprite/clip_armor/overlay/head.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/resprite/clip_armor/head.dmi'
+	mob_overlay_icon = 'modular_mankind/_storage_icons/icons/resprite/clip_armor/overlay/head.dmi'
 
 	icon_state = "hardsuit0-clip_spotter"
 	hardsuit_type = "clip_spotter"
@@ -242,8 +242,8 @@
 /obj/item/clothing/suit/space/hardsuit/bomb/clip
 	name = "CMM EOD hardsuit"
 
-	icon = 'mod_celadon/_storage_icons/icons/resprite/clip_armor/suits.dmi'
-	mob_overlay_icon = 'mod_celadon/_storage_icons/icons/resprite/clip_armor/overlay/suits.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/resprite/clip_armor/suits.dmi'
+	mob_overlay_icon = 'modular_mankind/_storage_icons/icons/resprite/clip_armor/overlay/suits.dmi'
 
 	icon_state = "hardsuit-clipeod"
 	hardsuit_type = "clipeod"
@@ -251,8 +251,8 @@
 /obj/item/clothing/head/helmet/space/hardsuit/bomb/clip
 	name = "CMM EOD hardsuit helmet"
 
-	icon = 'mod_celadon/_storage_icons/icons/resprite/clip_armor/head.dmi'
-	mob_overlay_icon = 'mod_celadon/_storage_icons/icons/resprite/clip_armor/overlay/head.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/resprite/clip_armor/head.dmi'
+	mob_overlay_icon = 'modular_mankind/_storage_icons/icons/resprite/clip_armor/overlay/head.dmi'
 
 	icon_state = "clip_cap"
 	item_state = "bluecloth"
@@ -262,8 +262,8 @@
 	name = "\improper Solar Federation service cap"
 	desc = "A service cap commonly seen on Solar Federation of all ranks while off-duty, but more daring soldiers may choose to wear it during combat. The design dates back to the uniform used by the deserting forces of the Zohil Republic, who were the first citizens of SolFed."
 
-	icon = 'mod_celadon/_storage_icons/icons/resprite/clip_armor/head.dmi'
-	mob_overlay_icon = 'mod_celadon/_storage_icons/icons/resprite/clip_armor/overlay/head.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/resprite/clip_armor/head.dmi'
+	mob_overlay_icon = 'modular_mankind/_storage_icons/icons/resprite/clip_armor/overlay/head.dmi'
 	vox_override_icon = 'icons/mob/clothing/faction/clip/vox.dmi'
 
 	icon_state = "clip_mediccap"
@@ -301,8 +301,8 @@
 	name = "\improper Solar Federation CM-11 Helmet"
 	desc = "A large, bulky bulletproof helmet in the distinctive blue coloring of the Solar Federation. Features a little attachment rail on the side where you can mount a flashlight."
 
-	icon = 'mod_celadon/_storage_icons/icons/resprite/clip_armor/head.dmi'
-	mob_overlay_icon = 'mod_celadon/_storage_icons/icons/resprite/clip_armor/overlay/head.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/resprite/clip_armor/head.dmi'
+	mob_overlay_icon = 'modular_mankind/_storage_icons/icons/resprite/clip_armor/overlay/head.dmi'
 
 	vox_override_icon = 'icons/mob/clothing/faction/clip/vox.dmi'
 	kepori_override_icon = 'icons/mob/clothing/faction/clip/kepori.dmi'
@@ -323,8 +323,8 @@
 	name = "\improper Solar Federation CM-10 Helmet"
 	desc = "A cheap, but comfortable and light helmet painted in Solar Federation colors, often seen in the hands of the reserves or Solar Federation in the backline. Features a little attachment rail on the side where you can mount a flashlight."
 
-	icon = 'mod_celadon/_storage_icons/icons/resprite/clip_armor/head.dmi'
-	mob_overlay_icon = 'mod_celadon/_storage_icons/icons/resprite/clip_armor/overlay/head.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/resprite/clip_armor/head.dmi'
+	mob_overlay_icon = 'modular_mankind/_storage_icons/icons/resprite/clip_armor/overlay/head.dmi'
 
 	icon_state = "clip_m10_blank"
 
@@ -338,8 +338,8 @@
 	name = "\improper Solar Federation CM-12 Helmet"
 	desc = "A special, lightweight and padded helmet issued to Vehicle Crewmen of the Solar Federation. Features noise-reducing technology and a microphone that automatically connects with worn headsets. Hopefully protects you from bumpy rides."
 
-	icon = 'mod_celadon/_storage_icons/icons/resprite/clip_armor/head.dmi'
-	mob_overlay_icon = 'mod_celadon/_storage_icons/icons/resprite/clip_armor/overlay/head.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/resprite/clip_armor/head.dmi'
+	mob_overlay_icon = 'modular_mankind/_storage_icons/icons/resprite/clip_armor/overlay/head.dmi'
 	vox_override_icon = 'icons/mob/clothing/faction/clip/vox.dmi'
 
 	icon_state = "clip_m10_vc"
@@ -348,8 +348,8 @@
 	name = "SolFed war correspondent M10 Helmet"
 	desc = "A lightweight bulletproof helmet given to war correspondents of SolFed. Features a little attachment rail on the side where you can mount a flashlight. Keep your head down!"
 
-	icon = 'mod_celadon/_storage_icons/icons/resprite/clip_armor/head.dmi'
-	mob_overlay_icon = 'mod_celadon/_storage_icons/icons/resprite/clip_armor/overlay/head.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/resprite/clip_armor/head.dmi'
+	mob_overlay_icon = 'modular_mankind/_storage_icons/icons/resprite/clip_armor/overlay/head.dmi'
 	vox_override_icon = 'icons/mob/clothing/faction/clip/vox.dmi'
 
 	icon_state = "clip_m10_correspondant"
@@ -359,8 +359,8 @@
 	name = "\improper Solar Federation CM-13 Riot Helmet"
 	desc = "A sturdy blue helmet, made with crowd control in mind. The foldable protective visor makes it SolFed-BARD's preferred helmet against hostile xenofauna."
 
-	icon = 'mod_celadon/_storage_icons/icons/resprite/clip_armor/head.dmi'
-	mob_overlay_icon = 'mod_celadon/_storage_icons/icons/resprite/clip_armor/overlay/head.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/resprite/clip_armor/head.dmi'
+	mob_overlay_icon = 'modular_mankind/_storage_icons/icons/resprite/clip_armor/overlay/head.dmi'
 	vox_override_icon = 'icons/mob/clothing/faction/clip/vox.dmi'
 
 // SolFed-GOLD

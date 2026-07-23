@@ -18,7 +18,7 @@
 	crate_name = "MOD core crate"
 	crate_type = /obj/structure/closet/crate/secure/science
 
-// [CELADON-EDIT] - Erring modsuits and modules start here.
+// [MANKIND-EDIT] - Erring modsuits and modules start here.
 // MARK: MOD CONTROL
 /datum/supply_pack/faction/independent/modsuits/complete
 	category = "Tech - fully built MODsuit"
@@ -408,9 +408,9 @@
 	cost = 3000
 	contains = list(/obj/item/stock_parts/cell/hyper)
 
-// [CELADON-EDIT] - Erring modsuits and modules end here.
+// [MANKIND-EDIT] - Erring modsuits and modules end here.
 
-// // [CELADON-EDIT] - Depricated?
+// // [MANKIND-EDIT] - Depricated?
 // /datum/supply_pack/science/mod_core_ethereal		// NEEDS_TO_FIX_ALARM!
 // 	name = "MOD Elzous Core"
 // 	desc = "One MODsuit core specialized for elzous, used when creating mods."

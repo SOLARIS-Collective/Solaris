@@ -67,10 +67,10 @@
 			grabbed_mob.Stun(mob_stun_time)
 	playsound(grabbed_atom, 'sound/effects/contractorbatonhit.ogg', 75, TRUE)
 	START_PROCESSING(SSfastprocess, src)
-	kinesis_icon = mutable_appearance(icon='mod_celadon/_storage_icons/icons/assets/effects.dmi', icon_state="kinesis", layer=grabbed_atom.layer-0.1)
+	kinesis_icon = mutable_appearance(icon='modular_mankind/_storage_icons/icons/assets/effects.dmi', icon_state="kinesis", layer=grabbed_atom.layer-0.1)
 	kinesis_icon.appearance_flags = RESET_ALPHA|RESET_COLOR|RESET_TRANSFORM
 	grabbed_atom.add_overlay(kinesis_icon)
-	kinesis_beam = mod.wearer.Beam(grabbed_atom, "kinesis",'mod_celadon/_storage_icons/icons/assets/beam.dmi')
+	kinesis_beam = mod.wearer.Beam(grabbed_atom, "kinesis",'modular_mankind/_storage_icons/icons/assets/beam.dmi')
 	kinesis_catcher = mod.wearer.overlay_fullscreen("kinesis", /atom/movable/screen/fullscreen/kinesis, 0)
 	kinesis_catcher.kinesis_user = mod.wearer
 	kinesis_catcher.RegisterSignal(mod.wearer, COMSIG_MOVABLE_MOVED, /atom/movable/screen/fullscreen/kinesis.proc/on_move)

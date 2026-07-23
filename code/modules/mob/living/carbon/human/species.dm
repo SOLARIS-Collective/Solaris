@@ -723,7 +723,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 						if(iskepori(H)) // Kepori need sclera but don't fit the normal silhouette, so this needs changing. Make better later.
 							eye_icon = icon('icons/mob/species/kepori/kepori_eyes.dmi', eyes.eye_icon_state)
 							sclera_icon = icon('icons/mob/species/kepori/kepori_eyes.dmi', eyes.sclera_icon_state)
-						// [CELADON-ADD] - CELADON_LANIUS
+						// [MANKIND-ADD] - CELADON_LANIUS
 						else if(islanius(H))
 							eye_overlay = mutable_appearance('modular_mankind/_storage_icons/icons/species/lanius/lanius_organs.dmi', eyes.eye_icon_state, -BODYPARTS_LAYER)
 						// [/CELADON-ADD]
