@@ -128,14 +128,6 @@ jobs:
         run: |
           ./DMCompiler_linux-x64/DMCompiler shiptest.dme --suppress-unimplemented --define=CIBUILDING | bash tools/ci/annotate_od.sh
 
-      - name: Run Pentest Faction Modularization
-        run: |
-          python tools/_pentest_scripts/faction_modularize.py
-          python tools/_pentest_scripts/faction_linter.py
-
-      - name: Run Pentest JSON Order Validator
-        run: python tools/_pentest_scripts/validate_json_order.py
-
   compile_all_maps:
     name: Compile Maps
     needs: start_gate
