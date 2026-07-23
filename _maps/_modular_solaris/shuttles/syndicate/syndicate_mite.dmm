@@ -288,7 +288,7 @@
 	dir = 10
 	},
 /turf/open/floor/engine/hull/reinforced{
-	icon = 'mod_celadon/_storage_icons/icons/structures/floors/metal_2.dmi';
+	icon = 'modular_mankind/_storage_icons/icons/structures/floors/metal_2.dmi';
 	icon_state = "metal_1"
 	},
 /area/ship/external/dark)
@@ -373,7 +373,7 @@
 	dir = 1
 	},
 /turf/open/floor/engine/hull/reinforced{
-	icon = 'mod_celadon/_storage_icons/icons/structures/floors/metal_2.dmi';
+	icon = 'modular_mankind/_storage_icons/icons/structures/floors/metal_2.dmi';
 	icon_state = "metal_1"
 	},
 /area/ship/external/dark)
@@ -390,7 +390,7 @@
 	preferred_direction = 4
 	},
 /turf/open/floor/engine/hull/reinforced{
-	icon = 'mod_celadon/_storage_icons/icons/structures/floors/metal_2.dmi';
+	icon = 'modular_mankind/_storage_icons/icons/structures/floors/metal_2.dmi';
 	icon_state = "metal_1"
 	},
 /area/ship/external/dark)
@@ -446,7 +446,7 @@
 	dir = 5
 	},
 /turf/open/floor/engine/hull/reinforced{
-	icon = 'mod_celadon/_storage_icons/icons/structures/floors/metal_2.dmi';
+	icon = 'modular_mankind/_storage_icons/icons/structures/floors/metal_2.dmi';
 	icon_state = "metal_1"
 	},
 /area/ship/external/dark)
@@ -593,7 +593,7 @@
 	dir = 4
 	},
 /turf/open/floor/engine/hull/reinforced{
-	icon = 'mod_celadon/_storage_icons/icons/structures/floors/metal_2.dmi';
+	icon = 'modular_mankind/_storage_icons/icons/structures/floors/metal_2.dmi';
 	icon_state = "metal_1"
 	},
 /area/ship/external/dark)
@@ -659,7 +659,7 @@
 	dir = 1
 	},
 /turf/open/floor/engine/hull/reinforced{
-	icon = 'mod_celadon/_storage_icons/icons/structures/floors/metal_2.dmi';
+	icon = 'modular_mankind/_storage_icons/icons/structures/floors/metal_2.dmi';
 	icon_state = "metal_1"
 	},
 /area/ship/external/dark)
@@ -682,7 +682,7 @@
 	dir = 8
 	},
 /turf/open/floor/engine/hull/reinforced{
-	icon = 'mod_celadon/_storage_icons/icons/structures/floors/metal_2.dmi';
+	icon = 'modular_mankind/_storage_icons/icons/structures/floors/metal_2.dmi';
 	icon_state = "metal_1"
 	},
 /area/ship/external/dark)
@@ -1063,7 +1063,7 @@
 	dir = 5
 	},
 /turf/open/floor/engine/hull/reinforced{
-	icon = 'mod_celadon/_storage_icons/icons/structures/floors/metal_2.dmi';
+	icon = 'modular_mankind/_storage_icons/icons/structures/floors/metal_2.dmi';
 	icon_state = "metal_1"
 	},
 /area/ship/external/dark)

@@ -6,7 +6,7 @@
 /obj/item/attachment/rail_light/mini
 	name = "X-26 flashlight"
 	desc = "A flashlight built specifically for the X-26. You should not see this."
-	icon = 'mod_celadon/_storage_icons/icons/items/weapons/attachments.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/items/weapons/attachments.dmi'
 	icon_state = "mini"
 	light_color = LIGHT_COLOR_HALOGEN
 	light_system = MOVABLE_LIGHT_DIRECTIONAL

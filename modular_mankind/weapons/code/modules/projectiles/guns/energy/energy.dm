@@ -23,10 +23,10 @@
 	name = "SL X-10 'Patriot' Energy Carbine"
 	desc = "A lightweight energy carbine capable of discharging decently powerful laser and disabler bolts. Commonly seen as a security self-defence weapon."
 	icon_state = "energy"
-	icon = 'mod_celadon/_storage_icons/icons/items/weapons/48x32_old.dmi'
-	lefthand_file = 'mod_celadon/_storage_icons/icons/items/weapons/in_hands/lefthand_old.dmi'
-	righthand_file = 'mod_celadon/_storage_icons/icons/items/weapons/in_hands/righthand_old.dmi'
-	mob_overlay_icon = 'mod_celadon/_storage_icons/icons/items/weapons/overlay/onmob.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/items/weapons/48x32_old.dmi'
+	lefthand_file = 'modular_mankind/_storage_icons/icons/items/weapons/in_hands/lefthand_old.dmi'
+	righthand_file = 'modular_mankind/_storage_icons/icons/items/weapons/in_hands/righthand_old.dmi'
+	mob_overlay_icon = 'modular_mankind/_storage_icons/icons/items/weapons/overlay/onmob.dmi'
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/nanotrasen, /obj/item/ammo_casing/energy/disabler/nanotrasen)
 	allowed_ammo_types = list(
 		/obj/item/stock_parts/cell/gun,
@@ -271,7 +271,7 @@
 	name = "\improper VEC-04 'Gleam' Energy SMG"
 	desc = "A mostly cosmetic IRMG modification of the Sharplite X-39 'Sunbeam'. Rapidly fires weak lethal and disabler bolts."
 	icon_state = "sunbeam_inteq"
-	icon = 'mod_celadon/_storage_icons/icons/items/weapons/48x32guns.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/items/weapons/48x32guns.dmi'
 
 //Base Eshotgun
 
@@ -384,10 +384,10 @@
 /obj/item/gun/energy/e_gun/e_old/sniper
 	name = "SL AL-602 'Phoenix' Energy Cannon"
 	desc = "An advanced sniper-like laser cannon that does more damage the farther away the target is. You can attach a scope to it! Infact, it comes with one already inbuit."
-	icon = 'mod_celadon/_storage_icons/icons/items/weapons/48x32_old.dmi'
-	lefthand_file = 'mod_celadon/_storage_icons/icons/items/weapons/in_hands/lefthand_old.dmi'
-	righthand_file = 'mod_celadon/_storage_icons/icons/items/weapons/in_hands/righthand_old.dmi'
-	mob_overlay_icon = 'mod_celadon/_storage_icons/icons/items/weapons/overlay/onmob.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/items/weapons/48x32_old.dmi'
+	lefthand_file = 'modular_mankind/_storage_icons/icons/items/weapons/in_hands/lefthand_old.dmi'
+	righthand_file = 'modular_mankind/_storage_icons/icons/items/weapons/in_hands/righthand_old.dmi'
+	mob_overlay_icon = 'modular_mankind/_storage_icons/icons/items/weapons/overlay/onmob.dmi'
 	icon_state = "phoenix"
 	item_state = "phoenix"
 	shaded_charge = TRUE
@@ -459,7 +459,7 @@
 /obj/item/stock_parts/cell/gun/sharplite
 	name = "plasma power cell"
 	desc = "A proprietary power cell primarily used by Sharplite Plasma weaponry. Nanotrasen's large market share has forced some weapon developers to include adapters for these cells."
-	icon = 'mod_celadon/_storage_icons/icons/items/weapons/power.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/items/weapons/power.dmi'
 	icon_state = "plasma-cell"
 	base_state = "plasma"	// Оверлей - Цвет-заряда батареек
 	maxcharge = 15000

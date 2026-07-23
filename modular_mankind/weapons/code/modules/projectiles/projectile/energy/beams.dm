@@ -159,7 +159,7 @@
 
 //Base NT-SL Laser
 /obj/projectile/beam/laser/nanotrasen //таким образом еоехома не словит бесплатный бафф + удобнее редачить древний код
-	icon = 'mod_celadon/_storage_icons/icons/items/weapons/ammo/projectiles.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/items/weapons/ammo/projectiles.dmi'
 	icon_state = "sl_laser"
 	speed = 0.3 //egun buff - просто мувспид с плазмапушек
 
@@ -171,7 +171,7 @@
 //Base NT-SL Disabler beam
 
 /obj/projectile/beam/disabler/nanotrasen
-	icon = 'mod_celadon/_storage_icons/icons/items/weapons/ammo/projectiles.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/items/weapons/ammo/projectiles.dmi'
 	icon_state = "sl_disabler"
 	speed = 0.3
 
@@ -215,7 +215,7 @@
 	armour_penetration = 20
 
 /obj/projectile/beam/disabler/nanotrasen/assault
-	icon = 'mod_celadon/_storage_icons/icons/items/weapons/ammo/projectiles.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/items/weapons/ammo/projectiles.dmi'
 	icon_state = "sl_disabler_heavy"
 	damage = 25
 	armour_penetration = 20
@@ -265,7 +265,7 @@
 // /obj/item/gun/energy/lasercannon
 
 /obj/projectile/beam/laser/nanotrasen/sniper
-	icon = 'mod_celadon/_storage_icons/icons/items/weapons/ammo/projectiles.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/items/weapons/ammo/projectiles.dmi'
 	name = "accelerator laser"
 	icon_state = "sl_laser_light"
 	range = 255
@@ -283,11 +283,11 @@
 // /obj/item/gun/energy/e_gun/e_old/mini
 
 /obj/projectile/beam/laser/nanotrasen/weak/mini
-	icon = 'mod_celadon/_storage_icons/icons/items/weapons/ammo/projectiles.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/items/weapons/ammo/projectiles.dmi'
 	armour_penetration = 5
 
 /obj/projectile/beam/disabler/nanotrasen/weak/mini
-	icon = 'mod_celadon/_storage_icons/icons/items/weapons/ammo/projectiles.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/items/weapons/ammo/projectiles.dmi'
 	armour_penetration = 10
 
 // /obj/item/gun/energy/laser/captain
