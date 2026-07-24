@@ -14,7 +14,7 @@ jobs:
 
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so the job can access it
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       #Parse the Codeowner file
       - name: CodeOwnersParser
@@ -26,5 +26,5 @@ jobs:
         if: steps.CodeOwnersParser.outputs.owners != ''
         uses: tgstation/RequestReviewFromUser@v1
         with:
-          separator: " "
+          separator: ' '
           users: ${{ steps.CodeOwnersParser.outputs.owners }}
