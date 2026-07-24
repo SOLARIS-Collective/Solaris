@@ -479,6 +479,8 @@
 /obj/item/circuitboard/computer/rdconsole,
 /obj/item/circuitboard/machine/protolathe/department/science,
 /obj/item/circuitboard/machine/circuit_imprinter/department/science,
+/obj/item/spacecash/bundle/c1000,
+/obj/item/spacecash/bundle/c1000,
 /turf/open/floor/plasteel,
 /area/ship/bridge)
 "qN" = (

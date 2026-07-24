@@ -761,6 +761,10 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/siding/blue/corner,
+/obj/item/spacecash/bundle/c1000{
+	pixel_x = 14;
+	pixel_y = 9
+	},
 /turf/open/floor/plasteel/dark,
 /area/ship/hallway/central)
 "mD" = (
@@ -844,6 +848,9 @@
 /obj/item/rack_parts,
 /obj/item/rack_parts,
 /obj/item/rack_parts,
+/obj/item/spacecash/bundle/c1000{
+	pixel_y = -7
+	},
 /turf/open/floor/plasteel/mono/dark,
 /area/ship/hallway/central)
 "nu" = (
@@ -1141,6 +1148,10 @@
 	},
 /obj/effect/turf_decal/siding/blue/corner{
 	dir = 4
+	},
+/obj/item/spacecash/bundle/c1000{
+	pixel_y = 2;
+	pixel_x = 13
 	},
 /turf/open/floor/plasteel/dark,
 /area/ship/hallway/central)
@@ -1480,6 +1491,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
 	dir = 9
 	},
+/obj/item/spacecash/bundle/c1000,
 /turf/open/floor/carpet/red_gold,
 /area/ship/hallway/central)
 "BE" = (
@@ -1987,7 +1999,7 @@
 "KO" = (
 /obj/structure/cable/yellow,
 /obj/machinery/power/port_gen/pacman,
-/obj/item/stack/sheet/mineral/plasma/five,
+/obj/item/stack/sheet/mineral/plasma/twenty,
 /turf/open/floor/plasteel/mono/dark,
 /area/ship/engineering)
 "KP" = (
@@ -2238,7 +2250,7 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/power/port_gen/pacman,
-/obj/item/stack/sheet/mineral/plasma/five,
+/obj/item/stack/sheet/mineral/plasma/twenty,
 /turf/open/floor/plasteel/mono/dark,
 /area/ship/engineering)
 "Qv" = (
