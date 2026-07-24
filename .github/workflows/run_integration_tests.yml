@@ -37,12 +37,6 @@ jobs:
           path: ~/BYOND
           key: ${{ runner.os }}-byond-cache-${{ secrets.CACHE_PURGE_KEY }}-${{ hashFiles('dependencies.sh') }}-${{ hashFiles('.github/workflows/run_integration_tests.yml') }}
 
-      - name: Check BYOND Version
-        if: steps.cache-byond.outputs.cache-hit == 'true'
-        run: |
-          source $HOME/BYOND/byond/bin/byondsetup
-          DreamDaemon --version || byond --version
-
       - name: Install BYOND
         if: steps.cache-byond.outputs.cache-hit != 'true'
         run: bash tools/ci/install_byond.sh
