@@ -2,19 +2,18 @@
 
 [![forthebadge](https://forthebadge.com/images/badges/built-with-resentment.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/contains-technical-debt.svg)](https://user-images.githubusercontent.com/8171642/50290880-ffef5500-043a-11e9-8270-a2e5b697c86c.png) [![forinfinityandbyond](https://user-images.githubusercontent.com/5211576/29499758-4efff304-85e6-11e7-8267-62919c3688a9.gif)](https://www.reddit.com/r/SS13/comments/5oplxp/what_is_the_main_problem_with_byond_as_an_engine/dclbu1a)
 
+- **Discord SOLARIS Collective:**<https://discord.gg/8FPD5gPhZ)>
 -   **Website:** <https://web.pentest.com.co>
--   **Pentest's Wiki (In maintenance):** <https://web.pentest.com.co/wiki>
--   **Shiptest's Code Docs:** <https://codedocs.shiptest.net>
+-   **Pentest's Wiki (временно используем, в будущем планируем сделать в Discord):** <https://web.pentest.com.co/wiki>
 -   **Pentest's Discord:** <https://discord.gg/ydGPEejXZB>
 -   **Coderbus Discord:** <https://discord.gg/Vh8TJp9>
 
-Этот репозиторий находится по форком Pentest. Называется он Solaris.
+Этот репозиторий основан на форке Pentest. Называется **SOLARIS**.
 
-Pentest is a 2D game built on BYOND in which you fly spaceships in a star system with your friends! Explore, find stuff, fight stuff, upgrade your ship with said stuff and roleplay a character!
+SOLARIS Collective — это 2D-игра, созданная на базе BYOND, в которой вы вместе со своими друзьями и остальными игроками выживаете в секторе на космических кораблях! Исследуйте, находите предметы, сражайтесь, улучшайте свой корабль с помощью этих предметов и играйте за свою куклу!
 
-This was origially made because we did not like how other servers was ran. It is also something bigger; a place where we can play our own characters how we want and have our own long term stories!
+История возникновения данного объединения — развитие проекта и эксперименты с билдом, чтобы дать игрокам интересный опыт. Для нас это нечто большее, чем творчество, а для игроков — место, где они могут играть за своих собственных персонажей в определенном темном сеттинге, видеть уникальные истории в раундах и наслаждаться воспоминаниями!
 
-Named Pentest, based on the story of how a person got banned on Shiptest for stealing a pen!
 
 |![image](https://github.com/user-attachments/assets/4bf03439-bf0b-4929-93e0-489d1629ff65) |
 |:--:| 
