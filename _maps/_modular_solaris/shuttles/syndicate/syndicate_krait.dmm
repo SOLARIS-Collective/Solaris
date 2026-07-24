@@ -232,10 +232,19 @@
 "ck" = (
 /obj/structure/guncloset,
 /obj/effect/turf_decal/industrial/traffic/full,
-/obj/item/gun/ballistic/automatic/smg/cobra,
-/obj/item/gun/energy/laser/retro,
-/obj/item/gun/ballistic/automatic/pistol/rattlesnake,
-/obj/item/gun/energy/e_gun/e_old/dragnet,
+/obj/item/gun/ballistic/automatic/smg/vector{
+	name = "Special Operations Vector";
+	projectile_damage_multiplier = 1.2;
+	allowed_ammo_types = list(/obj/item/ammo_box/magazine/m45_cobra);
+	default_ammo_type = 0;
+	desc = "A police carbine based on an old design originating from earth, Solar Federation. Modified by Gorlex and used as a common security SMG. Chambered in 45."
+	},
+/obj/item/gun/ballistic/automatic/smg/cobra/indie{
+	gun_firemodes = list("single","auto");
+	gun_firenames = list("single" = "single", "burst" = "burst fire", "auto" = "full auto", "other" = "misc. fire", "other2" = "very misc. fire", "underbarrel" = "underbarrel weapon");
+	name = "Cobra-22";
+	fire_delay = 1.2
+	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ship/security/armory)
 "cl" = (
@@ -520,6 +529,7 @@
 /obj/item/ammo_box/a357/match,
 /obj/item/gun/ballistic/revolver/viper,
 /obj/item/clothing/accessory/holster,
+/obj/item/clothing/glasses/hud/security/night,
 /turf/open/floor/carpet/red_gold,
 /area/ship/bridge)
 "eo" = (
@@ -844,6 +854,7 @@
 	uses = 1
 	},
 /obj/item/organ/cyberimp/arm/surgery,
+/obj/item/clothing/glasses/hud/diagnostic/night,
 /turf/open/floor/carpet/red_gold,
 /area/ship/bridge)
 "gN" = (
@@ -2571,7 +2582,6 @@
 /obj/structure/closet/crate/radiation{
 	name = "fuel crate"
 	},
-/obj/item/stack/sheet/mineral/uranium/twenty,
 /obj/structure/cable{
 	d2 = 2;
 	icon_state = "0-2";
@@ -2585,6 +2595,12 @@
 	},
 /obj/structure/cable{
 	icon_state = "2-8"
+	},
+/obj/item/stack/sheet/mineral/uranium/twenty{
+	amount = 30
+	},
+/obj/item/stack/sheet/mineral/uranium/twenty{
+	amount = 30
 	},
 /turf/open/floor/plasteel/tech/grid,
 /area/ship/engineering)
@@ -2870,14 +2886,22 @@
 /obj/effect/turf_decal/industrial/traffic/corner{
 	dir = 1
 	},
-/obj/item/ammo_box/magazine/m45_cobra,
-/obj/item/storage/box/ammo/c45,
-/obj/item/ammo_box/magazine/m9mm_rattlesnake{
-	pixel_x = -5
+/obj/item/storage/box/ammo/c45{
+	pixel_x = 12;
+	pixel_y = -6
 	},
-/obj/item/storage/box/ammo/c9mm,
-/obj/item/stock_parts/cell/gun,
-/obj/item/stock_parts/cell/gun,
+/obj/item/storage/box/ammo/c45{
+	pixel_x = 12;
+	pixel_y = -6
+	},
+/obj/item/storage/box/ammo/c45{
+	pixel_x = 12;
+	pixel_y = -6
+	},
+/obj/item/storage/box/ammo/c45{
+	pixel_x = 12;
+	pixel_y = -6
+	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ship/security/armory)
 "yH" = (
@@ -3086,6 +3110,7 @@
 	anchored = 1;
 	dir = 4
 	},
+/obj/item/circuitboard/computer/rdconsole,
 /turf/open/floor/mineral/plastitanium,
 /area/ship/science)
 "Av" = (
@@ -3093,7 +3118,10 @@
 /obj/item/tank/jetpack/oxygen/security{
 	name = "Suspicious looking jetpack (oxygen)"
 	},
-/obj/item/clothing/suit/space/hardsuit/syndi/ngr,
+/obj/item/clothing/suit/space/hardsuit/syndi/ngr{
+	name = "beige-red mod.Krait hardsuit";
+	armor = list("melee" = 40, "bullet" = 50, "laser" = 50, "energy" = 70, "bomb" = 55, "bio" = 100, "rad" = 30, "fire" = 30, "acid" = 100, "wound" = 60)
+	},
 /turf/open/floor/carpet/red_gold,
 /area/ship/bridge)
 "Az" = (
@@ -3257,6 +3285,7 @@
 	dir = 8
 	},
 /obj/machinery/firealarm/directional/west,
+/obj/machinery/ore_silo,
 /turf/open/floor/plasteel/dark,
 /area/ship/security/dock)
 "Cc" = (
@@ -4416,6 +4445,16 @@
 	pixel_y = -29;
 	name = "SnD team locker"
 	},
+/obj/item/storage/belt/security/webbing/ngr/cobra{
+	name = "NGR krait webbing";
+	pixel_x = 10;
+	pixel_y = -6
+	},
+/obj/item/storage/belt/security/webbing/ngr/cobra{
+	name = "NGR krait webbing";
+	pixel_x = 10;
+	pixel_y = -6
+	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ship/security/armory)
 "NA" = (
@@ -4578,6 +4617,7 @@
 	anchored = 1
 	},
 /obj/machinery/newscaster/directional/west,
+/obj/item/circuitboard/machine/techfab/department/medical,
 /turf/open/floor/mineral/plastitanium,
 /area/ship/science)
 "Pl" = (

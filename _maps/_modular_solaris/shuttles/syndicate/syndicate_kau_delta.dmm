@@ -130,7 +130,10 @@
 /obj/item/tank/jetpack/oxygen/security{
 	name = "Suspicious looking jetpack (oxygen)"
 	},
-/obj/item/clothing/suit/space/hardsuit/syndi,
+/obj/item/clothing/suit/space/hardsuit/syndi{
+	name = "blood-red hardsuit mod. Kau";
+	armor = list("melee" = 45, "bullet" = 50, "laser" = 35, "energy" = 50, "bomb" = 45, "bio" = 100, "rad" = 55, "fire" = 70, "acid" = 90, "wound" = 40)
+	},
 /turf/open/floor/carpet/red_gold,
 /area/ship/bridge)
 "dg" = (
@@ -289,24 +292,35 @@
 /obj/item/clothing/under/syndicate/combat,
 /obj/item/clothing/under/syndicate/combat,
 /obj/item/clothing/under/syndicate/combat,
-/obj/item/clothing/shoes/jackboots,
-/obj/item/clothing/shoes/jackboots,
-/obj/item/clothing/shoes/jackboots,
-/obj/item/clothing/shoes/jackboots,
 /obj/item/radio,
 /obj/item/radio,
 /obj/item/radio,
 /obj/item/radio,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
-/obj/item/clothing/head/beret/black,
-/obj/item/clothing/head/beret/black,
-/obj/item/clothing/head/beret/black,
-/obj/item/clothing/head/beret/black,
 /obj/effect/turf_decal/spline/plain/opaque/syndiered,
 /obj/item/storage/backpack/duffelbag/syndie,
 /obj/item/storage/backpack/duffelbag/syndie,
 /obj/item/storage/backpack/duffelbag/syndie,
 /obj/machinery/newscaster/directional/north,
+/obj/item/storage/backpack/security,
+/obj/item/storage/backpack/security,
+/obj/item/storage/backpack/security,
+/obj/item/clothing/shoes/combat{
+	pixel_x = 9;
+	pixel_y = -6
+	},
+/obj/item/clothing/shoes/combat{
+	pixel_x = 9;
+	pixel_y = -6
+	},
+/obj/item/clothing/shoes/combat{
+	pixel_x = 9;
+	pixel_y = -6
+	},
+/obj/item/clothing/shoes/combat{
+	pixel_x = 9;
+	pixel_y = -6
+	},
 /turf/open/floor/carpet/black,
 /area/ship/crew/dorm)
 "ge" = (
@@ -395,6 +409,10 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 4
+	},
+/obj/item/disk/surgery/t2{
+	pixel_x = 12;
+	pixel_y = 12
 	},
 /turf/open/floor/plasteel/dark,
 /area/ship/maintenance/port)
@@ -530,18 +548,90 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 1
 	},
-/obj/item/clothing/head/helmet/swat,
-/obj/item/clothing/head/helmet/swat,
-/obj/item/clothing/head/helmet/swat,
-/obj/item/clothing/mask/gas/syndicate,
-/obj/item/clothing/mask/gas/syndicate,
-/obj/item/clothing/mask/gas/syndicate,
-/obj/item/clothing/mask/gas/syndicate,
-/obj/item/clothing/suit/armor/vest/syndie,
-/obj/item/clothing/suit/armor/vest/syndie,
-/obj/item/clothing/suit/armor/vest/syndie,
-/obj/item/clothing/suit/armor/vest/syndie,
-/obj/item/clothing/head/caphat/cowboy,
+/obj/item/clothing/suit/armor/vest/syndie{
+	pixel_x = 12;
+	name = "Syndicate plate carrier mod. Kau";
+	armor = list("melee" = 45, "bullet" = 45, "laser" = 40, "energy" = 40, "bomb" = 45, "bio" = 0, "rad" = 0, "fire" = 70, "acid" = 60, "wound" = 30)
+	},
+/obj/item/clothing/suit/armor/vest/syndie{
+	pixel_x = 12;
+	name = "Syndicate plate carrier mod. Kau";
+	armor = list("melee" = 45, "bullet" = 45, "laser" = 40, "energy" = 40, "bomb" = 45, "bio" = 0, "rad" = 0, "fire" = 70, "acid" = 60, "wound" = 30)
+	},
+/obj/item/clothing/suit/armor/vest/syndie{
+	pixel_x = 12;
+	name = "Syndicate plate carrier mod. Kau";
+	armor = list("melee" = 45, "bullet" = 45, "laser" = 40, "energy" = 40, "bomb" = 45, "bio" = 0, "rad" = 0, "fire" = 70, "acid" = 60, "wound" = 30)
+	},
+/obj/item/clothing/suit/armor/vest/syndie{
+	pixel_x = 12;
+	name = "Syndicate plate carrier mod. Kau";
+	armor = list("melee" = 45, "bullet" = 45, "laser" = 40, "energy" = 40, "bomb" = 45, "bio" = 0, "rad" = 0, "fire" = 70, "acid" = 60, "wound" = 30)
+	},
+/obj/item/clothing/head/helmet/syndie{
+	pixel_x = 12;
+	pixel_y = 12;
+	armor = list("melee" = 40, "bullet" = 60, "laser" = 55, "energy" = 40, "bomb" = 40, "bio" = 0, "rad" = 0, "fire" = 70, "acid" = 80, "wound" = 40);
+	name = "Operator helmet mod. Kau"
+	},
+/obj/item/clothing/head/helmet/syndie{
+	pixel_x = 12;
+	pixel_y = 12;
+	armor = list("melee" = 40, "bullet" = 60, "laser" = 55, "energy" = 40, "bomb" = 40, "bio" = 0, "rad" = 0, "fire" = 70, "acid" = 80, "wound" = 40);
+	name = "Operator helmet mod. Kau"
+	},
+/obj/item/tank/internals/emergency_oxygen/double{
+	pixel_x = -10;
+	pixel_y = 6
+	},
+/obj/item/tank/internals/emergency_oxygen/double{
+	pixel_x = -10;
+	pixel_y = 6
+	},
+/obj/item/tank/internals/emergency_oxygen/double{
+	pixel_x = -10;
+	pixel_y = 6
+	},
+/obj/item/tank/internals/emergency_oxygen/double{
+	pixel_x = -10;
+	pixel_y = 6
+	},
+/obj/item/clothing/head/HoS/beret/syndicate{
+	pixel_x = 12;
+	pixel_y = 12;
+	armor = list("melee" = 40, "bullet" = 60, "laser" = 55, "energy" = 40, "bomb" = 40, "bio" = 0, "rad" = 0, "fire" = 70, "acid" = 80, "wound" = 40);
+	name = "syndicate operator Kau beret"
+	},
+/obj/item/clothing/head/HoS/beret{
+	armor = list("melee" = 40, "bullet" = 60, "laser" = 55, "energy" = 40, "bomb" = 40, "bio" = 0, "rad" = 0, "fire" = 70, "acid" = 80, "wound" = 40);
+	name = "syndicate operator Kau cap";
+	pixel_x = 12;
+	pixel_y = 12
+	},
+/obj/item/storage/belt/security/webbing/ngr{
+	icon_state = "ngr_webbing_tan";
+	name = "NGR Kau webbing";
+	pixel_x = -6;
+	pixel_y = -10
+	},
+/obj/item/storage/belt/security/webbing/ngr{
+	icon_state = "ngr_webbing_tan";
+	name = "NGR Kau webbing";
+	pixel_x = -6;
+	pixel_y = -10
+	},
+/obj/item/storage/belt/security/webbing/ngr{
+	icon_state = "ngr_webbing_tan";
+	name = "NGR Kau webbing";
+	pixel_x = -6;
+	pixel_y = -10
+	},
+/obj/item/storage/belt/security/webbing/ngr{
+	icon_state = "ngr_webbing_tan";
+	name = "NGR Kau webbing";
+	pixel_x = -6;
+	pixel_y = -10
+	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ship/security/armory)
 "kc" = (
@@ -1138,6 +1228,22 @@
 /obj/item/storage/backpack/duffelbag/syndie/c4,
 /obj/item/storage/box/syndie_kit/signaler,
 /obj/item/melee/baton,
+/obj/item/flashlight/seclite{
+	pixel_x = -12;
+	pixel_y = 6
+	},
+/obj/item/flashlight/seclite{
+	pixel_x = -12;
+	pixel_y = 6
+	},
+/obj/item/flashlight/seclite{
+	pixel_x = -12;
+	pixel_y = 6
+	},
+/obj/item/flashlight/seclite{
+	pixel_x = -12;
+	pixel_y = 6
+	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ship/security/armory)
 "xN" = (
@@ -1328,7 +1434,6 @@
 /obj/item/clothing/shoes/jackboots,
 /obj/item/clothing/under/syndicate/combat,
 /obj/item/codespeak_manual/unlimited,
-/obj/item/clothing/gloves/combat,
 /obj/item/clothing/head/HoS/beret/syndicate,
 /obj/item/radio/headset/syndicate/alt/captain,
 /obj/item/storage/box/ammo/c57x39,
@@ -1346,6 +1451,13 @@
 	},
 /obj/item/gps,
 /obj/item/tank/jetpack/suit,
+/obj/item/tank/internals/emergency_oxygen/double{
+	pixel_x = -10;
+	pixel_y = 6
+	},
+/obj/item/clothing/gloves/combat/insul,
+/obj/item/clothing/glasses/hud/security/night,
+/obj/item/clothing/shoes/combat,
 /turf/open/floor/carpet/red_gold,
 /area/ship/bridge)
 "BW" = (
@@ -1417,14 +1529,55 @@
 	pixel_y = -29;
 	name = "ammo locker"
 	},
-/obj/item/storage/box/ammo/a300,
-/obj/item/storage/box/ammo/c45,
-/obj/item/storage/box/ammo/c45,
-/obj/item/ammo_box/magazine/m45_cobra,
-/obj/item/ammo_box/magazine/m45_cobra,
-/obj/item/ammo_box/magazine/m45_cobra,
-/obj/item/ammo_box/magazine/m45_cobra,
-/obj/item/ammo_box/a300,
+/obj/item/storage/box/ammo/a300{
+	pixel_x = 12;
+	pixel_y = -6
+	},
+/obj/item/ammo_box/a300{
+	pixel_x = 12
+	},
+/obj/item/ammo_box/magazine/m45_cobra{
+	pixel_x = 12;
+	pixel_y = 12
+	},
+/obj/item/ammo_box/magazine/m45_cobra{
+	pixel_x = 12;
+	pixel_y = 12
+	},
+/obj/item/ammo_box/magazine/m45_cobra{
+	pixel_x = 12;
+	pixel_y = 12
+	},
+/obj/item/ammo_box/magazine/m45_cobra{
+	pixel_x = 12;
+	pixel_y = 12
+	},
+/obj/item/ammo_box/magazine/m45_cobra{
+	pixel_x = 12;
+	pixel_y = 12
+	},
+/obj/item/ammo_box/magazine/m45_cobra{
+	pixel_x = 12;
+	pixel_y = 12
+	},
+/obj/item/ammo_box/a300{
+	pixel_x = 12
+	},
+/obj/item/storage/box/ammo/c45{
+	pixel_x = -12
+	},
+/obj/item/storage/box/ammo/c45{
+	pixel_x = -12
+	},
+/obj/item/storage/box/ammo/c45{
+	pixel_x = -12
+	},
+/obj/item/storage/box/ammo/c45{
+	pixel_x = -12
+	},
+/obj/item/ammo_box/a300{
+	pixel_x = 12
+	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ship/security/armory)
 "Dz" = (
@@ -1555,6 +1708,7 @@
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
+/obj/item/stack/sheet/mineral/plasma/twenty,
 /turf/open/floor/plasteel/tech,
 /area/ship/engineering)
 "Fz" = (
@@ -2286,6 +2440,10 @@
 /obj/machinery/light/broken/directional/south,
 /turf/open/floor/plasteel/dark,
 /area/ship/maintenance/port)
+"RE" = (
+/obj/structure/sign/flag/ngr,
+/turf/closed/wall/mineral/plastitanium,
+/area/ship/crew/dorm)
 "RR" = (
 /obj/effect/turf_decal/trimline/opaque/syndiered/filled/corner,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -2489,6 +2647,7 @@
 "WZ" = (
 /obj/structure/table/wood/fancy,
 /obj/machinery/fax/syndicate,
+/obj/structure/sign/flag/syndie/directional/east,
 /turf/open/floor/carpet/red_gold,
 /area/ship/bridge)
 "Xe" = (
@@ -2877,7 +3036,7 @@ Be
 jH
 Es
 Fz
-zb
+RE
 oq
 Eo
 Dr

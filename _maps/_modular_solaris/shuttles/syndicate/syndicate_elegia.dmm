@@ -115,15 +115,6 @@
 /turf/open/floor/carpet/red,
 /area/ship/crew)
 "cH" = (
-/obj/structure/table/reinforced,
-/obj/item/clothing/glasses/night{
-	pixel_x = 2;
-	pixel_y = 1
-	},
-/obj/item/clothing/glasses/night{
-	pixel_y = 6
-	},
-/obj/effect/turf_decal/industrial/traffic/full,
 /obj/machinery/light/small/directional/west,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ship/security/armory)
@@ -229,6 +220,7 @@
 	},
 /obj/machinery/light/small/directional/west,
 /obj/item/gun/ballistic/automatic/pistol/ringneck,
+/obj/item/storage/belt/medical/surgery,
 /turf/open/floor/carpet/blue,
 /area/ship/medical)
 "dI" = (
@@ -258,7 +250,18 @@
 /obj/item/clothing/accessory/holster,
 /obj/item/clothing/suit/armor/vest/capcarapace/syndicate,
 /obj/item/clothing/under/syndicate/combat,
-/obj/item/clothing/gloves/combat,
+/obj/item/gun/ballistic/automatic/smg/cobra/indie{
+	gun_firemodes = list("single","auto");
+	gun_firenames = list("single" = "single", "burst" = "burst fire", "auto" = "full auto", "other" = "misc. fire", "other2" = "very misc. fire", "underbarrel" = "underbarrel weapon");
+	name = "Cobra-22";
+	fire_delay = 1.2
+	},
+/obj/item/ammo_box/magazine/m45_cobra,
+/obj/item/ammo_box/magazine/m45_cobra,
+/obj/item/ammo_box/magazine/m45_cobra,
+/obj/item/clothing/gloves/combat/insul,
+/obj/item/clothing/shoes/combat,
+/obj/item/clothing/glasses/hud/diagnostic/night,
 /turf/open/floor/carpet/red_gold,
 /area/ship/bridge)
 "dV" = (
@@ -1035,6 +1038,7 @@
 /obj/structure/extinguisher_cabinet/directional/south{
 	pixel_x = -3
 	},
+/obj/mecha/working/ripley/deathripley,
 /turf/open/floor/mech_bay_recharge_floor,
 /area/ship/cargo)
 "rC" = (
@@ -1121,11 +1125,53 @@
 	pixel_x = -28
 	},
 /obj/structure/table/reinforced,
-/obj/item/clothing/suit/armor/vest/syndie,
-/obj/item/clothing/suit/armor/vest/syndie,
 /obj/effect/turf_decal/industrial/traffic/full,
-/obj/item/clothing/head/helmet/swat,
-/obj/item/clothing/head/helmet/swat,
+/obj/item/clothing/head/helmet/swat{
+	pixel_x = 10;
+	pixel_y = 12
+	},
+/obj/item/clothing/head/helmet/swat{
+	pixel_x = 10;
+	pixel_y = 12
+	},
+/obj/item/clothing/head/helmet/swat{
+	pixel_x = 10;
+	pixel_y = 12
+	},
+/obj/item/clothing/suit/armor/vest/syndie{
+	pixel_x = 12;
+	name = "Syndicate plate carrier mod. Elegia";
+	armor = list("melee" = 45, "bullet" = 45, "laser" = 40, "energy" = 40, "bomb" = 45, "bio" = 0, "rad" = 0, "fire" = 70, "acid" = 60, "wound" = 30)
+	},
+/obj/item/clothing/suit/armor/vest/syndie{
+	pixel_x = 12;
+	name = "Syndicate plate carrier mod. Elegia";
+	armor = list("melee" = 45, "bullet" = 45, "laser" = 40, "energy" = 40, "bomb" = 45, "bio" = 0, "rad" = 0, "fire" = 70, "acid" = 60, "wound" = 30)
+	},
+/obj/item/clothing/suit/armor/vest/syndie{
+	pixel_x = 12;
+	name = "Syndicate plate carrier mod. Elegia";
+	armor = list("melee" = 45, "bullet" = 45, "laser" = 40, "energy" = 40, "bomb" = 45, "bio" = 0, "rad" = 0, "fire" = 70, "acid" = 60, "wound" = 30)
+	},
+/obj/item/clothing/glasses/night{
+	pixel_x = 2;
+	pixel_y = 1
+	},
+/obj/item/clothing/glasses/night{
+	pixel_y = 6
+	},
+/obj/item/flashlight/seclite{
+	pixel_x = -12;
+	pixel_y = 6
+	},
+/obj/item/flashlight/seclite{
+	pixel_x = -12;
+	pixel_y = 6
+	},
+/obj/item/flashlight/seclite{
+	pixel_x = -12;
+	pixel_y = 6
+	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ship/security/armory)
 "tz" = (
@@ -1984,13 +2030,39 @@
 	dir = 1
 	},
 /obj/structure/table/reinforced,
-/obj/item/storage/box/lethalshot,
-/obj/item/storage/box/lethalshot,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /obj/effect/turf_decal/industrial/traffic/full,
-/obj/item/storage/box/ammo/c10mm,
-/obj/item/ammo_box/magazine/m10mm_ringneck,
-/obj/item/ammo_box/magazine/m10mm_ringneck,
+/obj/item/storage/box/ammo/a12g_buckshot{
+	pixel_y = 10;
+	pixel_x = 6
+	},
+/obj/item/storage/box/ammo/a12g_buckshot{
+	pixel_y = 10;
+	pixel_x = 6
+	},
+/obj/item/storage/box/ammo/a12g_buckshot{
+	pixel_y = 10;
+	pixel_x = 6
+	},
+/obj/item/storage/box/ammo/c45{
+	pixel_x = 12;
+	pixel_y = -6
+	},
+/obj/item/storage/box/ammo/c45{
+	pixel_x = 12;
+	pixel_y = -6
+	},
+/obj/item/storage/box/ammo/c10mm{
+	pixel_x = -6;
+	pixel_y = 10
+	},
+/obj/item/storage/box/ammo/c10mm{
+	pixel_x = -6;
+	pixel_y = 10
+	},
+/obj/item/ammo_box/magazine/m10mm_cottonmouth,
+/obj/item/ammo_box/magazine/m10mm_cottonmouth,
+/obj/item/ammo_box/magazine/m10mm_cottonmouth,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ship/security/armory)
 "Gm" = (
@@ -2284,9 +2356,9 @@
 /obj/machinery/airalarm/directional/west,
 /obj/machinery/light/directional/north,
 /obj/effect/turf_decal/industrial/traffic/full,
-/obj/item/gun/ballistic/automatic/pistol/ringneck,
-/obj/item/gun/ballistic/shotgun/brimstone,
-/obj/item/gun/ballistic/shotgun/brimstone,
+/obj/item/gun/ballistic/shotgun/automatic/m11,
+/obj/item/gun/ballistic/shotgun/automatic/m11,
+/obj/item/gun/ballistic/automatic/pistol/rattlesnake/cottonmouth,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ship/security/armory)
 "Kw" = (
@@ -3075,6 +3147,8 @@
 	pixel_x = -15;
 	pixel_y = 1
 	},
+/obj/item/clothing/shoes/combat,
+/obj/item/clothing/shoes/combat,
 /turf/open/floor/carpet/blue,
 /area/ship/crew/dorm)
 "Yk" = (

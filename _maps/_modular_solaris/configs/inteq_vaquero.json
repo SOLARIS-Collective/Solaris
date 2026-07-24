@@ -6,7 +6,7 @@
 	"map_path": "_maps/_modular_solaris/shuttles/inteq/inteq_vaquero.dmm",
 	"enabled": true,
 	"limit": 1,
-	"sensor_range": 6,
+	"sensor_range": 11,
 	"prefix": "LIQSV",
 	"faction": "/datum/faction/inteq",
 	"tags": [

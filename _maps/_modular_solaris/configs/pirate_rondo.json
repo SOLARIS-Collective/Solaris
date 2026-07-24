@@ -6,7 +6,7 @@
 	"map_path": "_maps/_modular_solaris/shuttles/pirate/pirate_rondo.dmm",
 	"enabled" : true,
 	"limit": 1,
-	"sensor_range": 6,
+	"sensor_range": 13,
 	"space_spawn": true,
 	"prefix": "RSV",
 	"faction": "/datum/faction/pirate",

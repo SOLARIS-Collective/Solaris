@@ -6,7 +6,7 @@
 	"map_id": "gec_lugol",
 	"enabled": true,
 	"limit": 1,
-	"sensor_range": 3,
+	"sensor_range": 8,
 	"prefix": "SEV",
 	"faction": "/datum/faction/syndicate",
 	"tags": ["Инженерный"],

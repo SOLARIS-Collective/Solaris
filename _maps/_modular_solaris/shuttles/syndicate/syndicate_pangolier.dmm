@@ -1571,6 +1571,10 @@
 	pixel_x = 10;
 	pixel_y = -6
 	},
+/obj/item/storage/box/ammo/a12g_buckshot{
+	pixel_y = 10;
+	pixel_x = 6
+	},
 /turf/open/floor/mineral/plastitanium,
 /area/ship/bridge)
 "qk" = (
@@ -2098,6 +2102,10 @@
 /obj/item/storage/box/ammo/a12g_slug{
 	pixel_y = 10;
 	pixel_x = -11
+	},
+/obj/item/storage/box/ammo/a12g_buckshot{
+	pixel_y = 10;
+	pixel_x = 6
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ship/bridge)
