@@ -6,7 +6,7 @@
 	"map_path": "_maps/_modular_solaris/shuttles/nanotrasen/nanotrasen_delta.dmm",
 	"enabled": true,
 	"limit": 1,
-	"sensor_range": 4,
+	"sensor_range": 10,
 	"starting_funds": 4000,
 	"prefix": "NTDSV",
 	"faction": "/datum/faction/nt",

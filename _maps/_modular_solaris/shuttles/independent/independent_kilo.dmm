@@ -1398,6 +1398,9 @@
 	},
 /obj/machinery/light/directional/west,
 /obj/structure/extinguisher_cabinet/directional/south,
+/obj/item/stack/sheet/mineral/plasma{
+	amount = 10
+	},
 /turf/open/floor/plating,
 /area/ship/cargo)
 "yF" = (

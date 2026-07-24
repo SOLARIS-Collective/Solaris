@@ -1612,13 +1612,25 @@
 	desc = "A locker that holds weapons.";
 	name = "weapon locker"
 	},
-/obj/item/gun/ballistic/automatic/pistol/solgov,
-/obj/item/gun/ballistic/automatic/pistol/solgov,
-/obj/item/gun/ballistic/automatic/powered/gauss/claris,
 /obj/effect/turf_decal/techfloor{
 	dir = 9
 	},
 /obj/item/gun/ballistic/automatic/powered/gauss/claris,
+/obj/item/gun/ballistic/automatic/smg/cm5{
+	allowed_ammo_types = list(/obj/item/ammo_box/magazine/smgm10mm);
+	default_ammo_type = /obj/item/ammo_box/magazine/smgm10mm;
+	name = "improper mod. Cepheus CM-10"
+	},
+/obj/item/gun/ballistic/automatic/smg/cm5{
+	allowed_ammo_types = list(/obj/item/ammo_box/magazine/smgm10mm);
+	default_ammo_type = /obj/item/ammo_box/magazine/smgm10mm;
+	name = "improper mod. Cepheus CM-10"
+	},
+/obj/item/gun/ballistic/automatic/smg/cm5{
+	allowed_ammo_types = list(/obj/item/ammo_box/magazine/smgm10mm);
+	default_ammo_type = /obj/item/ammo_box/magazine/smgm10mm;
+	name = "improper mod. Cepheus CM-10"
+	},
 /turf/open/floor/plasteel/white,
 /area/ship/security/armory)
 "tX" = (
@@ -3686,7 +3698,61 @@
 /obj/item/ammo_box/magazine/modelh,
 /obj/item/ammo_box/magazine/modelh,
 /obj/item/storage/box/ammo/ferroslug,
-/obj/item/storage/box/ammo/ferroslug,
+/obj/item/ammo_box/magazine/smgm10mm{
+	name = "CM-10 magazine (10x22mm)";
+	pixel_x = 6;
+	pixel_y = 6
+	},
+/obj/item/ammo_box/magazine/smgm10mm{
+	name = "CM-10 magazine (10x22mm)";
+	pixel_x = 6;
+	pixel_y = 6
+	},
+/obj/item/ammo_box/magazine/smgm10mm{
+	name = "CM-10 magazine (10x22mm)";
+	pixel_x = 6;
+	pixel_y = 6
+	},
+/obj/item/ammo_box/magazine/smgm10mm{
+	name = "CM-10 magazine (10x22mm)";
+	pixel_x = 6;
+	pixel_y = 6
+	},
+/obj/item/ammo_box/magazine/smgm10mm{
+	name = "CM-10 magazine (10x22mm)";
+	pixel_x = 6;
+	pixel_y = 6
+	},
+/obj/item/ammo_box/magazine/smgm10mm{
+	name = "CM-10 magazine (10x22mm)";
+	pixel_x = 6;
+	pixel_y = 6
+	},
+/obj/item/ammo_box/magazine/smgm10mm{
+	name = "CM-10 magazine (10x22mm)";
+	pixel_x = 6;
+	pixel_y = 6
+	},
+/obj/item/ammo_box/magazine/smgm10mm{
+	name = "CM-10 magazine (10x22mm)";
+	pixel_x = 6;
+	pixel_y = 6
+	},
+/obj/item/ammo_box/magazine/smgm10mm{
+	name = "CM-10 magazine (10x22mm)";
+	pixel_x = 6;
+	pixel_y = 6
+	},
+/obj/item/ammo_box/amagpellet_claris,
+/obj/item/ammo_box/amagpellet_claris,
+/obj/item/storage/box/ammo/ferropellet{
+	pixel_y = 10;
+	pixel_x = -5
+	},
+/obj/item/storage/box/ammo/ferropellet{
+	pixel_y = 10;
+	pixel_x = -5
+	},
 /turf/open/floor/plasteel/white,
 /area/ship/security/armory)
 "RN" = (
@@ -3826,6 +3892,19 @@
 	pixel_x = -23;
 	pixel_y = 10
 	},
+/obj/item/storage/belt/military/solfed,
+/obj/item/storage/belt/military/solfed,
+/obj/item/storage/belt/military/solfed,
+/obj/item/storage/belt/military/solfed,
+/obj/item/clothing/glasses/sunglasses/ballistic,
+/obj/item/clothing/glasses/sunglasses/ballistic,
+/obj/item/clothing/glasses/sunglasses/ballistic,
+/obj/item/clothing/suit/armor/vest/marine,
+/obj/item/clothing/suit/armor/vest/marine,
+/obj/item/clothing/suit/armor/vest/marine,
+/obj/item/clothing/head/helmet/bulletproof/x11/solfed,
+/obj/item/clothing/head/helmet/bulletproof/x11/solfed,
+/obj/item/clothing/head/helmet/bulletproof/x11/solfed,
 /turf/open/floor/plasteel/white,
 /area/ship/security/armory)
 "Up" = (

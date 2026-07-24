@@ -218,14 +218,14 @@
 /area/ship/maintenance/port)
 "fT" = (
 /obj/structure/closet/secure_closet/security,
-/obj/item/gun/ballistic/automatic/assault/hydra/lmg/extended,
-/obj/item/gun/ballistic/automatic/assault/hydra/lmg/extended,
 /obj/item/ammo_box/magazine/m12g_bulldog/drum,
 /obj/item/ammo_box/magazine/m12g_bulldog/drum,
 /obj/item/ammo_box/magazine/m12g_bulldog/drum,
 /obj/item/ammo_box/magazine/m12g_bulldog/drum,
 /obj/effect/turf_decal/box/red,
 /obj/item/radio/intercom/directional/north,
+/obj/item/gun/ballistic/shotgun/automatic/bulldog/drum,
+/obj/item/gun/ballistic/shotgun/automatic/bulldog/drum,
 /turf/open/floor/plasteel/dark,
 /area/ship/security)
 "go" = (

@@ -149,6 +149,11 @@ jobs:
         if: steps.cache-byond.outputs.cache-hit != 'true'
         run: bash tools/ci/install_byond.sh
 
+      - name: Install system dependencies
+        run: |
+          sudo apt-get install -y libcurl4
+          sudo ln -sf /usr/lib/x86_64-linux-gnu/libcurl.so.4t64 /usr/lib/x86_64-linux-gnu/libcurl.so.4
+
       - name: Compile All Maps
         run: |
           source $HOME/BYOND/byond/bin/byondsetup

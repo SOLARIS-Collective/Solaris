@@ -68,8 +68,19 @@
 	pixel_y = -1
 	},
 /obj/item/storage/box/ammo/c45,
-/obj/item/ammo_box/magazine/m45_cobra,
 /obj/item/storage/box/ammo/c45,
+/obj/item/ammo_box/magazine/m45_cobra{
+	pixel_x = 12;
+	pixel_y = 12
+	},
+/obj/item/ammo_box/magazine/m45_cobra{
+	pixel_x = 12;
+	pixel_y = 12
+	},
+/obj/item/ammo_box/magazine/m45_cobra{
+	pixel_x = 12;
+	pixel_y = 12
+	},
 /turf/open/floor/carpet/black,
 /area/ship/bridge)
 "bJ" = (
@@ -305,8 +316,8 @@
 /obj/effect/turf_decal/industrial/outline,
 /obj/item/storage/box/ammo/c57x39,
 /obj/item/storage/box/ammo/c57x39,
-/obj/item/stock_parts/cell/gun,
-/obj/item/stock_parts/cell/gun,
+/obj/item/storage/box/ammo/c57x39,
+/obj/item/storage/box/ammo/c57x39,
 /turf/open/floor/mineral/plastitanium,
 /area/ship/security/armory)
 "fC" = (
@@ -503,11 +514,32 @@
 	pixel_y = -21
 	},
 /obj/item/gun/ballistic/automatic/pistol/asp,
-/obj/item/ammo_box/magazine/m57_39_asp,
-/obj/item/ammo_box/magazine/m57_39_asp,
-/obj/item/gun/energy/laser/retro,
-/obj/item/gun/energy/disabler,
-/obj/item/gun/energy/disabler,
+/obj/item/ammo_box/magazine/m57_39_asp{
+	pixel_x = 10;
+	pixel_y = 6
+	},
+/obj/item/ammo_box/magazine/m57_39_asp{
+	pixel_x = 10;
+	pixel_y = 6
+	},
+/obj/item/ammo_box/magazine/m57_39_asp{
+	pixel_x = 10;
+	pixel_y = 6
+	},
+/obj/item/ammo_box/magazine/m57_39_asp{
+	pixel_x = 10;
+	pixel_y = 6
+	},
+/obj/item/ammo_box/magazine/m57_39_asp{
+	pixel_x = 10;
+	pixel_y = 6
+	},
+/obj/item/ammo_box/magazine/m57_39_asp{
+	pixel_x = 10;
+	pixel_y = 6
+	},
+/obj/item/gun/ballistic/automatic/pistol/asp,
+/obj/item/gun/ballistic/automatic/pistol/asp,
 /turf/open/floor/mineral/plastitanium,
 /area/ship/security/armory)
 "jG" = (
@@ -1420,6 +1452,7 @@
 /obj/effect/turf_decal/industrial/outline,
 /obj/machinery/light/small/directional/north,
 /obj/item/stack/sheet/mineral/uranium/five,
+/obj/item/stack/sheet/mineral/uranium/ten,
 /turf/open/floor/plasteel/tech,
 /area/ship/maintenance/port)
 "yG" = (
@@ -1666,9 +1699,6 @@
 /obj/item/clothing/under/syndicate/gorlex,
 /obj/item/clothing/suit/toggle/industrial,
 /obj/item/clothing/gloves/combat,
-/obj/item/storage/belt/utility/chief{
-	name = "\improper Foreman's toolbelt"
-	},
 /obj/item/clothing/glasses/meson,
 /obj/item/clothing/glasses/welding,
 /obj/item/clothing/head/hardhat/white,
@@ -1684,6 +1714,9 @@
 /obj/item/ammo_box/a357/match,
 /obj/item/ammo_box/a357/match,
 /obj/item/ammo_box/a357/match,
+/obj/item/storage/belt/utility/chief/full{
+	name = "Foreman's toolbelt"
+	},
 /turf/open/floor/carpet/red,
 /area/ship/cargo/office)
 "BB" = (
@@ -1711,7 +1744,10 @@
 	pixel_x = -20
 	},
 /obj/item/clothing/mask/gas/syndicate,
-/obj/item/clothing/suit/space/hardsuit/syndi/ngr,
+/obj/item/clothing/suit/space/hardsuit/syndi/ngr{
+	armor = list("melee" = 50, "bullet" = 50, "laser" = 45, "energy" = 40, "bomb" = 35, "bio" = 100, "rad" = 50, "fire" = 50, "acid" = 90, "wound" = 30);
+	name = "beige-red mod. Hyena hardsuit"
+	},
 /turf/open/floor/carpet/black,
 /area/ship/bridge)
 "Ck" = (
@@ -2258,7 +2294,10 @@
 	req_access = list(56)
 	},
 /obj/item/clothing/mask/gas/syndicate,
-/obj/item/clothing/suit/space/hardsuit/syndi/ngr,
+/obj/item/clothing/suit/space/hardsuit/syndi/ngr{
+	name = "beige-red mod. Foreman hardsuit";
+	armor = list("melee" = 40, "bullet" = 50, "laser" = 30, "energy" = 40, "bomb" = 65, "bio" = 100, "rad" = 80, "fire" = 100, "acid" = 90, "wound" = 40)
+	},
 /turf/open/floor/carpet/red,
 /area/ship/cargo/office)
 "KX" = (
@@ -3160,7 +3199,6 @@
 	dir = 4
 	},
 /obj/structure/rack,
-/obj/item/pickaxe/drill,
 /obj/item/pickaxe/drill{
 	pixel_y = 9
 	},
@@ -3168,6 +3206,7 @@
 /obj/item/melee/sledgehammer/gorlex{
 	pixel_x = 5
 	},
+/obj/item/pickaxe/drill/diamonddrill,
 /turf/open/floor/plasteel/tech/grid,
 /area/ship/storage)
 "Yv" = (

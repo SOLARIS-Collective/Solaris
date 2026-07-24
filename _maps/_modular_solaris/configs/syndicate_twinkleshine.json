@@ -6,7 +6,7 @@
 	"map_path": "_maps/_modular_solaris/shuttles/syndicate/syndicate_twinkleshine.dmm",
 	"enabled" : false,
 	"limit": 1,
-	"sensor_range": 4,
+	"sensor_range": 9,
 	"faction": "/datum/faction/syndicate",
 	"prefix": "ASSV",
 	"tags": ["Флагман", "Административный"
