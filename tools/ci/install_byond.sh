@@ -9,9 +9,6 @@ if [ -z "${BYOND_MAJOR+x}" ]; then
   source dependencies.sh
 fi
 
-# Install libcurl4 which DreamMaker needs at runtime
-sudo apt-get install -y libcurl4
-
 if [ -d "$HOME/BYOND/byond/bin" ] && grep -Fxq "${BYOND_MAJOR}.${BYOND_MINOR}" $HOME/BYOND/version.txt;
 then
   echo "Using cached directory. ${BYOND_MAJOR}.${BYOND_MINOR} is already installed."
