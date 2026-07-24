@@ -345,11 +345,7 @@
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 	siemens_coefficient = 0
 	complexity_max = DEFAULT_MAX_COMPLEXITY + 3
-<<<<<<<< HEAD:modular_mankind/modsuits/code/mod_theme.dm
 	charge_drain = DEFAULT_CHARGE_DRAIN // [MANKIND-ADD] - MANKIND_MODSUITS
-========
-	charge_drain = DEFAULT_CHARGE_DRAIN // [MANKIND-ADD] - CELADON_MODSUITS
->>>>>>>> b735b167cf (ADD: Modsuits by Erring (#2870)):modular_mankind/modsuits/code/research/mod_theme.dm
 	slowdown_inactive = 1
 	slowdown_active = 0.65
 	// module_blacklist = list(/obj/item/mod/module/armor_booster/civilian)

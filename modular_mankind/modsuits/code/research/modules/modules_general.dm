@@ -5,11 +5,7 @@
 	icon_state = "inteq_flashlight"
 	module_type = MODULE_TOGGLE
 	complexity = 0
-<<<<<<<< HEAD:modular_mankind/modsuits/code/modules/modules_general.dm
-	active_power_cost = DEFAULT_CHARGE_DRAIN * 0.3
-========
 	active_power_cost = DEFAULT_CHARGE_DRAIN * 0.2
->>>>>>>> b735b167cf (ADD: Modsuits by Erring (#2870)):modular_mankind/modsuits/code/research/modules/modules_general.dm
 	incompatible_modules = list(/obj/item/mod/module/flashlight)
 	cooldown_time = 0.5 SECONDS
 	overlay_state_inactive = "inteq_module_light"
