@@ -2241,6 +2241,9 @@
 /obj/item/clothing/suit/armor/vest/security,
 /obj/item/clothing/glasses/hud/security/night,
 /obj/item/stock_parts/cell/gun/upgraded,
+/obj/item/gun/energy/e_gun/e_old/hos,
+/obj/item/stock_parts/cell/gun/upgraded,
+/obj/item/shield/riot/tele,
 /turf/open/floor/wood,
 /area/ship/bridge)
 "tq" = (
@@ -2476,6 +2479,7 @@
 /obj/item/clothing/suit/armor/vest/security,
 /obj/item/tank/internals/emergency_oxygen/double,
 /obj/item/clothing/glasses/welding,
+/obj/item/shield/riot/tele,
 /turf/open/floor/carpet/purple,
 /area/ship/general/command_crew/rd)
 "vz" = (
@@ -3861,6 +3865,7 @@
 /obj/item/gun/ballistic/automatic/smg/wt550,
 /obj/item/gun/energy/e_gun/e_old/smg,
 /obj/item/gun/energy/e_gun/e_old/smg,
+/obj/item/gun/ballistic/automatic/smg/expedition,
 /turf/open/floor/plasteel/dark,
 /area/ship/security/armory)
 "Id" = (
@@ -5010,19 +5015,7 @@
 /area/ship/crew)
 "Qr" = (
 /obj/effect/turf_decal/box/red,
-/obj/item/ammo_box/magazine/co9mm{
-	pixel_y = -1;
-	pixel_x = 9
-	},
 /obj/structure/rack,
-/obj/item/ammo_box/magazine/co9mm{
-	pixel_y = 4;
-	pixel_x = 5
-	},
-/obj/item/ammo_box/magazine/co9mm{
-	pixel_y = -1;
-	pixel_x = -2
-	},
 /obj/machinery/door/window/brigdoor/southright,
 /obj/structure/window/reinforced/spawner{
 	dir = 8
@@ -5041,7 +5034,6 @@
 /obj/item/storage/box/ammo/c46x30mm,
 /obj/item/storage/box/ammo/c9mm,
 /obj/item/storage/box/ammo/c9mm,
-/obj/item/gun/ballistic/automatic/pistol/challenger/no_mag,
 /obj/structure/window/reinforced/spawner{
 	dir = 4;
 	layer = 4.1
@@ -5049,6 +5041,9 @@
 /obj/structure/window/reinforced/spawner{
 	dir = 1
 	},
+/obj/item/ammo_box/magazine/m9mm_expedition,
+/obj/item/ammo_box/magazine/m9mm_expedition,
+/obj/item/ammo_box/magazine/m9mm_expedition,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ship/security/armory)
 "Qx" = (
@@ -5103,6 +5098,10 @@
 /obj/item/clothing/glasses/hud/diagnostic/night,
 /obj/item/storage/backpack/ert/engineer,
 /obj/item/clothing/head/beret/eng/hazard,
+/obj/item/gun/energy/e_gun/advtaser,
+/obj/item/stock_parts/cell/gun/upgraded,
+/obj/item/stock_parts/cell/gun/upgraded,
+/obj/item/shield/riot/tele,
 /turf/open/floor/wood,
 /area/ship/bridge)
 "QM" = (

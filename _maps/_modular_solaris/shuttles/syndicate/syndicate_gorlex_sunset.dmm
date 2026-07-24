@@ -353,7 +353,6 @@
 	},
 /obj/item/clothing/under/utility,
 /obj/item/pinpointer/crew,
-/obj/item/storage/belt/medical,
 /obj/item/clothing/suit/armor/vest/trauma{
 	name = "Gorlex trauma team armor vest"
 	},
@@ -361,6 +360,7 @@
 /obj/item/clothing/under/syndicate/tacticool,
 /obj/item/clothing/shoes/jackboots,
 /obj/item/clothing/under/syndicate/medic/skirt,
+/obj/item/storage/belt/medical/surgery,
 /turf/open/floor/plasteel/dark,
 /area/ship/medical)
 "ga" = (
@@ -1461,7 +1461,6 @@
 /obj/item/clothing/suit/armor/vest/capcarapace/syndicate,
 /obj/item/clothing/head/HoS/beret/syndicate,
 /obj/item/clothing/under/syndicate/combat,
-/obj/item/gun/ballistic/automatic/pistol/candor/phenex,
 /obj/item/ammo_box/magazine/m45,
 /obj/item/ammo_box/magazine/m45,
 /obj/item/ammo_box/magazine/m45,
@@ -1476,6 +1475,11 @@
 /obj/item/clothing/under/syndicate/tacticool,
 /obj/item/clothing/shoes/jackboots,
 /obj/item/codespeak_manual/unlimited,
+/obj/item/gun/ballistic/automatic/pistol/candor/phenex{
+	fire_delay = 1;
+	gun_firemodes = list("single","auto");
+	name = " HP Sunset Phenex Elite"
+	},
 /turf/open/floor/marble/black,
 /area/ship/general/command_crew)
 "zE" = (

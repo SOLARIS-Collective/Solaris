@@ -220,6 +220,7 @@
 	pixel_x = -7;
 	pixel_y = 5
 	},
+/obj/machinery/cell_charger,
 /turf/open/floor/carpet/nanoweave/beige,
 /area/ship/medical)
 "ca" = (
@@ -242,6 +243,9 @@
 	amount = 15
 	},
 /obj/structure/extinguisher_cabinet/directional/north,
+/obj/item/stack/sheet/mineral/uranium{
+	amount = 15
+	},
 /turf/open/floor/plasteel/tech/techmaint,
 /area/ship/engineering)
 "cr" = (
@@ -1079,6 +1083,7 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2,
+/obj/item/bot_assembly/hygienebot,
 /turf/open/floor/mineral/titanium/white,
 /area/ship/medical)
 "nO" = (
@@ -1185,6 +1190,7 @@
 	},
 /obj/effect/spawner/random/maintenance/two,
 /obj/effect/spawner/random/maintenance/four,
+/obj/item/storage/firstaid/brute,
 /turf/open/floor/mineral/titanium,
 /area/ship/cargo)
 "qj" = (
@@ -1307,6 +1313,7 @@
 	dir = 8
 	},
 /obj/item/seeds/random,
+/mob/living/simple_animal/bot/honkbot,
 /turf/open/floor/plasteel/tech/techmaint,
 /area/ship/engineering)
 "rE" = (
@@ -1533,7 +1540,9 @@
 	},
 /obj/machinery/light/directional/west,
 /obj/effect/decal/cleanable/greenglow/filled,
-/obj/machinery/duct,
+/obj/machinery/stasis{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/ship/medical)
 "vM" = (
@@ -2375,6 +2384,7 @@
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "pharmlobby"
 	},
+/obj/item/storage/firstaid/o2,
 /turf/open/floor/wood/walnut,
 /area/ship/cargo)
 "KK" = (
@@ -2743,6 +2753,7 @@
 	id = "pharmlobby"
 	},
 /obj/effect/spawner/random/maintenance/four,
+/obj/item/storage/firstaid/radiation,
 /turf/open/floor/wood/walnut,
 /area/ship/cargo)
 "OO" = (
@@ -3110,6 +3121,7 @@
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "pharmlobby"
 	},
+/obj/item/storage/firstaid/fire,
 /turf/open/floor/wood/walnut,
 /area/ship/cargo)
 "Wg" = (
@@ -3444,9 +3456,7 @@
 /obj/effect/turf_decal/siding/thinplating{
 	dir = 1
 	},
-/obj/structure/table/glass,
-/obj/item/stock_parts/micro_laser,
-/obj/item/stock_parts/manipulator,
+/obj/machinery/chem_master,
 /turf/open/floor/carpet/nanoweave/beige,
 /area/ship/medical)
 "ZF" = (
@@ -3529,6 +3539,14 @@
 /obj/item/clothing/shoes/sneakers/orange,
 /obj/item/reagent_containers/glass/bottle/vial/large,
 /obj/item/reagent_containers/glass/bottle/vial/large,
+/obj/item/pinpointer/crew/contractor,
+/obj/item/sensor_device,
+/obj/item/spacecash/bundle/c1000,
+/obj/item/spacecash/bundle/c1000,
+/obj/item/spacecash/bundle/c1000,
+/obj/item/storage/box/hypospray/mkiii,
+/obj/item/clothing/gloves/color/latex/nitrile/clip,
+/obj/item/storage/part_replacer,
 /turf/open/floor/plasteel/telecomms_floor,
 /area/ship/bridge)
 

@@ -103,7 +103,7 @@
 	suit = /obj/item/clothing/suit/hazardvest/hardliners
 	uniform = /obj/item/clothing/under/syndicate/hardliners/jumpsuit
 	accessory = /obj/item/clothing/accessory/armband/cargo
-	shoes = /obj/item/clothing/shoes/workboots
+	shoes = /obj/item/clothing/shoes/combat
 	ears = /obj/item/radio/headset/alt
 
 /datum/outfit/job/cel/syndicate/engineer/gorlex
@@ -114,7 +114,7 @@
 	head = /obj/item/clothing/head/hardhat/hardliners
 	suit = /obj/item/clothing/suit/hazardvest/hardliners
 	uniform = /obj/item/clothing/under/syndicate/hardliners
-	shoes = /obj/item/clothing/shoes/workboots
+	shoes = /obj/item/clothing/shoes/combat
 	glasses = null
 
 //MARK: Assistant

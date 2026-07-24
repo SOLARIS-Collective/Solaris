@@ -26,7 +26,7 @@
 	ears = /obj/item/radio/headset/syndicate/alt
 	uniform = /obj/item/clothing/under/syndicate/cybersun/officer
 	suit = /obj/item/clothing/suit/cybersun_suit
-	shoes = /obj/item/clothing/shoes/jackboots
+	shoes = /obj/item/clothing/shoes/combat
 	head = /obj/item/clothing/head/HoS/cybersun
 	gloves = /obj/item/clothing/gloves/combat
 	glasses = /obj/item/clothing/glasses/sunglasses
@@ -41,7 +41,7 @@
 	ears = /obj/item/radio/headset/syndicate/alt
 	uniform = /obj/item/clothing/under/syndicate/cybersun/officer
 	suit = /obj/item/clothing/suit/cybersun_suit
-	shoes = /obj/item/clothing/shoes/jackboots
+	shoes = /obj/item/clothing/shoes/combat
 	head = /obj/item/clothing/head/HoS/cybersun
 	gloves = /obj/item/clothing/gloves/combat
 	glasses = /obj/item/clothing/glasses/sunglasses
@@ -96,7 +96,7 @@
 
 	id = /obj/item/card/id/cel/syndicate/crew/engineer/cybersun
 	uniform = /obj/item/clothing/under/syndicate/cybersun/research
-	shoes = /obj/item/clothing/shoes/workboots
+	shoes = /obj/item/clothing/shoes/combat
 	r_pocket = /obj/item/radio
 	head = /obj/item/clothing/head/soft/cybersun
 	accessory = /obj/item/clothing/accessory/armband/engine
@@ -108,6 +108,68 @@
 
 	id = /obj/item/card/id/cel/syndicate/assistant/cybersun
 	uniform = /obj/item/clothing/under/syndicate/cybersun
-	shoes = /obj/item/clothing/shoes/jackboots
+	shoes = /obj/item/clothing/shoes/combat
 	r_pocket = /obj/item/radio
 	head = /obj/item/clothing/head/soft/cybersun
+
+//MARK: Kansatsu
+
+/datum/outfit/job/cel/syndicate/captain/cybersunk
+	name = "Syndi Cybersun - Captain"
+
+	id = /obj/item/card/id/cel/syndicate/captain/cybersun
+	uniform = /obj/item/clothing/under/syndicate/cybersun/officer
+	suit = /obj/item/clothing/suit/armor/vest/capcarapace/cybersun
+	head = /obj/item/clothing/head/HoS/cybersun
+	gloves = /obj/item/clothing/gloves/combat
+	shoes = /obj/item/clothing/shoes/combat
+	ears = /obj/item/radio/headset/syndicate/alt
+	backpack_contents = list(
+						/obj/item/modular_computer/tablet/syndicate_contract_uplink,
+						/obj/item/uplink/nuclear)
+
+/datum/outfit/job/cel/syndicate/head_of_personnel/cybersunk
+	name = "Syndi Cybersun - Intelligence Officer"
+	id_assignment = "Intelligence Officer"
+
+	id = /obj/item/card/id/cel/syndicate/command_hop/cybersun
+	ears = /obj/item/radio/headset/syndicate/alt
+	uniform = /obj/item/clothing/under/syndicate/cybersun/officer
+	suit = /obj/item/clothing/suit/cybersun_suit
+	shoes = /obj/item/clothing/shoes/combat
+	head = /obj/item/clothing/head/HoS/cybersun
+	gloves = /obj/item/clothing/gloves/combat
+	glasses = /obj/item/clothing/glasses/sunglasses
+	backpack_contents = list(
+						/obj/item/stack/telecrystal/five,
+						/obj/item/stack/telecrystal/five,
+						/obj/item/uplink/old)
+
+/datum/outfit/job/cel/syndicate/miner/cybersunk
+	name = "Syndi Cybersun - Field Agent"
+	id_assignment = "Field Agent"
+
+	id = /obj/item/card/id/cel/syndicate/crew/miner/cybersun
+	ears = /obj/item/radio/headset
+	uniform = /obj/item/clothing/under/syndicate/cybersun
+	accessory = /obj/item/clothing/accessory/armband/cargo
+	head = /obj/item/clothing/head/soft/cybersun
+	r_pocket = /obj/item/radio
+	shoes = /obj/item/clothing/shoes/combat
+	backpack_contents = list(
+						/obj/item/stack/telecrystal/five,
+						/obj/item/stack/telecrystal/five)
+
+/datum/outfit/job/cel/syndicate/engineer/cybersunk
+	name = "Syndi Cybersun - Engineer"
+
+	id = /obj/item/card/id/cel/syndicate/crew/engineer/cybersun
+	uniform = /obj/item/clothing/under/syndicate/cybersun/research
+	shoes = /obj/item/clothing/shoes/combat
+	r_pocket = /obj/item/radio
+	head = /obj/item/clothing/head/soft/cybersun
+	accessory = /obj/item/clothing/accessory/armband/engine
+	ears = /obj/item/radio/headset/syndicate
+	backpack_contents = list(
+						/obj/item/stack/telecrystal/five,
+						/obj/item/stack/telecrystal/five)

@@ -249,6 +249,9 @@
 	pixel_x = 16
 	},
 /obj/item/defibrillator/loaded,
+/obj/item/storage/firstaid/synthflesh,
+/obj/item/storage/firstaid/roumain,
+/obj/item/storage/firstaid/advanced,
 /turf/open/floor/plasteel/white,
 /area/ship/bridge)
 "p" = (
@@ -351,7 +354,6 @@
 	pixel_x = 16
 	},
 /obj/item/clothing/under/rank/medical/chief_medical_officer,
-/obj/item/toy/plush/mankind/hampter/medic,
 /obj/item/clothing/suit/armor/vest/capcarapace/duster,
 /obj/item/clothing/head/caphat/cowboy,
 /turf/open/floor/plasteel/white,
