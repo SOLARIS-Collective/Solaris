@@ -106,10 +106,10 @@
 	contains = list(/obj/item/ammo_box/magazine/gar/empty)
 	cost = 500
 
-/datum/supply_pack/faction/solfed/magazine/gar_ammo
+/datum/supply_pack/faction/solfed/magazine/gar_ammo/upgrade_magazine
 	name = "Solarian 'GAR' - upgrade Magazine (FE lance)"
 	desc = "Contains a ferromagnetic lance upgrade magazine for the GAR rifle, with a capacity of 52 rounds."
-	contains = list(/obj/item/ammo_box/upgrade_magazine/gar/empty)
+	contains = list(/obj/item/ammo_box/magazine/gar/upgrade_magazine/empty)
 	cost = 1000
 
 /datum/supply_pack/faction/solfed/magazine/claris_ammo
@@ -148,7 +148,7 @@
 	contains = list(/obj/item/stock_parts/cell/gun/solgov)
 	cost = 500
 
-/datum/supply_pack/faction/solfed/magazine/solgovcell
+/datum/supply_pack/faction/solfed/magazine/solgovcell/upgrade_cell
 	name = "Solar Federation Weapon upgrade Cell"
 	desc = "Contains a Solar Federation weapon upgrade cell, compatible with gauss weaponry."
 	contains = list(/obj/item/stock_parts/cell/gun/upgrade_cell/solgov)

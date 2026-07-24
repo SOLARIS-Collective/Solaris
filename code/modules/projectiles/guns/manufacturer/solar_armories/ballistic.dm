@@ -142,7 +142,7 @@
 	default_ammo_type = /obj/item/ammo_box/magazine/gar
 	allowed_ammo_types = list(
 		/obj/item/ammo_box/magazine/gar,
-		/obj/item/ammo_box/upgrade_magazine/gar
+		/obj/item/ammo_box/magazine/gar/upgrade_magazine
 	)
 	icon = 'icons/obj/guns/manufacturer/solararmories/48x32.dmi'
 	lefthand_file = 'icons/obj/guns/manufacturer/solararmories/lefthand.dmi'
