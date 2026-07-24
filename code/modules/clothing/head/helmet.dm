@@ -283,7 +283,7 @@
 
 // [MANKIND-ADD]
 /obj/item/clothing/head/helmet/riot
-	mob_overlay_icon = 'modular_mankind/_storage_icons/icons/items/clothing/head/overlay/helmet_mankind.dmi'
+	mob_overlay_icon = 'modular_mankind/_storage_icons/icons/items/clothing/head/overlay/helmet.dmi'
 
 /obj/item/clothing/head/helmet/riot/solfed
 	unique_reskin = null

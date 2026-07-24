@@ -525,25 +525,25 @@
 	metabolization_rate = 0.1
 	taste_description = "pharmacokinetics"
 
-/datum/reagent/drug/cytodron/on_mob_metabolize(mob/living/L)
-	..()
-	SEND_SIGNAL(L, COMSIG_ADD_MOOD_EVENT, "tweaking", /datum/mood_event/stimulant_light, name)
-	L.add_movespeed_modifier(/datum/movespeed_modifier/reagent/cytodron)
-	if(ishuman(L))
-		var/mob/living/carbon/human/drugged = L
-		drugged.physiology.do_after_speed -= 0.1
+// /datum/reagent/drug/cytodron/on_mob_metabolize(mob/living/L)
+// 	..()
+// 	SEND_SIGNAL(L, COMSIG_ADD_MOOD_EVENT, "tweaking", /datum/mood_event/stimulant_light, name)
+// 	L.add_movespeed_modifier(/datum/movespeed_modifier/reagent/cytodron)
+// 	if(ishuman(L))
+// 		var/mob/living/carbon/human/drugged = L
+// 		drugged.physiology.do_after_speed -= 0.1
 
-/datum/reagent/drug/cytodron/on_mob_end_metabolize(mob/living/L)
-	..()
-	L.remove_movespeed_modifier(/datum/movespeed_modifier/reagent/cytodron)
-	if(ishuman(L))
-		var/mob/living/carbon/human/drugged = L
-		drugged.physiology.do_after_speed += 0.1
+// /datum/reagent/drug/cytodron/on_mob_end_metabolize(mob/living/L)
+// 	..()
+// 	L.remove_movespeed_modifier(/datum/movespeed_modifier/reagent/cytodron)
+// 	if(ishuman(L))
+// 		var/mob/living/carbon/human/drugged = L
+// 		drugged.physiology.do_after_speed += 0.1
 
-/datum/reagent/drug/cytodron/overdose_start(mob/living/M)
-	. = ..()
-	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "tweaking", /datum/mood_event/stimulant_bad, name)
-	M.remove_movespeed_modifier(/datum/movespeed_modifier/reagent/cytodron)
+// /datum/reagent/drug/cytodron/overdose_start(mob/living/M)
+// 	. = ..()
+// 	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "tweaking", /datum/mood_event/stimulant_bad, name)
+// 	M.remove_movespeed_modifier(/datum/movespeed_modifier/reagent/cytodron)
 
 /datum/reagent/drug/cytodron/overdose_process(mob/living/M)
 	. = ..()
@@ -578,9 +578,9 @@
 		var/mob/living/carbon/human/drugged = L
 		drugged.physiology.do_after_speed += 0.2
 
-/datum/reagent/drug/cytodron/overdose_start(mob/living/M)
-	. = ..()
-	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "tweaking", /datum/mood_event/headache, name)
+// /datum/reagent/drug/cytodron/overdose_start(mob/living/M)
+// 	. = ..()
+// 	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "tweaking", /datum/mood_event/headache, name)
 
 /datum/reagent/drug/sting/overdose_process(mob/living/M)
 	. = ..()

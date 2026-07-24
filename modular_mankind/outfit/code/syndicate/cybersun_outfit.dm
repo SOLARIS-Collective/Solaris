@@ -41,7 +41,7 @@
 	uniform = /obj/item/clothing/under/cybersun/officer
 	suit = /obj/item/clothing/suit/cybersun
 	shoes = /obj/item/clothing/shoes/jackboots
-	head = /obj/item/clothing/head/HoS/cybersun
+	head = /obj/item/clothing/head/HoS
 	gloves = /obj/item/clothing/gloves/combat
 	glasses = /obj/item/clothing/glasses/sunglasses
 

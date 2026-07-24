@@ -7,8 +7,8 @@
 /obj/item/clothing/head/helmet/riot/gamma_vision
 	name = "hardhat night vision gamma"
 	desc = "No data."
-	mob_overlay_icon = 'modular_mankind/_storage_icons/icons/items/clothing/head/overlay/spacesuits_celadon.dmi'
-	icon = 'modular_mankind/_storage_icons/icons/items/clothing/head/spacesuits_celadon.dmi'
+	mob_overlay_icon = 'modular_mankind/_storage_icons/icons/items/clothing/head/overlay/spacesuits.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/items/clothing/head/spacesuits.dmi'
 	icon_state = "gamma_vision"
 	item_state = "gamma_vision"
 	armor = list("melee" = 50, "bullet" = 50, "laser" = 30, "energy" = 25, "bomb" = 50, "bio" = 100, "fire" = 40, "acid" = 50, "wound" = 30)
@@ -60,8 +60,8 @@
 /obj/item/clothing/head/helmet/space/hardsuit/security/gamma/white_squadron_rig
 	name = "white squadron rig helmet"
 	desc = "No data"
-	mob_overlay_icon = 'modular_mankind/_storage_icons/icons/items/clothing/head/overlay/spacesuits_celadon.dmi'
-	icon = 'modular_mankind/_storage_icons/icons/items/clothing/head/spacesuits_celadon.dmi'
+	mob_overlay_icon = 'modular_mankind/_storage_icons/icons/items/clothing/head/overlay/spacesuits.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/items/clothing/head/spacesuits.dmi'
 	icon_state = "hardsuit0-gamma"
 	item_state = "hardsuit1-gamma"
 	hardsuit_type = "gamma"
@@ -70,8 +70,8 @@
 /obj/item/clothing/suit/space/hardsuit/security/gamma/white_squadron_rig
 	name = "white squadron rig"
 	desc = "No data"
-	mob_overlay_icon = 'modular_mankind/_storage_icons/icons/items/clothing/space_suit/overlay/spacesuits_celadon.dmi'
-	icon = 'modular_mankind/_storage_icons/icons/items/clothing/space_suit/spacesuits_celadon.dmi'
+	mob_overlay_icon = 'modular_mankind/_storage_icons/icons/items/clothing/space_suit/overlay/spacesuits.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/items/clothing/space_suit/spacesuits.dmi'
 	icon_state = "white_squadron_rig"
 	item_state = "white_squadron_rig"
 	hardsuit_type = "gamma"

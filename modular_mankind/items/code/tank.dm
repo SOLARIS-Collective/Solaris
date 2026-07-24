@@ -43,35 +43,35 @@
 		status_overlay.pixel_y = 2
 	. += status_overlay
 
-// adjusts sprites and issues text alerts depending on tank pressure
-/obj/item/tank/proc/pressure_alerts()
-	var/pressure = air_contents.return_pressure()
-	// Prevents jetpacks from sending any kind of pressure alert
-	if(istype(src, /obj/item/tank/jetpack))
-		return 0
+// adjusts sprites and issues text alerts depending on tank pressure // code\game\objects\items\tanks\tanks.dm
+// /obj/item/tank/proc/pressure_alerts()
+// 	var/pressure = air_contents.return_pressure()
+// 	// Prevents jetpacks from sending any kind of pressure alert
+// 	if(istype(src, /obj/item/tank/jetpack))
+// 		return 0
 
-	// Checks the pressure of the tank while it's in use and sends an alert out when the pressure reaches a specific range.
-	switch(pressure)
-		if((5 * ONE_ATMOSPHERE) to (29 * ONE_ATMOSPHERE))
-			if(alert_level != 1)
-				alert_level = 1
-				update_overlays()
-		if((2 * ONE_ATMOSPHERE) to (5 * ONE_ATMOSPHERE))
-			if(alert_level != 2)
-				alert_level = 2
-				update_overlays()
-		if((0.75 * ONE_ATMOSPHERE) to (2 * ONE_ATMOSPHERE))
-			if(alert_level != 3)
-				alert_level = 3
-				update_overlays()
-				playsound(src, 'sound/machines/twobeep_high.ogg', 30, FALSE)
-				say("Tank is at [pressure] kPa! Pressure critically low! -- Estimated time until depletion: [src.volume * 2.5] minutes.")
-		if((0.01 * ONE_ATMOSPHERE) to (0.75 * ONE_ATMOSPHERE))
-			if(alert_level != 4)
-				alert_level = 4
-				update_overlays()
-				playsound(src, 'sound/machines/twobeep_high.ogg', 30, FALSE)
-				playsound(src, 'sound/machines/beep.ogg', 30, FALSE)
-				say("Tank is nearly empty! Replacement recommended!")
+// 	// Checks the pressure of the tank while it's in use and sends an alert out when the pressure reaches a specific range.
+// 	switch(pressure)
+// 		if((5 * ONE_ATMOSPHERE) to (29 * ONE_ATMOSPHERE))
+// 			if(alert_level != 1)
+// 				alert_level = 1
+// 				update_overlays()
+// 		if((2 * ONE_ATMOSPHERE) to (5 * ONE_ATMOSPHERE))
+// 			if(alert_level != 2)
+// 				alert_level = 2
+// 				update_overlays()
+// 		if((0.75 * ONE_ATMOSPHERE) to (2 * ONE_ATMOSPHERE))
+// 			if(alert_level != 3)
+// 				alert_level = 3
+// 				update_overlays()
+// 				playsound(src, 'sound/machines/twobeep_high.ogg', 30, FALSE)
+// 				say("Tank is at [pressure] kPa! Pressure critically low! -- Estimated time until depletion: [src.volume * 2.5] minutes.")
+// 		if((0.01 * ONE_ATMOSPHERE) to (0.75 * ONE_ATMOSPHERE))
+// 			if(alert_level != 4)
+// 				alert_level = 4
+// 				update_overlays()
+// 				playsound(src, 'sound/machines/twobeep_high.ogg', 30, FALSE)
+// 				playsound(src, 'sound/machines/beep.ogg', 30, FALSE)
+// 				say("Tank is nearly empty! Replacement recommended!")
 
 	update_appearance(UPDATE_OVERLAYS)

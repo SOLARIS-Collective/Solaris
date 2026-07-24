@@ -301,8 +301,8 @@
 /obj/item/clothing/suit/armor/vest/inteq
 	name = "InteQ armor vest"
 	desc = "A modded InteQ Type II armored vest that provides decent protection against most types of damage."
-	icon = 'modular_mankind/_storage_icons/icons/items/clothing/suit/armor_mankind.dmi'
-	mob_overlay_icon = 'modular_mankind/_storage_icons/icons/items/clothing/suit/overlay/armor_mankind.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/items/clothing/suit/armor.dmi'
+	mob_overlay_icon = 'modular_mankind/_storage_icons/icons/items/clothing/suit/overlay/armor.dmi'
 	icon_state = "armor_inteq"
 	item_state = "armor_inteq"
 	armor = list("melee" = 38, "bullet" = 33, "laser" = 33, "energy" = 43, "bomb" = 28, "bio" = 3, "rad" = 3, "fire" = 53, "acid" = 53, "wound" = 10)

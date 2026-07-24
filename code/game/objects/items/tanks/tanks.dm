@@ -328,22 +328,44 @@
 
 	// Checks the pressure of the tank while it's in use and sends an alert out when the pressure reaches a specific range.
 	// Binary variables are used here to prevent an alert from repeating more than once
+	// switch(pressure)
+	// 	if((5 * ONE_ATMOSPHERE) to (20 * ONE_ATMOSPHERE))
+	// 		warning_alert = FALSE
+	// 		critical_warning_alert = FALSE
+	// 		empty_alert = FALSE
+	// 	if((2 * ONE_ATMOSPHERE) to (5 * ONE_ATMOSPHERE))
+	// 		if(!warning_alert)
+	// 			warning_alert = TRUE
+	// 	if((0.75 * ONE_ATMOSPHERE) to (2 * ONE_ATMOSPHERE))
+	// 		if(!critical_warning_alert)
+	// 			critical_warning_alert = TRUE
+	// 			playsound(src, 'sound/machines/twobeep_high.ogg', 30, FALSE)
+	// 			say("Tank is at [pressure] kPa! Pressure critically low! -- Estimated time until depletion: [src.volume * 2.5] minutes.")
+	// 	if(0 to (0.75 * ONE_ATMOSPHERE))
+	// 		if(!empty_alert)
+	// 			empty_alert = TRUE
+	// 			playsound(src, 'sound/machines/twobeep_high.ogg', 30, FALSE)
+	// 			playsound(src, 'sound/machines/beep.ogg', 30, FALSE)
+	// 			say("Tank is nearly empty! Replacement recommended!")
 	switch(pressure)
-		if((5 * ONE_ATMOSPHERE) to (20 * ONE_ATMOSPHERE))
-			warning_alert = FALSE
-			critical_warning_alert = FALSE
-			empty_alert = FALSE
+		if((5 * ONE_ATMOSPHERE) to (29 * ONE_ATMOSPHERE))
+			if(alert_level != 1)
+				alert_level = 1
+				update_overlays()
 		if((2 * ONE_ATMOSPHERE) to (5 * ONE_ATMOSPHERE))
-			if(!warning_alert)
-				warning_alert = TRUE
+			if(alert_level != 2)
+				alert_level = 2
+				update_overlays()
 		if((0.75 * ONE_ATMOSPHERE) to (2 * ONE_ATMOSPHERE))
-			if(!critical_warning_alert)
-				critical_warning_alert = TRUE
+			if(alert_level != 3)
+				alert_level = 3
+				update_overlays()
 				playsound(src, 'sound/machines/twobeep_high.ogg', 30, FALSE)
 				say("Tank is at [pressure] kPa! Pressure critically low! -- Estimated time until depletion: [src.volume * 2.5] minutes.")
-		if(0 to (0.75 * ONE_ATMOSPHERE))
-			if(!empty_alert)
-				empty_alert = TRUE
+		if((0.01 * ONE_ATMOSPHERE) to (0.75 * ONE_ATMOSPHERE))
+			if(alert_level != 4)
+				alert_level = 4
+				update_overlays()
 				playsound(src, 'sound/machines/twobeep_high.ogg', 30, FALSE)
 				playsound(src, 'sound/machines/beep.ogg', 30, FALSE)
 				say("Tank is nearly empty! Replacement recommended!")
