@@ -6736,6 +6736,9 @@
 /obj/structure/cable{
 	icon_state = "0-2"
 	},
+/obj/item/stack/sheet/mineral/uranium/twenty{
+	amount = 30
+	},
 /turf/open/floor/suns/grid,
 /area/ship/engineering)
 "Nq" = (
@@ -7640,6 +7643,10 @@
 /obj/effect/turf_decal/box,
 /obj/structure/cable{
 	icon_state = "0-2"
+	},
+/obj/item/stack/sheet/mineral/plasma/twenty{
+	pixel_y = 2;
+	pixel_x = -2
 	},
 /turf/open/floor/suns/grid,
 /area/ship/engineering)

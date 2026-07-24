@@ -2017,20 +2017,80 @@
 	name = "Ammo Locker";
 	req_access_txt = "1"
 	},
-/obj/item/ammo_box/magazine/m12g_bulldog/drum,
-/obj/item/ammo_box/magazine/m12g_bulldog/drum,
-/obj/item/storage/box/ammo/a12g_slug,
-/obj/item/storage/box/ammo/a12g_buckshot,
-/obj/item/ammo_box/magazine/m556_42_hydra,
-/obj/item/ammo_box/magazine/m556_42_hydra,
-/obj/item/ammo_box/magazine/m556_42_hydra,
-/obj/item/ammo_box/magazine/m556_42_hydra,
-/obj/item/storage/box/ammo/a556_42,
-/obj/item/storage/box/ammo/a556_42,
-/obj/item/storage/box/ammo/a556_42,
-/obj/item/storage/box/ammo/a556_42,
-/obj/item/storage/box/ammo/a12g_slug,
-/obj/item/storage/box/ammo/a12g_buckshot,
+/obj/item/ammo_box/magazine/m12g_bulldog/drum{
+	req_one_access_txt = "1";
+	pixel_x = -13
+	},
+/obj/item/ammo_box/magazine/m12g_bulldog/drum{
+	req_one_access_txt = "1";
+	pixel_x = -13
+	},
+/obj/item/storage/box/ammo/a12g_slug{
+	pixel_y = 10;
+	pixel_x = -11
+	},
+/obj/item/storage/box/ammo/a12g_slug{
+	pixel_y = 10;
+	pixel_x = -11
+	},
+/obj/item/storage/box/ammo/a12g_buckshot{
+	pixel_y = 10;
+	pixel_x = 6
+	},
+/obj/item/storage/box/ammo/a12g_buckshot{
+	pixel_y = 10;
+	pixel_x = 6
+	},
+/obj/item/ammo_box/magazine/m45_cobra{
+	pixel_x = 10;
+	pixel_y = -10
+	},
+/obj/item/ammo_box/magazine/m45_cobra{
+	pixel_x = 10;
+	pixel_y = -10
+	},
+/obj/item/ammo_box/magazine/m45_cobra{
+	pixel_x = 10;
+	pixel_y = -10
+	},
+/obj/item/ammo_box/magazine/m45_cobra{
+	pixel_x = 10;
+	pixel_y = -10
+	},
+/obj/item/ammo_box/magazine/m45_cobra{
+	pixel_x = 10;
+	pixel_y = -10
+	},
+/obj/item/ammo_box/magazine/m45_cobra{
+	pixel_x = 10;
+	pixel_y = -10
+	},
+/obj/item/ammo_box/magazine/m45_cobra{
+	pixel_x = 10;
+	pixel_y = -10
+	},
+/obj/item/ammo_box/magazine/m45_cobra{
+	pixel_x = 10;
+	pixel_y = -10
+	},
+/obj/item/storage/box/ammo/c45{
+	pixel_x = 6
+	},
+/obj/item/storage/box/ammo/c45{
+	pixel_x = 6
+	},
+/obj/item/storage/box/ammo/c45{
+	pixel_x = 6
+	},
+/obj/item/storage/box/ammo/c45{
+	pixel_x = 6
+	},
+/obj/item/storage/box/ammo/c45{
+	pixel_x = 6
+	},
+/obj/item/storage/box/ammo/c45{
+	pixel_x = 6
+	},
 /turf/open/floor/mineral/plastitanium/red,
 /area/ship/security/armory)
 "sY" = (
@@ -2720,8 +2780,20 @@
 /obj/structure/railing,
 /obj/machinery/light/directional/east,
 /obj/item/gun/ballistic/shotgun/automatic/bulldog,
-/obj/item/gun/ballistic/automatic/assault/hydra,
-/obj/item/gun/ballistic/automatic/assault/hydra,
+/obj/item/gun/ballistic/automatic/smg/vector{
+	name = "Special Operations Vector";
+	projectile_damage_multiplier = 1.2;
+	allowed_ammo_types = list(/obj/item/ammo_box/magazine/m45_cobra);
+	default_ammo_type = 0;
+	desc = "A police carbine based on an old design originating from earth, Solar Federation. Modified by Gorlex and used as a common security SMG. Chambered in 45."
+	},
+/obj/item/gun/ballistic/automatic/smg/vector{
+	name = "Special Operations Vector";
+	projectile_damage_multiplier = 1.2;
+	allowed_ammo_types = list(/obj/item/ammo_box/magazine/m45_cobra);
+	default_ammo_type = 0;
+	desc = "A police carbine based on an old design originating from earth, Solar Federation. Modified by Gorlex and used as a common security SMG. Chambered in 45."
+	},
 /turf/open/floor/pod/dark,
 /area/ship/security/armory)
 "yJ" = (
@@ -2889,14 +2961,16 @@
 /obj/item/clothing/shoes/combat,
 /obj/item/radio/headset/syndicate,
 /obj/item/clothing/glasses/hud/security/sunglasses,
-/obj/item/gun/ballistic/automatic/smg/cobra{
-	pixel_x = 3;
-	pixel_y = -1
-	},
 /obj/item/ammo_box/magazine/m45_cobra,
 /obj/item/ammo_box/magazine/m45_cobra,
 /obj/item/storage/box/ammo/c45,
 /obj/item/storage/box/ammo/c45_ap,
+/obj/item/gun/ballistic/automatic/smg/cobra/indie{
+	gun_firemodes = list("single","auto");
+	gun_firenames = list("single" = "single", "burst" = "burst fire", "auto" = "full auto", "other" = "misc. fire", "other2" = "very misc. fire", "underbarrel" = "underbarrel weapon");
+	name = "Cobra-22";
+	fire_delay = 1.2
+	},
 /turf/open/floor/plasteel/dark,
 /area/ship/bridge)
 "AS" = (
@@ -3125,10 +3199,10 @@
 /obj/item/ammo_box/a357,
 /obj/item/ammo_box/a357,
 /obj/item/radio/headset/syndicate/alt/leader,
-/obj/item/gun/ballistic/derringer/traitor,
 /obj/item/clothing/shoes/combat,
 /obj/item/clothing/gloves/tackler/combat/insulated,
 /obj/item/gun/ballistic/revolver/viper,
+/obj/item/storage/box/ammo/a357,
 /turf/open/floor/carpet/black,
 /area/ship/bridge)
 "El" = (
@@ -3793,9 +3867,6 @@
 "KT" = (
 /obj/effect/turf_decal/arrows{
 	dir = 1
-	},
-/obj/structure/railing{
-	dir = 8
 	},
 /obj/machinery/light/directional/south,
 /turf/open/floor/mineral/plastitanium,

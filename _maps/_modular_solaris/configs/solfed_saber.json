@@ -6,7 +6,7 @@
 	"map_path": "_maps/_modular_solaris/shuttles/solfed/solfed_saber.dmm",
 	"enabled": true,
 	"limit": 1,
-	"sensor_range": 4,
+	"sensor_range": 7,
 	"prefix": "BSFSV",
 	"faction": "/datum/faction/solgov",
 	"tags": ["Боевой", "РП Фокус"],

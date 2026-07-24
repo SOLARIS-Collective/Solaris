@@ -111,6 +111,7 @@
 	default_cell_type = /obj/item/stock_parts/cell/gun/solgov
 	allowed_cell_types = list(
 		/obj/item/stock_parts/cell/gun/solgov,
+		/obj/item/stock_parts/cell/gun/upgrade_cell/solgov
 	)
 	fire_delay = 0.4 SECONDS
 	bolt_type = BOLT_TYPE_NO_BOLT
@@ -141,6 +142,7 @@
 	default_ammo_type = /obj/item/ammo_box/magazine/gar
 	allowed_ammo_types = list(
 		/obj/item/ammo_box/magazine/gar,
+		/obj/item/ammo_box/magazine/gar/upgrade_magazine
 	)
 	icon = 'icons/obj/guns/manufacturer/solararmories/48x32.dmi'
 	lefthand_file = 'icons/obj/guns/manufacturer/solararmories/lefthand.dmi'
@@ -153,6 +155,7 @@
 	default_cell_type = /obj/item/stock_parts/cell/gun/solgov
 	allowed_cell_types = list(
 		/obj/item/stock_parts/cell/gun/solgov,
+		/obj/item/stock_parts/cell/gun/upgrade_cell/solgov
 	)
 	burst_size = 1
 

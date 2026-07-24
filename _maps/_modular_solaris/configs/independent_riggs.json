@@ -6,7 +6,7 @@
 	"map_path": "_maps/_modular_solaris/shuttles/independent/independent_riggs.dmm",
 	"enabled": true,
 	"limit": 1,
-	"sensor_range": 4,
+	"sensor_range": 8,
 	"prefix": "ЕSV",
 	"faction": "/datum/faction/independent",
 	"tags": [

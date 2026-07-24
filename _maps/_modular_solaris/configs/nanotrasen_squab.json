@@ -8,7 +8,7 @@
 	"limit": 1,
 	"tranist_x_offset": -15,
 	"tranist_y_offset": -10,
-	"sensor_range": 5,
+	"sensor_range": 9,
 	"starting_funds": 3000,
 	"prefix": "NTRSV",
 	"faction": "/datum/faction/nt",
