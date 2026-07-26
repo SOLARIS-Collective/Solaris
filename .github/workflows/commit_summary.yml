@@ -1,4 +1,4 @@
-name: Commit Summary
+name: Сбор всех коммитов
 
 on:
   push:
