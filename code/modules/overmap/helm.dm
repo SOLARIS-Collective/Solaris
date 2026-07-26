@@ -377,7 +377,7 @@
 			allow_ai_control = !allow_ai_control
 			say(allow_ai_control ? "AI Control has been enabled." : "AI Control is now disabled.")
 			return
-		// [MANKIND-ADD] - SIGNAL_SOS - modular_mankind\wideband\code\signal.dm
+		// [MANKIND-ADD] - Signal S.O.S. - mod_celadon\wideband\code\signal.dm
 		if("send_sos")
 			if(!current_ship.SendSos(name = "[current_ship.name]", x = "[current_ship.x || current_ship.docked_to.x]", y = "[current_ship.y || current_ship.docked_to.y]"))
 				if(COOLDOWN_TIMELEFT(current_ship, sendsos_cooldown)/10 != 0)

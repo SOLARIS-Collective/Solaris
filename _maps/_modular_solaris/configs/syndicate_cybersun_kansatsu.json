@@ -21,21 +21,21 @@
 	],
 	"job_slots": {
 		"Commander": {
-			"outfit": "/datum/outfit/job/cel/syndicate/captain/cybersunk",
+			"outfit": "/datum/outfit/job/cel/syndicate/captain/cybersun",
 			"officer": true,
 			"slots": 1
 		},
 		"Intelligence Officer": {
-			"outfit": "/datum/outfit/job/cel/syndicate/head_of_personnel/cybersunk",
+			"outfit": "/datum/outfit/job/cel/syndicate/head_of_personnel/cybersun",
 			"officer": true,
 			"slots": 1
 		},
 		"Engineer": {
-			"outfit": "/datum/outfit/job/cel/syndicate/engineer/cybersunk",
+			"outfit": "/datum/outfit/job/cel/syndicate/engineer/cybersun",
 			"slots": 1
 		},
 		"Field Agent": {
-			"outfit": "/datum/outfit/job/cel/syndicate/miner/cybersunk",
+			"outfit": "/datum/outfit/job/cel/syndicate/miner/cybersun",
 			"slots": 2
 		}
 	}
