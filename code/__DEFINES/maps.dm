@@ -141,3 +141,33 @@ require only minor tweaks.
 #define DEFAULT_ALLOC_JUMP 5
 
 #define MAP_EDGE_PAD 5
+
+// PENTEST ADDITIONS BELOW
+// Physical Z-Level Roles - Defines specific purposes for physical z-levels
+// These roles ensure that virtual z-levels are allocated to appropriate physical z-levels
+#define ZLEVEL_ROLE_CENTCOM "centcom"           // zlevel 1: CentCom station
+#define ZLEVEL_ROLE_OVERMAP "overmap"           // zlevel 2: Overmap and initial ship spawns
+#define ZLEVEL_ROLE_OUTPOST "outpost"           // zlevels 3-4: Outposts and planets
+#define ZLEVEL_ROLE_HYPERSPACE "hyperspace"     // zlevels 5-10: Hyperspace transit lanes
+#define ZLEVEL_ROLE_HANGAR "hangar"             // zlevels 11-20: Hangar bays for docking
+#define ZLEVEL_ROLE_RUIN "ruin"                 // zlevels 21-30: Ruins and docked space maps
+
+// Z-Level role ranges
+#define ZLEVEL_CENTCOM_START 1
+#define ZLEVEL_CENTCOM_END 1
+
+#define ZLEVEL_OVERMAP_START 2
+#define ZLEVEL_OVERMAP_END 2
+
+#define ZLEVEL_OUTPOST_START 3
+#define ZLEVEL_OUTPOST_END 4
+
+#define ZLEVEL_HYPERSPACE_START 5
+#define ZLEVEL_HYPERSPACE_END 10
+
+#define ZLEVEL_HANGAR_START 11
+#define ZLEVEL_HANGAR_END 20
+
+#define ZLEVEL_RUIN_START 21
+#define ZLEVEL_RUIN_END 30
+// PENTEST END

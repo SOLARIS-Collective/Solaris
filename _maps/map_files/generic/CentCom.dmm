@@ -624,6 +624,10 @@
 	},
 /turf/open/floor/plating/abductor,
 /area/abductor_ship)
+"alE" = (
+/obj/structure/table/optable,
+/turf/open/floor/plating/abductor,
+/area/abductor_ship)
 "alF" = (
 /obj/effect/landmark/abductor/agent{
 	team_number = 4

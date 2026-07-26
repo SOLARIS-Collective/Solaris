@@ -27,6 +27,59 @@
 	},
 /turf/open/floor/plating,
 /area/ship/engineering/engine)
+"aK" = (
+/obj/structure/chair/handrail{
+	dir = 4
+	},
+/obj/effect/turf_decal/corner/opaque/cybersunteal/half{
+	dir = 8
+	},
+/obj/structure/closet/crate/medical,
+/obj/item/storage/firstaid/medical{
+	pixel_x = -4
+	},
+/obj/item/hypospray/mkii/cureall,
+/obj/item/reagent_containers/glass/bottle/vial/small/preloaded/cureall,
+/obj/item/reagent_containers/glass/bottle/vial/small/preloaded/cureall,
+/turf/open/floor/plasteel/mono/white,
+/area/ship/cargo)
+"aL" = (
+/obj/structure/closet/cabinet,
+/obj/item/storage/backpack/duffelbag/syndie{
+	pixel_y = 9;
+	pixel_x = -4
+	},
+/obj/item/storage/backpack/duffelbag/syndie{
+	pixel_y = 14;
+	pixel_x = 4
+	},
+/obj/item/storage/backpack{
+	pixel_x = -4;
+	pixel_y = -3
+	},
+/obj/item/storage/backpack{
+	pixel_x = 5
+	},
+/obj/item/storage/backpack/satchel{
+	pixel_x = -4;
+	pixel_y = -9
+	},
+/obj/item/storage/backpack/satchel{
+	pixel_x = 5;
+	pixel_y = -6
+	},
+/turf/open/floor/suns/hatch/bamboo,
+/area/ship/crew/dorm)
+"aQ" = (
+/obj/structure/closet/crate/bin,
+/obj/effect/turf_decal/trimline/opaque/syndiered/line{
+	dir = 9
+	},
+/obj/effect/turf_decal/corner/opaque/black,
+/obj/machinery/firealarm/directional/west,
+/obj/structure/extinguisher_cabinet/directional/north,
+/turf/open/floor/plasteel/white,
+/area/ship/crew/ccommons)
 "aR" = (
 /obj/structure/cable/cyan{
 	icon_state = "2-8"

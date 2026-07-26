@@ -892,7 +892,7 @@
 	if(reagents)
 		reagents.clear_reagents()
 		for(var/addi in reagents.addiction_list)
-			reagents.remove_addiction(addi)
+			reagents.remove_addiction(addi, src) // PENTEST FIX - This might not be needed, but is here to help remove addicitions on aheal.
 	for(var/O in internal_organs)
 		var/obj/item/organ/organ = O
 		organ.setOrganDamage(0)
