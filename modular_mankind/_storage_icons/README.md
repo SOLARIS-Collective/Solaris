@@ -120,7 +120,7 @@ items/plushes.dmi
 mob/hands/weapons_hands_left.dmi
 mob/hands/weapons_hands_right.dmi
 mob/accessories.dmi
-mob/armor_mankind.dmi
+mob/armor.dmi
 mob/armor.dmi
 mob/back.dmi
 mob/bedsheet_elysium.dmi
@@ -162,7 +162,7 @@ mobs/iriska.dmi
 mobs/pets.dmi
 
 obj/accessories.dmi
-obj/armor_mankind.dmi
+obj/armor.dmi
 obj/armor.dmi
 obj/back.dmi
 obj/boots.dmi

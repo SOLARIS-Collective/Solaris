@@ -29,8 +29,9 @@
 
 	/// The total lists of interactions vessels can do with this object. If nothing, then vessels are unable to interact with this object.
 	var/list/interaction_options
+	// [MANKIND-ADD] - New Helm Console Interface
 	var/list/interaction_hail
-
+	// [/MANKIND-ADD]
 	/// The time, in deciseconds, needed for this object to call
 	var/dock_time
 	/// The current docking timer ID.
@@ -343,7 +344,7 @@
 	var/choice = tgui_input_list(usr, "What would you like to do at [interact_target]?", "Interact", possible_interactions, timeout = 10 SECONDS)
 	return do_interaction_with(user, interact_target, choice)
 
-
+// [MANKIND-ADD] - New Helm Console Interface
 /datum/overmap/proc/show_hail_menu(mob/living/user, datum/overmap/interact_target)
 	if(!user)
 		return
@@ -356,6 +357,7 @@
 		return "There is nothing of interest at [interact_target]."
 
 	return do_hail(user, interact_target)
+// [/MANKIND-ADD]
 
 /**
  * This handles the selection of an interaction
@@ -371,7 +373,7 @@
 			return
 		if(INTERACTION_OVERMAP_DOCK)
 			if(docked_to || docking)
-				return "ERROR: Unable to do this currently! Reduce speed or undock!"
+				return "ERROR: Unable to do this while docked! Undock first!"
 
 			var/list/dockables = interact_target.get_dockable_locations(src)
 			if(!dockables.len)
@@ -382,13 +384,17 @@
 			return Dock(interact_target, choice)
 		if(INTERACTION_OVERMAP_QUICKDOCK)
 			if(docked_to || docking)
-				return "ERROR: Unable to do this currently! Undock first!"
+				return "ERROR: Unable to do this while docked! Undock first!"
 			return Dock(interact_target)
+		// 	[MANKIND-REMOVE] - New Helm Console Interface
+		// if(INTERACTION_OVERMAP_HAIL)
+		// 	return do_hail(user, interact_target)
+		// [/MANKIND-REMOVE]
 		if(INTERACTION_OVERMAP_INTERDICTION)
 			if(docked_to || docking)
-				return "ERROR: Unable to do this currently! Reduce speed or undock!"
+				return "ERROR: Unable to do this while docked! Undock first!"
 			if(interact_target.docked_to || interact_target.docking)
-				return "ERROR: Unable to do this currently! Target is docked or docking!"
+				return "ERROR: Unable to do this while target is docked or docking!"
 
 			var/list/dockables = get_dockable_locations(src)
 			if(!dockables.len)
@@ -460,8 +466,10 @@
 /datum/overmap/proc/get_interactions(mob/living/user, datum/overmap/requesting_interactor)
 	return interaction_options
 
+// [MANKIND-ADD] - New Helm Console Interface
 /datum/overmap/proc/get_hail(mob/living/user, datum/overmap/requesting_interactor)
 	return interaction_hail
+// [/MANKIND-ADD]
 /**
  * Gets all the available interaction options.
  *
