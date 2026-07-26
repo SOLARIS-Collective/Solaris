@@ -344,10 +344,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	smoke_all = TRUE
 	list_reagents = list(/datum/reagent/drug/nicotine = 10, /datum/reagent/medicine/panacea = 15)
 
-/obj/item/clothing/mask/cigarette/xeno
-	desc = "A Xeno Filtered brand cigarette."
-	list_reagents = list (/datum/reagent/drug/nicotine = 20, /datum/reagent/medicine/regen_jelly = 15)
-
 // Rollies.
 
 /obj/item/clothing/mask/cigarette/rollie

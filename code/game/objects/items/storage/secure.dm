@@ -6,7 +6,7 @@
  *		Secure Briefcase
  *		Wall Safe
  */
-
+/* PENTEST REMOVAL - The entire file has been reworked, but the original code is still here. See Module "secured_items"
 // -----------------------------
 //         Generic Item
 // -----------------------------
@@ -231,11 +231,4 @@
 /obj/item/storage/secure/safe/cybersun/biodynamics/PopulateContents()
 	. = ..()
 	new /obj/item/folder/documents/syndicate/cybersun/biodynamics(src)
-
-/obj/item/storage/secure/safe/nt
-	name = "Sensitive Data Safe"
-	desc = "A secure electronic safe to keep pesky, unauthorized personal from accessing."
-
-/obj/item/storage/secure/safe/nt/PopulateContents()
-	. = ..()
-	new /obj/item/folder/documents(src)
+*/

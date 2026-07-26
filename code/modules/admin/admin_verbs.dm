@@ -222,6 +222,12 @@ GLOBAL_PROTECT(admin_verbs_debug)
 	/client/proc/toggle_AI_interact, /*toggle admin ability to interact with machines as an AI*/
 	/client/proc/toggle_cdn,
 	/client/proc/cmd_admin_toggle_fov,
+	/client/proc/toggle_breeding_debug,
+	/client/proc/test_custom_pets,
+	/client/proc/test_random_pet_selection,
+	/client/proc/spawn_random_custom_pet,
+	/client/proc/check_planet_load_status, /* PENTEST EDIT Check why a planet/virtual z-level is still loaded */
+	/client/proc/force_delete_planet, /* PENTEST EDIT Force delete a planet/virtual z-level */
 	)
 GLOBAL_LIST_INIT(admin_verbs_possess, list(/proc/possess, /proc/release))
 GLOBAL_PROTECT(admin_verbs_possess)
