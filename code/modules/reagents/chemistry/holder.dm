@@ -432,14 +432,14 @@
 	update_total()
 
 /// Removes addiction to a specific reagent on [/datum/reagents/var/my_atom]
-/datum/reagents/proc/remove_addiction(datum/reagent/R, mob/living/M) // PENTEST FIX START - Added mob argument to send mood update signals
-	if(!M)
-		M = my_atom
-	R.on_addiction_removal(M)
-	to_chat(M, span_notice("You feel like you've gotten over your need for [R.name]."))
-	SEND_SIGNAL(M, COMSIG_CLEAR_MOOD_EVENT, "[R.type]_overdose") // PENTEST FIX END
-	addiction_list.Remove(R)
-	qdel(R)
+// /datum/reagents/proc/remove_addiction(datum/reagent/R, mob/living/M) // PENTEST FIX START - Added mob argument to send mood update signals
+// 	if(!M)
+// 		M = my_atom
+// 	R.on_addiction_removal(M)
+// 	to_chat(M, span_notice("You feel like you've gotten over your need for [R.name]."))
+// 	SEND_SIGNAL(M, COMSIG_CLEAR_MOOD_EVENT, "[R.type]_overdose") // PENTEST FIX END
+// 	addiction_list.Remove(R)
+// 	qdel(R)
 
 /// Signals that metabolization has stopped, triggering the end of trait-based effects
 /datum/reagents/proc/end_metabolization(mob/living/carbon/C, keep_liverless = TRUE)
