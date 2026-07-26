@@ -47,7 +47,7 @@ jobs:
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: commit-summary-${{ github.ref_name }}
+          name: commit-summary-${{ replace(github.head_ref || github.ref_name, '/', '-') }}
           path: commit-summary.md
           retention-days: 7
 
