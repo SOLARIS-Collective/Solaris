@@ -77,6 +77,8 @@ jobs:
               return;
             }
 
+            // Use summary directly (no extra header)
+
             // Get current PR body
             const { data: pr } = await github.rest.pulls.get({
               owner: context.repo.owner,
@@ -89,10 +91,10 @@ jobs:
             // Replace marker or append
             const marker = '<!-- COMMIT_SUMMARY -->';
             if (body.includes(marker)) {
-              body = body.replace(marker, summaryBlock);
+              body = body.replace(marker, summary);
               console.log('Replaced COMMIT_SUMMARY marker in PR body.');
             } else {
-              body = body + `\n\n${summaryBlock}`;
+              body = body + `\n\n${summary}`;
               console.log('No marker found, appended summary to PR body.');
             }
 
