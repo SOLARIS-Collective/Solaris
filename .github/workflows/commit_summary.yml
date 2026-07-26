@@ -88,14 +88,23 @@ jobs:
 
             let body = pr.body || '';
 
-            // Replace marker or append
-            const marker = '<!-- COMMIT_SUMMARY -->';
-            if (body.includes(marker)) {
-              body = body.replace(marker, summary);
-              console.log('Replaced COMMIT_SUMMARY marker in PR body.');
+            // Replace block between markers, or append
+            const startMarker = '<!-- COMMIT_SUMMARY_START -->';
+            const endMarker = '<!-- COMMIT_SUMMARY_END -->';
+
+            const wrapped = `${startMarker}\n${summary}\n${endMarker}`;
+
+            const startIdx = body.indexOf(startMarker);
+            const endIdx = body.indexOf(endMarker);
+
+            if (startIdx !== -1 && endIdx !== -1 && endIdx > startIdx) {
+              body = body.substring(0, startIdx) + wrapped + body.substring(endIdx + endMarker.length);
+              console.log('Replaced existing summary block between markers.');
             } else {
-              body = body + `\n\n${summary}`;
-              console.log('No marker found, appended summary to PR body.');
+              // Remove old marker if present, then append
+              body = body.replace('<!-- COMMIT_SUMMARY -->', '');
+              body = body.trim() + `\n\n${wrapped}`;
+              console.log('No markers found, appended new summary block.');
             }
 
             await github.rest.pulls.update({
