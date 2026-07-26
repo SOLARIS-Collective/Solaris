@@ -1,0 +1,101 @@
+name: Commit Summary
+
+on:
+  push:
+    branches-ignore:
+      - master
+  pull_request:
+    branches:
+      - master
+      - "project/**"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  generate_summary:
+    if: ( !contains(github.event.head_commit.message, '[ci skip]') )
+    name: Generate Commit Summary
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Generate summary
+        id: summary
+        env:
+          BASE_BRANCH: ${{ github.base_ref || 'master' }}
+          HEAD_BRANCH: ${{ github.head_ref || github.ref_name }}
+        run: |
+          python tools/git_summary.py \
+            --base "origin/${{ env.BASE_BRANCH }}" \
+            --head "origin/${{ env.HEAD_BRANCH }}" \
+            --output commit-summary.md \
+            --no-color || true
+
+      - name: Upload summary as artifact
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: commit-summary-${{ github.ref_name }}
+          path: commit-summary.md
+          retention-days: 7
+
+      - name: Update PR body with summary
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const summaryPath = 'commit-summary.md';
+
+            if (!fs.existsSync(summaryPath)) {
+              console.log('No summary file found, skipping.');
+              return;
+            }
+
+            const summary = fs.readFileSync(summaryPath, 'utf-8').trim();
+            if (!summary) {
+              console.log('Empty summary, skipping.');
+              return;
+            }
+
+            // Get current PR body
+            const { data: pr } = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number,
+            });
+
+            let body = pr.body || '';
+
+            // Build the summary block
+            const summaryBlock = `## Сводка изменений\n\n${summary}`;
+
+            // Replace marker or append
+            const marker = '<!-- COMMIT_SUMMARY -->';
+            if (body.includes(marker)) {
+              body = body.replace(marker, summaryBlock);
+              console.log('Replaced COMMIT_SUMMARY marker in PR body.');
+            } else {
+              body = body + `\n\n${summaryBlock}`;
+              console.log('No marker found, appended summary to PR body.');
+            }
+
+            await github.rest.pulls.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number,
+              body: body,
+            });
+            console.log('PR body updated successfully.');
