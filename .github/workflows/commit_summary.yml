@@ -43,11 +43,18 @@ jobs:
             --output commit-summary.md \
             --no-color || true
 
+      - name: Set artifact name
+        id: artifact_name
+        run: |
+          REF="${{ github.head_ref || github.ref_name }}"
+          SANITIZED=$(echo "$REF" | tr '/' '-')
+          echo "name=commit-summary-${SANITIZED}" >> $GITHUB_OUTPUT
+
       - name: Upload summary as artifact
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: commit-summary-${{ github.ref_name }}
+          name: ${{ steps.artifact_name.outputs.name }}
           path: commit-summary.md
           retention-days: 7
 
