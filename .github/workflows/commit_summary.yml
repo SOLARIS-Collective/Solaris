@@ -1,9 +1,6 @@
 name: Сбор всех коммитов
 
 on:
-  push:
-    branches-ignore:
-      - master
   pull_request:
     branches:
       - master
@@ -88,9 +85,6 @@ jobs:
             });
 
             let body = pr.body || '';
-
-            // Build the summary block
-            const summaryBlock = `## Сводка изменений\n\n${summary}`;
 
             // Replace marker or append
             const marker = '<!-- COMMIT_SUMMARY -->';
