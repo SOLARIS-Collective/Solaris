@@ -1,6 +1,6 @@
 /obj/item/clothing/head/helmet/bulletproof
-	icon = 'modular_mankind/_storage_icons/icons/items/clothing/head/helmet_mankind.dmi'
-	mob_overlay_icon = 'modular_mankind/_storage_icons/icons/items/clothing/head/overlay/helmet_mankind.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/items/clothing/head/helmet.dmi'
+	mob_overlay_icon = 'modular_mankind/_storage_icons/icons/items/clothing/head/overlay/helmet.dmi'
 	unique_reskin = list(
 		"None" = "helmetalt",
 		"Desert" = "helmetalt_desert",
@@ -31,8 +31,8 @@
 	unique_reskin = null
 
 /obj/item/clothing/suit/armor/vest/marine
-	icon = 'modular_mankind/_storage_icons/icons/items/clothing/suit/armor_mankind.dmi'
-	mob_overlay_icon = 'modular_mankind/_storage_icons/icons/items/clothing/suit/overlay/armor_mankind.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/items/clothing/suit/armor.dmi'
+	mob_overlay_icon = 'modular_mankind/_storage_icons/icons/items/clothing/suit/overlay/armor.dmi'
 	unique_reskin = list(
 		"None" = "marine_light",
 		"Desert" = "marine_light_desert",
