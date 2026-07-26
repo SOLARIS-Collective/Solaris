@@ -61,6 +61,17 @@
 	return ..()
 
 /datum/mission/Destroy()
+	// //UnregisterSignal(source_outpost, COMSIG_PARENT_QDELETING) // TODO: Этот блок не работает. Миссии, поразбираться с ними, узнать что сделали пентесты и офы шиптеста с ними!
+	// if(location_specific)
+	// 	UnregisterSignal(mission_location, COMSIG_PARENT_QDELETING, COMSIG_OVERMAP_LOADED)
+	// 	if(active)
+	// 		SSmissions.active_ruin_missions -= src
+	// 	else
+	// 		SSmissions.inactive_ruin_missions -= src
+	// 	mission_location = null  // Clear the reference to prevent circular reference issues
+
+	// //LAZYREMOVE(source_outpost.missions, src)
+	// //source_outpost = null
 	UnregisterSignal(source_outpost, COMSIG_QDELETING, COMSIG_OVERMAP_LOADED)
 	LAZYREMOVE(source_outpost.missions, src)
 	source_outpost = null
@@ -68,6 +79,7 @@
 		UnregisterSignal(servant, COMSIG_QDELETING)
 		LAZYREMOVE(servant.missions, src)
 		servant = null
+
 	for(var/bound in bound_atoms)
 		remove_bound(bound)
 	return ..()

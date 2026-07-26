@@ -162,7 +162,9 @@ SUBSYSTEM_DEF(shuttle)
 		mapzone,
 		transit_width,
 		transit_height,
-		ALLOCATION_FREE
+		ALLOCATION_FREE,
+		DEFAULT_ALLOC_JUMP, // PENTEST EDIT - Manditory ZLevels
+		ZLEVEL_ROLE_HYPERSPACE // PENTEST EDIT - Manditory ZLevels
 	)
 
 	vlevel.reserve_margin(TRANSIT_SIZE_BORDER)

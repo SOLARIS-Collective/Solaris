@@ -33,11 +33,16 @@
 	// Applied and removes with reagent
 	var/trait
 
-/datum/status_effect/trickwine/on_creation(mob/living/new_owner, datum/reagent/consumable/ethanol/trickwine/trickwine_reagent)
+/datum/status_effect/trickwine/on_creation(mob/living/new_owner, datum/reagent/consumable/ethanol/trickwine/trickwine_reagent, set_duration) // PENTEST FIX
 	flask_icon_state = trickwine_reagent.breakaway_flask_icon_state
 	if(!trickwine_reagent)
 		CRASH("A trickwine status effect was created without a attached reagent")
 	reagent_color = trickwine_reagent.color
+	// PENTEST FIX - START - Sets the duration if provided, otherwise keep the default (-1 for infinite)
+	// 5 Units = ~5 seconds
+	// 50 Units = ~50 seconds
+	if(!isnull(set_duration))
+		duration = set_duration // PENTEST FIX - END
 	. = ..()
 	if(istype(linked_alert, /atom/movable/screen/alert/status_effect/trickwine))
 		var/atom/movable/screen/alert/status_effect/trickwine/trickwine_alert = linked_alert

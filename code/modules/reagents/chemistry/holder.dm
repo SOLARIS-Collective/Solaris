@@ -451,14 +451,14 @@
 					switch(R.addiction_stage)
 						if(1 to 10)
 							need_mob_update += R.addiction_act_stage1(C)
-						if(10 to 20)
+						if(11 to 20) // PENTEST FIX - Fixes overlapping range
 							need_mob_update += R.addiction_act_stage2(C)
-						if(20 to 30)
+						if(21 to 30) // PENTEST FIX - Fixes overlapping range
 							need_mob_update += R.addiction_act_stage3(C)
-						if(30 to 40)
+						if(31 to 40) // PENTEST FIX - Fixes overlapping range
 							need_mob_update += R.addiction_act_stage4(C)
-						if(40 to INFINITY)
-							remove_addiction(R)
+						if(41 to INFINITY) // PENTEST FIX - Fixes overlapping range
+							remove_addiction(R, C) // PENTEST FIX - Sends mob argument down to remove_addiction
 						else
 							SEND_SIGNAL(C, COMSIG_CLEAR_MOOD_EVENT, "[R.type]_overdose")
 		addiction_tick++
@@ -468,10 +468,12 @@
 	update_total()
 
 /// Removes addiction to a specific reagent on [/datum/reagents/var/my_atom]
-/datum/reagents/proc/remove_addiction(datum/reagent/R)
-	R.on_addiction_removal(my_atom)
-	to_chat(my_atom, span_notice("You feel like you've gotten over your need for [R.name]."))
-	SEND_SIGNAL(my_atom, COMSIG_CLEAR_MOOD_EVENT, "[R.type]_overdose")
+/datum/reagents/proc/remove_addiction(datum/reagent/R, mob/living/M) // PENTEST FIX START - Added mob argument to send mood update signals
+	if(!M)
+		M = my_atom
+	R.on_addiction_removal(M)
+	to_chat(M, span_notice("You feel like you've gotten over your need for [R.name]."))
+	SEND_SIGNAL(M, COMSIG_CLEAR_MOOD_EVENT, "[R.type]_overdose") // PENTEST FIX END
 	addiction_list.Remove(R)
 	qdel(R)
 
