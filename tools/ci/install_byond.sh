@@ -29,7 +29,7 @@ else
       cp "$local_backup" byond.zip
     else
       # Fallback to known legacy backup file
-      legacy_backup="$SCRIPT_DIR/../backup/516.1663_byond_linux.zip"
+      legacy_backup="$SCRIPT_DIR/../backup/516.1685_byond_linux.zip"
       echo "Unable to locate local backup file. Using Fallback Version. $legacy_backup"
       if [ -f "$legacy_backup" ]; then
         echo "Using Fallback Version."
