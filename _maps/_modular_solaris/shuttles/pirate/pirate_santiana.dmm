@@ -420,6 +420,7 @@
 	},
 /obj/item/ammo_box/magazine/skm_46_30,
 /obj/item/storage/box/ammo/c46x30mm,
+/obj/machinery/ship_weapon/missile_launcher,
 /turf/open/floor/wood/ebony,
 /area/ship/bridge)
 "aS" = (
@@ -754,6 +755,7 @@
 	pixel_x = -32;
 	pixel_y = 1
 	},
+/obj/machinery/ship_weapon/laser_cannon,
 /turf/open/floor/wood/ebony,
 /area/ship/bridge)
 "bs" = (
@@ -1312,6 +1314,7 @@
 /area/ship/crew/cryo)
 "cx" = (
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/computer/ship/fire_control,
 /turf/open/floor/wood/ebony,
 /area/ship/bridge)
 "cy" = (
@@ -1752,6 +1755,7 @@
 	id = "santiana";
 	name = "Shutters button"
 	},
+/obj/machinery/ship_weapon/energy_cannon,
 /turf/open/floor/wood/ebony,
 /area/ship/bridge)
 "dj" = (
@@ -1770,6 +1774,7 @@
 /obj/item/spacecash/bundle/c500,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /obj/item/gun/ballistic/automatic/smg/skm_carbine,
+/obj/machinery/ship_weapon/kinetic_cannon,
 /turf/open/floor/wood/ebony,
 /area/ship/bridge)
 "dk" = (

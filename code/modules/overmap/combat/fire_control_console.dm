@@ -62,6 +62,11 @@
 			combat_system = CS
 			CS.control_console = src
 			update_available_targets()
+			// Принудительная инициализация оружия при подключении консоли
+			CS.initialize_weapons()
+	else
+		// Если корабль еще не инициализирован, попробуем снова через 5 секунд
+		addtimer(CALLBACK(src, PROC_REF(find_combat_system)), 5 SECONDS)
 
 /**
  * Обновление списка доступных целей
@@ -149,7 +154,7 @@
 		data["target"] = list(
 			"ref" = REF(combat_system.target),
 			"name" = combat_system.target.name,
-			"lockStatus" = "locked",
+			"lockStatus" = get_lock_status_text(combat_system.target_lock_status),
 			"lockProgress" = get_target_lock_progress(),
 			"distance" = combat_system.get_overmap_distance(combat_system.ship, combat_system.target),
 			"speed" = combat_system.target.get_speed(),
@@ -434,10 +439,16 @@
 			. = TRUE
 
 		if("refresh_weapons")
+			// Сначала пытаемся найти систему боя
+			find_combat_system()
 			if(combat_system)
 				combat_system.initialize_weapons()
+				update_available_targets()
 				playsound(src, 'sound/machines/terminal_prompt.ogg', 50, TRUE)
-				say("Список вооружения обновлен.")
+				say("Система обновлена.")
+			else
+				playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
+				say("Система боя не найдена.")
 			. = TRUE
 
 	// Обновляем интерфейс после действий
