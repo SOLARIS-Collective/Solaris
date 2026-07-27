@@ -73,5 +73,3 @@
 // 				playsound(src, 'sound/machines/twobeep_high.ogg', 30, FALSE)
 // 				playsound(src, 'sound/machines/beep.ogg', 30, FALSE)
 // 				say("Tank is nearly empty! Replacement recommended!")
-
-	update_appearance(UPDATE_OVERLAYS)
