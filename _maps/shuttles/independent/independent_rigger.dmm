@@ -359,6 +359,42 @@
 /obj/structure/window/plasma/reinforced/plastitanium,
 /turf/open/floor/plating,
 /area/ship/maintenance/fore)
+"fg" = (
+/obj/structure/sink{
+	dir = 8;
+	pixel_x = 12
+	},
+/obj/effect/turf_decal/borderfloor{
+	dir = 5
+	},
+/obj/item/storage/box/bodybags{
+	pixel_x = -7;
+	pixel_y = 4
+	},
+/obj/item/storage/box/syringes{
+	pixel_x = -6
+	},
+/obj/item/reagent_containers/glass/bottle/formaldehyde{
+	pixel_x = 8;
+	pixel_y = 8
+	},
+/obj/item/reagent_containers/glass/bottle/gjalrazine,
+/obj/item/reagent_containers/syringe{
+	pixel_x = 7
+	},
+/obj/structure/closet/secure_closet/wall/directional/east{
+	icon_door = "med_wall";
+	locked = 0;
+	name = "mortuary locker";
+	req_access_txt = "5"
+	},
+/obj/effect/turf_decal/corner/opaque/bottlegreen{
+	dir = 8
+	},
+/obj/item/tank/internals/anesthetic,
+/obj/item/clothing/mask/breath/medical,
+/turf/open/floor/plasteel/dark,
+/area/ship/medical)
 "fh" = (
 /obj/structure/cable{
 	icon_state = "2-4"
@@ -4494,6 +4530,19 @@
 /obj/structure/chair/handrail,
 /turf/open/floor/plasteel/mono,
 /area/ship/hallway/central)
+"ZI" = (
+/obj/item/storage/case/surgery{
+	pixel_y = 3
+	},
+/obj/item/clothing/gloves/color/latex/nitrile,
+/obj/structure/table/glass,
+/obj/effect/turf_decal/borderfloor/cee,
+/obj/machinery/defibrillator_mount/loaded{
+	pixel_y = 25
+	},
+/obj/item/clothing/suit/apron/surgical,
+/turf/open/floor/plasteel/dark,
+/area/ship/medical)
 "ZW" = (
 /obj/structure/cable{
 	icon_state = "1-2"

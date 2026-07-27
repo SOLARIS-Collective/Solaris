@@ -1886,6 +1886,9 @@
 	pixel_y = 12
 	},
 /obj/machinery/fax/solgov,
+/obj/item/spacecash/bundle/c1000,
+/obj/item/spacecash/bundle/c1000,
+/obj/item/spacecash/bundle/c1000,
 /turf/open/floor/wood/mahogany,
 /area/ship/bridge)
 "sp" = (

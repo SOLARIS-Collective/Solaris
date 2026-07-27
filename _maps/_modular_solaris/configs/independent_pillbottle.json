@@ -7,7 +7,7 @@
 	"subshuttle": "Pill",
 	"enabled": false,
 	"limit": 1,
-	"sensor_range": 4,
+	"sensor_range": 8,
 	"starting_funds": 0,
 	"prefix": "ISV",
 	"faction": "/datum/faction/independent",

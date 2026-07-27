@@ -1,0 +1,26 @@
+2026-04-10:
+  ConsumoFurioso:
+  - rscadd: Added Vox variation to the SRM Worksuit
+  Ossa88:
+  - bugfix: Z-Level based issues are fixed. Overmap is not visible via Xray eyes.
+      Black Lines in hangars should no longer exist.
+  - bugfix: Ghosts can no longer make your modsuit make funny error sounds.
+  - rscadd: Admin Tools
+  Ravellon:
+  - rscadd: 'Spray cans can now color clothing with extra pockets if the user is on
+      harm intent
+
+      :cl:
+
+      <!-- Both :cl:''s are required for the changelog to work! You can put your name
+      to the right of the first :cl: if you want to overwrite your GitHub username
+      as author ingame. -->
+
+      <!-- You can use multiple of the same prefix (they''re only used for the icon
+      ingame) and delete the unneeded ones. Despite some of the tags, changelogs should
+      generally represent how a player might be affected by the changes rather than
+      a summary of the PR''s contents. -->'
+  haydenredacted:
+  - bugfix: fixed the Aegis' TEG chamber not being able to ignite
+  - bugfix: fixed the Aegis' scrubber system dumping everything but oxygen in the
+      O2 tank

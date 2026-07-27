@@ -767,6 +767,14 @@
 /obj/item/storage/box/ammo/a556_box,
 /obj/item/storage/box/ammo/a556_box,
 /obj/item/storage/box/ammo/a556_box,
+/obj/item/storage/box/ammo/a12g_buckshot{
+	pixel_y = 6;
+	pixel_x = 6
+	},
+/obj/item/storage/box/ammo/a12g_buckshot{
+	pixel_y = 6;
+	pixel_x = 6
+	},
 /turf/open/floor/mineral/titanium,
 /area/ship/security)
 "ez" = (
@@ -897,6 +905,10 @@
 /obj/item/sign/flag/solfed,
 /obj/item/sign/flag/solfed,
 /obj/item/sign/flag/solfed,
+/obj/item/gun/ballistic/shotgun/cm15/incendiary,
+/obj/item/ammo_box/magazine/cm15_12g,
+/obj/item/ammo_box/magazine/cm15_12g,
+/obj/item/ammo_box/magazine/cm15_12g,
 /turf/open/floor/mineral/titanium,
 /area/ship/security)
 "fi" = (
@@ -3024,6 +3036,7 @@
 /obj/item/ammo_box/magazine/g36,
 /obj/item/ammo_box/magazine/g36,
 /obj/item/gun/ballistic/automatic/assault/g36,
+/obj/item/ammo_box/magazine/g36,
 /turf/open/floor/mineral/titanium,
 /area/ship/security)
 "sY" = (
@@ -3067,6 +3080,7 @@
 	},
 /obj/machinery/light/colored/red,
 /obj/item/clothing/suit/armor/vest/marine/heavy,
+/obj/item/clothing/suit/armor/vest/marine/medium,
 /turf/open/floor/mineral/titanium,
 /area/ship/security)
 "tC" = (
@@ -4917,6 +4931,7 @@
 /obj/item/ammo_box/magazine/g36,
 /obj/item/ammo_box/magazine/g36,
 /obj/item/gun/ballistic/automatic/assault/g36,
+/obj/item/ammo_box/magazine/g36,
 /turf/open/floor/mineral/titanium,
 /area/ship/security)
 "EU" = (
@@ -5612,6 +5627,7 @@
 /obj/item/ammo_box/magazine/g36,
 /obj/item/ammo_box/magazine/g36,
 /obj/item/gun/ballistic/automatic/assault/g36,
+/obj/item/ammo_box/magazine/g36,
 /turf/open/floor/mineral/titanium,
 /area/ship/security)
 "Ja" = (

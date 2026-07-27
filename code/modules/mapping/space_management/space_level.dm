@@ -8,11 +8,14 @@
 	var/allocation_type = ALLOCATION_FREE
 	/// List of dummy reservations, which are safeguards against bad allocations while asynchronously clearing a virtual level.
 	var/list/dummy_reservations = list()
+	/// PENTEST EDIT - Role/purpose of this physical zlevel (ZLEVEL_ROLE_CENTCOM, ZLEVEL_ROLE_OVERMAP, etc.)
+	var/zlevel_role = null
 
-/datum/space_level/New(new_z, new_name, new_allocation_type)
+/datum/space_level/New(new_z, new_name, new_allocation_type, new_zlevel_role = null) // PENTEST EDIT
 	z_value = new_z
 	name = new_name
 	allocation_type = new_allocation_type
+	zlevel_role = new_zlevel_role // PENTEST EDIT - Manditory ZLevels
 
 /datum/space_level/proc/is_box_free(low_x, low_y, high_x, high_y)
 	for(var/datum/virtual_level/vlevel as anything in virtual_levels)

@@ -1,0 +1,116 @@
+name: Сбор всех коммитов
+
+on:
+  pull_request:
+    branches:
+      - master
+      - "project/**"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  generate_summary:
+    if: github.event_name != 'push' || !contains(github.event.head_commit.message, '[ci skip]')
+    name: Generate Commit Summary
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Generate summary
+        id: summary
+        env:
+          BASE_BRANCH: ${{ github.base_ref || 'master' }}
+          HEAD_BRANCH: ${{ github.head_ref || github.event.pull_request.head.ref || github.ref_name }}
+        run: |
+          python tools/git_summary.py \
+            --base "origin/${{ env.BASE_BRANCH }}" \
+            --head "origin/${{ env.HEAD_BRANCH }}" \
+            --output commit-summary.md \
+            --no-color || true
+
+      - name: Set artifact name
+        id: artifact_name
+        run: |
+          REF="${{ github.head_ref || github.ref_name }}"
+          SANITIZED=$(echo "$REF" | tr '/' '-')
+          echo "name=commit-summary-${SANITIZED}" >> $GITHUB_OUTPUT
+
+      - name: Upload summary as artifact
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ${{ steps.artifact_name.outputs.name }}
+          path: commit-summary.md
+          retention-days: 7
+
+      - name: Update PR body with summary
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const summaryPath = 'commit-summary.md';
+
+            if (!fs.existsSync(summaryPath)) {
+              console.log('No summary file found, skipping.');
+              return;
+            }
+
+            const summary = fs.readFileSync(summaryPath, 'utf-8').trim();
+            if (!summary) {
+              console.log('Empty summary, skipping.');
+              return;
+            }
+
+            // Use summary directly (no extra header)
+
+            // Get current PR body
+            const { data: pr } = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number,
+            });
+
+            let body = pr.body || '';
+
+            // Replace block between markers, or append
+            const startMarker = '<!-- COMMIT_SUMMARY_START -->';
+            const endMarker = '<!-- COMMIT_SUMMARY_END -->';
+
+            const wrapped = `${startMarker}\n${summary}\n${endMarker}`;
+
+            const startIdx = body.indexOf(startMarker);
+            const endIdx = body.indexOf(endMarker);
+
+            if (startIdx !== -1 && endIdx !== -1 && endIdx > startIdx) {
+              body = body.substring(0, startIdx) + wrapped + body.substring(endIdx + endMarker.length);
+              console.log('Replaced existing summary block between markers.');
+            } else {
+              // Remove old marker if present, then append
+              body = body.replace('<!-- COMMIT_SUMMARY -->', '');
+              body = body.trim() + `\n\n${wrapped}`;
+              console.log('No markers found, appended new summary block.');
+            }
+
+            await github.rest.pulls.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number,
+              body: body,
+            });
+            console.log('PR body updated successfully.');

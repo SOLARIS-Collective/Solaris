@@ -87,6 +87,9 @@
 	VAR_PROTECTED/mob_height = HUMAN_HEIGHT_MEDIUM
 
 // [MANKIND-ADD] - MANKIND_EMOTES
+	/// Pronouns of the mob
+	var/pronouns = null // all pronoun stuff is for players and will read gender for pronouns if this is null
+
 /mob/living/carbon/human/proc/get_age_pitch(species_pitch = 85)
 	return 1.0 + 0.5 * ((species_pitch * 0.35) - age) / (0.94 * species_pitch)
 // [/MANKIND-ADD]

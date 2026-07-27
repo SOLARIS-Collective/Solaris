@@ -1,10 +1,7 @@
-#ifndef MODPACK_MODSUITS
-#define MODPACK_MODSUITS
+#ifndef MODPACK_MANKIND_MODSUITS
+#define MODPACK_MANKIND_MODSUITS
 
 #include "modsuits.dm"
-
-#include "code/cargo/cargo_modsuit.dm"
-#include "code/cargo/independent_cargo_modsuits.dm"
 
 #include "code/modules/millocked_modules.dm"
 #include "code/modules/module_kinesis.dm"

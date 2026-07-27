@@ -347,8 +347,11 @@
 /obj/item/clothing/mask/balaclava/ngr{
 	name = "gorlex combat balaclava"
 	},
-/obj/item/clothing/suit/space/hardsuit/syndi/cybersun,
 /obj/item/tank/internals/oxygen,
+/obj/item/clothing/suit/space/hardsuit/syndi/elite/hl{
+	armor = list("melee" = 30, "bullet" = 30, "laser" = 50, "energy" = 50, "bomb" = 30, "bio" = 100, "rad" = 60, "fire" = 80, "acid" = 60, "wound" = 30);
+	name = "white-red mod.beetle hardsuit"
+	},
 /turf/open/floor/plasteel/patterned/grid{
 	color = "#777777"
 	},
@@ -587,13 +590,36 @@
 	pixel_x = 15;
 	pixel_y = 7
 	},
-/obj/item/stock_parts/cell/gun/kalix,
-/obj/item/stock_parts/cell/gun/kalix,
-/obj/item/stock_parts/cell/gun/kalix,
-/obj/item/stock_parts/cell/gun/kalix,
 /obj/item/shield/riot/tele{
 	pixel_x = -7;
 	pixel_y = -1
+	},
+/obj/item/stock_parts/cell/gun/kalix{
+	pixel_x = 10
+	},
+/obj/item/stock_parts/cell/gun/kalix{
+	pixel_x = 10
+	},
+/obj/item/stock_parts/cell/gun/kalix{
+	pixel_x = 10
+	},
+/obj/item/stock_parts/cell/gun/kalix{
+	pixel_x = 10
+	},
+/obj/item/stock_parts/cell/gun/kalix{
+	pixel_x = 10
+	},
+/obj/item/stock_parts/cell/gun/kalix{
+	pixel_x = 10
+	},
+/obj/item/stock_parts/cell/gun/kalix{
+	pixel_x = 10
+	},
+/obj/item/stock_parts/cell/gun/kalix{
+	pixel_x = 10
+	},
+/obj/item/stock_parts/cell/gun/kalix{
+	pixel_x = 10
 	},
 /turf/open/floor/plasteel/patterned/grid{
 	color = "#777777"
@@ -697,8 +723,11 @@
 /obj/item/clothing/mask/balaclava/ngr{
 	name = "gorlex combat balaclava"
 	},
-/obj/item/clothing/suit/space/hardsuit/syndi/cybersun,
 /obj/item/tank/internals/oxygen,
+/obj/item/clothing/suit/space/hardsuit/syndi/elite/hl{
+	armor = list("melee" = 30, "bullet" = 30, "laser" = 50, "energy" = 50, "bomb" = 30, "bio" = 100, "rad" = 60, "fire" = 80, "acid" = 60, "wound" = 30);
+	name = "white-red mod.beetle hardsuit"
+	},
 /turf/open/floor/plasteel/patterned/grid{
 	color = "#777777"
 	},
@@ -770,7 +799,6 @@
 	desc = "A slim Type I armored vest, utilized by the 2nd Battlegroup of the Gorlex that provides decent protection against most types of damage.";
 	name = "Gorlex armor vest"
 	},
-/obj/item/tank/jetpack/suit,
 /obj/item/melee/classic_baton/telescopic,
 /obj/item/clothing/gloves/tackler/combat/insulated,
 /obj/item/clothing/under/syndicate/ngr/fatigues{
@@ -786,7 +814,6 @@
 	dir = 4
 	},
 /obj/item/storage/backpack/duffelbag/syndie,
-/obj/item/clothing/glasses/thermal/syndi,
 /obj/item/gun/energy/kalix/pgf/heavy/sniper{
 	fire_delay = 13;
 	gun_firemodes = list("auto");
@@ -795,7 +822,9 @@
 /obj/item/stock_parts/cell/gun/pgf,
 /obj/item/stock_parts/cell/gun/pgf,
 /obj/item/stock_parts/cell/gun/pgf,
-/obj/item/tank/jetpack/suit,
+/obj/item/mod/module/visor/thermal,
+/obj/item/stock_parts/cell/bluespace,
+/obj/item/tank/internals/emergency_oxygen/double,
 /turf/open/floor/plasteel/patterned/grid{
 	color = "#777777"
 	},
@@ -1295,8 +1324,11 @@
 /obj/item/clothing/mask/balaclava/ngr{
 	name = "gorlex combat balaclava"
 	},
-/obj/item/clothing/suit/space/hardsuit/syndi/cybersun,
 /obj/item/tank/internals/oxygen,
+/obj/item/clothing/suit/space/hardsuit/syndi/elite/hl{
+	armor = list("melee" = 30, "bullet" = 30, "laser" = 50, "energy" = 50, "bomb" = 30, "bio" = 100, "rad" = 60, "fire" = 80, "acid" = 60, "wound" = 30);
+	name = "white-red mod.beetle hardsuit"
+	},
 /turf/open/floor/plasteel/patterned/grid{
 	color = "#777777"
 	},
@@ -1399,18 +1431,6 @@
 	name = "armor locker";
 	req_one_access_txt = "1"
 	},
-/obj/item/clothing/suit/armor/ngr{
-	desc = "A slim Type I armored vest, utilized by the 2nd Battlegroup of the Gorlex that provides decent protection against most types of damage.";
-	name = "Gorlex armor vest"
-	},
-/obj/item/clothing/suit/armor/ngr{
-	name = "Gorlex armor vest";
-	desc = "A slim Type I armored vest, utilized by the 2nd Battlegroup of the Gorlex that provides decent protection against most types of damage."
-	},
-/obj/item/clothing/suit/armor/ngr{
-	desc = "A slim Type I armored vest, utilized by the 2nd Battlegroup of the Gorlex that provides decent protection against most types of damage.";
-	name = "Gorlex armor vest"
-	},
 /obj/item/clothing/gloves/combat,
 /obj/item/clothing/gloves/combat,
 /obj/item/clothing/gloves/combat,
@@ -1426,26 +1446,47 @@
 	desc = "A set of tactical webbing for operators of the Gorlex, can hold security gear.";
 	name = "Gorlex webbing"
 	},
-/obj/item/clothing/glasses/hud/security/sunglasses/ngr{
-	name = "Gorlex modified mesons"
+/obj/item/clothing/suit/armor/hardliners/jacket{
+	pixel_x = 8;
+	name = "Gorlex operator armored kutte"
 	},
-/obj/item/clothing/glasses/hud/security/sunglasses/ngr{
-	name = "Gorlex modified mesons"
+/obj/item/clothing/suit/armor/hardliners/jacket{
+	pixel_x = 8;
+	name = "Gorlex operator armored kutte"
 	},
-/obj/item/clothing/glasses/hud/security/sunglasses/ngr{
-	name = "Gorlex modified mesons"
+/obj/item/clothing/suit/armor/hardliners/jacket{
+	pixel_x = 8;
+	name = "Gorlex operator armored kutte"
 	},
-/obj/item/clothing/head/helmet/ngr{
-	name = "\improper Gorlex X-11 helmet";
-	desc = "A well-armored helmet utilized by the Gorlex's 2nd Battlegroup, far better at protecting one's head than the softer caps."
+/obj/item/clothing/head/helmet/hardliners/swat{
+	pixel_y = 10;
+	pixel_x = 8;
+	name = "Gorlex operator helmet"
 	},
-/obj/item/clothing/head/helmet/ngr{
-	name = "\improper Gorlex X-11 helmet";
-	desc = "A well-armored helmet utilized by the Gorlex's 2nd Battlegroup, far better at protecting one's head than the softer caps."
+/obj/item/clothing/head/helmet/hardliners/swat{
+	pixel_y = 10;
+	pixel_x = 8;
+	name = "Gorlex operator helmet"
 	},
-/obj/item/clothing/head/helmet/ngr{
-	name = "\improper Gorlex X-11 helmet";
-	desc = "A well-armored helmet utilized by the Gorlex's 2nd Battlegroup, far better at protecting one's head than the softer caps."
+/obj/item/clothing/head/helmet/hardliners/swat{
+	pixel_y = 10;
+	pixel_x = 8;
+	name = "Gorlex operator helmet"
+	},
+/obj/item/tank/internals/emergency_oxygen/double,
+/obj/item/tank/internals/emergency_oxygen/double,
+/obj/item/tank/internals/emergency_oxygen/double,
+/obj/item/clothing/glasses/hud/security/sunglasses/hardliners{
+	pixel_x = -8;
+	pixel_y = 6
+	},
+/obj/item/clothing/glasses/hud/security/sunglasses/hardliners{
+	pixel_x = -8;
+	pixel_y = 6
+	},
+/obj/item/clothing/glasses/hud/security/sunglasses/hardliners{
+	pixel_x = -8;
+	pixel_y = 6
 	},
 /turf/open/floor/plasteel/patterned/grid{
 	color = "#777777"
@@ -1673,7 +1714,7 @@
 /obj/item/clothing/mask/balaclava/ngr{
 	name = "gorlex combat balaclava"
 	},
-/obj/item/clothing/suit/space/hardsuit/syndi/cybersun,
+/obj/item/mod/control/pre_equipped/syndicate,
 /turf/open/floor/plasteel/patterned/grid{
 	color = "#777777"
 	},
@@ -1807,8 +1848,9 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
 	},
-/obj/item/gun/energy/kalix,
-/obj/item/gun/energy/kalix,
+/obj/item/gun/energy/kalix/pgf,
+/obj/item/gun/energy/kalix/pgf,
+/obj/item/gun/energy/kalix/pgf,
 /turf/open/floor/plasteel/patterned/grid{
 	color = "#777777"
 	},
@@ -2483,6 +2525,7 @@
 /obj/effect/turf_decal/industrial/outline,
 /obj/effect/turf_decal/radiation/white,
 /obj/item/stack/sheet/mineral/uranium/five,
+/obj/item/stack/sheet/mineral/uranium/twenty,
 /turf/open/floor/plasteel/tech/grid,
 /area/ship/engineering)
 "Ln" = (
@@ -2850,8 +2893,7 @@
 /obj/item/spacecash/bundle/c200,
 /obj/item/spacecash/bundle/c50,
 /obj/item/clothing/shoes/magboots/syndie,
-/obj/item/gun/energy,
-/obj/item/stock_parts/cell/gun/upgraded,
+/obj/item/tank/internals/emergency_oxygen/double,
 /turf/open/floor/plasteel/patterned/grid{
 	color = "#777777"
 	},
@@ -3055,8 +3097,6 @@
 	req_access_txt = "5"
 	},
 /obj/machinery/light/small/directional/west,
-/obj/item/gun/energy/kalix/pistol,
-/obj/item/stock_parts/cell/gun/kalix,
 /obj/item/clothing/suit/ngr/smock{
 	desc = "A blood-red surgical smock typically worn by field medics of the  Gorlex. It hides red blood really well!"
 	},
@@ -3069,14 +3109,13 @@
 	name = "\improper Gorlex fatigues"
 	},
 /obj/item/clothing/gloves/color/latex/nitrile/evil,
-/obj/item/clothing/head/helmet/medical{
+/obj/item/clothing/head/helmet/m10/cybersun/trauma{
 	name = "improper trauma team helmet"
 	},
-/obj/item/clothing/suit/armor/vest/trauma{
+/obj/item/clothing/suit/armor/vest/cybersun/trauma{
 	name = "Gorlex trauma team armor vest"
 	},
 /obj/item/storage/belt/medical/webbing/paramedic,
-/obj/item/clothing/accessory/holster,
 /obj/item/storage/box/bodybags{
 	pixel_x = -1
 	},
@@ -3089,6 +3128,7 @@
 /obj/item/spacecash/bundle/c200,
 /obj/item/spacecash/bundle/c50,
 /obj/item/defibrillator/loaded,
+/obj/item/tank/internals/emergency_oxygen/double,
 /turf/open/floor/plasteel/patterned/grid{
 	color = "#777777"
 	},

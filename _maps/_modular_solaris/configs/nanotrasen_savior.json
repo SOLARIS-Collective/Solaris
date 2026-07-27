@@ -6,7 +6,7 @@
 	"map_path": "_maps/_modular_solaris/shuttles/nanotrasen/nanotrasen_savior.dmm",
 	"enabled": true,
 	"limit": 1,
-	"sensor_range": 5,
+	"sensor_range": 9,
 	"prefix": "NTMSV",
 	"faction": "/datum/faction/nt",
 	"tags": [
@@ -20,7 +20,7 @@
 	],
 	"job_slots": {
 		"Medical Director": {
-			"outfit": "/datum/outfit/job/cel/nanotrasen/cmo/deforest_cmo",
+			"outfit": "/datum/outfit/job/cel/nanotrasen/captain/deforest_captain",
 			"officer": true,
 			"slots": 1
 		},

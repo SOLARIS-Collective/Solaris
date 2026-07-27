@@ -6,7 +6,7 @@
 	"map_path": "_maps/_modular_solaris/shuttles/syndicate/syndicate_pangolier.dmm",
 	"enabled": true,
 	"limit": 1,
-	"sensor_range": 5,
+	"sensor_range": 10,
 	"prefix": "RSSV",
 	"faction": "/datum/faction/syndicate",
 	"tags": ["Исследовательский"],

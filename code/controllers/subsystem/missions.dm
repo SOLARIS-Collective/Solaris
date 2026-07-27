@@ -3,6 +3,10 @@ SUBSYSTEM_DEF(missions)
 	flags = SS_NO_INIT|SS_NO_FIRE
 	priority = FIRE_PRIORITY_MISSIONS
 	wait = 10 SECONDS
+	var/default_mission_count = 3
+	var/list/obj/effect/landmark/mission_poi/unallocated_pois = list()
+	var/list/datum/mission/ruin/inactive_ruin_missions = list()
+	var/list/datum/mission/ruin/active_ruin_missions = list()
 
 // should probably come up with a better solution for this
 // hierarchical weighting? would need to distinguish between "real" and "fake" missions

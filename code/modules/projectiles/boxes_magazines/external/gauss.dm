@@ -37,3 +37,19 @@
 
 /obj/item/ammo_box/magazine/gar/empty
 	start_empty = TRUE
+
+/obj/item/ammo_box/magazine/gar/upgrade_magazine
+	name = "GAR tube magazine (ferromagnetic lances)"
+	desc = "A 52-round magazined for the GAR assault rifle. Ferromagnetic lances do good damage with significant armor penetration."
+	icon_state = "upgrade-gar-mag"
+	ammo_type = /obj/item/ammo_casing/caseless/gauss/lance
+	caliber = "lance"
+	max_ammo = 52
+	multiple_sprites = AMMO_BOX_FULL_EMPTY
+
+/obj/item/ammo_box/magazine/gar/upgrade_magazine/update_icon()
+	. = ..()
+	icon_state = "upgrade-gar-mag-[!!ammo_count()]"
+
+/obj/item/ammo_box/magazine/gar/upgrade_magazine/empty
+	start_empty = TRUE

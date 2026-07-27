@@ -339,11 +339,34 @@ SUBSYSTEM_DEF(mapping)
 
 
 /// Creates basic physical levels so we dont have to do that during runtime every time, nothing bad will happen if this wont run, as allocation will handle adding new levels
+/// PENTEST OVERRIDE START
+/// Now creates role-specific zlevels at predefined ranges for proper organization
 /datum/controller/subsystem/mapping/proc/init_reserved_levels()
-	add_new_zlevel("Free Allocation Level", allocation_type = ALLOCATION_FREE)
+	// zlevel 1 is reserved for CentCom (loaded from _basemap.dm)
+	// zlevel 2 is reserved for overmap
+	add_new_zlevel("Overmap Level", allocation_type = ALLOCATION_QUADRANT, zlevel_role = ZLEVEL_ROLE_OVERMAP)
 	CHECK_TICK
-	add_new_zlevel("Quadrant Allocation Level", allocation_type = ALLOCATION_QUADRANT)
-	CHECK_TICK
+
+	// Create outpost levels (3-4)
+	for(var/i in ZLEVEL_OUTPOST_START to ZLEVEL_OUTPOST_END)
+		add_new_zlevel("Outpost Level [i - ZLEVEL_OUTPOST_START + 1]", allocation_type = ALLOCATION_QUADRANT, zlevel_role = ZLEVEL_ROLE_OUTPOST)
+		CHECK_TICK
+
+	// Create hyperspace levels (5-10)
+	for(var/i in ZLEVEL_HYPERSPACE_START to ZLEVEL_HYPERSPACE_END)
+		add_new_zlevel("Hyperspace Lane [i - ZLEVEL_HYPERSPACE_START + 1]", allocation_type = ALLOCATION_FREE, zlevel_role = ZLEVEL_ROLE_HYPERSPACE)
+		CHECK_TICK
+
+	// Create hangar levels (11-20)
+	for(var/i in ZLEVEL_HANGAR_START to ZLEVEL_HANGAR_END)
+		add_new_zlevel("Hangar Bay Level [i - ZLEVEL_HANGAR_START + 1]", allocation_type = ALLOCATION_FREE, zlevel_role = ZLEVEL_ROLE_HANGAR)
+		CHECK_TICK
+
+	// Create ruin levels (21-30)
+	for(var/i in ZLEVEL_RUIN_START to ZLEVEL_RUIN_END)
+		add_new_zlevel("Ruin Level [i - ZLEVEL_RUIN_START + 1]", allocation_type = ALLOCATION_QUADRANT, zlevel_role = ZLEVEL_ROLE_RUIN)
+		CHECK_TICK
+		// PENTEST OVERRIDE - END
 
 /datum/controller/subsystem/mapping/proc/preloadOutpostTemplates()
 	for(var/datum/map_template/outpost/outpost_type as anything in subtypesof(/datum/map_template/outpost))
@@ -378,8 +401,27 @@ SUBSYSTEM_DEF(mapping)
 			break
 	return returned_mapzone
 
+/// PENTEST START - Gets all physical zlevels with the specified role
+/datum/controller/subsystem/mapping/proc/get_levels_by_role(zlevel_role)
+	. = list()
+	for(var/datum/space_level/iterated_level as anything in z_list)
+		if(iterated_level.zlevel_role == zlevel_role)
+			. += iterated_level
+
+/// Gets a free zlevel with the specified role that can fit the requested allocation
+/datum/controller/subsystem/mapping/proc/get_free_level_by_role(zlevel_role, allocation_type, size_x, size_y, allocation_jump = DEFAULT_ALLOC_JUMP)
+	var/list/role_levels = get_levels_by_role(zlevel_role)
+	for(var/datum/space_level/iterated_level as anything in role_levels)
+		if(iterated_level.allocation_type != allocation_type)
+			continue
+		var/list/allocation_list = find_allocation_in_level(iterated_level, size_x, size_y, allocation_jump)
+		if(allocation_list)
+			return allocation_list
+	return null
+	// PENTEST END
+
 /// Searches for a free allocation for the passed type and size, creates new physical levels if nessecary.
-/datum/controller/subsystem/mapping/proc/get_free_allocation(allocation_type, size_x, size_y, allocation_jump = DEFAULT_ALLOC_JUMP)
+/datum/controller/subsystem/mapping/proc/get_free_allocation(allocation_type, size_x, size_y, allocation_jump = DEFAULT_ALLOC_JUMP, zlevel_role = null) // PENTEST EDIT - Added zlevel_role parameter
 	var/list/allocation_list
 	var/list/levels_to_check = z_list.Copy()
 	var/created_new_level = FALSE
@@ -409,7 +451,7 @@ SUBSYSTEM_DEF(mapping)
 			else
 				allocation_name = "Unaccounted Allocation"
 
-		levels_to_check += add_new_zlevel("Generated [allocation_name] Level", allocation_type = allocation_type)
+		levels_to_check += add_new_zlevel("Generated [allocation_name] Level", allocation_type = allocation_type, zlevel_role = zlevel_role) // PENTEST EDIT - Pass zlevel_role
 
 /// Finds a box allocation inside a Z level. Uses a methodical box boundary check method
 /datum/controller/subsystem/mapping/proc/find_allocation_in_level(datum/space_level/level, size_x, size_y, allocation_jump)
@@ -450,9 +492,19 @@ SUBSYSTEM_DEF(mapping)
 	return new /datum/map_zone(new_name)
 
 /// Allocates, creates and passes a new virtual level
-/datum/controller/subsystem/mapping/proc/create_virtual_level(new_name, list/traits, datum/map_zone/mapzone, width, height, allocation_type = ALLOCATION_FREE, allocation_jump = DEFAULT_ALLOC_JUMP)
+/datum/controller/subsystem/mapping/proc/create_virtual_level(new_name, list/traits, datum/map_zone/mapzone, width, height, allocation_type = ALLOCATION_FREE, allocation_jump = DEFAULT_ALLOC_JUMP, zlevel_role = null) // PENTEST EDIT
 	/// Because we add an implicit 1 for the coordinate calcuations.
 	width--
 	height--
-	var/list/allocation_coords = SSmapping.get_free_allocation(allocation_type, width, height, allocation_jump)
+	var/list/allocation_coords // PENTEST START
+
+	// If a zlevel_role is specified, try to allocate on a zlevel with that role first
+	if(zlevel_role)
+		allocation_coords = get_free_level_by_role(zlevel_role, allocation_type, width, height, allocation_jump)
+
+	// If role-based allocation failed or wasn't specified, fall back to standard allocation
+	if(!allocation_coords)
+		allocation_coords = SSmapping.get_free_allocation(allocation_type, width, height, allocation_jump, zlevel_role) // PENTEST EDIT - Pass zlevel_role
+		// PENTEST END
+
 	return new /datum/virtual_level(new_name, traits, mapzone, allocation_coords[1], allocation_coords[2], allocation_coords[1] + width, allocation_coords[2] + height, allocation_coords[3])

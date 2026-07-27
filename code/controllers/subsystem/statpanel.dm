@@ -102,8 +102,8 @@ SUBSYSTEM_DEF(statpanels)
 			return
 
 /datum/controller/subsystem/statpanels/proc/set_status_tab(client/target)
-#if MIN_COMPILER_VERSION > 515
-	#warn 516 is most certainly out of beta, remove this beta notice if you haven't already
+#if MIN_COMPILER_VERSION > 516
+	#warn 517 is most certainly out of beta, remove this beta notice if you haven't already
 #endif
 	var/static/list/beta_notice = list("", "Билд работает на 516 версии BYOND и могут быть баги!", "Если найдете ошибки с интерфейсами окон или другие ошибки, пожалуйста сообщите о них!")
 	if(!global_data)//statbrowser hasnt fired yet and we were called from immediate_send_stat_data()
