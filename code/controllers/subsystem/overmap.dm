@@ -21,6 +21,11 @@ SUBSYSTEM_DEF(overmap)
 	///List of all events
 	var/list/events = list()
 
+// [MANKIND-ADD] - MANKIND_OVERMAP_ICON_LAZY - Список тайлов овермапы для ленивой отрисовки звёздочек
+	/// Тайлы овермапы, которые ещё не получили декоративные звёздочки
+	var/list/turf/open/overmap/overmap_turfs_to_decorate = list()
+	// [/MANKIND-ADD]
+
 	/// The mandatory and default star system
 	var/datum/overmap_star_system/default_system
 
@@ -74,7 +79,46 @@ SUBSYSTEM_DEF(overmap)
 
 /datum/controller/subsystem/overmap/fire()
 #ifndef NOOVERMAP
+// [MANKIND-ADD] - MANKIND_OVERMAP_ICON_LAZY - Ленивая отрисовка звёздочек на тайлах овермапы
+	// По 50 тайлов за тик получают декоративные звёздочки
+	if(length(overmap_turfs_to_decorate))
+		var/batch_size = min(length(overmap_turfs_to_decorate), 50)
+		for(var/i in 1 to batch_size)
+			var/turf/open/overmap/T = overmap_turfs_to_decorate[1]
+			overmap_turfs_to_decorate.Cut(1, 2)
+			if(!QDELETED(T))
+				T.add_random_star_overlays()
+			if(MC_TICK_CHECK)
+				return
+	// [/MANKIND-ADD]
+
 	for(var/datum/overmap_star_system/current_system as anything in tracked_star_systems)
+		// [MANKIND-ADD] - OPTIMIZE_OVERMAP_LAZY_GEN - Ленивая генерация
+		// Создаём dynamic-миры по 5 за тик, а не все сразу при инициализации
+		if(current_system.pending_dynamic_spawns > 0)
+			var/batch_size = min(current_system.pending_dynamic_spawns, 5)
+			for(var/i in 1 to batch_size)
+				current_system.spawn_ruin_level()
+			current_system.pending_dynamic_spawns -= batch_size
+			if(MC_TICK_CHECK)
+				return
+
+		// Создаём кластеры событий по 3 за тик
+		if(current_system.pending_event_clusters > 0)
+			var/batch_size = min(current_system.pending_event_clusters, 3)
+			for(var/i in 1 to batch_size)
+				if(current_system.generator_type == OVERMAP_GENERATOR_RANDOM)
+					current_system.spawn_event_cluster(pick(subtypesof(/datum/overmap/event)), current_system.get_unused_overmap_square())
+				else if(length(current_system.pending_event_orbits))
+					current_system.spawn_single_event_in_orbit()
+				current_system.pending_event_clusters--
+				if(MC_TICK_CHECK)
+					return
+
+		// [/MANKIND-ADD]
+		// Пропускаем handle_dynamic_encounters пока идёт ленивая генерация
+		if(current_system.pending_dynamic_spawns > 0)
+			continue
 		if(!current_system.encounters_refresh)
 			continue
 		current_system.handle_dynamic_encounters()
@@ -342,6 +386,15 @@ SUBSYSTEM_DEF(overmap)
 	///the list of dynamic planets that can spawn in this sector
 	var/list/dynamic_probabilities
 
+	// [MANKIND-ADD] - OPTIMIZE_OVERMAP_LAZY_GEN - Счётчики для ленивой генерации
+	/// Сколько dynamic-миров осталось создать (ленивая генерация в fire())
+	var/pending_dynamic_spawns = 0
+	/// Сколько кластеров событий осталось создать (ленивая генерация в fire())
+	var/pending_event_clusters = 0
+	/// Список орбит для ленивой генерации событий
+	var/list/pending_event_orbits
+	// [/MANKIND-ADD]
+
 	//fancy color shit! yayyyyy!
 
 	//main colors, used for dockable terrestrials, and background
@@ -427,6 +480,13 @@ SUBSYSTEM_DEF(overmap)
 	overmap_vlevel.current_systen = src
 	overmap_vlevel.reserve_margin(MAP_EDGE_PAD)
 	overmap_vlevel.fill_in(/turf/open/overmap, /area/overmap)
+	// [MANKIND-ADD] - MANKIND_OVERMAP_ICON_LAZY - Собираем тайлы для ленивой отрисовки звёздочек
+	// Заполняем список тайлов овермапы для ленивой отрисовки звёздочек.
+	// Фильтруем get_block() — берём только /turf/open/overmap, а не краевые /turf/closed/indestructible/edge.
+	for(var/turf/T as anything in overmap_vlevel.get_block())
+		if(istype(T, /turf/open/overmap))
+			SSovermap.overmap_turfs_to_decorate += T
+	// [/MANKIND-ADD]
 	overmap_vlevel.selfloop()
 	var/area/our_area = get_area(OVERMAP_TOKEN_TURF(1, 1, src))
 
@@ -554,13 +614,24 @@ SUBSYSTEM_DEF(overmap)
  */
 /datum/overmap_star_system/proc/create_map()
 #ifndef NOOVERMAP
+	// [MANKIND-EDIT] - OPTIMIZE_OVERMAP_LAZY_GEN - Ленивая генерация
+	// Создаём dynamic-миры и события ��е сразу, а распределённо в fire()
+	// по несколько за тик. Это разгружает инициализацию раунда.
+	pending_dynamic_spawns = max_overmap_dynamic_events
+
 	switch(generator_type)
 		if(OVERMAP_GENERATOR_SOLAR)
-			spawn_events_in_orbits()
-		if(OVERMAP_GENERATOR_RANDOM)
-			spawn_events()
+			pending_event_orbits = list()
+			for(var/orbit_key in radius_positions)
+				var/orbit_num = text2num(orbit_key)
+				if(orbit_num >= 3)
+					pending_event_orbits += orbit_key
+			if(length(pending_event_orbits))
+				pending_event_clusters = CONFIG_GET(number/max_overmap_event_clusters)
 
-	spawn_ruin_levels()
+		if(OVERMAP_GENERATOR_RANDOM)
+			pending_event_clusters = CONFIG_GET(number/max_overmap_event_clusters)
+	// [/MANKIND-EDIT]
 #endif
 
 	if(has_outpost)
@@ -618,6 +689,32 @@ SUBSYSTEM_DEF(overmap)
 /**
  * Creates an overmap object for each ruin level, making them accessible.
  */
+// [MANKIND-ADD] - OPTIMIZE_OVERMAP_LAZY_GEN - Одиночный спавн события в орбите
+/datum/overmap_star_system/proc/spawn_single_event_in_orbit()
+	if(CONFIG_GET(number/max_overmap_events) <= length(events))
+		pending_event_clusters = 0
+		return
+	if(!length(pending_event_orbits))
+		pending_event_clusters = 0
+		return
+
+	var/event_type = pick_weight(GLOB.overmap_event_pick_list)
+	var/selected_orbit = pick(pending_event_orbits)
+
+	var/list/T = get_unused_overmap_square_in_radius(selected_orbit)
+	if(!T)
+		pending_event_orbits -= selected_orbit
+		return
+
+	var/datum/overmap/event/E = new event_type(T, src)
+	for(var/list/position as anything in radius_positions[selected_orbit])
+		if(locate(/datum/overmap) in overmap_container[position["x"]][position["y"]])
+			continue
+		if(!prob(E.spread_chance))
+			continue
+		new event_type(position, src)
+// [/MANKIND-ADD]
+
 /datum/overmap_star_system/proc/spawn_ruin_levels()
 	for(var/i in 1 to max_overmap_dynamic_events)
 		spawn_ruin_level()
