@@ -12,6 +12,10 @@
 // --- PRIVATE --- //
 
 // #define OMNI_ACCESS // Требуется ОМНИ доступ
+// После ввести
+// git submodule update --init modular_solaris/_private
+// или
+// git submodule update --init --recursive
 #ifdef OMNI_ACCESS
 	#include "_private/__private.dme"
 #else
