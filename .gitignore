@@ -206,3 +206,6 @@ check_regex_output.txt
 
 # Autowiki
 /tools/autowiki/node_modules
+
+/code/modules/overmap/combat/*
+/.kodik/*
