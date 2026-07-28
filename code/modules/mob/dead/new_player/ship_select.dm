@@ -143,8 +143,8 @@
 			var/datum/overmap/ship/controlled/target = SSovermap.spawn_ship_at_start(template, ship_loc, selected_system)
 
 			// [MANKIND-ADD] - Secret - Используется для сбора статистики о покупке кораблей.
-			if(CONFIG_GET(flag/ShipStats))
-				SSdbcore_ShipStat(usr, template)
+			// if(CONFIG_GET(flag/ShipStats))
+			// 	SSdbcore_ShipStat(usr, template)
 			// [/MANKIND-ADD]
 
 			if(!target?.shuttle_port)
