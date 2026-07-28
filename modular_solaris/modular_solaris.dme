@@ -19,7 +19,7 @@
 #ifdef OMNI_ACCESS
 	#include "_private/__private.dme"
 #else
-	#include "_public/__public.dm"
+	#include "_public/__public.dme"
 #endif
 
 // --- ICONS --- //

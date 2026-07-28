@@ -1,13 +1,3 @@
-// MARK: Discord Verify
-/proc/checkDiscordVerify(ckey)
-	to_chat(usr, span_danger("No-no, Mr. Eva."))
-	return
-
-// MARK: SQL Ship Stats
-/proc/SSdbcore_ShipStat(usr, template)
-	to_chat(usr, span_danger("No-no, Mr. Fish."))
-	return
-
 // MARK: Quick Spawn
 // Добавляет комбинацию клавиш для быстрого спавна
 /mob/dead/observer/CtrlClickOn(mob/user)
