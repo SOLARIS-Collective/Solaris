@@ -11,7 +11,7 @@
 
 // --- PRIVATE --- //
 
-// #define OMNI_ACCESS // Требуется ОМНИ доступ
+#define OMNI_ACCESS // Требуется ОМНИ доступ
 // После ввести
 // git submodule update --init modular_solaris/_private
 // или

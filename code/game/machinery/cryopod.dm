@@ -223,11 +223,11 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod/retro, 17)
 	to_chat(sleepyhead, span_boldnotice("You begin to wake from cryosleep..."))
 
 	// Check if the ship belongs to a faction with custom awakening effects
-	#ifdef OMNI_ACCESS
+	// #ifdef OMNI_ACCESS
 	if(linked_ship?.registered_faction && istype(linked_ship.registered_faction, /datum/faction/syndicate))
 		apply_syndicate_effects_to_mob(sleepyhead)
-		return
-	#endif
+		// No return — let the default awakening text show as well
+	// #endif
 
 	// Default behavior for all other factions
 	var/ship_name = "<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>[linked_ship.current_ship.name]</u></span>"
