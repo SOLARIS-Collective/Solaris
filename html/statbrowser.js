@@ -724,12 +724,12 @@ function draw_verbs(cat) {
 
 function set_theme(which) {
 	if (which == "light") {
-		document.body.className = "";
-		set_style_sheet("browserOutput_white");
+		document.body.className = "light";
+		Byond.sendMessage("stat_theme", {theme: which});
 	} else if (which == "dark") {
-		document.body.className = "dark";
-		set_style_sheet("browserOutput");
+		document.body.className = "";
 	}
+	Byond.sendMessage("stat_theme", {theme: which});
 }
 
 function set_style_sheet(sheet) {
@@ -813,6 +813,10 @@ if (!current_tab) {
 	addPermanentTab("Status");
 	tab_change("Status");
 }
+
+Byond.subscribeTo("set_theme", function(which) {
+	set_theme(which);
+});
 
 window.onload = function () {
 	Byond.sendMessage("Update-Verbs");

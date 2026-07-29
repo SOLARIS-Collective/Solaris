@@ -1160,7 +1160,10 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
  */
 /client/proc/on_stat_panel_message(type, payload)
 	switch(type)
+		if("stat_theme")
+			src.stat_theme = payload["theme"]
 		if("Update-Verbs")
+			src.stat_panel.send_message("set_theme", src.stat_theme)	// statbrowser reloaded — restore the chosen theme
 			init_verbs()
 		if("Remove-Tabs")
 			panel_tabs -= payload["tab"]
