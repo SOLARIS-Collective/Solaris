@@ -1,4 +1,3 @@
 [submodule "modular_solaris/_omni_access"]
 	path = modular_solaris/_omni_access
 	url = git@github.com:SOLARIS-Collective/Solaris_Private.git
-	branch = omni
