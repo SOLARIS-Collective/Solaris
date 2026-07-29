@@ -207,6 +207,12 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["windowflash"], windowflashing)
 	READ_FILE(S["be_special"] , be_special)
 
+	sound_volume = alist()
+	for(var/flag in list(FS_GENERAL, FS_LOBBY, FS_AMBIENCE, FS_WEAPONS, FS_ANNOUNCEMENTS, FS_INSTRUMENTS, FS_JUKEBOX, FS_RADIO, FS_PRAYERS, FS_ADMIN, FS_SHIP_AMBIENCE, FS_ENDOFROUND))
+		var/volume
+		READ_FILE(S["sound_volume_[flag]"], volume)
+		sound_volume[flag] = volume || 100
+
 
 	READ_FILE(S["default_slot"], default_slot)
 	READ_FILE(S["chat_toggles"], chat_toggles)
@@ -359,6 +365,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["buttons_locked"], buttons_locked)
 	WRITE_FILE(S["windowflash"], windowflashing)
 	WRITE_FILE(S["be_special"], be_special)
+	for(var/flag in list(FS_GENERAL, FS_LOBBY, FS_AMBIENCE, FS_WEAPONS, FS_ANNOUNCEMENTS, FS_INSTRUMENTS, FS_JUKEBOX, FS_RADIO, FS_PRAYERS, FS_ADMIN, FS_SHIP_AMBIENCE, FS_ENDOFROUND))
+		WRITE_FILE(S["sound_volume_[flag]"], sound_volume[flag])
 	WRITE_FILE(S["default_slot"], default_slot)
 	WRITE_FILE(S["toggles"], toggles)
 	WRITE_FILE(S["chat_toggles"], chat_toggles)
