@@ -47,6 +47,22 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/tgui_lock = FALSE
 	var/windowflashing = TRUE
 	var/toggles = TOGGLES_DEFAULT
+
+	/// Sound category volume levels (0-100), keyed by FS_*
+	var/list/sound_volume = alist(
+		FS_GENERAL = 100,
+		FS_LOBBY = 100,
+		FS_AMBIENCE = 100,
+		FS_WEAPONS = 100,
+		FS_ANNOUNCEMENTS = 100,
+		FS_INSTRUMENTS = 100,
+		FS_JUKEBOX = 100,
+		FS_RADIO = 100,
+		FS_PRAYERS = 100,
+		FS_ADMIN = 100,
+		FS_SHIP_AMBIENCE = 100,
+		FS_ENDOFROUND = 100,
+	)
 	var/db_flags
 	var/chat_toggles = TOGGLES_DEFAULT_CHAT
 	var/ghost_form = "ghost"
