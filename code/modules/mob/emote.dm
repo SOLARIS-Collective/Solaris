@@ -43,7 +43,7 @@
 			emote("gasp")
 		if(25 to 50)
 			emote("groan")
-		if(50 to 100)
+		if(50 to INFINITY) // PENTEST FIX - Shiptest accidently set this to a maximum of 100, but has some effects have powers greater than 100
 			emote("scream")
 
 /mob/proc/force_manual_scream()

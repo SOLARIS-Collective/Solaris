@@ -6,7 +6,7 @@
 	"map_path": "_maps/_modular_solaris/shuttles/independent/independent_clandestine.dmm",
 	"enabled": false,
 	"limit": 1,
-	"sensor_range": 6,
+	"sensor_range": 12,
 	"prefix": "ISV",
 	"faction": "/datum/faction/independent",
 	"tags": [

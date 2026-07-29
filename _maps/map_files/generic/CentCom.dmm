@@ -624,6 +624,10 @@
 	},
 /turf/open/floor/plating/abductor,
 /area/abductor_ship)
+"alE" = (
+/obj/structure/table/optable,
+/turf/open/floor/plating/abductor,
+/area/abductor_ship)
 "alF" = (
 /obj/effect/landmark/abductor/agent{
 	team_number = 4
@@ -10189,7 +10193,7 @@
 /area/centcom/control)
 "jFa" = (
 /obj/structure/table/reinforced,
-/obj/item/clothing/head/HoS/cybersun{
+/obj/item/clothing/head/cybersun{
 	pixel_x = 2
 	},
 /obj/machinery/light/directional/south,

@@ -7,7 +7,7 @@
 	"map_id": "syndicate_aegis",
 	"enabled": false,
 	"limit": 1,
-	"sensor_range": 4,
+	"sensor_range": 10,
 	"prefix": "SSV",
 	"faction": "/datum/faction/syndicate",
 	"tags": [

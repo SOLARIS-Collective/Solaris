@@ -6,7 +6,7 @@
 	"map_path": "_maps/_modular_solaris/shuttles/nanotrasen/nanotrasen_darect.dmm",
 	"enabled": true,
 	"limit": 1,
-	"sensor_range": 4,
+	"sensor_range": 7,
 	"prefix": "NTBSV",
 	"faction": "/datum/faction/nt",
 	"tags": [

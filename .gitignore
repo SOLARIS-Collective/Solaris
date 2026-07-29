@@ -7,6 +7,10 @@
 #Ignore byond config folder.
 /cfg/**/*
 
+# Generated commit summaries
+commit-summary.md
+summary.md
+
 # Ignore compiled linux libs in the root folder, e.g. librust_g.so
 /*.so
 
@@ -204,3 +208,4 @@ check_regex_output.txt
 /tools/autowiki/node_modules
 
 /code/modules/overmap/combat/*
+/.kodik/*

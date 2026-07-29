@@ -692,6 +692,25 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ship/maintenance/port)
+"gK" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 10;
+	color = "#332521"
+	},
+/obj/structure/table/wood,
+/obj/item/folder/solgov{
+	pixel_x = -6;
+	pixel_y = -1
+	},
+/obj/item/paper_bin{
+	pixel_x = 9
+	},
+/obj/item/pen/solgov{
+	pixel_x = 9;
+	pixel_y = 2
+	},
+/turf/open/floor/carpet/royalblue,
+/area/ship/security/armory)
 "gQ" = (
 /obj/effect/turf_decal/industrial/warning{
 	dir = 4
@@ -1159,6 +1178,12 @@
 /obj/effect/turf_decal/solgov/all/center_left,
 /turf/open/floor/plasteel/mono,
 /area/ship/storage/eva)
+"kN" = (
+/obj/structure/sign/solgov_seal{
+	pixel_y = -1
+	},
+/turf/closed/wall/mineral/titanium,
+/area/ship/external/dark)
 "kO" = (
 /obj/effect/turf_decal/techfloor/corner{
 	dir = 8
@@ -1411,6 +1436,14 @@
 /obj/effect/turf_decal/industrial/warning,
 /turf/open/floor/engine/hull,
 /area/ship/external/dark)
+"nG" = (
+/obj/structure/filingcabinet/double{
+	dir = 4;
+	pixel_x = -10
+	},
+/obj/machinery/light/directional/west,
+/turf/open/floor/carpet/royalblue,
+/area/ship/crew/office)
 "nZ" = (
 /obj/effect/turf_decal/borderfloorblack{
 	dir = 8
@@ -1628,6 +1661,21 @@
 	},
 /turf/open/floor/plasteel/tech/techmaint,
 /area/ship/maintenance/starboard)
+"py" = (
+/obj/structure/table/wood,
+/obj/item/folder/solgov{
+	pixel_x = -6;
+	pixel_y = -1
+	},
+/obj/item/paper_bin{
+	pixel_x = 9
+	},
+/obj/item/pen/solgov{
+	pixel_x = 9;
+	pixel_y = 2
+	},
+/turf/open/floor/carpet/royalblue,
+/area/ship/crew/office)
 "pA" = (
 /obj/structure/fluff/hedge,
 /obj/machinery/light/directional/south,
@@ -2459,6 +2507,33 @@
 /obj/effect/turf_decal/industrial/outline/yellow,
 /turf/open/floor/plasteel/mono,
 /area/ship/storage/eva)
+"wR" = (
+/obj/item/clothing/gloves/color/latex/nitrile,
+/obj/structure/table/glass,
+/obj/item/storage/box/rxglasses,
+/obj/machinery/door/window/southleft{
+	dir = 8
+	},
+/obj/item/clothing/gloves/color/latex/nitrile{
+	pixel_x = 4;
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/glass/bottle/formaldehyde{
+	pixel_x = 8;
+	pixel_y = 8
+	},
+/obj/item/wrench/medical{
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/glass/bottle{
+	list_reagents = list(/datum/reagent/medicine/rezadone=30);
+	name = "rezadone bottle";
+	pixel_x = -3;
+	pixel_y = 8
+	},
+/obj/item/reagent_containers/glass/bottle/gjalrazine,
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/ship/medical/surgery)
 "wY" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
@@ -3611,6 +3686,12 @@
 	},
 /turf/open/floor/wood/ebony,
 /area/ship/crew/canteen)
+"IP" = (
+/obj/structure/sign/solgov_flag{
+	pixel_x = -1
+	},
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/ship/security/armory)
 "IX" = (
 /obj/item/clothing/head/solgov/captain,
 /obj/item/clothing/suit/armor/vest/solgov/captain,
@@ -4149,9 +4230,9 @@
 /obj/machinery/door/window/southleft{
 	dir = 8
 	},
-/obj/item/clothing/gloves/color/latex/nitrile{
-	pixel_x = 4;
-	pixel_y = 5
+/obj/structure/table,
+/obj/item/storage/box/bodybags{
+	pixel_y = 4
 	},
 /obj/item/reagent_containers/glass/bottle/formaldehyde{
 	pixel_x = 8;
@@ -4888,14 +4969,12 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4,
 /turf/open/floor/plasteel/white,
 /area/ship/hallway/port)
-"TF" = (
-/obj/structure/filingcabinet/double{
-	dir = 4;
-	pixel_x = -10
-	},
-/obj/machinery/light/directional/west,
-/turf/open/floor/carpet/royalblue,
-/area/ship/crew/office)
+"TD" = (
+/obj/item/radio/intercom/directional/south,
+/obj/effect/turf_decal/trimline/opaque/solgovblue/filled/line,
+/obj/structure/bed/roller,
+/turf/open/floor/plasteel/white,
+/area/ship/crew/crewtwo)
 "TI" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /obj/effect/turf_decal/trimline/opaque/solgovblue/filled/warning{
@@ -5368,6 +5447,24 @@
 /obj/item/radio/intercom/directional/west,
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/ship/medical)
+"XQ" = (
+/obj/structure/mirror{
+	pixel_y = -25
+	},
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 1
+	},
+/obj/structure/sink/kitchen{
+	dir = 1
+	},
+/turf/open/floor/plasteel/freezer,
+/area/ship/crew/toilet)
 "XV" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4

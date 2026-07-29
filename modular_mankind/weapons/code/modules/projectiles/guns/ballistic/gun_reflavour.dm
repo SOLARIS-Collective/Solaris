@@ -198,14 +198,18 @@
 /obj/item/gun/ballistic/automatic/assault/skm/cm24
 	name = "\improper CM-24"
 	desc = "An obsolete and very rugged assault rifle with a heavy projectile and slow action for its class. Once standard assault rifle of entire humanity, produced in phenomenal numbers for the \"mostly unknown reasons\", if rare, battle rifle. Chambered in 7.62x40mm."
-	// Не имеет уникального спрайта
-	icon = 'icons/obj/guns/manufacturer/frontier_import/48x32.dmi'
-	lefthand_file = 'icons/obj/guns/manufacturer/frontier_import/lefthand.dmi'
-	righthand_file = 'icons/obj/guns/manufacturer/frontier_import/righthand.dmi'
-	mob_overlay_icon = 'icons/obj/guns/manufacturer/frontier_import/onmob.dmi'
-	icon_state = "skm"
-	item_state = "skm"
 
+	icon = 'modular_pentest/master_files/icons/obj/guns/manufacturer/frontier_import/48x32.dmi'
+	lefthand_file = 'modular_pentest/master_files/icons/obj/guns/manufacturer/frontier_import/lefthand.dmi'
+	righthand_file = 'modular_pentest/master_files/icons/obj/guns/manufacturer/frontier_import/righthand.dmi'
+	mob_overlay_icon = 'modular_pentest/master_files/icons/obj/guns/manufacturer/frontier_import/onmob.dmi'
+	icon_state = "cm24"
+	item_state = "cm24"
+	unique_reskin = list(\
+		//"Mass Produced" = "cm24",
+		"Navy" = "cm24",
+		"Ceremonial" = "skm_ranger"
+		)
 	manufacturer = MANUFACTURER_NONE
 
 //########### MACHINEGUN ###########//

@@ -1335,6 +1335,11 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 1
 	},
+/obj/structure/extinguisher_cabinet/directional/north{
+	pixel_x = 7;
+	dir = 2;
+	pixel_y = -30
+	},
 /turf/open/floor/suns/hatch{
 	color = "#D2BC9D"
 	},
@@ -2581,6 +2586,30 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/power/apc/auto_name/directional/north,
+/obj/structure/closet/secure_closet{
+	icon_state = "sec";
+	name = "marine locker";
+	req_access_txt = "2"
+	},
+/obj/item/clothing/gloves/combat,
+/obj/item/clothing/glasses/sunglasses/ballistic,
+/obj/item/storage/belt/military/solfed,
+/obj/item/clothing/suit/armor/vest/marine,
+/obj/item/radio/headset/solgov/alt,
+/obj/item/clothing/mask/balaclava/combat,
+/obj/item/clothing/head/helmet/m10/clip_vc{
+	armor = list("melee" = 45, "bullet" = 55, "laser" = 45, "energy" = 40, "bomb" = 45, "bio" = 0, "rad" = 0, "fire" = 90, "acid" = 70, "wound" = 20)
+	},
+/obj/item/tank/internals/emergency_oxygen/double,
+/obj/item/melee/baton/loaded,
+/obj/item/melee/energy/sword/saber/knife,
+/obj/item/gun/ballistic/automatic/pistol/solgov/old{
+	desc = "The military pistol of the Elysium Brigade. Originally intended for the Elysium Police, but a limited budget allowed a favorable deal with the manufacturer to order them for the Brigade. Chambered in 5.56mm caseless.";
+	name = "Elysium Brigade C Pistole"
+	},
+/obj/item/ammo_box/magazine/pistol556mm,
+/obj/item/ammo_box/magazine/pistol556mm,
+/obj/item/ammo_box/magazine/pistol556mm,
 /turf/open/floor/plasteel/strongdark,
 /area/ship/general/command_crew)
 "Ax" = (
@@ -4223,9 +4252,6 @@
 	},
 /obj/structure/table,
 /obj/structure/bedsheetbin,
-/obj/item/toy/plush/mankind/hampter/janitor{
-	pixel_y = 11
-	},
 /obj/item/storage/bag/trash,
 /obj/item/storage/bag/trash,
 /obj/item/storage/bag/trash,

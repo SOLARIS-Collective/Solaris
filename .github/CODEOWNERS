@@ -19,11 +19,18 @@
 
 # MAINTAINERS
 
-# MrCat15352
+# MrCat15352 YohAnGREAT
 
-/config/ @MrCat15352
-/data/ @MrCat15352
-/SQL/ @MrCat15352
+/config/ @MrCat15352 @YohAnGREAT
+/data/ @MrCat15352 @YohAnGREAT
+/SQL/ @MrCat15352 @YohAnGREAT
+/tools/ @MrCat15352 @YohAnGREAT
+/.github/  @MrCat15352 @YohAnGREAT
+/bin/  @MrCat15352 @YohAnGREAT
+/html/  @MrCat15352 @YohAnGREAT
+/strings/  @MrCat15352 @YohAnGREAT
+/tgui/  @MrCat15352 @YohAnGREAT
+/code/modules/unit_tests/  @MrCat15352 @YohAnGREAT
 
 # CONTRIBUTORS
 
@@ -32,4 +39,4 @@
 
 
 # ALL CHANGES
-* @MrCat15352
+* @MrCat15352 @YohAnGREAT

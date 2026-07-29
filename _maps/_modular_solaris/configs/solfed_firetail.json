@@ -7,7 +7,7 @@
 	"subshuttle": "Vespa",
 	"enabled": true,
 	"limit": 1,
-	"sensor_range": 4,
+	"sensor_range": 7,
 	"prefix": "SPSFSV",
 	"faction": "/datum/faction/solgov",
 	"tags": [

@@ -7,7 +7,7 @@
 	"subshuttle": "Nail",
 	"enabled": true,
 	"limit": 1,
-	"sensor_range": 5,
+	"sensor_range": 10,
 	"space_spawn": true,
 	"prefix": "RSV",
 	"faction": "/datum/faction/pirate",
