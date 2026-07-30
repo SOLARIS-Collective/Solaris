@@ -7,7 +7,7 @@
 	// [MANKIND-EDIT] - Replaced with staffwho verb
 	// OLD_CODE: var/msg = "<b>Current Players:</b>\n"
 	var/msg = ""
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 
 	var/list/Lines = list()
 	var/columns_per_row = DEFAULT_WHO_CELLS_PER_ROW
@@ -22,7 +22,7 @@
 				// [MANKIND-EDIT] - Replaced with staffwho verb
 				// OLD_CODE: var/entry = "\t[C.key]"
 				var/entry = "• [C.key]"
-				// [/CELADON-EDIT]
+				// [/MANKIND-EDIT]
 				if(!C.prefs?.whois_visible)
 					entry += "\[<b>WhoIs-Invisible</b>\]"
 				if(C.holder && C.holder.fakekey)
@@ -79,13 +79,13 @@
 	// [MANKIND-EDIT] - Replaced with staffwho verb
 	// OLD_CODE: to_chat(src, span_infoplain("[msg]"))
 	to_chat(src, fieldset_block(span_bold("Current Players"), span_infoplain(msg), "boxed_message"), type = MESSAGE_TYPE_OOC)
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 
 /client/verb/adminwho()
 	// [MANKIND-REMOVE] - На замену этого было сделано это: mod_celadon\qol\code\adminwho.dm
 	set category = "Admin"
 	set name = "Adminwho"
-	// [/CELADON-REMOVE]
+	// [/MANKIND-REMOVE]
 
 	var/msg = "<b>Current Admins:</b>\n"
 	if(holder)

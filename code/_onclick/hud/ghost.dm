@@ -120,7 +120,7 @@
 		hudbox.screen_loc = position_hudbox(i - 1)
 		static_inventory += hudbox
 		hudbox.update_appearance()
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 
 /datum/hud/ghost/show_hud(version = 0, mob/viewmob)
 	// don't show this HUD if observing; show the HUD of the observee
@@ -138,7 +138,7 @@
 		screenmob.client.screen |= static_inventory
 		for(var/atom/movable/screen/ghost/hudbox/hud in static_inventory)
 			hud.update_appearance()
-		// [/CELADON-EDIT]
+		// [/MANKIND-EDIT]
 	else
 		screenmob.client.screen += static_inventory
 

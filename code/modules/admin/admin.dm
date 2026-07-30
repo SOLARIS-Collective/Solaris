@@ -14,7 +14,7 @@
 	// [MANKIND-EDIT] - Admin Log Formatting
 	// OLD_CODE: msg = "<span class=\"admin\"><span class=\"prefix\">RELAY:</span> <span class=\"message linkify\">[msg]</span></span>"
 	msg = "<span class=\"adminlog\"><span class=\"prefix\">RELAY:</span> <span class=\"message linkify\">[msg]</span></span>"
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 	to_chat(GLOB.admins,
 		type = MESSAGE_TYPE_ADMINLOG,
 		html = msg,
