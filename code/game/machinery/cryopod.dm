@@ -218,7 +218,6 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod/retro, 17)
 		playsound(src, close_sound, 40)
 
 /obj/machinery/cryopod/proc/apply_effects_to_mob(mob/living/carbon/sleepyhead)
-	sleepyhead.set_sleeping(60)
 	sleepyhead.set_nutrition(200)
 	to_chat(sleepyhead, span_boldnotice("You begin to wake from cryosleep..."))
 
@@ -226,10 +225,12 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/computer/cryopod/retro, 17)
 	// #ifdef OMNI_ACCESS
 	if(linked_ship?.registered_faction && istype(linked_ship.registered_faction, /datum/faction/syndicate))
 		apply_syndicate_effects_to_mob(sleepyhead)
-		// No return — let the default awakening text show as well
+		sleepyhead.set_sleeping(60)
+		return // Syndicate has its own animation + text, skip default
 	// #endif
 
 	// Default behavior for all other factions
+	sleepyhead.set_sleeping(60)
 	var/ship_name = "<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>[linked_ship.current_ship.name]</u></span>"
 	var/sector_name = "[linked_ship.current_ship.current_overmap.name]"
 	var/time = "[station_time_timestamp("hh:mm")]"
