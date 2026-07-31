@@ -177,14 +177,8 @@
 	log_shuttle(message)
 	log_world(message)
 
-	for(var/turf/check_turf as anything in turfs)
-
-		var/obj/effect/greeble_spawner/our_greeble = locate(/obj/effect/greeble_spawner) in check_turf
-		if(our_greeble)
-			our_greeble.start_load()
-
-		CHECK_TICK
-
+	// AfterChange/smoothing/starlight on ALL turfs (including ruin turfs)
+	var/count = 0
 	for(var/turf/gen_turf as anything in turfs)
 		gen_turf.AfterChange(CHANGETURF_IGNORE_AIR)
 
@@ -194,8 +188,18 @@
 		for(var/turf/open/space/adj in RANGE_TURFS(1, gen_turf))
 			adj.check_starlight(gen_turf)
 
-		// CHECK_TICK here is fine -- we are assuming that the turfs we're generating are staying relatively constant
-		CHECK_TICK
+		if(++count % MAPGEN_BATCH_CHECK == 0)
+			CHECK_TICK
+
+	// Then greeble loading (separate loop to keep greeble logic isolated)
+	count = 0
+	for(var/turf/check_turf as anything in turfs)
+		var/obj/effect/greeble_spawner/our_greeble = locate(/obj/effect/greeble_spawner) in check_turf
+		if(our_greeble)
+			our_greeble.start_load()
+
+		if(++count % MAPGEN_BATCH_CHECK == 0)
+			CHECK_TICK
 
 	message = "MAPGEN: MAPGEN REF [REF(src)] ([type]) HAS FINISHED POST GEN IN [(REALTIMEOFDAY - start_time)/10]s"
 	log_shuttle(message)

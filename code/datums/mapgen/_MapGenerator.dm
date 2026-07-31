@@ -1,4 +1,6 @@
 /// Management class used to handle successive calls used to generate a list of turfs.
+#define MAPGEN_BATCH_CHECK 1000
+
 /datum/map_generator
 
 /// Gets the overmap object this is tied to and do checks before generating
@@ -12,6 +14,7 @@
 	log_shuttle(message)
 	log_world(message)
 
+	var/count = 0
 	for(var/turf/gen_turf as anything in turfs)
 		gen_turf.AfterChange(CHANGETURF_IGNORE_AIR)
 
@@ -21,8 +24,8 @@
 		for(var/turf/open/space/adj in RANGE_TURFS(1, gen_turf))
 			adj.check_starlight(gen_turf)
 
-		// CHECK_TICK here is fine -- we are assuming that the turfs we're generating are staying relatively constant
-		CHECK_TICK
+		if(++count % MAPGEN_BATCH_CHECK == 0)
+			CHECK_TICK
 
 	message = "MAPGEN: MAPGEN REF [REF(src)] ([type]) HAS FINISHED POST GEN IN [(REALTIMEOFDAY - start_time)/10]s"
 	log_shuttle(message)
@@ -38,10 +41,12 @@
 	log_shuttle(message)
 	log_world(message)
 
+	var/count = 0
 	for(var/turf/gen_turf as anything in turfs)
 		// deferring AfterChange() means we don't get huge atmos flows in the middle of making changes
 		generate_turf(gen_turf, CHANGETURF_IGNORE_AIR|CHANGETURF_DEFER_CHANGE|CHANGETURF_DEFER_BATCH)
-		CHECK_TICK
+		if(++count % MAPGEN_BATCH_CHECK == 0)
+			CHECK_TICK
 
 	message = "MAPGEN: MAPGEN REF [REF(src)] ([type]) HAS FINISHED TURF GEN IN [(REALTIMEOFDAY - start_time)/10]s"
 	log_shuttle(message)
@@ -56,9 +61,11 @@
 	log_shuttle(message)
 	log_world(message)
 
+	var/count = 0
 	for(var/turf/gen_turf as anything in turfs)
 		populate_turf(gen_turf)
-		CHECK_TICK
+		if(++count % MAPGEN_BATCH_CHECK == 0)
+			CHECK_TICK
 
 	message = "MAPGEN: MAPGEN REF [REF(src)] ([type]) HAS FINISHED TURF POPULATION IN [(REALTIMEOFDAY - start_time)/10]s"
 	log_shuttle(message)
