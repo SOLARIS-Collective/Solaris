@@ -14,15 +14,16 @@
 	log_shuttle(message)
 	log_world(message)
 
+	// AfterChange/smoothing on non-ruin turfs only (skip ruin turfs to avoid smoothing walls with lava)
+	// Starlight check via RANGE_TURFS is removed - it's cosmetic and causes 562k iterations for a 250x250 block
 	var/count = 0
 	for(var/turf/gen_turf as anything in turfs)
-		gen_turf.AfterChange(CHANGETURF_IGNORE_AIR)
+		var/area/A = gen_turf.loc
+		if(A.area_flags & CAVES_ALLOWED)
+			gen_turf.AfterChange(CHANGETURF_IGNORE_AIR)
 
-		QUEUE_SMOOTH(gen_turf)
-		QUEUE_SMOOTH_NEIGHBORS(gen_turf)
-
-		for(var/turf/open/space/adj in RANGE_TURFS(1, gen_turf))
-			adj.check_starlight(gen_turf)
+			QUEUE_SMOOTH(gen_turf)
+			QUEUE_SMOOTH_NEIGHBORS(gen_turf)
 
 		if(++count % MAPGEN_BATCH_CHECK == 0)
 			CHECK_TICK

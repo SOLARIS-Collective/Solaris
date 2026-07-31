@@ -75,6 +75,19 @@
 	turf_biome_cache = list()
 	return ..()
 
+/datum/map_generator/planet_generator/generate_turfs(list/turf/turfs)
+	// Pre-compute biome cache for ALL turfs before any ChangeTurf() calls.
+	// This separates expensive rust_g DLL calls (call_ext) from BYOND turf operations,
+	// preventing the two from interleaving and slowing each other down.
+	var/cache_count = 0
+	for(var/turf/gen_turf as anything in turfs)
+		get_biome(gen_turf)
+		if(++cache_count % MAPGEN_BATCH_CHECK == 0)
+			CHECK_TICK
+
+	// Now run the actual turf generation — get_biome() will hit the cache
+	. = ..()
+
 /datum/map_generator/planet_generator/generate_turf(turf/gen_turf, changeturf_flags)
 	var/area/A = get_area(gen_turf)
 	if(!(A.area_flags & CAVES_ALLOWED))
@@ -177,16 +190,16 @@
 	log_shuttle(message)
 	log_world(message)
 
-	// AfterChange/smoothing/starlight on ALL turfs (including ruin turfs)
+	// AfterChange/smoothing on non-ruin turfs only (skip ruin turfs to avoid smoothing walls with lava)
+	// Starlight is cosmetic and not needed on planets; removing the expensive RANGE_TURFS loop
 	var/count = 0
 	for(var/turf/gen_turf as anything in turfs)
-		gen_turf.AfterChange(CHANGETURF_IGNORE_AIR)
+		var/area/A = gen_turf.loc
+		if(A.area_flags & CAVES_ALLOWED)
+			gen_turf.AfterChange(CHANGETURF_IGNORE_AIR)
 
-		QUEUE_SMOOTH(gen_turf)
-		QUEUE_SMOOTH_NEIGHBORS(gen_turf)
-
-		for(var/turf/open/space/adj in RANGE_TURFS(1, gen_turf))
-			adj.check_starlight(gen_turf)
+			QUEUE_SMOOTH(gen_turf)
+			QUEUE_SMOOTH_NEIGHBORS(gen_turf)
 
 		if(++count % MAPGEN_BATCH_CHECK == 0)
 			CHECK_TICK
