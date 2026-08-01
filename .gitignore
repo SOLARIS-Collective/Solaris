@@ -24,6 +24,7 @@ summary.md
 *.lk
 *.int
 *.backup
+*.diff
 /shiptest.json
 ### https://raw.github.com/github/gitignore/cc542de017c606138a87ee4880e5f06b3a306def/Global/Linux.gitignore
 
@@ -209,4 +210,3 @@ check_regex_output.txt
 
 /code/modules/overmap/combat/*
 /.kodik/*
-*.diff
