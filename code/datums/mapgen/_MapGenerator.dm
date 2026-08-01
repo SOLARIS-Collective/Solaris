@@ -1,5 +1,5 @@
 /// Management class used to handle successive calls used to generate a list of turfs.
-#define MAPGEN_BATCH_CHECK 1000
+#define MAPGEN_BATCH_CHECK 5
 
 /datum/map_generator
 
