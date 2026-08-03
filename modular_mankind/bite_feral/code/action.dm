@@ -14,7 +14,6 @@
 		button_icon_state = initial(button_icon_state)
 		background_icon_state = initial(background_icon_state)
 	UpdateButtonIcon()
-//Стиль проков с c#
 
 /datum/action/item_action/toggeble/proc/OnAct()
 

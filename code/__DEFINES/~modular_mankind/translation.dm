@@ -2,11 +2,11 @@
 //                   Падежи                   //
 ////////////////////////////////////////////////
 
-#define NOMINATIVE_CASE    1 //delete when names get translated... or dont.
-#define GENITIVE_CASE      2
-#define DATIVE_CASE        3
-#define ACCUSATIVE_CASE    4
-#define ABLATIVE_CASE      5
+#define NOMINATIVE_CASE 1 //delete when names get translated... or dont.
+#define GENITIVE_CASE 2
+#define DATIVE_CASE 3
+#define ACCUSATIVE_CASE 4
+#define ABLATIVE_CASE 5
 #define PREPOSITIONAL_CASE 6
 
 // Пример определения CASEs у объекта:
@@ -156,4 +156,4 @@
 #define PLUR_MINUTES_LEFT(minutes) pluralize_russian(minutes, "минута", "минуты", "минут") // "Осталась 1 минута". Не путайте с нижним.
 #define PLUR_MINUTES_IN(minutes)   pluralize_russian(minutes, "минуту", "минуты", "минут") // "Через 1 минуту". Не путайте с верхним.
 
-#define PLURALIZE_RUSSIAN_POINTS(points) pluralize_russian(points, "очко", "очка", "очков") // "20 очков" 
+#define PLURALIZE_RUSSIAN_POINTS(points) pluralize_russian(points, "очко", "очка", "очков") // "20 очков"
