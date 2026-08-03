@@ -145,7 +145,7 @@ const MissionsList = (props, context) => {
             average: [0.25, 0.75],
             bad: [0, 0.25],
           }}
-          value={mission.progressPer}
+          value={(mission.duration > 0) ? (mission.duration - mission.remaining) / mission.duration : 0}
         />
       </Stack.Item>
 
