@@ -42,22 +42,12 @@ standards:
               "non-bitwise << uses",
               '(?<!\d)(?<!\d\s)(?<!<)<<(?!=|\s\d|\d|<|\/)',
           ]
-    - exactly: [99, "incorrect indentations", '^(?:  +)(?!\*)']
-    - exactly: [18, "superflous whitespace", '[ \t]+$']
-    - exactly: [19, "mixed indentation", '^( +\t+|\t+ +)']
-    - exactly:
-          [
-              29,
-              "padding inside parentheses",
-              '\(([\t ]+([^)"\n\\]*)|([^("\n]+)[\t ]+)\)',
-          ]
+    - exactly: [0, "incorrect indentations", '^(?:  +)(?!\*)']
+    - exactly: [0, "superflous whitespace", '[ \t]+$']
+    - exactly: [0, "mixed indentation", '^( +\t+|\t+ +)']
+    - exactly: [0, "padding inside parentheses", '\(([\t ]+([^)"\n\\]*)|([^("\n]+)[\t ]+)\)']
 
     - exactly: [0, "Old-style proc references", '\.proc/(\w+)']
     - exactly: [0, "Old-style typed proc references", '([\w/]+?)/?\.proc/(\w+)']
 
-    - no_more:
-          [
-              347,
-              "indentions inside defines",
-              '^(\s*)#define (\w*)( {2,}| ?\t+)(?!(\/\/|\/\*))',
-          ]
+    - no_more: [0, "indentions inside defines", '^(\s*)#define (\w*)( {2,}| ?\t+)(?!(\/\/|\/\*))']
