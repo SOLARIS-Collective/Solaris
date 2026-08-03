@@ -16,7 +16,7 @@ interface SoundSetting {
 }
 
 type SoundPanelSettingsProps = {};
-export function SoundPanelSettings(props: SoundPanelSettingsProps, context) {
+export const SoundPanelSettings = (props: SoundPanelSettingsProps, context) => {
   const { act, data } = useBackend<SoundSetting>(context);
   const {
     adminhelp,
@@ -72,4 +72,4 @@ export function SoundPanelSettings(props: SoundPanelSettingsProps, context) {
       </Window.Content>
     </Window>
   );
-}
+};

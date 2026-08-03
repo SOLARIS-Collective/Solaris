@@ -17,7 +17,7 @@
 #include "code/mod_clothes.dm"
 #include "code/mod_construction.dm"
 #include "code/mod_theme.dm"
-#include "code/mod_Types.dm"
+#include "code/mod_types.dm"
 
 // #include "code/module_kinesisshit.dm"
 

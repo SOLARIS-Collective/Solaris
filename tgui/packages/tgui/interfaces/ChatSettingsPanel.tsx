@@ -23,7 +23,7 @@ const sortByDesc = (items: ChatSetting[]) => {
 };
 
 type ChatSettingsPanelProps = {};
-export function ChatSettingsPanel(props: ChatSettingsPanelProps, context) {
+export const ChatSettingsPanel = (props: ChatSettingsPanelProps, context) => {
   const { act, data } = useBackend<Data>(context);
   const ghost = sortByDesc(data.ghost || []);
   const chat = sortByDesc(data.chat || []);
@@ -57,4 +57,4 @@ export function ChatSettingsPanel(props: ChatSettingsPanelProps, context) {
       </Window.Content>
     </Window>
   );
-}
+};
