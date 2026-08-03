@@ -81,22 +81,22 @@
 				if (!R && replace)
 					user.put_in_hands(new_item)
 
-		else
-			var/static/list/tile_mineral_sheets = list(
-				"metal" = /obj/item/stack/sheet/metal,
-				"plasma" = /obj/item/stack/sheet/mineral/plasma,
-			)
-			var/sheet_type = tile_mineral_sheets[mineralType]
-			var/obj/item/stack/sheet/mineral/new_item = new sheet_type(user.loc)
-			user.visible_message(
-				span_notice("[user.name] shaped [src] into a sheet with the welding tool."),
-				span_notice("You shaped [src] into a sheet with the welding tool."),
-				span_hear("You hear welding.")
-			)
-			var/obj/item/stack/rods/R = src
-			src = null
-			var/replace = (user.get_inactive_held_item()==R)
-			R.use(4)
+			else
+				var/static/list/tile_mineral_sheets = list(
+					"metal" = /obj/item/stack/sheet/metal,
+					"plasma" = /obj/item/stack/sheet/mineral/plasma,
+				)
+				var/sheet_type = tile_mineral_sheets[mineralType]
+				var/obj/item/stack/sheet/mineral/new_item = new sheet_type(user.loc)
+				user.visible_message(
+					span_notice("[user.name] shaped [src] into a sheet with the welding tool."),
+					span_notice("You shaped [src] into a sheet with the welding tool."),
+					span_hear("You hear welding.")
+				)
+				var/obj/item/stack/rods/R = src
+				src = null
+				var/replace = (user.get_inactive_held_item()==R)
+				R.use(4)
 				if (!R && replace)
 					user.put_in_hands(new_item)
 	else

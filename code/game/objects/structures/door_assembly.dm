@@ -88,7 +88,7 @@
 				"sandstone" = /obj/item/stack/sheet/mineral/sandstone,
 			)
 			var/obj/item/stack/sheet/mineral/mineral_path = mineral_sheets[mineral]
-			user.visible_message(\(
+			user.visible_message(
 				span_notice("[user] welds the [mineral] plating off the airlock assembly."),
 				span_notice("You start to weld the [mineral] plating off the airlock assembly..."))
 			if(I.use_tool(src, user, 40, volume=50))
@@ -282,7 +282,6 @@
 										"gold" = /obj/structure/door_assembly/door_assembly_gold,
 										"silver" = /obj/structure/door_assembly/door_assembly_silver,
 										"titanium" = /obj/structure/door_assembly/door_assembly_titanium,
-										"plastitanium" = /obj/structure/door_assembly/door_assembly_plastitanium,
 										"diamond" = /obj/structure/door_assembly/door_assembly_diamond,
 										"sandstone" = /obj/structure/door_assembly/door_assembly_sandstone,
 									)
