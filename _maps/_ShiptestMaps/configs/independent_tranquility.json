@@ -1,0 +1,56 @@
+{
+	"$schema": "https://raw.githubusercontent.com/PentestSS13/Pentest/master/_maps/ship_config_schema.json",
+	"map_name": "Tranquility-class Flying Apartment Complex",
+	"map_short_name": "Tranquility-class",
+	"map_path": "_maps/PentestMaps/Shuttles/independent/independent_tranquility.dmm",
+	"faction": "/datum/faction/independent",
+	"prefix": "SV",
+	"manufacturer": "UNKNOWN",
+	"description": "While most vessels have some form of clear utility in mind – research, mining, cargo hauling, and so on – the Tranquility-class is a notable exception to this rule. The Tranquility is, fittingly, a fairly calm and level-headed affair, modeled around traditional apartment complexes. Fitted with several independent quarters, a large communal canteen and very little in the way of industrial equipment or self-defense tools, Tranquility-classes are often found cruising lazily around the Frontier, getting up to sitcom-esque antics and eschewing the more focused approach of many of their contemporaries.",
+	"tags": [
+		"RP Focus",
+		"Service",
+		"Generalist"
+	],
+	"namelists": [
+		"GENERAL",
+		"SPACE",
+		"NATURAL"
+	],
+	"job_slots": {
+		"Captain": {
+			"outfit": "/datum/outfit/job/independent/captain/western",
+			"officer": true,
+			"slots": 1
+		},
+		"Scholar": {
+			"outfit": "/datum/outfit/job/independent/curator",
+			"slots": 1
+		},
+		"Medical Tenant": {
+			"outfit": "/datum/outfit/job/independent/chemist",
+			"slots": 1
+		},
+		"Engineering Tenant": {
+			"outfit": "/datum/outfit/job/independent/engineer",
+			"slots": 1
+		},
+		"Tenant": {
+			"outfit": "/datum/outfit/job/independent/curator/dungeonmaster",
+			"slots": 1
+		},
+		"Resident Artist": {
+			"outfit": "/datum/outfit/job/independent/assistant/artist",
+			"slots": 1
+		}
+	},
+	"limit": 0,
+	"starting_funds": 2000,
+	"enabled": false,
+	"space_spawn": false,
+
+	"architect": "PrefabQuasar",
+	"contributors": [
+		"No Contributors"
+	]
+}

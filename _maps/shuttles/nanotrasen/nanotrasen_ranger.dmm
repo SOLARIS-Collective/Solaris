@@ -787,10 +787,9 @@
 /obj/item/gun/energy/e_gun/e_old/iot{
 	pixel_y = 12
 	},
-/obj/item/gun/ballistic/automatic/smg/vector,
-/obj/item/gun/ballistic/automatic/smg/vector{
-	pixel_y = -10
-	},
+/obj/item/gun/ballistic/automatic/smg/expedition,
+/obj/item/gun/ballistic/automatic/smg/expedition,
+/obj/item/gun/energy/laser/e10,
 /turf/open/floor/plasteel/dark,
 /area/ship/security/armory)
 "gN" = (
@@ -2477,6 +2476,10 @@
 	pixel_y = -33
 	},
 /obj/item/ammo_box/magazine/m9mm_expedition,
+/obj/item/ammo_box/magazine/m9mm_expedition,
+/obj/item/ammo_box/magazine/m9mm_expedition,
+/obj/item/storage/box/ammo/c9mm_ap,
+/obj/item/storage/box/ammo/c9mm_ap,
 /turf/open/floor/plasteel/dark,
 /area/ship/security/armory)
 "vB" = (

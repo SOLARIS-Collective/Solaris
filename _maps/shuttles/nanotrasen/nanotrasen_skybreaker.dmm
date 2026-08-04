@@ -35,6 +35,7 @@
 	},
 /obj/item/stack/sheet/mineral/plasma/ten,
 /obj/item/stack/sheet/mineral/uranium/five,
+/obj/item/stack/sheet/mineral/uranium/five,
 /turf/open/floor/plating,
 /area/ship/general/engineering)
 "aV" = (
@@ -612,7 +613,6 @@
 /obj/item/soap/nanotrasen,
 /obj/item/storage/bag/trash,
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
-/obj/item/toy/plush/mankind/hampter/janitor,
 /turf/open/floor/plasteel/tech,
 /area/ship/cargo)
 "hN" = (
@@ -1164,23 +1164,6 @@
 	},
 /turf/open/floor/plasteel/tech,
 /area/ship/security)
-"ph" = (
-/obj/structure/closet/crate/secure{
-	name = "bulk psychological support crate"
-	},
-/obj/item/toy/plush/mankind/hampter,
-/obj/item/toy/plush/mankind/hampter/asisstant,
-/obj/item/toy/plush/mankind/hampter/captain,
-/obj/item/toy/plush/mankind/hampter/captain/old,
-/obj/item/toy/plush/mankind/hampter/death_squad{
-	name = "evil hampter"
-	},
-/obj/item/toy/plush/mankind/hampter/ert_squad,
-/obj/item/toy/plush/mankind/hampter/janitor,
-/obj/item/toy/plush/mankind/hampter/medic,
-/obj/item/toy/plush/mankind/hampter/security,
-/turf/open/floor/plasteel/tech,
-/area/ship/cargo)
 "pi" = (
 /obj/machinery/button/shieldwallgen{
 	dir = 2;
@@ -1899,6 +1882,9 @@
 "yO" = (
 /obj/effect/turf_decal/corner/opaque/ntblue/border,
 /obj/structure/closet/crate/freezer/blood,
+/obj/machinery/vending/wallmed/ship{
+	pixel_y = -28
+	},
 /turf/open/floor/plasteel/white,
 /area/ship/medical)
 "yP" = (
@@ -2440,9 +2426,6 @@
 	},
 /obj/structure/table/reinforced/titaniumglass,
 /obj/item/storage/firstaid/medical,
-/obj/machinery/vending/wallmed/ship{
-	pixel_x = 32
-	},
 /turf/open/floor/plasteel/white,
 /area/ship/medical)
 "Ht" = (
@@ -2649,6 +2632,9 @@
 /obj/item/restraints/legcuffs/bola/energy,
 /obj/item/storage/box/handcuffs,
 /obj/item/storage/box/handcuffs,
+/obj/item/grenade/frag,
+/obj/item/grenade/frag,
+/obj/item/grenade/frag,
 /turf/open/floor/plasteel/tech,
 /area/ship/security/armory)
 "Jo" = (
@@ -2894,11 +2880,6 @@
 /obj/structure/table/reinforced/titaniumglass,
 /obj/item/paper_bin,
 /obj/item/pen/fountain,
-/obj/item/toy/plush/mankind/hampter/captain/old{
-	pixel_x = 10;
-	pixel_y = 9;
-	name = "hampter the first Commander"
-	},
 /obj/item/stamp/nanotrasen{
 	pixel_x = 10;
 	pixel_y = -4
@@ -3179,6 +3160,9 @@
 	pixel_y = 3
 	},
 /obj/machinery/microwave,
+/obj/item/food/meat/slab/bear,
+/obj/item/food/meat/slab/bear,
+/obj/item/food/meat/slab/bear,
 /turf/open/floor/plasteel/tech,
 /area/ship/crew/cryo)
 "Qv" = (
@@ -3367,11 +3351,11 @@
 	icon_state = "2-8"
 	},
 /obj/item/storage/belt/utility/full/engi,
-/obj/item/crowbar/power,
 /obj/item/clothing/head/beret/eng{
 	name = "engineering operative beret"
 	},
 /obj/item/clothing/mask/balaclava/combat,
+/obj/item/storage/belt/utility/chief/full,
 /turf/open/floor/plasteel/tech,
 /area/ship/security)
 "Tg" = (
@@ -3819,7 +3803,6 @@
 /obj/item/tank/internals/emergency_oxygen/double,
 /obj/item/gps,
 /obj/item/binoculars,
-/obj/item/storage/belt/medical/surgery,
 /obj/item/crowbar/syndie{
 	name = "elite crowbar"
 	},
@@ -3828,6 +3811,7 @@
 	},
 /obj/item/storage/belt/medical/webbing,
 /obj/item/clothing/mask/balaclava/combat,
+/obj/item/storage/belt/medical/surgery,
 /turf/open/floor/plasteel/white,
 /area/ship/medical)
 "YV" = (
@@ -4172,7 +4156,7 @@ pk
 pk
 dk
 xB
-ph
+Ss
 Du
 tT
 wF

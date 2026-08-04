@@ -6697,6 +6697,8 @@
 	},
 /obj/item/stack/sheet/mineral/plasma/twenty,
 /obj/machinery/light/directional/north,
+/obj/item/stack/sheet/mineral/plasma/twenty,
+/obj/item/stack/sheet/mineral/plasma/twenty,
 /turf/open/floor/plasteel/tech/techmaint,
 /area/ship/engineering)
 "RI" = (
@@ -7459,6 +7461,7 @@
 "Ws" = (
 /obj/machinery/airalarm/directional/west,
 /obj/machinery/suit_storage_unit/rd,
+/obj/item/clothing/suit/space/hardsuit/bomb/clip,
 /turf/open/floor/carpet/purple,
 /area/ship/bridge)
 "WE" = (

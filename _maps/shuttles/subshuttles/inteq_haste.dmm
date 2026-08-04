@@ -54,15 +54,17 @@
 /obj/structure/cable/yellow{
 	icon_state = "2-8"
 	},
+/obj/machinery/light_switch{
+	pixel_y = 22;
+	pixel_x = 10
+	},
 /obj/effect/turf_decal/techfloor{
 	dir = 1
 	},
 /obj/effect/turf_decal/spline/fancy/opaque/black{
 	dir = 8
 	},
-/obj/structure/chair/handrail{
-	pixel_y = 7
-	},
+/obj/machinery/holopad,
 /turf/open/floor/plasteel/tech,
 /area/ship/bridge)
 "F" = (
@@ -121,9 +123,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
 	},
-/obj/machinery/power/smes/shuttle/precharged{
-	dir = 2
-	},
+/obj/machinery/power/smes/shuttle/precharged,
 /turf/open/floor/plasteel/tech,
 /area/ship/bridge)
 "K" = (
@@ -222,9 +222,8 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-10"
 	},
-/obj/machinery/light_switch{
-	pixel_y = 22;
-	pixel_x = 10
+/obj/machinery/newscaster/directional/north{
+	pixel_x = 7
 	},
 /turf/open/floor/plasteel/telecomms_floor,
 /area/ship/bridge)

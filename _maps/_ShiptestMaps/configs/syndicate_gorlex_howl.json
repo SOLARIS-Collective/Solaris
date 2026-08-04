@@ -1,0 +1,54 @@
+{
+	"$schema": "https://raw.githubusercontent.com/PentestSS13/Pentest/master/_maps/ship_config_schema.json",
+	"map_name": "Scout-class Assault Howler",
+	"map_short_name": "Howl-class",
+	"map_path": "_maps/PentestMaps/Shuttles/syndicate/syndicate_gorlex_howl.dmm",
+	"faction": "/datum/faction/syndicate/ngr",
+	"prefix": "NGRV",
+	"manufacturer": "Syndicate Inc",
+	"description": "One of the older scout ships produced by Gorlex Republic. Taken from an old yet robust ship design the entire hull has been completely refurbished which also includes its weapon systems which since then are now long broken since the days of the corporate war between Nanotrasen and the Syndicates. This scout class assault ship is equipped with many modules inside to better boost it combat efficiency. The ship is equipped with a small yet formidable armory capable of arming two operatives for the field. a small medical bay on the port side thruster fitted with half a dozen medical kits for field treatment. A cargo bay capable of hauling long distances goods. And a small yet capable atmospheric system.",
+	"tags": [
+		"Mining",
+		"Combat"
+	],
+	"namelists": [
+		"GORLEX",
+		"NATURAL_AGGRESSIVE",
+		"BEASTS",
+		"WEAPONS",
+		"ACLF"
+	],
+	"job_slots": {
+		"Commander": {
+			"outfit": "/datum/outfit/job/syndicate/captain/ngr",
+			"officer": true,
+			"slots": 1
+		},
+		"Security Consultant": {
+			"outfit": "/datum/outfit/job/syndicate/hos/gorlex",
+			"officer": true,
+			"slots": 1
+		},
+		"Assault Operatives": {
+			"outfit": "/datum/outfit/job/syndicate/security/gorlex",
+			"slots": 2
+		},
+		"Combat Mechanic": {
+			"outfit": "/datum/outfit/job/syndicate/engineer/ngr",
+			"slots": 1
+		},
+		"Cargo Suppliers": {
+			"outfit": "/datum/outfit/job/syndicate/miner/gorlex",
+			"slots": 1
+		}
+	},
+	"limit": 2,
+	"starting_funds": 3000,
+	"enabled": true,
+	"space_spawn": false,
+
+	"architect": "ExtremelyDooDooWaterPlayer",
+	"contributors": [
+		"Glitchy, Kuma, Vect0r, Ossa"
+	]
+}

@@ -1,0 +1,64 @@
+{
+	"$schema": "https://raw.githubusercontent.com/PentestSS13/Pentest/master/_maps/ship_config_schema.json",
+	"map_name": "Aegis-class Long Term Exploration Ship",
+	"map_short_name": "Aegis-class",
+	"map_path": "_maps/PentestMaps/Shuttles/syndicate/syndicate_aegis.dmm",
+	"faction": "/datum/faction/syndicate/suns",
+	"prefix": "SUNS",
+	"manufacturer": "UNKNOWN",
+	"description": "After the war with the Xeomorphs, two recently discharged military personnel designed this ship to be as self-sufficient as possible. Given the significant investment of time and money, many questioned their motives. One of the ship's owners simply responded, 'To be left alone.'",
+	"tags": [
+		"Botany",
+		"Medical",
+		"RP Focus"
+	],
+	"namelists": [
+		"SUNS",
+		"SPACE",
+		"GENERAL"
+	],
+	"job_slots": {
+		"Captain": {
+			"outfit": "/datum/outfit/job/independent/captain",
+			"officer": true,
+			"slots": 1
+		},
+		"SGM Corpsman": {
+			"outfit": "/datum/outfit/job/independent/cmo",
+			"slots": 1
+		},
+		"Corpsman":{
+			"outfit": "/datum/outfit/job/independent/doctor",
+			"slots": 2
+		},
+		"Mechanic": {
+			"outfit": "/datum/outfit/job/independent/engineer",
+			"slots": 2
+		},
+		"Deck Service Assistant": {
+			"outfit": "/datum/outfit/job/independent/assistant/waiter",
+			"slots": 2
+		},
+		"Master of Arms": {
+			"outfit": "/datum/outfit/job/independent/security",
+			"slots": 1
+		},
+		"Cook": {
+			"outfit": "/datum/outfit/job/independent/cook",
+			"slots": 1
+		},
+		"Miner": {
+			"outfit": "/datum/outfit/job/independent/miner",
+			"slots": 1
+		}
+	},
+	"limit": 1,
+	"starting_funds": 2000,
+	"enabled": true,
+	"space_spawn": false,
+
+	"architect": "Draggeru",
+	"contributors": [
+		"No Contributors"
+	]
+}

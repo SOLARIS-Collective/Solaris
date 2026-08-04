@@ -1,93 +1,106 @@
 {
-	"$schema": "https://raw.githubusercontent.com/PentestSS13/Pentest/master/_maps/ship_config_schema.json",
-	"map_name": "Heron-class Dreadnaught",
-	"map_short_name": "Heron-class",
-	"map_path": "_maps/PentestMaps/Shuttles/nanotrasen/nanotrasen_heron.dmm",
-	"faction": "/datum/faction/nt",
+	"$schema": "https://raw.githubusercontent.com/CeladonSS13/Shiptest/beta-dev/_maps/_mod_celadon/ship_config_schema.json",
+	"map_name": "Heron-Class Dreadnaught",
+	"map_short_name": "Heron",
+	"description": "Судно класса 'Heron' - самые крупные судна, имеющиеся в распоряжении пограничных сил Нанотрейзен. Эти корабли служат флагманами многих флотов во время войны, выступая в качестве носителя для оперативной группы или командного судна для корпоративных подразделений. Известно, что капитаны этих суден устанавливали в ангаре блюспейс артилерию и стреляли из нее прямо во время боя. Хотя возраст конструкции уже дает о себе знать, он является одним из символов могущественной власти Нанотрейзен над космосом. В ЩИТСПАВНЕ ПО ПРИЧИНЕ: Непростой шип, только для опытных игроков!",
+	"map_path": "_maps/_modular_solaris/shuttles/nanotrasen/nanotrasen_heron.dmm",
+	"map_id": "nanotrasen_heron",
+	"subshuttle": "Falcon",
+	"enabled": false,
+	"limit": 1,
+	"sensor_range": 9,
 	"prefix": "NTSV",
-	"manufacturer": "Nanotrasen Spaceworks",
-	"description": "The Heron-class is the biggest ship available to NanoTrasen's frontier forces. These vessels served as the flagship of many fleets during the war, serving as a carrier for an operative team, or a command vessel for corporate units. Captains of this vessel were known to retrofit bluespace artillery onto the hangar, and directly fire it during combat. Since the end of the war, it has been repurposed for peacekeeping missions on backline sectors. Though the age of the design is starting to show, it stands as one of the remnants of NanoTrasen's once powerful hold over the cosmos.",
-	"tags":[
-		"Mercenary",
-		"Combat"
-	],
+	"faction": "/datum/faction/nt",
 	"namelists": [
+		"NANOTRASEN",
+		"MERCANTILE",
 		"WEAPONS"
 	],
 	"job_slots": {
 		"Fleet Captain": {
-			"outfit": "/datum/outfit/job/nanotrasen/captain/centcom",
+			"outfit": "/datum/outfit/job/cel/nanotrasen/captain/centcom",
 			"officer": true,
 			"slots": 1
 		},
 		"First Officer": {
-			"outfit": "/datum/outfit/job/nanotrasen/hop",
+			"outfit": "/datum/outfit/job/cel/nanotrasen/hop",
 			"officer": true,
 			"slots": 1
 		},
-		"Head of Security": {
-			"outfit": "/datum/outfit/job/nanotrasen/hos",
-			"officer": true,
-			"slots": 1
-		},
-		"Pilot": {
-			"outfit": "/datum/outfit/job/nanotrasen/pilot",
+		"Security Director": {
+			"outfit": "/datum/outfit/job/cel/nanotrasen/hos",
 			"officer": true,
 			"slots": 1
 		},
 		"Security Officer": {
-			"outfit": "/datum/outfit/job/nanotrasen/security",
+			"outfit": "/datum/outfit/job/cel/nanotrasen/security",
+			"slots": 2
+		},
+		"ERT Commander":{
+			"outfit": "/datum/outfit/job/cel/nanotrasen/security/ert/commander",
 			"slots": 1
 		},
 		"ERT Officer":{
-			"outfit": "/datum/outfit/job/nanotrasen/security/ert",
-			"slots": 4
+			"outfit": "/datum/outfit/job/cel/nanotrasen/security/ert",
+			"slots": 3
 		},
 		"ERT Medical Officer":{
-			"outfit": "/datum/outfit/job/nanotrasen/security/ert/med",
+			"outfit": "/datum/outfit/job/cel/nanotrasen/security/ert/med",
 			"slots": 1
 		},
 		"ERT Engineering Officer":{
-			"outfit": "/datum/outfit/job/nanotrasen/security/ert/engi",
+			"outfit": "/datum/outfit/job/cel/nanotrasen/security/ert/engi",
 			"slots": 1
 		},
-		"Exosuit Pilot":{
-			"outfit": "/datum/outfit/job/nanotrasen/security/mech_pilot",
-			"slots": 1
-		},
-		"Engine Technician": {
-			"outfit": "/datum/outfit/job/nanotrasen/engineer",
-			"slots": 1
-		},
-		"Chief Engineer":{
-			"outfit": "/datum/outfit/job/nanotrasen/ce",
+		"Pilot": {
+			"outfit": "/datum/outfit/job/cel/nanotrasen/pilot",
 			"officer": true,
 			"slots": 1
 		},
-		"Roboticist": {
-			"outfit":"/datum/outfit/job/nanotrasen/roboticist",
+		"Mech Pilot":{
+			"outfit": "/datum/outfit/job/cel/nanotrasen/security/mech_pilot",
+			"slots": 1
+		},
+		"Engine Technician": {
+			"outfit": "/datum/outfit/job/cel/nanotrasen/engineer",
+			"slots": 1
+		},
+		"Engineering Director":{
+			"outfit": "/datum/outfit/job/cel/nanotrasen/ce",
+			"officer": true,
+			"slots": 1
+		},
+		"Science Director": {
+			"outfit":"/datum/outfit/job/cel/nanotrasen/rd",
 			"slots": 1
 		},
 		"Medical Doctor":{
-			"outfit": "/datum/outfit/job/nanotrasen/doctor",
+			"outfit": "/datum/outfit/job/cel/nanotrasen/doctor",
 			"slots": 1
 		},
-		"Atmospheric Technician": 1,
-		"Quartermaster": 1,
-		"Cargo Technician": 1,
-		"Cook": 1,
-		"Janitor": 1,
-		"Assistant": 2
-	},
-	"limit": 0,
-	"starting_funds": 2000,
-	"enabled": false,
-	"space_spawn": false,
-
-	"token_icon_state": "ship_massive_war",
-
-	"architect": "Spockye",
-	"contributors": [
-		"No Contributors"
-	]
+		"Atmospheric Technician":{
+		"outfit": "/datum/outfit/job/cel/nanotrasen/atmos",
+		"slots": 1
+		},
+		"Supply Director":{
+		"outfit": "/datum/outfit/job/cel/nanotrasen/quartermaster",
+		"slots": 1
+		},
+		"Supply Technician":{
+		"outfit": "/datum/outfit/job/cel/nanotrasen/cargo_tech",
+		"slots": 1
+		},
+		"Cook":{
+		"outfit": "/datum/outfit/job/cel/nanotrasen/cook",
+		"slots": 1
+		},
+		"Janitor":{
+		"outfit": "/datum/outfit/job/cel/nanotrasen/janitor",
+		"slots": 1
+		},
+		"Deckhand":{
+		"outfit": "/datum/outfit/job/cel/nanotrasen/assistant",
+		"slots": 2
+		}
+	}
 }

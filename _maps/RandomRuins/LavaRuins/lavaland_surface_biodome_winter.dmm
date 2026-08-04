@@ -614,6 +614,10 @@
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface/lit,
 /area/overmap_encounter/planetoid/lava/explored)
+"fE" = (
+/obj/structure/flora/firebush,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
+/area/overmap_encounter/planetoid/lava/explored)
 "fV" = (
 /obj/machinery/power/apc/auto_name/directional/east,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
@@ -711,13 +715,17 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/unpowered/winter_biodome/living_quarters)
+"hA" = (
+/obj/structure/flora/ausbushes/sparsegrass/hell,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
+/area/overmap_encounter/planetoid/lava/explored)
 "hD" = (
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/mob_spawn/human/corpse/solgov{
-	outfit = /datum/outfit/job/solgov/assistant
+	outfit = /datum/outfit/job/cel/solfed/assistant
 	},
 /obj/effect/decal/cleanable/blood/gibs/down,
 /turf/open/floor/wood,
@@ -899,6 +907,10 @@
 "lF" = (
 /turf/closed/wall/r_wall,
 /area/ruin/unpowered/winter_biodome/living_quarters)
+"lT" = (
+/obj/structure/flora/ash/leaf_shroom,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
+/area/overmap_encounter/planetoid/lava/explored)
 "lX" = (
 /obj/effect/turf_decal/corner/opaque/solgovgold/three_quarters{
 	dir = 1
@@ -940,6 +952,10 @@
 /mob/living/simple_animal/hostile/asteroid/hivelord/legion/nest,
 /turf/open/floor/wood,
 /area/ruin/unpowered/winter_biodome/living_quarters)
+"mX" = (
+/obj/structure/flora/tree/dead_pine,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
+/area/overmap_encounter/planetoid/lava/explored)
 "nf" = (
 /obj/effect/turf_decal/corner/opaque/solgovblue/half{
 	dir = 1
@@ -969,10 +985,6 @@
 	},
 /turf/open/floor/grass/snow,
 /area/ruin/unpowered/winter_biodome)
-"on" = (
-/obj/structure/flora/tree/dead_pine,
-/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
-/area/overmap_encounter/planetoid/lava/explored)
 "ou" = (
 /obj/machinery/light/directional/east,
 /obj/structure/flora/grass/green,
@@ -1069,6 +1081,10 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/pod/light,
 /area/ruin/unpowered/winter_biodome/engineering)
+"qw" = (
+/obj/structure/flora/ausbushes/fullgrass/hell,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
+/area/overmap_encounter/planetoid/lava/explored)
 "qK" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
@@ -1105,10 +1121,6 @@
 /obj/structure/fluff/paper/stack,
 /turf/open/floor/plasteel/white,
 /area/ruin/unpowered/winter_biodome/living_quarters)
-"rt" = (
-/obj/structure/flora/ausbushes/sparsegrass/hell,
-/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
-/area/overmap_encounter/planetoid/lava/explored)
 "rw" = (
 /obj/structure/railing/wood,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -1171,10 +1183,6 @@
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/plasteel/white,
 /area/ruin/unpowered/winter_biodome/living_quarters)
-"sX" = (
-/obj/structure/flora/ash/leaf_shroom,
-/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
-/area/overmap_encounter/planetoid/lava/explored)
 "tg" = (
 /obj/machinery/light/directional/north,
 /obj/structure/flora/grass/brown,
@@ -1421,10 +1429,6 @@
 /obj/item/clipboard,
 /turf/open/floor/wood,
 /area/ruin/unpowered/winter_biodome/cabin)
-"zJ" = (
-/obj/structure/flora/firebush,
-/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
-/area/overmap_encounter/planetoid/lava/explored)
 "zT" = (
 /obj/structure/flora/grass/brown,
 /turf/open/floor/grass/snow,
@@ -2022,10 +2026,6 @@
 	},
 /turf/open/floor/carpet/blue,
 /area/ruin/unpowered/winter_biodome/cabin)
-"Nr" = (
-/obj/structure/flora/ausbushes/fullgrass/hell,
-/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
-/area/overmap_encounter/planetoid/lava/explored)
 "NF" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -2646,11 +2646,11 @@ wO
 wO
 wO
 wO
-rt
+hA
 wO
 wO
 wO
-Nr
+qw
 wO
 aa
 aa
@@ -2725,25 +2725,25 @@ aa
 wO
 wO
 wO
-rt
+hA
 wO
 wO
 wO
 wO
-rt
+hA
 wO
 wO
-Nr
-wO
-wO
-wO
+qw
 wO
 wO
 wO
 wO
 wO
 wO
-rt
+wO
+wO
+wO
+hA
 wO
 wO
 wO
@@ -2767,12 +2767,12 @@ aa
 wO
 wO
 wO
-Nr
+qw
 wO
 wO
-zJ
+fE
 wO
-Nr
+qw
 wO
 wO
 aC
@@ -2789,7 +2789,7 @@ aC
 aC
 aC
 wO
-sX
+lT
 wO
 wO
 wO
@@ -2811,7 +2811,7 @@ wO
 wO
 wO
 wO
-Nr
+qw
 wO
 wO
 wO
@@ -2834,7 +2834,7 @@ Gf
 aC
 wO
 wO
-rt
+hA
 wO
 wO
 wO
@@ -2853,11 +2853,11 @@ aa
 aa
 wO
 wO
-rt
+hA
 wO
 wO
 wO
-Nr
+qw
 wO
 wO
 QK
@@ -2877,7 +2877,7 @@ rD
 uI
 aC
 wO
-Nr
+qw
 Cj
 wO
 wO
@@ -2895,11 +2895,11 @@ aa
 "}
 (8,1,1) = {"
 aa
-Nr
+qw
 wO
 wO
-on
-rt
+mX
+hA
 wO
 QK
 QK
@@ -2969,12 +2969,12 @@ wO
 wO
 JZ
 wO
-Nr
+qw
 wO
 Ez
 wO
 wO
-Nr
+qw
 aa
 aa
 aa
@@ -3028,7 +3028,7 @@ aa
 (11,1,1) = {"
 aa
 wO
-Nr
+qw
 wO
 QK
 QK
@@ -3059,7 +3059,7 @@ bl
 wO
 wO
 wO
-zJ
+fE
 wO
 wO
 wO
@@ -3102,9 +3102,9 @@ ax
 bl
 bl
 wO
-Nr
+qw
 wO
-Nr
+qw
 wO
 wO
 wO
@@ -3193,7 +3193,7 @@ bl
 AM
 wO
 wO
-on
+mX
 wO
 Ez
 wO
@@ -3280,9 +3280,9 @@ HP
 ax
 bl
 wO
-sX
+lT
 wO
-Nr
+qw
 wO
 wO
 aa
@@ -3328,7 +3328,7 @@ Sj
 Sj
 wO
 wO
-zJ
+fE
 aa
 aa
 aa

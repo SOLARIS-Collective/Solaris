@@ -558,15 +558,13 @@
 /obj/item/stock_parts/cell/gun,
 /obj/item/stock_parts/cell/gun,
 /obj/item/stock_parts/cell/gun,
-/obj/item/storage/box/ammo/c9mm_rubber,
-/obj/item/storage/box/ammo/c9mm,
-/obj/item/ammo_box/magazine/co9mm,
-/obj/item/ammo_box/magazine/co9mm,
-/obj/item/ammo_box/magazine/co9mm/rubber,
-/obj/item/ammo_box/magazine/co9mm/rubber,
 /obj/effect/turf_decal/corner/opaque/vired/border{
 	dir = 1
 	},
+/obj/item/stock_parts/cell/gun,
+/obj/item/stock_parts/cell/gun,
+/obj/item/stock_parts/cell/gun,
+/obj/item/stock_parts/cell/gun,
 /turf/open/floor/plasteel/dark,
 /area/ship/security/armory)
 "eg" = (
@@ -3536,6 +3534,7 @@
 /obj/effect/turf_decal/corner/opaque/vired/border{
 	dir = 1
 	},
+/obj/item/clothing/suit/armor/vest/marine/medium,
 /turf/open/floor/plasteel/dark,
 /area/ship/security/armory)
 "xK" = (
@@ -5152,14 +5151,6 @@
 	name = "nonlethal weapons"
 	},
 /obj/structure/window/plasma/reinforced/spawner/west,
-/obj/item/gun/energy/disabler{
-	pixel_x = -6;
-	pixel_y = 10
-	},
-/obj/item/gun/energy/disabler{
-	pixel_x = -1;
-	pixel_y = 3
-	},
 /obj/item/gun/energy/temperature{
 	pixel_x = 2;
 	pixel_y = -4
@@ -5169,6 +5160,8 @@
 	pixel_x = 0;
 	pixel_y = -31
 	},
+/obj/item/gun/energy/taser,
+/obj/item/gun/energy/taser,
 /turf/open/floor/plasteel/dark,
 /area/ship/security/armory)
 "Ki" = (
@@ -5524,20 +5517,13 @@
 	req_access_txt = "3";
 	name = "LETHAL weapons"
 	},
-/obj/item/gun/ballistic/automatic/pistol/challenger{
-	pixel_x = 0;
-	pixel_y = 8
-	},
-/obj/item/gun/energy/e_gun/e_old{
-	pixel_x = 5;
-	pixel_y = 1
-	},
 /obj/item/gun/energy/e_gun/e_old/iot{
 	pixel_y = -4;
 	pixel_x = 3
 	},
 /obj/effect/turf_decal/corner/opaque/vired/half,
-/obj/item/gun/energy/xray,
+/obj/item/gun/energy/e_gun/e_old/smg,
+/obj/item/gun/energy/e_gun/e_old/smg,
 /turf/open/floor/plasteel/dark,
 /area/ship/security/armory)
 "Nh" = (
@@ -5730,8 +5716,10 @@
 	name = "tactical armor"
 	},
 /obj/structure/window/plasma/reinforced/spawner/west,
-/obj/item/clothing/suit/armor/vest/marine/medium,
 /obj/effect/turf_decal/corner/opaque/vired/half,
+/obj/item/clothing/suit/space/hardsuit/security,
+/obj/item/clothing/mask/gas/sechailer/sec,
+/obj/item/tank/internals/oxygen,
 /turf/open/floor/plasteel/dark,
 /area/ship/security/armory)
 "OH" = (
@@ -5795,9 +5783,6 @@
 /obj/structure/table/optable,
 /obj/effect/decal/cleanable/blood/old,
 /obj/item/storage/case/surgery,
-/obj/machinery/vending/wallmed/ship{
-	pixel_y = 32
-	},
 /turf/open/floor/plasteel/white,
 /area/ship/medical)
 "Pl" = (
@@ -5963,6 +5948,9 @@
 /obj/item/clothing/head/nanotrasen/beret/security/command,
 /obj/item/clothing/suit/armor/nanotrasen/sec_director,
 /obj/item/radio/headset/nanotrasen/alt,
+/obj/item/gun/energy/e_gun/e_old/hos,
+/obj/item/stock_parts/cell/gun/upgraded,
+/obj/item/stock_parts/cell/gun/upgraded,
 /turf/open/floor/carpet/red_gold,
 /area/ship/general/command_crew/hos)
 "QU" = (
@@ -6533,6 +6521,8 @@
 /obj/effect/turf_decal/siding/wood/end{
 	dir = 4
 	},
+/obj/item/gun/energy/e_gun/e_old/hos/brazil/true,
+/obj/item/stock_parts/cell/gun/upgraded,
 /turf/open/floor/wood,
 /area/ship/crew/dorm/captain)
 "UN" = (
