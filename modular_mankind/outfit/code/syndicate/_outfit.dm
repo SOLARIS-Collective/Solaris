@@ -127,7 +127,11 @@
 	ears = /obj/item/radio/headset/syndicate/alt
 	uniform = /obj/item/clothing/under/syndicate/combat
 	head = /obj/item/clothing/head/HoS/syndicate
+<<<<<<< Updated upstream
 	suit = /obj/item/clothing/suit/armor/hardliners
+=======
+	suit = /obj/item/clothing/suit/armor/vest/syndie
+>>>>>>> Stashed changes
 	shoes = /obj/item/clothing/shoes/combat
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
 
