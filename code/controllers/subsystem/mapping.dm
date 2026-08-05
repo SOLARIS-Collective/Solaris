@@ -181,18 +181,12 @@ SUBSYSTEM_DEF(mapping)
 #define CHECK_LIST_EXISTS(X) if(!islist(data[X])) { stack_trace("[##X] missing from json!"); continue; }
 /datum/controller/subsystem/mapping/proc/load_ship_templates()
 	ship_purchase_list = list()
-	// [MANKIND-EDIT] - MANKIND_CONFIGS_MAPS
-	// var/list/filelist = flist("_maps/configs/") // ORIGINAL
-	var/list/filelist = flist("_maps/_modular_solaris/configs/")
-	// [/MANKIND-EDIT]
+	var/list/filelist = flist("_maps/configs/")
 
 	filelist = sortList(filelist)
 
 	for(var/filename in filelist)
-		// [MANKIND-EDIT] - MANKIND_CONFIGS_MAPS
-		// var/file = file("_maps/configs/" + filename) // ORIGINAL
-		var/file = file("_maps/_modular_solaris/configs/" + filename)
-		// [/MANKIND-EDIT]
+		var/file = file("_maps/configs/" + filename)
 		if(!file)
 			stack_trace("Could not open map config: [filename]")
 			continue

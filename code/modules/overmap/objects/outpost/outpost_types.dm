@@ -12,10 +12,7 @@
 	var/outpost_administrator = "Fallback Administration"
 
 /datum/map_template/outpost/New()
-	// [MANKIND-EDIT] - MANKIND_CONFIGS_MAPS
-	// . = ..(path = "_maps/outpost/[name].dmm") // ORIGINAL
-	. = ..(path = "_maps/_modular_solaris/outpost/[name].dmm")
-	// [/MANKIND-EDIT]
+	. = ..(path = "_maps/outpost/[name].dmm")
 
 
 /datum/map_template/outpost/hangar
