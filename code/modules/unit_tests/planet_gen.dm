@@ -2,6 +2,9 @@
 	var/datum/map_zone/mapzone = SSmapping.create_map_zone("Planet Generation Testing Zone")
 	for(var/planet_name as anything in SSmapping.planet_types)
 		var/datum/planet_type/planet_type = SSmapping.planet_types[planet_name]
+		if(!planet_type.mapgen)
+			TEST_FAIL("Planet type [planet_name] has no mapgen defined")
+			continue
 		var/datum/map_generator/mapgen = new planet_type.mapgen
 
 		log_test("Loading [planet_name]")

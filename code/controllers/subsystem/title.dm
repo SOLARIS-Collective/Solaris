@@ -35,6 +35,8 @@ SUBSYSTEM_DEF(title)
 // [MANKIND-EDIT]- MUSIC_MANKIND
 		//file_path = "icons/runtime/default_title.dmi" // ORIGINAL
 		file_path = "modular_mankind/_storage_icons/icons/assets/default_title.dmi"
+		if(!fexists(file_path))
+			file_path = "icons/runtime/default_title.dmi"
 // [/MANKIND-EDIT]
 	ASSERT(fexists(file_path))
 
