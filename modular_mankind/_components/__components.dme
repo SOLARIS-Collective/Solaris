@@ -11,6 +11,7 @@
 // Добавляет компонент, отвечающий за удаление атомов.
 #include "code/datum/fancy_deletion_timer.dm"
 #include "code/datum/meteorcarp.dm"
+#include "code/datum/overmap_proximity.dm"
 
 // Глобальные проки для уменьшения простыней кода.
 #include "code/procs/procs.dm"
