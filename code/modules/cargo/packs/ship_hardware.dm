@@ -92,4 +92,4 @@
 	faction = /datum/faction/zohil
 	faction_locked = TRUE
 
-[/CELADON-DELETE] */
+[/MANKIND-DELETE] */

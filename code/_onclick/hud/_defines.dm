@@ -175,5 +175,5 @@
 #define ui_ghost_teleport "SOUTH:6,CENTER-1:24"
 #define ui_dnr "SOUTH:6,CENTER:24"
 #define ui_ghost_respawn "SOUTH:6,CENTER+1:24"
-// [/CELADON-EDIT]
+// [/MANKIND-EDIT]
 #define ui_wanted_lvl "NORTH,11"

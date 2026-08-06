@@ -452,7 +452,7 @@
 		if(LS)
 			to_chat(user, span_warning("This unit is already equipped with a defibrillator module!"))
 			return FALSE
-		// [/CELADON-ADD]
+		// [/MANKIND-ADD]
 		var/obj/item/shockpaddles/cyborg/S = new(R.module)
 		R.module.basic_modules += S
 		R.module.add_module(S, FALSE, TRUE)
@@ -485,7 +485,7 @@
 		if(LP)
 			to_chat(user, span_warning("This unit is already equipped with a surgical processor module!"))
 			return FALSE
-		// [/CELADON-ADD]
+		// [/MANKIND-ADD]
 		var/obj/item/surgical_processor/SP = new(R.module)
 		R.module.basic_modules += SP
 		R.module.add_module(SP, FALSE, TRUE)
@@ -572,7 +572,7 @@
 		// [MANKIND-EDIT] - FIX - Исправление бага, который позволяет устанавливать бесконечное количество подобных модулей.
 		// var/obj/item/storage/part_replacer/cyborg/RPED = locate() in R
 		var/obj/item/borg/upgrade/rped/RPED = locate() in R
-		// [/CELADON-EDIT]
+		// [/MANKIND-EDIT]
 		if(RPED)
 			to_chat(user, span_warning("This unit is already equipped with a RPED module!"))
 			return FALSE
@@ -587,7 +587,7 @@
 		// [MANKIND-EDIT] - FIX - Исправление бага, который позволяет устанавливать бесконечное количество подобных модулей.
 		// var/obj/item/storage/part_replacer/cyborg/RPED = locate() in R.module
 		var/obj/item/borg/upgrade/rped/RPED = locate() in R.module
-		// [/CELADON-EDIT]
+		// [/MANKIND-EDIT]
 		if (RPED)
 			R.module.remove_module(RPED, TRUE)
 
