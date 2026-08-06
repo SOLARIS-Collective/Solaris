@@ -35,6 +35,29 @@ from github import Github
 KEY_RE = re.compile(r"^\s*\[([A-ZА-Я0-9_ :]+)\]\s*", re.IGNORECASE)
 
 
+# Блок :cl: ... /:cl: — служебная секция чейнджлога, не нужна в описании
+CL_BLOCK_RE = re.compile(r":cl:.*?\/:cl:", re.DOTALL | re.IGNORECASE)
+# Ссылки вида [text](url) -> text
+MARKDOWN_LINK_RE = re.compile(r"\[([^\]]*)\]\([^)]*\)")
+# Служебные комментарии HTML
+HTML_COMMENT_RE = re.compile(r"<!--.*?-->", re.DOTALL)
+
+
+def clean_body(body):
+    """Очистить описание PR для показа в игре.
+
+    Убирает :cl:-блок, HTML-комментарии, Markdown-ссылки и лишние пустые строки.
+    """
+    if not body:
+        return ""
+    text = CL_BLOCK_RE.sub("", body)
+    text = HTML_COMMENT_RE.sub("", text)
+    text = MARKDOWN_LINK_RE.sub(r"\1", text)
+    # Схлопнуть 3+ подряд идущих пустых строк в одну
+    text = re.sub(r"\n{3,}", "\n\n", text)
+    return text.strip()
+
+
 def load_categories(config_path):
     """Загрузить конфиг категорий и вернуть (список категорий, default_category)."""
     with open(config_path, encoding="utf-8") as f:
@@ -101,6 +124,7 @@ def build_summary(prs, key_to_category, default_category):
         grouped.setdefault(category, []).append({
             "number": pr.number,
             "title": clean_title,
+            "body": clean_body(pr.body),
             "author": pr.user.login if pr.user else "unknown",
             "merged_at": pr.merged_at.strftime("%Y-%m-%d") if pr.merged_at else "",
         })
