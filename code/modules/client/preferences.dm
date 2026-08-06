@@ -475,7 +475,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				// [MANKIND-ADD] - Добавление кнопки для смены одежды.
 				dat += "<br>"
 				dat += "<a href='byond://?_src_=prefs;preference=previous_underwear;task=input'>&lt;</a> <a href='byond://?_src_=prefs;preference=next_underwear;task=input'>&gt;</a>"
-				// [/CELADON-ADD]
+				// [/MANKIND-ADD]
 				dat += "<a href='byond://?_src_=prefs;preference=toggle_random;random_type=[RANDOM_UNDERWEAR]'>[(randomise[RANDOM_UNDERWEAR]) ? "Lock" : "Unlock"]</A><br>"
 
 				dat += "<b>Underwear Color:</b><br><span style='border: 1px solid #161616; background-color: #[underwear_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='byond://?_src_=prefs;preference=underwear_color;task=input'>Change</a>"
@@ -485,7 +485,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				// [MANKIND-ADD] - Добавление кнопки для смены одежды.
 				dat += "<br>"
 				dat += "<a href='byond://?_src_=prefs;preference=previous_undershirt;task=input'>&lt;</a> <a href='byond://?_src_=prefs;preference=next_undershirt;task=input'>&gt;</a>"
-				// [/CELADON-ADD]
+				// [/MANKIND-ADD]
 				dat += "<a href='byond://?_src_=prefs;preference=toggle_random;random_type=[RANDOM_UNDERSHIRT]'>[(randomise[RANDOM_UNDERSHIRT]) ? "Lock" : "Unlock"]</A><br>"
 
 				dat += "<b>Undershirt Color:</b><br><span style='border: 1px solid #161616; background-color: #[undershirt_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='byond://?_src_=prefs;preference=undershirt_color;task=input'>Change</a>"
@@ -495,7 +495,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				// [MANKIND-ADD] - Добавление кнопки для смены одежды.
 				dat += "<br>"
 				dat += "<a href='byond://?_src_=prefs;preference=previous_socks;task=input'>&lt;</a> <a href='byond://?_src_=prefs;preference=next_socks;task=input'>&gt;</a>"
-				// [/CELADON-ADD]
+				// [/MANKIND-ADD]
 				dat += "<a href='byond://?_src_=prefs;preference=toggle_random;random_type=[RANDOM_SOCKS]'>[(randomise[RANDOM_SOCKS]) ? "Lock" : "Unlock"]</A><br>"
 
 				dat += "<b>Socks Color:</b><br><span style='border: 1px solid #161616; background-color: #[socks_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='byond://?_src_=prefs;preference=socks_color;task=input'>Change</a>"
@@ -1226,7 +1226,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			// 			if(!limb_style?.desc)
 			// 				continue
 			// 			dat += "<a href='byond://?_src_=prefs;preference=body_desc;limb_style=[REF(limb_style)]'>?</a></td></tr>"
-			// [/CELADON-EDIT]
+			// [/MANKIND-EDIT]
 			dat += "</table><br>"
 			if(!istype(pref_species, /datum/species/lanius))
 				dat += "<h3>Prosthetic Limbs</h3>"
@@ -2311,7 +2311,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				if("next_socks")
 					socks = next_list_item(socks, GLOB.socks_list)
-				// [/CELADON-ADD]
+				// [/MANKIND-ADD]
 
 				if("underwear_color")
 					var/new_underwear_color = input(user, "Choose your character's underwear color:", "Character Preference","#"+underwear_color) as color|null

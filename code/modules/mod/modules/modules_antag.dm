@@ -16,7 +16,7 @@
 	// [MANKIND-EDIT] - CELADON_MODSUITS - Убирает welding из несовместимых модулей, так как добавлять их туда с целью защиты от вспышек смысла не вижу,
 	// обходится любыми сангласами.
 	incompatible_modules = list(/obj/item/mod/module/armor_booster, /obj/item/mod/module/stealth/military)
-	// [/CELADON-EDIT] - CELADON_MODSUITS
+	// [/MANKIND-EDIT] - CELADON_MODSUITS
 	cooldown_time = 0.5 SECONDS
 	overlay_state_inactive = "module_armorbooster_off"
 	overlay_state_active = "module_armorbooster_on"
@@ -37,14 +37,14 @@
 	var/disable_chance = 10
 	assist_drain_increase = 85
 	use_power_cost = DEFAULT_CHARGE_DRAIN*0.1
-	// [/CELADON-ADD] - CELADON_MODSUITS
+	// [/MANKIND-ADD] - CELADON_MODSUITS
 
 /obj/item/mod/module/armor_booster/on_suit_activation()
 	// [MANKIND-EDIT] - CELADON_MODSUITS
 	//mod.helmet.flash_protect = FLASH_PROTECTION_WELDER
 	if(anti_flash)
 		mod.helmet.flash_protect = FLASH_PROTECTION_WELDER
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 
 /obj/item/mod/module/armor_booster/on_suit_deactivation(deleting = FALSE)
 	if(deleting)
@@ -63,7 +63,7 @@
 		actual_speed_added = speed_added
 	else
 		actual_speed_added = max(0, min(mod.slowdown_active, speed_added))
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 	mod.slowdown -= actual_speed_added
 	mod.wearer.update_equipment_speed_mods()
 	var/list/parts = mod.mod_parts + mod
@@ -115,7 +115,7 @@
 		remove_pressure_protection = !EVA_boosted
 		to_chat(user, span_notice("You [EVA_boosted ? "overrided" : "reverted"] [src] EVA limiters."))
 	return TRUE
- // [/CELADON-ADD]
+ // [/MANKIND-ADD]
 
 /obj/item/mod/module/armor_booster/on_deactivation(display_message = TRUE, deleting = FALSE)
 	. = ..()
@@ -159,7 +159,7 @@
 	// overlay_state_active = "module_armorbooster_on"
 	overlay_state_inactive = "module_armorassist_off"
 	overlay_state_active = "module_armorassist_on"
-	// [/CELADON-EDIT] - CELADON_MODSUITS
+	// [/MANKIND-EDIT] - CELADON_MODSUITS
 	use_mod_colors = TRUE
 	// var/drain_per_step = 100 // [MANKIND-DELETE] - CELADON_MODSUITS // не используется больше, используется вместо него use_power_cost
 	// [MANKIND-ADD] - CELADON_MODSUITS
@@ -167,7 +167,7 @@
 	use_power_cost = 30
 	/// Зависит ли наше потребление от замедления
 	var/drain_slowdown_affected = TRUE
-	// [/CELADON-ADD] - CELADON_MODSUITS
+	// [/MANKIND-ADD] - CELADON_MODSUITS
 
 /obj/item/mod/module/armor_assist/on_activation()
 	. = ..()
@@ -197,7 +197,7 @@
 		if(module.active)
 			true_drain_per_step = module.assist_drain_increase + true_drain_per_step
 	drain_power(true_drain_per_step, TRUE)
-	// [/CELADON-EDIT] - CELADON_MODSUITS
+	// [/MANKIND-EDIT] - CELADON_MODSUITS
 
 /obj/item/mod/module/armor_assist/generate_worn_overlay(mutable_appearance/standing)
 	overlay_state_inactive = "[initial(overlay_state_inactive)]-[mod.skin]"
@@ -303,7 +303,7 @@
 			color = choice
 
 	mod.wearer.update_inv_back(mod.slot_flags)
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 /obj/item/mod/module/insignia/generate_worn_overlay(mutable_appearance/standing)
 	overlay_state_inactive = "[initial(overlay_state_inactive)]-[mod.skin]"

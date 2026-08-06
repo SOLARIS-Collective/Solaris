@@ -53,7 +53,7 @@
 	if(user.client)
 		// [MANKIND-EDIT] - OLD CODE: if(user.gas_scan && atmosanalyzer_scan(user, src))
 		if((user.ghost_hud_flags & GHOST_GAS) && atmosanalyzer_scan(user, src))
-		// [/CELADON-EDIT]
+		// [/MANKIND-EDIT]
 			return TRUE
 		else if(isAdminGhostAI(user))
 			attack_ai(user)
@@ -75,7 +75,7 @@
 	if (user.ghost_hud_flags & GHOST_HEALTH)
 		healthscan(user, src, 1, TRUE)
 	if (user.ghost_hud_flags & GHOST_CHEM)
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 		chemscan(user, src)
 	return ..()
 

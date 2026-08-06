@@ -14,6 +14,16 @@
 
 	display_order = JOB_DISPLAY_ORDER_CAPTAIN
 
+/datum/job/captain/after_spawn(mob/living/H, mob/M)
+	. = ..()
+	if(!ishuman(H))
+		return
+	var/mob/living/carbon/human/captain_human = H
+	var/displayed_rank = captain_human.client?.prefs?.alt_titles_preferences[name]
+	if(!displayed_rank)
+		displayed_rank = "Captain"
+	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(announce_captain_arrival), displayed_rank, captain_human.real_name))
+
 /datum/job/captain/get_access()
 	return get_all_accesses()
 

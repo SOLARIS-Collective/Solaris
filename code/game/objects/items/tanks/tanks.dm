@@ -232,7 +232,7 @@
 	check_status()
 	// [MANKIND-ADD] - ADD: Ovelays Oxygen tank, and pressure alert system - mod_celadon\items\code\tank.dm
 	pressure_alerts()
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 
 /obj/item/tank/update_overlays()
 	. = ..()

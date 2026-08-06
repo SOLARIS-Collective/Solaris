@@ -103,7 +103,7 @@ const SharedContent = (_props, context) => {
                 icon="arrow-left"
                 // [MANKIND-ADD] - subshuttle fix
                 disabled={data.issubshuttle !== null}
-                // [/CELADON-ADD] - subshuttle fix
+                // [/MANKIND-ADD] - subshuttle fix
                 onClick={() => act('sensor_decrease')}
               />
               <Button
@@ -112,7 +112,7 @@ const SharedContent = (_props, context) => {
                 icon="arrow-right"
                 // [MANKIND-ADD] - subshuttle fix
                 disabled={data.issubshuttle !== null}
-                // [/CELADON-ADD] - subshuttle fix
+                // [/MANKIND-ADD] - subshuttle fix
                 onClick={() => act('sensor_increase')}
               />
             </Table.Cell>
