@@ -47,6 +47,22 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/tgui_lock = FALSE
 	var/windowflashing = TRUE
 	var/toggles = TOGGLES_DEFAULT
+
+	/// Sound category volume levels (0-100), keyed by FS_*
+	var/list/sound_volume = alist(
+		FS_GENERAL = 100,
+		FS_LOBBY = 100,
+		FS_AMBIENCE = 100,
+		FS_WEAPONS = 100,
+		FS_ANNOUNCEMENTS = 100,
+		FS_INSTRUMENTS = 100,
+		FS_JUKEBOX = 100,
+		FS_RADIO = 100,
+		FS_PRAYERS = 100,
+		FS_ADMIN = 100,
+		FS_SHIP_AMBIENCE = 100,
+		FS_ENDOFROUND = 100,
+	)
 	var/db_flags
 	var/chat_toggles = TOGGLES_DEFAULT_CHAT
 	var/ghost_form = "ghost"
@@ -1445,8 +1461,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 			dat += "<b>Ambient Occlusion:</b> <a href='byond://?_src_=prefs;preference=ambientocclusion'>[ambientocclusion ? "Enabled" : "Disabled"]</a><br>"
 			dat += "<b>Fit Viewport:</b> <a href='byond://?_src_=prefs;preference=auto_fit_viewport'>[auto_fit_viewport ? "Auto" : "Manual"]</a><br>"
-			if (CONFIG_GET(string/default_view) != CONFIG_GET(string/default_view_square))
-				dat += "<b>Widescreen:</b> <a href='byond://?_src_=prefs;preference=widescreenpref'>[widescreenpref ? "Enabled ([CONFIG_GET(string/default_view)])" : "Disabled ([CONFIG_GET(string/default_view_square)])"]</a><br>"
 
 			button_name = pixel_size
 			dat += "<b>Pixel Scaling:</b> <a href='byond://?_src_=prefs;preference=pixel_size'>[(button_name) ? "Pixel Perfect [button_name]x" : "Stretch to fit"]</a><br>"

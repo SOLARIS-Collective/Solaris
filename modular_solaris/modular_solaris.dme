@@ -17,7 +17,7 @@
 // или
 // git submodule update --init --recursive
 #ifdef OMNI_ACCESS
-	#include "_private/__private.dme"
+	#include "_omni_access/__private.dme"
 #else
 	#include "_public/__public.dme"
 #endif

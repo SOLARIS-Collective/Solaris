@@ -1,11 +1,3 @@
-// This is synced up to the poster placing animation.
-#define PLACE_SPEED 3.7 SECONDS
-#define POSTER_NORANDOM 0 //no random poster
-#define POSTER_SUBTYPES 1 //chooses from subtypes of the poster_type var
-#define POSTER_LIST 2 // chooses from a list
-#define POSTER_ADD_FROM_LIST 3 //adds to the subtypes pool from list
-// The poster item
-
 /obj/item/poster
 	name = "poorly coded poster"
 	desc = "You probably shouldn't be holding this."
@@ -1296,11 +1288,3 @@
 	name = "PRIS poster"
 	poster_type = /obj/structure/sign/poster/radio/pris
 	icon_state = "rolled_poster"
-
-// [MANKIND-REMOVE] - MANKIND_OUTFIT - REMOVED BECAUSE ITS PREVENTING NEW /random POSTERS FROM OTHER FILES. EXAMPLE FOR PREVENTED /random POSTER: modular_mankind/stuff_elysium/code/elysiumMerch.dm. LINE 37, random_type = POSTER_SUBTYPES -> ERROR: undefined var
-// #undef PLACE_SPEED
-// #undef POSTER_SUBTYPES
-// #undef POSTER_LIST
-// #undef POSTER_ADD_FROM_LIST
-// [/MANKIND-REMOVE]
-// dont use random radio anywhere but indies or else it might throw up radio gorlex on a PGF ship

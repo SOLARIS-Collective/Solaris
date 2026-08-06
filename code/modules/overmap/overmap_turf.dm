@@ -14,26 +14,11 @@
 	. = ..()
 	if(!virtual_z)
 		return
-	// [MANKIND-ADD] - MANKIND_OVERMAP_ICON - Это вагабонд насрал
-	if(prob(25))
-		var/image/I = image('icons/turf/overmap.dmi')
-		I.icon_state = "[rand(1, 16)]"
-		I.pixel_x = rand(-16, 16)
-		I.pixel_y = rand(-16, 16)
-		overlays += I
-	if(prob(25))
-		var/image/I = image('icons/turf/overmap.dmi')
-		I.icon_state = "[rand(1, 16)]"
-		I.pixel_x = rand(-16, 16)
-		I.pixel_y = rand(-16, 16)
-		overlays += I
-	if(prob(25))
-		var/image/I = image('icons/turf/overmap.dmi')
-		I.icon_state = "[rand(1, 16)]"
-		I.pixel_x = rand(-16, 16)
-		I.pixel_y = rand(-16, 16)
-		overlays += I
-	// [/MANKIND-ADD]
+	// [MANKIND-EDIT] - MANKIND_OVERMAP_ICON_LAZY - Отложенное создание декоративных звёздочек
+	// Случайные звёздочки-оверлеи перенесены в add_random_star_overlays(),
+	// которая вызывается только при первом появлении игрока рядом.
+	// Раньше создавало 3 image() на каждый тайл (до 2700 на 30x30)
+	// [/MANKIND-EDIT]
 	var/datum/virtual_level/vlevel = get_virtual_level()
 	if(!vlevel.current_systen)
 		return
@@ -66,6 +51,28 @@
 		I.color = primary_color
 		overlays += I
 		overlays += I
+
+// [MANKIND-ADD] - MANKIND_OVERMAP_ICON_LAZY - Отложенное создание декоративных звёздочек
+/turf/open/overmap/proc/add_random_star_overlays()
+	if(prob(25))
+		var/image/I = image('icons/turf/overmap.dmi')
+		I.icon_state = "[rand(1, 16)]"
+		I.pixel_x = rand(-16, 16)
+		I.pixel_y = rand(-16, 16)
+		overlays += I
+	if(prob(25))
+		var/image/I = image('icons/turf/overmap.dmi')
+		I.icon_state = "[rand(1, 16)]"
+		I.pixel_x = rand(-16, 16)
+		I.pixel_y = rand(-16, 16)
+		overlays += I
+	if(prob(25))
+		var/image/I = image('icons/turf/overmap.dmi')
+		I.icon_state = "[rand(1, 16)]"
+		I.pixel_x = rand(-16, 16)
+		I.pixel_y = rand(-16, 16)
+		overlays += I
+// [/MANKIND-ADD]
 
 /** # Overmap area
  * Area that all overmap objects will spawn in at roundstart.
