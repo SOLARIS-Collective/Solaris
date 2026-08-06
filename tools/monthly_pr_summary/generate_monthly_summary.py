@@ -35,8 +35,9 @@ from github import Github
 KEY_RE = re.compile(r"^\s*\[([A-ZА-Я0-9_ :]+)\]\s*", re.IGNORECASE)
 
 
-# Блок :cl: ... /:cl: — служебная секция чейнджлога, не нужна в описании
-CL_BLOCK_RE = re.compile(r":cl:.*?\/:cl:", re.DOTALL | re.IGNORECASE)
+# Блок <!-- COMMIT_SUMMARY_START --> ... <!-- COMMIT_SUMMARY_END --> —
+# автозаполняемая сводка коммитов, не нужна в описании.
+COMMIT_SUMMARY_RE = re.compile(r"<!--\s*COMMIT_SUMMARY_START\s*-->.*?<!--\s*COMMIT_SUMMARY_END\s*-->", re.DOTALL | re.IGNORECASE)
 # Ссылки вида [text](url) -> text
 MARKDOWN_LINK_RE = re.compile(r"\[([^\]]*)\]\([^)]*\)")
 # Служебные комментарии HTML
@@ -46,11 +47,12 @@ HTML_COMMENT_RE = re.compile(r"<!--.*?-->", re.DOTALL)
 def clean_body(body):
     """Очистить описание PR для показа в игре.
 
-    Убирает :cl:-блок, HTML-комментарии, Markdown-ссылки и лишние пустые строки.
+    Убирает блок COMMIT_SUMMARY, HTML-комментарии, Markdown-ссылки
+    и лишние пустые строки.
     """
     if not body:
         return ""
-    text = CL_BLOCK_RE.sub("", body)
+    text = COMMIT_SUMMARY_RE.sub("", body)
     text = HTML_COMMENT_RE.sub("", text)
     text = MARKDOWN_LINK_RE.sub(r"\1", text)
     # Схлопнуть 3+ подряд идущих пустых строк в одну
