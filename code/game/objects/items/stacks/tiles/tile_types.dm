@@ -82,7 +82,11 @@
 					user.put_in_hands(new_item)
 
 			else
-				var/sheet_type = text2path("/obj/item/stack/sheet/mineral/[mineralType]")
+				var/static/list/tile_mineral_sheets = list(
+					"metal" = /obj/item/stack/sheet/metal,
+					"plasma" = /obj/item/stack/sheet/mineral/plasma,
+				)
+				var/sheet_type = tile_mineral_sheets[mineralType]
 				var/obj/item/stack/sheet/mineral/new_item = new sheet_type(user.loc)
 				user.visible_message(
 					span_notice("[user.name] shaped [src] into a sheet with the welding tool."),

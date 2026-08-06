@@ -37,10 +37,8 @@ SUBSYSTEM_DEF(ambience)
 			var/sound_length = ceil(SSsound_cache.get_sound_length(sound_file))
 			return rand(min_ambience_cooldown + sound_length, max_ambience_cooldown + sound_length)
 	// [/MANKIND-ADD]
-	var/sound/new_sound = override_sound || pick(ambientsounds)
-	new_sound = sound(new_sound, repeat = 0, wait = 0, volume = 25, channel = CHANNEL_AMBIENCE)
+	var/sound_file = override_sound ? override_sound.file : pick(ambientsounds)
+	M.playsound_local(null, sound_file, 25, channel = CHANNEL_AMBIENCE, sound_flag = FS_AMBIENCE)
 
-	SEND_SOUND(M, new_sound)
-
-	var/sound_length = ceil(SSsound_cache.get_sound_length(new_sound.file))
+	var/sound_length = ceil(SSsound_cache.get_sound_length(sound_file))
 	return rand(min_ambience_cooldown + sound_length, max_ambience_cooldown + sound_length)

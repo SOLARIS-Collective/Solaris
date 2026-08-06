@@ -81,7 +81,7 @@
 
 //aiming down sights values
 #define PISTOL_ZOOM 2
-#define SHOTGUN_ZOOM 2
+#define SHOTGUN_ZOOM 1
 #define SMG_ZOOM 2
 #define RIFLE_ZOOM 2
 #define DMR_ZOOM 6
