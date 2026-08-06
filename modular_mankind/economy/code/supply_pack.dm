@@ -3,14 +3,15 @@
 // 2. Фракционные товары: от -20% до 0% (множитель 0.8 - 1.0)
 // После умножения цена округляется вниз на указанное число в формуле `round`
 
-#define PRICES_FACTION_MIN	0.8
-#define PRICES_FACTION_MAX	1
+#define PRICES_FACTION_MIN 0.8
+#define PRICES_FACTION_MAX 1
 
 // ОБЩАЯ ЦЕНА НА ТОВАРЫ SUPPLY PACK
-#define PRICES_GENERAL_MIN	1
-#define PRICES_GENERAL_MAX	1.2
+#define PRICES_GENERAL_MIN 1
+#define PRICES_GENERAL_MAX 1.2
 
-// Стабильные цены задаются параметром stable 
+	// Стабильные цены задаются параметром stable
+
 // Патроны, патроны должны быть дешевые изначально лмао
 // Атачменты тоже странно когда мелкие цены меняются
 /datum/supply_pack/faction/New()

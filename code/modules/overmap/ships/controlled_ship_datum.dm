@@ -174,6 +174,7 @@
 #endif
 	SSovermap.controlled_ships += src
 	current_overmap.controlled_ships += src
+	AddComponent(/datum/component/overmap_proximity)
 
 	GLOB.ship_select_tgui?.update_static_data_for_all_viewers()
 	GLOB.crew_manifest_tgui?.update_static_data_for_all_viewers()

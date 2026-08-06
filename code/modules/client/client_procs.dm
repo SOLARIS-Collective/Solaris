@@ -494,7 +494,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 //DISCONNECT//
 //////////////
 
-/client/Del()
+/client/Destroy()
 	if(!gc_destroyed)
 		Destroy() //Clean up signals and timers.
 	return ..()

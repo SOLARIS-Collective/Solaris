@@ -335,7 +335,11 @@ SUBSYSTEM_DEF(shuttle)
 
 	if(!loading_zone)
 		CRASH("failed to reserve an area for shuttle template loading")
-	loading_zone.fill_in(turf_type = /turf/open/space/transit/south)
+	// [MANKIND-EDIT] - OPTIMIZE_SHIP_LOADING - Убран избыточный fill_in()
+	// Первый fill_in() заливал loading-зону космосом, но template.load()
+	// сразу перезаписывает все тайлы шаттла. Работа впустую.
+	// loading_zone.fill_in(turf_type = /turf/open/space/transit/south)
+	// [/MANKIND-EDIT]
 
 	var/turf/BL = locate(loading_zone.low_x, loading_zone.low_y, loading_zone.z_value)
 	if(!template.load(BL, centered = FALSE, register = FALSE))
