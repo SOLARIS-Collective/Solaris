@@ -27,6 +27,7 @@
 // --- SOUNDS --- //
 
 // --- OBJECTS --- //
+#include "spacepod/_spacepod.dme"
 
 // --- MOBS --- //
 #include "mobs/_mobs.dme"

@@ -6,3 +6,4 @@
 
 // ПРИМЕР:
 #include "..\code\__DEFINES\~modular_solaris\example.dm"
+#include "..\code\__DEFINES\~modular_solaris\spacepods.dm"
