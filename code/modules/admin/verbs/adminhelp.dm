@@ -481,31 +481,63 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 /datum/admin_help/proc/ticket_panel()
 	var/list/dat = list()
 	var/ref_src = "[REF(src)]"
-	dat += "<h4>Admin Help Ticket #[id]: [linked_reply_name(ref_src)] (Claimed by [claimed_by || "nobody"])</h4>"
-	dat += "<b>State: "
+
+	dat += "<html><head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>"
+	dat += "<meta http-equiv='pragma' content='no-cache'><title>Ticket #[id]</title>"
+	dat += "<style>"
+	dat += "body{background:#1a1a2e;color:#e0e0e0;font-family:'Segoe UI','Roboto',sans-serif;font-size:13px;margin:0;padding:12px;}"
+	dat += ".hd{background:#16213e;border:1px solid #0f3460;border-radius:8px;padding:10px 14px;margin-bottom:10px;}"
+	dat += ".hd h3{margin:0 0 6px 0;color:#e94560;font-size:16px;}"
+	dat += ".hd .mt{color:#a0a0b0;font-size:12px;}"
+	dat += ".sopen{color:#e94560;font-weight:bold;}.sres{color:#4ecca3;font-weight:bold;}.sclosed{color:#888;}.sunk{color:#ff9f43;}"
+	dat += ".act{background:#0f3460;border-radius:8px;padding:8px 12px;margin-bottom:10px;font-size:12px;}"
+	dat += ".act a{color:#7ec8e3;text-decoration:none;}.act a:hover{color:#e94560;}"
+	dat += ".log{background:#0f3460;border-radius:8px;padding:10px;max-height:280px;overflow-y:auto;margin-bottom:10px;font-size:12px;line-height:1.5;}"
+	dat += ".tb{text-align:center;margin-top:6px;}.tb a{color:#7ec8e3;font-size:12px;text-decoration:none;background:#16213e;border:1px solid #0f3460;border-radius:4px;padding:4px 12px;margin:0 4px;}"
+	dat += ".tb a:hover{background:#0f3460;border-color:#e94560;}"
+	dat += "a{color:#7ec8e3;}a:hover{color:#e94560;}"
+	dat += "</style></head><body>"
+
+	dat += "<div class='hd'><h3>Admin Help Ticket #[id]</h3>"
+	dat += "<div class='mt'><b>Player:</b> [linked_reply_name(ref_src)] &mdash; <b>Handler:</b> [claimed_by || "nobody"]</div></div>"
+
+	dat += "<div class='hd' style='padding:8px 14px;'><b>State: "
 	switch(state)
 		if(AHELP_ACTIVE)
-			dat += "<font color='red'>OPEN</font>"
+			dat += "<span class='sopen'>OPEN</span>"
 		if(AHELP_RESOLVED)
-			dat += "<font color='green'>RESOLVED</font>"
+			dat += "<span class='sres'>RESOLVED</span>"
 		if(AHELP_CLOSED)
-			dat += "CLOSED"
+			dat += "<span class='sclosed'>CLOSED</span>"
 		else
-			dat += "UNKNOWN"
-	dat += "</b>[FOURSPACES][ticket_href("Refresh", ref_src)][FOURSPACES][ticket_href("Re-Title", ref_src, "retitle")]"
+			dat += "<span class='sunk'>UNKNOWN</span>"
+	dat += "</b><div class='tb'>"
+	dat += "[ticket_href("Refresh", ref_src)]"
+	dat += "[ticket_href("Re-Title", ref_src, "retitle")]"
 	if(state != AHELP_ACTIVE)
-		dat += "[FOURSPACES][ticket_href("Reopen", ref_src, "reopen")]"
-	dat += "<br><br>Opened at: [game_timestamp(wtime = opened_at)] (Approx [DisplayTimeText(world.time - opened_at)] ago)"
+		dat += "[ticket_href("Reopen", ref_src, "reopen")]"
+	dat += "</div><br>"
+	dat += "Opened at: [game_timestamp(wtime = opened_at)] (Approx [DisplayTimeText(world.time - opened_at)] ago)"
 	if(closed_at)
 		dat += "<br>Closed at: [game_timestamp(wtime = closed_at)] (Approx [DisplayTimeText(world.time - closed_at)] ago)"
-	dat += "<br><br>"
+	dat += "</div>"
+
+	dat += "<div class='act'>"
 	if(initiator)
-		dat += "<b>Actions:</b><br>[full_monty(ref_src)]<br>"
+		dat += "<b>Actions</b><br>[full_monty(ref_src)]"
 	else
-		dat += "<b>DISCONNECTED</b>[ticket_actions(ref_src)]<br>"
-	dat += "<br><b>Log:</b><br><br>"
+		dat += "<b>DISCONNECTED</b>[ticket_actions(ref_src)]"
+	dat += "</div>"
+
+	dat += "<div class='log'>"
 	for(var/I in _interactions)
 		dat += "[I]<br>"
+	dat += "</div>"
+
+	if(initiator && initiator.mob)
+		dat += "<div style='text-align:center;font-size:11px;color:#555;'>[get_admin_ticket_flw(initiator.mob)]</div>"
+
+	dat += "</body></html>"
 
 	var/datum/browser/popup = new(usr, "ahelp[id]", "Ticket #[id]", 620, 480)
 	popup.set_content(dat.Join())

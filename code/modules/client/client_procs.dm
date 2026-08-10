@@ -60,6 +60,13 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 			to_chat(src, span_danger("[msg]"))
 			return
 
+	// Intercept ticket panel opens BEFORE tgui_Topic so statpanel TGUI clicks are caught
+	if(href_list["ahelp_action"] == "ticket" && href_list["ahelp"])
+		var/datum/admin_help/AH = locate(href_list["ahelp"])
+		if(AH)
+			AH.ticket_panel()
+		return
+
 	var/stl = CONFIG_GET(number/second_topic_limit)
 	if (!holder && stl && href_list["window_id"] != "statbrowser")
 		var/second = round(world.time, 10)
@@ -90,6 +97,14 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 			cmd_mentor_pm(href_list["mentor_msg"],null)
 		return
 
+	// Admin PM
+	if(href_list["priv_msg"])
+		cmd_admin_pm(href_list["priv_msg"],null)
+		return
+
+	if(href_list["commandbar_typing"])
+		handle_commandbar_typing(href_list)
+
 	//byond bug ID:2256651
 	if (asset_cache_job && (asset_cache_job in completed_asset_jobs))
 		to_chat(src, span_danger("An error has been detected in how your client is receiving resources. Attempting to correct.... (If you keep seeing these messages you might want to close byond and reconnect)"))
@@ -98,14 +113,6 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if (href_list["asset_cache_preload_data"])
 		asset_cache_preload_data(href_list["asset_cache_preload_data"])
 		return
-
-	// Admin PM
-	if(href_list["priv_msg"])
-		cmd_admin_pm(href_list["priv_msg"],null)
-		return
-
-	if(href_list["commandbar_typing"])
-		handle_commandbar_typing(href_list)
 
 	switch(href_list["_src_"])
 		if("holder")
@@ -125,6 +132,12 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	switch(href_list["action"])
 		if("openLink")
 			src << link(href_list["link"])
+		if("player_ticket_refresh")
+			var/ticket_id = text2num(href_list["ticket_id"])
+			if(current_ticket && current_ticket.id == ticket_id)
+				var/datum/player_ticket_panel/panel = new(current_ticket, mob)
+				panel.show()
+			return
 	if (hsrc)
 		var/datum/real_src = hsrc
 		if(QDELETED(real_src))
