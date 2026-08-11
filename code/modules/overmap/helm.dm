@@ -212,6 +212,7 @@
 		var/list/other_data = list(
 			name = known_data["name"],
 			known = known_data["known"],
+			scannable = istype(object, /datum/overmap/ship/controlled),
 			ref = REF(object),
 			brg = cpa_list["brg"],
 			cpa = cpa_list["cpa"],
@@ -365,16 +366,19 @@
 			if(!reject_bad_text(new_label, MAX_CHARTER_LEN) || CHAT_FILTER_CHECK(new_label))
 				say("Error: Label rejected by system.")
 				return
-			var/datum/overmap/ship/controlled/to_label = locate(params["ship_to_act"]) in current_ship.get_nearby_overmap_objects(include_docked = TRUE, empty_if_src_docked = FALSE)
+			// Метка — личная память сканера, не требует нахождения в одном тайле.
+			var/datum/overmap/ship/controlled/to_label = locate(params["ship_to_act"])
 			if(!istype(to_label, /datum/overmap/ship/controlled) || to_label == current_ship)
 				return
 			current_ship.set_ship_label(to_label, new_label)
 			return
 		if("prompt_label")
-			var/datum/overmap/ship/controlled/to_label = locate(params["ship_to_act"]) in current_ship.get_nearby_overmap_objects(include_docked = TRUE, empty_if_src_docked = FALSE)
+			var/datum/overmap/ship/controlled/to_label = locate(params["ship_to_act"])
 			if(!istype(to_label, /datum/overmap/ship/controlled) || to_label == current_ship)
 				return
-			var/new_label = tgui_input_text(usr, "Enter label for [to_label.name]:", "Set Label", "", MAX_CHARTER_LEN)
+			// Показываем только то, что уже известно сканеру, чтобы не палить имя.
+			var/known_name = current_ship.get_known_ship_name(to_label)["name"]
+			var/new_label = tgui_input_text(usr, "Enter label for [known_name]:", "Set Label", "", MAX_CHARTER_LEN)
 			if(!istext(new_label))
 				return
 			new_label = trim(new_label)

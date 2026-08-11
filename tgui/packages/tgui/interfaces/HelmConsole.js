@@ -297,7 +297,7 @@ const SharedContent = (_props, context) => {
                 </ProgressBar>
               )}
             </Table.Cell>
-            {!isViewer && !ship.known && (
+            {!isViewer && ship.scannable && !ship.known && (
               <Table.Cell>
                 <Button
                   tooltip={ship.scanning ? 'Cancel Scan' : 'Scan Ship'}
