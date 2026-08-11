@@ -75,6 +75,9 @@
 	/// an assoc list
 	var/ship_modules = list()
 
+	/// Whether this ship is currently projecting a transponder jamming field (hidden from other ships' sensors).
+	var/transponder_active = FALSE
+
 	/// Short memo of the ship shown to new joins
 	var/memo = null
 	///Assoc list of remaining open job slots (job = remaining slots)

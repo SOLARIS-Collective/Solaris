@@ -6,6 +6,7 @@ import { useBackend } from '../backend';
 import {
   Button,
   ByondUi,
+  Box,
   Icon,
   LabeledList,
   Section,
@@ -26,7 +27,7 @@ export const HelmConsole = (_props, context) => {
   const { data } = useBackend(context);
   const { mapRef, isViewer } = data;
   return (
-    <Window width={1400} height={700}>
+    <Window width={1378} height={700}>
       <Window.Content>
         <Stack fill>
           <Stack.Item width="280px" overflowX="auto">
@@ -97,11 +98,12 @@ const SharedContent = (_props, context) => {
             >
               <AnimatedNumber value={shipInfo.sensor_range} />
             </ProgressBar>
-            <Table.Cell>
+            <Box inline ml={1}>
               <Button
                 tooltip="Decrease Signal Length"
                 tooltipPosition="right"
                 icon="arrow-left"
+                ml={1}
                 // [MANKIND-ADD] - subshuttle fix
                 disabled={data.issubshuttle !== null}
                 // [/MANKIND-ADD] - subshuttle fix
@@ -111,12 +113,13 @@ const SharedContent = (_props, context) => {
                 tooltip="Increase Signal Length"
                 tooltipPosition="right"
                 icon="arrow-right"
+                ml={1}
                 // [MANKIND-ADD] - subshuttle fix
                 disabled={data.issubshuttle !== null}
                 // [/MANKIND-ADD] - subshuttle fix
                 onClick={() => act('sensor_increase')}
               />
-            </Table.Cell>
+            </Box>
           </LabeledList.Item>
           {shipInfo.mass && (
             <LabeledList.Item label="Mass">
@@ -160,7 +163,6 @@ const SharedContent = (_props, context) => {
         <Table>
           <Table.Row bold>
             <Table.Cell>Name</Table.Cell>
-            {!isViewer && <Table.Cell>Scan</Table.Cell>}
             {!isViewer && <Table.Cell>Label</Table.Cell>}
             {!isViewer && <Table.Cell>Hail</Table.Cell>}
             {!isViewer && <Table.Cell>Act</Table.Cell>}

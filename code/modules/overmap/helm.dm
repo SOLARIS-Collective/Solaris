@@ -208,6 +208,8 @@
 			continue
 
 		var/list/cpa_list = calculate_cpa(current_ship, object, TRUE)
+		if(object.is_transponder_hidden_to(current_ship)) //Hidden by a jamming field
+			continue
 		var/list/known_data = current_ship.get_known_ship_name(object)
 		var/list/other_data = list(
 			name = known_data["name"],
@@ -229,6 +231,9 @@
 	while (dequeue_pointer++ < objects.len)
 		var/datum/overmap/ship/controlled/object = objects[dequeue_pointer]
 		if(!istype(object, /datum/overmap)) //Not an overmap object, ignore this
+			continue
+
+		if(istype(object, /datum/overmap/ship/controlled) && object.is_transponder_hidden_to(current_ship))
 			continue
 
 		var/available_dock = FALSE
