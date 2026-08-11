@@ -6,7 +6,7 @@
 	"map_path": "_maps/_modular_solaris/shuttles/inteq/inteq_hammerhead.dmm",
 	"enabled": false,
 	"limit": 1,
-	"sensor_range": 4,
+	"sensor_range": 8,
 	"prefix": "BIQSV",
 	"faction": "/datum/faction/inteq",
 	"tags": [

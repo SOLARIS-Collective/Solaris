@@ -194,7 +194,8 @@
 		QUADRANT_MAP_SIZE,
 		QUADRANT_MAP_SIZE,
 		ALLOCATION_QUADRANT,
-		QUADRANT_MAP_SIZE
+		QUADRANT_MAP_SIZE, // PENTEST EDIT - Manditory ZLevels
+		ZLEVEL_ROLE_OUTPOST // PENTEST EDIT - Manditory ZLevels
 	)
 	vlevel.reserve_margin(QUADRANT_SIZE_BORDER)
 
@@ -389,7 +390,9 @@
 		mapzone,
 		h_template.width+2,
 		h_template.height+2,
-		ALLOCATION_FREE
+		ALLOCATION_FREE,
+		DEFAULT_ALLOC_JUMP, // PENTEST EDIT
+		ZLEVEL_ROLE_HANGAR // PENTEST EDIT
 	)
 	vlevel.reserve_margin(1)
 

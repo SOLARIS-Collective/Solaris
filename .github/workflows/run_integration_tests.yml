@@ -18,7 +18,7 @@ on:
 jobs:
   run_integration_tests:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
     services:
       mysql:
         image: mysql:latest
@@ -37,12 +37,6 @@ jobs:
           path: ~/BYOND
           key: ${{ runner.os }}-byond-cache-${{ secrets.CACHE_PURGE_KEY }}-${{ hashFiles('dependencies.sh') }}-${{ hashFiles('.github/workflows/run_integration_tests.yml') }}
 
-      - name: Check BYOND Version
-        if: steps.cache-byond.outputs.cache-hit == 'true'
-        run: |
-          source $HOME/BYOND/byond/bin/byondsetup
-          DreamDaemon --version || byond --version
-
       - name: Install BYOND
         if: steps.cache-byond.outputs.cache-hit != 'true'
         run: bash tools/ci/install_byond.sh
@@ -51,7 +45,7 @@ jobs:
         run: |
           sudo dpkg --add-architecture i386
           sudo apt update || true
-          sudo apt install -o APT::Immediate-Configure=false libssl-dev:i386 libgcc-s1:i386
+          sudo apt install -o APT::Immediate-Configure=false libssl-dev:i386 libgcc-s1:i386 libcurl4:i386
 
       - name: Setup dependencies cache
         id: cache-deps

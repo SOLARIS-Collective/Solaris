@@ -1,86 +1,88 @@
 import { useBackend } from '../backend';
-import { Button, Section } from '../components';
+import { Button, LabeledList, Section, Slider } from '../components';
 import { Window } from '../layouts';
 
-interface SoundSetting {
-  adminhelp: boolean;
-  midi: boolean;
-  ambience: boolean;
-  lobby: boolean;
-  instruments: boolean;
-  ship_ambience: boolean;
-  prayers: boolean;
-  announcements: boolean;
-  endofround: boolean;
-  jukebox: boolean;
-  w_tts_voices: boolean;
+interface SoundVolumeData {
+  sound_volume: Record<string, number>;
+  playing_flag: number;
 }
 
 type SoundPanelSettingsProps = {};
-export function SoundPanelSettings(props: SoundPanelSettingsProps, context) {
-  const { act, data } = useBackend<SoundSetting>(context);
-  const {
-    adminhelp,
-    midi,
-    ambience,
-    lobby,
-    instruments,
-    ship_ambience,
-    prayers,
-    announcements,
-    endofround,
-    jukebox,
-    w_tts_voices,
-  } = data;
+
+export const SoundPanelSettings = (props: SoundPanelSettingsProps, context) => {
+  const { act, data } = useBackend<SoundVolumeData>(context);
+  const { sound_volume, playing_flag } = data;
+
+  const soundFlagLabels: Record<string, string> = {
+    '1': 'Общие',
+    '2': 'Музыка в лобби',
+    '4': 'Окружение',
+    '8': 'Оружие',
+    '16': 'Оповещения',
+    '32': 'Музыкальные инструменты',
+    '64': 'Музыкальный автомат',
+    '128': 'Радио',
+    '256': 'Молитвы',
+    '512': 'Админские',
+    '1024': 'Шум корабля',
+    '2048': 'Конец раунда',
+    '4096': 'Голоса',
+  };
+
+  const flagKeys = Object.keys(sound_volume || {})
+    .sort((a, b) => Number(a) - Number(b));
+
   return (
-    <Window width={250} height={400} title="Настройки звука">
+    <Window width={480} height={Math.min(flagKeys.length * 28 + 60, 600)} title="Настройки звука">
       <Window.Content>
-        <Section title="Основное">
-          {[
-            { k: 'midi', v: midi, t: 'Админские мидис' },
-            { k: 'lobby', v: lobby, t: 'Музыка в лобби' },
-            { k: 'instruments', v: instruments, t: 'Музыкальные инструменты' },
-            { k: 'endofround', v: endofround, t: 'Звук конца раунда' },
-            { k: 'jukebox', v: jukebox, t: 'Музыкальный автомат' },
-            { k: 'w_tts_voices', v: w_tts_voices, t: 'Голоса TTS (Voice)' },
-            {
-              k: 'announcements',
-              v: announcements,
-              t: 'Оповещения (Announcements)',
-            },
-            { k: 'ambience', v: ambience, t: 'Окружение (Ambience)' },
-            {
-              k: 'ship_ambience',
-              v: ship_ambience,
-              t: 'Шум корабля (Ambience)',
-            },
-          ].map(({ k, v, t }) => (
-            <Button
-              key={k}
-              icon={v ? 'volume-up' : 'volume-mute'}
-              color={v ? 'green' : 'transparent'}
-              content={t}
-              fluid
-              onClick={() => act(k)}
-            />
-          ))}
-        </Section>
-        <Section title="Административное">
-          {[
-            { k: 'adminhelp', v: adminhelp, t: 'Ахелпы' },
-            { k: 'prayers', v: prayers, t: 'Молитвы' },
-          ].map(({ k, v, t }) => (
-            <Button
-              key={k}
-              icon={v ? 'volume-up' : 'volume-mute'}
-              color={v ? 'green' : 'transparent'}
-              content={t}
-              fluid
-              onClick={() => act(k)}
-            />
-          ))}
+        <Section title="">
+          <LabeledList>
+            {flagKeys.map((flag) => {
+              const label = soundFlagLabels[flag];
+              if (!label) return null;
+              const vol = sound_volume[flag] ?? 0;
+              return (
+                <LabeledList.Item
+                  key={flag}
+                  label={label}
+                  buttons={
+                    <>
+                      <Button
+                        icon="play"
+                        color={playing_flag === Number(flag) ? 'green' : 'transparent'}
+                        tooltip="Тест"
+                        onClick={() =>
+                          act('test_sound', {
+                            flag: Number(flag),
+                          })
+                        }
+                      />
+                      <Button
+                        icon="stop-circle"
+                        color="transparent"
+                        tooltip="Стоп"
+                        onClick={() =>
+                          act('stop_sound', {})
+                        }
+                      />
+                    </>
+                  }
+                >
+                  <Slider
+                    value={vol}
+                    minValue={0}
+                    maxValue={100}
+                    step={1}
+                    onChange={(e, value) =>
+                      act('set_volume', { flag: Number(flag), volume: value })
+                    }
+                  />
+                </LabeledList.Item>
+              );
+            })}
+          </LabeledList>
         </Section>
       </Window.Content>
     </Window>
   );
-}
+};

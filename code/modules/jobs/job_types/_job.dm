@@ -246,7 +246,7 @@
 			if(alt_uniform)
 				holder = "[alt_uniform]"
 		if(PREF_GREYSUIT)
-			holder = "/obj/item/clothing/under/color/grey"
+			holder = /obj/item/clothing/under/color/grey
 		else
 			holder = "[uniform]"
 

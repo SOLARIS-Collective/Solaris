@@ -15,7 +15,7 @@ shiptest.dmb - 0 errors, 0 warnings
 
 If you see any errors or warnings, something has gone wrong - possibly a corrupt
 download or the files extracted wrong. If problems persist, ask for assistance
-in [the discord](https://discord.gg/ydGPEejXZB)
+in [the discord](https://discord.gg/xtzy9TK55)
 
 You'll also want to edit config/admins.txt to remove the default admins and add
 your own. "Game Master" is the highest level of access, and probably the one
@@ -35,14 +35,14 @@ Windows DLL is included in this repository, but Linux users will need to build
 and install it themselves. Directions can be found at the [rust-g
 repo](https://github.com/tgstation/rust-g).
 
-**Unlike other servers,** Pentest also uses an external library called Auxmos, which
+**Unlike other servers,** Solaris also uses an external library called Auxmos, which
 needs to be compiled on linux systems. Like with rust-g, Windows hosts should be fine, as the DLL
 it needs is shipped with the repository. Please download and install [auxmos](https://github.com/Putnam3145/auxmos)
 using the instructions provided if you're running a linux system.
 `tools/ci/build_auxmos.sh` can also be used if you're in a rush.
 
 Finally, to start the server, run Dream Daemon and enter the path to your
-compiled shiptest.dmb file. Make sure to set the port to the one you
+compiled solaris.dmb file. Make sure to set the port to the one you
 specified in the config.txt, and set the Security box to 'Trusted'. Then press GO
 and the server should start up and be ready to join. It is also recommended that
 you set up the SQL backend (see below).
@@ -81,7 +81,7 @@ Web delivery of game resources makes it quicker for players to join and reduces 
 
 1. Edit compile_options.dm to set the `PRELOAD_RSC` define to `0`
 1. Add a url to config/external_rsc_urls pointing to a .zip file containing the .rsc.
-    - If you keep up to date with Shiptest you could reuse our rsc cdn at https://cdn.shiptest.net/rsc/rsc.zip. Otherwise you can use cdn services like CDN77 or cloudflare (requires adding a page rule to enable caching of the zip), or roll your own cdn using route 53 and vps providers.
+    - If you keep up to date with Solaris you could reuse our rsc cdn at https://cdn.shiptest.net/rsc/rsc.zip. Otherwise you can use cdn services like CDN77 or cloudflare (requires adding a page rule to enable caching of the zip), or roll your own cdn using route 53 and vps providers.
     - Regardless even offloading the rsc to a website without a CDN will be a massive improvement over the in game system for transferring files.
 
 ## IRC BOT SETUP

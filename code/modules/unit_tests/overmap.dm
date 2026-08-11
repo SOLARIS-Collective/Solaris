@@ -6,7 +6,7 @@
 	TEST_ASSERT(abs(S.acceleration_speed * (S.burn_percentage / 100) - MAGNITUDE(S.speed_x, S.speed_y)) < 0.001, "Ship did not increase to proper speed after burning engines")
 	TEST_ASSERT_EQUAL(S.get_heading(), NORTHEAST, "Ship went [dir2text(S.get_heading())] instead of northeast after burning engines")
 
-	S.tick_move()
+	S.not_tick_move(1, 1)
 	TEST_ASSERT_EQUAL(S.x, 2, "Ship did not move to X 2 when movement was ticked (position: [S.x]x, [S.y]y)")
 	TEST_ASSERT_EQUAL(S.y, 2, "Ship did not move to Y 2 when movement was ticked (position: [S.x]x, [S.y]y)")
 

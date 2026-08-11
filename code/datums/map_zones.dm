@@ -611,20 +611,24 @@
 			area_to_use = area_override
 
 	if(area_to_use)
+		var/tick_counter = 0
 		for(var/turf/iterated_turf as anything in get_block())
 			var/area/old_area = get_area(iterated_turf)
 			area_to_use.contents += iterated_turf
 			iterated_turf.change_area(old_area, area_to_use)
-			CHECK_TICK
-			if(QDELETED(src))
-				return
+			if(++tick_counter % 5 == 0)
+				CHECK_TICK
+				if(QDELETED(src))
+					return
 
 	if(turf_type)
+		var/tick_counter = 0
 		for(var/turf/iterated_turf as anything in get_unreserved_block())
-			iterated_turf.ChangeTurf(turf_type, turf_type)
-			CHECK_TICK
-			if(QDELETED(src))
-				return
+			iterated_turf.ChangeTurf(turf_type, turf_type, CHANGETURF_DEFER_BATCH)
+			if(++tick_counter % 10 == 0)
+				CHECK_TICK
+				if(QDELETED(src))
+					return
 
 /turf/closed/indestructible/edge
 	name = "edge"

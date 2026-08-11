@@ -6,7 +6,7 @@
 	"map_path": "_maps/_modular_solaris/shuttles/syndicate/syndicate_luxembourg.dmm",
 	"enabled": true,
 	"limit": 1,
-	"sensor_range": 3,
+	"sensor_range": 9,
 	"starting_funds": 6000,
 	"prefix": "TSSV",
 	"faction": "/datum/faction/syndicate",

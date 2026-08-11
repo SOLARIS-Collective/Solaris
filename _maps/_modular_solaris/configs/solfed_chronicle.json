@@ -6,7 +6,7 @@
 	"map_path": "_maps/_modular_solaris/shuttles/solfed/solfed_chronicle.dmm",
 	"enabled": true,
 	"limit": 1,
-	"sensor_range": 4,
+	"sensor_range": 9,
 	"prefix": "SPSFSV",
 	"faction": "/datum/faction/solgov",
 	"tags": ["Исследовательский"],

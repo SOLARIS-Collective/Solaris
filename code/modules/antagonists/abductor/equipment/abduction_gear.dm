@@ -797,6 +797,10 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 			to_chat(user, span_warning("You need one sheet of silver to do	this!"))
 			return
 		to_chat(user, span_notice("You start adding [P] to [src]..."))
+		if(do_after(user, 50, target = src)) // PENTEST REVERT - START
+			P.use(1)
+			new /obj/structure/table/optable/abductor(src.loc)
+			qdel(src) // PENTEST REVERT - END
 
 /obj/structure/table/abductor
 	name = "alien table"

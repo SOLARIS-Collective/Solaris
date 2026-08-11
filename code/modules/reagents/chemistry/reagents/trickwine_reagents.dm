@@ -33,11 +33,16 @@
 	// Applied and removes with reagent
 	var/trait
 
-/datum/status_effect/trickwine/on_creation(mob/living/new_owner, datum/reagent/consumable/ethanol/trickwine/trickwine_reagent)
+/datum/status_effect/trickwine/on_creation(mob/living/new_owner, datum/reagent/consumable/ethanol/trickwine/trickwine_reagent, set_duration) // PENTEST FIX
 	flask_icon_state = trickwine_reagent.breakaway_flask_icon_state
 	if(!trickwine_reagent)
 		CRASH("A trickwine status effect was created without a attached reagent")
 	reagent_color = trickwine_reagent.color
+	// PENTEST FIX - START - Sets the duration if provided, otherwise keep the default (-1 for infinite)
+	// 5 Units = ~5 seconds
+	// 50 Units = ~50 seconds
+	if(!isnull(set_duration))
+		duration = set_duration // PENTEST FIX - END
 	. = ..()
 	if(istype(linked_alert, /atom/movable/screen/alert/status_effect/trickwine))
 		var/atom/movable/screen/alert/status_effect/trickwine/trickwine_alert = linked_alert
@@ -356,9 +361,9 @@
 	var/mob/living/carbon/guy_who_probably_got_shot = M
 	if(prob(20) && length(guy_who_probably_got_shot.all_wounds))
 		to_chat(M, span_warning("Your cuts and punctures sear for a second, before ceasing their bloody flow!"))
-		for(var/datum/wound/slash/cut in guy_who_probably_got_shot.all_wounds)
+		for(var/datum/wound/slash/flesh/cut in guy_who_probably_got_shot.all_wounds)
 			cut.remove_wound()
-		for(var/datum/wound/pierce/hole in guy_who_probably_got_shot.all_wounds)
+		for(var/datum/wound/pierce/bleed/hole in guy_who_probably_got_shot.all_wounds)
 			hole.remove_wound()
 
 	if(prob(10) && length(guy_who_probably_got_shot.all_wounds))

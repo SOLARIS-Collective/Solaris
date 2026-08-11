@@ -372,7 +372,7 @@
 "hF" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/item/paper{
-	default_raw_text = "<h1>Export expectations</h1><p>By the end of the month facility No.475-24 is expected to provide the following amounts of medicine to be ready for export:</p><ol><li>300u of Perfluorodecalin</li><li>270u of Thializid</li><li>50 Burnpatches</li><li>65 Synthflesh patches</li><li>275u of atropine</li></ol><p>Production is to be proceeded with imidiately.</p>";
+	default_raw_text = "<h1>Export expectations</h1><p>By the end of the month facility No.475-24 is expected to provide the following amounts of medicine to be ready for export:</p><ol><li>300u of Panacea</li><li>270u of Thializid</li><li>50 Burnpatches</li><li>65 Synthflesh patches</li><li>275u of atropine</li></ol><p>Production is to be proceeded with imidiately.</p>";
 	name = "Export orders";
 	pixel_x = 4;
 	pixel_y = 5

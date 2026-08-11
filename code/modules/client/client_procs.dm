@@ -483,7 +483,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	//if (!interviewee)	// [MANKIND-REMOVE] - Прежняя проверка мешала корректной реинициализации левого меню после реконнекта
 	initialize_menus()
 
-	view_size = new(src, getScreenSize(prefs.widescreenpref))
+	view_size = new(src, getScreenSize())
 	view_size.resetFormat()
 	view_size.setZoomMode()
 	fit_viewport()
@@ -494,7 +494,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 //DISCONNECT//
 //////////////
 
-/client/Del()
+/client/Destroy()
 	if(!gc_destroyed)
 		Destroy() //Clean up signals and timers.
 	return ..()
@@ -1160,7 +1160,10 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
  */
 /client/proc/on_stat_panel_message(type, payload)
 	switch(type)
+		if("stat_theme")
+			src.stat_theme = payload["theme"]
 		if("Update-Verbs")
+			src.stat_panel.send_message("set_theme", src.stat_theme)	// statbrowser reloaded — restore the chosen theme
 			init_verbs()
 		if("Remove-Tabs")
 			panel_tabs -= payload["tab"]

@@ -11,10 +11,12 @@
 	module_type = MODULE_TOGGLE
 	active_power_cost = DEFAULT_CHARGE_DRAIN * 0.3
 	removable = TRUE
-	// [MANKIND-EDIT] - MANKIND_MODSUITS - Добавляем модуль стелса в список. По-хорошему стоит welding убрать, убрать полностью у армор бустера защиту от флеша...
-	// incompatible_modules = list(/obj/item/mod/module/armor_booster, /obj/item/mod/module/welding)	// ORIGINAL
-	incompatible_modules = list(/obj/item/mod/module/armor_booster, /obj/item/mod/module/welding, /obj/item/mod/module/stealth/military)
-	// [/MANKIND-EDIT] - MANKIND_MODSUITS
+	// [MANKIND-EDIT] - CELADON_MODSUITS - Добавляем модуль стелса в список. По-хорошему стоит welding убрать, убрать полностью у армор бустера защиту от флеша...
+	//incompatible_modules = list(/obj/item/mod/module/armor_booster, /obj/item/mod/module/welding, /obj/item/mod/module/stealth/military)
+	// [MANKIND-EDIT] - CELADON_MODSUITS - Убирает welding из несовместимых модулей, так как добавлять их туда с целью защиты от вспышек смысла не вижу,
+	// обходится любыми сангласами.
+	incompatible_modules = list(/obj/item/mod/module/armor_booster, /obj/item/mod/module/stealth/military)
+	// [/MANKIND-EDIT] - CELADON_MODSUITS
 	cooldown_time = 0.5 SECONDS
 	overlay_state_inactive = "module_armorbooster_off"
 	overlay_state_active = "module_armorbooster_on"
@@ -29,16 +31,16 @@
 	var/list/armor_values = list("melee" = 25, "bullet" = 30, "laser" = 15, "energy" = 15)
 	/// List of parts of the suit that are spaceproofed, for giving them back the pressure protection.
 	var/list/spaceproofed = list()
-	// [MANKIND-ADD] - MANKIND_MODSUITS
+	// [MANKIND-ADD] - CELADON_MODSUITS
 	var/anti_flash = FALSE
 	var/EVA_boosted = FALSE
 	var/disable_chance = 10
 	assist_drain_increase = 85
 	use_power_cost = DEFAULT_CHARGE_DRAIN*0.1
-	// [/MANKIND-ADD] - MANKIND_MODSUITS
+	// [/MANKIND-ADD] - CELADON_MODSUITS
 
 /obj/item/mod/module/armor_booster/on_suit_activation()
-	// [MANKIND-EDIT] - MANKIND_MODSUITS
+	// [MANKIND-EDIT] - CELADON_MODSUITS
 	//mod.helmet.flash_protect = FLASH_PROTECTION_WELDER
 	if(anti_flash)
 		mod.helmet.flash_protect = FLASH_PROTECTION_WELDER
@@ -54,8 +56,8 @@
 	if(!.)
 		return
 	playsound(src, 'sound/mecha/mechmove03.ogg', 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
-	to_chat(mod.wearer,span_notice("Power-weave wraps your body, empowering you.")) // [MANKIND-ADD] - MANKIND_MODSUITS
-	// [MANKIND-EDIT] - MANKIND_MODSUITS
+	to_chat(mod.wearer,span_notice("Power-weave wraps your body, empowering you.")) // [MANKIND-ADD] - CELADON_MODSUITS
+	// [MANKIND-EDIT] - CELADON_MODSUITS
 	//actual_speed_added = max(0, min(mod.slowdown_active, speed_added))
 	if(speed_added < 0) // Добавлена поддержка замедления
 		actual_speed_added = speed_added
@@ -73,9 +75,9 @@
 		if(clothing_part.clothing_flags & STOPSPRESSUREDAMAGE)
 			clothing_part.clothing_flags &= ~STOPSPRESSUREDAMAGE
 			spaceproofed[clothing_part] = TRUE
-	RegisterSignal(mod.wearer, COMSIG_ATOM_BULLET_ACT, PROC_REF(on_bullet_act)) // [MANKIND-ADD] - MANKIND_MODSUITS
+	RegisterSignal(mod.wearer, COMSIG_ATOM_BULLET_ACT, PROC_REF(on_bullet_act)) // [MANKIND-ADD] - CELADON_MODSUITS
 
- // [MANKIND-ADD] - MANKIND_MODSUITS
+ // [MANKIND-ADD] - CELADON_MODSUITS
  /// Попытка заставить эту штуку потреблять энергию при попадании.
 /obj/item/mod/module/armor_booster/proc/on_bullet_act(datum/source, obj/projectile/projectile, def_zone)
 	if(EVA_boosted)
@@ -135,7 +137,7 @@
 		if(spaceproofed[clothing_part])
 			clothing_part.clothing_flags |= STOPSPRESSUREDAMAGE
 	spaceproofed = list()
-	UnregisterSignal(mod.wearer, COMSIG_ATOM_BULLET_ACT) // [MANKIND-ADD] - MANKIND_MODSUITS
+	UnregisterSignal(mod.wearer, COMSIG_ATOM_BULLET_ACT) // [MANKIND-ADD] - CELADON_MODSUITS
 
 /obj/item/mod/module/armor_booster/generate_worn_overlay(mutable_appearance/standing)
 	overlay_state_inactive = "[initial(overlay_state_inactive)]-[mod.skin]"
@@ -152,20 +154,20 @@
 	removable = TRUE
 	incompatible_modules = list(/obj/item/mod/module/armor_assist)
 	cooldown_time = 0.5 SECONDS
-	// [MANKIND-EDIT] - MANKIND_MODSUITS - добавлена поддержка отдельного спрайта для армор ассиста
+	// [MANKIND-EDIT] - CELADON_MODSUITS - добавлена поддержка отдельного спрайта для армор ассиста
 	// overlay_state_inactive = "module_armorbooster_off"
 	// overlay_state_active = "module_armorbooster_on"
 	overlay_state_inactive = "module_armorassist_off"
 	overlay_state_active = "module_armorassist_on"
-	// [/MANKIND-EDIT] - MANKIND_MODSUITS
+	// [/MANKIND-EDIT] - CELADON_MODSUITS
 	use_mod_colors = TRUE
-	// var/drain_per_step = 100 // [MANKIND-REMOVE] - MANKIND_MODSUITS // не используется больше, используется вместо него use_power_cost
-	// [MANKIND-ADD] - MANKIND_MODSUITS
+	// var/drain_per_step = 100 // [MANKIND-DELETE] - CELADON_MODSUITS // не используется больше, используется вместо него use_power_cost
+	// [MANKIND-ADD] - CELADON_MODSUITS
 	/// Потребление за шаг
 	use_power_cost = 30
 	/// Зависит ли наше потребление от замедления
 	var/drain_slowdown_affected = TRUE
-	// [/MANKIND-ADD] - MANKIND_MODSUITS
+	// [/MANKIND-ADD] - CELADON_MODSUITS
 
 /obj/item/mod/module/armor_assist/on_activation()
 	. = ..()
@@ -186,7 +188,7 @@
 
 /obj/item/mod/module/armor_assist/proc/drain_on_step(mob/user)
 	SIGNAL_HANDLER
-	// [MANKIND-EDIT] - MANKIND_MODSUITS - добавлена поддержка вариативности потребления.
+	// [MANKIND-EDIT] - CELADON_MODSUITS - добавлена поддержка вариативности потребления.
 	//drain_power(drain_per_step, TRUE)
 	var/true_drain_per_step = use_power_cost
 	if(drain_slowdown_affected)
@@ -195,7 +197,7 @@
 		if(module.active)
 			true_drain_per_step = module.assist_drain_increase + true_drain_per_step
 	drain_power(true_drain_per_step, TRUE)
-	// [/MANKIND-EDIT] - MANKIND_MODSUITS
+	// [/MANKIND-EDIT] - CELADON_MODSUITS
 
 /obj/item/mod/module/armor_assist/generate_worn_overlay(mutable_appearance/standing)
 	overlay_state_inactive = "[initial(overlay_state_inactive)]-[mod.skin]"
@@ -271,7 +273,7 @@
 	removable = FALSE
 	incompatible_modules = list(/obj/item/mod/module/insignia)
 	overlay_state_inactive = "module_insignia"
-	// [MANKIND-ADD] - MANKIND_MODSUITS - добавляем функционал смены цветов модсьютам
+	// [MANKIND-ADD] - CELADON_MODSUITS - добавляем функционал смены цветов модсьютам
 	module_type = MODULE_USABLE
 	var/color_list = list(
 		"#4980a5" = /obj/item/mod/module/insignia/commander,
@@ -284,7 +286,7 @@
 		)
 	// [MANKIND-ADD]
 
-// [MANKIND-ADD] - MANKIND_MODSUITS - добавляем функционал смены цветов модсьютам
+// [MANKIND-ADD] - CELADON_MODSUITS - добавляем функционал смены цветов модсьютам
 /obj/item/mod/module/insignia/on_use()
 	. = ..()
 	if(!.)
@@ -411,7 +413,7 @@
 	var/wounding_power = 35
 	/// How long we knockdown for on the kick.
 	var/knockdown_time = 2 SECONDS
-	var/prepare_time = 0.3 SECONDS // [MANKIND-ADD] - MANKIND_MODSUITS
+	var/prepare_time = 0.3 SECONDS // [MANKIND-ADD] - CELADON_MODSUITS
 
 /obj/item/mod/module/power_kick/on_select_use(atom/target)
 	. = ..()
@@ -421,9 +423,9 @@
 		blind_message = span_hear("You hear a charging sound."))
 	playsound(src, 'sound/items/modsuit/loader_charge.ogg', 75, TRUE)
 	to_chat(mod.wearer,span_notice("You start charging..."))
-	animate(mod.wearer, prepare_time, pixel_z = 16, flags = ANIMATION_RELATIVE, easing = SINE_EASING|EASE_OUT) // [MANKIND-EDIT] - MANKIND_MODSUITS // animate(mod.wearer, 0.3 SECONDS, pixel_z = 16, flags = ANIMATION_RELATIVE, easing = SINE_EASING|EASE_OUT)
+	animate(mod.wearer, prepare_time, pixel_z = 16, flags = ANIMATION_RELATIVE, easing = SINE_EASING|EASE_OUT) // [MANKIND-EDIT] - CELADON_MODSUITS // animate(mod.wearer, 0.3 SECONDS, pixel_z = 16, flags = ANIMATION_RELATIVE, easing = SINE_EASING|EASE_OUT)
 	addtimer(CALLBACK(mod.wearer, TYPE_PROC_REF(/atom, SpinAnimation), 3, 2), 0.3 SECONDS)
-	if(!do_after(mod.wearer, prepare_time, target = mod)) // [MANKIND-EDIT] - MANKIND_MODSUITS // if(!do_after(mod.wearer, 1 SECONDS, target = mod))
+	if(!do_after(mod.wearer, prepare_time, target = mod)) // [MANKIND-EDIT] - CELADON_MODSUITS // if(!do_after(mod.wearer, 1 SECONDS, target = mod))
 		animate(mod.wearer, 0.2 SECONDS, pixel_z = -16, flags = ANIMATION_RELATIVE, easing = SINE_EASING|EASE_OUT)
 		return
 	animate(mod.wearer)
@@ -432,7 +434,7 @@
 	var/angle = get_angle(mod.wearer, target) + 180
 	mod.wearer.transform = mod.wearer.transform.Turn(angle)
 	RegisterSignal(mod.wearer, COMSIG_MOVABLE_IMPACT, PROC_REF(on_throw_impact))
-	mod.wearer.throw_at(target, range = 7, speed = 2.5, thrower = mod.wearer, spin = FALSE, gentle = TRUE, callback = CALLBACK(src, PROC_REF(on_throw_end), mod.wearer, -angle)) // [MANKIND-EDIT] - MANKIND_MODSUITS // mod.wearer.throw_at(target, range = 7, speed = 2, thrower = mod.wearer, spin = FALSE, gentle = TRUE, callback = CALLBACK(src, PROC_REF(on_throw_end), mod.wearer, -angle))
+	mod.wearer.throw_at(target, range = 7, speed = 2.5, thrower = mod.wearer, spin = FALSE, gentle = TRUE, callback = CALLBACK(src, PROC_REF(on_throw_end), mod.wearer, -angle)) // [MANKIND-EDIT] - CELADON_MODSUITS // mod.wearer.throw_at(target, range = 7, speed = 2, thrower = mod.wearer, spin = FALSE, gentle = TRUE, callback = CALLBACK(src, PROC_REF(on_throw_end), mod.wearer, -angle))
 
 /obj/item/mod/module/power_kick/proc/on_throw_end(mob/user, angle)
 	if(!user)
@@ -448,7 +450,7 @@
 		return
 	if(isliving(target))
 		var/mob/living/living_target = target
-		living_target.apply_damage(damage, BRUTE, mod.wearer.zone_selected, wound_bonus = wounding_power) // [MANKIND-EDIT] - MANKIND_MODSUITS
+		living_target.apply_damage(damage, BRUTE, mod.wearer.zone_selected, wound_bonus = wounding_power) // [MANKIND-EDIT] - CELADON_MODSUITS
 		living_target.Knockdown(knockdown_time)
 	else if(target.atom_integrity)
 		target.take_damage(damage, BRUTE)
@@ -520,7 +522,7 @@
 	mod.desc = "[initial(mod.desc)] [mod.theme.desc]"
 	mod.icon_state = "[mod.skin]-[initial(mod.icon_state)]"
 	var/list/mod_skin = mod.theme.skins[mod.skin]
-	// [MANKIND-EDIT] - MANKIND_MODSUITS
+	// [MANKIND-EDIT] - CELADON_MODSUITS
 	// mod.icon = mod_skin[MOD_ICON_OVERRIDE] || 'icons/obj/clothing/modsuit/mod_clothing.dmi'
 	// mod.mob_overlay_icon = mod_skin[MOD_WORN_ICON_OVERRIDE] || 'icons/mob/clothing/modsuit/mod_clothing.dmi'
 	mod.icon = mod_skin[MOD_ICON_OVERRIDE] || 'modular_mankind/_storage_icons/icons/items/clothing/mod_suit/mod_clothing.dmi'
@@ -539,7 +541,7 @@
 /obj/item/mod/module/plate_compression
 	name = "MOD plate compression module"
 	desc = "A module that keeps the suit in a very tightly fit state, lowering the overall size. \
-		Due to the pressure on all the parts, typical storage modules do not fit." // [MANKIND-EDIT] - MANKIND_MODSUITS // изменено в модуле
+		Due to the pressure on all the parts, typical storage modules do not fit." // [MANKIND-EDIT] - CELADON_MODSUITS // изменено в модуле
 	icon_state = "plate_compression"
 	complexity = 2
 	incompatible_modules = list(/obj/item/mod/module/plate_compression, /obj/item/mod/module/storage)
@@ -551,10 +553,10 @@
 /obj/item/mod/module/plate_compression/on_install()
 	old_size = mod.w_class
 	mod.w_class = new_size
-	mod.activation_step_time *= 0.1 // [MANKIND-ADD] - MANKIND_MODSUITS
+	mod.activation_step_time *= 0.1 // [MANKIND-ADD] - CELADON_MODSUITS
 
 /obj/item/mod/module/plate_compression/on_uninstall(deleting = FALSE)
-	mod.activation_step_time *= 10 // [MANKIND-ADD] - MANKIND_MODSUITS
+	mod.activation_step_time *= 10 // [MANKIND-ADD] - CELADON_MODSUITS
 	mod.w_class = old_size
 	old_size = null
 	if(!mod.loc)

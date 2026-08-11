@@ -1340,7 +1340,9 @@
 /obj/item/clothing/gloves/combat,
 /obj/item/clothing/suit/armor/nanotrasen/sec_director,
 /obj/item/clothing/head/nanotrasen/beret/security/command,
-/obj/item/storage/guncase/pistol/commander,
+/obj/item/storage/guncase/pistol/rhino,
+/obj/item/storage/box/ammo/a357,
+/obj/item/storage/box/ammo/a357,
 /turf/open/floor/plasteel/tech,
 /area/ship/security)
 "jn" = (
@@ -3318,6 +3320,33 @@
 	pixel_x = -32;
 	pixel_y = 0
 	},
+/obj/item/ammo_box/magazine/m9mm_expedition{
+	pixel_x = 6
+	},
+/obj/item/ammo_box/magazine/m9mm_expedition{
+	pixel_x = 6
+	},
+/obj/item/ammo_box/magazine/m9mm_expedition{
+	pixel_x = 6
+	},
+/obj/item/ammo_box/magazine/m9mm_expedition{
+	pixel_x = 6
+	},
+/obj/item/ammo_box/magazine/m9mm_expedition{
+	pixel_x = 6
+	},
+/obj/item/ammo_box/magazine/m9mm_expedition{
+	pixel_x = 6
+	},
+/obj/item/ammo_box/magazine/m9mm_expedition{
+	pixel_x = 6
+	},
+/obj/item/ammo_box/magazine/m9mm_expedition{
+	pixel_x = 6
+	},
+/obj/item/ammo_box/magazine/m9mm_expedition{
+	pixel_x = 6
+	},
 /turf/open/floor/vault,
 /area/ship/security/armory)
 "yu" = (
@@ -5045,21 +5074,25 @@
 	pixel_x = 0;
 	pixel_y = 0
 	},
-/obj/item/clothing/head/helmet/m10/nanotrasen{
-	pixel_x = -6;
-	pixel_y = 7
+/obj/item/clothing/head/helmet/riot/nanotrasen{
+	pixel_x = -10;
+	pixel_y = 6;
+	name = "Vigilitas Riot Helmet"
 	},
-/obj/item/clothing/head/helmet/m10/nanotrasen{
-	pixel_x = -6;
-	pixel_y = 7
+/obj/item/clothing/head/helmet/riot/nanotrasen{
+	pixel_x = -10;
+	pixel_y = 6;
+	name = "Vigilitas Riot Helmet"
 	},
-/obj/item/clothing/head/helmet/m10/nanotrasen{
-	pixel_x = -6;
-	pixel_y = 7
+/obj/item/clothing/head/helmet/riot/nanotrasen{
+	pixel_x = -10;
+	pixel_y = 6;
+	name = "Vigilitas Riot Helmet"
 	},
-/obj/item/clothing/head/helmet/m10/nanotrasen{
-	pixel_x = -6;
-	pixel_y = 7
+/obj/item/clothing/head/helmet/riot/nanotrasen{
+	pixel_x = -10;
+	pixel_y = 6;
+	name = "Vigilitas Riot Helmet"
 	},
 /turf/open/floor/vault,
 /area/ship/security/armory)
@@ -5239,7 +5272,9 @@
 /obj/item/clothing/suit/armor/nanotrasen/captain/parade,
 /obj/item/storage/belt/sabre,
 /obj/item/clothing/shoes/combat,
-/obj/item/storage/guncase/pistol/miniegun_old,
+/obj/item/storage/guncase/pistol/podium,
+/obj/item/storage/box/ammo/c46x30mm,
+/obj/item/storage/box/ammo/c46x30mm,
 /turf/open/floor/plasteel/sepia,
 /area/ship/crew/dorm/captain)
 "JY" = (
@@ -5295,21 +5330,18 @@
 	dir = 4
 	},
 /obj/machinery/light/directional/north,
-/obj/item/gun/ballistic/automatic/pistol/challenger{
-	pixel_x = 1;
-	pixel_y = -2
-	},
-/obj/item/gun/ballistic/automatic/pistol/challenger{
-	pixel_x = 3;
-	pixel_y = -4
-	},
-/obj/item/gun/ballistic/automatic/pistol/challenger{
-	pixel_x = 6;
-	pixel_y = -6
-	},
 /obj/item/gun/energy/e_gun/e_old/iot{
 	pixel_x = 0;
 	pixel_y = 12
+	},
+/obj/item/gun/ballistic/automatic/smg/expedition,
+/obj/item/gun/ballistic/automatic/smg/expedition{
+	pixel_x = -2;
+	pixel_y = -4
+	},
+/obj/item/gun/ballistic/automatic/smg/expedition{
+	pixel_x = -4;
+	pixel_y = -6
 	},
 /turf/open/floor/vault,
 /area/ship/security/armory)

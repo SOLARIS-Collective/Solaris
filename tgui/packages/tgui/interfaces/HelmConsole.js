@@ -1,5 +1,5 @@
 /**
- * @changes 2026 KOCMOHABT (https://github.com/MANKIND-Collective/Pentest/pull/2647)
+ * @changes 2026 KOCMOHABT (https://github.com/CeladonSS13/Shiptest/pull/2647)
  * @TDLR From anything changes, see History in GIT and PR.
  */
 import { useBackend } from '../backend';
@@ -76,15 +76,16 @@ const SharedContent = (_props, context) => {
             }
           />
         }
+        buttons={
+          <Button
+              tooltip="Refresh Ship Stats"
+              tooltipPosition="left"
+              icon="sync"
+              disabled={isViewer}
+              onClick={() => act('reload_ship')}
+            />
+        }
       >
-        <Button
-          fluid
-          icon="sync"
-          content="Refresh Ship Stats"
-          disabled={isViewer}
-          onClick={() => act('reload_ship')}
-          mb={1}
-        />
         <LabeledList>
           <LabeledList.Item label="Class">{shipInfo.class}</LabeledList.Item>
           <LabeledList.Item label="Sensor Range">
@@ -92,34 +93,29 @@ const SharedContent = (_props, context) => {
               value={shipInfo.sensor_range}
               minValue={1}
               maxValue={8}
-              mb={0.5}
             >
               <AnimatedNumber value={shipInfo.sensor_range} />
             </ProgressBar>
-            <Stack>
-                <Stack.Item>
-                  <Button
-                    tooltip="Decrease Signal Length"
-                    tooltipPosition="right"
-                    icon="arrow-left"
-                    // [MANKIND-ADD] - subshuttle fix
-                    disabled={data.issubshuttle != null}
-                    // [/MANKIND-ADD] - subshuttle fix
-                    onClick={() => act('sensor_decrease')}
-                  />
-                </Stack.Item>
-                <Stack.Item>
-                  <Button
-                    tooltip="Increase Signal Length"
-                    tooltipPosition="right"
-                    icon="arrow-right"
-                    // [MANKIND-ADD] - subshuttle fix
-                    disabled={data.issubshuttle != null}
-                    // [/MANKIND-ADD] - subshuttle fix
-                    onClick={() => act('sensor_increase')}
-                  />
-                </Stack.Item>
-            </Stack>
+            <Table.Cell>
+              <Button
+                tooltip="Decrease Signal Length"
+                tooltipPosition="right"
+                icon="arrow-left"
+                // [MANKIND-ADD] - subshuttle fix
+                disabled={data.issubshuttle !== null}
+                // [/MANKIND-ADD] - subshuttle fix
+                onClick={() => act('sensor_decrease')}
+              />
+              <Button
+                tooltip="Increase Signal Length"
+                tooltipPosition="right"
+                icon="arrow-right"
+                // [MANKIND-ADD] - subshuttle fix
+                disabled={data.issubshuttle !== null}
+                // [/MANKIND-ADD] - subshuttle fix
+                onClick={() => act('sensor_increase')}
+              />
+            </Table.Cell>
           </LabeledList.Item>
           {shipInfo.mass && (
             <LabeledList.Item label="Mass">
@@ -130,27 +126,23 @@ const SharedContent = (_props, context) => {
       </Section>
       <Section title="Radar"
         buttons={
-          <Stack>
-            <Stack.Item>
-              <Button // [MANKIND-ADD] - Signal S.O.S - modular_mankind\wideband\code\signal.dm
-                tooltip="Send S.O.S."
-                tooltipPosition="left"
-                icon="globe"
-                disabled={isViewer}
-                onClick={() => act('send_sos')}
-              />
-            </Stack.Item>
-            <Stack.Item>
-              <Button
-                tooltip={calibrating ? 'Cancel Jump' : 'Bluespace Jump'}
-                tooltipPosition="left"
-                icon={calibrating ? 'times' : 'angle-double-right'}
-                color={calibrating ? 'bad' : 'average'}
-                disabled={!flyable}
-                onClick={() => act('bluespace_jump')}
-              />
-            </Stack.Item>
-          </Stack>
+          <>
+            <Button // [MANKIND-ADD] - Signal S.O.S - modular_mankind\wideband\code\signal.dm
+              tooltip="Send S.O.S."
+              tooltipPosition="left"
+              icon="globe"
+              disabled={isViewer}
+              onClick={() => act('send_sos')}
+            />
+            <Button
+              tooltip={calibrating ? 'Cancel Jump' : 'Bluespace Jump'}
+              tooltipPosition="left"
+              icon={calibrating ? 'times' : 'angle-double-right'}
+              color={calibrating ? 'bad' : 'average'}
+              disabled={!flyable}
+              onClick={() => act('bluespace_jump')}
+            />
+          </>
         }
 		>
         <Table>
@@ -420,7 +412,7 @@ const ShipControlContent = (_props, context) => {
             icon="sign-out-alt"
             // [MANKIND-EDIT] - subshuttles fix
             disabled={
-              !data.docked || data.docking || data.motheroutpost != null
+              !data.docked || data.docking || data.motheroutpost !== null
             }
             // [/MANKIND-EDIT] - subshuttles fix
             onClick={() => act('undock')}
