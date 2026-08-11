@@ -1,0 +1,39 @@
+// DM Environment file for shiptest.dme.
+// All manual changes should be made outside the BEGIN_ and END_ blocks.
+// New source code should be placed in .dm files: choose File/New --> Code File.
+
+// File Location: ROOT\_maps\PentestMaps\~pentest.dme
+// Directory formatting: ROOT\"folder_one\file_name.dme"
+//
+// Purpose: Location for custom ruins content exclusive to Pentest such that they can still be properly compiled by build.js
+//
+// Reason: This allows the shiptest.dme to only include stuff created on/for shiptest and all of changes contained to a minimal number of lines in the .dme
+// Files listed here will load all other shiptest code.
+// This allows other code to be safe and contained within and protected from code drift from shiptest files.
+//
+//
+// Be advised that the file directory is based on this file being the "ROOT"
+//
+// IT BEGINS - IT IS OVER
+
+#include "Outposts\_areas_outpost.dm"
+#include "BeachRuins\_areas_beachplanet.dm"
+#include "BeachRuins\_modular_beachplanet.dm"
+#include "IceRuins\_areas_icemoon.dm"
+#include "IceRuins\_modular_icemoon.dm"
+#include "JungleRuins\_areas_jungle.dm"
+#include "JungleRuins\_modular_jungle.dm"
+#include "LavaRuins\_areas_lavaland.dm"
+#include "LavaRuins\_items_lavaland.dm"
+#include "LavaRuins\_modular_lavaland.dm"
+#include "RockRuins\_areas_rockplanet.dm"
+#include "RockRuins\_modular_rockplanet.dm"
+#include "SandRuins\_areas_sandplanet.dm"
+#include "SandRuins\_modular_sandplanet.dm"
+#include "SpaceRuins\_areas_space.dm"
+#include "SpaceRuins\_modular_space.dm"
+#include "WasteRuins\_areas_wasteplanet.dm"
+#include "WasteRuins\_modular_wasteplanet.dm"
+#include "Shuttles\_areas_ships.dm"
+
+
