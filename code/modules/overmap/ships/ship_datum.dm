@@ -85,6 +85,11 @@
 	token_icon_state = "ship_point"
 	// [/MANKIND-EDIT]
 
+	// [MANKIND-ADD] - HIDE_SHIP_META - Обезличенное имя токена на овермапе (вместо настоящего имени корабля)
+	///The name shown on the overmap token instead of the real ship name.
+	token_display_name = "???"
+	// [/MANKIND-ADD]
+
 	///If TRUE stationary_icon_state and moving_icon_state are used instead of an overlay being applied to stationary_icon_state
 	var/legacy_rendering_switch = FALSE
 

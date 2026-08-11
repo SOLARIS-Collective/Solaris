@@ -11,6 +11,10 @@
 /datum/overmap
 	/// The name of this overmap datum, propogated to the token, docking port, and areas.
 	var/name
+	// [MANKIND-ADD] - HIDE_SHIP_META - Скрываем мету корабля на овермапе
+	///Overrides the name shown on the overmap token. If empty, the real name is used.
+	var/token_display_name
+	// [/MANKIND-ADD]
 	///A quick description of the event. Should fit into a quick tgui hoverover tip.
 	var/desc
 	///Extra info that would fit into a sidebar or an extra pane such as. Should fit into a quick tgui hoverover tip.
@@ -724,7 +728,8 @@
  */
 
 /datum/overmap/proc/alter_token_appearance()
-	token.name = name
+	// [MANKIND-EDIT] - HIDE_SHIP_META - Не показываем настоящее имя корабля, используем при необходимости обезличенное
+	token.name = token_display_name ? token_display_name : name
 	token.desc = desc
 
 	token.icon_state = token_icon_state

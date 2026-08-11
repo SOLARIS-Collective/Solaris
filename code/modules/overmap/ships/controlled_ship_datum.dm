@@ -593,7 +593,6 @@
 	[span_bold("Velocity: ")][round(get_speed(), 0.1)] Gm/s"}
 	*/
 	desc = {"[span_boldnotice("IFF is reporting the following:")]
-	[span_bold("Affiliation: ")][source_template.faction.name]
 	[span_bold("Velocity: ")][round(get_speed(), 0.1)] Gm/s"}
 	// [/MANKIND-EDIT]
 	return ..()
