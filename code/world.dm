@@ -14,7 +14,7 @@
 	mob = /mob/dead/new_player
 	turf = /turf/open/space/basic
 	area = /area/space
-	view = "21x15"
+	view = "15x15"
 	hub = "Exadv1.spacestation13"
 	hub_password = "kMZy3U5jJHSiBQjr"
 	name = "Shiptest 13"
