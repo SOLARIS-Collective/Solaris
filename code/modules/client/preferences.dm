@@ -234,8 +234,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/ambientocclusion = TRUE
 	///Should we automatically fit the viewport?
 	var/auto_fit_viewport = TRUE
-	///Should we be in the widescreen mode set by the config?
-	var/widescreenpref = FALSE
 	///What size should pixels be displayed as? 0 is strech to fit
 	var/pixel_size = 0
 	///What scaling method should we use? Distort = Nearest Neighbor
@@ -2957,10 +2955,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					auto_fit_viewport = !auto_fit_viewport
 					if(auto_fit_viewport && parent)
 						parent.fit_viewport()
-
-				if("widescreenpref")
-					widescreenpref = !widescreenpref
-					user.client.view_size.setDefault(getScreenSize(widescreenpref))
 
 				if("pixel_size")
 					switch(pixel_size)
