@@ -6,6 +6,7 @@ import { useBackend } from '../backend';
 import {
   Button,
   ByondUi,
+  Icon,
   LabeledList,
   Section,
   ProgressBar,
@@ -25,10 +26,10 @@ export const HelmConsole = (_props, context) => {
   const { data } = useBackend(context);
   const { mapRef, isViewer } = data;
   return (
-    <Window width={1130} height={700}>
+    <Window width={1400} height={700}>
       <Window.Content>
         <Stack fill>
-          <Stack.Item width="230px" overflowX="auto">
+          <Stack.Item width="280px" overflowX="auto">
             {!!data.docked && (
               <NoticeBox>Ship docked to: {data.docked}</NoticeBox>
             )}
@@ -45,7 +46,7 @@ export const HelmConsole = (_props, context) => {
               }}
             />
           </Stack.Item>
-          <Stack.Item width="230px" overflowX="auto">
+          <Stack.Item width="400px" overflowX="auto">
             {!!data.docked && (
               <NoticeBox>Ship docked to: {data.docked}</NoticeBox>
             )}
@@ -59,7 +60,7 @@ export const HelmConsole = (_props, context) => {
 
 const SharedContent = (_props, context) => {
   const { act, data } = useBackend(context);
-  const { isViewer, canRename, shipInfo = [], otherInfo = [], arpa_ships = [], calibrating } = data;
+  const { isViewer, canRename, shipInfo = [], otherInfo = [], arpa_ships = [], calibrating, scanInfo = {} } = data;
   let flyable = !data.docking && !data.docked;
   return (
     <>
@@ -145,16 +146,77 @@ const SharedContent = (_props, context) => {
           </>
         }
 		>
+        {!!scanInfo?.canceled && (
+          <NoticeBox danger>
+            Scan interrupted! Target moved out of range.
+            <Button
+              content="Dismiss"
+              color="transparent"
+              icon="times"
+              onClick={() => act('dismiss_scan')}
+            />
+          </NoticeBox>
+        )}
         <Table>
           <Table.Row bold>
             <Table.Cell>Name</Table.Cell>
+            {!isViewer && <Table.Cell>Scan</Table.Cell>}
+            {!isViewer && <Table.Cell>Label</Table.Cell>}
             {!isViewer && <Table.Cell>Hail</Table.Cell>}
             {!isViewer && <Table.Cell>Act</Table.Cell>}
             {!isViewer && <Table.Cell>Dock</Table.Cell>}
           </Table.Row>
           {otherInfo.map((ship) => (
-            <Table.Row key={ship.name}>
-              <Table.Cell>{ship.name}</Table.Cell>
+            <Table.Row key={ship.ref || ship.name}>
+              <Table.Cell>
+                {ship.known ? (
+                  <span>
+                    <Icon name="check" color="good" /> {ship.name}
+                  </span>
+                ) : (
+                  ship.name
+                )}
+                {!!ship.scanning && (
+                  <ProgressBar value={ship.progress} maxValue={1}>
+                    {Math.round(ship.progress * 100)}%
+                  </ProgressBar>
+                )}
+              </Table.Cell>
+              {!isViewer && (
+                <Table.Cell>
+                  {ship.scannable && !ship.known && (
+                    <Button
+                      tooltip={ship.scanning ? 'Cancel Scan' : 'Scan Ship'}
+                      tooltipPosition="left"
+                      icon={ship.scanning ? 'times' : 'satellite-dish'}
+                      color={ship.scanning ? 'bad' : 'default'}
+                      onClick={() =>
+                        ship.scanning
+                          ? act('stop_scan')
+                          : act('start_scan', {
+                              ship_to_act: ship.ref,
+                            })
+                      }
+                    />
+                  )}
+                </Table.Cell>
+              )}
+              {!isViewer && (
+                <Table.Cell>
+                  {ship.scannable && !ship.known && (
+                    <Button
+                      tooltip="Set Label"
+                      tooltipPosition="left"
+                      icon="tag"
+                      onClick={() =>
+                        act('prompt_label', {
+                          ship_to_act: ship.ref,
+                        })
+                      }
+                    />
+                  )}
+                </Table.Cell>
+              )}
               {!isViewer && (
                 <Table.Cell>
                   <Button
@@ -220,8 +282,48 @@ const SharedContent = (_props, context) => {
       </Section>
       <Section title="ARPA">
         {arpa_ships.map((ship) => (
-          <Table.Row key={ship.name}>
-            <Table.Cell>{ship.name}</Table.Cell>
+          <Table.Row key={ship.ref || ship.name}>
+            <Table.Cell>
+              {ship.known ? (
+                <span>
+                  <Icon name="check" color="good" /> {ship.name}
+                </span>
+              ) : (
+                ship.name
+              )}
+              {!!ship.scanning && (
+                <ProgressBar value={ship.progress} maxValue={1}>
+                  {Math.round(ship.progress * 100)}%
+                </ProgressBar>
+              )}
+            </Table.Cell>
+            {!isViewer && !ship.known && (
+              <Table.Cell>
+                <Button
+                  tooltip={ship.scanning ? 'Cancel Scan' : 'Scan Ship'}
+                  tooltipPosition="left"
+                  icon={ship.scanning ? 'times' : 'satellite-dish'}
+                  color={ship.scanning ? 'bad' : 'default'}
+                  onClick={() =>
+                    ship.scanning
+                      ? act('stop_scan')
+                      : act('start_scan', {
+                          ship_to_act: ship.ref,
+                        })
+                  }
+                />
+                <Button
+                  tooltip="Set Label"
+                  tooltipPosition="left"
+                  icon="tag"
+                  onClick={() =>
+                    act('prompt_label', {
+                      ship_to_act: ship.ref,
+                    })
+                  }
+                />
+              </Table.Cell>
+            )}
             <Divider vertical hidden />
             <Table.Cell>BRG:{ship.brg}°</Table.Cell>
             <Table.Cell>

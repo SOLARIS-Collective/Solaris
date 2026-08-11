@@ -208,15 +208,20 @@
 			continue
 
 		var/list/cpa_list = calculate_cpa(current_ship, object, TRUE)
+		var/list/known_data = current_ship.get_known_ship_name(object)
 		var/list/other_data = list(
-			name = object.name,
+			name = known_data["name"],
+			known = known_data["known"],
+			ref = REF(object),
 			brg = cpa_list["brg"],
 			cpa = cpa_list["cpa"],
 			tcpa = cpa_list["tcpa"]
 		)
+		other_data += current_ship.get_scan_status(object)
 		.["arpa_ships"] += list(other_data)
-	// [/MANKIND-ADD]
+// [/MANKIND-ADD]
 	.["canRename"] = COOLDOWN_FINISHED(current_ship, rename_cooldown)
+	.["scanInfo"] = current_ship.get_scan_info()
 	.["otherInfo"] = list()
 	var/list/objects = current_ship.get_nearby_overmap_objects(empty_if_src_docked = FALSE)
 	var/dequeue_pointer = 0
@@ -240,11 +245,15 @@
 
 		objects |= object.contents
 
+		var/list/known_data = current_ship.get_known_ship_name(object)
 		var/list/other_data = list(
-			name = object.name,
+			name = known_data["name"],
+			known = known_data["known"],
 			candock = available_dock,
+			scannable = istype(object, /datum/overmap/ship/controlled),
 			ref = REF(object)
 		)
+		other_data += current_ship.get_scan_status(object)
 		.["otherInfo"] += list(other_data)
 
 	.["x"] = current_ship.x || current_ship.docked_to.x
@@ -331,7 +340,52 @@
 	. = TRUE
 
 	switch(action) // Universal topics
-		// [MANKIND-ADD] - MANKIND_OVERMAP_STUFF - Это вагабонд насрал
+		// [MANKIND-ADD] - MANKIND_OVERMAP_SCANNER - Сканирование кораблей вместо чистой "меты".
+		if("start_scan")
+			var/datum/overmap/ship/controlled/to_scan = locate(params["ship_to_act"]) in current_ship.get_nearby_overmap_objects(include_docked = TRUE, empty_if_src_docked = FALSE)
+			if(!istype(to_scan, /datum/overmap/ship/controlled) || to_scan == current_ship)
+				return
+			if(!current_ship.start_scan(to_scan))
+				say("Error: Scan target out of range.")
+			return
+		if("stop_scan")
+			current_ship.stop_scan()
+			return
+		if("dismiss_scan")
+			current_ship.scan_canceled = FALSE
+			current_ship.last_scan_target = null
+			return
+		if("set_label")
+			var/new_label = params["label"]
+			if(!istext(new_label))
+				return
+			new_label = trim(new_label)
+			if(!length(new_label))
+				return
+			if(!reject_bad_text(new_label, MAX_CHARTER_LEN) || CHAT_FILTER_CHECK(new_label))
+				say("Error: Label rejected by system.")
+				return
+			var/datum/overmap/ship/controlled/to_label = locate(params["ship_to_act"]) in current_ship.get_nearby_overmap_objects(include_docked = TRUE, empty_if_src_docked = FALSE)
+			if(!istype(to_label, /datum/overmap/ship/controlled) || to_label == current_ship)
+				return
+			current_ship.set_ship_label(to_label, new_label)
+			return
+		if("prompt_label")
+			var/datum/overmap/ship/controlled/to_label = locate(params["ship_to_act"]) in current_ship.get_nearby_overmap_objects(include_docked = TRUE, empty_if_src_docked = FALSE)
+			if(!istype(to_label, /datum/overmap/ship/controlled) || to_label == current_ship)
+				return
+			var/new_label = tgui_input_text(usr, "Enter label for [to_label.name]:", "Set Label", "", MAX_CHARTER_LEN)
+			if(!istext(new_label))
+				return
+			new_label = trim(new_label)
+			if(!length(new_label))
+				return
+			if(!reject_bad_text(new_label, MAX_CHARTER_LEN) || CHAT_FILTER_CHECK(new_label))
+				say("Error: Label rejected by system.")
+				return
+			current_ship.set_ship_label(to_label, new_label)
+			return
+		// [/MANKIND-ADD]
 		if("sensor_increase")
 			//овермап сенсорс максимальная дальность апдейт
 			current_ship.sensor_range = min(current_ship.default_sensor_range, current_ship.sensor_range+1)
