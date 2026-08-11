@@ -117,7 +117,11 @@
 	for(var/turf/turf in turfs)
 		turfs[turf] = turf.loc
 	keep_cached_map = TRUE //We need to access some stuff here below for shuttle skipovers
-	. = ..(T, centered, init_atmos = TRUE)
+	// [MANKIND-EDIT] - OPTIMIZE_SHIP_LOADING - init_atmos = FALSE для изолированной loading-зоны
+	// Border air update (+2 тайла вокруг) не нужен в изолированной виртуальной зоне.
+	// InitializeAtoms, setup_template_powernets, setup_template_machinery всё равно работают.
+	. = ..(T, centered, init_atmos = FALSE)
+	// [/MANKIND-EDIT]
 	keep_cached_map = initial(keep_cached_map)
 	if(!.)
 		cached_map = keep_cached_map ? cached_map : null

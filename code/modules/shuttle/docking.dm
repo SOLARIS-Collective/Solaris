@@ -350,4 +350,10 @@
 		var/turf/open/T = turfs[i]
 		if(istype(T))
 			if(isopenturf(T))
+				// [MANKIND-EDIT] - OPTIMIZE_SHIP_LOADING - Пропускаем космические тайлы
+				// Копирование воздуха для space/transit тайлов — бесполезная операция,
+				// т.к. у них air и так пустой.
+				if(isspaceturf(T))
+					continue
+				// [/MANKIND-EDIT]
 				T.air.copy_from_turf(T)

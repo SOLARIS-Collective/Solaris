@@ -11,6 +11,6 @@
 	range = 3
 	cooldown_min = 50
 
-	summon_type = list("/obj/item/a_gift")
+	summon_type = list(/obj/item/a_gift)
 	summon_lifespan = 0
 	summon_amt = 5

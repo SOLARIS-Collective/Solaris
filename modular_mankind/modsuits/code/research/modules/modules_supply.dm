@@ -49,7 +49,7 @@
 /obj/item/mod/module/ash_accretion/on_suit_activation()
 	ADD_TRAIT(mod.wearer, TRAIT_ASHSTORM_IMMUNE, MOD_TRAIT)
 	ADD_TRAIT(mod.wearer, TRAIT_SNOWSTORM_IMMUNE, MOD_TRAIT)
-	RegisterSignal(mod.wearer, COMSIG_MOVABLE_MOVED, .proc/on_move)
+	RegisterSignal(mod.wearer, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
 
 /obj/item/mod/module/ash_accretion/on_suit_deactivation(deleting = FALSE)
 	REMOVE_TRAIT(mod.wearer, TRAIT_ASHSTORM_IMMUNE, MOD_TRAIT)
@@ -145,7 +145,7 @@
 	// mod.wearer.AddComponent(/datum/component/footstep, FOOTSTEP_MOB_HUMAN, 1, -6)
 	// mod.wearer.RemoveComponent(/datum/component/footstep, FOOTSTEP_OBJ_ROBOT, 1, -6, sound_vary = TRUE)
 	mod.wearer.add_movespeed_modifier(/datum/movespeed_modifier/sphere)
-	RegisterSignal(mod.wearer, COMSIG_MOB_STATCHANGE, .proc/on_statchange)
+	RegisterSignal(mod.wearer, COMSIG_MOB_STATCHANGE, PROC_REF(on_statchange))
 
 /obj/item/mod/module/sphere_transform/on_deactivation(display_message = TRUE, deleting = FALSE)
 	. = ..()
@@ -184,7 +184,7 @@
 	bomb.preparePixelProjectile(target, mod.wearer)
 	bomb.firer = mod.wearer
 	playsound(src, 'sound/weapons/gun/general/grenade_launch.ogg', 75, TRUE)
-	INVOKE_ASYNC(bomb, /obj/projectile.proc/fire)
+	INVOKE_ASYNC(bomb, TYPE_PROC_REF(/obj/projectile, fire))
 	drain_power(use_power_cost)
 
 /obj/item/mod/module/sphere_transform/on_active_process(delta_time)
@@ -246,7 +246,7 @@
 /obj/structure/mining_bomb/Initialize(mapload, atom/movable/firer)
 	. = ..()
 	generate_image()
-	addtimer(CALLBACK(src, .proc/prime, firer), prime_time)
+	addtimer(CALLBACK(src, PROC_REF(prime), firer), prime_time)
 
 /obj/structure/mining_bomb/on_changed_z_level(turf/old_turf, turf/new_turf, same_z_layer, notify_contents)
 	if(same_z_layer)
@@ -263,7 +263,7 @@
 
 /obj/structure/mining_bomb/proc/prime(atom/movable/firer)
 	add_overlay(explosion_image)
-	addtimer(CALLBACK(src, .proc/boom, firer), explosion_time)
+	addtimer(CALLBACK(src, PROC_REF(boom), firer), explosion_time)
 
 /obj/structure/mining_bomb/proc/boom(atom/movable/firer)
 	visible_message(span_danger("[src] взрывается!"))

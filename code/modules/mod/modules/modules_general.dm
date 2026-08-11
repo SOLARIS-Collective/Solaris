@@ -152,7 +152,7 @@
 	cooldown_time = 0.5 SECONDS
 	// [MANKIND-REMOVE] - CELADON_MODSUITS - я не люблю оверлеи фонариков. Они превращают все синдириги в очкариков
 	// overlay_state_inactive = "module_light"
-	// [/CELADON-REMOVE]
+	// [/MANKIND-REMOVE]
 	light_system = MOVABLE_LIGHT_DIRECTIONAL
 	light_color = COLOR_WHITE
 	light_range = 4
@@ -391,7 +391,7 @@
 			/obj/item/clothing/head, // Это создаст нелепицу, но мне интересно.
 			/obj/item/clothing/head/nanotrasen/captain/peaked,
 			/obj/item/clothing/head/nanotrasen,
-			// [/CELADON-ADD]
+			// [/MANKIND-ADD]
 			/obj/item/clothing/head/papersack,
 			))
 

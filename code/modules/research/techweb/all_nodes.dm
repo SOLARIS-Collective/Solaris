@@ -1138,7 +1138,7 @@
 	// [MANKIND-EDIT] - CELADON_BALANCE - Трогаем РнД ещё раз
 	// prereq_ids = list("bluespace_travel", "adv_engi")
 	prereq_ids = list("bluespace_basic","regulated_bluespace", "engineering")
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 	design_ids = list("engine_plasma", "engine_fire", "engine_ion", "engine_heater", "engine_fire_heater", "engine_smes", "shuttle_helm", "rapid_shuttle_designator")
 	// [MANKIND-EDIT] - MANKIND_BALANCE - Трогаем РнД
 	// research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000) // ORIGINAL

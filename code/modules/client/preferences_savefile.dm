@@ -207,6 +207,12 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["windowflash"], windowflashing)
 	READ_FILE(S["be_special"] , be_special)
 
+	sound_volume = alist()
+	for(var/flag in list(FS_GENERAL, FS_LOBBY, FS_AMBIENCE, FS_WEAPONS, FS_ANNOUNCEMENTS, FS_INSTRUMENTS, FS_JUKEBOX, FS_RADIO, FS_PRAYERS, FS_ADMIN, FS_SHIP_AMBIENCE, FS_ENDOFROUND))
+		var/volume
+		READ_FILE(S["sound_volume_[flag]"], volume)
+		sound_volume[flag] = volume || 100
+
 
 	READ_FILE(S["default_slot"], default_slot)
 	READ_FILE(S["chat_toggles"], chat_toggles)
@@ -224,7 +230,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["ambientocclusion"], ambientocclusion)
 	READ_FILE(S["screentip_pref"], screentip_pref)
 	READ_FILE(S["auto_fit_viewport"], auto_fit_viewport)
-	READ_FILE(S["widescreenpref"], widescreenpref)
 	READ_FILE(S["pixel_size"], pixel_size)
 	READ_FILE(S["scaling_method"], scaling_method)
 	READ_FILE(S["menuoptions"], menuoptions)
@@ -291,7 +296,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	ambientocclusion	= sanitize_integer(ambientocclusion, FALSE, TRUE, initial(ambientocclusion))
 	screentip_pref = sanitize_integer(screentip_pref, FALSE, TRUE, initial(screentip_pref))
 	auto_fit_viewport	= sanitize_integer(auto_fit_viewport, FALSE, TRUE, initial(auto_fit_viewport))
-	widescreenpref  = sanitize_integer(widescreenpref, FALSE, TRUE, initial(widescreenpref))
 	pixel_size		= sanitize_integer(pixel_size, PIXEL_SCALING_AUTO, PIXEL_SCALING_3X, initial(pixel_size))
 	scaling_method  = sanitize_text(scaling_method, initial(scaling_method))
 	ghost_form		= sanitize_inlist(ghost_form, GLOB.ghost_forms, initial(ghost_form))
@@ -359,6 +363,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["buttons_locked"], buttons_locked)
 	WRITE_FILE(S["windowflash"], windowflashing)
 	WRITE_FILE(S["be_special"], be_special)
+	for(var/flag in list(FS_GENERAL, FS_LOBBY, FS_AMBIENCE, FS_WEAPONS, FS_ANNOUNCEMENTS, FS_INSTRUMENTS, FS_JUKEBOX, FS_RADIO, FS_PRAYERS, FS_ADMIN, FS_SHIP_AMBIENCE, FS_ENDOFROUND))
+		WRITE_FILE(S["sound_volume_[flag]"], sound_volume[flag])
 	WRITE_FILE(S["default_slot"], default_slot)
 	WRITE_FILE(S["toggles"], toggles)
 	WRITE_FILE(S["chat_toggles"], chat_toggles)
@@ -375,7 +381,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["ambientocclusion"], ambientocclusion)
 	WRITE_FILE(S["screentip_pref"], screentip_pref)
 	WRITE_FILE(S["auto_fit_viewport"], auto_fit_viewport)
-	WRITE_FILE(S["widescreenpref"], widescreenpref)
 	WRITE_FILE(S["pixel_size"], pixel_size)
 	WRITE_FILE(S["scaling_method"], scaling_method)
 	WRITE_FILE(S["menuoptions"], menuoptions)
