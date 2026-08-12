@@ -25,6 +25,7 @@
 // --- ICONS --- //
 
 // --- SOUNDS --- //
+#include "w_tts_voices/_w_tts_voices.dme"
 
 // --- OBJECTS --- //
 

@@ -26,6 +26,7 @@ export const SoundPanelSettings = (props: SoundPanelSettingsProps, context) => {
     '512': 'Админские',
     '1024': 'Шум корабля',
     '2048': 'Конец раунда',
+    '4096': 'Голоса',
   };
 
   const flagKeys = Object.keys(sound_volume || {})

@@ -1,0 +1,80 @@
+# Конфиг категорий для ежемесячной сводки PR.
+#
+# Скрипт generate_monthly_summary.py извлекает из названия PR первый ключ
+# в квадратных скобках (например [FIXES], [TWEAK]) и сопоставляет его с этим
+# файлом. Порядок категорий в списке задаёт порядок вывода в итоговом
+# чейнджлоге. Сопоставление регистронезависимое.
+#
+# Каждая запись:
+#   key:      ключ как он встречается в названии (без квадратных скобок)
+#   category: название категории, в которую попадут PR с этим ключом
+#
+# Если ключ не найден ни в одной записи — PR попадает в default_category.
+
+default_category: "Прочее"
+
+categories:
+  - key: "EMERGENCY FIX"
+    category: "Срочные исправления"
+  - key: "FIXES"
+    category: "Исправления"
+  - key: "FIX"
+    category: "Исправления"
+  - key: "RSCADD"
+    category: "Новое"
+  - key: "ADDS"
+    category: "Новое"
+  - key: "ADD"
+    category: "Новое"
+  - key: "RSCDEL"
+    category: "Удалено"
+  - key: "DELS"
+    category: "Удалено"
+  - key: "DEL"
+    category: "Удалено"
+  - key: "RSC:TWEAK"
+    category: "Доработки"
+  - key: "TWEAKS"
+    category: "Доработки"
+  - key: "TWEAK"
+    category: "Доработки"
+  - key: "REFACTOR"
+    category: "Рефакторинг"
+  - key: "CODE_IMP"
+    category: "Код"
+  - key: "CODE"
+    category: "Код"
+  - key: "BALANCE"
+    category: "Баланс"
+  - key: "MAP"
+    category: "Карты"
+  - key: "QOL"
+    category: "Качество жизни"
+  - key: "SOUNDADD"
+    category: "Звук"
+  - key: "SOUNDDEL"
+    category: "Звук"
+  - key: "SOUND"
+    category: "Звук"
+  - key: "IMAGEADD"
+    category: "Изображения"
+  - key: "IMAGEDEL"
+    category: "Изображения"
+  - key: "IMAGE"
+    category: "Изображения"
+  - key: "CONFIG"
+    category: "Конфигурация"
+  - key: "CL"
+    category: "Конфигурация"
+  - key: "GITHUB"
+    category: "Конфигурация"
+  - key: "ADMIN"
+    category: "Админ"
+  - key: "SERVER"
+    category: "Сервер"
+  - key: "CHERRYPICK"
+    category: "Cherry-pick"
+  - key: "SPELLCHECK"
+    category: "Опечатки"
+  - key: "TYPO"
+    category: "Опечатки"

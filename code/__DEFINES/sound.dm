@@ -22,6 +22,7 @@
 #define FS_ADMIN (1<<9)
 #define FS_SHIP_AMBIENCE (1<<10)
 #define FS_ENDOFROUND (1<<11)
+#define FS_VOICES (1<<12)
 
 ///Default range of a sound.
 #define SOUND_RANGE 17

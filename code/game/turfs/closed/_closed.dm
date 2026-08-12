@@ -320,3 +320,6 @@
 	if(alter_integrity(-power) >= 0)
 		return TRUE
 	return power / 2
+
+/turf/closed/get_yelling_resistance(power) // [SOLARIS-ADD] - SOLARIS_W_TTS_VOICES
+	return yelling_resistance + (power * yelling_dampen)

@@ -1,0 +1,12 @@
+#ifndef MODPACK_SOLARIS_W_TTS_VOICES
+#define MODPACK_SOLARIS_W_TTS_VOICES
+
+#include "code/atoms_movable.dm"
+#include "code/_machinery.dm"
+#include "code/pets.dm"
+#include "code/w_tts_voices.dm"
+#include "code/turf.dm"
+
+// #include "code/debug.dm" // Расскоментировать для дебагинга
+
+#endif

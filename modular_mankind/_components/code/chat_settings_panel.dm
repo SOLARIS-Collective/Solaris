@@ -142,6 +142,8 @@
 					test_sound = 'sound/ambience/shipambience.ogg'
 				if(FS_ENDOFROUND)
 					test_sound = 'sound/roundend/boowomp.ogg'
+				if(FS_VOICES)
+					test_sound = 'sound/effects/meow1.ogg'
 			if(test_sound)
 				var/sound/test_sound_to_play = sound(test_sound)
 				test_sound_to_play.volume = round(100 * (C.prefs.sound_volume[flag] / 100))
