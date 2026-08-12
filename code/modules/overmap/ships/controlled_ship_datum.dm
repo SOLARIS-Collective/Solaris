@@ -312,7 +312,7 @@
 /datum/overmap/ship/controlled/start_dock(datum/overmap/to_dock, datum/docking_ticket/ticket)
 	log_shuttle("[src] [REF(src)] DOCKING: STARTED REQUEST FOR [to_dock] AT [ticket.target_port]")
 	refresh_engines()
-	priority_announce("Beginning docking procedures. Completion in [dock_time/10] seconds.", "Docking Announcement", sender_override = name, zlevel = shuttle_port.virtual_z())
+	priority_announce("A vessel is beginning docking procedures. Completion in [dock_time/10] seconds.", "Docking Announcement", zlevel = shuttle_port.virtual_z())
 	shuttle_port.create_ripples(ticket.target_port, dock_time)
 	shuttle_port.play_engine_sound(shuttle_port, shuttle_port.landing_sound)
 	shuttle_port.play_engine_sound(ticket.target_port, shuttle_port.landing_sound)
@@ -333,7 +333,7 @@
 			SSshuttle.transit_requesters -= shuttle_port
 			SSshuttle.generate_transit_dock(shuttle_port) // We need a port, NOW.
 
-	priority_announce("Beginning undocking procedures. Completion in [dock_time/10] seconds.", "Docking Announcement", sender_override = name, zlevel = shuttle_port.virtual_z())
+	priority_announce("A vessel is beginning undocking procedures. Completion in [dock_time/10] seconds.", "Docking Announcement", zlevel = shuttle_port.virtual_z())
 	shuttle_port.play_engine_sound(shuttle_port, shuttle_port.takeoff_sound)
 
 	. = ..()
