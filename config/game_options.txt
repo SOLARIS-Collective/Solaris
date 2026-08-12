@@ -537,3 +537,7 @@ COMMENDATION_PERCENT_POLL 0.05
 
 ## Whether native FoV is enabled for all people.
 #NATIVE_FOV
+
+# Enable global The Voices
+# Uncomment this to allow player's speech voices #
+ENABLE_GLOBAL_W_TTS_VOICES
