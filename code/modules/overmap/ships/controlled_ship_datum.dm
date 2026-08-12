@@ -252,10 +252,30 @@
 // [MANKIND-ADD] - HIDE_SHIP_META - Единый способ показать имя корабля: свои видят настоящее, чужие — обезличенное
 /// Returns the ship name as seen by [user]. Crew members (owner candidates) see the real name, everyone else sees "Unknown Ship".
 /datum/overmap/ship/controlled/proc/get_display_name(mob/user)
-	if(transponder_active || user?.mind in owner_candidates)
+	if(transponder_active)
+		return name
+	if(user?.mind && (user.mind in owner_candidates))
 		return name
 	return "Unknown Ship"
+
+/// Returns the name shown on the overmap token as seen by [user]. omni_arpa observers see the real name even when the transponder is off.
+/datum/overmap/ship/controlled/proc/get_token_display_name(mob/user)
+	if(transponder_active)
+		return name
+	if(user?.mind && (user.mind in owner_candidates))
+		return name
+	var/datum/overmap/ship/controlled/observer = SSshuttle.get_ship(user)
+	if(observer?.omni_arpa)
+		return name
+	return "???"
 // [/MANKIND-ADD]
+
+/// Overrides the name shown in the overmap inspect UI (right-click on token). omni_arpa observers see the real name even when the transponder is off.
+/datum/overmap/ship/controlled/basic_ui_data(mob/user)
+	return list(
+		"ref" = REF(src),
+		"name" = get_token_display_name(user)
+	)
 
 /// Stores a manual label for [target] as a personal note for the observer. Persists until overwritten.
 /datum/overmap/ship/controlled/proc/set_ship_label(datum/overmap/ship/controlled/target, new_label)
