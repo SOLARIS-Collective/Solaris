@@ -61,7 +61,7 @@ export const HelmConsole = (_props, context) => {
 
 const SharedContent = (_props, context) => {
   const { act, data } = useBackend(context);
-  const { isViewer, canRename, shipInfo = [], otherInfo = [], arpa_ships = [], calibrating, scanInfo = {} } = data;
+  const { isViewer, canRename, shipInfo = [], otherInfo = [], arpa_ships = [], calibrating } = data;
   let flyable = !data.docking && !data.docked;
   return (
     <>
@@ -98,7 +98,7 @@ const SharedContent = (_props, context) => {
             >
               <AnimatedNumber value={shipInfo.sensor_range} />
             </ProgressBar>
-            <Box inline ml={1}>
+            <Box inline ml={1} mt={1}>
               <Button
                 tooltip="Decrease Signal Length"
                 tooltipPosition="right"
@@ -131,6 +131,18 @@ const SharedContent = (_props, context) => {
       <Section title="Radar"
         buttons={
           <>
+            <Button // [MANKIND-ADD] - TRANSPONDER_GOING_DARK - Переключатель транспондера
+              tooltip={
+                data.transponder_active
+                  ? 'Transponder ON - ship identity revealed'
+                  : 'Transponder OFF - ship is anonymous'
+              }
+              tooltipPosition="left"
+              icon={data.transponder_active ? 'broadcast-tower' : 'broadcast-tower'}
+              color={data.transponder_active ? 'green' : 'red'}
+              disabled={isViewer}
+              onClick={() => act('toggle_transponder')}
+            />
             <Button // [MANKIND-ADD] - Signal S.O.S - modular_mankind\wideband\code\signal.dm
               tooltip="Send S.O.S."
               tooltipPosition="left"
@@ -149,21 +161,9 @@ const SharedContent = (_props, context) => {
           </>
         }
 		>
-        {!!scanInfo?.canceled && (
-          <NoticeBox danger>
-            Scan interrupted! Target moved out of range.
-            <Button
-              content="Dismiss"
-              color="transparent"
-              icon="times"
-              onClick={() => act('dismiss_scan')}
-            />
-          </NoticeBox>
-        )}
         <Table>
           <Table.Row bold>
             <Table.Cell>Name</Table.Cell>
-            {!isViewer && <Table.Cell>Scan</Table.Cell>}
             {!isViewer && <Table.Cell>Label</Table.Cell>}
             {!isViewer && <Table.Cell>Hail</Table.Cell>}
             {!isViewer && <Table.Cell>Dock</Table.Cell>}
@@ -178,34 +178,10 @@ const SharedContent = (_props, context) => {
                 ) : (
                   ship.name
                 )}
-                {!!ship.scanning && (
-                  <ProgressBar value={ship.progress} maxValue={1}>
-                    {Math.round(ship.progress * 100)}%
-                  </ProgressBar>
-                )}
               </Table.Cell>
               {!isViewer && (
                 <Table.Cell>
-                  {ship.scannable && !ship.known && (
-                    <Button
-                      tooltip={ship.scanning ? 'Cancel Scan' : 'Scan Ship'}
-                      tooltipPosition="left"
-                      icon={ship.scanning ? 'times' : 'satellite-dish'}
-                      color={ship.scanning ? 'bad' : 'default'}
-                      onClick={() =>
-                        ship.scanning
-                          ? act('stop_scan')
-                          : act('start_scan', {
-                              ship_to_act: ship.ref,
-                            })
-                      }
-                    />
-                  )}
-                </Table.Cell>
-              )}
-              {!isViewer && (
-                <Table.Cell>
-                  {ship.scannable && !ship.known && (
+                  {ship.scannable && (
                     <Button
                       tooltip="Set Label"
                       tooltipPosition="left"
@@ -293,27 +269,9 @@ const SharedContent = (_props, context) => {
               ) : (
                 ship.name
               )}
-              {!!ship.scanning && (
-                <ProgressBar value={ship.progress} maxValue={1}>
-                  {Math.round(ship.progress * 100)}%
-                </ProgressBar>
-              )}
             </Table.Cell>
-            {!isViewer && ship.scannable && !ship.known && (
+            {!isViewer && ship.scannable && (
               <Table.Cell>
-                <Button
-                  tooltip={ship.scanning ? 'Cancel Scan' : 'Scan Ship'}
-                  tooltipPosition="left"
-                  icon={ship.scanning ? 'times' : 'satellite-dish'}
-                  color={ship.scanning ? 'bad' : 'default'}
-                  onClick={() =>
-                    ship.scanning
-                      ? act('stop_scan')
-                      : act('start_scan', {
-                          ship_to_act: ship.ref,
-                        })
-                  }
-                />
                 <Button
                   tooltip="Set Label"
                   tooltipPosition="left"
@@ -540,7 +498,7 @@ const ShipControlContent = (_props, context) => {
       }
     >
       <LabeledControls>
-        <LabeledControls.Item label="Direction" width={'100%'}>
+        <LabeledControls.Item label="Direction">
           <Table collapsing>
             <Table.Row height={1}>
               <Table.Cell width={1}>
@@ -608,7 +566,7 @@ const ShipControlContent = (_props, context) => {
             </Table.Row>
           </Table>
         </LabeledControls.Item>
-        <LabeledControls.Item label="Throttle">
+        <LabeledControls.Item label="Throttle" grow>
           <Knob
             value={burnPercentage}
             minValue={1}

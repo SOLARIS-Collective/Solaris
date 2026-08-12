@@ -208,8 +208,6 @@
 			continue
 
 		var/list/cpa_list = calculate_cpa(current_ship, object, TRUE)
-		if(object.is_transponder_hidden_to(current_ship)) //Hidden by a jamming field
-			continue
 		var/list/known_data = current_ship.get_known_ship_name(object)
 		var/list/other_data = list(
 			name = known_data["name"],
@@ -220,20 +218,15 @@
 			cpa = cpa_list["cpa"],
 			tcpa = cpa_list["tcpa"]
 		)
-		other_data += current_ship.get_scan_status(object)
 		.["arpa_ships"] += list(other_data)
 // [/MANKIND-ADD]
 	.["canRename"] = COOLDOWN_FINISHED(current_ship, rename_cooldown)
-	.["scanInfo"] = current_ship.get_scan_info()
 	.["otherInfo"] = list()
 	var/list/objects = current_ship.get_nearby_overmap_objects(empty_if_src_docked = FALSE)
 	var/dequeue_pointer = 0
 	while (dequeue_pointer++ < objects.len)
 		var/datum/overmap/ship/controlled/object = objects[dequeue_pointer]
 		if(!istype(object, /datum/overmap)) //Not an overmap object, ignore this
-			continue
-
-		if(istype(object, /datum/overmap/ship/controlled) && object.is_transponder_hidden_to(current_ship))
 			continue
 
 		var/available_dock = FALSE
@@ -259,7 +252,6 @@
 			scannable = istype(object, /datum/overmap/ship/controlled),
 			ref = REF(object)
 		)
-		other_data += current_ship.get_scan_status(object)
 		.["otherInfo"] += list(other_data)
 
 	.["x"] = current_ship.x || current_ship.docked_to.x
@@ -282,6 +274,9 @@
 	.["burnPercentage"] = current_ship.burn_percentage
 	// [MANKIND-ADD] - MANKIND_OVERMAP_ARPA - Это вагабонд насрал
 	.["rotating"] = current_ship.rotating
+	// [/MANKIND-ADD]
+	// [MANKIND-ADD] - TRANSPONDER_GOING_DARK - Переключатель транспондера в хелм-консоли
+	.["transponder_active"] = current_ship.transponder_active
 	// [/MANKIND-ADD]
 	for(var/datum/weakref/engine in current_ship.shuttle_port.engine_list)
 		var/obj/machinery/power/shuttle/engine/real_engine = engine.resolve()
@@ -346,21 +341,7 @@
 	. = TRUE
 
 	switch(action) // Universal topics
-		// [MANKIND-ADD] - MANKIND_OVERMAP_SCANNER - Сканирование кораблей вместо чистой "меты".
-		if("start_scan")
-			var/datum/overmap/ship/controlled/to_scan = locate(params["ship_to_act"]) in current_ship.get_nearby_overmap_objects(include_docked = TRUE, empty_if_src_docked = FALSE)
-			if(!istype(to_scan, /datum/overmap/ship/controlled) || to_scan == current_ship)
-				return
-			if(!current_ship.start_scan(to_scan))
-				say("Error: Scan target out of range.")
-			return
-		if("stop_scan")
-			current_ship.stop_scan()
-			return
-		if("dismiss_scan")
-			current_ship.scan_canceled = FALSE
-			current_ship.last_scan_target = null
-			return
+		// [MANKIND-ADD] - MANKIND_OVERMAP_SCANNER - Личные заметки (метки) о кораблях.
 		if("set_label")
 			var/new_label = params["label"]
 			if(!istext(new_label))
@@ -371,7 +352,7 @@
 			if(!reject_bad_text(new_label, MAX_CHARTER_LEN) || CHAT_FILTER_CHECK(new_label))
 				say("Error: Label rejected by system.")
 				return
-			// Метка — личная память сканера, не требует нахождения в одном тайле.
+			// Метка — личная заметка наблюдателя, не требует нахождения в одном тайле.
 			var/datum/overmap/ship/controlled/to_label = locate(params["ship_to_act"])
 			if(!istype(to_label, /datum/overmap/ship/controlled) || to_label == current_ship)
 				return
@@ -381,7 +362,7 @@
 			var/datum/overmap/ship/controlled/to_label = locate(params["ship_to_act"])
 			if(!istype(to_label, /datum/overmap/ship/controlled) || to_label == current_ship)
 				return
-			// Показываем только то, что уже известно сканеру, чтобы не палить имя.
+			// Показываем текущее отображаемое имя, чтобы не палить настоящее.
 			var/known_name = current_ship.get_known_ship_name(to_label)["name"]
 			var/new_label = tgui_input_text(usr, "Enter label for [known_name]:", "Set Label", "", MAX_CHARTER_LEN)
 			if(!istext(new_label))
@@ -406,6 +387,12 @@
 			current_ship.sensor_range = max(1, current_ship.sensor_range-1)
 			update_static_data(usr, ui)
 			current_ship.token.update_screen()
+			return
+		// [/MANKIND-ADD]
+		// [MANKIND-ADD] - TRANSPONDER_GOING_DARK - Включение/выключение транспондера
+		if("toggle_transponder")
+			current_ship.transponder_active = !current_ship.transponder_active
+			current_ship.refresh_transponder_state()
 			return
 		// [/MANKIND-ADD]
 		if("rename_ship")

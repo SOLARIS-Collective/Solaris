@@ -75,7 +75,8 @@
 	/// an assoc list
 	var/ship_modules = list()
 
-	/// Whether this ship is currently projecting a transponder jamming field (hidden from other ships' sensors).
+	/// Whether this ship's transponder is broadcasting its identity.
+	/// When active the ship reveals its real name and faction to everyone; when inactive it stays anonymous.
 	var/transponder_active = FALSE
 
 	/// Short memo of the ship shown to new joins
@@ -98,21 +99,9 @@
 	COOLDOWN_DECLARE(rename_prefix_cooldown)
 	/// [/MANKIND-ADD]
 
-	// [MANKIND-ADD] - MANKIND_OVERMAP_SCANNER - Личная память сканера и процесс сканирования кораблей.
-	/// Assoc list of WEAKREFs to ships this vessel has identified. Value: list("real" = TRUE) or list("label" = string). Stored on the scanner, not the target.
+	// [MANKIND-ADD] - MANKIND_OVERMAP_SCANNER - Личные заметки (метки) наблюдателя о кораблях.
+	/// Assoc list of WEAKREFs to ships this vessel has labelled. Value: list("label" = string). Stored on the observer, not the target.
 	var/list/known_ships = list()
-	/// Weakref to the ship we are currently scanning, if any.
-	var/datum/weakref/scanning_target
-	/// World time when the current scan started.
-	var/scan_start_time
-	/// Timer ID of the scan completion callback.
-	var/scan_timer
-	/// TRUE if the last scan was interrupted, kept until dismissed or a new scan starts.
-	var/scan_canceled = FALSE
-	/// Weakref to the ship the last scan was pointed at, used for UI state after an interruption.
-	var/datum/weakref/last_scan_target
-	/// How long a full identification scan takes.
-	var/static/scan_time = 30 SECONDS
 	// [/MANKIND-ADD]
 
 /datum/overmap/ship/controlled/Rename(new_name, force = FALSE)
@@ -218,113 +207,48 @@
 /datum/overmap/ship/controlled/proc/get_faction()
 	return source_template.faction
 
-// [MANKIND-ADD] - TRANSPONDER_GOING_DARK - Реализация «going dark»: скрытие корабля от чужих сенсоров
-/// Re-evaluates whether the transponder jamming field is active and updates the ship's visibility.
+// [MANKIND-ADD] - TRANSPONDER_GOING_DARK - Транспондер: добровольное раскрытие идентичности корабля
+/// Re-renders the overmap token to reflect whether the transponder is broadcasting.
+/// When active the ship reveals its real name; otherwise it stays anonymous.
 /datum/overmap/ship/controlled/proc/refresh_transponder_state()
-	var/obj/machinery/computer/transponder/transponder = ship_modules[SHIPMODULE_TRANSPONDER]
-	transponder_active = transponder && transponder.enabled && transponder.powered()
-	// Re-render the token so the hidden state is reflected on the overmap.
+	token_display_name = transponder_active ? name : "???"
 	alter_token_appearance()
-
-/// Returns TRUE if [observer] cannot see this ship because its transponder jamming field is active.
-/datum/overmap/ship/controlled/proc/is_transponder_hidden_to(datum/overmap/ship/controlled/observer)
-	if(!transponder_active)
-		return FALSE
-	// The jamming field hides us from everyone except our own faction.
-	var/datum/faction/our_faction = get_faction()
-	var/datum/faction/observer_faction = observer?.get_faction()
-	if(our_faction && observer_faction && our_faction == observer_faction)
-		return FALSE
-	return TRUE
 // [/MANKIND-ADD]
 
 /**
  * Returns the display name and known flag used by ARPA/Radar for [target].
  *
  * Non-ship overmap objects (outposts, etc) are shown plainly. Ships are shown
- * by their real name if identified (via scan or allied faction), otherwise by
- * a manual label, or as "Unknown Ship".
+ * by their real name if broadcasting a transponder or allied faction, otherwise
+ * by a manual label, or as "Unknown Ship".
  */
 /datum/overmap/ship/controlled/proc/get_known_ship_name(datum/overmap/ship/controlled/target)
 	if(!istype(target))
 		return list("name" = target?.name || "Unknown", "known" = FALSE)
-	var/list/entry = known_ships[WEAKREF(target)]
-	if(entry && entry["real"])
+	// A ship broadcasting its transponder reveals its identity to everyone, but is not remembered.
+	if(target.transponder_active)
 		return list("name" = target.name, "known" = TRUE)
-	// Allies recognize each other at a glance; pirates and independents stay anonymous until scanned.
+	// Allies recognize each other at a glance; pirates and independents stay anonymous.
 	var/datum/faction/our_faction = get_faction()
 	var/datum/faction/their_faction = target.get_faction()
 	if(our_faction && their_faction && our_faction == their_faction \
 		&& !istype(their_faction, /datum/faction/pirate) && !istype(their_faction, /datum/faction/independent))
 		return list("name" = target.name, "known" = TRUE)
-	var/label = entry ? entry["label"] : null
+	// A manual label is a personal note for the observer; it persists until overwritten.
+	var/label = known_ships[WEAKREF(target)]?["label"]
 	return list("name" = label ? label : "Unknown Ship", "known" = FALSE)
 
-/// Begins an identification scan of [target]. Both ships must share a tile. Returns TRUE on success.
-/datum/overmap/ship/controlled/proc/start_scan(datum/overmap/ship/controlled/target)
-	if(!istype(target))
-		return FALSE
-	if(scanning_target)
-		stop_scan() //one scan at a time, replacing the old one
-	if(!(target in current_overmap.overmap_container[x][y]))
-		return FALSE
-	scanning_target = WEAKREF(target)
-	last_scan_target = scanning_target
-	scan_start_time = world.time
-	scan_canceled = FALSE
-	scan_timer = addtimer(CALLBACK(src, PROC_REF(complete_scan), target), scan_time, TIMER_STOPPABLE)
-	RegisterSignal(src, COMSIG_OVERMAP_MOVED, PROC_REF(on_scan_moved))
-	RegisterSignal(target, COMSIG_OVERMAP_MOVED, PROC_REF(on_scan_moved))
-	return TRUE
+// [MANKIND-ADD] - HIDE_SHIP_META - Единый способ показать имя корабля: свои видят настоящее, чужие — обезличенное
+/// Returns the ship name as seen by [user]. Crew members (owner candidates) see the real name, everyone else sees "Unknown Ship".
+/datum/overmap/ship/controlled/proc/get_display_name(mob/user)
+	if(transponder_active || user?.mind in owner_candidates)
+		return name
+	return "Unknown Ship"
+// [/MANKIND-ADD]
 
-/// Cancels the current scan, optionally keeping the "interrupted" UI state.
-/datum/overmap/ship/controlled/proc/stop_scan(keep_canceled = FALSE)
-	deltimer(scan_timer)
-	scan_timer = null
-	scan_start_time = null
-	UnregisterSignal(src, COMSIG_OVERMAP_MOVED, PROC_REF(on_scan_moved))
-	var/datum/overmap/ship/controlled/target = scanning_target?.resolve()
-	if(target)
-		UnregisterSignal(target, COMSIG_OVERMAP_MOVED, PROC_REF(on_scan_moved))
-	scanning_target = null
-	if(!keep_canceled)
-		scan_canceled = FALSE
-
-/datum/overmap/ship/controlled/proc/complete_scan(datum/overmap/ship/controlled/target)
-	if(!scanning_target || scanning_target != WEAKREF(target))
-		return
-	LAZYSET(known_ships, WEAKREF(target), list("real" = TRUE))
-	stop_scan()
-
-/datum/overmap/ship/controlled/proc/on_scan_moved(datum/overmap/source, old_x, old_y)
-	SIGNAL_HANDLER
-	scan_canceled = TRUE
-	stop_scan(keep_canceled = TRUE)
-
-/// Returns scan progress info for [target] for the UI: "scanning", "progress" (0-1) and "canceled".
-/datum/overmap/ship/controlled/proc/get_scan_status(datum/overmap/ship/controlled/target)
-	var/list/status = list("scanning" = FALSE, "progress" = 0, "canceled" = FALSE)
-	var/datum/weakref/target_ref = WEAKREF(target)
-	if(scanning_target == target_ref && scan_start_time)
-		status["scanning"] = TRUE
-		status["progress"] = clamp((world.time - scan_start_time) / scan_time, 0, 1)
-	else if(scan_canceled && last_scan_target == target_ref)
-		status["canceled"] = TRUE
-	return status
-
-/// Top-level scan state for the helm UI (active scan progress / interrupted notice).
-/datum/overmap/ship/controlled/proc/get_scan_info()
-	var/list/info = list("active" = FALSE, "progress" = 0, "canceled" = scan_canceled)
-	if(scanning_target && scan_start_time)
-		info["active"] = TRUE
-		info["progress"] = clamp((world.time - scan_start_time) / scan_time, 0, 1)
-	return info
-
-/// Stores a manual label for [target] in the scanner's local memory. Does nothing if already identified by real name.
+/// Stores a manual label for [target] as a personal note for the observer. Persists until overwritten.
 /datum/overmap/ship/controlled/proc/set_ship_label(datum/overmap/ship/controlled/target, new_label)
 	if(!istype(target))
-		return FALSE
-	if(known_ships[WEAKREF(target)]?["real"])
 		return FALSE
 	LAZYSET(known_ships, WEAKREF(target), list("label" = new_label))
 	return TRUE
