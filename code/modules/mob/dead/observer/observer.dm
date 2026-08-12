@@ -41,7 +41,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	// var/gas_scan = FALSE //Are gas scans currently enabled?
 	///Selection: GHOST_DATA_HUDS | GHOST_VISION | GHOST_HEALTH | GHOST_CHEM | GHOST_GAS
 	var/ghost_hud_flags = NONE
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 	var/list/datahuds = list(DATA_HUD_SECURITY_ADVANCED, DATA_HUD_MEDICAL_ADVANCED, DATA_HUD_DIAGNOSTIC_ADVANCED) //list of data HUDs shown to ghosts.
 	var/ghost_orbit = GHOST_ORBIT_CIRCLE
 
@@ -157,7 +157,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	// show_data_huds()
 	// data_huds_on = 1
 	toggle_ghost_hud_flag(GHOST_VISION | GHOST_DATA_HUDS)
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 
 /mob/dead/observer/get_photo_description(obj/item/camera/camera)
 	if(!invisibility || camera.see_ghosts)
@@ -173,7 +173,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	// [MANKIND-ADD] - UPDATE GHOST HUDS
 	if(ghost_hud_flags & GHOST_DATA_HUDS)
 		remove_data_huds()
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 	// Update our old body's medhud since we're abandoning it
 	if(mind && mind.current)
 		mind.current.med_hud_set_status()
@@ -380,7 +380,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(mind.current.key && mind.current.key[1] != "@")	//makes sure we don't accidentally kick any clients
 		to_chat(usr, span_warning("Кто-то уже копается в моём теле... Оно отвергает меня."))
 		return
-	client.view_size.setDefault(getScreenSize(client.prefs.widescreenpref))//Let's reset so people can't become allseeing gods
+	client.view_size.setDefault(getScreenSize())//Let's reset so people can't become allseeing gods
 	SStgui.on_transfer(src, mind.current) // Transfer NanoUIs.
 	if(mind.current.stat == DEAD && SSlag_switch.measures[DISABLE_DEAD_KEYLOOP])
 		to_chat(src, span_warning("Чтобы покинуть тело используй кнопку Призрак."))
@@ -481,7 +481,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	for(var/atom/movable/screen/ghost/hudbox/hud in hud_used?.static_inventory)
 		if(hud.relevant_flag & toggled)
 			hud.update_appearance(UPDATE_ICON_STATE)
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 // This is the ghost's follow verb with an argument
 /mob/dead/observer/proc/ManualFollow(atom/movable/target)
@@ -564,7 +564,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	var/poll_client = tgui_alert(usr, "Возврат в лобби-меню, это отменит возможность возрождение этим персонажем.\nВы ТОЧНО уверены?", "Респавн", list("Верни меня в лобби", "Я передумал"))
 	if(poll_client != "Верни меня в лобби")
 		return
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 	abandon_mob()
 
 /mob/dead/observer/verb/change_view_range()
@@ -634,7 +634,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	toggle_ghost_hud_flag(GHOST_VISION)
 	update_sight()
 	to_chat(usr, span_boldnotice("You [(ghost_hud_flags & GHOST_VISION) ? "now" : "no longer"] have ghost vision."))
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 
 /mob/dead/observer/verb/toggle_darkness()
 	set name = "Toggle Darkness"
@@ -810,7 +810,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	else
 		show_data_huds()
 	to_chat(src, span_notice("Data HUDs [(ghost_hud_flags & GHOST_DATA_HUDS) ? "enabled": "disabled" ]."))
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 
 /mob/dead/observer/verb/toggle_health_scan()
 	set name = "Toggle Health Scan"
@@ -825,7 +825,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	// 	health_scan = TRUE
 	toggle_ghost_hud_flag(GHOST_HEALTH)
 	to_chat(src, span_notice("Health scan [(ghost_hud_flags & GHOST_HEALTH) ? "enabled": "disabled" ]."))
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 
 /mob/dead/observer/verb/toggle_chem_scan()
 	set name = "Toggle Chem Scan"
@@ -840,7 +840,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	// 	chem_scan = TRUE
 	toggle_ghost_hud_flag(GHOST_CHEM)
 	to_chat(src, span_notice("Chem scan [(ghost_hud_flags & GHOST_CHEM) ? "enabled": "disabled" ]."))
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 
 /mob/dead/observer/verb/toggle_gas_scan()
 	set name = "Toggle Gas Scan"
@@ -856,12 +856,12 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	// 	gas_scan = TRUE
 	toggle_ghost_hud_flag(GHOST_GAS)
 	to_chat(src, span_notice("Gas scan [(ghost_hud_flags & GHOST_GAS) ? "enabled": "disabled" ]."))
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 
 // [MANKIND-ADD] - UPDATE GHOST HUDS
 /mob/dead/observer/proc/toggle_hud_type(mob/dead/observer/user, hud_type)
 	user.toggle_ghost_hud_flag(hud_type)
-// [/CELADON-ADD]
+// [/MANKIND-ADD]
 
 /mob/dead/observer/verb/restore_ghost_appearance()
 	set name = "Restore Ghost Character"

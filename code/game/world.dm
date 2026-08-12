@@ -286,11 +286,6 @@ GLOBAL_VAR(restart_counter)
 
 #endif //ifdef UNIT_TESTS
 
-/world/Del()
-	shutdown_logging() // makes sure the thread is closed before end, else we terminate
-	QDEL_NULL(Debugger)
-	..()
-
 /world/proc/update_status()
 
 	var/list/features = list()

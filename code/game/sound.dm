@@ -41,7 +41,7 @@ falloff_distance - Distance at which falloff begins. Sound is at peak volume (in
 
 */
 
-/proc/playsound(atom/source, soundin, vol as num, vary, extrarange as num, falloff_exponent = SOUND_FALLOFF_EXPONENT, frequency = null, channel = 0, pressure_affected = TRUE, ignore_walls = TRUE, falloff_distance = SOUND_DEFAULT_FALLOFF_DISTANCE, use_reverb = TRUE, mono_adj = FALSE)	//WS Edit, Make tools and nearby airlocks use mono sound
+/proc/playsound(atom/source, soundin, vol as num, vary, extrarange as num, falloff_exponent = SOUND_FALLOFF_EXPONENT, frequency = null, channel = 0, pressure_affected = TRUE, ignore_walls = TRUE, falloff_distance = SOUND_DEFAULT_FALLOFF_DISTANCE, use_reverb = TRUE, mono_adj = FALSE, sound_flag = FS_GENERAL)	//WS Edit, Make tools and nearby airlocks use mono sound
 	if(isarea(source))
 		CRASH("playsound(): source is an area")
 
@@ -84,7 +84,7 @@ falloff_distance - Distance at which falloff begins. Sound is at peak volume (in
 		if(mono_adj)
 			ismono = get_dist(get_turf(P), turf_source) < 2	//If adjacent, play as mono
 		if(get_dist(M, turf_source) <= maxdistance)
-			M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff_exponent, channel, pressure_affected, S, maxdistance, falloff_distance, ignore_direction = ismono)
+			M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff_exponent, channel, pressure_affected, S, maxdistance, falloff_distance, ignore_direction = ismono, sound_flag = sound_flag)
 
 	for(var/P in LAZYACCESS(SSmobs.dead_players_by_virtual_z, source_z))
 		var/mob/M = P
@@ -92,7 +92,7 @@ falloff_distance - Distance at which falloff begins. Sound is at peak volume (in
 		if(mono_adj)
 			ismono = get_dist(get_turf(P), turf_source) < 2
 		if(get_dist(M, turf_source) <= maxdistance)
-			M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff_exponent, channel, pressure_affected, S, maxdistance, falloff_distance, ignore_direction = ismono)
+			M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff_exponent, channel, pressure_affected, S, maxdistance, falloff_distance, ignore_direction = ismono, sound_flag = sound_flag)
 
 /*! playsound
 
@@ -113,7 +113,7 @@ distance_multiplier - Can be used to multiply the distance at which the sound is
 
 */
 
-/mob/proc/playsound_local(turf/turf_source, soundin, vol as num, vary, frequency, falloff_exponent = SOUND_FALLOFF_EXPONENT, channel = 0, pressure_affected = TRUE, sound/S, max_distance, falloff_distance = SOUND_DEFAULT_FALLOFF_DISTANCE, distance_multiplier = 1, use_reverb = TRUE, envwet = -10000, envdry = 0, ignore_direction) // Env Wet / Dry is Reverb
+/mob/proc/playsound_local(turf/turf_source, soundin, vol as num, vary, frequency, falloff_exponent = SOUND_FALLOFF_EXPONENT, channel = 0, pressure_affected = TRUE, sound/S, max_distance, falloff_distance = SOUND_DEFAULT_FALLOFF_DISTANCE, distance_multiplier = 1, use_reverb = TRUE, envwet = -10000, envdry = 0, ignore_direction, sound_flag = FS_GENERAL) // Env Wet / Dry is Reverb
 	if(!client || !can_hear())
 		return
 
@@ -187,6 +187,13 @@ distance_multiplier - Can be used to multiply the distance at which the sound is
 		if(use_reverb && S.environment != SOUND_ENVIRONMENT_NONE) //We have reverb, reset our echo setting
 			S.echo[3] = 0 //Room setting, 0 means normal reverb
 			S.echo[4] = 0 //RoomHF setting, 0 means normal reverb.
+
+	// Apply sound flag volume scaling
+	if(client?.prefs?.sound_volume)
+		S.volume = round(S.volume * (client.prefs.sound_volume[sound_flag] / 100))
+
+	if(S.volume <= 0)
+		return //No sound
 
 	SEND_SOUND(src, S)
 

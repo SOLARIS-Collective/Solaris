@@ -726,7 +726,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 						// [MANKIND-ADD] - CELADON_LANIUS
 						else if(islanius(H))
 							eye_overlay = mutable_appearance('modular_mankind/_storage_icons/icons/species/lanius/lanius_organs.dmi', eyes.eye_icon_state, -BODYPARTS_LAYER)
-						// [/CELADON-ADD]
+						// [/MANKIND-ADD]
 						else
 							eye_icon = icon(species_eye_path || 'icons/mob/human_face.dmi', eyes.eye_icon_state)
 							sclera_icon = icon('icons/mob/human_face.dmi', eyes.sclera_icon_state)

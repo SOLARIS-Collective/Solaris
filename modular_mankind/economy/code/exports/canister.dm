@@ -12,7 +12,7 @@
 	var/obj/machinery/portable_atmospherics/canister/C = O
 	var/worth = 10
 
-	// Standart: 
+	// Standart:
 	//worth += C.air_contents.get_moles(GAS_PLASMA)*0.35	//	~665	// Люди в тупую прожают своих же газы, пока нету времени думать наж этим
 	worth += C.air_contents.get_moles(GAS_BZ)*1			//	~1881
 	worth += C.air_contents.get_moles(GAS_TRITIUM)*2	//	~3743

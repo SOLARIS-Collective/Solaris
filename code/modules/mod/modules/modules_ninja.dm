@@ -22,7 +22,7 @@
 	var/bulletoff = TRUE
 	var/slowdown_after_disable = FALSE
 	var/disable_slowdown_time = 0 SECONDS
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 /obj/item/mod/module/stealth/on_activation()
 	. = ..()
 	if(!.)
@@ -36,7 +36,7 @@
 	if(bulletoff)
 		RegisterSignals(mod.wearer, list(COMSIG_ATOM_BULLET_ACT, COMSIG_HUMAN_CHECK_SHIELDS), PROC_REF(on_bullet_act))
 	RegisterSignals(mod.wearer, list(COMSIG_MOB_ITEM_ATTACK, COMSIG_ATOM_ATTACKBY, COMSIG_ATOM_ATTACK_HAND, COMSIG_ATOM_HITBY, COMSIG_ATOM_HULK_ATTACK, COMSIG_ATOM_ATTACK_PAW, COMSIG_CARBON_CUFF_ATTEMPTED), PROC_REF(unstealth))
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 	animate(mod.wearer, alpha = stealth_alpha, time = 1.5 SECONDS)
 	drain_power(use_power_cost)
 
@@ -51,7 +51,7 @@
 	if(bulletoff)
 		UnregisterSignal(mod.wearer, list(COMSIG_ATOM_BULLET_ACT, COMSIG_HUMAN_CHECK_SHIELDS))
 	UnregisterSignal(mod.wearer, list(COMSIG_HUMAN_MELEE_UNARMED_ATTACK, COMSIG_MOB_ITEM_ATTACK, COMSIG_ATOM_ATTACKBY, COMSIG_ATOM_ATTACK_HAND, COMSIG_ATOM_HITBY, COMSIG_ATOM_HULK_ATTACK, COMSIG_ATOM_ATTACK_PAW, COMSIG_CARBON_CUFF_ATTEMPTED))
-	// [/CELADON-EDIT]
+	// [/MANKIND-EDIT]
 	animate(mod.wearer, alpha = 255, time = 1.5 SECONDS)
 
 /obj/item/mod/module/stealth/proc/unstealth(datum/source)
@@ -66,7 +66,7 @@
 		mod.wearer.add_movespeed_modifier(/datum/movespeed_modifier/shove)
 		to_chat(mod.wearer, span_danger("The [src] stiffens as a huge current passes through your suit, slowing you down!"))
 		addtimer(CALLBACK(mod.wearer, TYPE_PROC_REF(/mob/living/carbon, clear_shove_slowdown)), disable_slowdown_time)
-	// [/CELADON-ADD]
+	// [/MANKIND-ADD]
 
 /obj/item/mod/module/stealth/proc/on_unarmed_attack(datum/source, atom/target)
 	SIGNAL_HANDLER

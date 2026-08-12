@@ -150,6 +150,8 @@
 //	token.collision_alarm()
 	var/list/arpa_add = list()
 	for(var/obj/overmap/rendered/i in orange(4, token))
+		if(!istype(i.parent, /datum/overmap/ship/controlled))
+			continue
 		calculate_cpa(src, i.parent)
 		arpa_add |= i.parent
 	return arpa_add
