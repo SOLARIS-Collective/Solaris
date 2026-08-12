@@ -1416,6 +1416,7 @@
 /turf/open/floor/plasteel/dark,
 /area/ship/medical)
 "im" = (
+/obj/effect/turf_decal/soc/two_two,
 /turf/open/floor/mineral/plastitanium,
 /area/ship/crew/office)
 "ip" = (
@@ -1440,6 +1441,7 @@
 /obj/effect/turf_decal/corner/opaque/syndiered{
 	dir = 9
 	},
+/obj/effect/turf_decal/soc/one_one,
 /turf/open/floor/mineral/plastitanium,
 /area/ship/crew/office)
 "iu" = (
@@ -1838,6 +1840,7 @@
 /area/ship/bridge)
 "kF" = (
 /obj/machinery/holopad/emergency/command,
+/obj/effect/turf_decal/soc/three_two,
 /turf/open/floor/mineral/plastitanium,
 /area/ship/crew/office)
 "kH" = (
@@ -2156,6 +2159,7 @@
 /obj/structure/chair{
 	dir = 1
 	},
+/obj/effect/turf_decal/soc/two_one,
 /turf/open/floor/mineral/plastitanium,
 /area/ship/crew/office)
 "mo" = (
@@ -3064,6 +3068,7 @@
 /obj/effect/turf_decal/corner/opaque/syndiered{
 	dir = 6
 	},
+/obj/effect/turf_decal/soc/one_three,
 /turf/open/floor/mineral/plastitanium,
 /area/ship/crew/office)
 "qY" = (
@@ -6020,6 +6025,10 @@
 	},
 /turf/open/floor/plasteel/tech,
 /area/ship/engineering/atmospherics)
+"HK" = (
+/obj/effect/turf_decal/soc/one_two,
+/turf/open/floor/mineral/plastitanium,
+/area/ship/crew/office)
 "HL" = (
 /obj/effect/turf_decal/syndicateemblem/middle/middle,
 /obj/effect/turf_decal/spline/fancy/opaque/black{
@@ -7305,6 +7314,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
 	},
+/obj/effect/turf_decal/soc/three_three,
 /turf/open/floor/mineral/plastitanium,
 /area/ship/crew/office)
 "PY" = (
@@ -7348,6 +7358,16 @@
 	rad_insulation = 0
 	},
 /area/ship/cargo)
+"Qf" = (
+/obj/effect/turf_decal/corner/opaque/syndiered{
+	dir = 9
+	},
+/obj/structure/chair{
+	dir = 1
+	},
+/obj/effect/turf_decal/soc/three_one,
+/turf/open/floor/mineral/plastitanium,
+/area/ship/crew/office)
 "Qg" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -8767,6 +8787,7 @@
 /obj/structure/chair{
 	dir = 1
 	},
+/obj/effect/turf_decal/soc/two_three,
 /turf/open/floor/mineral/plastitanium,
 /area/ship/crew/office)
 "Yj" = (
@@ -10004,7 +10025,7 @@ sp
 cC
 ir
 mm
-Ls
+Qf
 Ls
 AQ
 oJ
@@ -10037,7 +10058,7 @@ IC
 tH
 sp
 qN
-im
+HK
 im
 kF
 Xq

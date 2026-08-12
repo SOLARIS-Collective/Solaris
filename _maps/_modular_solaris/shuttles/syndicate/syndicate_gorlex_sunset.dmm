@@ -106,6 +106,7 @@
 	},
 /obj/item/clothing/glasses/hud/security/night,
 /obj/item/clothing/glasses/hud/security/night,
+/obj/effect/turf_decal/gorlex/three_three,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ship/security/armory)
 "bU" = (
@@ -619,6 +620,7 @@
 /obj/effect/turf_decal/industrial/warning{
 	dir = 1
 	},
+/obj/effect/turf_decal/gorlex,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ship/security/armory)
 "jx" = (
@@ -1108,6 +1110,7 @@
 	pixel_x = -10;
 	pixel_y = 4
 	},
+/obj/effect/turf_decal/gorlex/one_two,
 /turf/open/floor/plasteel/lightdark,
 /area/ship/security/armory)
 "si" = (
@@ -1561,6 +1564,7 @@
 	pixel_x = 9;
 	pixel_y = -3
 	},
+/obj/effect/turf_decal/gorlex/one_one,
 /turf/open/floor/plasteel/lightdark,
 /area/ship/security/armory)
 "Aj" = (
@@ -1893,6 +1897,7 @@
 /obj/item/storage/box/ammo/c57x39,
 /obj/item/storage/box/ammo/c57x39,
 /obj/item/storage/box/ammo/c57x39,
+/obj/effect/turf_decal/gorlex/three_one,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ship/security/armory)
 "CZ" = (
@@ -2793,6 +2798,7 @@
 	icon_state = "1-2"
 	},
 /obj/effect/turf_decal/industrial/warning,
+/obj/effect/turf_decal/gorlex/three_two,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ship/security/armory)
 "QQ" = (
@@ -3062,6 +3068,7 @@
 /obj/effect/turf_decal/industrial/warning{
 	dir = 9
 	},
+/obj/effect/turf_decal/gorlex/two_one,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ship/security/armory)
 "UG" = (

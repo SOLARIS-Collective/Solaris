@@ -3,6 +3,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 8
 	},
+/obj/effect/turf_decal/gec/one_two,
 /turf/open/floor/plasteel/dark,
 /area/ship/bridge)
 "aH" = (
@@ -151,6 +152,7 @@
 	pixel_y = -24;
 	id = "hyena_turrets"
 	},
+/obj/effect/turf_decal/gec/two_one,
 /turf/open/floor/plasteel/dark,
 /area/ship/bridge)
 "ch" = (
@@ -1910,6 +1912,7 @@
 	pixel_y = -16;
 	pixel_x = -12
 	},
+/obj/effect/turf_decal/gec/two_two,
 /turf/open/floor/plasteel/dark,
 /area/ship/bridge)
 "Fr" = (
@@ -3058,6 +3061,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 6
 	},
+/obj/effect/turf_decal/gec/one_one,
 /turf/open/floor/plasteel/dark,
 /area/ship/bridge)
 "WS" = (
