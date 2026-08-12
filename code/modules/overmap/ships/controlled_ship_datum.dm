@@ -79,6 +79,11 @@
 	/// When active the ship reveals its real name and faction to everyone; when inactive it stays anonymous.
 	var/transponder_active = FALSE
 
+	// [MANKIND-ADD] - STEALTH_ARPA - Классическая ARPA с реальными именами кораблей на дистанции.
+	/// If TRUE, this ship's helm uses the classic ARPA: real ship names at range, no label buttons.
+	var/omni_arpa = FALSE
+	// [/MANKIND-ADD]
+
 	/// Short memo of the ship shown to new joins
 	var/memo = null
 	///Assoc list of remaining open job slots (job = remaining slots)
@@ -167,6 +172,9 @@
 		// [MANKIND-ADD] - Сенсоры корабля при создании теперь получают максимальное значение, вместо 1.
 		sensor_range = default_sensor_range
 		// [/MANKIND-ADD]
+		// [MANKIND-ADD] - STEALTH_ARPA - Классическая ARPA с реальными именами кораблей на дистанции.
+		omni_arpa = source_template.omni_arpa
+		// [/MANKIND-ADD]
 		ship_account = new(name, source_template.starting_funds)
 		if(outpost_special_docking_perms)
 			outpost_special_dock_perms = TRUE
@@ -225,6 +233,9 @@
 /datum/overmap/ship/controlled/proc/get_known_ship_name(datum/overmap/ship/controlled/target)
 	if(!istype(target))
 		return list("name" = target?.name || "Unknown", "known" = FALSE)
+	// A ship with omni_arpa uses the classic ARPA: it sees real names of all ships at range.
+	if(omni_arpa)
+		return list("name" = target.name, "known" = TRUE)
 	// A ship broadcasting its transponder reveals its identity to everyone, but is not remembered.
 	if(target.transponder_active)
 		return list("name" = target.name, "known" = TRUE)

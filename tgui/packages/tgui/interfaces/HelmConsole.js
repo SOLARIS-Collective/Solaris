@@ -61,7 +61,7 @@ export const HelmConsole = (_props, context) => {
 
 const SharedContent = (_props, context) => {
   const { act, data } = useBackend(context);
-  const { isViewer, canRename, shipInfo = [], otherInfo = [], arpa_ships = [], calibrating } = data;
+  const { isViewer, canRename, shipInfo = [], otherInfo = [], arpa_ships = [], calibrating, omni_arpa } = data;
   let flyable = !data.docking && !data.docked;
   return (
     <>
@@ -103,7 +103,6 @@ const SharedContent = (_props, context) => {
                 tooltip="Decrease Signal Length"
                 tooltipPosition="right"
                 icon="arrow-left"
-                ml={1}
                 // [MANKIND-ADD] - subshuttle fix
                 disabled={data.issubshuttle !== null}
                 // [/MANKIND-ADD] - subshuttle fix
@@ -164,7 +163,7 @@ const SharedContent = (_props, context) => {
         <Table>
           <Table.Row bold>
             <Table.Cell>Name</Table.Cell>
-            {!isViewer && <Table.Cell>Label</Table.Cell>}
+            {!isViewer && !omni_arpa && <Table.Cell>Label</Table.Cell>}
             {!isViewer && <Table.Cell>Hail</Table.Cell>}
             {!isViewer && <Table.Cell>Dock</Table.Cell>}
           </Table.Row>
@@ -179,7 +178,7 @@ const SharedContent = (_props, context) => {
                   ship.name
                 )}
               </Table.Cell>
-              {!isViewer && (
+              {!isViewer && !omni_arpa && (
                 <Table.Cell>
                   {ship.scannable && (
                     <Button
@@ -270,7 +269,7 @@ const SharedContent = (_props, context) => {
                 ship.name
               )}
             </Table.Cell>
-            {!isViewer && ship.scannable && (
+            {!isViewer && !omni_arpa && ship.scannable && (
               <Table.Cell>
                 <Button
                   tooltip="Set Label"

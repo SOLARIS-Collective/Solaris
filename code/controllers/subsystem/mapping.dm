@@ -222,6 +222,11 @@ SUBSYSTEM_DEF(mapping)
 			S.def_sensor_range = data["sensor_range"]
 		// [/MANKIND-ADD]
 
+		// [MANKIND-ADD] - STEALTH_ARPA - Классическая ARPA с реальными именами кораблей на дистанции.
+		if(data["omni_arpa"])
+			S.omni_arpa = TRUE
+		// [/MANKIND-ADD]
+
 		if(istext(data["token_icon_state"]))
 			S.token_icon_state = data["token_icon_state"]
 

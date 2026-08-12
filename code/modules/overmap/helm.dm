@@ -278,6 +278,9 @@
 	// [MANKIND-ADD] - TRANSPONDER_GOING_DARK - Переключатель транспондера в хелм-консоли
 	.["transponder_active"] = current_ship.transponder_active
 	// [/MANKIND-ADD]
+	// [MANKIND-ADD] - STEALTH_ARPA - Классическая ARPA с реальными именами кораблей на дистанции.
+	.["omni_arpa"] = current_ship.omni_arpa
+	// [/MANKIND-ADD]
 	for(var/datum/weakref/engine in current_ship.shuttle_port.engine_list)
 		var/obj/machinery/power/shuttle/engine/real_engine = engine.resolve()
 		if(!real_engine)

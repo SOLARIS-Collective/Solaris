@@ -25,6 +25,11 @@
 	var/def_sensor_range = 4
 	// [/MANKIND-ADD]
 
+	// [MANKIND-ADD] - STEALTH_ARPA - Классическая ARPA с реальными именами кораблей на дистанции.
+	/// If TRUE, this ship's helm uses the classic ARPA: real ship names at range, no label buttons.
+	var/omni_arpa = FALSE
+	// [/MANKIND-ADD]
+
 	var/list/job_slots = list()
 	var/list/name_categories = list("GENERAL")
 	/// The icon state the ship usesship_generic
