@@ -218,6 +218,26 @@
 /datum/overmap/ship/controlled/proc/get_faction()
 	return source_template.faction
 
+// [MANKIND-ADD] - TRANSPONDER_GOING_DARK - Реализация «going dark»: скрытие корабля от чужих сенсоров
+/// Re-evaluates whether the transponder jamming field is active and updates the ship's visibility.
+/datum/overmap/ship/controlled/proc/refresh_transponder_state()
+	var/obj/machinery/computer/transponder/transponder = ship_modules[SHIPMODULE_TRANSPONDER]
+	transponder_active = transponder && transponder.enabled && transponder.powered()
+	// Re-render the token so the hidden state is reflected on the overmap.
+	alter_token_appearance()
+
+/// Returns TRUE if [observer] cannot see this ship because its transponder jamming field is active.
+/datum/overmap/ship/controlled/proc/is_transponder_hidden_to(datum/overmap/ship/controlled/observer)
+	if(!transponder_active)
+		return FALSE
+	// The jamming field hides us from everyone except our own faction.
+	var/datum/faction/our_faction = get_faction()
+	var/datum/faction/observer_faction = observer?.get_faction()
+	if(our_faction && observer_faction && our_faction == observer_faction)
+		return FALSE
+	return TRUE
+// [/MANKIND-ADD]
+
 /**
  * Returns the display name and known flag used by ARPA/Radar for [target].
  *

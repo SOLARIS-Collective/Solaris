@@ -163,9 +163,9 @@ const SharedContent = (_props, context) => {
         <Table>
           <Table.Row bold>
             <Table.Cell>Name</Table.Cell>
+            {!isViewer && <Table.Cell>Scan</Table.Cell>}
             {!isViewer && <Table.Cell>Label</Table.Cell>}
             {!isViewer && <Table.Cell>Hail</Table.Cell>}
-            {!isViewer && <Table.Cell>Act</Table.Cell>}
             {!isViewer && <Table.Cell>Dock</Table.Cell>}
           </Table.Row>
           {otherInfo.map((ship) => (
