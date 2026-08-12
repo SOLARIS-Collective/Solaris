@@ -64,7 +64,7 @@
 // /obj/effect/turf_decal/mankind_logo/three_three
 // 	icon_state = "33"
 
-// логитип фракции синдиката 2nd_battle_group
+// логитип фракции синдиката 2nd_battle_group (спасибо mumberious, за стиль)
 /obj/effect/turf_decal/nd_battle_group
 	icon = 'modular_mankind/_storage_icons/icons/structures/logo/syndi.dmi'
 	name = "2nd battle group"
