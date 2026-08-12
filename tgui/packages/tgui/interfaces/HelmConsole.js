@@ -27,10 +27,10 @@ export const HelmConsole = (_props, context) => {
   const { data } = useBackend(context);
   const { mapRef, isViewer } = data;
   return (
-    <Window width={1378} height={700}>
+    <Window width={1130} height={700}>
       <Window.Content>
         <Stack fill>
-          <Stack.Item width="280px" overflowX="auto">
+          <Stack.Item width="230px" overflowX="auto">
             {!!data.docked && (
               <NoticeBox>Ship docked to: {data.docked}</NoticeBox>
             )}
@@ -47,7 +47,7 @@ export const HelmConsole = (_props, context) => {
               }}
             />
           </Stack.Item>
-          <Stack.Item width="400px" overflowX="auto">
+          <Stack.Item width="230px" overflowX="auto">
             {!!data.docked && (
               <NoticeBox>Ship docked to: {data.docked}</NoticeBox>
             )}
@@ -260,15 +260,7 @@ const SharedContent = (_props, context) => {
       <Section title="ARPA">
         {arpa_ships.map((ship) => (
           <Table.Row key={ship.ref || ship.name}>
-            <Table.Cell>
-              {ship.known ? (
-                <span>
-                  <Icon name="check" color="good" /> {ship.name}
-                </span>
-              ) : (
-                ship.name
-              )}
-            </Table.Cell>
+            <Table.Cell>{ship.name}</Table.Cell>
             {!isViewer && !omni_arpa && ship.scannable && (
               <Table.Cell>
                 <Button
