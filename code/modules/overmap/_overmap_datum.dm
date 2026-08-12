@@ -437,9 +437,14 @@
 	var/input = stripped_input(user, "Please choose a message to hail the target with.", "Hailing Vessel")
 	if(!input)
 		return
-	priority_announce("[html_decode(input)]", "Outbound Hail to [interact_target]", 'sound/effects/hail.ogg', sender_override = name, zlevel = shuttle_port.virtual_z())
-	interact_target.relay_message(user,interact_target, input)
-	deadchat_broadcast(" hailed the <span class='name'>[interact_target.name]</span>: [input]", "<span class='name'>[user.real_name]</span>", user, message_type=DEADCHAT_ANNOUNCEMENT)
+	// [MANKIND-ADD] - TRANSPONDER_GOING_DARK - Hail не палит имя, если транспондер выключен
+	var/display_name = istype(src, /datum/overmap/ship/controlled) ? get_display_name(user) : name
+	var/datum/overmap/ship/controlled/target_ship = istype(interact_target, /datum/overmap/ship/controlled) ? interact_target : null
+	var/target_name = target_ship ? target_ship.get_display_name() : interact_target.name
+	// [/MANKIND-ADD]
+	priority_announce("[html_decode(input)]", "Outbound Hail to [target_name]", 'sound/effects/hail.ogg', sender_override = display_name, zlevel = shuttle_port.virtual_z())
+	interact_target.relay_message(user, src, input)
+	deadchat_broadcast(" hailed the <span class='name'>[target_name]</span>: [input]", "<span class='name'>[user.real_name]</span>", user, message_type=DEADCHAT_ANNOUNCEMENT)
 	return
 
 /**
@@ -458,7 +463,11 @@
  * * requesting_interactor - The overmap datum requesting the options.
  */
 /datum/overmap/ship/controlled/relay_message(mob/living/user, datum/overmap/requesting_interactor, message)
-	priority_announce("[html_decode(message)]", "Incoming Hail", 'sound/effects/hail.ogg', sender_override = requesting_interactor.name, zlevel = shuttle_port.virtual_z())
+	// [MANKIND-ADD] - TRANSPONDER_GOING_DARK - Получатель видит имя отправителя в зависимости от его транспондера
+	var/datum/overmap/ship/controlled/sender_ship = istype(requesting_interactor, /datum/overmap/ship/controlled) ? requesting_interactor : null
+	var/sender_name = sender_ship ? sender_ship.get_display_name() : requesting_interactor.name
+	// [/MANKIND-ADD]
+	priority_announce("[html_decode(message)]", "Incoming Hail", 'sound/effects/hail.ogg', sender_override = sender_name, zlevel = shuttle_port.virtual_z())
 	return
 
 /**
