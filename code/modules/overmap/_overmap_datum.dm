@@ -441,6 +441,10 @@
 	var/display_name = istype(src, /datum/overmap/ship/controlled) ? get_display_name(user) : name
 	var/datum/overmap/ship/controlled/target_ship = istype(interact_target, /datum/overmap/ship/controlled) ? interact_target : null
 	var/target_name = target_ship ? target_ship.get_display_name() : interact_target.name
+	// [MANKIND-EDIT] - OMNI_ARPA_HAIL - omni_arpa отправитель всегда видит настоящее имя получателя
+	if(target_ship && omni_arpa)
+		target_name = target_ship.name
+	// [/MANKIND-EDIT]
 	// [/MANKIND-ADD]
 	priority_announce("[html_decode(input)]", "Outbound Hail to [target_name]", 'sound/effects/hail.ogg', "Hail", sender_override = display_name, zlevel = shuttle_port.virtual_z())
 	interact_target.relay_message(user, src, input)
@@ -466,6 +470,10 @@
 	// [MANKIND-ADD] - TRANSPONDER_GOING_DARK - Получатель видит имя отправителя в зависимости от его транспондера
 	var/datum/overmap/ship/controlled/sender_ship = istype(requesting_interactor, /datum/overmap/ship/controlled) ? requesting_interactor : null
 	var/sender_name = sender_ship ? sender_ship.get_display_name() : requesting_interactor.name
+	// [MANKIND-EDIT] - OMNI_ARPA_HAIL - omni_arpa получатель всегда видит настоящее имя отправителя
+	if(sender_ship && omni_arpa)
+		sender_name = sender_ship.name
+	// [/MANKIND-EDIT]
 	// [/MANKIND-ADD]
 	priority_announce("[html_decode(message)]", "Incoming Hail", 'sound/effects/hail.ogg', "Hail", sender_override = sender_name, zlevel = shuttle_port.virtual_z())
 	return
