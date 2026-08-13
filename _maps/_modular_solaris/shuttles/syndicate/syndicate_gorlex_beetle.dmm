@@ -1058,7 +1058,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/effect/turf_decal/nd_battle_group/two_two,
+/obj/effect/turf_decal/nd_battle_group,
 /turf/open/floor/plasteel/strongdark,
 /area/ship/cargo)
 "ri" = (
