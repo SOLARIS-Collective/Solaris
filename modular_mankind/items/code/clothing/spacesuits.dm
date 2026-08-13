@@ -269,4 +269,52 @@
 	item_state = "hardsuit1-syndiesst"
 	hardsuit_type = "syndiesst"
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite/shabbysst
+
+// MARK: Medical Shield
+
+/obj/item/clothing/head/helmet/space/hardsuit/medicalshield_medical
+	name = "medicalshield voidsuit helmet"
+	desc = "A special helmet designed for work in a hazardous, low-pressure environment. Has thermal and freeze shielding."
+	icon = 'modular_mankind/_storage_icons/icons/items/clothing/head/medshield.dmi'
+	mob_overlay_icon = 'modular_mankind/_storage_icons/icons/items/clothing/head/overlay/medshield.dmi'
+	icon_state = "hardsuit0-medical"
+	item_state = "hardsuit1-medical"
+	hardsuit_type = "medical"
+	armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 5, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 95, "wound" = 50)
+	heat_protection = HEAD
+	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
+
+/obj/item/clothing/suit/space/hardsuit/medicalshield_medical
+	name = "medicalshield voidsuit"
+	desc = "A special suit that protects against hazardous, low pressure environments. Has thermal and freeze shielding."
+	icon = 'modular_mankind/_storage_icons/icons/items/clothing/space_suit/medshield.dmi'
+	mob_overlay_icon = 'modular_mankind/_storage_icons/icons/items/clothing/space_suit/overlay/medshield.dmi'
+	icon_state = "voidsuit_medical"
+	item_state = "voidsuit_medical"
+	armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 5, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 95, "wound" = 50)
+	heat_protection = CHEST | GROIN | LEGS | FEET | ARMS | HANDS
+	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
+	strip_delay = 90
+	slowdown = 2
+	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/medicalshield_medical
+
+/obj/item/clothing/head/helmet/space/hardsuit/medicalshield_medical/marine
+	name = "medicalshield voidsuit helmet"
+	desc = "A special helmet designed for work in a hazardous, low-pressure environment. Has thermal and freeze shielding."
+	icon_state = "hardsuit0-marine"
+	item_state = "hardsuit1-marine"
+	hardsuit_type = "marine"
+	armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 5, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 95, "wound" = 50)
+	heat_protection = HEAD
+	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
+
+/obj/item/clothing/suit/space/hardsuit/medicalshield_medical/marine
+	name = "medicalshield voidsuit"
+	desc = "A special suit that protects against hazardous, low pressure environments. Has thermal and freeze shielding."
+	icon_state = "voidsuit_marine"
+	item_state = "voidsuit_marine"
+	armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 5, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 95, "wound" = 50)
+	heat_protection = CHEST | GROIN | LEGS | FEET | ARMS | HANDS
+	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
+	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/medicalshield_medical/marine
 	armor = list("melee" = 45, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = 35, "bio" = 100, "rad" = 50, "fire" = 100, "acid" = 70, "wound" = 20)
