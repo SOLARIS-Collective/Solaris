@@ -22,7 +22,6 @@ SUBSYSTEM_DEF(overmap_stuff)
 			i.speed_x = 0
 			i.speed_y = 0
 		if(!i.docked_to)
-			i.check_proximity()
 			i.x_pixels_moved += i.speed_x*(30 SECONDS)
 			i.y_pixels_moved += i.speed_y*(30 SECONDS)
 

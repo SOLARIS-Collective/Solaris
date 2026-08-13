@@ -66,11 +66,8 @@ DEFINE_BITFIELD(smoothing_junction, list(
 			}; \
 		}; \
 		else if( \
-			((source_area.area_flags & SHIP_SMOOTHING) != (target_area.area_flags & SHIP_SMOOTHING)) || \
-			( \
-			((source_area.area_flags & SHIP_SMOOTHING) & (target_area.area_flags & SHIP_SMOOTHING)) && \
-			source_area.mobile_port != target_area.mobile_port \
-			) \
+			!source_area || !target_area || \
+			((source_area.area_flags & SHIP_SMOOTHING) != (target_area.area_flags & SHIP_SMOOTHING)) \
 			) { \
 				continue; \
 				}; \
@@ -117,7 +114,7 @@ DEFINE_BITFIELD(smoothing_junction, list(
 	if(!loc)
 		return
 
-	var/area/ship/src_area = get_area(src)
+	var/area/src_area = get_area(src)
 
 	for(var/direction in GLOB.cardinals)
 		switch(find_type_in_direction(direction, src_area))
@@ -304,10 +301,8 @@ DEFINE_BITFIELD(smoothing_junction, list(
 
 	/*If one has SHIP_SMOOTHING and the other does not, no smoothing. Both areas need SHIP_SMOOTHING and then be of the same mobile port to tile together.
 	Bitmath is very fast. The only way to make this faster is if mobile_port was a global area variable, so then you can compare mobile_port without checking for SHIP_SMOOTHING.*/
-	if((source_area.area_flags & SHIP_SMOOTHING) != (target_area.area_flags & SHIP_SMOOTHING) || \
-		( \
-		((source_area.area_flags & SHIP_SMOOTHING) & (target_area.area_flags & SHIP_SMOOTHING)) && source_area.mobile_port != target_area.mobile_port \
-		))
+	if(!source_area || !target_area || \
+		(source_area.area_flags & SHIP_SMOOTHING) != (target_area.area_flags & SHIP_SMOOTHING))
 		return NO_ADJ_FOUND
 
 	if(isnull(canSmoothWith)) //special case in which it will only smooth with itself
@@ -344,7 +339,7 @@ DEFINE_BITFIELD(smoothing_junction, list(
 /atom/proc/bitmask_smooth()
 	var/new_junction = NONE
 	var/new_conn_junction = NONE
-	var/area/src_area = get_area(src) //Proc here and send out to optimize the rest of the calls.
+	var/area/ship/src_area = get_area(src) //Proc here and send out to optimize the rest of the calls.
 
 	for(var/direction in GLOB.cardinals) //Cardinal case first.
 		SET_ADJ_IN_DIR(src, src_area, new_junction, new_conn_junction, direction, direction)

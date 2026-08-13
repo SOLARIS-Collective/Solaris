@@ -21,23 +21,23 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 	if(level >= SEC_LEVEL_GREEN && level <= SEC_LEVEL_DELTA && level != GLOB.security_level)
 		switch(level)
 			if(SEC_LEVEL_GREEN)
-				minor_announce(CONFIG_GET(string/alert_green), "Attention! Security level lowered to green:")
+				announce_security_level_change(SEC_LEVEL_GREEN, CONFIG_GET(string/alert_green), FALSE)
 				GLOB.security_level = SEC_LEVEL_GREEN
 			if(SEC_LEVEL_BLUE)
 				if(GLOB.security_level < SEC_LEVEL_BLUE)
-					minor_announce(CONFIG_GET(string/alert_blue_upto), "Attention! Security level elevated to blue:",1)
+					announce_security_level_change(SEC_LEVEL_BLUE, CONFIG_GET(string/alert_blue_upto), TRUE)
 				else
-					minor_announce(CONFIG_GET(string/alert_blue_downto), "Attention! Security level lowered to blue:")
+					announce_security_level_change(SEC_LEVEL_BLUE, CONFIG_GET(string/alert_blue_downto), FALSE)
 				GLOB.security_level = SEC_LEVEL_BLUE
 			if(SEC_LEVEL_RED)
 				if(GLOB.security_level < SEC_LEVEL_RED)
-					minor_announce(CONFIG_GET(string/alert_red_upto), "Attention! Code red!",1)
+					announce_security_level_change(SEC_LEVEL_RED, CONFIG_GET(string/alert_red_upto), TRUE)
 				else
-					minor_announce(CONFIG_GET(string/alert_red_downto), "Attention! Code red!")
+					announce_security_level_change(SEC_LEVEL_RED, CONFIG_GET(string/alert_red_downto), FALSE)
 				GLOB.security_level = SEC_LEVEL_RED
 
 			if(SEC_LEVEL_DELTA)
-				minor_announce(CONFIG_GET(string/alert_delta), "Attention! Delta security level reached!",1)
+				announce_security_level_change(SEC_LEVEL_DELTA, CONFIG_GET(string/alert_delta), TRUE)
 				GLOB.security_level = SEC_LEVEL_DELTA
 		if(level >= SEC_LEVEL_RED)
 			for(var/obj/machinery/door/D in GLOB.machines)

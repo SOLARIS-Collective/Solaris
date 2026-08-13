@@ -76,8 +76,19 @@
 			return FALSE
 
 		if(mineral)
-			var/obj/item/stack/sheet/mineral/mineral_path = text2path("/obj/item/stack/sheet/mineral/[mineral]")
-			user.visible_message(\
+			var/static/list/mineral_sheets = list(
+				"wood" = /obj/item/stack/sheet/mineral/wood,
+				"plasma" = /obj/item/stack/sheet/mineral/plasma,
+				"uranium" = /obj/item/stack/sheet/mineral/uranium,
+				"gold" = /obj/item/stack/sheet/mineral/gold,
+				"silver" = /obj/item/stack/sheet/mineral/silver,
+				"titanium" = /obj/item/stack/sheet/mineral/titanium,
+				"plastitanium" = /obj/item/stack/sheet/mineral/plastitanium,
+				"diamond" = /obj/item/stack/sheet/mineral/diamond,
+				"sandstone" = /obj/item/stack/sheet/mineral/sandstone,
+			)
+			var/obj/item/stack/sheet/mineral/mineral_path = mineral_sheets[mineral]
+			user.visible_message(
 				span_notice("[user] welds the [mineral] plating off the airlock assembly."),
 				span_notice("You start to weld the [mineral] plating off the airlock assembly..."))
 			if(I.use_tool(src, user, 40, volume=50))
@@ -264,7 +275,17 @@
 										return
 									to_chat(user, span_notice("You install [M] plating into the airlock assembly."))
 									G.use(2)
-									var/mineralassembly = text2path("/obj/structure/door_assembly/door_assembly_[M]")
+									var/static/list/door_assemblies = list(
+										"wood" = /obj/structure/door_assembly/door_assembly_wood,
+										"plasma" = /obj/structure/door_assembly/door_assembly_plasma,
+										"uranium" = /obj/structure/door_assembly/door_assembly_uranium,
+										"gold" = /obj/structure/door_assembly/door_assembly_gold,
+										"silver" = /obj/structure/door_assembly/door_assembly_silver,
+										"titanium" = /obj/structure/door_assembly/door_assembly_titanium,
+										"diamond" = /obj/structure/door_assembly/door_assembly_diamond,
+										"sandstone" = /obj/structure/door_assembly/door_assembly_sandstone,
+									)
+									var/mineralassembly = door_assemblies[M]
 									var/obj/structure/door_assembly/MA = new mineralassembly(loc)
 
 									if(MA.noglass && glass) //in case the new door doesn't support glass. prevents the new one from reverting to a normal airlock after being constructed.
@@ -341,7 +362,18 @@
 			else
 				new /obj/item/shard(T)
 		if(mineral)
-			var/obj/item/stack/sheet/mineral/mineral_path = text2path("/obj/item/stack/sheet/mineral/[mineral]")
+			var/static/list/mineral_sheets = list(
+				"wood" = /obj/item/stack/sheet/mineral/wood,
+				"plasma" = /obj/item/stack/sheet/mineral/plasma,
+				"uranium" = /obj/item/stack/sheet/mineral/uranium,
+				"gold" = /obj/item/stack/sheet/mineral/gold,
+				"silver" = /obj/item/stack/sheet/mineral/silver,
+				"titanium" = /obj/item/stack/sheet/mineral/titanium,
+				"plastitanium" = /obj/item/stack/sheet/mineral/plastitanium,
+				"diamond" = /obj/item/stack/sheet/mineral/diamond,
+				"sandstone" = /obj/item/stack/sheet/mineral/sandstone,
+			)
+			var/obj/item/stack/sheet/mineral/mineral_path = mineral_sheets[mineral]
 			new mineral_path(T, 2)
 	qdel(src)
 

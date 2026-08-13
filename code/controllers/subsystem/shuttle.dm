@@ -127,17 +127,21 @@ SUBSYSTEM_DEF(shuttle)
 	///attempt at making transit levels bigger to allow for better ship to ship docking
 	if(transit_width <= 32) ///32 x 3 = 96 - small sized ships shouldnt be bigger than this
 		transit_width *= 3
-	else if(transit_width <= 63) // 63 x 2 = 127 -  127 is the defialt size of planets, ideally we dont go higher than this
+	else if(transit_width <= 63) // 63 x 2 = 127 -  127 is the default size of planets, ideally we dont go higher than this
 		transit_width *= 2
+	else if(transit_width <= 127) // fuckhuge ships should prbobaly max out here,
+		transit_width = 127 // ditto
 	else
-		transit_width = 127 // fuckhuge ships should prbobaly max out here
+		transit_width = 255 //...however, for the sake of edgecase handling, if a mapper decides to break all mapping conventions (map size larger than 127), we assume this is intentional,
 
 	if(transit_height <= 32) ///32 x 3 = 96 - small sized ships shouldnt be bigger than this
 		transit_height *= 3
-	else if(transit_height <= 63) // 63 x 2 = 127 -  127 is the defialt size of planets, ideally we dont go higher than this
+	else if(transit_height <= 63) // 63 x 2 = 127 -  127 is the default size of planets, ideally we dont go higher than this
 		transit_height *= 2
+	else if(transit_height <= 127) // fuckhuge ships should prbobaly max out here,
+		transit_height = 127 // ditto
 	else
-		transit_height = 127 // fuckhuge ships should prbobaly max out here
+		transit_height = 255 //...however, for the sake of edgecase handling, if a mapper decides to break all mapping conventions (map size larger than 127), we assume this is intentional,
 
 	var/transit_path = /turf/open/space/transit
 	switch(travel_dir)
@@ -162,7 +166,9 @@ SUBSYSTEM_DEF(shuttle)
 		mapzone,
 		transit_width,
 		transit_height,
-		ALLOCATION_FREE
+		ALLOCATION_FREE,
+		DEFAULT_ALLOC_JUMP, // PENTEST EDIT - Manditory ZLevels
+		ZLEVEL_ROLE_HYPERSPACE // PENTEST EDIT - Manditory ZLevels
 	)
 
 	vlevel.reserve_margin(TRANSIT_SIZE_BORDER)
@@ -329,7 +335,11 @@ SUBSYSTEM_DEF(shuttle)
 
 	if(!loading_zone)
 		CRASH("failed to reserve an area for shuttle template loading")
-	loading_zone.fill_in(turf_type = /turf/open/space/transit/south)
+	// [MANKIND-EDIT] - OPTIMIZE_SHIP_LOADING - Убран избыточный fill_in()
+	// Первый fill_in() заливал loading-зону космосом, но template.load()
+	// сразу перезаписывает все тайлы шаттла. Работа впустую.
+	// loading_zone.fill_in(turf_type = /turf/open/space/transit/south)
+	// [/MANKIND-EDIT]
 
 	var/turf/BL = locate(loading_zone.low_x, loading_zone.low_y, loading_zone.z_value)
 	if(!template.load(BL, centered = FALSE, register = FALSE))

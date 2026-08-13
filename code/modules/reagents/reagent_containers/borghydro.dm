@@ -169,7 +169,6 @@ Borg Hypospray
 	charge_cost = 20
 	recharge_time = 2
 	reagent_ids = list(/datum/reagent/medicine/panacea, /datum/reagent/medicine/potass_iodide, /datum/reagent/medicine/morphine)
-	inject_flags = INJECT_CHECK_PENETRATE_THICK
 	accepts_reagent_upgrades = FALSE
 
 /*

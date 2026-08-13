@@ -23,7 +23,6 @@
 	var/target_temperature = T20C
 	var/heat_capacity = 0
 	var/interactive = TRUE // So mapmakers can disable interaction.
-	var/last_registered_power = 0 // PENTEST FIX - THERMOMACHINE POWER CALCULATION - Track what power draw is registered with the area
 
 /obj/machinery/atmospherics/components/unary/thermomachine/Initialize(mapload)
 	. = ..()
@@ -41,6 +40,22 @@
 	for(var/obj/item/stock_parts/matter_bin/M in component_parts)
 		B += M.rating
 	heat_capacity = 5000 * ((B - 1) ** 2)
+// PENTEST FIX - THERMOMACHINE POWER CALCULATION - START
+	recalculate_power()
+
+/// Recalculates the power usage of the machine based on the current target temperature and the temperature of the gas in the pipes. Should be called whenever the target temperature changes, or when the machine is turned on or off.
+/obj/machinery/atmospherics/components/unary/thermomachine/proc/recalculate_power(old_temperature)
+	var/temperature_difference = abs(target_temperature - old_temperature)
+	// Baseline active power (200W) + temperature-based scaling
+	// This ensures the machine always draws meaningful power when active
+	var/new_active_power = idle_power_usage + (heat_capacity * temperature_difference) / 1000
+	set_no_power()
+	active_power_usage = new_active_power
+	if(on)
+		set_active_power()
+	else
+		set_idle_power()
+// PENTEST FIX - THERMOMACHINE POWER CALCULATION - END
 
 /obj/machinery/atmospherics/components/unary/thermomachine/update_icon_state()
 
@@ -84,24 +99,12 @@
 		air_contents.set_temperature(combined_energy/combined_heat_capacity)
 
 // PENTEST FIX - THERMOMACHINE POWER CALCULATION - START
-	var/temperature_delta = abs(old_temperature - air_contents.return_temperature())
-	var/new_power_usage = 0
-	if(temperature_delta > 1)
-		// Use absolute value to ensure always positive, and ensure minimum power draw
-		new_power_usage = abs((heat_capacity * temperature_delta) / 5) + idle_power_usage
+// The orginal system used to calculate the delta difference and set it to a varible but never told the set_active_power() proc to update
+// the power usage based on the new delta. This meant that if you changed the target temperature, or turned it on and off
+// the machine would see the incorrect delta and would then pass that to the APC resulting in infinite power gain or draw regardless of the machines power status.
+	if(abs(old_temperature - air_contents.return_temperature()) > 1)
+		recalculate_power(old_temperature)
 		update_parents()
-	else
-		new_power_usage = idle_power_usage
-
-	// Update area power registration only if the power usage changed
-	if(new_power_usage != last_registered_power)
-		var/area/A = get_area(src)
-		if(A)
-			// Remove old registration and add new one
-			removeStaticPower(last_registered_power, power_channel + 3, A)
-			addStaticPower(new_power_usage, power_channel + 3, A)
-			last_registered_power = new_power_usage
-	active_power_usage = new_power_usage
 // PENTEST FIX - THERMOMACHINE POWER CALCULATION - END
 	return 1
 
@@ -168,12 +171,7 @@
 	switch(action)
 		if("power")
 			on = !on
-			if(on)
-				set_active_power()
-				last_registered_power = active_power_usage // PENTEST FIX - THERMOMACHINE POWER CALCULATION
-			else
-				set_idle_power()
-				last_registered_power = 0 // PENTEST FIX - THERMOMACHINE POWER CALCULATION
+			recalculate_power() // PENTEST FIX - THERMOMACHINE POWER CALCULATION
 			investigate_log("was turned [on ? "on" : "off"] by [key_name(usr)]", INVESTIGATE_ATMOS)
 			. = TRUE
 		if("target")
@@ -191,6 +189,7 @@
 				. = TRUE
 			if(.)
 				target_temperature = clamp(target, min_temperature, max_temperature)
+				recalculate_power() // PENTEST FIX - THERMOMACHINE POWER CALCULATION
 				investigate_log("was set to [target_temperature] K by [key_name(usr)]", INVESTIGATE_ATMOS)
 
 	update_appearance()
@@ -203,15 +202,9 @@
 	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE))
 		return
 	on = !on
-	if(on)
-		set_active_power()
-		last_registered_power = active_power_usage // PENTEST FIX - THERMOMACHINE POWER CALCULATION
-	else
-		set_idle_power()
-		last_registered_power = 0 // PENTEST FIX - THERMOMACHINE POWER CALCULATION
+	recalculate_power() // PENTEST FIX - THERMOMACHINE POWER CALCULATION
 	investigate_log("was turned [on ? "on" : "off"] by [key_name(user)]", INVESTIGATE_ATMOS)
 	update_appearance()
-	investigate_log("was turned [on ? "on" : "off"] by [key_name(usr)]", INVESTIGATE_ATMOS)
 	message_admins("[src.name] was turned [on ? "on" : "off"] [ADMIN_LOOKUPFLW(usr)] at [ADMIN_COORDJMP(T)], [A]")
 
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer
@@ -232,6 +225,7 @@
 	. = ..()
 	if(target_temperature == initial(target_temperature))
 		target_temperature = min_temperature
+		recalculate_power() // PENTEST FIX - THERMOMACHINE POWER CALCULATION
 
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer/on/coldroom
 	name = "cold room freezer"
@@ -239,6 +233,7 @@
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer/on/coldroom/Initialize()
 	. = ..()
 	target_temperature = T0C-80
+	recalculate_power() // PENTEST FIX - THERMOMACHINE POWER CALCULATION
 
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer/RefreshParts()
 	..()
@@ -254,6 +249,7 @@
 	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE))
 		return
 	target_temperature = min_temperature
+	recalculate_power() // PENTEST FIX - THERMOMACHINE POWER CALCULATION
 	investigate_log("was set to [target_temperature] K by [key_name(user)]", INVESTIGATE_ATMOS)
 	message_admins("[src.name] was minimized by [ADMIN_LOOKUPFLW(user)] at [ADMIN_COORDJMP(T)], [A]")
 	to_chat(user, span_notice("You minimize the target temperature on [src] to [target_temperature] K."))
@@ -286,6 +282,7 @@
 	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE))
 		return
 	target_temperature = max_temperature
+	recalculate_power() // PENTEST FIX - THERMOMACHINE POWER CALCULATION
 	investigate_log("was set to [target_temperature] K by [key_name(user)]", INVESTIGATE_ATMOS)
 	message_admins("[src.name] was maximized by [ADMIN_LOOKUPFLW(user)] at [ADMIN_COORDJMP(T)], [A]")
 	to_chat(user, span_notice("You maximize the target temperature on [src] to [target_temperature] K."))

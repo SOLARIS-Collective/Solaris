@@ -73,7 +73,7 @@
 //DNA - Because fuck you and your magic numbers being all over the codebase.
 #define DNA_BLOCK_SIZE 3
 
-#define DNA_UNI_IDENTITY_BLOCKS 7
+// #define DNA_UNI_IDENTITY_BLOCKS 7	// [SOLARIS-REMOVE] - SOLARIS_W_TTS_VOICES - Поднят до 11. См. тут code/__DEFINES/~modular_solaris/DNA.dm
 #define DNA_HAIR_COLOR_BLOCK 1
 #define DNA_FACIAL_HAIR_COLOR_BLOCK 2
 #define DNA_SKIN_TONE_BLOCK 3
@@ -133,11 +133,6 @@
 #define MUTCOLORS_SECONDARY 25
 ///Human skintones
 #define SKINCOLORS 26
-///Used for determining which wounds are applicable to this species.
-///if we have flesh (can suffer slash/piercing/burn wounds, requires they don't have NOBLOOD)
-#define HAS_FLESH 27
-///if we have bones (can suffer bone wounds)
-#define HAS_BONE 28
 
 //organ slots
 #define ORGAN_SLOT_BRAIN "brain"

@@ -82,16 +82,6 @@
   - any-glob-to-any-file:
     - 'tgui/**'
 
-# Any changes if not in modulare folder
-'🪓 ТРОГАЛИ CORE-CODE':
-- changed-files:
-  - any-glob-to-any-file:
-    - '_maps/map_files/**'
-    - '_maps/shuttles/**'
-    - 'code/**'
-    - 'icons/**'
-    - 'sound/**'
-
 # Changes to the config subfolder
 '🔮 Конфиги':
 - changed-files:

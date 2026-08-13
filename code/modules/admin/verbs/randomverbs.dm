@@ -540,7 +540,7 @@
 	if(view_size.getView() == view_size.default)
 		view_size.setTo(input("Select view range:", "FUCK YE", 7) in list(1,2,3,4,5,6,7,8,9,10,11,12,13,14,128) - 7)
 	else
-		view_size.resetToDefault(getScreenSize(prefs.widescreenpref))
+		view_size.resetToDefault(getScreenSize())
 
 	log_admin("[key_name(usr)] changed their view range to [view].")
 	//message_admins("\blue [key_name_admin(usr)] changed their view range to [view].")	//why? removed by order of XSI
@@ -1172,8 +1172,14 @@
 				squish_part = C.bodyparts[zone]
 				if(!squish_part)
 					continue
-				var/type_wound = pick(list(/datum/wound/blunt/severe, /datum/wound/blunt/severe, /datum/wound/blunt/moderate))
-				squish_part.force_wound_upwards(type_wound, smited=TRUE)
+				var/severity = pick(list(
+					"[WOUND_SEVERITY_MODERATE]",
+					"[WOUND_SEVERITY_SEVERE]",
+					"[WOUND_SEVERITY_SEVERE]",
+					"[WOUND_SEVERITY_CRITICAL]",
+					"[WOUND_SEVERITY_CRITICAL]",
+				))
+				C.cause_wound_of_type_and_severity(WOUND_BLUNT, squish_part, severity)
 
 		if(ADMIN_PUNISHMENT_BLEED)
 			if(!iscarbon(target))
@@ -1185,11 +1191,11 @@
 				slice_part = C.bodyparts[zone]
 				if(!slice_part)
 					continue
-				var/type_wound = pick(list(/datum/wound/slash/critical, /datum/wound/slash/moderate))
+				var/type_wound = pick(list(/datum/wound/slash/flesh/critical, /datum/wound/slash/flesh/moderate))
 				slice_part.force_wound_upwards(type_wound, smited=TRUE)
-				type_wound = pick(list(/datum/wound/slash/critical, /datum/wound/slash/moderate))
+				type_wound = pick(list(/datum/wound/slash/flesh/critical, /datum/wound/slash/flesh/moderate))
 				slice_part.force_wound_upwards(type_wound, smited=TRUE)
-				type_wound = pick(list(/datum/wound/slash/critical, /datum/wound/slash/moderate))
+				type_wound = pick(list(/datum/wound/slash/flesh/critical, /datum/wound/slash/flesh/moderate))
 				slice_part.force_wound_upwards(type_wound, smited=TRUE)
 
 		if(ADMIN_PUNISHMENT_PERFORATE)

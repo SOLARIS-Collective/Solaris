@@ -729,7 +729,12 @@ GLOBAL_LIST_INIT(WALLITEMS_INVERSE, typecacheof(list(
 	if(!modifiers)
 		return null
 
-	var/screen_loc = splittext(LAZYACCESS(modifiers, SCREEN_LOC), ",")
+	var/screen_loc_string = LAZYACCESS(modifiers, SCREEN_LOC)
+	if(!screen_loc_string)
+		return null
+	var/screen_loc = splittext(screen_loc_string, ",")
+	if(length(screen_loc) < 2)
+		return null
 	var/list/actual_view = getviewsize(viewing_client ? viewing_client.view : world.view)
 	var/click_turf_x = splittext(screen_loc[1], ":")
 	var/click_turf_y = splittext(screen_loc[2], ":")

@@ -9,17 +9,23 @@
 #include "_storage_sounds/_storage_sounds.dme"
 #include "_storage_icons/_storage_icons.dme"
 
-// --- SECRET --- //
+// --- PRIVATE --- //
 
-#if fexists("../+secret/__secret.dme") && !defined(DISABLE_SECRETS)
-#include "../+secret/__secret.dme"
+// #define OMNI_ACCESS // Требуется ОМНИ доступ
+// После ввести
+// git submodule update --init modular_solaris/_private
+// или
+// git submodule update --init --recursive
+#ifdef OMNI_ACCESS
+	#include "_omni_access/__private.dme"
 #else
-#include "_secrets/__secret_public.dme"
+	#include "_public/__public.dme"
 #endif
 
 // --- ICONS --- //
 
 // --- SOUNDS --- //
+#include "w_tts_voices/_w_tts_voices.dme"
 
 // --- OBJECTS --- //
 

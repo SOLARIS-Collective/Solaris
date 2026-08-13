@@ -62,8 +62,8 @@
 #include "code/pirate/frontiersmen.dm"
 #include "code/pirate/ramzi.dm"
 
-#include "code/tmi/_card_id.dm"
-#include "code/tmi/_outfit.dm"
+#include "code/TMI/_card_id.dm"
+#include "code/TMI/_outfit.dm"
 
 #include "code/generic/_outfit.dm"
 

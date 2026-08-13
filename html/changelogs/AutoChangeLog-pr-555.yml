@@ -1,0 +1,4 @@
+author: "Ossa88"
+delete-after: True
+changes:
+  - bugfix: "Safes and Secure Briefcases now have TGUI safe interface"

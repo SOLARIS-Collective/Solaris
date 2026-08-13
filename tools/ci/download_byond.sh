@@ -14,7 +14,7 @@ if ! curl -f --connect-timeout 10 --max-time 30 "http://www.byond.com/download/b
         cp "$local_backup" C:/byond.zip
     else
         # Fallback to known legacy backup file
-        legacy_backup="tools/backup/516.1663_byond.zip"
+        legacy_backup="tools/backup/516.1685_byond.zip"
         echo "Unable to locate local backup file. Using Fallback Version. $legacy_backup"
         if [ -f "$legacy_backup" ]; then
             echo "Using Fallback Version."
