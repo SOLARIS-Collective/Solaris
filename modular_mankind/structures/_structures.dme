@@ -4,6 +4,7 @@
 #include "_structures.dm"
 
 #include "code/obj/all_guns_vending.dm"
+#include "code/obj/all_mech_part_vending.dm"
 #include "code/obj/barricades.dm"
 #include "code/obj/decals_indestructible.dm"
 #include "code/obj/doors.dm"
