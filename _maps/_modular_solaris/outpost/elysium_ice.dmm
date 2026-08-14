@@ -2241,6 +2241,10 @@
 /obj/effect/turf_decal/industrial/traffic/fulltile,
 /obj/effect/turf_decal/corner/transparent/syndiered/mono,
 /obj/machinery/door/airlock/multi_tile/medical/v,
+/obj/machinery/door/poddoor/ert{
+	id = "ice_sec_ms_out";
+	dir = 4
+	},
 /turf/open/floor/plasteel/white,
 /area/outpost/medical/hall_2)
 "bob" = (
@@ -9444,7 +9448,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/poddoor/ert{
-	id = "Hangar Section Bolts"
+	id = "ice_sec_ms"
 	},
 /turf/open/floor/plating,
 /area/outpost/exterior/ocean)
@@ -25442,6 +25446,24 @@
 	light_range = 2
 	},
 /area/outpost/exterior)
+"pzT" = (
+/obj/effect/turf_decal/industrial/traffic/fulltile,
+/obj/effect/turf_decal/corner/transparent/syndiered/mono,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 8
+	},
+/obj/machinery/door/poddoor/ert{
+	id = "ice_sec_ms_out";
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/outpost/medical/hall_2)
 "pzW" = (
 /obj/structure/toilet{
 	pixel_x = -1;
@@ -33571,6 +33593,13 @@
 	},
 /obj/structure/cable{
 	icon_state = "1-2"
+	},
+/obj/machinery/button/door{
+	id = "ice_sec_ms_out";
+	name = "Hangar Section Bolts";
+	pixel_x = -21;
+	pixel_y = 3;
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/outpost/exterior/ocean)
@@ -68747,7 +68776,7 @@ rgY
 rgY
 rgY
 eQc
-ukm
+pzT
 bna
 eQc
 rgY

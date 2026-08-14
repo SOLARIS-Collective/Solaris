@@ -557,6 +557,9 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+/obj/machinery/door/poddoor/ert{
+	id = "ice_sec_ms_out"
+	},
 /turf/open/floor/plasteel/white,
 /area/outpost/medical/hall_2)
 "aBe" = (
@@ -1554,6 +1557,13 @@
 	icon_state = "1-4"
 	},
 /obj/effect/turf_decal/industrial/traffic/fulltile,
+/obj/machinery/button/door{
+	id = "ice_sec_ms_out";
+	name = "Hangar Section Bolts";
+	pixel_x = -21;
+	pixel_y = 3;
+	dir = 4
+	},
 /turf/open/floor/plasteel/white,
 /area/outpost/medical/hall_2)
 "bjt" = (
@@ -2202,7 +2212,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/poddoor/ert{
-	id = "Hangar Section Bolts";
+	id = "ice_sec_ms";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -27689,6 +27699,14 @@
 /obj/structure/flora/ausbushes/pointybush,
 /turf/open/floor/grass,
 /area/outpost/hallway/aft)
+"ucB" = (
+/obj/effect/turf_decal/corner/transparent/syndiered/mono,
+/obj/effect/turf_decal/industrial/traffic/fulltile,
+/obj/machinery/door/poddoor/ert{
+	id = "ice_sec_ms_out"
+	},
+/turf/open/floor/plasteel/white,
+/area/outpost/medical/hall_2)
 "ucD" = (
 /obj/structure/grille/broken,
 /obj/effect/spawner/random/trash/garbage,
@@ -59312,7 +59330,7 @@ ukm
 nFh
 plM
 izk
-mRY
+ucB
 mRY
 mQw
 lAb
