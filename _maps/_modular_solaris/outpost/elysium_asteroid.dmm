@@ -1203,15 +1203,10 @@
 /turf/open/floor/plasteel/patterned/grid,
 /area/outpost/hallway/fore)
 "aYp" = (
-/obj/effect/turf_decal/techfloor{
-	dir = 8
-	},
-/obj/effect/turf_decal/techfloor{
-	dir = 4
-	},
 /obj/effect/landmark/outpost/subshuttle_dock{
 	subship_template = /datum/map_template/shuttle/subshuttles/felix
 	},
+/obj/effect/turf_decal/industrial/fire/fulltile,
 /turf/open/floor/plating,
 /area/outpost/medical/hall_2)
 "aYv" = (
@@ -6939,6 +6934,15 @@
 /obj/structure/grille,
 /turf/open/floor/plating,
 /area/outpost/maintenance/aft)
+"eUY" = (
+/obj/effect/turf_decal/industrial/warning{
+	dir = 1
+	},
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/turf/open/floor/plating,
+/area/outpost/medical/hall_2)
 "eVe" = (
 /obj/machinery/washing_machine,
 /turf/open/floor/plasteel/patterned/cargo_one,
@@ -14732,6 +14736,10 @@
 /obj/effect/turf_decal/trimline/opaque/neutral/filled/corner,
 /turf/open/floor/plasteel/dark,
 /area/outpost/fraction/nanotrasen)
+"kzx" = (
+/obj/effect/turf_decal/industrial/warning,
+/turf/open/floor/plating,
+/area/outpost/external)
 "kzE" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
@@ -20832,6 +20840,16 @@
 	},
 /turf/open/floor/marble/black,
 /area/outpost/fraction/nanotrasen)
+"pgB" = (
+/obj/effect/turf_decal/industrial/warning{
+	dir = 1
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/light/floor/hangar,
+/turf/open/floor/plating,
+/area/outpost/medical/hall_2)
 "phf" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 10
@@ -22464,6 +22482,12 @@
 	},
 /turf/open/floor/wood,
 /area/outpost/crew/dop_zone_3)
+"qjL" = (
+/obj/effect/turf_decal/industrial/warning{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/outpost/external)
 "qkh" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
@@ -22697,7 +22721,7 @@
 	},
 /obj/effect/turf_decal/industrial/traffic,
 /obj/structure/cable{
-	icon_state = "1-4"
+	icon_state = "4-8"
 	},
 /turf/open/floor/plating,
 /area/outpost/medical/hall_2)
@@ -24160,8 +24184,10 @@
 /obj/effect/turf_decal/industrial/warning{
 	dir = 1
 	},
-/obj/machinery/light/floor/hangar,
 /obj/effect/turf_decal/industrial/traffic/corner,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
 /turf/open/floor/plating,
 /area/outpost/medical/hall_2)
 "rwj" = (
@@ -32526,12 +32552,7 @@
 /turf/open/floor/plasteel/dark,
 /area/outpost/fraction/nanotrasen)
 "xDw" = (
-/obj/effect/turf_decal/techfloor{
-	dir = 8
-	},
-/obj/effect/turf_decal/techfloor{
-	dir = 4
-	},
+/obj/effect/turf_decal/industrial/fire/fulltile,
 /turf/open/floor/plating,
 /area/outpost/medical/hall_2)
 "xDQ" = (
@@ -57822,13 +57843,13 @@ cGD
 cGD
 cGD
 cGD
-kFd
+qER
 xDw
 xDw
 xDw
 xDw
 xDw
-xyK
+eUY
 cGD
 cGD
 cGD
@@ -58015,7 +58036,7 @@ xDw
 xDw
 xDw
 xDw
-xyK
+pgB
 cGD
 cGD
 cGD
@@ -58196,7 +58217,7 @@ cGD
 cGD
 cGD
 cGD
-qER
+kFd
 xDw
 xDw
 xDw
@@ -58943,14 +58964,14 @@ pdc
 cGD
 cGD
 cGD
-cGD
-kFd
-xDw
-xDw
-xDw
-xDw
-xDw
-xyK
+pMQ
+ecW
+nDl
+nDl
+nDl
+nDl
+nDl
+tuF
 vfN
 pfl
 jVe
@@ -59130,14 +59151,14 @@ pdc
 cGD
 cGD
 cGD
-cGD
-kFd
-xDw
-xDw
-xDw
-xDw
-xDw
-xyK
+pMQ
+wgp
+wgp
+wgp
+wgp
+wgp
+wgp
+wgp
 vfN
 pfl
 xZd
@@ -59318,13 +59339,13 @@ pdc
 cGD
 cGD
 cGD
-kFd
-xDw
-xDw
-xDw
-xDw
-xDw
-xyK
+kzx
+pdc
+pdc
+pdc
+pdc
+pdc
+qjL
 vfN
 ukm
 nFh
@@ -59504,14 +59525,14 @@ pdc
 pdc
 cGD
 cGD
-vfN
-ecW
-nDl
-nDl
-nDl
-nDl
-nDl
-tuF
+pdc
+pdc
+pdc
+pdc
+pdc
+pdc
+pdc
+pdc
 ykl
 ykl
 ykl
@@ -59691,14 +59712,14 @@ pdc
 pdc
 pdc
 cGD
-vfN
-wgp
-wgp
-wgp
-wgp
-wgp
-wgp
-wgp
+pdc
+pdc
+pdc
+pdc
+pdc
+pdc
+pdc
+pdc
 ykl
 gIQ
 nhk
