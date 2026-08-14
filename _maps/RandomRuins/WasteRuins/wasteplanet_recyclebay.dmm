@@ -624,10 +624,6 @@
 /turf/open/floor/plasteel/mono/dark,
 /area/ruin/wasteplanet/recycle_bay/vault)
 "eS" = (
-/obj/machinery/computer/transponder{
-	dir = 8;
-	pixel_x = 6
-	},
 /obj/machinery/light/directional/east,
 /turf/open/floor/plasteel/tech/tcomms,
 /area/ruin/wasteplanet/recycle_bay/telecommunications)

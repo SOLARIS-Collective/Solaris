@@ -270,10 +270,13 @@ Possible to do for anyone motivated enough:
 				var/list/callnames = list()
 				for(var/obj/machinery/holopad/pad as anything in holopads)
 					if (pad.is_operational)
-						var/area/area = get_area(pad)
-						if(area)
-							LAZYADD(callnames[area], pad)
-				callnames -= get_area(src)
+						// [MANKIND-EDIT] - HIDE_SHIP_META - Показываем обезличенное имя корабля вместо имени area (которое = имя корабля)
+						var/datum/overmap/ship/controlled/ship = SSshuttle.get_ship(pad)
+						var/display_name = istype(ship) ? ship.get_display_name(usr) : get_area_name(pad)
+						if(display_name)
+							LAZYADD(callnames[display_name], pad)
+				// [/MANKIND-EDIT]
+				callnames -= get_area_name(src)
 				var/result = tgui_input_list(usr, "Choose an area to call", "Holocall", sortNames(callnames))
 				if(QDELETED(usr) || !result || outgoing_call)
 					return

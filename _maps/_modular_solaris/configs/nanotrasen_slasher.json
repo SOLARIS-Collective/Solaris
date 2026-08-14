@@ -7,6 +7,7 @@
 	"sensor_range": 16,
 	"enabled": true,
 	"limit": 1,
+	"omni_arpa": true,
 	"prefix": "NTBSV",
 	"faction": "/datum/faction/nt",
 	"tags": [

@@ -59,6 +59,9 @@
 	name = "carp migration (moderate)"
 	desc = "A migratory school of space carp. They travel at high speeds, and flying through them may cause them to impact your ship"
 	base_icon_state = "carp_medium_"
+	// [MANKIND-ADD] - MANKIND_OVERMAP_EVENT_LAYER - Рандомный слой токена ивента (корабль поверх или под ивентом)
+	randomize_token_layer = TRUE
+	// [/MANKIND-ADD]
 	// [MANKIND-REMOVE] - MANKIND_OVERMAP_ICON - спрайты некросивые получаюца
 	// default_color = "#7b1ca8"
 	// [/MANKIND-REMOVE]
@@ -108,6 +111,9 @@
 	name = "dust cloud"
 	desc = "A cloud of spaceborne dust. Relatively harmless, unless you're travelling at relative speeds"
 	base_icon_state = "dust"
+	// [MANKIND-ADD] - MANKIND_OVERMAP_EVENT_LAYER - Рандомный слой токена ивента (корабль поверх или под ивентом)
+	randomize_token_layer = TRUE
+	// [/MANKIND-ADD]
 	// [MANKIND-REMOVE] - MANKIND_OVERMAP_ICON - спрайты некросивые получаюца
 	// default_color = "#506469"
 	// [/MANKIND-REMOVE]

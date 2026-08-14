@@ -1305,9 +1305,6 @@
 	network = list("IntraNet, clip")
 	},
 /obj/machinery/light/directional/west,
-/obj/machinery/computer/transponder{
-	icon_state = "transponder-middle"
-	},
 /turf/open/floor/plasteel,
 /area/ship/bridge)
 "jw" = (

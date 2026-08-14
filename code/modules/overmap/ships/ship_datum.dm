@@ -85,6 +85,11 @@
 	token_icon_state = "ship_point"
 	// [/MANKIND-EDIT]
 
+	// [MANKIND-ADD] - HIDE_SHIP_META - Обезличенное имя токена на овермапе (вместо настоящего имени корабля)
+	///The name shown on the overmap token instead of the real ship name.
+	token_display_name = "???"
+	// [/MANKIND-ADD]
+
 	///If TRUE stationary_icon_state and moving_icon_state are used instead of an overlay being applied to stationary_icon_state
 	var/legacy_rendering_switch = FALSE
 
@@ -149,13 +154,16 @@
 /datum/overmap/ship/proc/check_proximity()
 //	token.collision_alarm()
 	var/list/arpa_add = list()
-	for(var/obj/overmap/rendered/i in orange(4, token))
+	// [MANKIND-EDIT] - OVERMAP SENSORS - Радиус сканирования ARPA берётся из максимального значения сенсоров из конфига шипа, вместо жёстких 4.
+	var/datum/overmap/ship/controlled/self_ship = istype(src) ? src : null
+	var/scan_radius = self_ship ? self_ship.default_sensor_range : 4
+	for(var/obj/overmap/rendered/i in orange(scan_radius, token))
 		if(!istype(i.parent, /datum/overmap/ship/controlled))
 			continue
 		calculate_cpa(src, i.parent)
 		arpa_add |= i.parent
 	return arpa_add
-// [/MANKIND-ADD]
+	// [/MANKIND-EDIT]
 
 // /datum/overmap/ship/Initialize(position, ...)	// КОД JOPA
 /datum/overmap/ship/Initialize(position, system_spawned_in, ...)
