@@ -226,8 +226,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/unlock_content = FALSE
 	var/custom_ooc = FALSE
 
-	var/list/ignoring = list()
-
 	var/clientfps = 60 //WS Edit - Client FPS Tweak
 
 	var/parallax

@@ -500,7 +500,6 @@ GLOBAL_LIST_EMPTY(species_list)
 			var/datum/preferences/prefs = M.client.prefs
 			chat_toggles = prefs.chat_toggles
 			toggles = prefs.toggles
-			ignoring = prefs.ignoring
 		if(admin_only)
 			if (!M.client.holder)
 				return
@@ -516,8 +515,6 @@ GLOBAL_LIST_EMPTY(species_list)
 		if(isnewplayer(M) && !override)
 			continue
 		if(M.stat != DEAD && !override)
-			continue
-		if(speaker_key && (speaker_key in ignoring))
 			continue
 
 		switch(message_type)
