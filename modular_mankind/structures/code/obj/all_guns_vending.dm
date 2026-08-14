@@ -8,6 +8,84 @@
 	light_mask = "liberation-light-mask"
 	req_access = list()
 	all_items_free = TRUE
+	categories = list("Pistols", "Revolvers", "SMG", "Marksman", "Assault Rifles", "Rifles", "Shotguns", "HMG/LMG", "Gauss", "Launchers", "Toys", "Lasers", "E-Guns", "Stun/Disabler", "Pulse", "Special", "Sharplite", "Kalix", "Explosive", "Misc")
+	product_categories = list(
+		"Pistols" = list(
+			/obj/item/gun/ballistic/automatic/zip_pistol,
+			/obj/item/gun/ballistic/automatic/pistol,
+			/obj/item/gun/ballistic/derringer,
+		),
+		"Revolvers" = list(
+			/obj/item/gun/ballistic/revolver,
+		),
+		"SMG" = list(
+			/obj/item/gun/ballistic/automatic/smg,
+		),
+		"Marksman" = list(
+			/obj/item/gun/ballistic/automatic/marksman,
+		),
+		"Assault Rifles" = list(
+			/obj/item/gun/ballistic/automatic/assault,
+		),
+		"Rifles" = list(
+			/obj/item/gun/ballistic/rifle,
+		),
+		"Shotguns" = list(
+			/obj/item/gun/ballistic/shotgun,
+		),
+		"HMG/LMG" = list(
+			/obj/item/gun/ballistic/automatic/hmg,
+		),
+		"Gauss" = list(
+			/obj/item/gun/ballistic/automatic/powered,
+		),
+		"Launchers" = list(
+			/obj/item/gun/ballistic/revolver/grenadelauncher,
+			/obj/item/gun/ballistic/rocketlauncher,
+		),
+		"Toys" = list(
+			/obj/item/gun/ballistic/automatic/toy,
+			/obj/item/gun/ballistic/shotgun/toy,
+		),
+		"Lasers" = list(
+			/obj/item/gun/energy/laser,
+			/obj/item/gun/energy/lasercannon,
+			/obj/item/gun/energy/xray,
+		),
+		"E-Guns" = list(
+			/obj/item/gun/energy/e_gun,
+		),
+		"Stun/Disabler" = list(
+			/obj/item/gun/energy/taser,
+			/obj/item/gun/energy/disabler,
+		),
+		"Pulse" = list(
+			/obj/item/gun/energy/pulse,
+		),
+		"Special" = list(
+			/obj/item/gun/energy/ionrifle,
+			/obj/item/gun/energy/decloner,
+			/obj/item/gun/energy/mindflayer,
+			/obj/item/gun/energy/plasmacutter,
+			/obj/item/gun/energy/tesla_cannon,
+			/obj/item/gun/energy/buster,
+			/obj/item/gun/energy/dueling,
+			/obj/item/gun/energy/minigun,
+			/obj/item/gun/energy/beam_rifle,
+			/obj/item/gun/energy/alien,
+			/obj/item/gun/energy/spur,
+		),
+		"Sharplite" = list(
+			/obj/item/gun/energy/sharplite,
+		),
+		"Kalix" = list(
+			/obj/item/gun/energy/kalix,
+		),
+		"Explosive" = list(
+			/obj/item/gun/grenadelauncher,
+			/obj/item/gun/blastcannon,
+		),
+	)
 	products = list(
 		/obj/item/screwdriver = 5,
 		/obj/item/restraints/handcuffs = 10,

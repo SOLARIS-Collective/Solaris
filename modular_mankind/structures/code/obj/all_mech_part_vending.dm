@@ -9,8 +9,60 @@
 	icon_vend = "solgov-marine-vend"
 	req_access = list()
 	all_items_free = TRUE
+	categories = list("Chassis", "Equipment", "Weapon ballistic", "Weapon energy", "Weapon", "Thrusters", "Medical", "Conversion kit", "Tracking", "Weapon bay", "Parts")
+	product_categories = list(
+		"Chassis" = list(
+			/obj/item/mecha_parts/chassis,
+		),
+		"Equipment" = list(
+			/obj/item/mecha_parts/mecha_equipment/wormhole_generator,
+			/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay,
+			/obj/item/mecha_parts/mecha_equipment/teleporter,
+			/obj/item/mecha_parts/mecha_equipment/salvage_saw,
+			/obj/item/mecha_parts/mecha_equipment/repair_droid,
+			/obj/item/mecha_parts/mecha_equipment/rcd,
+			/obj/item/mecha_parts/mecha_equipment/mining_scanner,
+			/obj/item/mecha_parts/mecha_equipment/hydraulic_clamp,
+			/obj/item/mecha_parts/mecha_equipment/hydraulic_clamp/kill,
+			/obj/item/mecha_parts/mecha_equipment/gravcatapult,
+			/obj/item/mecha_parts/mecha_equipment/generator,
+			/obj/item/mecha_parts/mecha_equipment/generator/nuclear,
+			/obj/item/mecha_parts/mecha_equipment/extinguisher,
+			/obj/item/mecha_parts/mecha_equipment/drill,
+			/obj/item/mecha_parts/mecha_equipment/drill/diamonddrill,
+			/obj/item/mecha_parts/mecha_equipment/cable_layer,
+			/obj/item/mecha_parts/mecha_equipment/antiproj_armor_booster,
+			/obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster,
+		),
+		"Weapon ballistic" = list(
+			/obj/item/mecha_parts/mecha_equipment/weapon/ballistic,
+		),
+		"Weapon energy" = list(
+			/obj/item/mecha_parts/mecha_equipment/weapon/energy,
+		),
+		"Weapon" = list(
+			/obj/item/mecha_parts/mecha_equipment/weapon/honker,
+		),
+		"Thrusters" = list(
+			/obj/item/mecha_parts/mecha_equipment/thrusters,
+		),
+		"Medical" = list(
+			/obj/item/mecha_parts/mecha_equipment/medical,
+		),
+		"Conversion kit" = list(
+			/obj/item/mecha_parts/mecha_equipment/conversion_kit,
+		),
+		"Tracking" = list(
+			/obj/item/mecha_parts/mecha_tracking,
+		),
+		"Parts" = list(
+			/obj/item/mecha_parts/part,
+		),
+		"Weapon bay" = list(
+			/obj/item/mecha_parts/weapon_bay,
+		),
+	)
 	products = list(
-		/obj/item/mecha_parts/chassis = 5,
 		/obj/item/mecha_parts/chassis/ripley = 5,
 		/obj/item/mecha_parts/chassis/phazon = 5,
 		/obj/item/mecha_parts/chassis/odysseus = 5,
@@ -20,11 +72,11 @@
 		/obj/item/mecha_parts/chassis/firefighter = 5,
 		/obj/item/mecha_parts/chassis/durand = 5,
 
-		/obj/item/mecha_parts/mecha_equipment = 5,
-
 		/obj/item/mecha_parts/mecha_equipment/wormhole_generator = 5,
+		/obj/item/mecha_parts/mecha_equipment/cable_layer = 5,
+		/obj/item/mecha_parts/mecha_equipment/antiproj_armor_booster = 5,
+		/obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster = 5,
 
-		/obj/item/mecha_parts/mecha_equipment/weapon/ballistic = 5,
 		/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/carbine = 5,
 		/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/silenced = 5,
 		/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/scattershot = 5,
@@ -43,7 +95,6 @@
 		/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/mousetrap_mortar = 5,
 		/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/launcher/punching_glove = 5,
 
-		/obj/item/mecha_parts/mecha_equipment/weapon/energy = 5,
 		/obj/item/mecha_parts/mecha_equipment/weapon/energy/carbine = 5,
 		/obj/item/mecha_parts/mecha_equipment/weapon/energy/ion = 5,
 		/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser = 5,
@@ -55,32 +106,13 @@
 
 		/obj/item/mecha_parts/mecha_equipment/weapon/honker = 5,
 
-		/obj/item/mecha_parts/mecha_equipment/thrusters = 5,
 		/obj/item/mecha_parts/mecha_equipment/thrusters/gas = 5,
 		/obj/item/mecha_parts/mecha_equipment/thrusters/ion = 5,
 
-		/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay = 5,
-		/obj/item/mecha_parts/mecha_equipment/teleporter = 5,
-		/obj/item/mecha_parts/mecha_equipment/salvage_saw = 5,
-		/obj/item/mecha_parts/mecha_equipment/repair_droid = 5,
-		/obj/item/mecha_parts/mecha_equipment/rcd = 5,
-		/obj/item/mecha_parts/mecha_equipment/mining_scanner = 5,
-
-		/obj/item/mecha_parts/mecha_equipment/medical = 5,
 		/obj/item/mecha_parts/mecha_equipment/medical/mechmedbeam = 5,
 		/obj/item/mecha_parts/mecha_equipment/medical/sleeper = 5,
 		/obj/item/mecha_parts/mecha_equipment/medical/syringe_gun = 5,
 
-		/obj/item/mecha_parts/mecha_equipment/hydraulic_clamp = 5,
-		/obj/item/mecha_parts/mecha_equipment/hydraulic_clamp/kill = 5,
-		/obj/item/mecha_parts/mecha_equipment/gravcatapult = 5,
-		/obj/item/mecha_parts/mecha_equipment/generator = 5,
-		/obj/item/mecha_parts/mecha_equipment/generator/nuclear = 5,
-		/obj/item/mecha_parts/mecha_equipment/extinguisher = 5,
-		/obj/item/mecha_parts/mecha_equipment/drill = 5,
-		/obj/item/mecha_parts/mecha_equipment/drill/diamonddrill = 5,
-
-		/obj/item/mecha_parts/mecha_equipment/conversion_kit = 5,
 		/obj/item/mecha_parts/mecha_equipment/conversion_kit/alt = 5,
 		/obj/item/mecha_parts/mecha_equipment/conversion_kit/aluminizer = 5,
 		/obj/item/mecha_parts/mecha_equipment/conversion_kit/ares = 5,
@@ -110,16 +142,8 @@
 		/obj/item/mecha_parts/mecha_equipment/conversion_kit/titan = 5,
 		/obj/item/mecha_parts/mecha_equipment/conversion_kit/zeus = 5,
 
-		/obj/item/mecha_parts/mecha_equipment/cable_layer = 5,
-		/obj/item/mecha_parts/mecha_equipment/antiproj_armor_booster = 5,
-		/obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster = 5,
-
-		/obj/item/mecha_parts/mecha_tracking = 5,
 		/obj/item/mecha_parts/mecha_tracking/ai_control = 5,
 
-		/obj/item/mecha_parts/part = 5,
-
-		/obj/item/mecha_parts/weapon_bay = 5,
 		/obj/item/mecha_parts/weapon_bay/concealed = 5,
 		)
 
