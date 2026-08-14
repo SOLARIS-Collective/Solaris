@@ -155,6 +155,12 @@
 			"maximum": 20000,
 			"default": 2000
 		},
+		"omni_arpa": {
+			"title": "Omni ARPA",
+			"type": "boolean",
+			"description": "If true, this ship's helm uses the classic ARPA: it sees the real names of all ships at range and has no label buttons. Intended for spy/artillery-type ships.",
+			"default": false
+		},
 		"spawn_time_coeff": {
 			"title": "Required Spawn Playtime Coefficient",
 			"type": "number",

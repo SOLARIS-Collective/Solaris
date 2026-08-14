@@ -208,14 +208,18 @@
 			continue
 
 		var/list/cpa_list = calculate_cpa(current_ship, object, TRUE)
+		var/list/known_data = current_ship.get_known_ship_name(object)
 		var/list/other_data = list(
-			name = object.name,
+			name = known_data["name"],
+			known = known_data["known"],
+			scannable = istype(object, /datum/overmap/ship/controlled),
+			ref = REF(object),
 			brg = cpa_list["brg"],
 			cpa = cpa_list["cpa"],
 			tcpa = cpa_list["tcpa"]
 		)
 		.["arpa_ships"] += list(other_data)
-	// [/MANKIND-ADD]
+// [/MANKIND-ADD]
 	.["canRename"] = COOLDOWN_FINISHED(current_ship, rename_cooldown)
 	.["otherInfo"] = list()
 	var/list/objects = current_ship.get_nearby_overmap_objects(empty_if_src_docked = FALSE)
@@ -240,9 +244,12 @@
 
 		objects |= object.contents
 
+		var/list/known_data = current_ship.get_known_ship_name(object)
 		var/list/other_data = list(
-			name = object.name,
+			name = known_data["name"],
+			known = known_data["known"],
 			candock = available_dock,
+			scannable = istype(object, /datum/overmap/ship/controlled),
 			ref = REF(object)
 		)
 		.["otherInfo"] += list(other_data)
@@ -267,6 +274,12 @@
 	.["burnPercentage"] = current_ship.burn_percentage
 	// [MANKIND-ADD] - MANKIND_OVERMAP_ARPA - Это вагабонд насрал
 	.["rotating"] = current_ship.rotating
+	// [/MANKIND-ADD]
+	// [MANKIND-ADD] - TRANSPONDER_GOING_DARK - Переключатель транспондера в хелм-консоли
+	.["transponder_active"] = current_ship.transponder_active
+	// [/MANKIND-ADD]
+	// [MANKIND-ADD] - STEALTH_ARPA - Классическая ARPA с реальными именами кораблей на дистанции.
+	.["omni_arpa"] = current_ship.omni_arpa
 	// [/MANKIND-ADD]
 	for(var/datum/weakref/engine in current_ship.shuttle_port.engine_list)
 		var/obj/machinery/power/shuttle/engine/real_engine = engine.resolve()
@@ -330,7 +343,41 @@
 	. = TRUE
 
 	switch(action) // Universal topics
-		// [MANKIND-ADD] - MANKIND_OVERMAP_STUFF - Это вагабонд насрал
+		// [MANKIND-ADD] - MANKIND_OVERMAP_SCANNER - Личные заметки (метки) о кораблях.
+		if("set_label")
+			var/new_label = params["label"]
+			if(!istext(new_label))
+				return
+			new_label = trim(new_label)
+			if(!length(new_label))
+				return
+			if(!reject_bad_text(new_label, MAX_CHARTER_LEN) || CHAT_FILTER_CHECK(new_label))
+				say("Error: Label rejected by system.")
+				return
+			// Метка — личная заметка наблюдателя, не требует нахождения в одном тайле.
+			var/datum/overmap/ship/controlled/to_label = locate(params["ship_to_act"])
+			if(!istype(to_label, /datum/overmap/ship/controlled) || to_label == current_ship)
+				return
+			current_ship.set_ship_label(to_label, new_label)
+			return
+		if("prompt_label")
+			var/datum/overmap/ship/controlled/to_label = locate(params["ship_to_act"])
+			if(!istype(to_label, /datum/overmap/ship/controlled) || to_label == current_ship)
+				return
+			// Показываем текущее отображаемое имя, чтобы не палить настоящее.
+			var/known_name = current_ship.get_known_ship_name(to_label)["name"]
+			var/new_label = tgui_input_text(usr, "Enter label for [known_name]:", "Set Label", "", MAX_CHARTER_LEN)
+			if(!istext(new_label))
+				return
+			new_label = trim(new_label)
+			if(!length(new_label))
+				return
+			if(!reject_bad_text(new_label, MAX_CHARTER_LEN) || CHAT_FILTER_CHECK(new_label))
+				say("Error: Label rejected by system.")
+				return
+			current_ship.set_ship_label(to_label, new_label)
+			return
+		// [/MANKIND-ADD]
 		if("sensor_increase")
 			//овермап сенсорс максимальная дальность апдейт
 			current_ship.sensor_range = min(current_ship.default_sensor_range, current_ship.sensor_range+1)
@@ -342,6 +389,12 @@
 			current_ship.sensor_range = max(1, current_ship.sensor_range-1)
 			update_static_data(usr, ui)
 			current_ship.token.update_screen()
+			return
+		// [/MANKIND-ADD]
+		// [MANKIND-ADD] - TRANSPONDER_GOING_DARK - Включение/выключение транспондера
+		if("toggle_transponder")
+			current_ship.transponder_active = !current_ship.transponder_active
+			current_ship.refresh_transponder_state()
 			return
 		// [/MANKIND-ADD]
 		if("rename_ship")
