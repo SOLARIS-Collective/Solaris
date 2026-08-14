@@ -459,8 +459,12 @@
 	},
 /area/outpost/exterior)
 "amo" = (
-/turf/closed/indestructible/rock/schist,
-/area/outpost/exterior/ocean)
+/obj/structure/table/reinforced/glass,
+/turf/open/floor/plasteel/patterned/brushed{
+	light_color = "#1B1D2E";
+	light_range = 2
+	},
+/area/outpost/exterior)
 "ang" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2,
@@ -2145,13 +2149,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/patterned/grid,
 /area/outpost/fraction/inteq)
-"bjM" = (
-/obj/effect/turf_decal/elysium_logo/three_three,
-/turf/open/floor/plasteel/patterned/brushed{
-	light_color = "#1B1D2E";
-	light_range = 2
-	},
-/area/outpost/exterior)
 "bjN" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -2197,15 +2194,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/outpost/cargo/smeltery)
-"blk" = (
-/obj/effect/turf_decal/industrial/warning{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plating,
-/area/outpost/exterior/ocean)
 "blO" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -3568,7 +3556,6 @@
 	dir = 8;
 	color = "#543C30"
 	},
-/obj/structure/sign/flag/elysium/directional/east,
 /turf/open/floor/carpet/green,
 /area/outpost/operations/outpost_command)
 "ceS" = (
@@ -5177,7 +5164,6 @@
 /turf/open/floor/plating,
 /area/outpost/crew/cryo)
 "djW" = (
-/obj/effect/turf_decal/elysium_logo,
 /obj/effect/landmark/portal_exit{
 	id = "outpost_joke_endless_666"
 	},
@@ -5473,12 +5459,14 @@
 	},
 /area/outpost/crew/bar)
 "dti" = (
-/obj/effect/turf_decal/elysium_logo/one_one,
-/turf/open/floor/plasteel/patterned/brushed{
-	light_color = "#1B1D2E";
-	light_range = 2
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk{
+	dir = 1
 	},
-/area/outpost/exterior)
+/turf/open/floor/wood/walnut{
+	planetary_atmos = 1
+	},
+/area/outpost/fraction/syndi/donkco_shop)
 "dtD" = (
 /obj/structure/chair/comfy/purple{
 	dir = 4
@@ -6166,26 +6154,6 @@
 	},
 /turf/open/floor/wood/ebony,
 /area/outpost/crew/bar/bar_zone)
-"dMV" = (
-/obj/structure/disposalpipe/junction{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
-	dir = 8
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/effect/turf_decal/borderfloor/full,
-/obj/machinery/light/floor,
-/turf/open/floor/plasteel/patterned/cargo_one{
-	light_color = "#1B1D2E";
-	light_range = 2
-	},
-/area/outpost/exterior)
 "dMX" = (
 /obj/structure/table/wood/reinforced,
 /turf/open/floor/wood/walnut{
@@ -7569,20 +7537,14 @@
 /turf/open/floor/plasteel/dark,
 /area/outpost/medical/morgue)
 "eCZ" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer4{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer2{
-	dir = 1
-	},
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
-/obj/structure/cable{
-	icon_state = "2-8"
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 6
 	},
-/obj/structure/cable{
-	icon_state = "4-8"
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 6
 	},
 /turf/open/floor/carpet/donk,
 /area/outpost/fraction/syndi/donkco_shop)
@@ -7635,6 +7597,7 @@
 /obj/structure/window/reinforced/spawner/west{
 	pixel_x = -2
 	},
+/obj/machinery/light/dim/directional/east,
 /turf/open/floor/carpet/royalblack,
 /area/outpost/fraction/syndi/donkco_shop)
 "eEs" = (
@@ -8176,15 +8139,6 @@
 	},
 /turf/open/floor/marble,
 /area/outpost/fraction/nanotrasen)
-"eUN" = (
-/obj/structure/disposalpipe/segment{
-	dir = 1
-	},
-/obj/machinery/light/dim/directional/east,
-/turf/open/floor/wood/walnut{
-	planetary_atmos = 1
-	},
-/area/outpost/fraction/syndi/donkco_shop)
 "eVs" = (
 /obj/effect/turf_decal/corner/opaque/yellow/diagonal,
 /obj/structure/chair/office{
@@ -11235,16 +11189,6 @@
 	light_range = 2
 	},
 /area/outpost/vacant_rooms/trash_factory)
-"gIG" = (
-/obj/effect/turf_decal/elysium_logo/three_one,
-/obj/effect/turf_decal/corner/transparent/green/bordercorner{
-	dir = 1
-	},
-/turf/open/floor/plasteel/patterned/brushed{
-	light_color = "#1B1D2E";
-	light_range = 2
-	},
-/area/outpost/exterior)
 "gIH" = (
 /obj/structure/painting{
 	icon_state = "jmwt0";
@@ -11671,10 +11615,6 @@
 	},
 /turf/open/floor/plasteel/tech,
 /area/outpost/operations/outpost_command)
-"gVa" = (
-/obj/structure/sign/elysium,
-/turf/closed/indestructible/reinforced,
-/area/outpost/crew/cryo)
 "gVe" = (
 /obj/structure/grille/broken,
 /obj/effect/spawner/random/maintenance,
@@ -11939,10 +11879,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2,
 /turf/open/floor/plasteel/dark,
 /area/outpost/cargo)
-"hdn" = (
-/obj/machinery/light/dim/directional/east,
-/turf/open/floor/carpet/donk,
-/area/outpost/fraction/syndi/donkco_shop)
 "hdT" = (
 /obj/effect/turf_decal/corner/opaque/black/three_quarters,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
@@ -13104,6 +13040,11 @@
 /obj/structure/platform/ship_three{
 	dir = 5
 	},
+/obj/effect/mob_spawn/human/elysium_outpost/wagabond{
+	color = "#999999";
+	pixel_x = -9;
+	pixel_y = 10
+	},
 /turf/open/floor/plasteel/patterned/brushed{
 	light_color = "#1B1D2E";
 	light_range = 2;
@@ -13117,9 +13058,8 @@
 /turf/open/floor/mineral/plastitanium,
 /area/outpost/fraction/syndi)
 "hPw" = (
-/obj/effect/turf_decal/elysium_logo/one_three,
-/obj/effect/turf_decal/corner/transparent/green/bordercorner{
-	dir = 1
+/obj/structure/fluff/hedge{
+	icon_state = "hedge-4"
 	},
 /turf/open/floor/plasteel/patterned/brushed{
 	light_color = "#1B1D2E";
@@ -13854,13 +13794,6 @@
 /obj/machinery/light/small/directional/east,
 /turf/open/floor/plasteel/patterned,
 /area/outpost/crew/bathroom)
-"ikq" = (
-/obj/structure/sign/flag/elysium/directional/south,
-/turf/open/floor/plasteel/patterned/brushed{
-	light_color = "#1B1D2E";
-	light_range = 2
-	},
-/area/outpost/exterior)
 "ikF" = (
 /obj/structure/fermenting_barrel{
 	pixel_y = 8;
@@ -14505,25 +14438,6 @@
 	light_range = 2
 	},
 /area/outpost/exterior)
-"iDZ" = (
-/obj/structure/rack,
-/obj/structure/window/reinforced/spawner{
-	dir = 4;
-	pixel_x = 3
-	},
-/obj/machinery/door/window/brigdoor/southleft{
-	req_one_access_txt = "8126"
-	},
-/obj/structure/window/reinforced/spawner{
-	dir = 1;
-	pixel_y = 2
-	},
-/obj/effect/spawner/random/entertainment/plushie_mankind_all,
-/obj/structure/window/reinforced/spawner/west{
-	pixel_x = -2
-	},
-/turf/open/floor/carpet/royalblack,
-/area/outpost/fraction/syndi/donkco_shop)
 "iEd" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/poddoor/ert{
@@ -15581,6 +15495,7 @@
 /area/outpost/crew/bar/bar_zone)
 "jks" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
+/obj/machinery/light/dim/directional/north,
 /turf/open/floor/carpet/donk,
 /area/outpost/fraction/syndi/donkco_shop)
 "jkM" = (
@@ -15628,14 +15543,6 @@
 	},
 /turf/open/floor/plasteel/tech,
 /area/outpost/maintenance/starboard)
-"jmv" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
-	dir = 4
-	},
-/turf/open/floor/wood/walnut{
-	planetary_atmos = 1
-	},
-/area/outpost/fraction/syndi/donkco_shop)
 "jmF" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 1
@@ -17390,12 +17297,6 @@
 /obj/structure/neon_spline/purple,
 /turf/open/floor/wood/ebony,
 /area/outpost/crew/bar/bar_zone)
-"kue" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
-	dir = 8
-	},
-/turf/open/floor/carpet/donk,
-/area/outpost/fraction/syndi/donkco_shop)
 "kuw" = (
 /obj/machinery/chem_dispenser,
 /turf/open/floor/plasteel/darkgreenfull/darkgreen{
@@ -17934,7 +17835,6 @@
 /obj/effect/turf_decal/trimline/opaque/vired/line{
 	dir = 10
 	},
-/obj/structure/sign/flag/elysium/directional/east,
 /turf/open/floor/plasteel/dark_2,
 /area/outpost/security/hall)
 "kKm" = (
@@ -18276,7 +18176,6 @@
 /obj/structure/flora/ausbushes/ppflowers{
 	pixel_y = -7
 	},
-/obj/structure/sign/flag/elysium/directional/west,
 /turf/open/floor/plating/asteroid/dirt/grass,
 /area/outpost/exterior)
 "kTE" = (
@@ -18356,9 +18255,6 @@
 	},
 /turf/open/floor/plasteel/telecomms_floor,
 /area/outpost/crew/cryo)
-"kVU" = (
-/turf/closed/indestructible/rock/schist,
-/area/space)
 "kVV" = (
 /obj/effect/turf_decal/techfloor{
 	dir = 9
@@ -18960,10 +18856,6 @@
 /obj/machinery/computer/crew,
 /turf/open/floor/plasteel/dark,
 /area/outpost/crew/cryo)
-"lvm" = (
-/obj/structure/table/wood/fancy/red,
-/turf/open/floor/carpet/royalblack,
-/area/outpost/fraction/syndi/donkco_shop)
 "lvp" = (
 /obj/effect/turf_decal/techfloor{
 	dir = 9
@@ -20012,14 +19904,14 @@
 	},
 /area/outpost/exterior)
 "lZm" = (
-/obj/machinery/door/airlock/multi_tile/base/glass,
-/obj/structure/disposalpipe/segment{
-	dir = 1
+/obj/structure/fluff/hedge{
+	icon_state = "hedge-8"
 	},
-/turf/open/floor/wood/walnut{
-	planetary_atmos = 1
+/turf/open/floor/plasteel/patterned/brushed{
+	light_color = "#1B1D2E";
+	light_range = 2
 	},
-/area/outpost/fraction/syndi/donkco_shop)
+/area/outpost/exterior)
 "lZp" = (
 /obj/effect/turf_decal/techfloor/corner{
 	dir = 4
@@ -21486,13 +21378,9 @@
 /turf/closed/indestructible/titanium/nodiagnonal,
 /area/outpost/medical/chemestry)
 "mWB" = (
-/obj/structure/disposalpipe/segment{
-	dir = 9
-	},
-/turf/open/floor/wood/walnut{
-	planetary_atmos = 1
-	},
-/area/outpost/fraction/syndi/donkco_shop)
+/obj/effect/mob_spawn/human/elysium_outpost/wagabond,
+/turf/open/floor/plating/asteroid/icerock/temperate,
+/area/outpost/exterior)
 "mXb" = (
 /obj/structure/extinguisher_cabinet/directional/east,
 /turf/open/floor/wood/walnut{
@@ -22181,15 +22069,6 @@
 	planetary_atmos = 1
 	},
 /area/outpost/vacant_rooms/office)
-"nnY" = (
-/obj/structure/disposalpipe/trunk{
-	dir = 1
-	},
-/obj/machinery/disposal/bin,
-/turf/open/floor/wood/walnut{
-	planetary_atmos = 1
-	},
-/area/outpost/fraction/syndi/donkco_shop)
 "npL" = (
 /obj/machinery/light/directional/south{
 	dir = 1;
@@ -22980,13 +22859,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/tech/techmaint,
 /area/outpost/fraction/inteq)
-"nSs" = (
-/obj/effect/turf_decal/elysium_logo/two_three,
-/turf/open/floor/plasteel/patterned/brushed{
-	light_color = "#1B1D2E";
-	light_range = 2
-	},
-/area/outpost/exterior)
 "nSR" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer4{
 	dir = 8
@@ -23733,11 +23605,9 @@
 /turf/open/floor/plating,
 /area/outpost/operations/outpost_command)
 "onB" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
-	dir = 4
-	},
-/turf/open/floor/carpet/donk,
-/area/outpost/fraction/syndi/donkco_shop)
+/obj/effect/mob_spawn/human/elysium_outpost/wagabond,
+/turf/open/floor/wood,
+/area/outpost/exterior)
 "onF" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
 	dir = 5
@@ -23947,10 +23817,6 @@
 	},
 /turf/open/floor/wood/ebony,
 /area/outpost/crew/bar/theatre)
-"otc" = (
-/obj/structure/sign/flag/elysium/directional/east,
-/turf/open/floor/plasteel/tech,
-/area/outpost/operations/outpost_command)
 "ots" = (
 /obj/structure/railing/wood{
 	dir = 4;
@@ -24304,9 +24170,6 @@
 	light_range = 2
 	},
 /area/outpost/exterior)
-"oFv" = (
-/turf/closed/indestructible/rock/snow,
-/area/space)
 "oFx" = (
 /obj/structure/chair/stool/bar{
 	dir = 1;
@@ -25176,20 +25039,6 @@
 	light_range = 2
 	},
 /area/outpost/exterior)
-"pmM" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer4{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer2{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/wood/walnut{
-	planetary_atmos = 1
-	},
-/area/outpost/fraction/syndi/donkco_shop)
 "pnj" = (
 /obj/structure/sign/neon/loreasteregg1{
 	pixel_x = -32
@@ -25491,7 +25340,6 @@
 /obj/effect/turf_decal/corner/transparent/green/bordercorner{
 	dir = 1
 	},
-/obj/structure/sign/flag/elysium/directional/south,
 /obj/structure/chair/bench/orange/directional/west,
 /turf/open/floor/plasteel/patterned/brushed{
 	light_color = "#1B1D2E";
@@ -25558,10 +25406,15 @@
 /turf/open/floor/plasteel/tech,
 /area/outpost/operations/outpost_command)
 "pwT" = (
-/obj/effect/turf_decal/elysium_logo/two_one,
+/obj/structure/platform/ship_three,
+/obj/structure/railing/thick,
+/obj/effect/mob_spawn/human/elysium_outpost/wagabond{
+	color = "#999999"
+	},
 /turf/open/floor/plasteel/patterned/brushed{
 	light_color = "#1B1D2E";
-	light_range = 2
+	light_range = 2;
+	color = "#999999"
 	},
 /area/outpost/exterior)
 "pyb" = (
@@ -26979,20 +26832,6 @@
 	},
 /turf/open/floor/plasteel/elevatorshaft,
 /area/outpost/exterior)
-"qvD" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
-	dir = 5
-	},
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
-/turf/open/floor/wood/walnut{
-	planetary_atmos = 1
-	},
-/area/outpost/fraction/syndi/donkco_shop)
 "qvF" = (
 /obj/structure/rack,
 /obj/structure/window/reinforced/spawner{
@@ -28149,15 +27988,6 @@
 	layer = 2.038
 	},
 /area/outpost/exterior)
-"rgi" = (
-/obj/structure/disposalpipe/trunk{
-	dir = 4
-	},
-/obj/machinery/disposal/bin,
-/turf/open/floor/wood/walnut{
-	planetary_atmos = 1
-	},
-/area/outpost/fraction/syndi/donkco_shop)
 "rgC" = (
 /obj/structure/railing/wood{
 	dir = 8
@@ -29244,13 +29074,6 @@
 	planetary_atmos = 1
 	},
 /area/outpost/medical/cmo)
-"rNw" = (
-/obj/effect/turf_decal/elysium_logo/one_two,
-/turf/open/floor/plasteel/patterned/brushed{
-	light_color = "#1B1D2E";
-	light_range = 2
-	},
-/area/outpost/exterior)
 "rNE" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
 	dir = 1
@@ -29491,9 +29314,20 @@
 /turf/open/floor/plasteel/dark,
 /area/outpost/medical/morgue)
 "rWe" = (
-/obj/structure/sign/elysium,
-/turf/closed/indestructible/reinforced,
-/area/outpost/crew/bathroom)
+/obj/effect/turf_decal/siding/white{
+	dir = 5
+	},
+/obj/structure/railing{
+	dir = 4;
+	pixel_y = 10
+	},
+/obj/structure/chair/bench/orange,
+/obj/effect/mob_spawn/human/elysium_outpost/wagabond,
+/turf/open/floor/plasteel/patterned/brushed{
+	light_color = "#1B1D2E";
+	light_range = 2
+	},
+/area/outpost/exterior)
 "rXH" = (
 /obj/effect/turf_decal/trimline/opaque/blue/warning,
 /obj/effect/turf_decal/trimline/opaque/blue/end,
@@ -29705,13 +29539,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/outpost/operations/outpost_command)
-"seJ" = (
-/obj/effect/turf_decal/elysium_logo/three_two,
-/turf/open/floor/plasteel/patterned/brushed{
-	light_color = "#1B1D2E";
-	light_range = 2
-	},
-/area/outpost/exterior)
 "sfv" = (
 /obj/structure/table/wood/reinforced,
 /obj/machinery/chem_dispenser/drinks/beer/fullupgrade{
@@ -30718,8 +30545,10 @@
 	alpha = 0;
 	mouse_opacity = 0
 	},
-/turf/open/space/basic,
-/area/space)
+/turf/open/floor/plating/asteroid/snow/temperatre{
+	layer = 2.454
+	},
+/area/outpost/exterior)
 "sIP" = (
 /obj/effect/turf_decal/corner_techfloor_gray/diagonal{
 	layer = 2.030
@@ -30791,9 +30620,17 @@
 /turf/open/floor/plasteel/tech,
 /area/outpost/crew/cryo)
 "sLF" = (
-/obj/structure/sign/elysium,
-/turf/closed/indestructible/reinforced,
-/area/outpost/security/detective)
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 8
+	},
+/turf/open/floor/carpet/donk,
+/area/outpost/fraction/syndi/donkco_shop)
 "sMx" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -30975,10 +30812,6 @@
 	},
 /turf/open/floor/wood,
 /area/outpost/security/detective)
-"sPY" = (
-/obj/structure/sign/elysium,
-/turf/closed/indestructible/reinforced,
-/area/outpost/security)
 "sQV" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
 	dir = 9
@@ -32082,9 +31915,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/outpost/crew/canteen)
-"tvP" = (
-/turf/closed/wall/r_wall,
-/area/space)
 "twa" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
@@ -32583,10 +32413,6 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer4,
 /turf/open/floor/plasteel/dark,
 /area/outpost/cargo)
-"tLN" = (
-/obj/structure/sign/elysium,
-/turf/closed/indestructible/reinforced,
-/area/outpost/cargo)
 "tMO" = (
 /obj/effect/turf_decal/spline/plain/opaque/syndiered{
 	dir = 5
@@ -32749,17 +32575,6 @@
 	},
 /turf/open/floor/carpet/black,
 /area/outpost/crew/lounge)
-"tSf" = (
-/obj/structure/disposalpipe/segment{
-	dir = 1
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer4{
-	dir = 8
-	},
-/turf/open/floor/wood/walnut{
-	planetary_atmos = 1
-	},
-/area/outpost/fraction/syndi/donkco_shop)
 "tSi" = (
 /obj/structure/rack,
 /obj/item/storage/firstaid/radiation{
@@ -34707,18 +34522,6 @@
 	light_range = 2
 	},
 /area/outpost/exterior)
-"vja" = (
-/obj/effect/turf_decal/industrial/warning{
-	dir = 4
-	},
-/obj/effect/turf_decal/industrial/traffic/corner{
-	dir = 1
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plating,
-/area/outpost/exterior/ocean)
 "vjm" = (
 /obj/effect/turf_decal/industrial/warning/fulltile,
 /obj/machinery/door/firedoor/border_only,
@@ -35992,21 +35795,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4,
 /turf/open/floor/plasteel/dark,
 /area/outpost/cargo)
-"wbh" = (
-/obj/structure/rack,
-/obj/machinery/door/window/brigdoor/southleft{
-	req_one_access_txt = "8126"
-	},
-/obj/structure/window/reinforced/spawner{
-	dir = 1;
-	pixel_y = 2
-	},
-/obj/effect/spawner/random/entertainment/plushie_mankind_all,
-/obj/structure/window/reinforced/spawner/west{
-	pixel_x = -2
-	},
-/turf/open/floor/carpet/royalblack,
-/area/outpost/fraction/syndi/donkco_shop)
 "wbj" = (
 /obj/effect/turf_decal/borderfloor/full,
 /obj/machinery/light/floor,
@@ -36260,22 +36048,6 @@
 	},
 /turf/open/floor/plating,
 /area/outpost/medical/hall_2)
-"whQ" = (
-/obj/structure/rack,
-/obj/structure/window/reinforced/spawner{
-	dir = 4;
-	pixel_x = 3
-	},
-/obj/machinery/door/window/brigdoor/southleft{
-	req_one_access_txt = "8126";
-	dir = 1
-	},
-/obj/effect/spawner/random/entertainment/plushie_mankind_all,
-/obj/structure/window/reinforced/spawner/west{
-	pixel_x = -2
-	},
-/turf/open/floor/carpet/royalblack,
-/area/outpost/fraction/syndi/donkco_shop)
 "wip" = (
 /obj/structure/railing/corner{
 	dir = 8
@@ -36284,15 +36056,14 @@
 /turf/open/floor/plasteel/tech,
 /area/outpost/operations/outpost_command)
 "wiU" = (
-/obj/effect/turf_decal/trimline/opaque/vired/line{
-	dir = 8
+/obj/structure/fluff/hedge{
+	icon_state = "hedge-12"
 	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
-	dir = 4
+/turf/open/floor/plasteel/patterned/brushed{
+	light_color = "#1B1D2E";
+	light_range = 2
 	},
-/obj/structure/sign/flag/elysium/directional/east,
-/turf/open/floor/plasteel/dark_2,
-/area/outpost/security/hall)
+/area/outpost/exterior)
 "wiZ" = (
 /obj/structure/platform/wood_two{
 	dir = 1
@@ -37288,31 +37059,6 @@
 	layer = 2.454
 	},
 /area/outpost/exterior)
-"wET" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer4{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer2{
-	dir = 1
-	},
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/effect/turf_decal/borderfloor/full,
-/turf/open/floor/plasteel/patterned/cargo_one{
-	light_color = "#1B1D2E";
-	light_range = 2
-	},
-/area/outpost/exterior)
 "wFz" = (
 /obj/machinery/conveyor/auto{
 	id = "outpost3";
@@ -37845,7 +37591,6 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/borderfloor,
-/obj/structure/sign/flag/elysium/directional/west,
 /turf/open/floor/plating{
 	light_color = "#1B1D2E";
 	light_range = 2
@@ -38369,7 +38114,7 @@
 /area/outpost/exterior)
 "xpc" = (
 /turf/closed/wall/r_wall,
-/area/outpost/exterior)
+/area/outpost/external)
 "xpt" = (
 /obj/machinery/light_switch{
 	pixel_x = -22;
@@ -39466,7 +39211,7 @@
 /obj/effect/spawner/structure/window/reinforced/indestructible,
 /obj/structure/curtain/cloth/purpl,
 /turf/open/floor/plating,
-/area/space)
+/area/outpost/crew/bar/vip_zone)
 "yar" = (
 /obj/structure/table/wood/reinforced,
 /obj/effect/spawner/random/mankind_drink,
@@ -39696,18 +39441,6 @@
 	light_range = 2
 	},
 /area/outpost/vacant_rooms/trash_factory)
-"yhw" = (
-/obj/structure/rack,
-/obj/machinery/door/window/brigdoor/southleft{
-	req_one_access_txt = "8126";
-	dir = 1
-	},
-/obj/effect/spawner/random/entertainment/plushie_mankind_all,
-/obj/structure/window/reinforced/spawner/west{
-	pixel_x = -2
-	},
-/turf/open/floor/carpet/royalblack,
-/area/outpost/fraction/syndi/donkco_shop)
 "yil" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -39927,15 +39660,15 @@ iNi
 iNi
 iNi
 iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
 iNi
 iNi
 iNi
@@ -40107,23 +39840,23 @@ iNi
 iNi
 iNi
 iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
 rgY
 rgY
 rgY
@@ -40289,22 +40022,22 @@ iNi
 iNi
 iNi
 iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
 rgY
 rgY
 rgY
@@ -50094,7 +49827,7 @@ gok
 gok
 gok
 gok
-sPY
+qqL
 qqL
 qqL
 qqL
@@ -50105,7 +49838,7 @@ aku
 aku
 eaN
 eaN
-sLF
+aku
 aku
 aku
 oyC
@@ -51234,7 +50967,7 @@ imx
 imx
 imx
 imx
-wiU
+twR
 kVx
 pdd
 kJi
@@ -52371,7 +52104,7 @@ lDx
 wMX
 pfe
 cJN
-otc
+oII
 dDZ
 oII
 oII
@@ -52465,15 +52198,15 @@ gok
 kvO
 gok
 gok
-oFv
-oFv
-oFv
-oFv
-kVU
-kVU
-oFv
-oFv
-oFv
+gMS
+gMS
+gMS
+gMS
+rgY
+rgY
+gMS
+gMS
+gMS
 ryn
 ryn
 ryn
@@ -52652,15 +52385,15 @@ gok
 kvO
 gok
 gok
-oFv
-oFv
-oFv
-oFv
-kVU
-kVU
-kVU
-kVU
-kVU
+gMS
+gMS
+gMS
+gMS
+rgY
+rgY
+rgY
+rgY
+rgY
 ryn
 tei
 oJu
@@ -52839,11 +52572,11 @@ gok
 kvO
 gok
 gMS
-oFv
-oFv
-oFv
-oFv
-kVU
+gMS
+gMS
+gMS
+gMS
+rgY
 ryn
 ryn
 ryn
@@ -53026,7 +52759,7 @@ juA
 kvO
 gok
 gMS
-oFv
+gMS
 jWI
 jWI
 jWI
@@ -53213,7 +52946,7 @@ gok
 kvO
 gok
 gMS
-kVU
+rgY
 jWI
 ojf
 rHU
@@ -53400,7 +53133,7 @@ gok
 kvO
 gok
 gMS
-oFv
+gMS
 jWI
 fBU
 dnF
@@ -53587,7 +53320,7 @@ gok
 kvO
 gok
 gok
-oFv
+gMS
 jWI
 abP
 oEf
@@ -53774,7 +53507,7 @@ gok
 kvO
 gok
 gok
-oFv
+gMS
 jWI
 tMV
 nPD
@@ -53961,7 +53694,7 @@ gok
 kvO
 gok
 gok
-oFv
+gMS
 jWI
 bEK
 kdE
@@ -54148,7 +53881,7 @@ gok
 kvO
 gok
 gok
-oFv
+gMS
 jWI
 bzc
 grB
@@ -54335,7 +54068,7 @@ gok
 kvO
 gok
 gok
-oFv
+gMS
 jWI
 jnv
 hVz
@@ -54522,7 +54255,7 @@ gok
 kvO
 gok
 gok
-oFv
+gMS
 jWI
 jWI
 kkk
@@ -54709,8 +54442,8 @@ juA
 kvO
 gok
 gok
-oFv
-oFv
+gMS
+gMS
 jWI
 rGW
 xIt
@@ -54767,18 +54500,18 @@ wJn
 heV
 bBa
 ebM
-eVM
-eVM
-eVM
-eVM
-eVM
-eVM
-eVM
-eVM
-eVM
+gok
+gok
 gMS
 gMS
-gMS
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
 rgY
 rgY
 iNi
@@ -54896,8 +54629,8 @@ gok
 kvO
 gok
 gok
-iNi
-oFv
+gok
+gMS
 jWI
 lqe
 bBD
@@ -54951,21 +54684,21 @@ txJ
 gok
 xxJ
 wJn
-bNN
-owj
-owj
-eVM
-rgi
-sOG
-dJU
-dJU
-dJU
-sOG
-yhw
-eVM
+heV
+gok
+gok
+gok
+gok
+gok
 gMS
-gMS
-gMS
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
 gMS
 gMS
 rgY
@@ -55082,7 +54815,7 @@ gok
 gok
 kvO
 gok
-iNi
+gok
 lpI
 lpI
 lpI
@@ -55137,22 +54870,22 @@ gok
 txJ
 ebM
 xxJ
-dMV
-hFA
-hFA
-hFA
-lZm
-mWB
-dJU
-jmv
-dJU
-dJU
-dJU
-yhw
-eVM
+wJn
+heV
+gok
+gok
+gok
 gMS
 gMS
 gMS
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
 gMS
 gMS
 gMS
@@ -55324,22 +55057,22 @@ gok
 aji
 gok
 xxJ
-wET
-pmI
-pmI
-pmI
-cka
-cka
-cka
-pmM
-cka
-qvD
-dJU
-yhw
-eVM
+wJn
+heV
+gok
+gok
+gok
+gok
+gok
 gMS
-gMS
-gMS
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
 gMS
 gMS
 gMS
@@ -55512,21 +55245,21 @@ yds
 ajt
 xxJ
 wJn
-bTt
-nNQ
-nNQ
-eVM
-lWl
-fNi
-kue
-fNi
-nTE
-fNi
-whQ
-eVM
+heV
+gok
+gok
+gok
+gok
 gMS
 gMS
-gMS
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
 gMS
 gMS
 gMS
@@ -55702,18 +55435,18 @@ wJn
 heV
 gok
 gok
-aUT
-wbh
-fNi
-yhw
-kfT
-nTE
-fNi
-dJU
-eVM
-eVM
-eVM
-eVM
+gok
+gMS
+gMS
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
 gMS
 gMS
 gMS
@@ -55889,18 +55622,18 @@ wJn
 heV
 juA
 gok
-aUT
-wbh
-fNi
-yhw
-kfT
-nTE
-fNi
-dJU
-lvm
-giC
-eCF
-eVM
+gMS
+gMS
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
 gMS
 eVM
 eVM
@@ -56076,17 +55809,17 @@ wJn
 heV
 gok
 gok
-aUT
-wbh
-fNi
-yhw
-kfT
-nTE
-fNi
-dJU
-ffn
-ffn
-ffn
+gMS
+rgY
+rgY
+rgY
+eVM
+eVM
+eVM
+eVM
+eVM
+eVM
+eVM
 eVM
 gMS
 eVM
@@ -56204,7 +55937,7 @@ gok
 gok
 kvO
 gok
-oFv
+gMS
 sTV
 tpH
 msg
@@ -56263,11 +55996,11 @@ wJn
 heV
 gok
 gok
-aUT
-iDZ
-fNi
-whQ
-qvF
+gok
+gMS
+gMS
+eVM
+eVM
 eCZ
 pke
 cka
@@ -56391,7 +56124,7 @@ oyC
 gok
 kvO
 gok
-oFv
+gMS
 sTV
 riu
 mAo
@@ -56450,13 +56183,13 @@ wJn
 heV
 gok
 ebM
+gok
+gok
+gok
 eVM
 lWl
+sLF
 fNi
-fNi
-jks
-qKQ
-hES
 dJU
 ffn
 ffn
@@ -56578,7 +56311,7 @@ gok
 oyC
 kvO
 gok
-oFv
+gMS
 sTV
 sTV
 jEp
@@ -56637,10 +56370,10 @@ wJn
 heV
 gok
 gok
+gok
+gok
+ebM
 aUT
-wbh
-fNi
-yhw
 kfT
 nTE
 fNi
@@ -56765,9 +56498,9 @@ gok
 gok
 kvO
 gok
-oFv
-oFv
-tvP
+gMS
+gMS
+sTV
 sTV
 xNN
 sTV
@@ -56824,10 +56557,10 @@ wJn
 ava
 bXl
 gok
+gok
+juA
+gok
 aUT
-wbh
-fNi
-yhw
 kfT
 nTE
 fNi
@@ -56952,9 +56685,9 @@ oyC
 oyC
 kvO
 gok
-tvP
-oFv
-oFv
+gMS
+gMS
+gMS
 sTV
 uHB
 sTV
@@ -57011,10 +56744,10 @@ idZ
 gJf
 kvi
 gok
+gok
+gok
+gok
 aUT
-wbh
-fNi
-yhw
 kfT
 nTE
 fNi
@@ -57139,7 +56872,7 @@ oyC
 oyC
 ylT
 oyC
-tvP
+cci
 cci
 cci
 cci
@@ -57198,10 +56931,10 @@ wJn
 emT
 qvc
 gok
+gok
+gok
+gok
 aUT
-iDZ
-fNi
-whQ
 qvF
 nTE
 fNi
@@ -57326,7 +57059,7 @@ oyC
 oyC
 ylT
 oyC
-tvP
+cci
 sVq
 xDg
 rsT
@@ -57385,10 +57118,10 @@ wJn
 heV
 juA
 gok
+gok
+gok
+gok
 eVM
-lWl
-fNi
-fNi
 jks
 qKQ
 hES
@@ -57572,10 +57305,10 @@ wJn
 heV
 gok
 ebM
+gok
+juA
+gok
 aUT
-wbh
-fNi
-yhw
 kfT
 nTE
 fNi
@@ -57759,10 +57492,10 @@ wJn
 heV
 gok
 gok
+gok
+gok
+ebM
 aUT
-wbh
-fNi
-yhw
 kfT
 nTE
 fNi
@@ -57946,13 +57679,13 @@ wJn
 heV
 gok
 juA
+gok
+gok
+gok
 aUT
-wbh
-fNi
-yhw
 kfT
 nTE
-hdn
+fNi
 eEp
 eVM
 gMS
@@ -58074,7 +57807,7 @@ oyC
 oyC
 ylT
 oyC
-tvP
+cci
 tLa
 csg
 csg
@@ -58133,13 +57866,13 @@ wJn
 ffo
 gok
 gok
+gok
+ebM
+gok
 aUT
-iDZ
-fNi
-whQ
 qvF
 nTE
-eVM
+dJU
 eVM
 eVM
 gMS
@@ -58261,7 +57994,7 @@ gok
 oyC
 ylT
 oyC
-tvP
+cci
 cci
 dJT
 dJT
@@ -58320,15 +58053,15 @@ wJn
 bNN
 owj
 owj
+owj
+owj
+owj
 eVM
 lWl
-fNi
-onB
-fNi
 nTE
+dJU
+giC
 eVM
-gMS
-gMS
 gMS
 gMS
 gMS
@@ -58507,15 +58240,15 @@ brB
 pmI
 pmI
 pmI
+pmI
+pmI
+pmI
 use
 cka
-cka
-pmM
-cka
 iHR
+dJU
+dJU
 eVM
-gMS
-gMS
 gMS
 gMS
 rgY
@@ -58641,11 +58374,11 @@ gok
 xvR
 gok
 oWB
-fHM
+pwT
 duv
 sRE
-sRE
-sRE
+duv
+hPw
 giv
 rTv
 bDR
@@ -58694,15 +58427,15 @@ aBw
 hFA
 hFA
 hFA
+hFA
+hFA
+hFA
 qZS
 qZS
-eUN
-tSf
 qZS
-nnY
+dti
+eCF
 eVM
-gMS
-gMS
 gMS
 rgY
 rgY
@@ -58831,8 +58564,8 @@ oNb
 fHM
 rTv
 sRE
-sRE
-sRE
+amo
+wiU
 sRE
 sRE
 sRE
@@ -58881,15 +58614,15 @@ wJn
 bTt
 nNQ
 nNQ
+nNQ
+nNQ
+nNQ
 eVM
 eVM
 eVM
 eVM
 eVM
 eVM
-eVM
-gMS
-gMS
 gMS
 rgY
 rgY
@@ -59016,10 +58749,10 @@ oyC
 oyC
 oNb
 fHM
+kGD
 sRE
-sRE
-sRE
-sRE
+kGD
+lZm
 sRE
 sRE
 sRE
@@ -59209,9 +58942,9 @@ sRE
 sRE
 sRE
 xCq
-dti
-pwT
-gIG
+sRE
+sRE
+dOW
 sRE
 sRE
 sRE
@@ -59263,7 +58996,7 @@ lTi
 gok
 gok
 gok
-gok
+gMS
 gMS
 rgY
 rgY
@@ -59396,9 +59129,9 @@ gqX
 sRE
 sRE
 sRE
-rNw
+sRE
 djW
-seJ
+sRE
 sRE
 sRE
 sRE
@@ -59583,9 +59316,9 @@ ssr
 ssr
 qCR
 riv
-hPw
-nSs
-bjM
+dOW
+sRE
+sRE
 riv
 tQG
 ssr
@@ -59770,7 +59503,7 @@ olg
 olg
 qLE
 qLE
-ikq
+sRE
 sRE
 sRE
 qLE
@@ -61295,7 +61028,7 @@ tPU
 tPU
 tPU
 tPU
-hQU
+mWB
 hQU
 jzA
 rZr
@@ -62406,7 +62139,7 @@ xoC
 mhx
 sFZ
 sFr
-gVa
+tPU
 vuu
 mSD
 ehf
@@ -62746,7 +62479,7 @@ gok
 gok
 gok
 oOm
-bvm
+rWe
 wbn
 wJn
 gJf
@@ -65228,7 +64961,7 @@ gFU
 lxo
 dlS
 lxo
-rWe
+lxo
 gok
 rgY
 qlN
@@ -66824,7 +66557,7 @@ gMS
 gMS
 gMS
 wgM
-jGy
+onB
 gok
 jGy
 qlB
@@ -69004,7 +68737,7 @@ mUc
 ftT
 ydv
 oUm
-amo
+rgY
 bpy
 pnH
 sns
@@ -69191,7 +68924,7 @@ unO
 uSk
 oZs
 oUm
-amo
+rgY
 bpy
 oAf
 aXO
@@ -69205,8 +68938,8 @@ mCj
 oCj
 bpy
 bpy
-bpy
-bpy
+rgY
+rgY
 rgY
 rgY
 rgY
@@ -69390,10 +69123,10 @@ dPA
 uzK
 lbe
 xZj
-vja
-blk
 sjx
 bpy
+rgY
+rgY
 rgY
 rgY
 rgY
@@ -69576,11 +69309,11 @@ pJp
 pJp
 pJp
 pJp
-pJp
-pJp
 fQQ
 lNl
 bpy
+rgY
+rgY
 rgY
 rgY
 rgY
@@ -69764,10 +69497,10 @@ pJp
 pJp
 pJp
 pJp
-pJp
-pJp
 lNl
 bpy
+rgY
+rgY
 rgY
 rgY
 rgY
@@ -69951,10 +69684,10 @@ pJp
 pJp
 pJp
 pJp
-pJp
-pJp
 lNl
 bpy
+rgY
+rgY
 rgY
 rgY
 rgY
@@ -70138,10 +69871,10 @@ pJp
 pJp
 pJp
 pJp
-pJp
-pJp
 lNl
 bpy
+rgY
+rgY
 rgY
 rgY
 rgY
@@ -70325,10 +70058,10 @@ pJp
 pJp
 pJp
 pJp
-pJp
-pJp
 lNl
 bpy
+rgY
+rgY
 rgY
 rgY
 rgY
@@ -70512,10 +70245,10 @@ pJp
 pJp
 pJp
 pJp
-pJp
-pJp
 lNl
 bpy
+rgY
+rgY
 rgY
 rgY
 rgY
@@ -70699,10 +70432,10 @@ pJp
 pJp
 pJp
 pJp
-pJp
-pJp
 lNl
 bpy
+rgY
+rgY
 rgY
 rgY
 rgY
@@ -70886,10 +70619,10 @@ pJp
 pJp
 pJp
 pJp
-pJp
-pJp
 hmr
 bpy
+rgY
+rgY
 rgY
 rgY
 rgY
@@ -71073,10 +70806,10 @@ pJp
 pJp
 pJp
 pJp
-pJp
-pJp
 uJl
 bpy
+rgY
+rgY
 rgY
 rgY
 rgY
@@ -71260,10 +70993,10 @@ pJp
 pJp
 pJp
 pJp
-pJp
-pJp
 gkY
 bpy
+rgY
+rgY
 rgY
 rgY
 rgY
@@ -71447,10 +71180,10 @@ pJp
 pJp
 pJp
 pJp
-pJp
-pJp
 gkY
 bpy
+rgY
+rgY
 rgY
 rgY
 rgY
@@ -71634,10 +71367,10 @@ pJp
 pJp
 pJp
 pJp
-pJp
-pJp
 gkY
 bpy
+rgY
+rgY
 rgY
 rgY
 rgY
@@ -71821,10 +71554,10 @@ pJp
 pJp
 pJp
 pJp
-pJp
-pJp
 gkY
 bpy
+rgY
+rgY
 rgY
 rgY
 rgY
@@ -72008,10 +71741,10 @@ qTp
 qTp
 qTp
 qTp
-qTp
-qTp
 rzI
 bpy
+rgY
+rgY
 rgY
 rgY
 rgY
@@ -72196,9 +71929,9 @@ tnS
 tnS
 tnS
 tnS
-tnS
-tnS
 bpy
+rgY
+rgY
 rgY
 rgY
 rgY
@@ -72502,12 +72235,12 @@ rfa
 rfa
 rfa
 rfa
-tLN
+rfa
 rnB
 dix
 dix
 tcY
-tLN
+rfa
 rfa
 rfa
 rfa
@@ -74009,55 +73742,55 @@ iNi
 iNi
 iNi
 iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
 iNi
 iNi
 iNi
@@ -74196,55 +73929,55 @@ iNi
 iNi
 iNi
 iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
 iNi
 iNi
 iNi
@@ -74383,55 +74116,55 @@ iNi
 iNi
 iNi
 iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
-iNi
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
+rgY
 iNi
 iNi
 iNi
