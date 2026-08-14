@@ -359,6 +359,7 @@
 	faction = /datum/faction/independent
 	starting_funds = 0
 	unique_ship_access = FALSE
+	def_sensor_range = 2
 
 /datum/map_template/shuttle/subshuttles/pill
 	file_name = "independent_pill"
