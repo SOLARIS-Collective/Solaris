@@ -108,7 +108,7 @@
 		return FALSE
 
 	message_admins("[key_name_admin(usr)] renamed vessel '[old_name]' to '[full_name]'")
-	log_admin("[usr.ckey] ([usr.real_name]) on [key_name(src)] has renamed vessel '[old_name]' to '[full_name]'")
+	log_admin("[key_name(usr)] on [key_name(src)] has renamed vessel '[old_name]' to '[full_name]'")
 	SSblackbox.record_feedback("text", "ship_renames", 1, full_name)
 
 	real_name = new_name
