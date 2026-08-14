@@ -103,7 +103,7 @@ GLOBAL_LIST_INIT(freqcolor, list())
 	volume = min(volume, 100)
 	var/turf/T = get_turf(src)
 	for(var/mob/M in hearers)
-		M.playsound_local(T, vol = volume, vary = TRUE, frequency = pitch, max_distance = distance, falloff_distance = 0, falloff_exponent = W_TTS_VOICES_SOUND_FALLOFF_EXPONENT(distance), S = vocal_w_tts_voices, distance_multiplier = 1)
+		M.playsound_local(T, vol = volume, vary = TRUE, frequency = pitch, max_distance = distance, falloff_distance = 0, falloff_exponent = W_TTS_VOICES_SOUND_FALLOFF_EXPONENT(distance), S = vocal_w_tts_voices, distance_multiplier = 1, sound_flag = FS_VOICES)
 		// to_chat(world, "DEBUG: Called for [M.name]")
 // [/SOLARIS-ADD]
 
