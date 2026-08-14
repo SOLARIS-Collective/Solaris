@@ -219,6 +219,10 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 		if(C == src)
 			continue
 
+		// Don't add players who are hidden from WhoIs (e.g. hidden admins)
+		if(!C.prefs?.whois_visible)
+			continue
+
 		// Don't add players we've already ignored if they're not using a fakekey
 		if((C.key in prefs.ignoring) && !C.holder?.fakekey)
 			continue
