@@ -68,12 +68,6 @@ GLOBAL_VAR_INIT(normal_looc_colour, "#6699CC")
 		if(!hearer)
 			continue
 
-		if(key in hearer.prefs.ignoring)
-			continue
-
-		if(holder?.fakekey in hearer.prefs.ignoring)
-			continue
-
 		if(!(hearer.prefs.chat_toggles & CHAT_LOOC))
 			continue
 
@@ -90,12 +84,6 @@ GLOBAL_VAR_INIT(normal_looc_colour, "#6699CC")
 			to_chat(hearer, span_looc("[span_prefix("LOOC:")] <EM>[mob.get_screentip_name(hearer)]:</EM> [span_message("[msg]")]"), MESSAGE_TYPE_LOOC)
 
 	for(var/client/C in GLOB.admins)
-		if(key in C.prefs.ignoring)
-			continue
-
-		if(holder?.fakekey in C.prefs.ignoring)
-			continue
-
 		if(!(C.prefs.chat_toggles & CHAT_LOOC))
 			continue
 

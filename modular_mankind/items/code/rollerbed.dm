@@ -45,12 +45,6 @@
 	icon_state = "up"
 	M.pixel_y = M.base_pixel_y
 
-/obj/structure/bed/roller/future/Moved()
-	. = ..()
-	if(has_gravity())
-		playsound(src, 'sound/effects/roll.ogg', 100, TRUE)
-
-
 /obj/structure/bed/roller/future/post_unbuckle_mob(mob/living/M)
 	density = FALSE
 	icon_state = "down"
@@ -113,3 +107,12 @@
 		loaded = null
 	else
 		to_chat(user, span_warning("The dock is empty!"))
+
+/obj/structure/bed/roller/medicalshield
+	name = "roller medicalshield bed"
+	icon = 'modular_mankind/_storage_icons/icons/items/misc/medicalshield_rollerbed.dmi'
+	foldabletype = /obj/item/roller/medicalshield
+
+/obj/item/roller/medicalshield
+	name = "roller medicalshield bed"
+	icon = 'modular_mankind/_storage_icons/icons/items/misc/medicalshield_rollerbed.dmi'

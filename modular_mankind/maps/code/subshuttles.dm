@@ -177,3 +177,11 @@
 	name = "Felon Drug Carrier"
 	description = "Elysium"
 	prefix = "sESV"
+
+// Субшатлы для аванпостов
+/datum/map_template/shuttle/subshuttles/felix
+	file_name = "independent_felix"
+	name = "Felix Medical Shield Ship"
+	description = "Independent"
+	prefix = "sISV"
+	def_sensor_range = 8
