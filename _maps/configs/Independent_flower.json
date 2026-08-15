@@ -5,7 +5,7 @@
 	"description": "Бюджетный корабль, предназначенный для опытных ботаников.",
 	"map_path": "_maps/_modular_solaris/shuttles/independent/independent_flower.dmm",
 	"enabled": true,
-	"limit": 1,
+	"limit": 3,
 	"sensor_range": 6,
 	"prefix": "ЕSV",
 	"faction": "/datum/faction/independent",

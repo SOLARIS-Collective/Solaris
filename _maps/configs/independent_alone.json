@@ -5,7 +5,7 @@
 	"description": "Бюджетный корабль, предназначенный для опытных исследователей космоса.",
 	"map_path": "_maps/_modular_solaris/shuttles/independent/independent_alone.dmm",
 	"enabled": true,
-	"limit": 1,
+	"limit": 3,
 	"sensor_range": 7,
 	"prefix": "ISV",
 	"faction": "/datum/faction/independent",
