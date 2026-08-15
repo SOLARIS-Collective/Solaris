@@ -86,6 +86,61 @@ GLOBAL_VAR(restart_counter)
 	setup_autowiki()
 	#endif
 
+/world/Tick()
+	// Raw CPU usage for this tick. world.cpu is a running average, so we track the raw value
+	// by comparing against the previous tick's reading. This is what the lag compensation
+	// and CPU stabilization below operate on.
+	var/current_cpu = world.cpu
+	var/raw_cpu = max(current_cpu - last_cpu_reading, 0)
+	last_cpu_reading = current_cpu
+
+	// Keep a rolling window of raw CPU readings so we can average out noise.
+	LAZYADD(cpu_usage_window, raw_cpu)
+	if(length(cpu_usage_window) > GLOB.cpu_sample_window)
+		cpu_usage_window.Cut(1, 2)
+
+	// CPU stabilization: if enabled, burn spare tick time up to the target usage level.
+	// This keeps the gap between SendMaps() calls as consistent as possible, which
+	// significantly reduces visible frame stutter (a BYOND engine quirk).
+	if(GLOB.cpu_stabilization_enabled && world.tick_usage < GLOB.cpu_stabilization_target)
+		var/burn_until = GLOB.cpu_stabilization_target
+		while(world.tick_usage < burn_until)
+			// Busy-wait on a cheap operation to consume CPU without doing real work.
+			var/dummy = 0
+			for(var/i in 1 to 100)
+				dummy += i
+			if(dummy == -1) // never true, prevents the loop from being optimized away
+				break
+
+	// Update the lag-compensation multiplier from the fresh CPU data.
+	update_glide_size_multiplier()
+
+/// Rolling window of raw CPU readings, used for lag compensation.
+/world/var/list/cpu_usage_window
+/// Previous tick's world.cpu reading, used to derive the raw per-tick value.
+/world/var/last_cpu_reading = 0
+
+/// Recomputes the glide size multiplier from recent CPU usage, dropping outliers.
+/world/proc/update_glide_size_multiplier()
+	var/list/window = cpu_usage_window
+	if(!length(window))
+		return
+	// Drop the top and bottom 10% of readings to remove lag spikes and idle noise.
+	var/sorted = window.Copy()
+	sortTim(sorted, /proc/cmp_numeric_asc)
+	var/trim = max(round(length(sorted) * 0.1), 1)
+	if(length(sorted) > trim * 2)
+		sorted.Cut(1, trim + 1)
+		sorted.Cut(length(sorted) - trim + 1)
+	// Average the remaining readings.
+	var/total = 0
+	for(var/value in sorted)
+		total += value
+	var/avg_cpu = total / length(sorted)
+	// Convert CPU percentage into a glide multiplier: higher CPU means ticks take longer,
+	// so glides need to be slower (multiplier closer to 1).
+	GLOB.glide_size_multiplier = clamp(100 / max(100 - avg_cpu, 1), 1, 2)
+
 /world/proc/InitTgs()
 	TgsNew(new /datum/tgs_event_handler/impl, TGS_SECURITY_TRUSTED)
 	GLOB.revdata.load_tgs_info()

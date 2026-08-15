@@ -7,6 +7,13 @@
 /// Compensating for time dialation
 GLOBAL_VAR_INIT(glide_size_multiplier, 1.0)
 
+/// Whether CPU stabilization (burning spare tick time to keep SendMaps intervals consistent) is enabled.
+GLOBAL_VAR_INIT(cpu_stabilization_enabled, TRUE)
+/// Target tick usage percentage for CPU stabilization. We burn time until we hit this, to reduce frame stutter.
+GLOBAL_VAR_INIT(cpu_stabilization_target, 85)
+/// How many ticks of raw CPU data to keep for the lag-compensation average.
+GLOBAL_VAR_INIT(cpu_sample_window, 20)
+
 ///Broken down, here's what this does:
 /// divides the world icon_size (32) by delay divided by ticklag to get the number of pixels something should be moving each tick.
 /// The division result is given a min value of 1 to prevent obscenely slow glide sizes from being set
