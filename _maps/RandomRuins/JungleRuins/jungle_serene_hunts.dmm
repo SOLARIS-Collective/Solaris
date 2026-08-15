@@ -4600,6 +4600,11 @@
 /obj/effect/turf_decal/siding/white/corner,
 /turf/open/floor/concrete/pavement/jungleplanet/lit,
 /area/overmap_encounter/planetoid/jungle/explored)
+"Mi" = (
+/obj/structure/spacevine,
+/obj/vehicle/ridden/lawnmower,
+/turf/open/floor/wood/jungleplanet,
+/area/overmap_encounter/planetoid/jungle/explored)
 "Mj" = (
 /obj/structure/flora/rock/jungle,
 /turf/open/floor/plating/asteroid/dirt/jungle/dark,
@@ -6033,12 +6038,8 @@
 	pixel_y = -6
 	},
 /obj/item/storage/box/ammo/a12g_buckshot{
-	pixel_x = -9;
+	pixel_x = 1;
 	pixel_y = 2
-	},
-/obj/item/storage/box/ammo/a12g_buckshot{
-	pixel_x = -9;
-	pixel_y = -6
 	},
 /turf/open/floor/wood/maple/jungleplanet,
 /area/ruin/powered/hunts/gun_shop)
@@ -8314,7 +8315,7 @@ hM
 ye
 hM
 ZS
-hM
+Mi
 lL
 TN
 Va

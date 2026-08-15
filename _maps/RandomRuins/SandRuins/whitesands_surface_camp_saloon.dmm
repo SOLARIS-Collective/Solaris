@@ -157,6 +157,7 @@
 	pixel_x = -17
 	},
 /obj/effect/decal/cleanable/blood/old,
+/obj/item/clothing/mask/gas/explorer,
 /obj/item/ammo_casing/spent{
 	pixel_x = 13;
 	pixel_y = -6
@@ -242,7 +243,7 @@
 	},
 /obj/effect/turf_decal/siding/wood,
 /obj/structure/chair/stool/bar,
-/mob/living/simple_animal/hostile/human/hermit/ranged/gunslinger,
+/mob/living/simple_animal/hostile/human/hermit/survivor,
 /turf/open/floor/wood,
 /area/ruin/whitesands/saloon)
 "gC" = (
@@ -444,6 +445,7 @@
 "lI" = (
 /obj/structure/table/wood/poker,
 /obj/effect/spawner/random/entertainment/gambling,
+/obj/item/spacecash/bundle/loadsamoney,
 /turf/open/floor/carpet,
 /area/ruin/whitesands/saloon)
 "lV" = (
@@ -888,9 +890,6 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/hostile/human/hermit/survivor{
-	dir = 4
-	},
 /turf/open/floor/wood{
 	icon_state = "wood-broken5"
 	},
@@ -1116,7 +1115,7 @@
 /obj/structure/chair/stool/bar{
 	dir = 8
 	},
-/mob/living/simple_animal/hostile/human/hermit/ranged/gunslinger{
+/mob/living/simple_animal/hostile/human/hermit/survivor{
 	dir = 8
 	},
 /turf/open/floor/wood,
@@ -1175,6 +1174,10 @@
 /turf/open/floor/wood{
 	icon_state = "wood-broken7"
 	},
+/area/ruin/whitesands/saloon)
+"IE" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/closed/wall/mineral/wood,
 /area/ruin/whitesands/saloon)
 "IP" = (
 /obj/machinery/atmospherics/components/unary/tank/air,
@@ -1495,7 +1498,7 @@
 /area/ruin/whitesands/saloon)
 "Ua" = (
 /obj/structure/chair/stool/bar,
-/mob/living/simple_animal/hostile/human/hermit/ranged/gunslinger{
+/mob/living/simple_animal/hostile/human/hermit/survivor{
 	dir = 8
 	},
 /turf/open/floor/wood{
@@ -1670,7 +1673,6 @@
 	pixel_y = 6;
 	pixel_x = 3
 	},
-/obj/item/spacecash/bundle/loadsamoney,
 /turf/open/floor/carpet,
 /area/ruin/whitesands/saloon)
 "ZG" = (
@@ -1942,7 +1944,7 @@ eQ
 eQ
 Eq
 Eq
-Eq
+IE
 Eq
 Eq
 Eq
@@ -2329,7 +2331,7 @@ dq
 Yo
 mx
 ti
-Eq
+IE
 tp
 Ua
 tp
@@ -2361,7 +2363,7 @@ Eq
 mx
 mx
 mx
-Eq
+IE
 eV
 mx
 CB

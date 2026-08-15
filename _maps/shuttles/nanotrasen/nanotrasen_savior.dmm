@@ -3095,6 +3095,7 @@
 	pixel_x = -11
 	},
 /obj/structure/table/reinforced/titaniumglass,
+/obj/item/stock_parts/cell/gun/upgraded,
 /turf/open/floor/plasteel/dark,
 /area/ship/bridge)
 "Qc" = (

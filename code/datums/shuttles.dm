@@ -66,10 +66,7 @@
 	if(path)
 		mappath = path
 	else if(category && file_name)
-		// [MANKIND-EDIT] - MANKIND_CONFIGS_MAPS - Меняем сабшатлы на наши
-		// mappath = "_maps/shuttles/[category]/[file_name].dmm" // ORIGINAL
-		mappath = "_maps/_modular_solaris/shuttles/[category]/[file_name].dmm"
-		// [/MANKIND-EDIT]
+		mappath = "_maps/shuttles/[category]/[file_name].dmm"
 	. = ..()
 
 /datum/map_template/shuttle/preload_size(path, cache)

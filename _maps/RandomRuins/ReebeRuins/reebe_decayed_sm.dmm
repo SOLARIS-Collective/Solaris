@@ -7,6 +7,7 @@
 /turf/open/floor/bronze,
 /area/ruin/reebe)
 "d" = (
+/obj/item/melee/spear,
 /turf/open/floor/bronze,
 /area/ruin/reebe)
 "e" = (
@@ -56,6 +57,9 @@
 "O" = (
 /turf/closed/wall/mineral/bronze,
 /area/ruin/reebe)
+"Y" = (
+/turf/open/floor/bronze,
+/area/ruin/reebe)
 "Z" = (
 /obj/effect/decal/remains/human,
 /turf/open/floor/bronze,
@@ -74,8 +78,8 @@ a
 a
 "}
 (2,1,1) = {"
-d
-d
+Y
+Y
 C
 C
 x
@@ -98,19 +102,19 @@ a
 o
 "}
 (4,1,1) = {"
-d
+Y
 O
 e
 C
 C
 O
-d
+Y
 O
-d
+Y
 E
 "}
 (5,1,1) = {"
-d
+Y
 B
 e
 C
@@ -118,23 +122,23 @@ M
 v
 Z
 v
-d
+Y
 a
 "}
 (6,1,1) = {"
-d
+Y
 O
 C
 e
 e
 O
-d
+Y
 O
-d
+Y
 a
 "}
 (7,1,1) = {"
-d
+Y
 C
 y
 C
@@ -150,19 +154,19 @@ E
 C
 C
 C
-d
-d
-d
+Y
+Y
+Y
 E
 a
 a
 "}
 (9,1,1) = {"
-d
-d
+Y
+Y
 E
 E
-d
+Y
 E
 a
 a

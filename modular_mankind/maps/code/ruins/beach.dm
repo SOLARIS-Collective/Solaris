@@ -1,5 +1,5 @@
 /datum/map_template/ruin/beachplanet
-	prefix = "_maps/_modular_solaris/RandomRuins/BeachRuins/"
+	prefix = "_maps/RandomRuins/BeachRuins/"
 	ruin_type = RUINTYPE_BEACH
 
 /datum/map_template/ruin/beachplanet/ancient

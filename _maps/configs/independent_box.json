@@ -1,14 +1,16 @@
 {
-	"$schema": "https://raw.githubusercontent.com/PentestSS13/Pentest/master/_maps/ship_config_schema.json",
+	"$schema": "https://raw.githubusercontent.com/CeladonSS13/Shiptest/beta-dev/_maps/_mod_celadon/ship_config_schema.json",
 	"map_name": "Box-class Hospital Ship",
-	"map_short_name": "Box-class",
-	"map_path": "_maps/PentestMaps/Shuttles/independent/independent_box.dmm",
-	"faction": "/datum/faction/independent",
+	"map_short_name": "Box",
+	"description": "Судно класса 'Box' - ранний образец нескольких современных технологий судостроения, которые с тех пор стали стандартом. По сути, он представляет собой крошечный космический госпиталь, оснащенный медицинским оборудованием, которое зачастую трудно достать в пространстве Фронтира. Как ни странно, боксы оснащены медицинскими криопробирками, которые стали особой редкостью на Фронтире из-за их деликатного характера и дороговизны содержания. Боксы часто встречаются в удивительно хорошем состоянии для своего возраста, и за десятилетия они получили несколько модернизаций, которые позволили им идти в ногу с достижениями медицинской науки.",
+	"map_path": "_maps/_modular_solaris/shuttles/independent/independent_box.dmm",
 	"prefix": "IMV",
-	"manufacturer": "UNKNOWN",
-	"description": "An early exemplar of several modern shipbuilding techniques that have since become standard, the Box is effectively a tiny spaceborne hospital, loaded with medical equipment that can often be difficult to source in Frontier space. Unusually, Boxes come equipped with medical cryo tubes, which have become a particular rarity on the Frontier due to their delicate nature and steep upkeep costs. Boxes are often found in surprisingly good repair for their age, and they have received several upgrades over the decades that have kept them well abreast of advances in medical science.",
+	"faction": "/datum/faction/independent",
+	"enabled": true,
+	"limit": 1,
+	"sensor_range": 8,
 	"tags": [
-		"Medical"
+	"Медицинское"
 	],
 	"namelists": [
 		"GENERAL",
@@ -17,29 +19,20 @@
 	],
 	"job_slots": {
 		"Chief Medical Officer": {
-			"outfit": "/datum/outfit/job/independent/cmo",
+			"outfit": "/datum/outfit/job/cel/independent/cmo",
 			"slots": 1
 		},
 		"Medical Doctor": {
-			"outfit": "/datum/outfit/job/independent/doctor",
+			"outfit": "/datum/outfit/job/cel/independent/doctor",
 			"slots": 3
 		},
 		"Paramedic": {
-			"outfit": "/datum/outfit/job/independent/paramedic",
+			"outfit": "/datum/outfit/job/cel/independent/paramedic",
 			"slots": 2
 		},
 		"Assistant": {
-			"outfit": "/datum/outfit/job/independent/assistant",
+			"outfit": "/datum/outfit/job/cel/independent/assistant",
 			"slots": 3
 		}
-	},
-	"limit": 2,
-	"starting_funds": 2000,
-	"enabled": true,
-	"space_spawn": false,
-
-	"architect": "Unknown",
-	"contributors": [
-		"No Contributors"
-	]
+	}
 }

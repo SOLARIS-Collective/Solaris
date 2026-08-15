@@ -1,49 +1,39 @@
 {
-	"$schema": "https://raw.githubusercontent.com/PentestSS13/Pentest/master/_maps/ship_config_schema.json",
+	"$schema": "https://raw.githubusercontent.com/CeladonSS13/Shiptest/beta-dev/_maps/_mod_celadon/ship_config_schema.json",
 	"map_name": "Bubble-class Colonial Ship",
-	"map_short_name": "Bubble-class",
-	"map_path": "_maps/PentestMaps/Shuttles/independent/independent_bubble.dmm",
-	"faction": "/datum/faction/independent",
+	"map_short_name": "Bubble",
+	"map_path": "_maps/_modular_solaris/shuttles/independent/independent_bubble.dmm",
+	"description": "В то время как самые известные судна-колонии были громадными, высокоразвитыми кораблями, предназначенными для переправки сотен, а то и тысяч поселенцев в далекие миры и создания городов за считанные месяцы - Каликсианский Лунный свет, Кандор, Первый поезд в Форт-Сол, - судно класса 'Bubble' предназначен для тех, кто хочет основать небольшое ранчо или деревню на просторах космоса. Bubble очень компактны, но оснащены всем необходимым для создания колонии - обширным научно-исследовательским оборудованием, надежной добывающей техникой и карго подом для быстрой продажи культуры/руды и других продуктов от производства колонии. Несмотря на то, что исторически корабли класса 'Bubble' использовались Соларианской Федерацией для создания колоний, их собственная версия недавно была снята с эксплуатации.",
+	"enabled": true,
+	"limit": 1,
+	"sensor_range": 6,
 	"prefix": "ISV",
-	"manufacturer": "Nanotrasen Spaceworks",
-	"description": "While the most famous colony ships were hulking, highly-advanced affairs designed to ferry hundreds-if-not-thousands of settlers to far-off worlds and create cities in a matter of months – the Kalixcian Moonlight, the Candor, the First Train to Fort Sol – the Bubble-class is designed to cater to homesteaders aiming to establish a small ranch or village out in the great vastness of space. The Bubble-class is highly compact but complete with all the necessities for colony creation – extensive R&D equipment, robust mining gear, and a small selection of personal arms for fending off hostile fauna. While the Bubble-class has been historically utilized by the Terran Federation for colony efforts, their proprietary version has recently been phased out of operation.",
-	"tags": [
-		"Generalist",
-		"Construction"
-	],
+	"faction": "/datum/faction/independent",
+	"tags": ["Исследовательский"],
 	"namelists": [
 		"GENERAL",
 		"SPACE"
 	],
 	"job_slots": {
 		"Captain": {
-			"outfit": "/datum/outfit/job/independent/captain",
+			"outfit": "/datum/outfit/job/cel/independent/captain",
 			"slots": 1
 		},
 		"Scientist": {
-			"outfit": "/datum/outfit/job/independent/scientist",
+			"outfit": "/datum/outfit/job/cel/independent/scientist",
 			"slots": 1
 		},
-		"Station Engineer": {
-			"outfit": "/datum/outfit/job/independent/engineer",
+		"Engineer": {
+			"outfit": "/datum/outfit/job/cel/independent/engineer",
 			"slots": 1
 		},
-		"Shaft Miner": {
-			"outfit": "/datum/outfit/job/independent/miner",
+		"Miner": {
+			"outfit": "/datum/outfit/job/cel/independent/miner",
 			"slots": 1
 		},
 		"Assistant": {
-			"outfit": "/datum/outfit/job/independent/assistant",
+			"outfit": "/datum/outfit/job/cel/independent/assistant",
 			"slots": 3
 		}
-	},
-	"limit": 1,
-	"starting_funds": 2000,
-	"enabled": true,
-	"space_spawn": false,
-
-	"architect": "unit0016",
-	"contributors": [
-		"rye-rice"
-	]
+	}
 }

@@ -6,7 +6,7 @@
 "aj" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/dirt/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle,
 /area/overmap_encounter/planetoid/jungle/explored)
 "ap" = (
 /obj/structure/cable{
@@ -15,6 +15,9 @@
 /obj/item/reagent_containers/syringe,
 /turf/open/floor/plasteel/tech,
 /area/ship/science)
+"ar" = (
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/overmap_encounter/planetoid/jungle/explored)
 "aF" = (
 /obj/effect/turf_decal/industrial/warning{
 	dir = 6
@@ -31,7 +34,7 @@
 /area/ship/hallway)
 "bk" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating/dirt/jungle/wasteland/lit,
+/turf/open/floor/plating/asteroid/dirt/wasteland,
 /area/overmap_encounter/planetoid/jungle/explored)
 "bm" = (
 /obj/structure/railing{
@@ -167,7 +170,7 @@
 /turf/open/floor/plating,
 /area/ship/crew/office)
 "ek" = (
-/turf/open/floor/plating/dirt/jungle/wasteland/lit,
+/turf/open/floor/plating/asteroid/dirt/wasteland,
 /area/overmap_encounter/planetoid/jungle/explored)
 "eo" = (
 /obj/effect/decal/cleanable/blood/tracks{
@@ -269,10 +272,14 @@
 /obj/machinery/light/broken/directional/north,
 /turf/open/floor/plasteel/dark,
 /area/ship/science/storage)
+"fC" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/grass,
+/area/overmap_encounter/planetoid/jungle/explored)
 "fG" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /obj/structure/flora/grass/jungle,
-/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/turf/open/floor/grass,
 /area/overmap_encounter/planetoid/jungle/explored)
 "gj" = (
 /obj/structure/railing,
@@ -326,7 +333,7 @@
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 9
 	},
-/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/turf/open/floor/grass,
 /area/overmap_encounter/planetoid/jungle/explored)
 "gQ" = (
 /obj/effect/decal/cleanable/blood/tracks{
@@ -336,7 +343,7 @@
 /obj/structure/flippedtable{
 	dir = 8
 	},
-/turf/open/floor/plating/dirt/jungle/wasteland/lit,
+/turf/open/floor/plating/asteroid/dirt/wasteland,
 /area/overmap_encounter/planetoid/jungle/explored)
 "gY" = (
 /obj/effect/decal/cleanable/blood/gibs/up,
@@ -349,7 +356,7 @@
 	pixel_x = 4;
 	pixel_y = -5
 	},
-/turf/open/floor/plating/dirt/jungle/wasteland/lit,
+/turf/open/floor/plating/asteroid/dirt/wasteland,
 /area/overmap_encounter/planetoid/jungle/explored)
 "hv" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -360,19 +367,19 @@
 	pixel_x = 15;
 	pixel_y = 1
 	},
-/turf/open/floor/plating/dirt/jungle/wasteland/lit,
+/turf/open/floor/plating/asteroid/dirt/wasteland,
 /area/overmap_encounter/planetoid/jungle/explored)
 "hB" = (
 /obj/effect/decal/cleanable/blood/splatter,
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 8
 	},
-/turf/open/floor/plating/dirt/jungle/wasteland/lit,
+/turf/open/floor/plating/asteroid/dirt/wasteland,
 /area/overmap_encounter/planetoid/jungle/explored)
 "hF" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/item/paper{
-	default_raw_text = "<h1>Export expectations</h1><p>By the end of the month facility No.475-24 is expected to provide the following amounts of medicine to be ready for export:</p><ol><li>300u of Panacea</li><li>270u of Thializid</li><li>50 Burnpatches</li><li>65 Synthflesh patches</li><li>275u of atropine</li></ol><p>Production is to be proceeded with imidiately.</p>";
+	default_raw_text = "<h1>Export expectations</h1><p>By the end of the month facility No.475-24 is expected to provide the following amounts of medicine to be ready for export:</p><ol><li>300u of Perfluorodecalin</li><li>270u of Thializid</li><li>50 Burnpatches</li><li>65 Synthflesh patches</li><li>275u of atropine</li></ol><p>Production is to be proceeded with imidiately.</p>";
 	name = "Export orders";
 	pixel_x = 4;
 	pixel_y = 5
@@ -526,7 +533,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/box/corners,
 /obj/machinery/light/floor,
-/turf/open/floor/plating/dirt/jungle/wasteland/lit,
+/turf/open/floor/plating/asteroid/dirt/wasteland,
 /area/overmap_encounter/planetoid/jungle/explored)
 "jI" = (
 /obj/effect/decal/cleanable/blood/bubblegum,
@@ -558,7 +565,7 @@
 /area/ship/crew/office)
 "jS" = (
 /obj/structure/chair/plastic,
-/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/turf/open/floor/grass,
 /area/overmap_encounter/planetoid/jungle/explored)
 "kp" = (
 /obj/structure/chair/office/light,
@@ -645,7 +652,7 @@
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 8
 	},
-/turf/open/floor/plating/dirt/jungle/wasteland/lit,
+/turf/open/floor/plating/asteroid/dirt/wasteland,
 /area/overmap_encounter/planetoid/jungle/explored)
 "kM" = (
 /obj/effect/turf_decal/corner/opaque/green{
@@ -739,7 +746,7 @@
 /obj/item/gun/ballistic/automatic/pistol/candor/no_mag{
 	pixel_y = -13
 	},
-/turf/open/floor/plating/dirt/jungle/wasteland/lit,
+/turf/open/floor/plating/asteroid/dirt/wasteland,
 /area/overmap_encounter/planetoid/jungle/explored)
 "mf" = (
 /obj/effect/decal/cleanable/blood/bubblegum,
@@ -881,7 +888,7 @@
 /area/ship/crew/office)
 "nQ" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/dirt/jungle/wasteland/lit,
+/turf/open/floor/plating/asteroid/dirt/wasteland,
 /area/overmap_encounter/planetoid/jungle/explored)
 "nS" = (
 /obj/effect/decal/cleanable/blood/tracks{
@@ -932,6 +939,27 @@
 /obj/effect/turf_decal/siding/wideplating/dark,
 /turf/open/floor/plasteel/dark,
 /area/ship/crew/office)
+"oI" = (
+/obj/effect/turf_decal/corner/opaque/green{
+	dir = 6
+	},
+/obj/effect/turf_decal/corner/opaque/green{
+	dir = 1
+	},
+/obj/structure/window/reinforced/spawner{
+	dir = 4
+	},
+/obj/structure/table_frame,
+/obj/item/shard{
+	icon_state = "small";
+	pixel_x = -2;
+	pixel_y = 11
+	},
+/obj/effect/gibspawner/human,
+/obj/item/ammo_box/magazine/skm_46_30,
+/obj/item/ammo_box/magazine/skm_46_30,
+/turf/open/floor/plasteel/tech,
+/area/ship/science)
 "oJ" = (
 /obj/effect/turf_decal/corner/opaque/blue{
 	dir = 4
@@ -945,7 +973,7 @@
 "oN" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/item/shovel,
-/turf/open/floor/plating/dirt/jungle/wasteland/lit,
+/turf/open/floor/plating/asteroid/dirt/wasteland,
 /area/overmap_encounter/planetoid/jungle/explored)
 "oR" = (
 /obj/effect/turf_decal/industrial/warning/dust{
@@ -1005,6 +1033,10 @@
 	},
 /turf/open/floor/plasteel/tech,
 /area/ship/science)
+"pQ" = (
+/obj/structure/flora/grass/jungle,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/overmap_encounter/planetoid/jungle/explored)
 "pT" = (
 /obj/structure/sign/poster/contraband/mothpill,
 /turf/closed/wall/r_wall,
@@ -1030,7 +1062,8 @@
 	},
 /obj/machinery/computer/cargo{
 	dir = 4;
-	name = "Cargo computer"
+	name = "Cargo computer";
+	atom_integrity = null
 	},
 /turf/open/floor/plasteel/white,
 /area/ship/science/storage)
@@ -1117,16 +1150,6 @@
 	},
 /turf/open/floor/plasteel/tech,
 /area/ship/science)
-"rX" = (
-/obj/effect/turf_decal/corner/opaque/mauve{
-	dir = 10
-	},
-/obj/effect/turf_decal/corner/opaque/mauve{
-	dir = 1
-	},
-/obj/effect/spawner/random/vending/snack,
-/turf/open/floor/plasteel/dark,
-/area/ship/crew/office)
 "sc" = (
 /obj/effect/turf_decal/trimline/opaque/blue/filled/line{
 	dir = 6
@@ -1230,6 +1253,7 @@
 /obj/item/reagent_containers/glass/bottle{
 	desc = "A small bottle, it is cracked in several spots.";
 	name = "Empty Romerol sample";
+	list_reagents = null;
 	pixel_x = -9;
 	pixel_y = 2
 	},
@@ -1279,7 +1303,7 @@
 "vj" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/dirt/jungle/wasteland/lit,
+/turf/open/floor/plating/asteroid/dirt/wasteland,
 /area/overmap_encounter/planetoid/jungle/explored)
 "vo" = (
 /obj/effect/turf_decal/corner/opaque/green{
@@ -1380,7 +1404,7 @@
 /area/ship/medical)
 "wU" = (
 /obj/structure/flora/ausbushes/grassybush,
-/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/turf/open/floor/grass,
 /area/overmap_encounter/planetoid/jungle/explored)
 "xa" = (
 /obj/machinery/power/port_gen/pacman,
@@ -1417,7 +1441,7 @@
 "xu" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/dirt/jungle/dark,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/overmap_encounter/planetoid/jungle/explored)
 "xw" = (
 /obj/effect/turf_decal/industrial/warning/corner{
@@ -1434,7 +1458,7 @@
 	dir = 1
 	},
 /obj/machinery/light/floor,
-/turf/open/floor/plating/dirt/jungle/wasteland/lit,
+/turf/open/floor/plating/asteroid/dirt/wasteland,
 /area/overmap_encounter/planetoid/jungle/explored)
 "xG" = (
 /obj/item/ammo_casing{
@@ -1443,7 +1467,7 @@
 	pixel_y = -10
 	},
 /obj/effect/decal/cleanable/blood/tracks,
-/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/turf/open/floor/grass,
 /area/overmap_encounter/planetoid/jungle/explored)
 "xN" = (
 /obj/structure/flora/grass/jungle,
@@ -1507,11 +1531,11 @@
 	dir = 8
 	},
 /obj/machinery/light/floor,
-/turf/open/floor/plating/dirt/jungle/wasteland/lit,
+/turf/open/floor/plating/asteroid/dirt/wasteland,
 /area/overmap_encounter/planetoid/jungle/explored)
 "yW" = (
 /obj/structure/closet/crate/grave/loot,
-/turf/open/floor/plating/dirt/jungle/wasteland/lit,
+/turf/open/floor/plating/asteroid/dirt/wasteland,
 /area/overmap_encounter/planetoid/jungle/explored)
 "yZ" = (
 /obj/effect/decal/cleanable/blood/bubblegum,
@@ -1524,6 +1548,11 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ship/science/storage)
+"ze" = (
+/obj/structure/flora/grass/jungle,
+/obj/structure/flora/grass/jungle,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/overmap_encounter/planetoid/jungle/explored)
 "zm" = (
 /obj/structure/table/wood/reinforced,
 /obj/item/flashlight/lamp/green{
@@ -1561,11 +1590,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ship/science/storage)
-"zU" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/obj/effect/decal/cleanable/blood/splatter,
-/turf/open/floor/plating/asteroid/dirt/grass/jungle,
-/area/overmap_encounter/planetoid/jungle/explored)
 "Av" = (
 /obj/effect/turf_decal/corner/opaque/mauve{
 	dir = 5
@@ -1625,7 +1649,7 @@
 /area/ship/medical)
 "Ba" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/dirt/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle,
 /area/overmap_encounter/planetoid/jungle/explored)
 "Bb" = (
 /obj/structure/flora/ausbushes/sparsegrass,
@@ -1676,7 +1700,7 @@
 "BI" = (
 /obj/structure/flora/grass/jungle,
 /obj/structure/flora/grass/jungle,
-/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/turf/open/floor/grass,
 /area/overmap_encounter/planetoid/jungle/explored)
 "BJ" = (
 /obj/structure/flora/ausbushes/sparsegrass,
@@ -1753,7 +1777,7 @@
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 8
 	},
-/turf/open/floor/plating/dirt/jungle/wasteland/lit,
+/turf/open/floor/plating/asteroid/dirt/wasteland,
 /area/overmap_encounter/planetoid/jungle/explored)
 "Cz" = (
 /turf/closed/wall/r_wall,
@@ -1796,7 +1820,7 @@
 "Dj" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /obj/item/ammo_casing,
-/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/turf/open/floor/grass,
 /area/overmap_encounter/planetoid/jungle/explored)
 "Dq" = (
 /obj/effect/turf_decal/trimline/opaque/blue/filled/line{
@@ -1876,7 +1900,7 @@
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 6
 	},
-/turf/open/floor/plating/dirt/jungle/wasteland/lit,
+/turf/open/floor/plating/asteroid/dirt/wasteland,
 /area/overmap_encounter/planetoid/jungle/explored)
 "Ei" = (
 /obj/machinery/door/airlock/research{
@@ -1891,7 +1915,7 @@
 	dir = 4
 	},
 /obj/machinery/light/floor,
-/turf/open/floor/plating/dirt/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle,
 /area/overmap_encounter/planetoid/jungle/explored)
 "Er" = (
 /turf/closed/wall/r_wall,
@@ -1926,7 +1950,7 @@
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 8
 	},
-/turf/open/floor/plating/dirt/jungle/wasteland/lit,
+/turf/open/floor/plating/asteroid/dirt/wasteland,
 /area/overmap_encounter/planetoid/jungle/explored)
 "FB" = (
 /turf/closed/wall,
@@ -1956,7 +1980,7 @@
 	pixel_y = 4
 	},
 /obj/item/ammo_box/magazine/m45/ap,
-/turf/open/floor/plating/dirt/jungle/wasteland/lit,
+/turf/open/floor/plating/asteroid/dirt/wasteland,
 /area/overmap_encounter/planetoid/jungle/explored)
 "FX" = (
 /obj/machinery/photocopier,
@@ -2079,6 +2103,16 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ship/science)
+"Ib" = (
+/obj/effect/turf_decal/corner/opaque/mauve{
+	dir = 10
+	},
+/obj/effect/turf_decal/corner/opaque/mauve{
+	dir = 1
+	},
+/obj/effect/spawner/random/vending/snack,
+/turf/open/floor/plasteel/dark,
+/area/ship/crew/office)
 "Ie" = (
 /obj/structure/railing{
 	dir = 6
@@ -2102,15 +2136,15 @@
 	pixel_y = -33;
 	specialfunctions = 4
 	},
-/obj/structure/salvageable/computer{
-	dir = 1
-	},
 /obj/machinery/button/door{
 	desc = "A door remote bast door switch.";
 	id = "lablock1";
 	name = "Lab #1 lockdown";
 	pixel_x = -7;
 	pixel_y = -23
+	},
+/obj/structure/salvageable/computer{
+	dir = 1
 	},
 /turf/open/floor/wood,
 /area/ship/bridge)
@@ -2239,12 +2273,9 @@
 /obj/structure/flippedtable{
 	dir = 8
 	},
-/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/turf/open/floor/grass,
 /area/overmap_encounter/planetoid/jungle/explored)
 "Kl" = (
-/obj/effect/turf_decal/siding/wideplating/dark{
-	dir = 4
-	},
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
@@ -2253,13 +2284,11 @@
 	pixel_x = -7;
 	pixel_y = 4
 	},
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 4
+	},
 /turf/open/floor/plasteel/dark,
 /area/ship/crew/office)
-"Km" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plating/dirt/jungle/lit,
-/area/overmap_encounter/planetoid/jungle/explored)
 "Kn" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -2406,6 +2435,12 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ship/science/storage)
+"MB" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/effect/decal/cleanable/blood/splatter,
+/obj/item/weldingtool/electric,
+/turf/open/floor/grass,
+/area/overmap_encounter/planetoid/jungle/explored)
 "MF" = (
 /obj/effect/turf_decal/corner/opaque/green{
 	dir = 9
@@ -2538,7 +2573,7 @@
 /turf/open/floor/plasteel/white,
 /area/ship/science/storage)
 "Oy" = (
-/turf/open/floor/plating/dirt/jungle,
+/turf/open/floor/plating/asteroid/dirt/jungle,
 /area/overmap_encounter/planetoid/jungle/explored)
 "OX" = (
 /obj/effect/turf_decal/trimline/opaque/mauve/filled/warning{
@@ -2642,6 +2677,11 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/ship/medical)
+"Qa" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/structure/flora/grass/jungle,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/overmap_encounter/planetoid/jungle/explored)
 "Qc" = (
 /turf/open/floor/plasteel/white,
 /area/ship/medical)
@@ -2712,26 +2752,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/dark,
 /area/ship/crew/office)
-"QO" = (
-/obj/effect/turf_decal/corner/opaque/green{
-	dir = 6
-	},
-/obj/effect/turf_decal/corner/opaque/green{
-	dir = 1
-	},
-/obj/structure/window/reinforced/spawner{
-	dir = 4
-	},
-/obj/structure/table_frame,
-/obj/item/shard{
-	icon_state = "small";
-	pixel_x = -2;
-	pixel_y = 11
-	},
-/obj/effect/gibspawner/human,
-/obj/item/ammo_box/magazine/skm_46_30,
-/turf/open/floor/plasteel/tech,
-/area/ship/science)
 "QY" = (
 /turf/open/floor/plasteel/tech,
 /area/ship/medical)
@@ -2794,7 +2814,7 @@
 	dir = 6
 	},
 /obj/effect/decal/cleanable/blood/bubblegum,
-/turf/open/floor/plating/dirt/jungle/wasteland/lit,
+/turf/open/floor/plating/asteroid/dirt/wasteland,
 /area/overmap_encounter/planetoid/jungle/explored)
 "Rr" = (
 /obj/effect/turf_decal/corner/opaque/mauve{
@@ -2806,7 +2826,7 @@
 /turf/open/floor/plasteel/white,
 /area/ship/hallway)
 "RC" = (
-/turf/open/floor/plating/dirt/jungle/dark,
+/turf/open/floor/plating/asteroid/dirt/jungle/dark,
 /area/overmap_encounter/planetoid/jungle/explored)
 "RF" = (
 /obj/effect/turf_decal/corner/opaque/blue{
@@ -2842,7 +2862,7 @@
 /area/ship/bridge)
 "Sh" = (
 /obj/structure/flora/grass/jungle,
-/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/turf/open/floor/grass,
 /area/overmap_encounter/planetoid/jungle/explored)
 "Sj" = (
 /obj/effect/turf_decal/industrial/warning/dust{
@@ -2897,7 +2917,7 @@
 "SL" = (
 /obj/structure/flora/grass/jungle,
 /obj/effect/decal/cleanable/blood/tracks,
-/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/turf/open/floor/grass,
 /area/overmap_encounter/planetoid/jungle/explored)
 "SN" = (
 /obj/effect/turf_decal/corner/opaque/mauve{
@@ -2917,6 +2937,10 @@
 /obj/structure/flora/ausbushes/sparsegrass,
 /obj/structure/flora/tree/jungle/small,
 /turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/overmap_encounter/planetoid/jungle/explored)
+"SQ" = (
+/obj/structure/flora/tree/jungle/small,
+/turf/open/floor/grass,
 /area/overmap_encounter/planetoid/jungle/explored)
 "SU" = (
 /obj/structure/flora/tree/jungle/small,
@@ -3145,10 +3169,14 @@
 "VL" = (
 /obj/structure/closet/cabinet,
 /obj/item/hatchet/wooden,
-/obj/item/ammo_box/a357,
+/obj/item/storage/box/ammo/a357,
 /obj/item/gun/ballistic/revolver/viper,
 /turf/open/floor/wood,
 /area/ship/bridge)
+"VM" = (
+/obj/structure/flora/ausbushes/grassybush,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/area/overmap_encounter/planetoid/jungle/explored)
 "VY" = (
 /obj/effect/turf_decal/corner/opaque/mauve{
 	dir = 5
@@ -3293,10 +3321,10 @@
 /area/ship/crew/office)
 "Yd" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating/dirt/jungle/lit,
+/turf/open/floor/plating/asteroid/dirt/jungle,
 /area/overmap_encounter/planetoid/jungle/explored)
 "Yj" = (
-/turf/open/floor/plating/asteroid/dirt/grass/jungle,
+/turf/open/floor/grass,
 /area/overmap_encounter/planetoid/jungle/explored)
 "Yn" = (
 /obj/effect/turf_decal/industrial/warning{
@@ -3425,13 +3453,18 @@
 /obj/structure/sign/warning/biohazard,
 /turf/closed/wall,
 /area/ship/medical)
+"ZO" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/structure/flora/ausbushes/grassybush,
+/turf/open/floor/grass,
+/area/overmap_encounter/planetoid/jungle/explored)
 "ZU" = (
 /turf/closed/wall/r_wall,
 /area/ship/bridge)
 
 (1,1,1) = {"
 ek
-wU
+VM
 dO
 xD
 bk
@@ -3439,11 +3472,11 @@ Oy
 vj
 Ba
 yL
-Yj
+ar
 ek
-Sh
+pQ
 nr
-Yj
+ar
 JC
 JC
 JC
@@ -3452,12 +3485,12 @@ XO
 JC
 JC
 JC
-Yj
-wU
-Sh
+ar
+VM
+pQ
 "}
 (2,1,1) = {"
-Yj
+ar
 nr
 nQ
 aj
@@ -3467,9 +3500,9 @@ bk
 Yd
 ek
 ek
-Yj
+ar
 SP
-Yj
+ar
 JC
 JC
 Hu
@@ -3480,11 +3513,11 @@ aM
 Vn
 JC
 JC
-Sh
-fG
+pQ
+Qa
 "}
 (3,1,1) = {"
-Sh
+pQ
 SU
 ek
 aj
@@ -3493,10 +3526,10 @@ nQ
 Yd
 vj
 aj
-Yj
+ar
 nr
 nr
-wU
+VM
 jM
 BO
 nS
@@ -3507,22 +3540,22 @@ Pz
 Bh
 xm
 jM
-wU
+VM
 SU
 "}
 (4,1,1) = {"
-Yj
+ar
 nQ
-Yj
+ar
 Eq
 vj
 xu
-Km
+aj
 vj
 jG
 bk
-Yj
-Sh
+ar
+pQ
 nr
 jM
 FX
@@ -3534,22 +3567,22 @@ kq
 NY
 Xq
 jM
-Sh
-fG
+pQ
+Qa
 "}
 (5,1,1) = {"
 xW
-Yj
-Yj
-Yj
+ar
+ar
+ar
 vj
 nQ
 ek
 Oy
 ek
-Yj
+ar
 ek
-Yj
+ar
 xW
 JC
 JC
@@ -3562,10 +3595,10 @@ uM
 JC
 JC
 nr
-Sh
+pQ
 "}
 (6,1,1) = {"
-Yj
+ar
 tY
 tY
 tY
@@ -3577,8 +3610,8 @@ tY
 tY
 tY
 xW
-Sh
-Yj
+pQ
+ar
 JC
 JC
 JC
@@ -3588,8 +3621,8 @@ JC
 JC
 JC
 nr
-Sh
-wU
+pQ
+VM
 "}
 (7,1,1) = {"
 tY
@@ -3604,18 +3637,18 @@ VG
 pZ
 tY
 tY
-Sh
+pQ
 kP
-Yj
+ar
 nr
 Zq
 NT
 RV
-rX
+Ib
 Zq
-Yj
+ar
 kP
-wU
+VM
 nr
 "}
 (8,1,1) = {"
@@ -3631,7 +3664,7 @@ ya
 DW
 Ps
 tY
-Yj
+ar
 Zq
 Ss
 Ss
@@ -3643,7 +3676,7 @@ YN
 YN
 YN
 YN
-Sh
+pQ
 "}
 (9,1,1) = {"
 tY
@@ -3882,14 +3915,14 @@ Zq
 OX
 gp
 Zq
-Yj
-Yj
+ar
+ar
 xW
 xW
 nr
 "}
 (18,1,1) = {"
-Sh
+pQ
 tY
 tY
 tY
@@ -3901,24 +3934,24 @@ tY
 tY
 jq
 Sh
-nr
-SU
+fC
+SQ
 Cv
-zU
+MB
 jl
 Wo
 Av
 jl
 jl
-fG
-Yj
+Qa
+ar
 Vp
-Yj
+ar
 "}
 (19,1,1) = {"
 nr
-Yj
-BI
+ar
+ze
 FB
 XE
 Lo
@@ -3937,10 +3970,10 @@ CK
 IW
 oR
 jl
-Yj
-Yj
-Sh
-BI
+ar
+ar
+pQ
+ze
 "}
 (20,1,1) = {"
 Vp
@@ -3964,26 +3997,26 @@ Du
 Nd
 Tt
 jl
-Sh
-fG
+pQ
+Qa
 rE
 Wt
 "}
 (21,1,1) = {"
-Sh
+pQ
 xN
-Sh
+pQ
 FB
 Gt
 yE
 yh
 FB
 Yj
-xW
+ZO
 nQ
 hB
 ek
-nr
+fC
 ek
 fG
 jl
@@ -3991,9 +4024,9 @@ kT
 ul
 vu
 jl
-Sh
+pQ
 nr
-Yj
+ar
 Vp
 "}
 (22,1,1) = {"
@@ -4018,14 +4051,14 @@ Vx
 ij
 Er
 Er
-Sh
+pQ
 NG
-Yj
+ar
 Vp
 "}
 (23,1,1) = {"
-fG
-Sh
+Qa
+pQ
 gu
 Cz
 qs
@@ -4048,10 +4081,10 @@ Er
 Er
 xW
 nr
-Yj
+ar
 "}
 (24,1,1) = {"
-Sh
+pQ
 om
 mf
 HX
@@ -4074,11 +4107,11 @@ HZ
 ln
 RG
 Er
-Sh
+pQ
 Wm
 "}
 (25,1,1) = {"
-Sh
+pQ
 qQ
 CG
 MV
@@ -4101,11 +4134,11 @@ Uc
 SI
 hL
 eF
-Yj
+ar
 nr
 "}
 (26,1,1) = {"
-Yj
+ar
 fr
 Sw
 SV
@@ -4128,8 +4161,8 @@ kp
 mx
 Pv
 eF
-Sh
-Yj
+pQ
+ar
 "}
 (27,1,1) = {"
 kP
@@ -4156,10 +4189,10 @@ HJ
 Pv
 eF
 nr
-BI
+ze
 "}
 (28,1,1) = {"
-Yj
+ar
 fr
 Qc
 hT
@@ -4182,11 +4215,11 @@ kD
 iC
 Pa
 eF
-Sh
-wU
+pQ
+VM
 "}
 (29,1,1) = {"
-Yj
+ar
 Cz
 af
 sE
@@ -4197,19 +4230,19 @@ wS
 xw
 af
 Cz
-Sh
-Sh
+pQ
+pQ
 Er
 RG
 nx
 ve
-QO
+oI
 Rm
 wQ
 Bc
 Er
 kC
-Sh
+pQ
 YZ
 "}
 (30,1,1) = {"
@@ -4224,9 +4257,9 @@ Ip
 Cz
 Cz
 nr
-fG
+Qa
 sv
-wU
+VM
 Er
 Er
 bT
@@ -4235,14 +4268,14 @@ dN
 eK
 Er
 Er
-Yj
+ar
 BJ
-Yj
+ar
 "}
 (31,1,1) = {"
 nr
-fG
-Yj
+Qa
+ar
 Cz
 fr
 fr
@@ -4251,18 +4284,18 @@ fr
 Cz
 nr
 Yp
-wU
-fG
+VM
+Qa
 Bb
-Yj
+ar
 Er
 eF
 eF
 eF
 eF
 Er
-Sh
+pQ
 kP
-Yj
-fG
+ar
+Qa
 "}

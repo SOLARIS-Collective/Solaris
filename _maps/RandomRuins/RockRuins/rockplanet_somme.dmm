@@ -24,6 +24,9 @@
 	dir = 5
 	},
 /obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/hostile/human/frontier/ranged/trooper/wasp/internals{
+	wander = 0
+	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/rockplanet/somme/landing)
 "aj" = (
@@ -820,7 +823,10 @@
 "dJ" = (
 /obj/structure/chair/bench/grey/directional/west,
 /obj/effect/decal/cleanable/dirt,
-/mob/living/simple_animal/hostile/human/frontier/ranged/officer/internals/neutered,
+/mob/living/simple_animal/hostile/human/frontier/ranged/trooper/f3{
+	wander = 0;
+	environment_smash = 0
+	},
 /turf/open/floor/hangar/plasteel/dark,
 /area/ruin/rockplanet/somme/hallway)
 "dK" = (
@@ -1007,6 +1013,9 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/hostile/human/frontier/ranged/officer/internals/neutered{
+	wander = 0
+	},
 /turf/open/floor/carpet,
 /area/ruin/rockplanet/somme/ross)
 "ev" = (
@@ -1293,7 +1302,9 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/rockplanet/somme/mainlock)
 "fL" = (
-/mob/living/simple_animal/hostile/human/frontier/ranged/officer/rifle/internals/neutered,
+/mob/living/simple_animal/hostile/human/frontier/ranged/officer/rifle/internals/neutered{
+	wander = 0
+	},
 /obj/effect/turf_decal/siding/thinplating/dark,
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 1
@@ -2236,7 +2247,9 @@
 	dir = 4;
 	id = "somme_armoury_doors"
 	},
-/obj/machinery/door/window/westleft,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /turf/open/floor/concrete/slab_4,
 /area/ruin/rockplanet/somme/armory)
 "jM" = (
@@ -2245,7 +2258,9 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
 	},
-/mob/living/simple_animal/hostile/human/frontier/ranged/trooper/skm/internals/neutered,
+/mob/living/simple_animal/hostile/human/frontier/ranged/trooper/skm/internals/neutered{
+	wander = 0
+	},
 /turf/open/floor/concrete/slab_1,
 /area/ruin/rockplanet/somme/armory)
 "jN" = (
@@ -2953,7 +2968,7 @@
 /obj/item/paper_bin{
 	pixel_x = -7
 	},
-/obj/item/desk_flag/trans{
+/obj/item/desk_flag/elysium{
 	pixel_x = 9;
 	pixel_y = 16
 	},
@@ -3340,11 +3355,9 @@
 	dir = 1
 	},
 /obj/structure/rack,
-/obj/item/storage/box/ammo/a12g_buckshot{
-	pixel_y = 5
-	},
-/obj/item/storage/box/ammo/a12g_buckshot{
-	pixel_y = -5
+/obj/item/storage/toolbox/ammo/shotgun{
+	pixel_y = 5;
+	pixel_x = -4
 	},
 /turf/open/floor/concrete/slab_1/rockplanet,
 /area/ruin/rockplanet/somme/engineeering)
@@ -3614,15 +3627,17 @@
 /area/ruin/rockplanet/somme/trench)
 "rv" = (
 /obj/structure/rack,
-/obj/item/storage/box/ammo/c22lr{
-	pixel_y = 5
-	},
-/obj/item/storage/box/ammo/c22lr{
-	pixel_y = -5
-	},
 /obj/structure/platform/military/corner,
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
+	},
+/obj/item/gun_maint_kit/small{
+	pixel_x = 9;
+	pixel_y = 6
+	},
+/obj/item/gun_maint_kit{
+	pixel_y = 4;
+	pixel_x = -6
 	},
 /turf/open/floor/concrete/slab_1/rockplanet,
 /area/ruin/rockplanet/somme/engineeering)
@@ -3771,9 +3786,6 @@
 /area/overmap_encounter/planetoid/rockplanet/explored)
 "so" = (
 /obj/structure/rack,
-/obj/item/storage/toolbox/ammo/shotgun{
-	pixel_y = 12
-	},
 /obj/item/stock_parts/cell/gun{
 	pixel_x = 6
 	},
@@ -4109,14 +4121,13 @@
 /area/ruin/rockplanet/somme/restroom)
 "tQ" = (
 /obj/structure/rack,
-/obj/item/storage/box/ammo/a762_40{
-	pixel_y = 5
-	},
-/obj/item/storage/box/ammo/a762_40{
-	pixel_y = -5
-	},
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
+	},
+/obj/item/trench_tool/gezena{
+	pixel_x = 4;
+	pixel_y = 7;
+	desc = "A dual-purpose excavation tool in green, serving as both a powerful bladed shovel and a pickaxe."
 	},
 /turf/open/floor/concrete/slab_1/rockplanet,
 /area/ruin/rockplanet/somme/engineeering)
@@ -4830,14 +4841,16 @@
 /area/ruin/rockplanet/somme/trench)
 "wO" = (
 /obj/structure/rack,
-/obj/item/storage/box/ammo/a8_50r{
-	pixel_y = 5
-	},
-/obj/item/storage/box/ammo/a8_50r{
-	pixel_y = -5
-	},
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
+	},
+/obj/item/storage/box/emptysandbags{
+	pixel_y = 5;
+	pixel_x = 5
+	},
+/obj/item/storage/box/emptysandbags{
+	pixel_y = 4;
+	pixel_x = -5
 	},
 /turf/open/floor/concrete/slab_1/rockplanet,
 /area/ruin/rockplanet/somme/engineeering)
@@ -5131,6 +5144,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4,
+/obj/machinery/door/window/westleft,
 /turf/open/floor/wood/walnut{
 	icon_state = "wood-broken7"
 	},
@@ -5774,6 +5788,17 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
+/obj/item/attachment/long_scope{
+	pixel_y = 11
+	},
+/obj/item/paper_bin{
+	pixel_x = -7
+	},
+/obj/item/paper/fluff/ruins{
+	name = "operations notes";
+	default_raw_text = "<h3>Day 173</h3>It's been rough, a lot of cells've been getting wiped out, but at least we got one of the teams that was doing that to us. Inteq strike force tried to snatch Captain Yikiti while he was in transit but they didn't count on him having a meeting with other Captains at the time, each with their own bodyguards. Cameraman that was with them pleaded like a bitch for ages but he had nothing so I put a shot through his cranium. Boys are really antsy about the guns though, one of my top guys took the rifle that Vanguard had in the night and started shooting it off. I knew that sound anywhere, thought they had come to take back the bodies. I shot him in the darkness because of it. Stupid fuck. I've put the rifle in my safe for now. Hopefully my <i>kindly worded</i> notice will be enough to convince the rest of these chucklefucks that using the enemy's gear isn't a laughing fucking matter.";
+	pixel_x = 8
+	},
 /turf/open/floor/concrete/slab_4,
 /area/ruin/rockplanet/somme/armory)
 "Cv" = (
@@ -6012,6 +6037,13 @@
 /obj/effect/turf_decal/corner/opaque/tan{
 	dir = 6
 	},
+/obj/structure/chair/office{
+	dir = 8
+	},
+/mob/living/simple_animal/hostile/human/frontier/ranged/officer/wasp/internals/somme{
+	environment_smash = 0;
+	wander = 0
+	},
 /turf/open/floor/plasteel/mono/dark,
 /area/ruin/rockplanet/somme/armory)
 "DC" = (
@@ -6107,7 +6139,8 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2,
 /mob/living/simple_animal/hostile/human/frontier/ranged/trooper/internals/neutered{
-	environment_smash = 0
+	environment_smash = 0;
+	wander = 0
 	},
 /turf/open/floor/wood/walnut{
 	icon_state = "wood-broken5"
@@ -7582,6 +7615,9 @@
 /obj/effect/turf_decal/siding/thinplating/dark/corner{
 	dir = 4
 	},
+/mob/living/simple_animal/hostile/human/frontier/ranged/trooper/rifle/internals{
+	wander = 0
+	},
 /turf/open/floor/concrete/slab_1,
 /area/ruin/rockplanet/somme/landing)
 "Ld" = (
@@ -7720,11 +7756,11 @@
 	locked = 0;
 	req_access = null
 	},
-/obj/item/storage/toolbox/ammo/c22lr{
+/obj/item/storage/toolbox/ammo/c10mm{
 	pixel_x = 6;
 	pixel_y = -5
 	},
-/obj/item/storage/toolbox/ammo/a762_40{
+/obj/item/storage/toolbox/ammo/c9mm{
 	pixel_x = -8;
 	pixel_y = -5
 	},
@@ -7736,7 +7772,6 @@
 	pixel_x = -8;
 	pixel_y = 10
 	},
-/obj/item/storage/toolbox/ammo/c9mm,
 /obj/effect/turf_decal/box,
 /obj/machinery/light/small/directional/north,
 /obj/item/ammo_box/magazine/m9mm_mauler,
@@ -7825,14 +7860,8 @@
 /obj/item/spacecash/bundle/c1000,
 /obj/item/spacecash/bundle/c1000,
 /obj/item/spacecash/bundle/c1000,
-/obj/item/ammo_box/magazine/f4_308/empty{
-	pixel_y = -6;
-	pixel_x = 10
-	},
-/obj/item/ammo_box/magazine/f4_308/empty{
-	pixel_y = -6;
-	pixel_x = 10
-	},
+/obj/item/ammo_box/magazine/f4_308/empty,
+/obj/item/ammo_box/magazine/f4_308/empty,
 /obj/item/gun/ballistic/automatic/marksman/f4/inteq/no_mag,
 /obj/item/storage/box/ammo/a308/inteq,
 /turf/open/floor/carpet,
@@ -8283,12 +8312,6 @@
 /obj/effect/turf_decal/corner/opaque/tan{
 	dir = 6
 	},
-/obj/structure/chair/office{
-	dir = 8
-	},
-/mob/living/simple_animal/hostile/human/frontier/ranged/officer/wasp/internals/somme{
-	environment_smash = 0
-	},
 /turf/open/floor/plasteel/mono/dark,
 /area/ruin/rockplanet/somme/armory)
 "Oc" = (
@@ -8541,7 +8564,12 @@
 /mob/living/simple_animal/hostile/human/frontier/ranged/trooper/heavy/internals/buckshot/neutered{
 	casingtype = /obj/item/ammo_casing/shotgun;
 	name = "Frontiersman Slugger";
-	desc = "A horrifically still mass of plasteel and flesh. Its motions are filled with a deliberate and exacting malice. Its weapon is raised, and it prepares to pull the trigger that will bring forth the rain of lead."
+	desc = "A horrifically still mass of plasteel and flesh. Its motions are filled with a deliberate and exacting malice. Its weapon is raised, and it prepares to pull the trigger that will bring forth the rain of lead.";
+	minimum_distance = 0;
+	retreat_distance = 2;
+	health = 200;
+	maxHealth = 200;
+	wander = 0
 	},
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 4
@@ -9802,19 +9830,8 @@
 	dir = 4;
 	id = "somme_armoury_doors"
 	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/item/paper_bin{
-	pixel_x = -7
-	},
-/obj/item/paper/fluff/ruins{
-	name = "operations notes";
-	default_raw_text = "<h3>Day 173</h3>It's been rough, a lot of cells've been getting wiped out, but at least we got one of the teams that was doing that to us. Inteq strike force tried to snatch Captain Yikiti while he was in transit but they didn't count on him having a meeting with other Captains at the time, each with their own bodyguards. Cameraman that was with them pleaded like a bitch for ages but he had nothing so I put a shot through his cranium. Boys are really antsy about the guns though, one of my top guys took the rifle that Vanguard had in the night and started shooting it off. I knew that sound anywhere, thought they had come to take back the bodies. I shot him in the darkness because of it. Stupid fuck. I've put the rifle in my safe for now. Hopefully my <i>kindly worded</i> notice will be enough to convince the rest of these chucklefucks that using the enemy's gear isn't a laughing fucking matter.";
-	pixel_x = 8
-	},
-/obj/item/attachment/long_scope{
-	pixel_y = 11
+/obj/machinery/door/window/westleft{
+	pixel_x = 1
 	},
 /turf/open/floor/concrete/slab_4,
 /area/ruin/rockplanet/somme/armory)

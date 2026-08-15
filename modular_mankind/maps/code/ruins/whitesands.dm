@@ -1,5 +1,5 @@
 /datum/map_template/ruin/whitesands
-	prefix = "_maps/_modular_solaris/RandomRuins/SandRuins/"
+	prefix = "_maps/RandomRuins/SandRuins/"
 	ruin_type = RUINTYPE_SAND
 
 /datum/map_template/ruin/whitesands/brazillian_lab

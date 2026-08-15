@@ -1,27 +1,24 @@
 {
-	"$schema": "https://raw.githubusercontent.com/shiptest-ss13/Shiptest/master/_maps/ship_config_schema.json",
+	"$schema": "https://raw.githubusercontent.com/CeladonSS13/Shiptest/beta-dev/_maps/_mod_celadon/ship_config_schema.json",
 	"map_name": "Junker-class Salvaged Ship",
-	"faction": "/datum/faction/independent",
+	"map_short_name": "Junker",
+	"description": "Судно класса 'Junker' - это не официальный класс, а скорее название общей группы суден, созданных из руин старых суден или станций. Эти судна стали обычным явлением во время ICW, когда дезертиры бежали из зон конфликта на этих 'Junker's', не готовые к трудностям космической жизни. С тех пор они стали редкостью, а немногие выжившие экипажи этих суден обычно испытывают чувство презрения к обычным властным структурам и, как правило, не имеют определенного капитана или даже владельца судна.",
+	"map_path": "_maps/_modular_solaris/shuttles/independent/independent_junker.dmm",
+	"enabled": true,
+	"limit": 1,
+	"sensor_range": 7,
+	"starting_funds": 0,
 	"prefix": "SV",
+	"faction": "/datum/faction/independent",
+	"tags": ["Выживание"],
 	"namelists": [
 		"GENERAL",
 		"SPACE"
 	],
-	"map_short_name": "Junker-class",
-	"tranist_x_offset": -20,
-	"tranist_y_offset": 0,
-	"description": "The Junker-class is not an official class, but rather the name for a general group of designs crafted from the ruins of old ships or stations. These ships became a common sight during the ICW, as deserters fled areas of conflict on these 'junkers', unprepared for the challenges of spacer life. They have since become a rare sight, and the few surviving crews of these ships typically bear a sense of disdain to ordinary power structures, and usually have no defined captain, or even owner, of the vessel.",
-	"tags": [
-		"Survival Challenge"
-	],
-	"starting_funds": 0,
-	"map_path": "_maps/shuttles/independent/independent_junker.dmm",
-	"limit": 1,
 	"job_slots": {
 		"Assistant": {
-			"outfit": "/datum/outfit/job/assistant",
+			"outfit": "/datum/outfit/job/cel/independent/assistant",
 			"slots": 4
 		}
-	},
-	"enabled": false
+	}
 }

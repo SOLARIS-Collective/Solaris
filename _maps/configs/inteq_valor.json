@@ -1,16 +1,16 @@
 {
-	"$schema": "https://raw.githubusercontent.com/PentestSS13/Pentest/master/_maps/ship_config_schema.json",
-	"map_name": "Valor-class Field Care Cruiser",
-	"map_short_name": "Valor-class",
-	"map_path": "_maps/shuttles/inteq/inteq_valor.dmm",
+	"$schema": "https://raw.githubusercontent.com/CeladonSS13/Shiptest/beta-dev/_maps/_mod_celadon/ship_config_schema.json",
+	"map_name": "Valor-Class Field Care Cruiser",
+	"map_short_name": "Valor",
+	"description": "'Valor' — специализированное медицинское судно флота Inteq, подходящее как для лечения раненых в боях членов Inteq, так и для платного лечения посторонних. Для этой цели он оснащен высококлассным медицинским оборудованием и небольшим шаттлом для перевозки пациентов.",
+	"map_path": "_maps/_modular_solaris/shuttles/inteq/inteq_valor.dmm",
+	"subshuttle": "Haste",
+	"enabled": true,
+	"limit": 1,
+	"sensor_range": 9,
+	"prefix": "SPIQSV",
 	"faction": "/datum/faction/inteq",
-	"prefix": "IRMV",
-	"manufacturer": "Hardline Salvage and Mining",
-	"description": "The Valor is the dedicated medical vessel of the Inteq fleet, suitable for treatment both for Inteq combat casualties, or paid treatment of outsiders. It's equipped with high-end medical equipment and a small ambulance for patient transport for this purpose.",
-	"tags": [
-		"Medical",
-		"Subshuttle"
-	],
+	"tags": ["Медицинское", "Суб-шаттл"],
 	"namelists": [
 		"MYTHOLOGICAL",
 		"NATURAL",
@@ -18,50 +18,26 @@
 	],
 	"job_slots": {
 		"Vanguard": {
-			"outfit": "/datum/outfit/job/inteq/captain",
+			"outfit": "/datum/outfit/job/cel/inteq/captain",
 			"officer": true,
 			"slots": 1
 		},
 		"Honorable Corpsman": {
-			"outfit": "/datum/outfit/job/inteq/cmo/empty",
+			"outfit": "/datum/outfit/job/cel/inteq/cmo",
 			"officer": true,
-			"slots": 1
-		},
-		"Shuttle Pilot": {
-			"outfit": "/datum/outfit/job/inteq/pilot/empty",
-			"officer": true,
-			"slots": 1
-		},
-		"Shuttle Corpsman": {
-			"outfit": "/datum/outfit/job/inteq/paramedic/empty",
 			"slots": 1
 		},
 		"Corpsman": {
-			"outfit": "/datum/outfit/job/inteq/paramedic/empty",
-			"slots": 2
+			"outfit": "/datum/outfit/job/cel/inteq/paramedic",
+			"slots": 3
 		},
 		"Enforcer": {
-			"outfit": "/datum/outfit/job/inteq/security/empty",
+			"outfit": "/datum/outfit/job/cel/inteq/security",
 			"slots": 2
 		},
-		"Artificer": {
-			"outfit": "/datum/outfit/job/inteq/engineer",
-			"slots": 1
-		},
-		"Auxiliary": {
-			"outfit": "/datum/outfit/job/inteq/assistant",
+		"Recruit": {
+			"outfit": "/datum/outfit/job/cel/inteq/assistant",
 			"slots": 2
 		}
-	},
-	"limit": 1,
-	"starting_funds": 2000,
-	"enabled": true,
-	"space_spawn": false,
-
-	"token_icon_state": "ship_big_generic",
-
-	"architect": "meemofcourse",
-	"contributors": [
-		"No Contributors"
-	]
+	}
 }
