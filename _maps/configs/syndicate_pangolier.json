@@ -1,5 +1,5 @@
 {
-	"$schema": "https://raw.githubusercontent.com/CeladonSS13/Shiptest/beta-dev/_maps/_modular_solaris/ship_config_schema.json",
+	"$schema": "https://raw.githubusercontent.com/CeladonSS13/Shiptest/beta-dev/_maps/ship_config_schema.json",
 	"map_name": "Pangolier-class Frigate",
 	"map_short_name": "Pangolier",
 	"description": "Судно класса «Pangolier» является результатом совместного сотрудничества Cybersun и Gorlex Marauders. Благодаря их совместному труду в краткие сроки некогда вышедшее из эксплуатации административное судно было отреставрировано и переоборудовано под длительные экспедиции, а также снабжено научным отделом. На судне находятся ведущие специалисты своих областей под командованием предоставленного Cybersun Капитана, в то же время для их защиты на судне расквартирована наемная группа Gorlex Marauders возглавляемая Первым лейтенантом.",

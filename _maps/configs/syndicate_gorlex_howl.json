@@ -1,5 +1,5 @@
 {
-	"$schema": "https://raw.githubusercontent.com/CeladonSS13/Shiptest/beta-dev/_maps/_modular_solaris/ship_config_schema.json",
+	"$schema": "https://raw.githubusercontent.com/CeladonSS13/Shiptest/beta-dev/_maps/ship_config_schema.json",
 	"map_name": "Howler-class easy Warship ",
 	"map_short_name": "Howl",
 	"description": " «Howl» — созданный корабль на...",

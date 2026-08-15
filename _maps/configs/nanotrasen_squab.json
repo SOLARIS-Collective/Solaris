@@ -1,5 +1,5 @@
 {
-	"$schema": "https://raw.githubusercontent.com/CeladonSS13/Shiptest/beta-dev/_maps/_modular_solaris/ship_config_schema.json",
+	"$schema": "https://raw.githubusercontent.com/CeladonSS13/Shiptest/beta-dev/_maps/ship_config_schema.json",
 	"map_name": "Squab-class Multipurpose Frigate",
 	"map_short_name": "Squab",
 	"description": "Многоцелевой фрегат класса 'Squab' во владении N+S Logistics - это ещё более компактная и современная замена классу 'Delta', сочетающая в себе достаточное для комфортного проживания пространство для экипажа, сравнимый лишь с классом 'Meta' грузовой отсек и высокую удельную тягу. Корабль обычно комплектуется штатной охраной VI и малой научной командой с руководителем, от самой Компании.",

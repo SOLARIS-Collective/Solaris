@@ -1,5 +1,5 @@
 {
-	"$schema": "https://raw.githubusercontent.com/CeladonSS13/Shiptest/beta-dev/_maps/_modular_solaris/ship_config_schema.json",
+	"$schema": "https://raw.githubusercontent.com/CeladonSS13/Shiptest/beta-dev/_maps/ship_config_schema.json",
 	"map_name": "Krait-class",
 	"map_short_name": "Krait",
 	"description": "Универсальный корабль класса 'Крайт', совмещает в себе две команды SnD и RnD. Команда SnD занимается поиском, захватом и уничтожением для второй команды занимающейся исследованиями. Корабль оснащен передовыми нанотехнологиями для более эффективной работы, обладает суб шаттлом для быстрого захвата и уничтожения объектов.",

@@ -1,5 +1,5 @@
 {
-	"$schema": "https://raw.githubusercontent.com/CeladonSS13/Shiptest/beta-dev/_maps/_modular_solaris/ship_config_schema.json",
+	"$schema": "https://raw.githubusercontent.com/CeladonSS13/Shiptest/beta-dev/_maps/ship_config_schema.json",
 	"map_name": "Stingray-class Scouting Ship",
 	"map_short_name": "Stingray",
 	"description": "Судно класса 'Stingray' представляет собой реконструированную модель Clandestine 2 поколения типа 'Покоритель космоса'. Изначальная модель зарекомендовала себя как один из лучших представителей своего класса и имела огромный спрос. Однако компания-производитель сменила вектор деятельности, из-за чего производство судов было прекращено. Большинство сохранившихся моделей до сих пор находятся в рабочем состоянии, хотя их эксплуатационный срок службы давно превысил предписанные лимиты. Некоторым пиратам удалось получить пару рабочих экземпляров в свое владение, а после переоборудовать их под личные нужды.",
