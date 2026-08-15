@@ -75,8 +75,6 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 	//The linkify span classes and linkify=TRUE below make ooc text get clickable chat href links if you pass in something resembling a url
 	for(var/client/C in GLOB.clients)
 		if(C.prefs.chat_toggles & CHAT_OOC)
-			if(holder?.fakekey in C.prefs.ignoring)
-				continue
 			if(holder)
 				if(!holder.fakekey || C.holder)
 					if(check_rights_for(src, R_ADMIN))
@@ -89,14 +87,14 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 					else
 						to_chat(C, span_ooc("[span_prefix("OOC:")] <EM>[holder.fakekey ? holder.fakekey : key]:</EM> <span class='message linkify'>[msg]</span>"), MESSAGE_TYPE_OOC)
 
-			else if(!(key in C.prefs.ignoring))
-				if(COLOR_OOC)
-					if(check_mentor())
-						to_chat(C, span_oocplain("<font color='["#00b40f"]'><b>[span_prefix("OOC:")] <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></b></font>"), MESSAGE_TYPE_OOC)
-					else
-						to_chat(C, span_oocplain("<font color='[COLOR_OOC]'><b>[span_prefix("OOC:")] <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></b></font>"), MESSAGE_TYPE_OOC)
+		else
+			if(COLOR_OOC)
+				if(check_mentor())
+					to_chat(C, span_oocplain("<font color='["#00b40f"]'><b>[span_prefix("OOC:")] <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></b></font>"), MESSAGE_TYPE_OOC)
 				else
-					to_chat(C, span_ooc("[span_prefix("OOC:")] <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span>"), MESSAGE_TYPE_OOC)
+					to_chat(C, span_oocplain("<font color='[COLOR_OOC]'><b>[span_prefix("OOC:")] <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></b></font>"), MESSAGE_TYPE_OOC)
+			else
+				to_chat(C, span_ooc("[span_prefix("OOC:")] <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span>"), MESSAGE_TYPE_OOC)
 
 /proc/toggle_ooc(toggle = null)
 	if(toggle != null) //if we're specifically en/disabling ooc
@@ -200,126 +198,6 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 		return
 
 	new /datum/job_report_menu(src, usr)
-
-// Ignore verb
-/client/verb/select_ignore()
-	set name = "Ignore"
-	set category = "OOC"
-	set desc ="Ignore a player's messages on the OOC channel"
-
-	// Make a list to choose players from
-	var/list/players = list()
-
-	// Use keys and fakekeys for the same purpose
-	var/displayed_key = ""
-
-	// Try to add every player who's online to the list
-	for(var/client/C in GLOB.clients)
-		// Don't add ourself
-		if(C == src)
-			continue
-
-		// Don't add players we've already ignored if they're not using a fakekey
-		if((C.key in prefs.ignoring) && !C.holder?.fakekey)
-			continue
-
-		// Don't add players using a fakekey we've already ignored
-		if(C.holder?.fakekey in prefs.ignoring)
-			continue
-
-		// Use the player's fakekey if they're using one
-		if(C.holder?.fakekey)
-			players["[displayed_key]"] = displayed_key // [SOLARIS-EDIT] - Убираем возможность смотреть кто на каком персонаже играет. ORIGINAL: players["[C.mob]([displayed_key])"] = displayed_key
-
-		// Use the player's key if they're not using a fakekey
-		else
-			displayed_key = C.key
-
-		// Check if both we and the player are ghosts and they're not using a fakekey
-		if(isobserver(mob) && isobserver(C.mob) && !C.holder?.fakekey)
-			// Show us the player's mob name in the list in front of their displayed key
-			// Add the player's displayed key to the list
-			players["[displayed_key]"] = displayed_key // [MANKIND-EDIT] - Убираем возможность смотреть кто на каком персонаже играет. ORIGINAL: players["[C.mob]([displayed_key])"] = displayed_key
-
-		// Add the player's displayed key to the list if we or the player aren't a ghost or they're using a fakekey
-		else
-			players[displayed_key] = displayed_key
-
-	// Check if the list is empty
-	if(!players.len)
-		// Express that there are no players we can ignore in chat
-		to_chat(src, "There are no other players you can ignore!")
-
-		// Stop running
-		return
-
-	// Sort the list
-	players = sortList(players)
-
-	// Request the player to ignore
-	var/selection = input("Please, select a player!", "Ignore", null, null) as null|anything in players
-
-	// Stop running if we didn't receieve a valid selection
-	if(!selection || !(selection in players))
-		return
-
-	// Store the selected player
-	selection = players[selection]
-
-	// Check if the selected player is on our ignore list
-	if(selection in prefs.ignoring)
-		// Express that the selected player is already on our ignore list in chat
-		to_chat(src, "You are already ignoring [selection]!")
-
-		// Stop running
-		return
-
-	// Add the selected player to our ignore list
-	prefs.ignoring.Add(selection)
-
-	// Save our preferences
-	prefs.save_preferences()
-
-	// Express that we've ignored the selected player in chat
-	to_chat(src, "You are now ignoring [selection] on the OOC channel.")
-
-// Unignore verb
-/client/verb/select_unignore()
-	set name = "Unignore"
-	set category = "OOC"
-	set desc = "Stop ignoring a player's messages on the OOC channel"
-
-	// Check if we've ignored any players
-	if(!prefs.ignoring.len)
-		// Express that we haven't ignored any players in chat
-		to_chat(src, "You haven't ignored any players!")
-
-		// Stop running
-		return
-
-	// Request the player to unignore
-	var/selection = input("Please, select a player!", "Unignore", null, null) as null|anything in prefs.ignoring
-
-	// Stop running if we didn't receive a selection
-	if(!selection)
-		return
-
-	// Check if the selected player is not on our ignore list
-	if(!(selection in prefs.ignoring))
-		// Express that the selected player is not on our ignore list in chat
-		to_chat(src, "You are not ignoring [selection]!")
-
-		// Stop running
-		return
-
-	// Remove the selected player from our ignore list
-	prefs.ignoring.Remove(selection)
-
-	// Save our preferences
-	prefs.save_preferences()
-
-	// Express that we've unignored the selected player in chat
-	to_chat(src, "You are no longer ignoring [selection] on the OOC channel.")
 
 /client/proc/show_previous_roundend_report()
 	set name = "Your Last Round"

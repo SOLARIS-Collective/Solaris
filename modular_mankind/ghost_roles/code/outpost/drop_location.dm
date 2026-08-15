@@ -19,6 +19,14 @@
 	name = "sleeper a medical doctor"
 	desc = "A closed apparatus designed for the medic."
 
+/obj/machinery/cryopod/outpost/medical_shield
+	name = "sleeper a medical shield"
+	desc = "A closed apparatus designed for the medical shield."
+
+/obj/machinery/cryopod/outpost/medical_shield/marine
+	name = "sleeper a medical shield marine"
+	desc = "A closed apparatus designed for the medical shield marine."
+
 /obj/machinery/cryopod/outpost
 	var/linked_spawner_type
 

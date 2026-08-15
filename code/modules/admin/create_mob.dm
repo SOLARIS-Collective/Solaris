@@ -32,6 +32,13 @@
 	H.dna.blood_type = random_blood_type()
 	H.generic_adjective = pick_species_adjective(H)
 
+	// [SOLARIS-ADD] - SOLARIS_W_TTS_VOICES
+	// if((GLOB.w_tts_voices_random_list != NULL) ? H.set_w_tts_voices(pick(GLOB.w_tts_voices_random_list)) : "null")
+	H.set_w_tts_voices("mutedc3")
+	H.vocal_pitch = W_TTS_VOICES_PITCH_RAND(H.gender)
+	H.vocal_pitch_range = W_TTS_VOICES_VARIANCE_RAND
+	// [/SOLARIS-ADD]
+
 	// Mutant randomizing, doesn't affect the mob appearance unless it's the specific mutant.
 	H.dna.features["mcolor"] = random_short_color()
 	H.dna.features["mcolor2"] = random_short_color()
@@ -80,3 +87,9 @@
 
 	H.update_body()
 	H.update_hair()
+
+	// [SOLARIS-ADD] - SOLARIS_W_TTS_VOICES
+	H.set_w_tts_voices(pick(GLOB.w_tts_voices_random_list))
+	H.vocal_pitch = ((H.gender == MALE ? rand(60, 120) : (H.gender == FEMALE ? rand(80, 140) : rand(60,140))) / 100)
+	H.vocal_pitch_range = rand(10, 40) / 100
+	// [/SOLARIS-ADD]

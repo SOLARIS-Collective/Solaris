@@ -1,5 +1,5 @@
 /datum/map_template/ruin/wasteplanet
-	prefix = "_maps/_mod_celadon/RandomRuins/WasteRuins/"
+	prefix = "_maps/_modular_solaris/RandomRuins/WasteRuins/"
 	ruin_type = RUINTYPE_WASTE
 
 /datum/map_template/ruin/wasteplanet/abandoned_mechbay

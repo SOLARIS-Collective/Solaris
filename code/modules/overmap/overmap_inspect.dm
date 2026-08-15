@@ -27,7 +27,7 @@
 /datum/overmap/ui_data(mob/user)
 	. = list()
 	.["admin_rights"] = check_rights_for(user.client, R_DEBUG)
-	. += basic_ui_data()
+	. += basic_ui_data(user)
 	.["ascii"] = char_rep
 	.["desc"] = (isobj(token)) ? token.desc : ""
 	.["x"] = x || docked_to.x
@@ -35,13 +35,13 @@
 
 	.["dockedTo"] = list()
 	if(docked_to)
-		.["dockedTo"] += docked_to.basic_ui_data()
+		.["dockedTo"] += docked_to.basic_ui_data(user)
 
 	.["docked"] = list()
 	for(var/datum/overmap/docked in contents)
-		.["docked"] += list(docked.basic_ui_data())
+		.["docked"] += list(docked.basic_ui_data(user))
 
-/datum/overmap/proc/basic_ui_data()
+/datum/overmap/proc/basic_ui_data(mob/user)
 	return list(
 		"ref" = REF(src),
 		"name" = name

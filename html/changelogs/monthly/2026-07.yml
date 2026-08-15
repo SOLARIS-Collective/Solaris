@@ -1,0 +1,108 @@
+Новое:
+- number: 16
+  title: Пруд без рыбы
+  body: "## Описание / Что этот PR делает\r\n\r\n\r\n## Причина создания ПР / Почему\
+    \ это хорошо для игры\r\n\r\n\r\n## Демонстрация изменений / Тестирование\r\n\r\
+    \n\r\n\r\n## Список изменений"
+  author: MrCat15352
+  merged_at: '2026-07-27'
+Прочее:
+- number: 11
+  title: '[OMNI-UPDATE]: Обновление билда до версии BYOND 516.1685'
+  body: "## Описание PR\r\n\r\n\r\n\r\n## Почему это хорошо для игры"
+  author: MrCat15352
+  merged_at: '2026-07-26'
+- number: 10
+  title: 'UPDATE: Обновляемся до последней версии CELADON от 21.07.2026'
+  body: "## Описание PR\r\nЕсть ошибки и будут, я их еще не пофиксил\r\n\r\n## Почему\
+    \ это хорошо для игры"
+  author: MrCat15352
+  merged_at: '2026-07-26'
+- number: 9
+  title: 'UPDATE: Обновляемся до версии пентеста 10 апреля 2026'
+  body: "## Сводка изменений\r\n\r\n## Типы изменений\r\n\r\n### Прочее (17)\r\n\r\
+    \n- `7c6fd639` Automatic changelog batch for merged PRs [ci skip] — Ossa88 (SYNAPSE)\r\
+    \n- `822c2c6c` Updates Luminescents (#611) — Ossa88 (SYNAPSE)\r\n- `9f680b7a`\
+    \ Automatic changelog batch for merged PRs [ci skip] — Ossa88 (SYNAPSE)\r\n- `3a95ff3e`\
+    \ Safe UI Interface (#555) — Ossa88 (SYNAPSE)\r\n- `8018389e` Automatic changelog\
+    \ batch for merged PRs [ci skip] — Ossa88 (SYNAPSE)\r\n- `bf140388` Replace thermomachine\
+    \ dynamic per-tick power with flat target-based draw (#617) — Copilot\r\n- `c68f6d74`\
+    \ Automatic changelog compile [ci skip] — Changelogs\r\n- `d5fa0128` Automatic\
+    \ changelog batch for merged PRs [ci skip] — Ossa88 (SYNAPSE)\r\n- `740adff2`\
+    \ Automatic changelog batch for merged PRs [ci skip] — Ossa88 (SYNAPSE)\r\n- `6f8ac54c`\
+    \ Slightly Tweaks the Aegis' TEG Chamber/Atmospherics (#584) — Hayden Redacted\r\
+    \n- `36eca500` Automatic changelog batch for merged PRs [ci skip] — Ossa88 (SYNAPSE)\r\
+    \n- `77df4a86` Allows coloring clothes with spray can on harm intent (#542) —\
+    \ Ravellon\r\n- `2f5ed47c` Automatic changelog batch for merged PRs [ci skip]\
+    \ — Ossa88 (SYNAPSE)\r\n- `dcd5c9bc` Vox clothing (#619) — ConsumoFurioso\r\n\
+    - `d581c167` Automatic changelog batch for merged PRs [ci skip] — Ossa88 (SYNAPSE)\r\
+    \n- `a29eb8fe` Automatic changelog batch for merged PRs [ci skip] — Ossa88 (SYNAPSE)\r\
+    \n- `a5f484f6` [READY] Z-Level Assignments (#552) — Ossa88 (SYNAPSE)\r\n\r\n###\
+    \ Исправления (2)\r\n\r\n- `1b085d32` [FIX] Fixes addiction removal logic (#651)\
+    \ — Ossa88 (SYNAPSE)\r\n- `4286a947` [FIX] Fix ghosts trying to activate Modsuits\
+    \ (#650) — Ossa88 (SYNAPSE)\r\n\r\n### Cherry-pick (1)\r\n\r\n- `fa7e14e9` [CHERRYPICK]\
+    \ September Part 1 (#626) — Ossa88 (SYNAPSE)\r\n\r\n### Срочные исправления (1)\r\
+    \n\r\n- `b1bcee8f` [EMERGENCY FIX] Fixes Splash Trickwines (#631) — Ossa88 (SYNAPSE)\r\
+    \n\r\n### Новое (1)\r\n\r\n- `469f0e25` Adds sprites for the geothermal rtg (#616)\
+    \ — Constellado\r\n\r\n### Админ (1)\r\n\r\n- `ab67e202` Admin Tools to Delete\
+    \ Planets (#560) — Ossa88 (SYNAPSE)"
+  author: MrCat15352
+  merged_at: '2026-07-26'
+- number: 15
+  title: Тестируем механизм формирования чейнджлога в пр
+  body: "## Описание / Что этот PR делает\r\n\r\n\r\n## Причина создания ПР / Почему\
+    \ это хорошо для игры\r\n\r\n\r\n## Демонстрация изменений / Тестирование\r\n\r\
+    \n## Список изменений\r\n\r\n```yml\r\n\U0001F191\r\nadd: Что-то добавлено\r\n\
+    del: Что-то удалено\r\nbalance: Что-то изменено в балансе\r\ntweak: Что-то изменено\
+    \ по мелочи\r\nfix: Что-то исправлено\r\nsound: Добавлен/Изменен/Удален звук\r\
+    \nimage: Добавлен/Изменен/Удален спрайт\r\nmap: Изменения на карте\r\nspellcheck:\
+    \ Исправлена опечатка/добавлен перевод\r\nadmin: Изменения в кнопках администрации\r\
+    \n/\U0001F191\r\n```"
+  author: MrCat15352
+  merged_at: '2026-07-26'
+- number: 8
+  title: Обновление воркфлоу файлов
+  body: "## Описание PR\r\nВзял поменял лейблы, поотключал лишние воркфлоую\r\n\r\n\
+    \r\n## Почему это хорошо для игры\r\nДля игры нейтрально, для организации на гитхабе\
+    \ процессов - зашибись\r\n\r\n\r\n## Changelog\r\n\r\n:cl:\r\ncode: Изменён код\
+    \ связанный с гихабом\r\n/:cl:"
+  author: MrCat15352
+  merged_at: '2026-07-23'
+- number: 13
+  title: All upgrades are weapons, ships, and stuff
+  body: "## Внес изменение:\r\n корабли, в будущем будут новые;\r\nдобавил на гар\
+    \ улучшенный магазин\r\nизменил по мелочи\r\n\r\n\r\n## Список изменений\r\n\r\
+    \n```yml\r\n\U0001F191\r\nadd: Что-то добавлено\r\ndel: Что-то удалено\r\nbalance:\
+    \ Что-то изменено в балансе\r\ntweak: Что-то изменено по мелочи\r\nfix: Что-то\
+    \ исправлено\r\nsound: Добавлен/Изменен/Удален звук\r\nimage: Добавлен/Изменен/Удален\
+    \ спрайт\r\nmap: Изменения на карте\r\nspellcheck: Исправлена опечатка/добавлен\
+    \ перевод\r\nadmin: Изменения в кнопках администрации\r\n/\U0001F191\r\n```"
+  author: Lord-Of-The-Flies
+  merged_at: '2026-07-24'
+- number: 14
+  title: Readme.md
+  body: "маленький шаг, на открытие нового и неизвестного\r\n\r\n## Описание / Что\
+    \ этот PR делает\r\n\r\n\r\n## Причина создания ПР / Почему это хорошо для игры\r\
+    \n\r\n\r\n## Демонстрация изменений / Тестирование\r\n\r\n## Список изменений\r\
+    \n\r\n```yml\r\n\U0001F191\r\nadd: Что-то добавлено\r\ndel: Что-то удалено\r\n\
+    balance: Что-то изменено в балансе\r\ntweak: Что-то изменено по мелочи\r\nfix:\
+    \ Что-то исправлено\r\nsound: Добавлен/Изменен/Удален звук\r\nimage: Добавлен/Изменен/Удален\
+    \ спрайт\r\nmap: Изменения на карте\r\nspellcheck: Исправлена опечатка/добавлен\
+    \ перевод\r\nadmin: Изменения в кнопках администрации\r\n/\U0001F191\r\n```"
+  author: Lord-Of-The-Flies
+  merged_at: '2026-07-24'
+- number: 7
+  title: Исправлены стили скролбаров
+  body: "## Описание PR\r\nИзменил способ формирования стилей у стат панели, чата,\
+    \ настроек чата, сами окна везде где используются скролбары. С переходом на хромиум\
+    \ многие элементы перестали поддерживаться от IE, пришлось все чинить с переходом\
+    \ на 516 версию.\r\n\r\n## Почему это хорошо для игры\r\nМеьше визуальных багов,\
+    \ в глаза резались эти все белые стрелки и кнопки.\r\nБыло:\r\n<img width=\"215\"\
+    \ height=\"943\" alt=\"изображение\" src=\"https://github.com/user-attachments/assets/daa292a4-6eb7-498e-a599-9421f1f2f027\"\
+    \ />\r\n\r\nСтало:\r\n<img width=\"106\" height=\"830\" alt=\"изображение\" src=\"\
+    https://github.com/user-attachments/assets/15041dbb-eb11-42b5-9337-b0a7c5f75241\"\
+    \ />\r\n\r\n\r\n## Changelog\r\n\r\n:cl:\r\ncode: Изменён код стилей, тгуи, html,\
+    \ scss добавлена поддержка вебкитов совместно со старыми методами, ибо стат панель\
+    \ работает от бьонд движка.\r\n/:cl:"
+  author: MrCat15352
+  merged_at: '2026-07-21'

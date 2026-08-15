@@ -117,7 +117,10 @@ GLOBAL_LIST_EMPTY(GPS_list)
 		return data
 	var/datum/map_zone/mapzone = vlevel.parent_map_zone
 	var/list/coords = vlevel.get_relative_coords(curr)
-	data["currentArea"] = "[get_area_name(curr, TRUE)]"
+	// [MANKIND-EDIT] - HIDE_SHIP_META - Показываем обезличенное имя корабля вместо имени area (которое = имя корабля)
+	var/datum/overmap/ship/controlled/ship = SSshuttle.get_ship(curr)
+	data["currentArea"] = istype(ship) ? ship.get_display_name(user) : "[get_area_name(curr, TRUE)]"
+	// [/MANKIND-EDIT]
 	data["currentCoords"] = "[coords[1]], [coords[2]], [mapzone.id], [vlevel.relative_id]"
 
 	var/list/signals = list()

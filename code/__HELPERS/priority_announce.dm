@@ -31,6 +31,12 @@
 			data["theme"] = "silicon"
 			data["badge"] = "SILICON"
 			data["header"] = "Silicon Announcement"
+		// [MANKIND-ADD] - HAIL_ANNOUNCE - Свой стиль анонса для Hail: тот же кастомный, но с бейджем HAIL вместо NOTICE.
+		if("Hail")
+			data["theme"] = "custom"
+			data["badge"] = "HAIL"
+			data["header"] = sender_override
+		// [/MANKIND-ADD]
 		else
 			if(sender_override)
 				var/sender_lower = lowertext("[sender_override]")
