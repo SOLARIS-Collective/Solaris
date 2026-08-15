@@ -3,7 +3,7 @@
 	"map_name": "Flower ship",
 	"map_short_name": "Flower",
 	"description": "Бюджетный корабль, предназначенный для опытных ботаников.",
-	"map_path": "_maps/_modular_solaris/shuttles/independent/independent_flower.dmm",
+	"map_path": "_maps/shuttles/independent/independent_flower.dmm",
 	"enabled": true,
 	"limit": 3,
 	"sensor_range": 6,

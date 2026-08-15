@@ -3,7 +3,7 @@
 	"map_name": "Qurk Medical-Researcher corvet",
 	"map_short_name": "Qurk",
 	"description": "Большой медицинско-исследовательское судно со всем что может пригодится медику и исследователю. От морга и крио до экспериментора и отдела робототехники. В ЩИТСПАВНЕ ПО ПРИЧИНЕ: нарушение баланса. Слишком продвинутое РнД!",
-	"map_path": "_maps/_modular_solaris/shuttles/independent/independent_qurk.dmm",
+	"map_path": "_maps/shuttles/independent/independent_qurk.dmm",
 	"enabled": false,
 	"limit": 1,
 	"sensor_range": 8,

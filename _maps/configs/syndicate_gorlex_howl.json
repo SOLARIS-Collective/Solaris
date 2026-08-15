@@ -3,7 +3,7 @@
 	"map_name": "Howler-class easy Warship ",
 	"map_short_name": "Howl",
 	"description": " «Howl» — созданный корабль на...",
-	"map_path": "_maps/_modular_solaris/shuttles/syndicate/syndicate_gorlex_howl.dmm",
+	"map_path": "_maps/shuttles/syndicate/syndicate_gorlex_howl.dmm",
 	"enabled" : true,
 	"limit": 1,
 	"sensor_range": 7,

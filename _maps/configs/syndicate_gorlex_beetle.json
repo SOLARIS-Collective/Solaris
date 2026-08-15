@@ -3,7 +3,7 @@
 	"map_name": "Beetle-class Battle Schnau",
 	"map_short_name": "Beetle",
 	"description": "Боевое судно класса Beetle- Небольшое судно используемое Горлексом для поддержки в бою или мелких рейдах. Было разработано при поддержке киберсан для создания манёвренного судна для быстрых операций, в качестве эксперимента экипаж был оснащён лазерным вооружением.",
-	"map_path": "_maps/_modular_solaris/shuttles/syndicate/syndicate_gorlex_beetle.dmm",
+	"map_path": "_maps/shuttles/syndicate/syndicate_gorlex_beetle.dmm",
 	"enabled": true,
 	"limit": 1,
 	"sensor_range": 8,

@@ -3,7 +3,7 @@
 	"map_name": "Skipjack ship",
 	"map_short_name": "Skipjack",
 	"description": "Новая и секретная разработка воксов! Все совершенные технологии воксов собраны на этом корабле. В ЩИТСПАВНЕ ПО ПРИЧИНЕ: Не доработан!",
-	"map_path": "_maps/_modular_solaris/shuttles/independent/independent_skipjack.dmm",
+	"map_path": "_maps/shuttles/independent/independent_skipjack.dmm",
 	"enabled": false,
 	"limit": 1,
 	"sensor_range": 8,

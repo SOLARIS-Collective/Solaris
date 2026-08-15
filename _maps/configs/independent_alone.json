@@ -3,7 +3,7 @@
 	"map_name": "Alone ship",
 	"map_short_name": "Alone",
 	"description": "Бюджетный корабль, предназначенный для опытных исследователей космоса.",
-	"map_path": "_maps/_modular_solaris/shuttles/independent/independent_alone.dmm",
+	"map_path": "_maps/shuttles/independent/independent_alone.dmm",
 	"enabled": true,
 	"limit": 3,
 	"sensor_range": 7,

@@ -3,7 +3,7 @@
 	"map_name": "Inqrutsio-Corvette Survey Ship",
 	"map_short_name": "Inqrutsio",
 	"description": "Корвет Солнечной Федерации предназначенный для сбора разведовательных данных, составления безопастных маршрутов, и в случае необходимости поддержки союзных сил. ",
-	"map_path": "_maps/_modular_solaris/shuttles/solfed/solfed_inqrutsio.dmm",
+	"map_path": "_maps/shuttles/solfed/solfed_inqrutsio.dmm",
 	"enabled": true,
 	"limit": 1,
 	"sensor_range": 11,

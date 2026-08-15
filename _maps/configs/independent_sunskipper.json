@@ -3,7 +3,7 @@
 	"map_name": "Sunskipper-class Culinary Vessel",
 	"map_short_name": "Sunskipper",
 	"description": "Sunskipper-class — это современное кулинарное судно, найденное на границе. Sunskipper с распростертыми объятиями встречают усталые космонавты с более высокими зарплатами, которые утомлены однообразием своих повседневных приемов пищи. На судне есть самоподдерживающаяся кухня с гидропоникой и большой, роскошный обеденный зал, предназначенный для обслуживания голодных путешественников. Он также оснащен полностью укомплектованной баром, который позволяет им выпить свои проблемы, хотя бы на короткое время.",
-	"map_path": "_maps/_modular_solaris/shuttles/independent/independent_sunskipper.dmm",
+	"map_path": "_maps/shuttles/independent/independent_sunskipper.dmm",
 	"enabled": true,
 	"limit": 1,
 	"tranist_x_offset": -35,

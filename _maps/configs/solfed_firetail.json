@@ -3,7 +3,7 @@
 	"map_name": "Firetail-class Expeditionary Frigate",
 	"map_short_name": "Firetail",
 	"description": "Фрегат класса 'Firetail' с субшаттлом класса 'Vespa' на борту – экспедиционно-патрульный корабль флота Солнечной Федерации, переоборудованный с поддержкой дочерней компании  'NanoTrasen™' - 'North Star™', что отвечала за оснащение корабля шахтёрским оборудованием и предоставлением дополнительных кадров, в лице шахтёров на контрактной основе. Сам корабль отличается наличием отделения телекоммуникаций и сбалансированным оборудованием, делая корабль полностью автономным и гибким, что идеально подходит для долгосрочных боевых миссий.",
-	"map_path": "_maps/_modular_solaris/shuttles/solfed/solfed_firetail.dmm",
+	"map_path": "_maps/shuttles/solfed/solfed_firetail.dmm",
 	"subshuttle": "Vespa",
 	"enabled": true,
 	"limit": 1,

@@ -3,7 +3,7 @@
 	"map_name": "Sfwb-class Space Fleetwood Bounder",
 	"map_short_name": "Sfwb",
 	"description": "Адаптация автодома Fleetwood Bounder под космос. На этом установлено хим. оборудование. В ЩИТСПАВНЕ ПО ПРИЧИНЕ: Ивентовый.",
-	"map_path": "_maps/_modular_solaris/shuttles/misc/independent_sfwb.dmm",
+	"map_path": "_maps/shuttles/misc/independent_sfwb.dmm",
 	"enabled": false,
 	"limit": 3,
 	"sensor_range": 8,

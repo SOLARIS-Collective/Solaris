@@ -3,7 +3,7 @@
 	"map_name": "Slasher-class ESW Vessel",
 	"map_short_name": "Slasher",
 	"description": "'Slasher' - новейший корабль раннего предупреждения Нанотрейзен, разработанный специально для дальней разведки своими мощнейшими сенсорами. Его выделяет огромная площадь покрытия солнечных панелей, ранее упомянутая дальность сенсоров, высокая удельная тяга, а также малый экипаж и достойная его квалификация - корабли обычно отдаются во власть Отдела по предотвращению потерь активов.",
-	"map_path": "_maps/_modular_solaris/shuttles/nanotrasen/nanotrasen_slasher.dmm",
+	"map_path": "_maps/shuttles/nanotrasen/nanotrasen_slasher.dmm",
 	"sensor_range": 16,
 	"enabled": true,
 	"limit": 1,

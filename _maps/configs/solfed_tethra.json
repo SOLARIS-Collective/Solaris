@@ -3,7 +3,7 @@
 	"map_name": "Tethra-class Response Vessel",
 	"map_short_name": "Tethra",
 	"description": "Корабль Солнечной Федерации класса Тетра относится к числу судов быстрого реагирования, зачастую использульзуемый в целях разведки и конвоирования заключенных. Несмотря на изначальные цели, судно снабжено необходимой экипировкой для участия в боевых столкновениях и рейдах. Несмотря на свои габариты, судно имеет превосходную маневренность и скорость. ",
-	"map_path": "_maps/_modular_solaris/shuttles/solfed/solfed_tethra.dmm",
+	"map_path": "_maps/shuttles/solfed/solfed_tethra.dmm",
 	"enabled": false,
 	"limit": 1,
 	"sensor_range": 10,

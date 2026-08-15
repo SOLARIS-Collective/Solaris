@@ -3,7 +3,7 @@
 	"map_name": "Krait-class",
 	"map_short_name": "Krait",
 	"description": "Универсальный корабль класса 'Крайт', совмещает в себе две команды SnD и RnD. Команда SnD занимается поиском, захватом и уничтожением для второй команды занимающейся исследованиями. Корабль оснащен передовыми нанотехнологиями для более эффективной работы, обладает суб шаттлом для быстрого захвата и уничтожения объектов.",
-	"map_path": "_maps/_modular_solaris/shuttles/syndicate/syndicate_krait.dmm",
+	"map_path": "_maps/shuttles/syndicate/syndicate_krait.dmm",
 	"subshuttle": "Jet_lancer",
 	"enabled": true,
 	"limit": 1,

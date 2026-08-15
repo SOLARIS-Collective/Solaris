@@ -3,7 +3,7 @@
 	"map_name": "Mudskipper-class Salvage Clipper",
 	"map_short_name": "Mudskipper",
 	"description": "Одно из самых дешевых (и при этом необъяснимо популярных) предложений от Miskilamo Spacefaring. Судно класса 'Mudskipper' - предназначено для предприимчивых ломовиков и мародеров, желающих спасать разбомбленные руины и собирать грузы материалов. Разнообразные многофункциональные помещения, благотворительный запас EVA/руинного снаряжения и набор противорадиационного снаряжения для ликвидации последствий промышленных аварий - 'Mudskipper' просто не останавливается на достигнутом!",
-	"map_path": "_maps/_modular_solaris/shuttles/independent/independent_mudskipper.dmm",
+	"map_path": "_maps/shuttles/independent/independent_mudskipper.dmm",
 	"enabled": true,
 	"limit": 1,
 	"tranist_x_offset": -15,

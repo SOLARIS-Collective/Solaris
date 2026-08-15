@@ -3,7 +3,7 @@
 	"map_name": "Escape Pod X-03",
 	"map_short_name": "EscapePod",
 	"description": "Ваше основное судно было уничтожено, теперь вам нужно выжить.",
-	"map_path": "_maps/_modular_solaris/shuttles/independent/independent_escapepod.dmm",
+	"map_path": "_maps/shuttles/independent/independent_escapepod.dmm",
 	"enabled": true,
 	"limit": 1,
 	"sensor_range": 5,

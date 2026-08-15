@@ -3,7 +3,7 @@
 	"map_name": "Darect-class Patrol Vessel",
 	"map_short_name": "Darect",
 	"description": " 'Darect', передовой патрульный космический корабль, управляемый межзвездным конгломератом, известным как Нанотрейзен, Darect-class имеет на себе отряд патрульных офицеров Viglitas Interstellar усердно работающих, чтобы защитить интересы своих корпоративных повелителей. Знакомое зрелище в бесчисленных звездных системах, является впечатляющим символом доминирования НТ в контролируемых корпорациями регионах космоса.",
-	"map_path": "_maps/_modular_solaris/shuttles/nanotrasen/nanotrasen_darect.dmm",
+	"map_path": "_maps/shuttles/nanotrasen/nanotrasen_darect.dmm",
 	"enabled": true,
 	"limit": 1,
 	"sensor_range": 7,

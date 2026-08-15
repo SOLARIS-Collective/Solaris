@@ -3,7 +3,7 @@
 	"map_name": "Koi-class Rescue Ship",
 	"map_short_name": "Koi",
 	"description": "Корабли класса Кои давно использовались для спасения экипажей, попавших под шторма, метеоритные поля и прочие опасности космоса. Сняты с производства и большая часть уже отправилась на кладбища кораблей, но это не мешает использовать их дальше, находя на старых заброшенных складах. Обшивка корабля производилась на века, так что её герметичность не нарушена.",
-	"map_path": "_maps/_modular_solaris/shuttles/independent/independent_koi.dmm",
+	"map_path": "_maps/shuttles/independent/independent_koi.dmm",
 	"enabled": true,
 	"limit": 1,
 	"sensor_range": 9,

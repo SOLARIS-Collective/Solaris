@@ -3,7 +3,7 @@
 	"map_name": "Tomahawk-class Scout Vessel",
 	"map_short_name": "Tomahawk",
 	"description": "Корабль Солнечной Федерации класса Томагавк служит для фронтовой разведки с боем, cо временем начала космических экспансий 23 века о чем может подсказывать его обшивка. Данный корабль обладает хорошей скоростью, не смотря на свои габариты. На судне предусмотрены рабочие места для двух медиков, трёх полевых инженеров и одного корабельного.",
-	"map_path": "_maps/_modular_solaris/shuttles/solfed/solfed_tomahawk.dmm",
+	"map_path": "_maps/shuttles/solfed/solfed_tomahawk.dmm",
 	"enabled": true,
 	"limit": 1,
 	"sensor_range": 8,

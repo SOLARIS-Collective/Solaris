@@ -3,7 +3,7 @@
 	"map_name": "Rube Goldberg-class Engineering Project",
 	"map_short_name": "Rube-Goldberg",
 	"description": "Инженерный проект класса 'Rube Goldberg' - это опыт и памятник безумию. Мощный двигатель из сверхматерии в сочетании с эшеровской конструкцией, сложной сетью труб и проводов и полным пренебрежением к элементарным процедурам безопасности и здравому смыслу делают это судно катастрофой, которая только и ждет, чтобы случиться. В ЩИТСПАВНЕ ПО ПРИЧИНЕ: В щитспавне по причине: Очень сложный экперементальный шип, спавнить только на свой страх и риск!",
-	"map_path": "_maps/_modular_solaris/shuttles/independent/independent_rube_goldberg.dmm",
+	"map_path": "_maps/shuttles/independent/independent_rube_goldberg.dmm",
 	"enabled": false,
 	"limit": 1,
 	"sensor_range": 8,

@@ -3,7 +3,7 @@
 	"map_name": "Kondor-class ship",
 	"map_short_name": "Kondor",
 	"description": "«Kondor» является одной из разновидностей небольших суден. Судно создано одной из компаний синдиката по заказу влиятельного шейха для сепаратистов Элизиума. В настоящее время корабль был переоборудован для транспортировки грузов что бы снабжать сепаратисткие формирования",
-	"map_path": "_maps/_modular_solaris/shuttles/elysium/elysium_kondor.dmm",
+	"map_path": "_maps/shuttles/elysium/elysium_kondor.dmm",
 	"enabled": true,
 	"limit": 1,
 	"sensor_range": 5,

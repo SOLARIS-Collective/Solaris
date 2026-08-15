@@ -3,7 +3,7 @@
 	"map_name": "Tranquility-class Flying Apartment Complex",
 	"map_short_name": "Tranquility",
 	"description": "Большинство суден имеют четкое назначение - исследовательские, добывающие, грузовые и так далее - но класс 'Tranquility' является заметным исключением из этого правила. 'Tranquility' - довольно спокойное и уравновешенное судно, созданное по образцу традиционных жилых комплексов. Оснащенные несколькими независимыми каютами, большой общей столовой и очень малым количеством промышленного оборудования или средств самообороны, судна класса 'Tranquility' часто можно встретить лениво курсирующими по Фронтиру, устраивающими ситкомовские выходки и отказывающимися от более целенаправленного подхода многих своих современников.",
-	"map_path": "_maps/_modular_solaris/shuttles/independent/independent_tranquility.dmm",
+	"map_path": "_maps/shuttles/independent/independent_tranquility.dmm",
 	"enabled": true,
 	"limit": 1,
 	"sensor_range": 8,

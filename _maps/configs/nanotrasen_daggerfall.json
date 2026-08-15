@@ -3,7 +3,7 @@
 	"map_name": "Daggerfall-class Assault Vessel",
 	"map_short_name": "Daggerfall",
 	"description": "NTSPSV 'Daggerfall'- Судно Нанотрейзен специального назначения которое был разработано Nakamura Engineering по запросу Vigilitas Interstellar для устранения враждебных криминальных формирований и контроля безопасности активов Nanotrasen. Был введен в эксплутацию как аналог малоэффективного судна 'Bolide', основные функции его предшественника были унаследованы и усовершенствованы. При разработке этого судна Nakamura Engineering за прототип был взят 'Tomahawk' регулярных сил Солнечной Федерации. ",
-	"map_path": "_maps/_modular_solaris/shuttles/nanotrasen/nanotrasen_daggerfall.dmm",
+	"map_path": "_maps/shuttles/nanotrasen/nanotrasen_daggerfall.dmm",
 	"subshuttle": "Rider",
 	"enabled": true,
 	"limit": 1,

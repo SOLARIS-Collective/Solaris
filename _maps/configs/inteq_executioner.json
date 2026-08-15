@@ -3,7 +3,7 @@
 	"map_name": "Executioner-class Laser Experiment",
 	"map_short_name": "Executioner",
 	"description": "Боевой фрегат класса Палач. Данный корабль обладает большим количеством лазерного вооружения из-за кооперации с Нанотрейзен при создании данного корабля.",
-	"map_path": "_maps/_modular_solaris/shuttles/inteq/inteq_executioner.dmm",
+	"map_path": "_maps/shuttles/inteq/inteq_executioner.dmm",
 	"enabled": true,
 	"limit": 1,
 	"sensor_range": 8,

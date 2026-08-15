@@ -3,7 +3,7 @@
 	"map_name": "Shepherd-class Space Monastery",
 	"map_short_name": "Shepherd",
 	"description": "Лучше всего подходящий для огромного количества паломников, прозелитов и пророков в галактике, судно класса 'Shepherd', по сути, представляет собой огромный мобильный монастырь. С огромной травянистой рощей, доминирующей в центре судна, пытливо закаленным храмом и брутальной, но щедрой ботанической установкой, 'Shepherd' хорошо подходит для большой команды, жаждущей проповедовать, очищать и привлекать новых последователей.",
-	"map_path": "_maps/_modular_solaris/shuttles/independent/independent_shepherd.dmm",
+	"map_path": "_maps/shuttles/independent/independent_shepherd.dmm",
 	"enabled": true,
 	"limit": 1,
 	"sensor_range": 6,

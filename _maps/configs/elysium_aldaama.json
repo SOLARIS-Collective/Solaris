@@ -3,7 +3,7 @@
 	"map_name": "Aldaama-class Experimental Project",
 	"map_short_name": "Aldaama",
 	"description": "Изначально 'Алдаама' работал на двигателе Сингулярности, но после ее побега, никто даже не заикался снова ввести ее в эксплуатацию. Вместо этого сделали более безопасный двигатель Тесла. На данный момент у Республики Элизиума всего два таких корабля. Один стоит в музее 'Алехар'(каменистая планета 'Лер'), а второй активно используется сепаратистами Элизиума как корабль снабжения и оперативной телекоммуникационной базой.",
-	"map_path": "_maps/_modular_solaris/shuttles/elysium/elysium_aldaama.dmm",
+	"map_path": "_maps/shuttles/elysium/elysium_aldaama.dmm",
 	"enabled": true,
 	"limit": 1,
 	"sensor_range": 4,

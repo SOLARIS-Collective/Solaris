@@ -3,7 +3,7 @@
 	"map_name": "Mimos - class civil ship",
 	"map_short_name": "Mimos",
 	"description": "Гражданское судно нестандартной конструкции. Экипаж известен как профессиональный цирк мимов и клоунов, хотя и былая слава далеко позади. Хоть судно уже далеко не новое, но все еще исправно служит своим владельцам домом и защитой.",
-	"map_path": "_maps/_modular_solaris/shuttles/independent/independent_mimos.dmm",
+	"map_path": "_maps/shuttles/independent/independent_mimos.dmm",
 	"enabled": true,
 	"limit": 1,
 	"sensor_range": 6,

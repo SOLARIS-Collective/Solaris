@@ -3,7 +3,7 @@
 	"map_name": "Elegia-class Explorer Schnau",
 	"map_short_name": "Elegia",
 	"description": "Исследовательский корвет под названием Элегия предназначен для исследовательских задач, ведь он может находиться длительное время на самообеспечении. Основной целью является исследование планет и фауны. Для этого он оснащен шахтёрским инвентарём, боевым оружием и средствами стабилизации полевых оперативников, а также специальным медицинским боргом Синдиката.",
-	"map_path": "_maps/_modular_solaris/shuttles/syndicate/syndicate_elegia.dmm",
+	"map_path": "_maps/shuttles/syndicate/syndicate_elegia.dmm",
 	"enabled": true,
 	"limit": 1,
 	"sensor_range": 10,
