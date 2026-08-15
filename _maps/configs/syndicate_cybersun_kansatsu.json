@@ -8,6 +8,7 @@
 	"enabled": true,
 	"limit": 1,
 	"sensor_range": 15,
+	"omni_arpa": true,
 	"prefix": "SOSSV",
 	"faction": "/datum/faction/syndicate",
 	"tags": [
