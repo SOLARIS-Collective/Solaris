@@ -1,5 +1,5 @@
 /datum/map_template/ruin/plasma
-	prefix = "_maps/_mod_celadon/RandomRuins/PlasmaRuins/"
+	prefix = "_maps/_modular_solaris/RandomRuins/PlasmaRuins/"
 	ruin_type = RUINTYPE_PLASMA
 
 /datum/map_template/ruin/plasma/dragon

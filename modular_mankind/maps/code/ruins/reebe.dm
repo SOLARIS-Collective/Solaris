@@ -1,5 +1,5 @@
 /datum/map_template/ruin/reebe
-	prefix = "_maps/_mod_celadon/RandomRuins/ReebeRuins/"
+	prefix = "_maps/_modular_solaris/RandomRuins/ReebeRuins/"
 	ruin_type = RUINTYPE_YELLOW
 
 /datum/map_template/ruin/reebe/clockwork_arena
