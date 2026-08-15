@@ -1,15 +1,16 @@
 {
-	"$schema": "https://raw.githubusercontent.com/PentestSS13/Pentest/master/_maps/ship_config_schema.json",
+	"$schema": "https://raw.githubusercontent.com/CeladonSS13/Shiptest/beta-dev/_maps/_mod_celadon/ship_config_schema.json",
 	"map_name": "Caravan-class Modular ship",
-	"map_short_name": "Caravan-class",
-	"map_path": "_maps/PentestMaps/Shuttles/independent/independent_caravan.dmm",
-	"faction": "/datum/faction/independent",
+	"map_short_name": "Caravan",
+	"description": "Caravan - относительно новое грузовое судно, созданное на основе модульной системы капсул, которая позволяет судну выполнять различные функции, помимо простой транспортировки. Эти капсулы сконструированы на основе быстросъемного механизма, который позволяет главному корпусу прыгать в голубое пространство, отсоединять капсулы и загружать новый набор пустых капсул типа Caravan за считанные минуты. Хотя в теории это впечатляет, отсутствие пустых совместимых грузовых капсул в пространстве Фронтира делает систему быстрого отсоединения бесполезной. Кроме того, модульная система крепления подвержена износу, что требует более частого и дорогостоящего обслуживания, чем у других грузовых суден. Несмотря на эти недостатки, 'Caravan' заслужил репутацию универсальной платформы для самых разных миссий. Основной корпус оснащен надежной силовой установкой и достойными местами для экипажа, а большинство суден на Фронтире оснащены капсулами, предназначенными для добычи полезных ископаемых и проведения исследований.",
+	"map_path": "_maps/_modular_solaris/shuttles/independent/independent_caravan.dmm",
+	"enabled": true,
+	"limit": 1,
+	"sensor_range": 8,
 	"prefix": "ISV",
-	"manufacturer": "UNKNOWN",
-	"description": "The Caravan is a relatively new freighter pattern, designed around a modular pod system that enables the ship to serve in a variety of roles beyond simple transportation. These pods are designed around a quick-release mechanism that allows the main hull to bluespace jump in, detach the pods, and load a new set of empty Caravan-type pods in a matter of minutes. While impressive in theory, the lack of empty compatible cargo pods in Frontier space renders the quick-detach system useless. Additionally, the modular attachment system is prone to wear and tear, necessitating more frequent and costly maintenance than other freighters. Despite these shortcomings, the Caravan has still earned a reputation as a versatile platform for a variety of missions. The main hull features a robust power pack and respectable crew accommodations, and most examples on the Frontier carry pods loaded for mining and survey duties.",
+	"faction": "/datum/faction/independent",
 	"tags": [
-		"Generalist",
-		"Engineering"
+		"Исследовательский"
 	],
 	"namelists": [
 		"GENERAL",
@@ -19,38 +20,29 @@
 	],
 	"job_slots": {
 		"Captain": {
-			"outfit": "/datum/outfit/job/independent/captain/western",
+			"outfit": "/datum/outfit/job/cel/independent/captain/western",
 			"officer": true,
 			"slots": 1
 		},
 		"Ship's Doctor": {
-			"outfit": "/datum/outfit/job/independent/doctor",
+			"outfit": "/datum/outfit/job/cel/independent/doctor",
 			"slots": 1
 		},
 		"Engine Technician": {
-			"outfit": "/datum/outfit/job/independent/atmos",
+			"outfit": "/datum/outfit/job/cel/independent/atmos",
 			"slots": 1
 		},
 		"Asteroid Miner": {
-			"outfit": "/datum/outfit/job/independent/miner",
+			"outfit": "/datum/outfit/job/cel/independent/miner",
 			"slots": 1
 		},
 		"Fauna Researcher": {
-			"outfit": "/datum/outfit/job/independent/scientist",
+			"outfit": "/datum/outfit/job/cel/independent/scientist",
 			"slots": 1
 		},
 		"Assistant": {
-			"outfit": "/datum/outfit/job/independent/assistant",
+			"outfit": "/datum/outfit/job/cel/independent/assistant",
 			"slots": 1
 		}
-	},
-	"limit": 2,
-	"starting_funds": 2000,
-	"enabled": true,
-	"space_spawn": false,
-
-	"architect": "Unknown",
-	"contributors": [
-		"KnigTheThrasher - Pulled the Blueprints"
-	]
+	}
 }

@@ -1,3 +1,3 @@
 /datum/map_template/ruin/shrouded
-	prefix = "_maps/_modular_solaris/RandomRuins/ShroudedRuins/"
+	prefix = "_maps/RandomRuins/ShroudedRuins/"
 	ruin_type = RUINTYPE_SHROUDED

@@ -2,27 +2,35 @@
 "a" = (
 /obj/structure/elevator_platform,
 /obj/machinery/light/dim/directional/east,
-/obj/structure/chair/bench/blue{
-	dir = 8
+/obj/structure/table/reinforced,
+/obj/item/radio/intercom/table{
+	dir = 4;
+	pixel_y = 5;
+	pixel_x = 9;
+	req_one_access_txt = "8102"
+	},
+/obj/item/newspaper{
+	pixel_x = -11;
+	pixel_y = 9
 	},
 /turf/template_noop,
 /area/template_noop)
 "e" = (
 /obj/structure/elevator_platform,
+/obj/structure/crate_shelf,
+/turf/template_noop,
+/area/template_noop)
+"r" = (
+/obj/structure/elevator_platform,
 /obj/machinery/elevator_floor_button{
-	pixel_y = 10;
-	dir = 8;
-	pixel_x = 24
+	pixel_y = 25
 	},
-/obj/structure/table/reinforced,
-/obj/item/newspaper{
-	pixel_x = -11;
-	pixel_y = 9
-	},
-/obj/item/radio/intercom/table{
-	dir = 4;
-	pixel_x = 7;
-	pixel_y = 2
+/turf/template_noop,
+/area/template_noop)
+"v" = (
+/obj/structure/elevator_platform,
+/obj/machinery/status_display/elevator{
+	pixel_y = 32
 	},
 /turf/template_noop,
 /area/template_noop)
@@ -32,42 +40,30 @@
 /area/template_noop)
 "S" = (
 /obj/structure/elevator_platform,
-/obj/machinery/status_display/elevator{
-	pixel_x = 32
-	},
-/obj/structure/crate_shelf{
-	capacity = 2
+/obj/structure/chair/bench/blue{
+	dir = 8
 	},
 /turf/template_noop,
 /area/template_noop)
 
 (1,1,1) = {"
+r
 A
 A
 A
-A
+e
 "}
 (2,1,1) = {"
+v
 A
 A
 A
 A
 "}
 (3,1,1) = {"
-A
-A
-A
-A
-"}
-(4,1,1) = {"
-A
-A
-A
-A
-"}
-(5,1,1) = {"
+S
+S
 a
 S
-e
-a
+S
 "}

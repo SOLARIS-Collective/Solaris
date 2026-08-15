@@ -268,7 +268,7 @@
 	pixel_y = -3;
 	pixel_x = -6
 	},
-/obj/item/gun/energy/sharplite/x11,
+/obj/item/gun/energy/laser/hitscanpistol,
 /turf/open/floor/plating{
 	icon_state = "panelscorched";
 	initial_gas_mix = "ws_atmos"
@@ -813,6 +813,7 @@
 /turf/open/floor/plating/asteroid/whitesands/lit,
 /area/overmap_encounter/planetoid/sand/explored)
 "so" = (
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/closed/wall/mineral/titanium/nodiagonal,
 /area/ruin/whitesands/pubbycrash/engine_room)
 "ss" = (
@@ -850,6 +851,7 @@
 	dir = 1
 	},
 /obj/structure/closet/wall/directional/north{
+	icon_door = "orange_wall";
 	name = "Mining equipment"
 	},
 /obj/item/clothing/glasses/meson,
@@ -1063,6 +1065,9 @@
 /obj/effect/turf_decal/industrial/warning/corner,
 /obj/effect/spawner/random/maintenance/two,
 /turf/open/floor/plasteel/tech,
+/area/ruin/whitesands/pubbycrash/engine_room)
+"xX" = (
+/turf/closed/wall/mineral/titanium/nodiagonal,
 /area/ruin/whitesands/pubbycrash/engine_room)
 "yj" = (
 /obj/machinery/atmospherics/pipe/simple/orange/hidden{
@@ -1442,7 +1447,7 @@
 /obj/machinery/door/airlock/hatch{
 	welded = 1
 	},
-/turf/open/floor/plating,
+/turf/template_noop,
 /area/ruin/whitesands/pubbycrash/split)
 "ET" = (
 /obj/structure/cable/yellow{
@@ -2455,7 +2460,7 @@
 /obj/structure/railing{
 	dir = 8
 	},
-/obj/item/stamp/nanotrasen/captain{
+/obj/item/stamp/captain{
 	pixel_x = -6;
 	pixel_y = 8
 	},
@@ -2680,17 +2685,17 @@ RT
 RT
 RT
 AJ
-so
+xX
 rW
 sV
 Bw
-so
+xX
 Qw
-so
+xX
 Yu
 kP
 AH
-so
+xX
 AJ
 RT
 RT
@@ -2707,17 +2712,17 @@ RT
 RT
 RT
 RT
-so
+xX
 Tg
 Qu
-so
-so
+xX
+xX
 Hb
 ln
-so
+xX
 DY
 PI
-so
+xX
 AJ
 AJ
 RT
@@ -2734,17 +2739,17 @@ RT
 RT
 RT
 RT
-so
+xX
 YL
 iW
-so
-so
+xX
+xX
 pe
-so
+xX
 so
 lB
 re
-so
+xX
 RT
 AJ
 RT
@@ -2761,10 +2766,10 @@ RT
 RT
 RT
 AJ
-so
+xX
 VK
 ho
-so
+xX
 Dg
 Cs
 zP
@@ -2788,10 +2793,10 @@ RT
 RT
 AJ
 AJ
-so
+xX
 aR
 yj
-so
+xX
 xH
 gG
 dW
@@ -2815,17 +2820,17 @@ RT
 RT
 RT
 AJ
-so
-so
+xX
+xX
 Sy
-so
+xX
 cp
 PA
 fR
-so
+xX
 jt
 Mi
-so
+xX
 AJ
 RT
 RT
@@ -2852,7 +2857,7 @@ BH
 KS
 up
 qz
-so
+xX
 Zg
 RT
 RT
@@ -2869,7 +2874,7 @@ RT
 RT
 AJ
 ch
-so
+xX
 gL
 Zx
 bW
@@ -2879,7 +2884,7 @@ Ct
 gy
 fX
 vc
-so
+xX
 ch
 RT
 RT
@@ -2896,17 +2901,17 @@ RT
 RT
 AJ
 Ai
-so
+xX
 vL
 vL
-so
-so
+xX
+xX
 QD
-so
-so
+xX
+xX
 vL
 vL
-so
+xX
 Ai
 AJ
 AJ

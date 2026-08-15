@@ -2057,13 +2057,6 @@
 	},
 /turf/open/floor/engine/waste/lit,
 /area/overmap_encounter/planetoid/wasteplanet/explored)
-"hG" = (
-/obj/structure/cable,
-/obj/machinery/porta_turret/ruin/frontiersmen{
-	dir = 1
-	},
-/turf/open/floor/plating/asteroid/wasteplanet/lit,
-/area/ruin/wasteplanet/wasteplanet_icwbase/TURRETS)
 "hH" = (
 /obj/effect/turf_decal/corner/opaque/syndiered/bordercee{
 	dir = 4
@@ -2669,7 +2662,7 @@
 "kG" = (
 /obj/structure/cable,
 /obj/machinery/porta_turret/ruin/frontiersmen{
-	dir = 5
+	dir = 1
 	},
 /turf/open/floor/plating/asteroid/wasteplanet/lit,
 /area/ruin/wasteplanet/wasteplanet_icwbase/TURRETS)
@@ -5224,9 +5217,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/mono/dark,
 /area/ruin/wasteplanet/wasteplanet_icwbase/cybersun)
-"ux" = (
-/turf/closed/wall/r_wall/syndicate/nodiagonal,
-/area/ruin/wasteplanet/wasteplanet_icwbase/tcom1)
 "uA" = (
 /obj/structure/fluff/oldturret,
 /turf/closed/wall/mineral/plastitanium,
@@ -5951,6 +5941,9 @@
 /obj/structure/curtain/cloth/grey,
 /turf/open/floor/plating,
 /area/ruin/wasteplanet/wasteplanet_icwbase/cybersun)
+"xD" = (
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/ruin/wasteplanet/wasteplanet_icwbase/tcom1)
 "xE" = (
 /obj/structure/girder/reinforced,
 /obj/effect/spawner/random/salvage/ore/metal,
@@ -7029,8 +7022,12 @@
 /turf/open/floor/plasteel/mono/dark,
 /area/ruin/wasteplanet/wasteplanet_icwbase/cybersun)
 "BO" = (
-/turf/closed/wall/r_wall/syndicate/nodiagonal,
-/area/ruin/wasteplanet/wasteplanet_icwbase/cybersun)
+/obj/structure/cable,
+/obj/machinery/porta_turret/ruin/frontiersmen{
+	dir = 5
+	},
+/turf/open/floor/plating/asteroid/wasteplanet/lit,
+/area/ruin/wasteplanet/wasteplanet_icwbase/TURRETS)
 "BQ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood/drip{
@@ -7360,11 +7357,11 @@
 /area/overmap_encounter/planetoid/wasteplanet/explored)
 "Dh" = (
 /obj/structure/closet/crate/grave/loot,
-/obj/item/gun/energy/e_gun/empty_cell,
 /obj/effect/decal/cleanable/blood/old{
 	icon_state = "drip5"
 	},
 /obj/effect/mob_spawn/human/corpse/vigilitas_private,
+/obj/item/gun/energy/e_gun/e_old/smg,
 /turf/open/floor/plating/asteroid/wasteplanet/lit,
 /area/ruin/wasteplanet/wasteplanet_icwbase/TURRETS)
 "Dj" = (
@@ -8018,12 +8015,6 @@
 	},
 /turf/open/floor/engine/waste/lit,
 /area/overmap_encounter/planetoid/wasteplanet/explored)
-"Gg" = (
-/obj/structure/closet/crate/grave/loot,
-/obj/effect/mob_spawn/human/corpse/vigilitas_private,
-/obj/item/gun/energy/sharplite/l305,
-/turf/open/floor/plating/asteroid/wasteplanet/lit,
-/area/ruin/wasteplanet/wasteplanet_icwbase/TURRETS)
 "Gi" = (
 /obj/effect/turf_decal/corner/opaque/syndiered/border{
 	dir = 5
@@ -12020,6 +12011,9 @@
 	},
 /turf/open/floor/plasteel/mono/dark,
 /area/ruin/wasteplanet/wasteplanet_icwbase/cybersun)
+"Wt" = (
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/ruin/wasteplanet/wasteplanet_icwbase/cybersun)
 "WB" = (
 /obj/structure/cable{
 	icon_state = "0-8"
@@ -12090,8 +12084,8 @@
 /area/ruin/wasteplanet/wasteplanet_icwbase/hab)
 "WH" = (
 /obj/structure/closet/crate/grave/loot,
-/obj/item/gun/energy/sharplite/l305,
 /obj/effect/mob_spawn/human/corpse/vigilitas_private,
+/obj/item/gun/energy/e_gun/e_old/smg,
 /turf/open/floor/plating/asteroid/wasteplanet/lit,
 /area/ruin/wasteplanet/wasteplanet_icwbase/TURRETS)
 "WJ" = (
@@ -13578,11 +13572,11 @@ gw
 Nx
 rb
 wg
-ux
-ux
-ux
-ux
-ux
+xD
+xD
+xD
+xD
+xD
 wg
 hy
 Nx
@@ -13638,13 +13632,13 @@ Nx
 Nx
 Nx
 LI
-ux
+xD
 Zs
 pu
 CX
 Ys
 Tu
-ux
+xD
 jk
 Nx
 Nx
@@ -13699,13 +13693,13 @@ tD
 Nx
 Nx
 kH
-ux
+xD
 NC
 OO
 nt
 Jz
 NC
-ux
+xD
 gZ
 Nx
 Nx
@@ -13760,13 +13754,13 @@ Nx
 Nx
 Nx
 kH
-ux
+xD
 xZ
 Ep
 EZ
 ph
 xm
-ux
+xD
 gZ
 Nx
 Nx
@@ -13821,13 +13815,13 @@ Nx
 Nx
 Nx
 kH
-ux
+xD
 YT
 il
 Jq
 lJ
 nf
-ux
+xD
 gZ
 Nx
 Nx
@@ -13882,13 +13876,13 @@ Nx
 Nx
 Nx
 LI
-ux
+xD
 nx
 TF
 On
 bc
 Lw
-ux
+xD
 aB
 Nx
 gD
@@ -13943,11 +13937,11 @@ Nx
 Nx
 Nx
 kH
-ux
+xD
 uV
-ux
+xD
 ZF
-ux
+xD
 wL
 wg
 gZ
@@ -14006,9 +14000,9 @@ wT
 hv
 Mo
 fZ
-ux
+xD
 oa
-ux
+xD
 yR
 SD
 BJ
@@ -14067,9 +14061,9 @@ KA
 KA
 KA
 tC
-ux
+xD
 kY
-ux
+xD
 Tw
 Nx
 nk
@@ -15192,7 +15186,7 @@ yf
 Nx
 Nx
 Kp
-kG
+BO
 Ha
 tr
 OE
@@ -15624,11 +15618,11 @@ Ha
 Ha
 tI
 Ha
-BO
+Wt
 lT
 ms
 lT
-BO
+Wt
 Ha
 ll
 rT
@@ -15685,11 +15679,11 @@ Ha
 BN
 uu
 Ha
-BO
+Wt
 hi
 Qd
 Nd
-BO
+Wt
 Ha
 vq
 jD
@@ -15746,11 +15740,11 @@ Ha
 TU
 pQ
 Ha
-BO
+Wt
 qe
 fY
 aZ
-BO
+Wt
 Ha
 ll
 jD
@@ -15807,11 +15801,11 @@ Ha
 tY
 tY
 Ha
-BO
+Wt
 No
 hh
 jR
-BO
+Wt
 Ha
 gR
 jD
@@ -15865,15 +15859,15 @@ Nx
 vk
 nX
 JT
-BO
-BO
-BO
+Wt
+Wt
+Wt
 bY
-BO
+Wt
 wu
-BO
-BO
-BO
+Wt
+Wt
+Wt
 gR
 rT
 Ro
@@ -15926,7 +15920,7 @@ Nx
 uZ
 Nx
 Nx
-BO
+Wt
 AO
 rE
 oq
@@ -15934,7 +15928,7 @@ Mv
 Uv
 cI
 Ec
-BO
+Wt
 ll
 rT
 Ro
@@ -15987,7 +15981,7 @@ Nx
 uZ
 Nx
 XI
-BO
+Wt
 iW
 be
 Zr
@@ -15995,7 +15989,7 @@ AC
 Ko
 NZ
 Iu
-BO
+Wt
 eJ
 rT
 AS
@@ -16048,7 +16042,7 @@ Nx
 uZ
 Nx
 Nx
-BO
+Wt
 Ha
 Ha
 bY
@@ -16056,7 +16050,7 @@ RW
 RY
 lK
 ME
-BO
+Wt
 ll
 rT
 AS
@@ -16108,8 +16102,8 @@ yf
 Nx
 Kp
 nX
-hG
-BO
+kG
+Wt
 Cd
 fg
 oq
@@ -16117,7 +16111,7 @@ ZW
 rP
 fM
 vT
-BO
+Wt
 ll
 mC
 AS
@@ -16170,7 +16164,7 @@ Nx
 uZ
 Nx
 Nx
-BO
+Wt
 hn
 IT
 Zr
@@ -16178,7 +16172,7 @@ qa
 RY
 FI
 Se
-BO
+Wt
 ll
 mC
 Tg
@@ -16231,7 +16225,7 @@ Nx
 ch
 Nx
 Nx
-BO
+Wt
 Ha
 Ha
 bY
@@ -16239,7 +16233,7 @@ Kn
 bR
 Nj
 BD
-BO
+Wt
 ll
 Ie
 Tg
@@ -16292,7 +16286,7 @@ Nx
 uZ
 Nx
 Nx
-BO
+Wt
 gx
 iG
 oq
@@ -16300,7 +16294,7 @@ oi
 sS
 jv
 Jc
-BO
+Wt
 eJ
 jD
 Tg
@@ -16353,7 +16347,7 @@ Nx
 uZ
 Nx
 Nx
-BO
+Wt
 St
 ps
 Zr
@@ -16361,7 +16355,7 @@ oi
 oE
 qW
 bS
-BO
+Wt
 ll
 Ie
 Tg
@@ -16414,7 +16408,7 @@ Nx
 uZ
 Nx
 Nx
-BO
+Wt
 Ha
 Ha
 bY
@@ -16422,7 +16416,7 @@ LQ
 Ds
 FI
 wE
-BO
+Wt
 ll
 Ie
 Tg
@@ -16483,7 +16477,7 @@ qY
 ZL
 lG
 QH
-BO
+Wt
 ll
 rT
 Tg
@@ -16536,7 +16530,7 @@ Nx
 uZ
 Nx
 Nx
-BO
+Wt
 Yu
 ab
 Zr
@@ -16544,7 +16538,7 @@ RJ
 vV
 Rf
 pm
-BO
+Wt
 ll
 rT
 vL
@@ -16597,7 +16591,7 @@ Nx
 uZ
 Nx
 Nx
-BO
+Wt
 Ha
 Ha
 bY
@@ -16605,7 +16599,7 @@ BQ
 ie
 fM
 UP
-BO
+Wt
 MW
 jD
 nb
@@ -16658,7 +16652,7 @@ Nx
 dO
 Is
 Nx
-BO
+Wt
 ya
 pl
 pC
@@ -16666,7 +16660,7 @@ ij
 Rd
 Pe
 ZH
-BO
+Wt
 dQ
 rT
 pU
@@ -16719,7 +16713,7 @@ Hc
 uZ
 Is
 XI
-BO
+Wt
 pd
 jC
 Zr
@@ -16727,7 +16721,7 @@ uf
 lO
 AL
 UL
-BO
+Wt
 FL
 yG
 sZ
@@ -16781,14 +16775,14 @@ uZ
 Nx
 Nx
 fH
-BO
-BO
-BO
-BO
-BO
-BO
-BO
-BO
+Wt
+Wt
+Wt
+Wt
+Wt
+Wt
+Wt
+Wt
 vq
 Ie
 Ur
@@ -17411,7 +17405,7 @@ TS
 Nx
 kt
 Nx
-Gg
+WH
 Nx
 gw
 Nx

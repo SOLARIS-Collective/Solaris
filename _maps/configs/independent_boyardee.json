@@ -1,16 +1,19 @@
 {
-	"$schema": "https://raw.githubusercontent.com/PentestSS13/Pentest/master/_maps/ship_config_schema.json",
+	"$schema": "https://raw.githubusercontent.com/CeladonSS13/Shiptest/beta-dev/_maps/_mod_celadon/ship_config_schema.json",
 	"map_name": "Boyardee-class Entertainment Vessel",
-	"map_short_name": "Boyardee-class",
-	"map_path": "_maps/PentestMaps/Shuttles/independent/independent_boyardee.dmm",
-	"faction": "/datum/faction/independent",
+	"map_short_name": "Boyardee",
+	"description": "Названный в честь древнего соларианского народного героя, известного тем, что вскоре после Огненной ночи обеспечил пищей массы людей. Судно класса 'Boyardee' - удивительно популярное гражданское судно и желанное зрелище для всех усталых путешественников, которым надоели синтезированная вода из-под крана и несвежие пайки на завтрак, обед и ужин каждый день. На судне класса 'Boyardee' есть бар, передовая система гидропоники, большая кухня и просторная зона отдыха - все, что нужно для обслуживания голодных клиентов и жаждущих колонистов. В первые дни существования Синдиката связанные с ним организации часто создавали собственные модификации 'Boyardee', которые служили вербовочными центрами или пунктами 'берегового увольнения', хотя эти варианты в основном прекратили свое существование во Фронтире. В ЩИТСПАВНЕ ПО ПРИЧИНЕ: Заменён на другой шип.",
+	"map_path": "_maps/_modular_solaris/shuttles/independent/independent_boyardee.dmm",
+	"enabled": false,
+	"limit": 1,
+	"sensor_range": 8,
+	"starting_funds": 5000,
 	"prefix": "ISV",
-	"manufacturer": "Conagra Manufacturing",
-	"description": "Named after an ancient Terran cultural figure celebrated for revolutionizing the preparation and distribution of food, the Boyardee-class remains a beloved civilian vessel renowned for its hospitality and charm. Designed to provide a reprieve from the monotony of synthesized meals and ration packs, these ships are equipped with a fully stocked bar, advanced hydroponics systems, a spacious kitchen, and an expansive dining area, making them a favorite among weary travelers and colonists alike. Over time, various factions have modified the Boyardee-class for purposes ranging from trade hubs to morale-boosting outposts, though these variants are now rare in the Frontier.",
+	"faction": "/datum/faction/independent",
 	"tags": [
-		"Service",
-		"Botany",
-		"RP Focus"
+		"Сервисный",
+		"Ботаника",
+		"РП Фокус"
 	],
 	"namelists": [
 		"GENERAL",
@@ -19,33 +22,24 @@
 	],
 	"job_slots": {
 		"Bartender": {
-			"outfit": "/datum/outfit/job/independent/bartender",
+			"outfit": "/datum/outfit/job/cel/independent/bartender",
 			"slots": 1
 		},
 		"Cook": {
-			"outfit": "/datum/outfit/job/independent/cook",
+			"outfit": "/datum/outfit/job/cel/independent/cook",
 			"slots": 3
 		},
 		"Botanist": {
-			"outfit": "/datum/outfit/job/independent/botanist",
+			"outfit": "/datum/outfit/job/cel/independent/botanist",
 			"slots": 2
 		},
 		"Janitor": {
-			"outfit": "/datum/outfit/job/independent/janitor",
+			"outfit": "/datum/outfit/job/cel/independent/janitor",
 			"slots": 1
 		},
 		"Waiter": {
-			"outfit": "/datum/outfit/job/independent/assistant/waiter",
+			"outfit": "/datum/outfit/job/cel/independent/assistant/waiter",
 			"slots": 2
 		}
-	},
-	"limit": 1,
-	"starting_funds": 5000,
-	"enabled": true,
-	"space_spawn": false,
-
-	"architect": "Unknown",
-	"contributors": [
-		"Ossa - Pulled the Blueprints"
-	]
+	}
 }

@@ -1,5 +1,5 @@
 /datum/map_template/ruin/earth_sand
-	prefix = "_maps/_modular_solaris/RandomRuins/EarthSandRuins/"
+	prefix = "_maps/RandomRuins/EarthSandRuins/"
 	ruin_type = RUINTYPE_EARTH_SAND
 
 /datum/map_template/ruin/earth_sand/el_citadel

@@ -1,69 +1,54 @@
 {
-	"$schema": "https://raw.githubusercontent.com/PentestSS13/Pentest/master/_maps/ship_config_schema.json",
-	"map_name": "Beluga-class Luxury Transport",
-	"map_short_name": "Beluga-class",
-	"map_path": "_maps/PentestMaps/Shuttles/independent/independent_beluga.dmm",
-	"faction": "/datum/faction/independent",
+	"$schema": "https://raw.githubusercontent.com/CeladonSS13/Shiptest/beta-dev/_maps/_mod_celadon/ship_config_schema.json",
+	"map_name": "Beluga-class Transport",
+	"map_short_name": "Beluga",
+	"description": "Судно класса 'Белуга' - это транспортное судно для людей с особенно богатой кровью. Отель Beluga со скромной кухней, нанятой службой безопасности Inteq и роскошным декором является идеальным выбором для многих состоятельных путешественников, пытающихся добраться из пункта А в пункт Б. Независимый корабль имеет несколько комнат для своих гостей и хорошо обставленный конференц-зал для любых корпоративных мероприятий.",
+	"map_path": "_maps/_modular_solaris/shuttles/independent/independent_beluga.dmm",
+	"enabled": true,
+	"limit": 1,
+	"sensor_range": 8,
+	"starting_funds": 4000,
 	"prefix": "SV",
-	"manufacturer": "Ihejirika Civ. Manufacturing",
-	"description": "The Beluga-class is a transport vessel manufactured by Iherjirika Civilian Manufacturing; it is meant to compete with ISF Spacecraft in the premium luxury market and has gone through rigorous quality testing. The Beluga-class promises privacy and security as you travel in the lap of luxury. Contracted Inteq security officers are there to protect the passengers and crew, and a resident doctor is on call in case of medical emergency. The Beluga-class also features a fully-stocked bar, quiet study space, private rooms, and even a functional telecomms unit to meet the needs of the spacefaring, working professional. It is thus easy to see why so many choose the peace of mind that the Beluga-class offers when making their travel arrangements.",
+	"faction": "/datum/faction/independent",
 	"tags": [
-		"RP Focus",
-		"Riot",
-		"Service",
-		"Generalist"
+	"Сервисный",
+	"РП Фокус"
 	],
-	"namelists": [
-		"CRUISE",
-		"NATURAL"
-	],
+	"namelists": ["CRUISE", "NATURAL"],
 	"job_slots": {
 		"Captain": {
-			"outfit": "/datum/outfit/job/independent/captain",
+			"outfit": "/datum/outfit/job/cel/independent/captain",
 			"officer": true,
 			"slots": 1
 		},
 		"First Officer": {
-			"outfit": "/datum/outfit/job/independent/hop",
+			"outfit": "/datum/outfit/job/cel/independent/hop/beluga",
 			"officer": true,
 			"slots": 1
 		},
 		"Mechanic": {
-			"outfit": "/datum/outfit/job/independent/engineer",
+			"outfit": "/datum/outfit/job/cel/independent/engineer",
 			"slots": 1
 		},
 		"Private Security Officer": {
-			"outfit": "/datum/outfit/job/inteq/security/beluga",
+			"outfit": "/datum/outfit/job/cel/inteq/security/beluga",
 			"slots": 2
 		},
-		"High-class Passenger": {
-			"outfit": "/datum/outfit/job/independent/lawyer",
+		"High-Class Passenger": {
+			"outfit": "/datum/outfit/job/cel/independent/lawyer",
 			"slots": 4
 		},
 		"Bartender": {
-			"outfit": "/datum/outfit/job/independent/bartender",
+			"outfit": "/datum/outfit/job/cel/independent/bartender",
 			"slots": 1
 		},
 		"Janitor": {
-			"outfit": "/datum/outfit/job/independent/janitor",
-			"slots": 1
-		},
-		"Doctor": {
-			"outfit": "/datum/outfit/job/independent/doctor",
+			"outfit": "/datum/outfit/job/cel/independent/janitor",
 			"slots": 1
 		},
 		"Assistant": {
-			"outfit": "/datum/outfit/job/independent/assistant",
-			"slots": 1
+			"outfit": "/datum/outfit/job/cel/independent/assistant",
+			"slots": 2
 		}
-	},
-	"limit": 1,
-	"starting_funds": 4000,
-	"enabled": true,
-	"space_spawn": false,
-
-	"architect": "spockye",
-	"contributors": [
-		"FSlashN"
-	]
+	}
 }

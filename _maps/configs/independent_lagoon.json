@@ -1,77 +1,68 @@
 {
-	"$schema": "https://raw.githubusercontent.com/PentestSS13/Pentest/master/_maps/ship_config_schema.json",
+	"$schema": "https://raw.githubusercontent.com/CeladonSS13/Shiptest/beta-dev/_maps/_mod_celadon/ship_config_schema.json",
 	"map_name": "Lagoon-class Cruise Ship",
-	"map_short_name": "Lagoon-class",
-	"map_path": "_maps/PentestMaps/Shuttles/independent/independent_lagoon.dmm",
+	"map_short_name": "Lagoon",
+	"description": "Необычное для относительно бедного Фронтира судно класса 'Lagoon' - это большое прогулочное судно, предназначенное для перевозки пассажиров в любые экзотические места. Lagoon, встречающиеся на Фронтире, как правило, содержат экипажи и пассажиров особенно смелого - или безрассудного - характера, готовых платить по карману за тур в некоторые из самых опасных регионов известного космоса. Соответственно, Lagoon в этих регионах обычно включают небольшой, но хорошо оснащенный контингент охраны для защиты (и, при необходимости, усмирения) пассажиров, а также оснащены удивительно мощным термоэлектрическим генератором для перемещения огромной массы корабля по огромным пространствам.",
+	"map_path": "_maps/_modular_solaris/shuttles/independent/independent_lagoon.dmm",
+	"enabled": true,
+	"limit": 1,
+	"sensor_range": 8,
+	"starting_funds": 3000,
+	"prefix": "ISV",
 	"faction": "/datum/faction/independent",
-	"prefix": "SV",
-	"manufacturer": "UNKNOWN",
-	"description": "An unusual sight in the relatively impoverished Frontier, the Lagoon-class is a large pleasure vessel dedicated to transporting its passengers to any number of exotic locales. Lagoons found on the Frontier tend to contain crews and passengers of a particularly daring – or foolhardy – character, willing to pay out the nose for a tour of some of the most dangerous regions in known space. Accordingly, Lagoons in these regions typically include a small but respectably equipped security contingent to protect (and, when necessary, rein in) the passengers, and come with a surprisingly powerful thermo-electric generator to move the ship’s prodigious bulk across vast expanses of space.",
 	"tags": [
-		"RP Focus",
-		"Service",
-		"Engineering"
+		"РП Фокус",
+		"Сервисный"
 	],
-	"namelists": [
-		"CRUISE"
-	],
+	"namelists": ["CRUISE"],
 	"job_slots": {
 		"Captain": {
-			"outfit": "/datum/outfit/job/independent/captain",
+			"outfit": "/datum/outfit/job/cel/independent/captain/lagoon",
 			"slots": 1
 		},
 		"Cruise Director": {
-			"outfit": "/datum/outfit/job/independent/hop",
+			"outfit": "/datum/outfit/job/cel/independent/hop/lagoon",
 			"slots": 1
 		},
 		"Security Officer": {
-			"outfit": "/datum/outfit/job/independent/security",
+			"outfit": "/datum/outfit/job/cel/independent/security/lagoon",
 			"slots": 2
 		},
 		"Medical Doctor": {
-			"outfit": "/datum/outfit/job/independent/doctor",
+			"outfit": "/datum/outfit/job/cel/independent/doctor/lagoon",
 			"slots": 1
 		},
 		"Ship Engineer": {
-			"outfit": "/datum/outfit/job/independent/atmos",
+			"outfit": "/datum/outfit/job/cel/independent/atmos/lagoon",
 			"slots": 1
 		},
 		"Bartender": {
-			"outfit": "/datum/outfit/job/independent/bartender",
+			"outfit": "/datum/outfit/job/cel/independent/bartender/lagoon",
 			"slots": 1
 		},
 		"Cook": {
-			"outfit": "/datum/outfit/job/independent/cook",
+			"outfit": "/datum/outfit/job/cel/independent/cook/lagoon",
 			"slots": 1
 		},
 		"Botanist": {
-			"outfit": "/datum/outfit/job/independent/botanist",
+			"outfit": "/datum/outfit/job/cel/independent/botanist/lagoon",
 			"slots": 1
 		},
 		"Curator": {
-			"outfit": "/datum/outfit/job/independent/curator",
+			"outfit": "/datum/outfit/job/cel/independent/curator/lagoon",
 			"slots": 1
 		},
 		"Chaplain": {
-			"outfit": "/datum/outfit/job/independent/chaplain",
+			"outfit": "/datum/outfit/job/cel/independent/chaplain/lagoon",
 			"slots": 1
 		},
 		"Janitor": {
-			"outfit": "/datum/outfit/job/independent/janitor",
+			"outfit": "/datum/outfit/job/cel/independent/janitor/lagoon",
 			"slots": 1
 		},
 		"Passenger": {
-			"outfit": "/datum/outfit/job/independent/assistant/fancy",
+			"outfit": "/datum/outfit/job/cel/independent/assistant/lagoon",
 			"slots": 10
 		}
-	},
-	"limit": 0,
-	"starting_funds": 3000,
-	"enabled": false,
-	"space_spawn": false,
-
-	"architect": "TypeVar",
-	"contributors": [
-		"No Contributors"
-	]
+	}
 }

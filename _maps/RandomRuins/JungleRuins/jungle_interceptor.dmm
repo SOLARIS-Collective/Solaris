@@ -9,7 +9,6 @@
 /obj/structure/window/reinforced/spawner{
 	dir = 1
 	},
-/obj/item/disk/surgery/t2,
 /turf/open/floor/plasteel/white,
 /area/ruin/jungle/interceptor/porthall)
 "ah" = (
@@ -204,7 +203,7 @@
 /obj/structure/lattice{
 	icon_state = "lattice-127"
 	},
-/turf/open/floor/plating/asteroid/dirt/grass/dark,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
 /area/ruin/jungle/interceptor/porthall)
 "bP" = (
 /obj/machinery/power/terminal,
@@ -260,7 +259,7 @@
 	dir = 8
 	},
 /obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/plating/asteroid/dirt/grass/dark,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
 /area/ruin/jungle/interceptor/bridge)
 "ca" = (
 /obj/structure/cable,
@@ -1232,7 +1231,7 @@
 /area/overmap_encounter/planetoid/jungle/explored)
 "jG" = (
 /obj/structure/flora/junglebush/c,
-/turf/open/floor/plating/asteroid/dirt/grass/dark,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
 /area/ruin/jungle/interceptor/porthall)
 "jK" = (
 /obj/structure/cable/green{
@@ -1663,7 +1662,7 @@
 /area/ruin/jungle/interceptor/bridge)
 "oi" = (
 /obj/structure/flora/junglebush,
-/turf/open/floor/plating/asteroid/dirt/grass/dark,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
 /area/ruin/jungle/interceptor/bridge)
 "oj" = (
 /obj/effect/turf_decal/industrial/warning,
@@ -2628,7 +2627,9 @@
 /area/overmap_encounter/planetoid/jungle/explored)
 "wI" = (
 /obj/machinery/power/terminal,
-/obj/structure/cable/orange,
+/obj/structure/cable/orange{
+	icon_state = "0-1"
+	},
 /obj/structure/cable/orange{
 	icon_state = "1-5"
 	},
@@ -3012,7 +3013,7 @@
 /area/ruin/jungle/interceptor/starlauncherone)
 "zG" = (
 /obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/plating/asteroid/dirt/grass/dark,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
 /area/ruin/jungle/interceptor/porthall)
 "zM" = (
 /obj/structure/reagent_dispensers/foamtank,
@@ -3239,7 +3240,9 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/airlock/security,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 2
+	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
@@ -3636,7 +3639,9 @@
 	dir = 4
 	},
 /obj/structure/catwalk/over/plated_catwalk/dark,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 2
+	},
 /turf/open/floor/plating,
 /area/overmap_encounter/planetoid/jungle/explored)
 "FQ" = (
@@ -4747,7 +4752,9 @@
 /area/overmap_encounter/planetoid/jungle/explored)
 "OL" = (
 /obj/machinery/power/terminal,
-/obj/structure/cable/orange,
+/obj/structure/cable/orange{
+	icon_state = "0-1"
+	},
 /obj/effect/turf_decal/industrial/warning{
 	dir = 1
 	},
@@ -4788,7 +4795,9 @@
 /area/overmap_encounter/planetoid/jungle/explored)
 "OW" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 2
+	},
 /obj/item/stack/cable_coil/cut/orange,
 /turf/open/floor/plating/rust,
 /area/overmap_encounter/planetoid/jungle/explored)
@@ -5244,7 +5253,9 @@
 /area/ruin/jungle/interceptor/starhall)
 "ST" = (
 /obj/machinery/power/terminal,
-/obj/structure/cable/orange,
+/obj/structure/cable/orange{
+	icon_state = "0-1"
+	},
 /obj/effect/turf_decal/industrial/warning{
 	dir = 1
 	},
@@ -5405,7 +5416,9 @@
 /turf/open/floor/plating,
 /area/ruin/jungle/interceptor/starhall)
 "Up" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 2
+	},
 /obj/item/stack/cable_coil/cut/orange,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
@@ -6241,7 +6254,7 @@
 /area/ruin/jungle/interceptor/porthall)
 "ZY" = (
 /obj/structure/flora/junglebush/c,
-/turf/open/floor/plating/asteroid/dirt/grass/dark,
+/turf/open/floor/plating/asteroid/dirt/grass/jungle,
 /area/ruin/jungle/interceptor/bridge)
 
 (1,1,1) = {"

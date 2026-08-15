@@ -155,10 +155,12 @@
 	name = "ammunition locker";
 	anchored = 1
 	},
-/obj/item/stock_parts/cell/gun,
-/obj/item/stock_parts/cell/gun,
-/obj/item/stock_parts/cell/gun,
-/obj/item/stock_parts/cell/gun,
+/obj/item/stock_parts/cell/gun/upgraded,
+/obj/item/stock_parts/cell/gun/upgraded,
+/obj/item/stock_parts/cell/gun/upgraded,
+/obj/item/stock_parts/cell/gun/upgraded,
+/obj/item/stock_parts/cell/gun/upgraded,
+/obj/item/stock_parts/cell/gun/upgraded,
 /turf/open/floor/plasteel/tech,
 /area/ship/security/armory)
 "bS" = (
@@ -347,7 +349,7 @@
 	icon_state = "0-4"
 	},
 /obj/structure/window/plasma/reinforced/spawner/east,
-/obj/machinery/power/shuttle/engine/electric/tech2,
+/obj/machinery/power/shuttle/engine/electric/premium,
 /turf/open/floor/plating,
 /area/ship/external)
 "ee" = (
@@ -366,9 +368,6 @@
 /obj/item/reagent_containers/spray/pepper,
 /obj/item/assembly/flash,
 /obj/item/storage/box/handcuffs,
-/obj/item/gun/energy/e_gun/e_old,
-/obj/item/stock_parts/cell/gun,
-/obj/item/stock_parts/cell/gun,
 /obj/item/tank/internals/emergency_oxygen/double,
 /obj/item/gps,
 /obj/item/binoculars,
@@ -400,12 +399,10 @@
 /obj/item/gun/energy/e_gun/e_old/iot{
 	pixel_y = 3
 	},
-/obj/item/gun/energy/e_gun/advtaser{
-	pixel_y = 9
-	},
 /obj/item/gun/energy/e_gun/e_old/smg{
 	pixel_y = -4
 	},
+/obj/item/gun/energy/e_gun/e_old/hos,
 /turf/open/floor/plasteel/tech,
 /area/ship/crew/dorm/captain)
 "ex" = (
@@ -1455,6 +1452,10 @@
 /obj/item/clothing/under/rank/engineering/engineer/nt/skirt/lp,
 /obj/item/clothing/under/rank/engineering/engineer/nt/lp,
 /obj/item/clothing/gloves/color/yellow,
+/obj/machinery/light_switch{
+	pixel_x = -12;
+	pixel_y = 23
+	},
 /turf/open/floor/plasteel/tech/grid,
 /area/ship/general/engineering)
 "vm" = (
@@ -2130,8 +2131,6 @@
 /obj/item/restraints/legcuffs/bola/energy,
 /obj/item/restraints/legcuffs/bola/energy,
 /obj/item/storage/backpack/ert,
-/obj/item/stock_parts/cell/gun,
-/obj/item/stock_parts/cell/gun,
 /obj/item/flashlight/seclite,
 /obj/item/clothing/glasses/hud/security/sunglasses,
 /obj/item/radio/headset/nanotrasen/alt/captain,
@@ -2143,6 +2142,8 @@
 /obj/item/clothing/suit/hooded/wintercoat/captain,
 /obj/item/melee/classic_baton/telescopic,
 /obj/item/melee/baton/loaded,
+/obj/item/storage/box/ammo/a357,
+/obj/item/storage/box/ammo/a357,
 /turf/open/floor/plasteel/tech,
 /area/ship/crew/dorm/captain)
 "DR" = (
@@ -3111,7 +3112,7 @@
 	icon_state = "0-4"
 	},
 /obj/structure/window/plasma/reinforced/spawner/east,
-/obj/machinery/power/shuttle/engine/electric/premium,
+/obj/machinery/power/shuttle/engine/electric/tech2,
 /turf/open/floor/plating,
 /area/ship/general/engineering)
 "Vy" = (

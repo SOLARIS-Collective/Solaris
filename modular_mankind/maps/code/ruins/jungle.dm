@@ -1,5 +1,5 @@
 /datum/map_template/ruin/jungle
-	prefix = "_maps/_modular_solaris/RandomRuins/JungleRuins/"
+	prefix = "_maps/RandomRuins/JungleRuins/"
 	ruin_type = RUINTYPE_JUNGLE
 
 /datum/map_template/ruin/jungle/library

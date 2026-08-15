@@ -41,15 +41,12 @@
   - any-glob-to-any-file:
     - '_maps/shuttles/**'
     - '_maps/configs/**'
-    - '_maps/_modular_solaris/shuttles/**'
-    - '_maps/_modular_solaris/configs/**'
 
 '🏔 Руинки':
 - changed-files:
   - any-glob-to-any-file:
     - '_maps/RandomRuins/**'
     - 'code/datums/ruins/**'
-    - '_maps/_modular_solaris/RandomRuins/**'
 
 # Any changes to .ogg files are marked as sound
 '🔊 Звуки':
