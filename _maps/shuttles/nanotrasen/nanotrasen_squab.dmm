@@ -4611,10 +4611,6 @@
 	pixel_x = 4;
 	pixel_y = 0
 	},
-/obj/item/reagent_containers/glass/bottle/cureall{
-	pixel_x = -8;
-	pixel_y = 11
-	},
 /obj/item/reagent_containers/glass/bottle/charcoal{
 	pixel_x = -8;
 	pixel_y = 4
