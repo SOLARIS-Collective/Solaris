@@ -1,5 +1,5 @@
 /datum/map_template/ruin/asteroid
-	prefix = "_maps/_modular_solaris/RandomRuins/AsteroidRuins/"
+	prefix = "_maps/RandomRuins/AsteroidRuins/"
 	ruin_type = RUINTYPE_ASTEROID
 
 /datum/map_template/ruin/asteroid/abandoned_remora

@@ -1,5 +1,5 @@
 /datum/map_template/ruin/icemoon
-	prefix = "_maps/_modular_solaris/RandomRuins/IceRuins/"
+	prefix = "_maps/RandomRuins/IceRuins/"
 	ruin_type = RUINTYPE_ICE
 
 /datum/map_template/ruin/icemoon/command_post
