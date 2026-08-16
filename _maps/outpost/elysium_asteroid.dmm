@@ -1206,7 +1206,6 @@
 /obj/effect/landmark/outpost/subshuttle_dock{
 	subship_template = /datum/map_template/shuttle/subshuttles/felix
 	},
-/obj/effect/turf_decal/industrial/fire/fulltile,
 /turf/open/floor/plating,
 /area/outpost/medical/hall_2)
 "aYv" = (
@@ -32552,7 +32551,6 @@
 /turf/open/floor/plasteel/dark,
 /area/outpost/fraction/nanotrasen)
 "xDw" = (
-/obj/effect/turf_decal/industrial/fire/fulltile,
 /turf/open/floor/plating,
 /area/outpost/medical/hall_2)
 "xDQ" = (
