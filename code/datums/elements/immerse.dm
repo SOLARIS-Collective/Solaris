@@ -250,6 +250,9 @@ GLOBAL_LIST_INIT(immerse_ignored_movable, typecacheof(list(
 	return target_mask
 
 /datum/element/immerse/proc/add_immerse_overlay(atom/movable/movable)
+	// Overlay-only objects have no icon to measure or mask against, skip them
+	if (!movable.icon)
+		return
 	// This determines if the overlay should cover the entire surface of the object or not
 	var/layer_to_check = IS_TOPDOWN_PLANE(movable.plane) ? TOPDOWN_WATER_LEVEL_LAYER : WATER_LEVEL_LAYER
 	var/is_below_water = (movable.layer < layer_to_check) ? "underwater-" : ""
