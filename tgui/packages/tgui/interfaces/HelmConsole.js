@@ -180,18 +180,18 @@ const SharedContent = (_props, context) => {
               </Table.Cell>
               {!isViewer && !omni_arpa && (
                 <Table.Cell>
-                  {ship.scannable && (
-                    <Button
-                      tooltip="Set Label"
-                      tooltipPosition="left"
-                      icon="tag"
-                      onClick={() =>
-                        act('prompt_label', {
-                          ship_to_act: ship.ref,
-                        })
-                      }
-                    />
-                  )}
+                 {!!ship.scannable && (
+                   <Button
+                     tooltip="Set Label"
+                     tooltipPosition="left"
+                     icon="tag"
+                     onClick={() =>
+                       act('prompt_label', {
+                         ship_to_act: ship.ref,
+                       })
+                     }
+                   />
+                 )}
                 </Table.Cell>
               )}
               {!isViewer && (
@@ -261,7 +261,7 @@ const SharedContent = (_props, context) => {
         {arpa_ships.map((ship) => (
           <Table.Row key={ship.ref || ship.name}>
             <Table.Cell>{ship.name}</Table.Cell>
-            {!isViewer && !omni_arpa && ship.scannable && (
+            {!isViewer && !omni_arpa && !!ship.scannable && (
               <Table.Cell>
                 <Button
                   tooltip="Set Label"
