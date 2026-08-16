@@ -142,11 +142,11 @@
 						/obj/item/stack/telecrystal/five,
 						/obj/item/uplink/old)
 
-/datum/outfit/job/cel/syndicate/miner/cybersun
+/datum/outfit/job/cel/syndicate/miner/cybersunk
 	name = "Syndi Cybersun - Field Agent"
 	id_assignment = "Field Agent"
 
-	id = /obj/item/card/id/cel/syndicate/crew/miner/cybersunk
+	id = /obj/item/card/id/cel/syndicate/crew/miner/cybersun
 	ears = /obj/item/radio/headset
 	uniform = /obj/item/clothing/under/cybersun
 	accessory = /obj/item/clothing/accessory/armband/cargo
@@ -157,10 +157,10 @@
 						/obj/item/stack/telecrystal/five,
 						/obj/item/stack/telecrystal/five)
 
-/datum/outfit/job/cel/syndicate/engineer/cybersun
+/datum/outfit/job/cel/syndicate/engineer/cybersunk
 	name = "Syndi Cybersun - Engineer"
 
-	id = /obj/item/card/id/cel/syndicate/crew/engineer/cybersunk
+	id = /obj/item/card/id/cel/syndicate/crew/engineer/cybersun
 	uniform = /obj/item/clothing/under/cybersun
 	shoes = /obj/item/clothing/shoes/combat
 	r_pocket = /obj/item/radio
