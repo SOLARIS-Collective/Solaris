@@ -1043,7 +1043,12 @@
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 1
 	},
-/obj/item/gun/ballistic/automatic/pistol/rattlesnake/cottonmouth,
+/obj/item/gun/ballistic/automatic/pistol/rattlesnake{
+	allowed_ammo_types = list(/obj/item/ammo_box/magazine/m10mm_cottonmouth);
+	default_ammo_type = /obj/item/ammo_box/magazine/m10mm_cottonmouth;
+	name = "MP-84m \"Rattlesnake\"";
+	desc = "A machine pistol obtained from Marauder stockpiles and heavily modified by elements of the Ramzi Clique to accept a larger calibre, with a few largely-ignored drawbacks of 2-round burst and magazine capacity. Chambered in 10x22mm."
+	},
 /turf/open/floor/plasteel/tech/grid,
 /area/ruin/moon/hideout/fortress)
 "kW" = (

@@ -3,10 +3,6 @@
 /obj/structure/sign/poster/contraband/c20r,
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ruin/unpowered/listening_post/canteen)
-"af" = (
-/obj/structure/flora/ausbushes/sparsegrass/hell,
-/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
-/area/ruin/unpowered)
 "aw" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 5
@@ -65,6 +61,10 @@
 /mob/living/simple_animal/hostile/human/ramzi/ranged/smg,
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/listening_post/commons)
+"bL" = (
+/obj/structure/flora/tree/dead/tall,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
+/area/ruin/unpowered)
 "bT" = (
 /obj/structure/chair/plastic{
 	dir = 1
@@ -598,10 +598,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/listening_post/canteen)
-"kr" = (
-/obj/structure/flora/ausbushes/grassybush/hell,
-/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
-/area/ruin/unpowered)
 "kz" = (
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/listening_post/operations)
@@ -702,6 +698,10 @@
 	},
 /turf/open/floor/carpet/nanoweave/red,
 /area/ruin/unpowered/listening_post/commons)
+"mF" = (
+/obj/structure/flora/tree/dead/tall/grey,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
+/area/ruin/unpowered)
 "mG" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel/dark,
@@ -1072,10 +1072,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/listening_post/commons)
-"sL" = (
-/obj/structure/flora/tree/dead/barren,
-/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
-/area/ruin/unpowered)
 "sM" = (
 /obj/machinery/light/small/directional/south,
 /obj/effect/turf_decal/siding/thinplating/dark{
@@ -1171,6 +1167,23 @@
 "tS" = (
 /turf/open/floor/hangar/plasteel/white,
 /area/ruin/unpowered/listening_post)
+"tV" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/reinforced,
+/obj/machinery/newscaster/directional/north,
+/obj/item/trash/chips{
+	pixel_y = -27;
+	pixel_x = 1
+	},
+/obj/item/reagent_containers/food/drinks/mead{
+	pixel_y = 10;
+	pixel_x = 8
+	},
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/turf/open/floor/plasteel/patterned/cargo_one,
+/area/ruin/unpowered/listening_post/canteen)
 "tY" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -1538,6 +1551,10 @@
 /obj/machinery/door/window/eastright,
 /turf/open/floor/plasteel/freezer,
 /area/ruin/unpowered/listening_post/operations)
+"BO" = (
+/obj/structure/flora/ausbushes/sparsegrass/hell,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
+/area/ruin/unpowered)
 "Cx" = (
 /obj/machinery/door/airlock/hatch{
 	dir = 4
@@ -1568,24 +1585,6 @@
 /obj/item/food/canned/peaches,
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/listening_post/canteen)
-"DD" = (
-/obj/structure/table/reinforced,
-/obj/item/plate{
-	pixel_y = 29;
-	pixel_x = -2
-	},
-/obj/item/reagent_containers/condiment/saltshaker{
-	pixel_y = 17;
-	pixel_x = -3
-	},
-/obj/item/reagent_containers/condiment/peppermill{
-	pixel_y = 17;
-	pixel_x = 4
-	},
-/obj/item/reagent_containers/food/drinks/beer,
-/obj/effect/turf_decal/siding/thinplating/dark,
-/turf/open/floor/plasteel/patterned/cargo_one,
-/area/ruin/unpowered/listening_post/canteen)
 "DE" = (
 /obj/effect/turf_decal/trimline/opaque/bar/filled/corner{
 	dir = 8
@@ -1604,8 +1603,15 @@
 /area/ruin/unpowered/listening_post)
 "DI" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/drinks/mead,
-/obj/item/reagent_containers/food/drinks/mead,
+/obj/item/reagent_containers/food/drinks/mead{
+	pixel_y = 8;
+	pixel_x = 6
+	},
+/obj/item/reagent_containers/food/drinks/mead{
+	pixel_y = 6;
+	pixel_x = -7;
+	list_reagents = null
+	},
 /turf/open/floor/plating/asteroid/basalt/lava,
 /area/ruin/unpowered)
 "DS" = (
@@ -1841,25 +1847,6 @@
 	},
 /turf/open/floor/plasteel/patterned/cargo_one,
 /area/ruin/unpowered/listening_post/canteen)
-"Ka" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/table/reinforced,
-/obj/machinery/newscaster/directional/north,
-/obj/item/plate{
-	pixel_y = -27;
-	pixel_x = 1
-	},
-/obj/item/reagent_containers/food/drinks/beer,
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 1
-	},
-/turf/open/floor/plasteel/patterned/cargo_one,
-/area/ruin/unpowered/listening_post/canteen)
-"Ku" = (
-/obj/structure/flora/ausbushes/sparsegrass/hell,
-/obj/structure/flora/ausbushes/sparsegrass/hell,
-/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
-/area/ruin/unpowered)
 "KB" = (
 /obj/structure/sign/departments/restroom,
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
@@ -1996,6 +1983,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/listening_post/operations)
+"MN" = (
+/obj/structure/flora/tree/dead/barren,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
+/area/ruin/unpowered)
 "MU" = (
 /obj/machinery/computer/security{
 	dir = 8
@@ -2063,18 +2054,10 @@
 /obj/structure/catwalk/over/plated_catwalk/dark,
 /turf/open/floor/plasteel/white,
 /area/ruin/unpowered/listening_post/operations)
-"NL" = (
-/obj/structure/flora/tree/dead/tall,
-/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
-/area/ruin/unpowered)
 "NP" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /turf/open/floor/carpet/nanoweave/red,
 /area/ruin/unpowered/listening_post/commons)
-"NR" = (
-/obj/structure/flora/ausbushes/fullgrass/hell,
-/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
-/area/ruin/unpowered)
 "NV" = (
 /obj/effect/turf_decal/trimline/opaque/syndiered/arrow_ccw{
 	dir = 1
@@ -2084,6 +2067,27 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/listening_post/commons)
+"NZ" = (
+/obj/structure/table/reinforced,
+/obj/item/trash/chips{
+	pixel_y = 29;
+	pixel_x = -2
+	},
+/obj/item/reagent_containers/condiment/saltshaker{
+	pixel_y = 17;
+	pixel_x = -3
+	},
+/obj/item/reagent_containers/condiment/peppermill{
+	pixel_y = 17;
+	pixel_x = 4
+	},
+/obj/item/reagent_containers/food/drinks/mead{
+	pixel_y = 16;
+	pixel_x = -9
+	},
+/obj/effect/turf_decal/siding/thinplating/dark,
+/turf/open/floor/plasteel/patterned/cargo_one,
+/area/ruin/unpowered/listening_post/canteen)
 "Oe" = (
 /obj/structure/dresser,
 /obj/effect/turf_decal/siding/thinplating/dark/end{
@@ -2276,6 +2280,10 @@
 /obj/structure/sign/departments/medbay/alt,
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ruin/unpowered/listening_post)
+"Tp" = (
+/obj/structure/flora/ausbushes/grassybush/hell,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
+/area/ruin/unpowered)
 "Ty" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -2321,6 +2329,9 @@
 /obj/item/clothing/suit/cybersun,
 /turf/open/floor/carpet/nanoweave/red,
 /area/ruin/unpowered/listening_post/commons)
+"TS" = (
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
+/area/ruin/unpowered)
 "Ut" = (
 /obj/effect/turf_decal/trimline/opaque/syndiered/arrow_ccw{
 	icon_state = "trimline";
@@ -2336,6 +2347,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/listening_post/operations)
+"UB" = (
+/obj/structure/flora/ausbushes/sparsegrass/hell,
+/obj/structure/flora/ausbushes/sparsegrass/hell,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
+/area/ruin/unpowered)
 "UV" = (
 /obj/structure/chair/office/light{
 	dir = 4
@@ -2411,9 +2427,6 @@
 /obj/structure/falsewall/plastitanium,
 /turf/open/floor/plating,
 /area/ruin/unpowered/listening_post/canteen)
-"WQ" = (
-/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
-/area/ruin/unpowered)
 "WU" = (
 /obj/effect/turf_decal/spline/fancy/opaque/syndiered{
 	dir = 4
@@ -2427,6 +2440,10 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/white,
 /area/ruin/unpowered/listening_post)
+"Xi" = (
+/obj/structure/flora/ausbushes/fullgrass/hell,
+/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
+/area/ruin/unpowered)
 "Xk" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -2474,10 +2491,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/white,
 /area/ruin/unpowered/listening_post)
-"Yq" = (
-/obj/structure/flora/tree/dead/tall/grey,
-/turf/open/floor/plating/asteroid/dirt/grass/lavaland,
-/area/ruin/unpowered)
 "YK" = (
 /obj/structure/table/reinforced,
 /obj/machinery/reagentgrinder{
@@ -2623,14 +2636,14 @@ Ap
 Ap
 Ap
 Ap
-WQ
-WQ
-NR
-NR
-NR
-NR
-NR
-WQ
+TS
+TS
+Xi
+Xi
+Xi
+Xi
+Xi
+TS
 Ap
 Ap
 qV
@@ -2646,9 +2659,9 @@ Ap
 Ap
 Ap
 Ap
-WQ
-WQ
-WQ
+TS
+TS
+TS
 qV
 qV
 qV
@@ -2658,17 +2671,17 @@ qV
 Ap
 Ap
 Ap
-WQ
-WQ
-WQ
-WQ
-NR
-NR
-sL
-NR
-NR
-NR
-WQ
+TS
+TS
+TS
+TS
+Xi
+Xi
+MN
+Xi
+Xi
+Xi
+TS
 Ap
 Pj
 Ap
@@ -2683,11 +2696,11 @@ Ap
 Ap
 dY
 Ap
-WQ
-kr
-af
-af
-WQ
+TS
+Tp
+BO
+BO
+TS
 qV
 qV
 "}
@@ -2695,16 +2708,16 @@ qV
 qV
 Ap
 Ap
-WQ
-WQ
-NR
-NR
-NR
-NR
-NR
-NR
-NR
-WQ
+TS
+TS
+Xi
+Xi
+Xi
+Xi
+Xi
+Xi
+Xi
+TS
 Ap
 Ap
 Ap
@@ -2722,10 +2735,10 @@ EB
 Ap
 EB
 Ap
-WQ
-Yq
-af
-WQ
+TS
+mF
+BO
+TS
 qV
 qV
 "}
@@ -2733,13 +2746,13 @@ qV
 qV
 Ap
 Ap
-WQ
-NR
-NR
-NR
-kr
-NR
-WQ
+TS
+Xi
+Xi
+Xi
+Tp
+Xi
+TS
 Ap
 Ap
 Ap
@@ -2762,20 +2775,20 @@ Ap
 Ap
 Ap
 Ap
-kr
-WQ
+Tp
+TS
 qV
 qV
 "}
 (7,1,1) = {"
 qV
 qV
-NR
-NR
-NR
-NR
-WQ
-WQ
+Xi
+Xi
+Xi
+Xi
+TS
+TS
 Ap
 Ap
 Ap
@@ -2808,10 +2821,10 @@ qV
 (8,1,1) = {"
 qV
 Ap
-WQ
-WQ
-WQ
-WQ
+TS
+TS
+TS
+TS
 Ap
 Ap
 Ap
@@ -2990,7 +3003,7 @@ zI
 zI
 Ta
 Ta
-WQ
+TS
 Ap
 Ap
 qV
@@ -3027,8 +3040,8 @@ YK
 Qq
 zI
 Ta
-WQ
-WQ
+TS
+TS
 Ap
 qV
 qV
@@ -3037,7 +3050,7 @@ qV
 qV
 qV
 Ap
-WQ
+TS
 Ap
 Ap
 Ap
@@ -3065,20 +3078,20 @@ Mg
 xR
 LB
 Ap
-af
-NL
-WQ
+BO
+bL
+TS
 qV
 qV
 "}
 (15,1,1) = {"
 qV
 qV
-WQ
-WQ
-WQ
-WQ
-WQ
+TS
+TS
+TS
+TS
+TS
 Ap
 Ap
 Ta
@@ -3096,27 +3109,27 @@ qJ
 px
 cm
 zI
-Ka
-DD
+tV
+NZ
 Ao
 wr
 YP
 LB
 Ap
-af
-WQ
-WQ
+BO
+TS
+TS
 qV
 qV
 "}
 (16,1,1) = {"
 qV
 qV
-WQ
-af
-af
-WQ
-WQ
+TS
+BO
+BO
+TS
+TS
 Ap
 Ap
 Ta
@@ -3141,8 +3154,8 @@ Zd
 aU
 LB
 Ap
-af
-WQ
+BO
+TS
 Ap
 qV
 qV
@@ -3150,12 +3163,12 @@ qV
 (17,1,1) = {"
 qV
 qV
-WQ
-WQ
-af
-af
-WQ
-WQ
+TS
+TS
+BO
+BO
+TS
+TS
 Ap
 Ap
 Ta
@@ -3180,20 +3193,20 @@ eU
 zI
 Ta
 mh
-af
-WQ
+BO
+TS
 qV
 qV
 "}
 (18,1,1) = {"
 qV
 qV
-WQ
-WQ
-WQ
-af
-af
-WQ
+TS
+TS
+TS
+BO
+BO
+TS
 Ap
 Ta
 Ta
@@ -3218,7 +3231,7 @@ DS
 ae
 Ta
 Ap
-WQ
+TS
 Ap
 qV
 qV
@@ -3226,12 +3239,12 @@ qV
 (19,1,1) = {"
 qV
 qV
-WQ
-WQ
-sL
-WQ
-af
-WQ
+TS
+TS
+MN
+TS
+BO
+TS
 Ap
 Ap
 Ta
@@ -3264,13 +3277,13 @@ qV
 (20,1,1) = {"
 qV
 qV
-WQ
-WQ
-WQ
-kr
-WQ
-af
-WQ
+TS
+TS
+TS
+Tp
+TS
+BO
+TS
 Ap
 Ta
 Ta
@@ -3303,12 +3316,12 @@ qV
 qV
 qV
 Ap
-af
-af
-WQ
-WQ
-WQ
-WQ
+BO
+BO
+TS
+TS
+TS
+TS
 Ap
 Ta
 Ta
@@ -3341,12 +3354,12 @@ qV
 qV
 qV
 Ap
-WQ
-af
-WQ
-sL
-kr
-WQ
+TS
+BO
+TS
+MN
+Tp
+TS
 Ap
 Ta
 Ta
@@ -3379,12 +3392,12 @@ qV
 qV
 Ap
 Ap
-WQ
-WQ
-af
-WQ
-WQ
-WQ
+TS
+TS
+BO
+TS
+TS
+TS
 Ap
 Ta
 Ta
@@ -3418,11 +3431,11 @@ qV
 Ap
 Ap
 Ap
-WQ
-af
-WQ
-kr
-WQ
+TS
+BO
+TS
+Tp
+TS
 Ap
 Ap
 Ta
@@ -3456,11 +3469,11 @@ qV
 qV
 Ap
 Ap
-WQ
-WQ
-Ku
-WQ
-WQ
+TS
+TS
+UB
+TS
+TS
 Ap
 Ap
 Ta
@@ -3495,9 +3508,9 @@ qV
 Pj
 Ap
 Ap
-WQ
-WQ
-WQ
+TS
+TS
+TS
 Ap
 Ap
 Ap
@@ -3534,8 +3547,8 @@ Ap
 Ap
 Ap
 Ap
-WQ
-WQ
+TS
+TS
 Ap
 Ap
 Ap
@@ -3560,7 +3573,7 @@ FW
 hA
 GB
 Ta
-WQ
+TS
 Ap
 qV
 qV
@@ -3598,8 +3611,8 @@ fl
 mf
 GB
 Ta
-WQ
-WQ
+TS
+TS
 qV
 qV
 "}
@@ -3636,8 +3649,8 @@ FW
 hA
 GB
 Ta
-kr
-WQ
+Tp
+TS
 qV
 qV
 "}
@@ -3674,8 +3687,8 @@ GB
 GB
 GB
 Ta
-af
-WQ
+BO
+TS
 qV
 qV
 "}
@@ -3712,8 +3725,8 @@ GB
 Ta
 Ta
 Ta
-WQ
-af
+TS
+BO
 qV
 qV
 "}
@@ -3730,9 +3743,9 @@ Ap
 Ap
 Ap
 Ap
-WQ
-WQ
-WQ
+TS
+TS
+TS
 Ap
 Ta
 Ta
@@ -3749,9 +3762,9 @@ Rb
 qq
 Ta
 Ta
-kr
-WQ
-af
+Tp
+TS
+BO
 qV
 qV
 "}
@@ -3767,12 +3780,12 @@ Ap
 Ap
 Ap
 Ap
-WQ
-af
-af
-af
-WQ
-WQ
+TS
+BO
+BO
+BO
+TS
+TS
 Ap
 Ta
 Ta
@@ -3788,8 +3801,8 @@ Ap
 Ap
 Ap
 Ap
-NL
-af
+bL
+BO
 qV
 qV
 "}
@@ -3804,13 +3817,13 @@ qV
 Ap
 Ap
 Ap
-WQ
-af
-af
-af
-af
-af
-WQ
+TS
+BO
+BO
+BO
+BO
+BO
+TS
 Ap
 Ap
 Ap
@@ -3827,7 +3840,7 @@ Ap
 Pj
 Ap
 Ap
-kr
+Tp
 qV
 qV
 "}
@@ -3842,11 +3855,11 @@ qV
 Ap
 Ap
 Ap
-WQ
-af
-af
-kr
-WQ
+TS
+BO
+BO
+Tp
+TS
 Ap
 Ap
 Ap

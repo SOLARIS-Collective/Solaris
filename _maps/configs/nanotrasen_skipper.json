@@ -1,15 +1,18 @@
 {
-	"$schema": "https://raw.githubusercontent.com/PentestSS13/Pentest/master/_maps/ship_config_schema.json",
+	"$schema": "https://raw.githubusercontent.com/CeladonSS13/Shiptest/beta-dev/_maps/ship_config_schema.json",
 	"map_name": "Skipper-class Heavy Cruiser",
-	"map_short_name": "Skipper-class",
-	"map_path": "_maps/PentestMaps/Shuttles/nanotrasen/nanotrasen_skipper.dmm",
-	"faction": "/datum/faction/nt",
+	"map_short_name": "Skipper",
+	"description": "Пример одного из крейсеров Нанотрейзена 'стандартного образца'. По меркам Фронтира судно класса 'Skipper' хорошо оснащено: достаточно места для инженерного оборудования, хорошо оборудованные места для экипажа и приличный запас оборонительного вооружения. Примечательно, что на 'Skipper' больше, чем в среднем, командный отсек, а офицеры на 'Skipper', как правило, лучше оснащены, чем их коллеги. Хотя должность на борту 'Osprey' не так престижна, как на 'Нанотрейзене', мало кто из капитанов откажется от командования 'Skipper'.",
+	"map_path": "_maps/shuttles/nanotrasen/nanotrasen_skipper.dmm",
+	"enabled": true,
+	"limit": 1,
+	"sensor_range": 9,
+	"starting_funds": 4500,
 	"prefix": "NTSV",
-	"manufacturer": "Nanotrasen Spaceworks",
-	"description": "An example of one of Nanotrasen’s “standard-pattern” cruisers. The Skipper-class is well-equipped by Frontier standards, with ample room for engineering equipment, well-appointed crew accommodations, and a decent supply of defensive weaponry. Notably, the Skipper comes with a larger command section than average, and the officers on Skippers tend to be better-equipped than their peers. Though not as prestigious as a position aboard an Osprey, few Nanotrasen captains would turn down a position commanding a Skipper.",
+	"faction": "/datum/faction/nt",
 	"tags": [
-	"Engineering",
-	"Mining"
+		"Engineering",
+		"Mining"
 	],
 	"namelists": [
 		"NANOTRASEN",
@@ -20,53 +23,56 @@
 	],
 	"job_slots": {
 		"Captain": {
-			"outfit": "/datum/outfit/job/nanotrasen/captain",
+			"outfit": "/datum/outfit/job/cel/nanotrasen/captain",
 			"officer": true,
 			"slots": 1
 		},
 		"First Officer": {
-			"outfit": "/datum/outfit/job/nanotrasen/hop",
+			"outfit": "/datum/outfit/job/cel/nanotrasen/hop",
 			"officer": true,
 			"slots": 1
 		},
-		"Internal Affairs Agent": {
-			"outfit": "/datum/outfit/job/nanotrasen/lawyer/corporaterepresentative",
+		"Supply Director": {
+			"outfit": "/datum/outfit/job/cel/nanotrasen/quartermaster",
+			"officer": true,
+			"slots": 1
+		},
+		"Security Director": {
+			"outfit": "/datum/outfit/job/cel/nanotrasen/hos",
+			"officer": true,
 			"slots" : 1
 		},
-		"Medical Doctor": 1,
-		"Engineer": {
-			"outfit": "/datum/outfit/job/nanotrasen/engineer",
+		"Security Officer": {
+			"outfit": "/datum/outfit/job/cel/nanotrasen/security",
+			"slots": 2
+		},
+		"Medical Specialist": {
+			"outfit": "/datum/outfit/job/cel/nanotrasen/doctor",
+			"slots": 1
+		},
+		"Ship's Engineer": {
+			"outfit": "/datum/outfit/job/cel/nanotrasen/engineer",
 			"slots": 1
 		},
 		"Atmospheric Technician": {
-			"outfit": "/datum/outfit/job/nanotrasen/atmos",
+			"outfit": "/datum/outfit/job/cel/nanotrasen/atmos",
 			"slots": 1
 		},
-		"Shaft Miner": 2,
-		"Cargo Technician": {
-			"outfit": "/datum/outfit/job/nanotrasen/cargo_tech",
-			"slots": 1
-		},
-		"Security Officer": {
-			"outfit": "/datum/outfit/job/nanotrasen/security",
-			"slots": 1
+		"Shaft Miner": {
+			"outfit": "/datum/outfit/job/cel/nanotrasen/miner",
+			"slots": 2
 		},
 		"Cook": {
-			"outfit": "/datum/outfit/job/cook",
+			"outfit": "/datum/outfit/job/cel/nanotrasen/cook",
+			"slots": 1
+		},
+		"Bartender": {
+			"outfit": "/datum/outfit/job/cel/nanotrasen/bartender",
 			"slots": 1
 		},
 		"Assistant": {
-			"outfit": "/datum/outfit/job/assistant",
-			"slots": 3
+			"outfit": "/datum/outfit/job/cel/nanotrasen/assistant",
+			"slots": 2
 		}
-	},
-	"limit": 1,
-	"starting_funds": 4500,
-	"enabled": true,
-	"space_spawn": false,
-
-	"architect": "Mark Suckerberg",
-	"contributors": [
-		"Unknown"
-	]
+	}
 }

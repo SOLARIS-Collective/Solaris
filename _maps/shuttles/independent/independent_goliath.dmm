@@ -8499,7 +8499,6 @@
 	pixel_y = -5;
 	pixel_x = -5
 	},
-/obj/machinery/computer/transponder,
 /turf/open/floor/plasteel/telecomms_floor,
 /area/ship/bridge)
 "ZG" = (

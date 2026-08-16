@@ -1,14 +1,19 @@
 {
-	"$schema": "https://raw.githubusercontent.com/PentestSS13/Pentest/master/_maps/ship_config_schema.json",
+	"$schema": "https://raw.githubusercontent.com/CeladonSS13/Shiptest/beta-dev/_maps/ship_config_schema.json",
 	"map_name": "Kansatsu-class Scout Courier",
-	"map_short_name": "Kansatsu-class",
-	"map_path": "_maps/PentestMaps/Shuttles/syndicate/syndicate_cybersun_kansatsu.dmm",
-	"faction": "/datum/faction/syndicate/cybersun",
-	"prefix": "CSSV",
-	"manufacturer": "UNKNOWN",
-	"description": "The Kansatsu-class is a Cybersun remodel of the old Type-S SolGov Courier, rebuilt for rapid package ferrying and light surveillance operations in the Frontier. While fairly cramped, it excels at its design goals, with rapid surveys, scouting, and espionage flowing from its presence. Syndicate deployments typically include a deployment of 5, with a recommended max of 7. This is broken down into 1 captain, an intelligence officer for coordinating the field agents, an engineer, and 2 field agents. The simplicity of the hull has led to the ship becoming a widespread indicator of Syndicate interest in locations, and some models have found their way into private purchasers' hands.",
+	"map_short_name": "Kansatsu",
+	"description": "Судно класса «Kansatsu» представляет собой модернизированную компанией Cybersun старую модель Type-S SolFed Courier, переоборудованную для быстрой транспортировки груза и операций малого наблюдения в дальних секторах. Несмотря на то, что он довольно тесный, он превосходно справляется со своими задачами, обеспечивая быстрые исследования, разведку и шпионаж, вытекающие из его присутствия. Развертывание синдиката обычно включает в себя 3 человека, рекомендуемое максимальное количество - 5. Оно разбито на 1 капитана, офицера разведки для координации полевых агентов, инженера и 2 полевых агентов. Простота корпуса привела к тому, что корабль стал широко распространенным индикатором интереса Синдиката к локациям, а некоторые модели попали в руки частных покупателей.",
+	"map_path": "_maps/shuttles/syndicate/syndicate_cybersun_kansatsu.dmm",
+	"map_id": "cybersun_kansatsu",
+	"enabled": true,
+	"limit": 1,
+	"sensor_range": 15,
+	"omni_arpa": true,
+	"prefix": "SOSSV",
+	"faction": "/datum/faction/syndicate",
 	"tags": [
-		"Specialist"
+		"Специализированный",
+		"РП Фокус"
 	],
 	"namelists": [
 		"CYBERSUN",
@@ -17,35 +22,22 @@
 	],
 	"job_slots": {
 		"Commander": {
-			"outfit": "/datum/outfit/job/syndicate/captain/cybersun",
+			"outfit": "/datum/outfit/job/cel/syndicate/captain/cybersun",
 			"officer": true,
 			"slots": 1
 		},
 		"Intelligence Officer": {
-			"outfit": "/datum/outfit/job/syndicate/head_of_personnel/cybersun",
+			"outfit": "/datum/outfit/job/cel/syndicate/head_of_personnel/cybersun",
 			"officer": true,
 			"slots": 1
 		},
 		"Engineer": {
-			"outfit": "/datum/outfit/job/syndicate/engineer/cybersun",
+			"outfit": "/datum/outfit/job/cel/syndicate/engineer/cybersun",
 			"slots": 1
 		},
 		"Field Agent": {
-			"outfit": "/datum/outfit/job/syndicate/miner/cybersun",
-			"slots": 2
-		},
-		"Junior Agent": {
-			"outfit": "/datum/outfit/job/syndicate/assistant/cybersun",
+			"outfit": "/datum/outfit/job/cel/syndicate/miner/cybersun",
 			"slots": 2
 		}
-	},
-	"limit": 1,
-	"starting_funds": 0,
-	"enabled": true,
-	"space_spawn": false,
-
-	"architect": "Erikafox",
-	"contributors": [
-		"No Contributors"
-	]
+	}
 }

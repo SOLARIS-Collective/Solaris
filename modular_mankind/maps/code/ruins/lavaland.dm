@@ -1,5 +1,5 @@
 /datum/map_template/ruin/lavaland
-	prefix = "_maps/_mod_celadon/RandomRuins/LavaRuins/"
+	prefix = "_maps/RandomRuins/LavaRuins/"
 	ruin_type = RUINTYPE_LAVA
 
 /datum/map_template/ruin/lavaland/abandonedlisteningpost

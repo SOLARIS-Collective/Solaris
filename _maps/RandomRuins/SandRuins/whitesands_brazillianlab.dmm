@@ -1575,6 +1575,10 @@
 	icon_state = "wood-broken"
 	},
 /area/ruin/unpowered)
+"Zd" = (
+/obj/effect/decal/cleanable/blood,
+/turf/closed/wall/mineral/wood/nonmetal,
+/area/ruin/unpowered)
 "Zf" = (
 /obj/structure/flora/ash/tall_shroom,
 /turf/open/floor/plating/asteroid/whitesands/lit,
@@ -1672,7 +1676,7 @@ DH
 NY
 vr
 NY
-kX
+Zd
 pn
 Ul
 TA

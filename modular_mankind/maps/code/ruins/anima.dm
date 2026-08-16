@@ -1,5 +1,5 @@
 /datum/map_template/ruin/anima
-	prefix = "_maps/_mod_celadon/RandomRuins/AnimaRuins/"
+	prefix = "_maps/RandomRuins/AnimaRuins/"
 	ruin_type = RUINTYPE_ANIMA
 
 /datum/map_template/ruin/anima/abondoned_containment

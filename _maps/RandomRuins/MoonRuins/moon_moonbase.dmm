@@ -377,7 +377,7 @@
 	dir = 10
 	},
 /obj/machinery/portable_atmospherics/canister{
-	icon_state = "orangews"
+	icon_state = "orange"
 	},
 /obj/machinery/atmospherics/components/unary/portables_connector/layer1{
 	dir = 4
@@ -893,15 +893,15 @@
 /area/ruin/moon/moonbase/dorms)
 "gJ" = (
 /obj/structure/rack,
-/obj/item/clothing/mask/gas/clip{
-	pixel_x = -10;
-	pixel_y = 6
-	},
 /obj/effect/turf_decal/siding/thinplating{
 	dir = 4
 	},
 /obj/effect/turf_decal/trimline/transparent/blue/filled/line{
 	dir = 4
+	},
+/obj/item/clothing/mask/gas/solfed{
+	pixel_y = 6;
+	pixel_x = -10
 	},
 /turf/open/floor/plasteel/tech,
 /area/ruin/moon/moonbase/dorms)
@@ -1193,9 +1193,9 @@
 /area/ruin/moon/moonbase/armory)
 "jl" = (
 /obj/structure/dresser,
-/obj/item/desk_flag/trans{
-	pixel_x = -7;
-	pixel_y = 9
+/obj/item/desk_flag/solfed{
+	pixel_y = 10;
+	pixel_x = -6
 	},
 /turf/open/floor/carpet,
 /area/ruin/moon/moonbase/refinery)
@@ -1452,8 +1452,8 @@
 /obj/effect/turf_decal/corner/transparent/blue/border{
 	dir = 1
 	},
-/obj/effect/mob_spawn/human/corpse/clip/minuteman,
 /obj/effect/mapping_helpers/chair/tim_buckley,
+/obj/effect/mob_spawn/human/corpse/solfed/guard,
 /turf/open/floor/plasteel/white,
 /area/ruin/moon/moonbase/cargo)
 "lo" = (
@@ -2157,8 +2157,8 @@
 	pixel_x = 12;
 	pixel_y = -6
 	},
-/obj/item/clothing/head/hardhat/dblue,
-/obj/item/clothing/mask/gas/clip{
+/obj/item/clothing/head/hardhat/solfed,
+/obj/item/clothing/mask/gas/solfed{
 	pixel_x = 16;
 	pixel_y = -11
 	},
@@ -2310,9 +2310,9 @@
 	pixel_x = -5;
 	pixel_y = -3
 	},
-/obj/item/clothing/head/clip{
-	pixel_x = -10;
-	pixel_y = 11
+/obj/item/clothing/head/solfed/cap{
+	pixel_y = 10;
+	pixel_x = -10
 	},
 /turf/open/floor/plasteel/tech/techmaint,
 /area/ruin/moon/moonbase/refinery)
@@ -3120,6 +3120,7 @@
 	dir = 4
 	},
 /obj/machinery/light/directional/south,
+/obj/item/clothing/suit/space/hardsuit/bomb/clip,
 /turf/open/floor/plasteel/tech/grid,
 /area/ruin/moon/moonbase/armory)
 "BO" = (
@@ -3289,7 +3290,7 @@
 	dir = 8
 	},
 /obj/machinery/portable_atmospherics/canister{
-	icon_state = "orangews"
+	icon_state = "orange"
 	},
 /obj/machinery/atmospherics/components/unary/portables_connector/layer1{
 	dir = 4
@@ -3547,7 +3548,7 @@
 /area/ruin/moon/moonbase/engineering)
 "Fe" = (
 /obj/machinery/portable_atmospherics/canister{
-	icon_state = "orangews"
+	icon_state = "orange"
 	},
 /turf/open/floor/plasteel/tech/techmaint,
 /area/ruin/moon/moonbase/refinery)
@@ -3696,12 +3697,12 @@
 /turf/open/floor/plasteel/tech,
 /area/ruin/moon/moonbase/dorms)
 "GU" = (
-/obj/effect/mob_spawn/human/corpse/clip/minuteman/eod/bombsuit,
 /obj/item/mine/pressure/explosive{
 	pixel_x = -9;
 	pixel_y = 6
 	},
 /obj/effect/decal/cleanable/blood/old,
+/obj/effect/mob_spawn/human/corpse/solfed/space,
 /turf/open/floor/plating/asteroid/moon_coarse/dark/lit,
 /area/overmap_encounter/planetoid/moon/explored)
 "GZ" = (
@@ -4054,40 +4055,40 @@
 /area/ruin/moon/moonbase/armory)
 "Kd" = (
 /obj/structure/closet/wall/directional/east,
-/obj/item/clothing/under/clip/minutemen{
-	pixel_x = 7;
-	pixel_y = -9
-	},
-/obj/item/clothing/under/clip/minutemen{
-	pixel_x = 13;
-	pixel_y = -9
-	},
-/obj/item/clothing/under/clip/minutemen{
-	pixel_x = 7;
-	pixel_y = -3
-	},
-/obj/item/clothing/under/clip/minutemen{
-	pixel_x = 13;
-	pixel_y = -3
-	},
-/obj/item/clothing/shoes/combat{
-	pixel_x = 0;
-	pixel_y = -2
-	},
-/obj/item/clothing/shoes/combat{
-	pixel_x = -6;
-	pixel_y = -2
-	},
-/obj/item/clothing/shoes/combat{
-	pixel_x = 0;
-	pixel_y = -6
-	},
-/obj/item/clothing/shoes/combat{
-	pixel_x = -6;
-	pixel_y = -6
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/item/clothing/under/solfed{
+	pixel_x = 7;
+	pixel_y = -5
+	},
+/obj/item/clothing/under/solfed{
+	pixel_x = 13;
+	pixel_y = -5
+	},
+/obj/item/clothing/under/solfed{
+	pixel_x = 7;
+	pixel_y = 3
+	},
+/obj/item/clothing/under/solfed{
+	pixel_x = 13;
+	pixel_y = 3
+	},
+/obj/item/clothing/shoes/combat{
+	pixel_x = 0;
+	pixel_y = -2
+	},
+/obj/item/clothing/shoes/combat{
+	pixel_x = -6;
+	pixel_y = -2
+	},
+/obj/item/clothing/shoes/combat{
+	pixel_x = 0;
+	pixel_y = -6
+	},
+/obj/item/clothing/shoes/combat{
+	pixel_x = -6;
+	pixel_y = -6
+	},
 /turf/open/floor/carpet/blue,
 /area/ruin/moon/moonbase/armory)
 "Ke" = (
@@ -4153,8 +4154,10 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/industrial/warning/fulltile,
-/obj/item/clothing/suit/space/hardsuit/clip_patroller,
-/obj/item/clothing/mask/gas/clip,
+/obj/item/clothing/suit/space/hardsuit/clip_patroller{
+	desc = "An older-issue SolFed hardsuit, adapted from an even older design. Widely utilized in reconnaissance duty and skirmishing due to its lightweight construction."
+	},
+/obj/item/clothing/mask/gas/solfed,
 /turf/open/floor/plasteel/tech,
 /area/ruin/moon/moonbase/dorms)
 "KH" = (
@@ -5859,8 +5862,10 @@
 /obj/structure/railing/thin{
 	dir = 4
 	},
-/obj/item/clothing/suit/space/hardsuit/clip_patroller,
-/obj/item/clothing/mask/gas/clip,
+/obj/item/clothing/suit/space/hardsuit/clip_patroller{
+	desc = "An older-issue SolFed hardsuit, adapted from an even older design. Widely utilized in reconnaissance duty and skirmishing due to its lightweight construction."
+	},
+/obj/item/clothing/mask/gas/solfed,
 /turf/open/floor/plasteel/tech/grid,
 /area/ruin/moon/moonbase/armory)
 "XD" = (

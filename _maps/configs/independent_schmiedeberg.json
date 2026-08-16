@@ -1,16 +1,17 @@
 {
-	"$schema": "https://raw.githubusercontent.com/PentestSS13/Pentest/master/_maps/ship_config_schema.json",
+	"$schema": "https://raw.githubusercontent.com/CeladonSS13/Shiptest/beta-dev/_maps/_mod_celadon/ship_config_schema.json",
 	"map_name": "Schmiedeberg-class Pharmacology Ship",
-	"map_short_name": "Schmiedeberg-class",
-	"map_path": "_maps/PentestMaps/Shuttles/independent/independent_schmiedeberg.dmm",
-	"faction": "/datum/faction/independent",
+	"map_short_name": "Schmiedeberg",
+	"description": "Интересуетесь фармакологией, но устали сидеть перед химическим дозатором и целыми днями нажимать на кнопки? Хотите совместить кулинарное искусство с наркотическим? Надеетесь совместить все эти качества с самым важным занятием - зарабатыванием толстых пачек денег? Тогда судно класса 'Schmiedeberg' для вас! В 'Schmiedeberg' находится мощная химическая лаборатория, высокопроизводительная ботаническая установка и полноценная кухня-магазин, что делает его идеальным местом для химиков и ботаников, живущих в подворотнях.",
+	"map_path": "_maps/shuttles/independent/independent_schmiedeberg.dmm",
+	"enabled": true,
+	"limit": 1,
+	"sensor_range": 8,
 	"prefix": "IMV",
-	"manufacturer": "UNKNOWN",
-	"description": "Interested in pharmacological science, but tired of sitting in front of a chemistry dispenser and pushing buttons all day? Eager to combine the culinary arts with the narcotic ones? Hoping to combine all of these qualities with the most important activity of all: making fat stacks of dosh? Then the Schmiedeberg-class is for you! Host to a robust ghetto chemistry lab, a high-efficiency botanical set-up and a complete kitchen-and-storefront, the Schmiedeberg is perfect for back-alley chemists and botanists everywhere.",
+	"faction": "/datum/faction/independent",
 	"tags": [
-		"Botany",
-		"Medical",
-		"Chemistry"
+		"Ботаника",
+		"Медицинское"
 	],
 	"namelists": [
 		"SUNS",
@@ -18,39 +19,26 @@
 	],
 	"job_slots": {
 		"Chief Pharmacist": {
-			"outfit": "/datum/outfit/job/independent/cmo/pharma",
+			"outfit": "/datum/outfit/job/cel/independent/cmo/pharma",
 			"officer": true,
 			"slots": 1
 		},
 		"Pharmacist": {
-			"outfit": "/datum/outfit/job/independent/chemist/pharma",
-			"officer": false,
+			"outfit": "/datum/outfit/job/cel/independent/chemist/pharma",
 			"slots": 1
 		},
 		"Mixologist": {
-			"outfit": "/datum/outfit/job/independent/bartender/pharma",
-			"officer": false,
+			"outfit": "/datum/outfit/job/cel/independent/bartender/pharma",
 			"slots": 1
 		},
 		"Herbalist": {
-			"outfit": "/datum/outfit/job/independent/botanist/pharma",
-			"officer": false,
+			"outfit": "/datum/outfit/job/cel/independent/botanist/pharma",
 			"slots": 2
 		},
 		"Pharmacology Student": {
-			"outfit": "/datum/outfit/job/independent/assistant/pharma",
-			"officer": false,
+			"outfit": "/datum/outfit/job/cel/independent/assistant/pharma",
 			"slots": 2
 		}
-	},
-	"limit": 2,
-	"starting_funds": 2000,
-	"enabled": true,
-	"space_spawn": false,
-
-	"architect": "TypeVar",
-	"contributors": [
-		"Ravellon"
-	]
+	}
 }
 

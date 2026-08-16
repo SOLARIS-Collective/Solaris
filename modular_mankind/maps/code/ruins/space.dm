@@ -1,5 +1,5 @@
 /datum/map_template/ruin/space
-	prefix = "_maps/_mod_celadon/RandomRuins/SpaceRuins/"
+	prefix = "_maps/RandomRuins/SpaceRuins/"
 	ruin_type = RUINTYPE_SPACE
 
 /datum/map_template/ruin/space/astraeus

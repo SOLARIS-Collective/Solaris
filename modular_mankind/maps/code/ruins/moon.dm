@@ -1,5 +1,5 @@
 /datum/map_template/ruin/moon
-	prefix = "_maps/_mod_celadon/RandomRuins/MoonRuins/"
+	prefix = "_maps/RandomRuins/MoonRuins/"
 	ruin_type = RUINTYPE_MOON
 
 /datum/map_template/ruin/moon/hideout // Official

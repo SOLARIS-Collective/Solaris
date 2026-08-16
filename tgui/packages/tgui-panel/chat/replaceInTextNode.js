@@ -91,9 +91,12 @@ export const replaceInTextNode = (regex, words, createNode) => (node) => {
     let i = 0;
     let wordRegexStr = '(';
     for (let word of words) {
+      // Escape regex metacharacters so highlights with special
+      // characters cannot crash the client with a SyntaxError.
+      const escaped = word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
       // Capture if the word is at the beginning, end, middle,
       // or by itself in a message
-      wordRegexStr += `^${word}\\W|\\W${word}\\W|\\W${word}$|^${word}$`;
+      wordRegexStr += `^${escaped}\\W|\\W${escaped}\\W|\\W${escaped}$|^${escaped}$`;
       // Make sure the last character for the expression is NOT '|'
       if (++i !== words.length) {
         wordRegexStr += '|';

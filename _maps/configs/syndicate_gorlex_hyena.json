@@ -1,16 +1,15 @@
 {
-	"$schema": "https://raw.githubusercontent.com/PentestSS13/Pentest/master/_maps/ship_config_schema.json",
+	"$schema": "https://raw.githubusercontent.com/CeladonSS13/Shiptest/beta-dev/_maps/ship_config_schema.json",
 	"map_name": "Hyena-class Wrecking Tug",
-	"map_short_name": "Hyena-class",
-	"map_path": "_maps/PentestMaps/Shuttles/syndicate/syndicate_gorlex_hyena.dmm",
-	"faction": "/datum/faction/syndicate/ngr",
-	"prefix": "NGRV",
-	"manufacturer": "Not A Company LLC",
-	"description": "The Hyena is a common salvage tug, frequently operated by the Gorlex Marauders for “salvage” missions on ICW-era Nanotrasen derelicts (and occasionally occupied outposts and ships). The Hyena features a fairly compact floor plan with a dedicated secure armory space and a fairly large cargo bay for its size, as well as a complement of high-grade hardsuits and mining equipment. The Hyena’s low cost and high demand in its niche has made it a very common sight on the Frontier in the years following the ICW, and despite their tight finances nearly all Gorlex Marauder splinter factions continue to acquire more.",
-	"tags": [
-		"Mining",
-		"Combat"
-	],
+	"map_short_name": "Hyena",
+	"description": "«Hyena» обычный спасательный буксир, который часто используется «Мародерами Горлекса» для «спасательных» миссий на заброшенные станции эпохи Второй Галактической войны (а, иногда и на аванпосты и судна). 'Hyena' имеет довольно компактную планировку со специальным безопасным складским помещением и довольно большим грузовым отсеком для своего размера, а также комплектом высококачественных костюмов и шахтёрского оборудования. Низкая стоимость Hyena и высокий спрос в ее нише сделали ее очень распространенным явлением в дальних секторах космоса в годы, последовавшие за войной. и несмотря на ограниченное финансирование, почти все отколовшиеся от фракции Мародёров Горлекса продолжают приобретать такие типы суден ещё больше.",
+	"map_path": "_maps/shuttles/syndicate/syndicate_gorlex_hyena.dmm",
+	"enabled": true,
+	"limit": 1,
+	"sensor_range": 9,
+	"prefix": "DSSV",
+	"faction": "/datum/faction/syndicate",
+	"tags": ["Шахтерский"],
 	"namelists": [
 		"GORLEX",
 		"NATURAL_AGGRESSIVE",
@@ -20,35 +19,26 @@
 	],
 	"job_slots": {
 		"Captain": {
-			"outfit": "/datum/outfit/job/syndicate/captain/ngr",
+			"outfit": "/datum/outfit/job/cel/syndicate/captain/gorlex",
 			"officer": true,
 			"slots": 1
 		},
 		"Foreman": {
-			"outfit": "/datum/outfit/job/syndicate/ce/ngr",
+			"outfit": "/datum/outfit/job/cel/syndicate/ce/gorlex",
 			"officer": true,
 			"slots": 1
 		},
 		"Mechanic": {
-			"outfit": "/datum/outfit/job/syndicate/engineer/ngr",
+			"outfit": "/datum/outfit/job/cel/syndicate/engineer/gorlex",
 			"slots": 1
 		},
 		"Wrecker": {
-			"outfit": "/datum/outfit/job/syndicate/miner/ngr",
+			"outfit": "/datum/outfit/job/cel/syndicate/miner/gorlex",
 			"slots": 2
 		},
-		"Initiate": {
-			"outfit": "/datum/outfit/job/syndicate/assistant/ngr",
+		"Junior Agent": {
+			"outfit": "/datum/outfit/job/cel/syndicate/assistant/gorlex",
 			"slots": 2
 		}
-	},
-	"limit": 2,
-	"starting_funds": 2000,
-	"enabled": true,
-	"space_spawn": false,
-
-	"architect": "Zephyr",
-	"contributors": [
-		"Unknown"
-	]
+	}
 }

@@ -1,15 +1,17 @@
 {
-	"$schema": "https://raw.githubusercontent.com/PentestSS13/Pentest/master/_maps/ship_config_schema.json",
+	"$schema": "https://raw.githubusercontent.com/CeladonSS13/Shiptest/beta-dev/_maps/ship_config_schema.json",
 	"map_name": "Delta-class Frigate",
-	"map_short_name": "Delta-class",
-	"map_path": "_maps/PentestMaps/Shuttles/nanotrasen/nanotrasen_delta.dmm",
+	"map_short_name": "Delta",
+	"description": "Судно класса 'Delta' - это компактное и современное шахтерское судно, которое дополняет свой сравнительно небольшой органический экипаж полным набором робототехнических средств, включая ИИ и множество шахтерских и логистических дронов и киборгов. Несмотря на то, что Delta очень любимы логистами Нанотрейзен за их минимальное обслуживание и высокую экономическую эффективность, они гораздо менее популярны среди экипажей, выбранных для управления ими, так как им сильно не хватает мест для размещения экипажа и оборонительного вооружения.",
+	"map_path": "_maps/shuttles/nanotrasen/nanotrasen_delta.dmm",
+	"enabled": true,
+	"limit": 1,
+	"sensor_range": 10,
+	"starting_funds": 4000,
+	"prefix": "NTDSV",
 	"faction": "/datum/faction/nt",
-	"prefix": "NTSV",
-	"manufacturer": "Nanotrasen Spaceworks",
-	"description": "The Delta is a compact and advanced mining ship that supplements its comparatively small organic crew with a full suite of robotics facilities, including an AI and a host of mining and logistics drones and cyborgs. The Delta's low logistical footprint has thoroughly endeared it to N+S Logistics' upper management, but its cramped accomodations and lackluster defensive armament make it distinctly unpopular with the company's spacefaring employees.",
 	"tags": [
-		"Science",
-		"Robotics"
+		"Исследовательский"
 	],
 	"namelists": [
 		"GENERAL",
@@ -20,30 +22,30 @@
 	],
 	"job_slots": {
 		"Captain": {
-			"outfit": "/datum/outfit/job/nanotrasen/captain/ns",
+			"outfit": "/datum/outfit/job/cel/nanotrasen/captain",
 			"officer": true,
 			"slots": 1
 		},
-		"Robotics Contractor": {
-			"outfit": "/datum/outfit/job/nanotrasen/roboticist",
-			"slots": 2
-		},
-		"Engineer": {
-			"outfit": "/datum/outfit/job/nanotrasen/engineer",
+		"Science Director": {
+			"outfit": "/datum/outfit/job/cel/nanotrasen/rd",
+			"officer": true,
 			"slots": 1
 		},
-		"Deckhand": {
-			"outfit": "/datum/outfit/job/nanotrasen/cargo_tech",
-			"slots": 3
+		"Roboticist": {
+			"outfit": "/datum/outfit/job/cel/nanotrasen/scientist/deforest_researcher/roboticist",
+			"slots": 2
+		},
+		"Mining Mech Pilot": {
+			"outfit": "/datum/outfit/job/cel/nanotrasen/miner",
+			"slots": 1
+		},
+		"Engineer": {
+			"outfit": "/datum/outfit/job/cel/nanotrasen/engineer",
+			"slots": 1
+		},
+		"Assistant": {
+			"outfit": "/datum/outfit/job/cel/nanotrasen/assistant",
+			"slots": 1
 		}
-	},
-	"limit": 2,
-	"starting_funds": 4000,
-	"enabled": true,
-	"space_spawn": false,
-
-	"architect": "Mark Suckerberg",
-	"contributors": [
-		"Unknown"
-	]
+	}
 }

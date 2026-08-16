@@ -1,15 +1,18 @@
-{
-	"$schema": "https://raw.githubusercontent.com/PentestSS13/Pentest/master/_maps/ship_config_schema.json",
+	{
+	"$schema": "https://raw.githubusercontent.com/CeladonSS13/Shiptest/beta-dev/_maps/_mod_celadon/ship_config_schema.json",
 	"map_name": "Talos-class Command Clipper",
-	"map_short_name": "Talos-class",
+	"map_short_name": "Talos",
+	"description": "'Talos' - это судно поддержки и командования, редкий пример специально построенного корабля InteQ. Оснащенные обилием строительного и инженерного оборудования, а также собственным комплексом связи в блюспейсе, способным объединить корабли IRMG в любой системе, 'Talos' часто являются связующим звеном скоординированных операций IRMG в системе и предлагают услуги по строительству и ремонту в качестве части предложения наемников IRMG. Поскольку экипажи 'Talos' делают больший упор на вспомогательный персонал, они, как правило, не так хорошо вооружены по сравнению с другими экипажами InteQ, хоть и обладают мехом с боевым оснащением. Одна из необычных особенностей 'Talos' - 'крылья' с дублирующими перегородками, призванные обеспечить дополнительную прочность в случае ударов или выстрелов. Кроме того, они служат дополнительным местом для хранения вещей и потенциальным местом для модификации корабля предприимчивыми инженерами, которые здесь являются необходимой частью экипажа.",
 	"map_path": "_maps/shuttles/inteq/inteq_talos.dmm",
-	"faction": "/datum/faction/inteq",
+	"enabled": true,
+	"limit": 1,
+	"sensor_range":9,
 	"prefix": "IRMV",
-	"manufacturer": "Hardline Salvage and Mining",
-	"description": "The Talos is a command and support ship, and a rare example of a purpose-built Inteq ship. Outfitted with an abundance of construction and engineering equipment and a private bluespace communications suite capable of networking IRMG ships across any given system, Taloses are often the lynchpin of coordinated IRMG operations in a system, and offer construction and repair services as part of IRMG’s mercenary offerings. As Talos crews place a larger emphasis on support personnel, they tend to be less well-armed than other Inteq crews. One unusual feature of the Talos is its “wings” filled with redundant baffles, intended to provide extra durability in the case of impacts or weapons fire. They also offer auxiliary storage space and potential room for modification by their enterprising Artificer crews.",
+	"faction": "/datum/faction/inteq",
 	"tags": [
-		"Engineer",
-		"Telecomms"
+		"Инженерное",
+		"Шахтерский",
+		"РП Фокус"
 	],
 	"namelists": [
 		"MYTHOLOGICAL",
@@ -19,46 +22,35 @@
 	],
 	"job_slots": {
 		"Vanguard": {
-			"outfit": "/datum/outfit/job/inteq/captain/empty",
+			"outfit": "/datum/outfit/job/cel/inteq/captain",
 			"officer": true,
 			"slots": 1
 		},
 		"Master At Arms": {
-			"outfit": "/datum/outfit/job/inteq/warden",
+			"outfit": "/datum/outfit/job/cel/inteq/warden",
 			"officer": true,
 			"slots": 1
 		},
-		"Honorable Artificer": {
-			"outfit": "/datum/outfit/job/inteq/ce",
+		"Artificer Class II": {
+			"outfit": "/datum/outfit/job/cel/inteq/ce",
 			"officer": true,
 			"slots": 1
 		},
 		"Artificer": {
-			"outfit": "/datum/outfit/job/inteq/engineer",
+			"outfit": "/datum/outfit/job/cel/inteq/engineer",
 			"slots": 3
 		},
-		"Enforcer": {
-			"outfit": "/datum/outfit/job/inteq/security",
+		"Corpsman": {
+			"outfit": "/datum/outfit/job/cel/inteq/paramedic",
 			"slots": 2
 		},
-		"Corpsman": {
-			"outfit": "/datum/outfit/job/inteq/paramedic",
-			"slots": 1
+		"Enforcer": {
+			"outfit": "/datum/outfit/job/cel/inteq/security",
+			"slots": 3
 		},
-		"Auxiliary": {
-			"outfit": "/datum/outfit/job/inteq/assistant",
+		"Recruit": {
+			"outfit": "/datum/outfit/job/cel/inteq/assistant",
 			"slots": 2
 		}
-	},
-	"limit": 1,
-	"starting_funds": 2000,
-	"enabled": true,
-	"space_spawn": false,
-
-	"token_icon_state": "ship_big_generic",
-
-	"architect": "Apogee-dev",
-	"contributors": [
-		"No Contributors"
-	]
+	}
 }

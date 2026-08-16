@@ -12,6 +12,7 @@ type FaxData = {
   frontier_network: boolean;
   fax_history: FaxHistory[];
   special_faxes: FaxSpecial[];
+  can_send: boolean;
 };
 
 type FaxInfo = {
@@ -79,8 +80,9 @@ export const Fax = (props, context) => {
             )}
           </LabeledList.Item>
         </Section>
-        <Section title="Send">
-          {faxes.length !== 0 ? (
+        {data.can_send && (
+          <Section title="Send">
+            {faxes.length !== 0 ? (
             <Box mt={0.4}>
               {(data.frontier_network
                 ? data.special_faxes
@@ -123,7 +125,8 @@ export const Fax = (props, context) => {
           ) : (
             "The fax couldn't detect any other faxes on the network."
           )}
-        </Section>
+          </Section>
+        )}
         <Section
           title="History"
           buttons={

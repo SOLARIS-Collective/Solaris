@@ -1,5 +1,5 @@
 /datum/map_template/ruin/rockplanet
-	prefix = "_maps/_mod_celadon/RandomRuins/RockRuins/"
+	prefix = "_maps/RandomRuins/RockRuins/"
 	ruin_type = RUINTYPE_ROCK
 
 /datum/map_template/ruin/rockplanet/boxsci

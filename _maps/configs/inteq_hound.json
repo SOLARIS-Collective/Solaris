@@ -1,15 +1,15 @@
 {
-	"$schema": "https://raw.githubusercontent.com/PentestSS13/Pentest/master/_maps/ship_config_schema.json",
 	"map_name": "Hound-class Corvette",
-	"map_short_name": "Hound-class",
-	"map_path": "_maps/PentestMaps/Shuttles/inteq/inteq_hound.dmm",
+	"map_short_name": "Hound",
+	"description": "Легкое и быстрое судно класса 'Hound' - пикет и перехватчик, управляемый InteQ Risk Management. 'Hound' предлагает скромное пространство для экипажа, достаточное для команды из трех человек, небольшой грузовой отсек, мощные двигатели, хорошо укомплектованный арсенал для своего размера, и мало что ещё. Обычно 'Hound' можно встретить на пикетах и в патрулях, сопровождая более крупные и уязвимые судна IRMG, или выполняя любую работу, требующую молниеносного судна и горстки хорошо вооруженных людей.",
+	"map_path": "_maps/shuttles/inteq/inteq_hound.dmm",
+	"map_id": "inteq_hound",
+	"enabled": true,
+	"limit": 1,
+	"sensor_range": 8,
+	"prefix": "LIQSV",
 	"faction": "/datum/faction/inteq",
-	"prefix": "IRMV",
-	"manufacturer": "Hardline Salvage and Mining",
-	"description": "A light, fast picket and interceptor ship operated by Inteq Risk Management, the Hound offers modest crew space sufficient for a 3-man fireteam of Inteq enforcers, a small cargo bay, powerful engines, a well-stocked armory for its size, and little else. Hounds can typically be found on picket and patrol duty, escorting larger and more vulnerable IRMG ships, or performing any duty that calls for a lightning-fast ship and a handful of very well-armed individuals.",
-	"tags": [
-		"Combat"
-	],
+	"tags": ["Боевой"],
 	"namelists": [
 		"MYTHOLOGICAL",
 		"BEASTS",
@@ -18,26 +18,13 @@
 	],
 	"job_slots": {
 		"Vanguard": {
-			"outfit": "/datum/outfit/job/inteq/captain",
+			"outfit": "/datum/outfit/job/cel/inteq/captain",
 			"officer": true,
 			"slots": 1
 		},
 		"Enforcer": {
-			"outfit": "/datum/outfit/job/inteq/security",
-			"slots": 3
-		},
-		"Recruit": {
-			"outfit": "/datum/outfit/job/inteq/assistant",
+			"outfit": "/datum/outfit/job/cel/inteq/security",
 			"slots": 3
 		}
-	},
-	"limit": 2,
-	"starting_funds": 2000,
-	"enabled": true,
-	"space_spawn": false,
-
-	"architect": "Apogee-dev",
-	"contributors": [
-		"No Contributors"
-	]
+	}
 }

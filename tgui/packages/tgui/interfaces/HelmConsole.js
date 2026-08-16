@@ -6,6 +6,8 @@ import { useBackend } from '../backend';
 import {
   Button,
   ByondUi,
+  Box,
+  Icon,
   LabeledList,
   Section,
   ProgressBar,
@@ -59,7 +61,7 @@ export const HelmConsole = (_props, context) => {
 
 const SharedContent = (_props, context) => {
   const { act, data } = useBackend(context);
-  const { isViewer, canRename, shipInfo = [], otherInfo = [], arpa_ships = [], calibrating } = data;
+  const { isViewer, canRename, shipInfo = [], otherInfo = [], arpa_ships = [], calibrating, omni_arpa } = data;
   let flyable = !data.docking && !data.docked;
   return (
     <>
@@ -96,7 +98,7 @@ const SharedContent = (_props, context) => {
             >
               <AnimatedNumber value={shipInfo.sensor_range} />
             </ProgressBar>
-            <Table.Cell>
+            <Box inline ml={1} mt={1}>
               <Button
                 tooltip="Decrease Signal Length"
                 tooltipPosition="right"
@@ -110,12 +112,13 @@ const SharedContent = (_props, context) => {
                 tooltip="Increase Signal Length"
                 tooltipPosition="right"
                 icon="arrow-right"
+                ml={1}
                 // [MANKIND-ADD] - subshuttle fix
                 disabled={data.issubshuttle !== null}
                 // [/MANKIND-ADD] - subshuttle fix
                 onClick={() => act('sensor_increase')}
               />
-            </Table.Cell>
+            </Box>
           </LabeledList.Item>
           {shipInfo.mass && (
             <LabeledList.Item label="Mass">
@@ -127,6 +130,18 @@ const SharedContent = (_props, context) => {
       <Section title="Radar"
         buttons={
           <>
+            <Button // [MANKIND-ADD] - TRANSPONDER_GOING_DARK - Переключатель транспондера
+              tooltip={
+                data.transponder_active
+                  ? 'Transponder ON - ship identity revealed'
+                  : 'Transponder OFF - ship is anonymous'
+              }
+              tooltipPosition="left"
+              icon={data.transponder_active ? 'broadcast-tower' : 'broadcast-tower'}
+              color={data.transponder_active ? 'green' : 'red'}
+              disabled={isViewer}
+              onClick={() => act('toggle_transponder')}
+            />
             <Button // [MANKIND-ADD] - Signal S.O.S - modular_mankind\wideband\code\signal.dm
               tooltip="Send S.O.S."
               tooltipPosition="left"
@@ -148,13 +163,37 @@ const SharedContent = (_props, context) => {
         <Table>
           <Table.Row bold>
             <Table.Cell>Name</Table.Cell>
+            {!isViewer && !omni_arpa && <Table.Cell>Label</Table.Cell>}
             {!isViewer && <Table.Cell>Hail</Table.Cell>}
-            {!isViewer && <Table.Cell>Act</Table.Cell>}
             {!isViewer && <Table.Cell>Dock</Table.Cell>}
           </Table.Row>
           {otherInfo.map((ship) => (
-            <Table.Row key={ship.name}>
-              <Table.Cell>{ship.name}</Table.Cell>
+            <Table.Row key={ship.ref || ship.name}>
+              <Table.Cell>
+                {ship.known ? (
+                  <span>
+                    <Icon name="check" color="good" /> {ship.name}
+                  </span>
+                ) : (
+                  ship.name
+                )}
+              </Table.Cell>
+              {!isViewer && !omni_arpa && (
+                <Table.Cell>
+                  {ship.scannable && (
+                    <Button
+                      tooltip="Set Label"
+                      tooltipPosition="left"
+                      icon="tag"
+                      onClick={() =>
+                        act('prompt_label', {
+                          ship_to_act: ship.ref,
+                        })
+                      }
+                    />
+                  )}
+                </Table.Cell>
+              )}
               {!isViewer && (
                 <Table.Cell>
                   <Button
@@ -220,8 +259,22 @@ const SharedContent = (_props, context) => {
       </Section>
       <Section title="ARPA">
         {arpa_ships.map((ship) => (
-          <Table.Row key={ship.name}>
+          <Table.Row key={ship.ref || ship.name}>
             <Table.Cell>{ship.name}</Table.Cell>
+            {!isViewer && !omni_arpa && ship.scannable && (
+              <Table.Cell>
+                <Button
+                  tooltip="Set Label"
+                  tooltipPosition="left"
+                  icon="tag"
+                  onClick={() =>
+                    act('prompt_label', {
+                      ship_to_act: ship.ref,
+                    })
+                  }
+                />
+              </Table.Cell>
+            )}
             <Divider vertical hidden />
             <Table.Cell>BRG:{ship.brg}°</Table.Cell>
             <Table.Cell>
@@ -436,7 +489,7 @@ const ShipControlContent = (_props, context) => {
       }
     >
       <LabeledControls>
-        <LabeledControls.Item label="Direction" width={'100%'}>
+        <LabeledControls.Item label="Direction">
           <Table collapsing>
             <Table.Row height={1}>
               <Table.Cell width={1}>
@@ -504,7 +557,7 @@ const ShipControlContent = (_props, context) => {
             </Table.Row>
           </Table>
         </LabeledControls.Item>
-        <LabeledControls.Item label="Throttle">
+        <LabeledControls.Item label="Throttle" grow>
           <Knob
             value={burnPercentage}
             minValue={1}

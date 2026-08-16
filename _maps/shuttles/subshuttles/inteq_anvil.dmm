@@ -46,7 +46,10 @@
 	},
 /obj/effect/landmark/ert_shuttle_spawn,
 /obj/machinery/light/directional/east,
-/obj/structure/closet/emcloset/wall/directional/south,
+/obj/structure/closet/emcloset/wall{
+	dir = 1;
+	pixel_y = -28
+	},
 /obj/item/tank/internals/oxygen,
 /obj/item/tank/internals/oxygen,
 /turf/open/floor/plasteel/dark,
@@ -67,9 +70,7 @@
 /turf/open/floor/plasteel/mono/dark,
 /area/ship/bridge)
 "g" = (
-/obj/machinery/power/smes/shuttle/precharged{
-	dir = 2
-	},
+/obj/machinery/power/smes/shuttle/precharged,
 /obj/structure/cable,
 /obj/structure/window/reinforced{
 	dir = 1
@@ -191,6 +192,13 @@
 "w" = (
 /turf/template_noop,
 /area/template_noop)
+"x" = (
+/obj/machinery/porta_turret/ship/weak{
+	faction = list("playerInteq","turret");
+	dir = 1
+	},
+/turf/closed/wall/mineral/plastitanium/nodiagonal,
+/area/ship/bridge)
 "y" = (
 /obj/machinery/power/terminal,
 /obj/structure/cable{
@@ -218,11 +226,10 @@
 /obj/effect/turf_decal/corner/opaque/yellow,
 /obj/structure/chair/comfy/shuttle,
 /obj/effect/landmark/ert_shuttle_spawn,
-/obj/machinery/light/directional/east,
-/obj/machinery/turretid/ship{
-	pixel_y = 24;
-	id = "anvil_grid"
+/obj/machinery/turretid{
+	pixel_y = 25
 	},
+/obj/machinery/light/directional/east,
 /turf/open/floor/plasteel/dark,
 /area/ship/bridge)
 "B" = (
@@ -379,9 +386,8 @@
 /turf/open/floor/plasteel/dark,
 /area/ship/bridge)
 "T" = (
-/obj/machinery/porta_turret/ship/inteq/light{
-	dir = 8;
-	id = "anvil_grid"
+/obj/machinery/porta_turret/ship/weak{
+	faction = list("playerInteq","turret")
 	},
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ship/bridge)
@@ -393,6 +399,11 @@
 /obj/structure/table/reinforced,
 /obj/item/paper_bin,
 /obj/item/pen,
+/obj/machinery/newscaster/directional/south,
+/turf/open/floor/plasteel/dark,
+/area/ship/bridge)
+"V" = (
+/obj/machinery/holopad/emergency/command,
 /turf/open/floor/plasteel/dark,
 /area/ship/bridge)
 "W" = (
@@ -427,7 +438,7 @@
 
 (1,1,1) = {"
 w
-T
+x
 X
 u
 Q
@@ -496,7 +507,7 @@ w
 X
 H
 R
-R
+V
 R
 q
 X

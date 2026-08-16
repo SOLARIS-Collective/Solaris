@@ -73,6 +73,11 @@
 	access = get_med_accesses_outpost(1)
 	. = ..()
 
+/obj/item/card/id/outpost/medic/medical_shield
+	name = "\improper Medical Shield access card"
+	desc = "An access card sourced from Elysium for medical shield."
+	assignment = "Medical Shield"
+
 /obj/item/card/id/outpost/cmo
 	name = "\improper Elysium Medbay access card"
 	desc = "An access card sourced from Elysium for CMO."

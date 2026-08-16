@@ -167,3 +167,45 @@
 	var/area/A = get_area(src)
 	if(A)
 		notify_ghosts("Вас вызывают, доктор \the [A.name].", source = src, action=NOTIFY_ATTACK, flashwindow = FALSE)
+
+// Medic
+
+/obj/effect/mob_spawn/human/elysium_outpost/medical_shield
+	name = "Outpost Medical Shield"
+	id_job = "Medic"
+	faction = FACTION_ELYSIUM
+	assignedrole = "Outpost Medical Shield"
+	outfit = /datum/outfit/outpost/medic/medical_shield
+	important_info = "ВНИМАНИЕ! Очень сложная роль, требующая опыта в ведении переговоров и возможно редких стычек. Вы можете покидать аванпост, только если 100% точно подтвердите наличие трупа на одной из планет, которого нужно спасти! Вы подчиняетесь только клятве гипократа и своей организации Медицинский Щит. Ваша задача любой ценой спасти клиента!"
+	short_desc = "Спасайте важных клиентов, сдирайте с них страховку под 80%!"
+	flavour_text = "Вы не просто медик, вы хорошо обученный специалист медицинского щита. Если на пути к цели у вас есть препятствия, и они не слушаются вас с первого раза, вы вправе разобраться с помехами, а после сразу спешить к клиенту!"
+
+/obj/effect/mob_spawn/human/elysium_outpost/medical_shield/Destroy()
+	new /obj/machinery/cryopod/outpost/medical_shield(drop_location())
+	return ..()
+
+/obj/effect/mob_spawn/human/elysium_outpost/medical_shield/Initialize()
+	. = ..()
+	var/area/A = get_area(src)
+	if(A)
+		notify_ghosts("Поступило оповещение, клиент в опасности \the [A.name].", source = src, action=NOTIFY_ATTACK, flashwindow = FALSE)
+
+/obj/effect/mob_spawn/human/elysium_outpost/medical_shield/marine
+	name = "Outpost Medical Shield Marine"
+	id_job = "Medic"
+	faction = FACTION_ELYSIUM
+	assignedrole = "Outpost Medical Shield Marine"
+	outfit = /datum/outfit/outpost/medic/medical_shield/marine
+	important_info = "ВНИМАНИЕ! Очень сложная роль, требующая опыта в ведении переговоров и возможно редких стычек. Вы можете покидать аванпост, только если 100% точно подтвердите наличие трупа на одной из планет, которого нужно спасти! Вы подчиняетесь только клятве гипократа и своей организации Медицинский Щит. Ваша задача любой ценой спасти клиента!"
+	short_desc = "Спасайте важных клиентов! Вы хорошо оснащенный оперативник Мед Щита, Ваша цель защищать свою группу огнём и прикрытием!"
+	flavour_text = "Вы не просто медик, вы хорошо обученный специалист медицинского щита. Если на пути к цели у вас есть препятствия, и они не слушаются вас с первого раза, вы вправе разобраться с помехами, а после сразу спешить к клиенту!"
+
+/obj/effect/mob_spawn/human/elysium_outpost/medical_shield/marine/Destroy()
+	new /obj/machinery/cryopod/outpost/medical_shield/marine(drop_location())
+	return ..()
+
+/obj/effect/mob_spawn/human/elysium_outpost/medical_shield/marine/Initialize()
+	. = ..()
+	var/area/A = get_area(src)
+	if(A)
+		notify_ghosts("Поступило оповещение, клиент в опасности \the [A.name].", source = src, action=NOTIFY_ATTACK, flashwindow = FALSE)
