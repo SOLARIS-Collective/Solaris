@@ -99,6 +99,12 @@
 /datum/overmap/dynamic/pre_docked(datum/overmap/ship/controlled/dock_requester, override_dock)
 	if(loading)
 		return new /datum/docking_ticket(_docking_error = "[src] is currently being scanned for suitable docking locations by another ship. Please wait.")
+	// [MANKIND-EDIT] - MANKIND_FIXES - Асинхронная генерация планеты, чтобы не блокировать сервер при посадке.
+	// Генерация запускается в фоне, а корабль получает тикет "планета грузится" и может повторить стыковку.
+	if(!mapzone)
+		INVOKE_ASYNC(src, PROC_REF(load_level))
+		return new /datum/docking_ticket(_docking_error = "[src] is generating its surface, please wait a moment and try docking again.")
+	// [/MANKIND-EDIT]
 	if(!load_level())
 		return new /datum/docking_ticket(_docking_error = "[src] cannot be docked to.")
 	else
@@ -333,22 +339,27 @@
  * * visiting shuttle - The docking port of the shuttle visiting the level.
  */
 /datum/overmap/dynamic/proc/load_level()
-	if(SSlag_switch.measures[DISABLE_PLANETGEN] && !(HAS_TRAIT(usr, TRAIT_BYPASS_MEASURES)))
+	if(SSlag_switch.measures[DISABLE_PLANETGEN] && !(usr && HAS_TRAIT(usr, TRAIT_BYPASS_MEASURES)))
 		return FALSE
 	if(mapzone)
 		return TRUE
+	if(loading)
+		return FALSE
 
 	loading = TRUE
 	log_shuttle("[src] [REF(src)] LEVEL_INIT")
 
+	// [MANKIND-EDIT] - MANKIND_FIXES - Сброс loading при ошибке, чтобы не остаться в вечном состоянии "being scanned"
 	var/list/dynamic_encounter_values = current_overmap.spawn_dynamic_encounter(src, selected_ruin)
 	if(!length(dynamic_encounter_values))
+		loading = FALSE
 		return FALSE
 
 	mapzone = dynamic_encounter_values[1]
 	reserve_docks = dynamic_encounter_values[2]
 	ruin_turfs = dynamic_encounter_values[3]
 	spawned_ruins = dynamic_encounter_values[4]
+	// [/MANKIND-EDIT]
 
 	var/datum/virtual_level/our_likely_vlevel = mapzone.virtual_levels[1]
 	if(istype(our_likely_vlevel) && selfloop)
