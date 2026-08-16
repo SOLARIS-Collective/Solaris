@@ -125,7 +125,9 @@
 
 		to_chat(M, announcement)
 		if(M.client.prefs.toggles & SOUND_ANNOUNCEMENTS)
-			SEND_SOUND(M, S)
+			// [MANKIND-EDIT] - MANKIND_FIXES - Применяем масштабирование громкости по категории Announcements
+			M.send_sound_scaled(S, FS_ANNOUNCEMENTS)
+			// [/MANKIND-EDIT]
 
 /proc/print_command_report(text = "", title = null, announce=TRUE)
 	if(!title)

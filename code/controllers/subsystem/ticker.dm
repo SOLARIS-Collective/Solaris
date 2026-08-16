@@ -578,6 +578,8 @@ SUBSYSTEM_DEF(ticker)
 	var/sound/end_of_round_sound_ref = sound(round_end_sound)
 	for(var/mob/M in GLOB.player_list)
 		if(M.client.prefs?.toggles & SOUND_ENDOFROUND)
-			SEND_SOUND(M.client, end_of_round_sound_ref)
+			// [MANKIND-EDIT] - MANKIND_FIXES - Применяем масштабирование громкости по категории End of Round
+			M.send_sound_scaled(end_of_round_sound_ref, FS_ENDOFROUND)
+			// [/MANKIND-EDIT]
 
 	text2file(login_music, "data/last_round_lobby_music.txt")

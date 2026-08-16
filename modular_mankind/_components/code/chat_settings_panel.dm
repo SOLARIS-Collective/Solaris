@@ -113,6 +113,15 @@
 			var/flag = text2num(params["flag"])
 			var/volume = clamp(text2num(params["volume"]), 0, 100)
 			C.prefs.sound_volume[flag] = volume
+			// [MANKIND-ADD] - MANKIND_FIXES - Рескейл уже играющих канальных звуков при изменении громкости
+			switch(flag)
+				if(FS_JUKEBOX)
+					usr.set_sound_channel_volume(CHANNEL_JUKEBOX, volume)
+				if(FS_AMBIENCE)
+					usr.set_sound_channel_volume(CHANNEL_AMBIENCE, volume)
+				if(FS_SHIP_AMBIENCE)
+					usr.set_sound_channel_volume(CHANNEL_BUZZ, volume)
+			// [/MANKIND-ADD]
 
 		if("test_sound")
 			var/flag = text2num(params["flag"])
