@@ -2,7 +2,7 @@
 	"$schema": "https://raw.githubusercontent.com/CeladonSS13/Shiptest/beta-dev/_maps/ship_config_schema.json",
 	"map_name": "Howler-class easy Warship ",
 	"map_short_name": "Howl",
-	"description": " «Howl» — созданный корабль на...",
+	"description": " Боевое судно Gorlex Marauders совместно с подгруппой Hardliner выполняли поддержание и защиту грузовых судов Синдиката по направлению строительства Ковчега. Чтобы не производить расходы на экипаж, их оставляли на консервацию по месту прибытия в ожидании дальнейших задач при пробуждении экипажа.",
 	"map_path": "_maps/shuttles/syndicate/syndicate_gorlex_howl.dmm",
 	"enabled" : true,
 	"limit": 1,

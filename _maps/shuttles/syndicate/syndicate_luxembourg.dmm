@@ -20,6 +20,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
 	dir = 9
 	},
+/obj/item/stack/ore/glass/basalt,
 /turf/open/floor/plasteel/patterned/cargo_one,
 /area/ship/storage)
 "ap" = (
@@ -372,6 +373,7 @@
 /obj/item/paicard,
 /obj/item/gps/mining,
 /obj/machinery/light/directional/east,
+/obj/item/stack/circuit_stack,
 /turf/open/floor/plasteel/mono/dark,
 /area/ship/cargo)
 "gT" = (
@@ -866,6 +868,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
 	dir = 4
 	},
+/obj/item/stack/ore/glass/rockplanet,
 /turf/open/floor/plasteel/patterned/cargo_one,
 /area/ship/storage)
 "nA" = (
@@ -953,6 +956,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
 	dir = 4
 	},
+/obj/item/stack/sheet/cardboard,
 /turf/open/floor/plasteel/patterned/cargo_one,
 /area/ship/storage)
 "pz" = (
@@ -1070,6 +1074,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
 	dir = 6
 	},
+/obj/item/stack/ore/glass/rockplanet,
 /turf/open/floor/plasteel/patterned/cargo_one,
 /area/ship/storage)
 "sa" = (
@@ -1092,7 +1097,9 @@
 /obj/effect/turf_decal/siding/blue{
 	dir = 1
 	},
-/obj/effect/turf_decal/donk/one_two,
+/obj/effect/turf_decal/donk/one_two{
+	pixel_y = -6
+	},
 /turf/open/floor/plasteel/dark,
 /area/ship/hallway/central)
 "sh" = (
@@ -1300,7 +1307,9 @@
 /obj/effect/turf_decal/siding/blue{
 	dir = 1
 	},
-/obj/effect/turf_decal/donk/one_one,
+/obj/effect/turf_decal/donk/one_one{
+	pixel_y = -6
+	},
 /turf/open/floor/plasteel/dark,
 /area/ship/hallway/central)
 "wT" = (
@@ -1313,6 +1322,11 @@
 /obj/effect/turf_decal/corner/opaque/neutral/bordercorner,
 /turf/open/floor/plasteel/mono/dark,
 /area/ship/hallway/central)
+"wU" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/stack/ore/slag,
+/turf/open/floor/plasteel/mono/dark,
+/area/ship/cargo)
 "wV" = (
 /obj/structure/window/plasma/reinforced{
 	dir = 8
@@ -1385,6 +1399,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
 	dir = 4
 	},
+/obj/item/stack/sheet/cotton,
 /turf/open/floor/plasteel/patterned/cargo_one,
 /area/ship/storage)
 "zg" = (
@@ -1419,6 +1434,7 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/oil,
+/obj/item/stack/ore/glass/beach,
 /turf/open/floor/plasteel/mono/dark,
 /area/ship/cargo)
 "zO" = (
@@ -1897,6 +1913,7 @@
 /area/ship/crew/canteen)
 "IL" = (
 /obj/effect/turf_decal/corner/opaque/brown/border,
+/obj/item/stack/ore/glass/beach,
 /turf/open/floor/plasteel/mono/dark,
 /area/ship/cargo)
 "IZ" = (
@@ -2100,6 +2117,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
 	dir = 4
 	},
+/obj/item/stack/ore/glass/basalt,
 /turf/open/floor/plasteel/mono/dark,
 /area/ship/cargo)
 "MR" = (
@@ -2191,6 +2209,7 @@
 	location = "lux_warehouse"
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/item/stack/sheet/lessergem,
 /turf/open/floor/plasteel/patterned/cargo_one,
 /area/ship/storage)
 "OZ" = (
@@ -2266,6 +2285,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/item/stack/ore/glass/beach,
 /turf/open/floor/plasteel/mono/dark,
 /area/ship/cargo)
 "Rd" = (
@@ -2360,6 +2380,7 @@
 "RU" = (
 /obj/effect/turf_decal/corner/opaque/brown/border,
 /obj/effect/decal/cleanable/dirt,
+/obj/item/stack/ore/slag,
 /turf/open/floor/plasteel/mono/dark,
 /area/ship/cargo)
 "RX" = (
@@ -2425,6 +2446,7 @@
 /obj/effect/turf_decal/trimline/opaque/orange/filled/warning{
 	dir = 8
 	},
+/obj/item/stack/sheet/bone,
 /turf/open/floor/plasteel/patterned/cargo_one,
 /area/ship/storage)
 "TL" = (
@@ -2479,6 +2501,14 @@
 	},
 /turf/open/floor/plasteel/tech/techmaint,
 /area/ship/engineering)
+"UI" = (
+/obj/effect/turf_decal/corner/opaque/brown/border{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/item/stack/packageWrap/small,
+/turf/open/floor/plasteel/mono/dark,
+/area/ship/cargo)
 "UR" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -2619,7 +2649,9 @@
 /obj/effect/turf_decal/siding/blue/corner{
 	dir = 1
 	},
-/obj/effect/turf_decal/donk/three_one,
+/obj/effect/turf_decal/donk/three_one{
+	pixel_y = -6
+	},
 /turf/open/floor/plasteel/dark,
 /area/ship/hallway/central)
 "WX" = (
@@ -3182,8 +3214,8 @@ eu
 (18,1,1) = {"
 mz
 af
-Ld
-Ay
+UI
+wU
 Qv
 Py
 kN
@@ -3250,7 +3282,7 @@ EK
 Pi
 Pi
 XH
-Ay
+wU
 IL
 ZQ
 XD

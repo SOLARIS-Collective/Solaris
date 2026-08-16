@@ -104,7 +104,7 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /turf/open/floor/pod/dark,
-/area/ship/science/workshop)
+/area/ship/cargo/starboard)
 "aZ" = (
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ship/cargo/office)
@@ -326,7 +326,7 @@
 	id = "derecho_grid"
 	},
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/ship/science/workshop)
+/area/ship/cargo/starboard)
 "dB" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -404,7 +404,7 @@
 /obj/effect/decal/cleanable/glass,
 /obj/effect/decal/cleanable/oil/slippery,
 /turf/open/floor/plasteel/tech/grid,
-/area/ship/science/workshop)
+/area/ship/cargo/starboard)
 "ep" = (
 /obj/effect/turf_decal/borderfloorblack,
 /obj/effect/turf_decal/corner/opaque/red/half{
@@ -714,7 +714,7 @@
 /obj/item/radio/intercom/directional/north,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/pod/dark,
-/area/ship/science/workshop)
+/area/ship/cargo/starboard)
 "gD" = (
 /obj/effect/turf_decal/corner/opaque/tan{
 	dir = 6
@@ -765,7 +765,7 @@
 /obj/structure/chair/handrail,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/pod/dark,
-/area/ship/science/workshop)
+/area/ship/cargo/starboard)
 "gU" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -840,7 +840,7 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/pod/dark,
-/area/ship/science/workshop)
+/area/ship/cargo/starboard)
 "hg" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/borderfloorblack,
@@ -876,7 +876,7 @@
 	},
 /obj/machinery/light/dim/directional/north,
 /turf/open/floor/pod/dark,
-/area/ship/science/workshop)
+/area/ship/cargo/starboard)
 "hI" = (
 /obj/structure/table,
 /obj/item/reagent_containers/condiment/saltshaker{
@@ -1003,7 +1003,7 @@
 "iK" = (
 /obj/structure/extinguisher_cabinet/directional/west,
 /turf/open/floor/pod/dark,
-/area/ship/science/workshop)
+/area/ship/cargo/starboard)
 "iO" = (
 /obj/effect/turf_decal/corner/opaque/tan{
 	dir = 6
@@ -1043,7 +1043,7 @@
 "jn" = (
 /obj/effect/decal/cleanable/oil/streak,
 /turf/open/floor/pod/dark,
-/area/ship/science/workshop)
+/area/ship/cargo/starboard)
 "js" = (
 /obj/structure/sign/warning/docking{
 	pixel_y = -8
@@ -1248,7 +1248,7 @@
 /area/ship/hallway/fore)
 "ln" = (
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/ship/science/workshop)
+/area/ship/cargo/starboard)
 "lt" = (
 /obj/machinery/power/terminal,
 /obj/structure/cable/yellow,
@@ -1309,7 +1309,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
 /obj/effect/decal/cleanable/plastic,
 /turf/open/floor/pod/dark,
-/area/ship/science/workshop)
+/area/ship/cargo/starboard)
 "lY" = (
 /obj/effect/turf_decal/corner/opaque/red/mono,
 /obj/structure/cable{
@@ -1867,7 +1867,7 @@
 	req_one_access = list(10, 48)
 	},
 /turf/open/floor/plasteel/tech/grid,
-/area/ship/science/workshop)
+/area/ship/cargo/starboard)
 "pH" = (
 /obj/effect/turf_decal/corner/opaque/tan{
 	dir = 5
@@ -1897,7 +1897,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/pod/dark,
-/area/ship/science/workshop)
+/area/ship/cargo/starboard)
 "pL" = (
 /obj/structure/railing/corner{
 	dir = 4
@@ -1929,7 +1929,7 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/pod/dark,
-/area/ship/science/workshop)
+/area/ship/cargo/starboard)
 "qc" = (
 /obj/machinery/cryopod,
 /obj/effect/turf_decal/industrial/warning{
@@ -2427,7 +2427,7 @@
 	dir = 1
 	},
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
-/area/ship/science/workshop)
+/area/ship/cargo/starboard)
 "vd" = (
 /obj/structure/cable{
 	icon_state = "2-4"
@@ -2571,7 +2571,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/tech/grid,
-/area/ship/science/workshop)
+/area/ship/cargo/starboard)
 "vJ" = (
 /obj/machinery/conveyor{
 	dir = 4;
@@ -2582,7 +2582,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/tech/grid,
-/area/ship/science/workshop)
+/area/ship/cargo/starboard)
 "vS" = (
 /obj/effect/turf_decal/corner/opaque/tan{
 	dir = 10
@@ -2672,7 +2672,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/pod/dark,
-/area/ship/science/workshop)
+/area/ship/cargo/starboard)
 "wE" = (
 /obj/effect/turf_decal/corner/opaque/tan/mono,
 /obj/structure/cable{
@@ -2786,7 +2786,7 @@
 	output_dir = 4
 	},
 /turf/open/floor/plasteel/tech/grid,
-/area/ship/science/workshop)
+/area/ship/cargo/starboard)
 "xQ" = (
 /obj/machinery/door/airlock/hatch{
 	name = "Foreman's Office";
@@ -2813,7 +2813,7 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/pod/dark,
-/area/ship/science/workshop)
+/area/ship/cargo/starboard)
 "yb" = (
 /obj/structure/chair{
 	dir = 4
@@ -2881,7 +2881,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/tech/grid,
-/area/ship/science/workshop)
+/area/ship/cargo/starboard)
 "yv" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 5
@@ -3150,7 +3150,7 @@
 /obj/item/stack/sheet/metal/twenty,
 /obj/item/stack/sheet/glass/five,
 /turf/open/floor/pod/dark,
-/area/ship/science/workshop)
+/area/ship/cargo/starboard)
 "Ae" = (
 /obj/effect/turf_decal/corner/transparent/bar/diagonal,
 /obj/structure/sink/kitchen{
@@ -3171,7 +3171,7 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/pod/dark,
-/area/ship/science/workshop)
+/area/ship/cargo/starboard)
 "Aq" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -3226,7 +3226,7 @@
 "AV" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/pod/dark,
-/area/ship/science/workshop)
+/area/ship/cargo/starboard)
 "AW" = (
 /obj/machinery/power/smes/shuttle/precharged,
 /obj/structure/window/reinforced{
@@ -4145,7 +4145,7 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/tech/grid,
-/area/ship/science/workshop)
+/area/ship/cargo/starboard)
 "Kn" = (
 /obj/effect/spawner/bunk_bed,
 /obj/structure/curtain/bounty,
@@ -4320,7 +4320,7 @@
 	icon_state = "2-4"
 	},
 /turf/open/floor/pod/dark,
-/area/ship/science/workshop)
+/area/ship/cargo/starboard)
 "Mo" = (
 /obj/structure/chair{
 	dir = 8
@@ -5241,7 +5241,7 @@
 /obj/machinery/light/dim/directional/south,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/tech/grid,
-/area/ship/science/workshop)
+/area/ship/cargo/starboard)
 "TJ" = (
 /obj/structure/cable{
 	icon_state = "0-8"
@@ -5587,7 +5587,7 @@
 /area/ship/hallway/starboard)
 "Wo" = (
 /turf/closed/wall/mineral/plastitanium,
-/area/ship/science/workshop)
+/area/ship/cargo/starboard)
 "Wp" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -5959,7 +5959,7 @@
 	id = "derecho_belt"
 	},
 /turf/open/floor/pod/dark,
-/area/ship/science/workshop)
+/area/ship/cargo/starboard)
 "YR" = (
 /obj/structure/railing{
 	dir = 4
