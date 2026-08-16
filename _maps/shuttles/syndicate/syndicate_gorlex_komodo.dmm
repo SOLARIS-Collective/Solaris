@@ -741,6 +741,9 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+/obj/effect/turf_decal/gorlex/three_three{
+	pixel_y = -6
+	},
 /turf/open/floor/plasteel/tech,
 /area/ship/bridge)
 "hL" = (
@@ -2538,6 +2541,9 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+/obj/effect/turf_decal/gorlex/three_two{
+	pixel_y = -6
+	},
 /turf/open/floor/plasteel/tech,
 /area/ship/bridge)
 "wR" = (
@@ -3281,6 +3287,9 @@
 	},
 /turf/open/floor/circuit/red,
 /area/ship/bridge)
+"EW" = (
+/turf/open/space/basic,
+/area/space)
 "Fe" = (
 /obj/effect/turf_decal/industrial/warning{
 	dir = 1
@@ -5148,6 +5157,9 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+/obj/effect/turf_decal/gorlex/three_one{
+	pixel_y = -6
+	},
 /turf/open/floor/plasteel/tech,
 /area/ship/bridge)
 "Xd" = (
@@ -5566,7 +5578,7 @@ CM
 CM
 uX
 Yb
-Yb
+EW
 Yb
 uX
 CM

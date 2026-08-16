@@ -594,32 +594,50 @@
 	pixel_x = -7;
 	pixel_y = -1
 	},
-/obj/item/stock_parts/cell/gun/kalix{
-	pixel_x = 10
+/obj/item/ammo_box/magazine/m45_cobra,
+/obj/item/ammo_box/magazine/m45_cobra,
+/obj/item/ammo_box/magazine/m45_cobra,
+/obj/item/ammo_box/magazine/m45_cobra,
+/obj/item/ammo_box/magazine/m45_cobra,
+/obj/item/ammo_box/magazine/m45_cobra,
+/obj/item/ammo_box/magazine/m45_cobra,
+/obj/item/ammo_box/magazine/m45_cobra,
+/obj/item/ammo_box/magazine/m45_cobra,
+/obj/item/shield/riot/tele{
+	pixel_x = -7;
+	pixel_y = -1
 	},
-/obj/item/stock_parts/cell/gun/kalix{
-	pixel_x = 10
+/obj/item/storage/box/ammo/c45_ap{
+	pixel_x = -5;
+	pixel_y = -5
 	},
-/obj/item/stock_parts/cell/gun/kalix{
-	pixel_x = 10
+/obj/item/storage/box/ammo/c45_ap{
+	pixel_x = -5;
+	pixel_y = -5
 	},
-/obj/item/stock_parts/cell/gun/kalix{
-	pixel_x = 10
+/obj/item/storage/box/ammo/c45_ap{
+	pixel_x = -5;
+	pixel_y = -5
 	},
-/obj/item/stock_parts/cell/gun/kalix{
-	pixel_x = 10
+/obj/item/storage/box/ammo/c45_ap{
+	pixel_x = -5;
+	pixel_y = -5
 	},
-/obj/item/stock_parts/cell/gun/kalix{
-	pixel_x = 10
+/obj/item/storage/box/ammo/c45_ap{
+	pixel_x = -5;
+	pixel_y = -5
 	},
-/obj/item/stock_parts/cell/gun/kalix{
-	pixel_x = 10
+/obj/item/storage/box/ammo/c45_ap{
+	pixel_x = -5;
+	pixel_y = -5
 	},
-/obj/item/stock_parts/cell/gun/kalix{
-	pixel_x = 10
+/obj/item/storage/box/ammo/c45_ap{
+	pixel_x = -5;
+	pixel_y = -5
 	},
-/obj/item/stock_parts/cell/gun/kalix{
-	pixel_x = 10
+/obj/item/storage/box/ammo/c45_ap{
+	pixel_x = -5;
+	pixel_y = -5
 	},
 /turf/open/floor/plasteel/patterned/grid{
 	color = "#777777"
@@ -814,17 +832,20 @@
 	dir = 4
 	},
 /obj/item/storage/backpack/duffelbag/syndie,
-/obj/item/gun/energy/kalix/pgf/heavy/sniper{
-	fire_delay = 13;
-	gun_firemodes = list("auto");
-	default_firemode = "auto"
-	},
-/obj/item/stock_parts/cell/gun/pgf,
-/obj/item/stock_parts/cell/gun/pgf,
-/obj/item/stock_parts/cell/gun/pgf,
 /obj/item/mod/module/visor/thermal,
 /obj/item/stock_parts/cell/bluespace,
 /obj/item/tank/internals/emergency_oxygen/double,
+/obj/item/attachment/silencer/cobra,
+/obj/item/ammo_box/magazine/boomslang,
+/obj/item/ammo_box/magazine/boomslang,
+/obj/item/ammo_box/magazine/boomslang,
+/obj/item/ammo_box/magazine/boomslang,
+/obj/item/gun/ballistic/automatic/marksman/boomslang/no_mag{
+	attack_cooldown = 5;
+	block_cooldown_time = 8;
+	recoil_deviation = 15;
+	name = "MSR-92 \"Boomslang\""
+	},
 /turf/open/floor/plasteel/patterned/grid{
 	color = "#777777"
 	},
@@ -884,6 +905,7 @@
 /obj/item/spacecash/bundle/c500{
 	pixel_x = -8
 	},
+/obj/item/storage/box/ammo/a65clip,
 /turf/open/floor/suns/diagonal{
 	color = "#792f27"
 	},
@@ -956,6 +978,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+/obj/effect/turf_decal/nd_battle_group/three_one,
 /turf/open/floor/plasteel/strongdark,
 /area/ship/cargo)
 "pC" = (
@@ -1028,12 +1051,14 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+/obj/effect/turf_decal/nd_battle_group/three_two,
 /turf/open/floor/plasteel/strongdark,
 /area/ship/cargo)
 "ra" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/effect/turf_decal/nd_battle_group,
 /turf/open/floor/plasteel/strongdark,
 /area/ship/cargo)
 "ri" = (
@@ -1068,6 +1093,7 @@
 /obj/effect/turf_decal/techfloor{
 	dir = 1
 	},
+/obj/effect/turf_decal/nd_battle_group/one_one,
 /turf/open/floor/plasteel/strongdark,
 /area/ship/cargo)
 "so" = (
@@ -1101,17 +1127,6 @@
 	pixel_y = 12;
 	dir = 4
 	},
-/obj/machinery/recharger{
-	pixel_y = 11
-	},
-/obj/machinery/recharger{
-	pixel_x = 9;
-	pixel_y = 11
-	},
-/obj/machinery/recharger{
-	pixel_x = -9;
-	pixel_y = 11
-	},
 /obj/structure/table/reinforced/plastitaniumglass,
 /turf/open/floor/plasteel/strongdark,
 /area/ship/cargo)
@@ -1120,6 +1135,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
+/obj/effect/turf_decal/nd_battle_group/one_two,
 /turf/open/floor/plasteel/strongdark,
 /area/ship/cargo)
 "sK" = (
@@ -1848,9 +1864,9 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
 	},
-/obj/item/gun/energy/kalix/pgf,
-/obj/item/gun/energy/kalix/pgf,
-/obj/item/gun/energy/kalix/pgf,
+/obj/item/gun/ballistic/automatic/smg/cobra,
+/obj/item/gun/ballistic/automatic/smg/cobra,
+/obj/item/gun/ballistic/automatic/smg/cobra,
 /turf/open/floor/plasteel/patterned/grid{
 	color = "#777777"
 	},
@@ -2611,6 +2627,7 @@
 	},
 /area/ship/cargo)
 "Mx" = (
+/obj/effect/turf_decal/nd_battle_group/two_one,
 /turf/open/floor/plasteel/strongdark,
 /area/ship/cargo)
 "ME" = (
@@ -3009,6 +3026,7 @@
 /obj/effect/turf_decal/spline/fancy/transparent/syndiered{
 	dir = 1
 	},
+/obj/item/storage/box/ammo/a65clip,
 /turf/open/floor/plasteel/mono/dark,
 /area/ship/bridge)
 "Uj" = (

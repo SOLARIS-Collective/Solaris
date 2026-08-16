@@ -246,6 +246,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
 	},
+/obj/effect/turf_decal/gorlex/two_one,
 /turf/open/floor/mineral/plastitanium,
 /area/ship/security/armory)
 "ip" = (
@@ -471,6 +472,7 @@
 	},
 /obj/machinery/light/directional/south,
 /obj/item/clothing/suit/space/hardsuit/syndi/hl,
+/obj/effect/turf_decal/gorlex/three_two,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ship/security/armory)
 "lR" = (
@@ -959,6 +961,7 @@
 /obj/item/clothing/suit/armor/hardliners,
 /obj/item/melee/knife/combat,
 /obj/item/clothing/gloves/combat,
+/obj/effect/turf_decal/gorlex/one_one,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ship/security/armory)
 "xr" = (
@@ -1310,6 +1313,7 @@
 	pixel_x = 10;
 	pixel_y = 21
 	},
+/obj/effect/turf_decal/gorlex/one_two,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ship/security/armory)
 "Fl" = (
@@ -1586,6 +1590,7 @@
 	fire_delay = 1.2
 	},
 /obj/structure/sign/flag/syndie/directional/east,
+/obj/effect/turf_decal/gorlex/three_one,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ship/security/armory)
 "KY" = (
@@ -1945,6 +1950,7 @@
 	name = "air alarm"
 	},
 /obj/item/clothing/suit/space/hardsuit/syndi/hl,
+/obj/effect/turf_decal/gorlex/three_three,
 /turf/open/floor/mineral/plastitanium/red,
 /area/ship/security/armory)
 "Pg" = (
@@ -1979,6 +1985,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 8
 	},
+/obj/effect/turf_decal/gorlex/two_two,
 /turf/open/floor/mineral/plastitanium,
 /area/ship/security/armory)
 "Qm" = (

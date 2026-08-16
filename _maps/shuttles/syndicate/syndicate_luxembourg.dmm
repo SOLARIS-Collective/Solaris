@@ -1092,6 +1092,7 @@
 /obj/effect/turf_decal/siding/blue{
 	dir = 1
 	},
+/obj/effect/turf_decal/donk/one_two,
 /turf/open/floor/plasteel/dark,
 /area/ship/hallway/central)
 "sh" = (
@@ -1299,6 +1300,7 @@
 /obj/effect/turf_decal/siding/blue{
 	dir = 1
 	},
+/obj/effect/turf_decal/donk/one_one,
 /turf/open/floor/plasteel/dark,
 /area/ship/hallway/central)
 "wT" = (
@@ -2617,6 +2619,7 @@
 /obj/effect/turf_decal/siding/blue/corner{
 	dir = 1
 	},
+/obj/effect/turf_decal/donk/three_one,
 /turf/open/floor/plasteel/dark,
 /area/ship/hallway/central)
 "WX" = (
