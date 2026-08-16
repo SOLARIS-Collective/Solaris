@@ -626,8 +626,14 @@
 /datum/overmap/proc/complete_undock()
 	SHOULD_CALL_PARENT(TRUE)
 	var/datum/overmap/container = docked_to
-	while(container && !container.x || !container.y)
+	// [MANKIND-EDIT] - MANKIND_FIXES - Защита от бесконечного цикла при повреждённой цепочке доков
+	var/undock_chain_guard = 0
+	while(container && (!container.x || !container.y))
+		if(undock_chain_guard++ >= MAX_UNDOCK_CHAIN_LENGTH)
+			stack_trace("complete_undock: dock chain exceeded [MAX_UNDOCK_CHAIN_LENGTH] links, aborting undock!")
+			return
 		container = container.docked_to
+	// [/MANKIND-EDIT]
 	current_overmap = container.current_overmap // so we dont accidentally slingshot hundreds of au undocking
 	current_overmap.overmap_container[container.x][container.y] += src
 	// [MANKIND-ADD] - MANKIND_FIXES

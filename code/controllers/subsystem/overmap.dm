@@ -310,7 +310,7 @@ SUBSYSTEM_DEF(overmap)
 		ship_loc = SSovermap.outposts[1]
 
 	ship_spawning = TRUE
-	. = new /datum/overmap/ship/controlled(ship_loc, system_to_spawn_in, template) //This statement SHOULDN'T runtime (not counting runtimes actually in the constructor) so ship_spawning should always be toggled.
+	. = new /datum/overmap/ship/controlled(ship_loc, system_to_spawn_in, template)
 	ship_spawning = FALSE
 
 /**
@@ -726,9 +726,13 @@ SUBSYSTEM_DEF(overmap)
 /**
  * See [/datum/controller/subsystem/overmap/proc/spawn_events], spawns "veins" (like ores) of events
  */
-/datum/overmap_star_system/proc/spawn_event_cluster(datum/overmap/event/type, list/location, chance)
+/datum/overmap_star_system/proc/spawn_event_cluster(datum/overmap/event/type, list/location, chance, depth = 0)
 	if(CONFIG_GET(number/max_overmap_events) <= LAZYLEN(events))
 		return
+	// [MANKIND-EDIT] - MANKIND_FIXES - Ограничение глубины рекурсии, чтобы избежать переполнения стека
+	if(depth >= MAX_OVERMAP_EVENT_CLUSTER_DEPTH)
+		return
+	// [/MANKIND-EDIT]
 	var/datum/overmap/event/E = new type(location, src)
 	if(!chance)
 		chance = E.spread_chance
@@ -737,7 +741,7 @@ SUBSYSTEM_DEF(overmap)
 
 			if(locate(/datum/overmap) in overmap_container[location["x"]][location["y"]])
 				continue
-			spawn_event_cluster(type, location, chance / 2)
+			spawn_event_cluster(type, location, chance / 2, depth + 1)
 
 /**
  * Creates a single outpost somewhere near the center of the system.
@@ -873,6 +877,9 @@ SUBSYSTEM_DEF(overmap)
 		vlevel.low_y+RESERVE_DOCK_DEFAULT_PADDING + vlevel.reserved_margin,
 		vlevel.z_value
 		)
+	// [MANKIND-EDIT] - MANKIND_FIXES - Null-guard док-турфов: смещения +60/+75 могут выйти за границы планеты
+	if(!primary_docking_turf)
+		CRASH("spawn_dynamic_encounter: primary docking turf is null for [encounter_name]!")
 	// now we need to offset to account for the first dock
 	var/turf/secondary_docking_turf = locate(
 		// [MANKIND-EDIT] - MANKIND_MAP_EXPANSION - Смещение док порта
@@ -910,37 +917,42 @@ SUBSYSTEM_DEF(overmap)
 	primary_dock.adjust_dock_for_landing = TRUE
 	docking_ports += primary_dock
 
-	var/obj/docking_port/stationary/secondary_dock = new(secondary_docking_turf)
-	secondary_dock.dir = NORTH
-	secondary_dock.name = "[encounter_name] docking location #2"
-	secondary_dock.height = RESERVE_DOCK_MAX_SIZE_SHORT
-	secondary_dock.width = RESERVE_DOCK_MAX_SIZE_LONG
-	secondary_dock.dheight = 0
-	secondary_dock.dwidth = 0
-	secondary_dock.adjust_dock_for_landing = TRUE
-	docking_ports += secondary_dock
+	// [MANKIND-EDIT] - MANKIND_FIXES - Null-guard: вторичный/третий/четвёртый доки могут выйти за границы планеты
+	if(secondary_docking_turf)
+		var/obj/docking_port/stationary/secondary_dock = new(secondary_docking_turf)
+		secondary_dock.dir = NORTH
+		secondary_dock.name = "[encounter_name] docking location #2"
+		secondary_dock.height = RESERVE_DOCK_MAX_SIZE_SHORT
+		secondary_dock.width = RESERVE_DOCK_MAX_SIZE_LONG
+		secondary_dock.dheight = 0
+		secondary_dock.dwidth = 0
+		secondary_dock.adjust_dock_for_landing = TRUE
+		docking_ports += secondary_dock
 
 	// [MANKIND-ADD] - MANKIND_MAP_EXPANSION - Создание док порта исходя из ранее заданных координат
-	var/obj/docking_port/stationary/third_dock = new(third_docking_turf)
-	third_dock.dir = NORTH
-	third_dock.name = "[encounter_name] docking location #3"
-	third_dock.height = RESERVE_DOCK_MAX_SIZE_SHORT
-	third_dock.width = RESERVE_DOCK_MAX_SIZE_LONG
-	third_dock.dheight = 0
-	third_dock.dwidth = 0
-	third_dock.adjust_dock_for_landing = TRUE
-	docking_ports += third_dock
+	if(third_docking_turf)
+		var/obj/docking_port/stationary/third_dock = new(third_docking_turf)
+		third_dock.dir = NORTH
+		third_dock.name = "[encounter_name] docking location #3"
+		third_dock.height = RESERVE_DOCK_MAX_SIZE_SHORT
+		third_dock.width = RESERVE_DOCK_MAX_SIZE_LONG
+		third_dock.dheight = 0
+		third_dock.dwidth = 0
+		third_dock.adjust_dock_for_landing = TRUE
+		docking_ports += third_dock
 
-	var/obj/docking_port/stationary/fourth_dock = new(fourth_docking_turf)
-	fourth_dock.dir = NORTH
-	fourth_dock.name = "[encounter_name] docking location #4"
-	fourth_dock.height = RESERVE_DOCK_MAX_SIZE_SHORT
-	fourth_dock.width = RESERVE_DOCK_MAX_SIZE_LONG
-	fourth_dock.dheight = 0
-	fourth_dock.dwidth = 0
-	fourth_dock.adjust_dock_for_landing = TRUE
-	docking_ports += fourth_dock
+	if(fourth_docking_turf)
+		var/obj/docking_port/stationary/fourth_dock = new(fourth_docking_turf)
+		fourth_dock.dir = NORTH
+		fourth_dock.name = "[encounter_name] docking location #4"
+		fourth_dock.height = RESERVE_DOCK_MAX_SIZE_SHORT
+		fourth_dock.width = RESERVE_DOCK_MAX_SIZE_LONG
+		fourth_dock.dheight = 0
+		fourth_dock.dwidth = 0
+		fourth_dock.adjust_dock_for_landing = TRUE
+		docking_ports += fourth_dock
 	// [/MANKIND-ADD]
+	// [/MANKIND-EDIT]
 
 	// [MANKIND-REMOVE] - MANKIND_MAP_EXPANSION - Чтобы не возникало лишних док портов
 	// if(!used_ruin)
