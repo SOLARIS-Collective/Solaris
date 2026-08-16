@@ -14,6 +14,9 @@ GLOBAL_VAR_INIT(cpu_stabilization_target, 85)
 /// How many ticks of raw CPU data to keep for the lag-compensation average.
 GLOBAL_VAR_INIT(cpu_sample_window, 20)
 
+/// Size of the moving average BYOND stores {map_)cpu values in.
+#define INTERNAL_CPU_SIZE 16
+
 ///Broken down, here's what this does:
 /// divides the world icon_size (32) by delay divided by ticklag to get the number of pixels something should be moving each tick.
 /// The division result is given a min value of 1 to prevent obscenely slow glide sizes from being set
