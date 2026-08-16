@@ -8,7 +8,7 @@ type FaxData = {
   fax_id: string;
   fax_name: string;
   visible: boolean;
-  has_paper: string;
+  has_paper: boolean;
   frontier_network: boolean;
   fax_history: FaxHistory[];
   special_faxes: FaxSpecial[];
@@ -80,7 +80,7 @@ export const Fax = (props, context) => {
             )}
           </LabeledList.Item>
         </Section>
-        {data.can_send && (
+        {!!data.can_send && (
           <Section title="Send">
             {faxes.length !== 0 ? (
             <Box mt={0.4}>
