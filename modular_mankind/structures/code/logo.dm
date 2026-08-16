@@ -225,3 +225,129 @@
 
 /obj/effect/turf_decal/gorlex/three_three
 	icon_state = "gorlex_33"
+
+// логитип Империя
+/obj/effect/turf_decal/empire
+	icon = 'modular_mankind/_storage_icons/icons/structures/logo/Empire.dmi'
+	name = "empire"
+	icon_state = "empire_22"
+	alpha = 170
+
+/obj/effect/turf_decal/empire/one_two
+	icon_state = "empire_12"
+
+/obj/effect/turf_decal/empire/two_one
+
+	icon_state = "empire_21"
+
+/obj/effect/turf_decal/empire/two_two
+	icon_state = "empire_22"
+
+/obj/effect/turf_decal/empire/two_three
+	icon_state = "empire_23"
+
+/obj/effect/turf_decal/empire/three_one
+	icon_state = "empire_31"
+
+/obj/effect/turf_decal/empire/three_two
+	icon_state = "empire_32"
+
+/obj/effect/turf_decal/empire/three_three
+	icon_state = "empire_33"
+
+// белый логитип Империи
+/obj/effect/turf_decal/empire_white
+	icon = 'modular_mankind/_storage_icons/icons/structures/logo/Empire.dmi'
+	name = "empire_white"
+	icon_state = "Empire_white_22"
+	alpha = 170
+
+/obj/effect/turf_decal/empire_white/one_one
+	icon_state = "empire_white_12"
+
+/obj/effect/turf_decal/empire_white/one_two
+	icon_state = "empire_white_12"
+
+/obj/effect/turf_decal/empire_white/one_hree
+	icon_state = "empire_white_12"
+
+/obj/effect/turf_decal/empire_white/two_one
+	icon_state = "empire_white_21"
+
+/obj/effect/turf_decal/empire_white/two_two
+	icon_state = "empire_white_22"
+
+/obj/effect/turf_decal/empire_white/two_three
+	icon_state = "empire_white_23"
+
+/obj/effect/turf_decal/empire_white/three_one
+	icon_state = "empire_white_31"
+
+/obj/effect/turf_decal/empire_white/three_two
+	icon_state = "empire_white_32"
+
+/obj/effect/turf_decal/empire_white/three_three
+	icon_state = "empire_white_33"
+
+// старый логитип Империи
+/obj/effect/turf_decal/old_empire
+	icon = 'modular_mankind/_storage_icons/icons/structures/logo/Empire.dmi'
+	name = "old_empire"
+	icon_state = "old_empire_22"
+	alpha = 170
+
+/obj/effect/turf_decal/old_empire/one_two
+	icon_state = "old_empire_12"
+
+/obj/effect/turf_decal/old_empire/two_one
+
+	icon_state = "old_empire_21"
+
+/obj/effect/turf_decal/old_empire/two_two
+	icon_state = "old_empire_22"
+
+/obj/effect/turf_decal/old_empire/two_three
+	icon_state = "old_empire_23"
+
+/obj/effect/turf_decal/old_empire/three_one
+	icon_state = "old_empire_31"
+
+/obj/effect/turf_decal/old_empire/three_two
+	icon_state = "old_empire_32"
+
+/obj/effect/turf_decal/old_empire/three_three
+	icon_state = "old_empire_33"
+
+// белый логитип Империи
+/obj/effect/turf_decal/old_empire_white
+	icon = 'modular_mankind/_storage_icons/icons/structures/logo/Empire.dmi'
+	name = "old_empire_white"
+	icon_state = "old_empire_white_22"
+	alpha = 170
+
+/obj/effect/turf_decal/old_empire_white/one_one
+	icon_state = "old_empire_white_12"
+
+/obj/effect/turf_decal/old_empire_white/one_two
+	icon_state = "old_empire_white_12"
+
+/obj/effect/turf_decal/old_empire_white/one_hree
+	icon_state = "old_empire_white_12"
+
+/obj/effect/turf_decal/old_empire_white/two_one
+	icon_state = "old_empire_white_21"
+
+/obj/effect/turf_decal/old_empire_white/two_two
+	icon_state = "old_empire_white_22"
+
+/obj/effect/turf_decal/old_empire_white/two_three
+	icon_state = "old_empire_white_23"
+
+/obj/effect/turf_decal/old_empire_white/three_one
+	icon_state = "old_empire_white_31"
+
+/obj/effect/turf_decal/old_empire_white/three_two
+	icon_state = "old_empire_white_32"
+
+/obj/effect/turf_decal/old_empire_white/three_three
+	icon_state = "old_empire_white_33"
