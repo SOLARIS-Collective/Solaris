@@ -350,12 +350,8 @@
 
 	// [MANKIND-EDIT] - MANKIND_FIXES - try/catch, чтобы loading гарантированно сбрасывался даже при
 	// исключении внутри генерации. Иначе планета навсегда оставалась в состоянии "being scanned".
-	// [MANKIND-ADD] - MANKIND_PLANET_PREGEN - Сначала пробуем загрузить пред-сгенерированную карту планеты.
 	try
-		var/list/dynamic_encounter_values = SSmapping.load_pregen_planet(src)
-		if(!length(dynamic_encounter_values))
-			dynamic_encounter_values = current_overmap.spawn_dynamic_encounter(src, selected_ruin)
-		// [/MANKIND-ADD]
+		var/list/dynamic_encounter_values = current_overmap.spawn_dynamic_encounter(src, selected_ruin)
 		if(!length(dynamic_encounter_values))
 			. = FALSE
 		else
