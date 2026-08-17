@@ -228,6 +228,7 @@ GLOBAL_PROTECT(admin_verbs_debug)
 	/client/proc/spawn_random_custom_pet,
 	/client/proc/check_planet_load_status, /* PENTEST EDIT Check why a planet/virtual z-level is still loaded */
 	/client/proc/force_delete_planet, /* PENTEST EDIT Force delete a planet/virtual z-level */
+	/client/proc/planet_pregen, /* MANKIND-ADD Pre-generate planet surface maps into .dmm files */
 	)
 GLOBAL_LIST_INIT(admin_verbs_possess, list(/proc/possess, /proc/release))
 GLOBAL_PROTECT(admin_verbs_possess)

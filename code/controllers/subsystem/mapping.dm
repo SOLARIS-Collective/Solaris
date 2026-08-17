@@ -16,6 +16,8 @@ SUBSYSTEM_DEF(mapping)
 	var/list/ruin_types_probabilities = list()
 	var/list/ruins_templates = list()
 	var/list/planet_types = list()
+	/// MANKIND-ADD - planet type path (string) -> list of /datum/map_template/planet for pre-generated planets
+	var/list/planet_pregen_templates = list()
 	var/list/mission_pois = list()
 
 	var/list/ship_purchase_list
@@ -147,6 +149,7 @@ SUBSYSTEM_DEF(mapping)
 	load_ship_templates()
 	preloadShelterTemplates()
 	preloadOutpostTemplates()
+	preloadPlanetPregenTemplates() // MANKIND-ADD - pre-generated planet maps
 
 /datum/controller/subsystem/mapping/proc/preloadRuinTemplates()
 	for(var/datum/planet_type/type as anything in subtypesof(/datum/planet_type))
