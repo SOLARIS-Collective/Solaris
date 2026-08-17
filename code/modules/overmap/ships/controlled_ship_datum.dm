@@ -84,6 +84,13 @@
 	var/omni_arpa = FALSE
 	// [/MANKIND-ADD]
 
+	// [MANKIND-ADD] - OPTIMIZE_ARPA_CACHE - Кэш данных ARPA для хелм-консоли.
+	/// Результат сканирования ARPA, обновляется раз в ARPA_REFRESH_INTERVAL тиков.
+	var/list/arpa_cache = list()
+	/// Тик последнего обновления arpa_cache.
+	var/last_arpa_refresh = 0
+	// [/MANKIND-ADD]
+
 	/// Short memo of the ship shown to new joins
 	var/memo = null
 	///Assoc list of remaining open job slots (job = remaining slots)
@@ -248,6 +255,43 @@
 	// A manual label is a personal note for the observer; it persists until overwritten.
 	var/label = known_ships[WEAKREF(target)]?["label"]
 	return list("name" = label ? label : "Unknown Ship", "known" = FALSE)
+
+// [MANKIND-ADD] - OPTIMIZE_ARPA_CACHE - Интервал обновления кэша ARPA в тиках (10 = 1 секунда).
+// Определён здесь, т.к. используется в get_arpa_data(), а controlled_ship_datum.dm включается раньше ship_datum.dm.
+#define ARPA_REFRESH_INTERVAL 10
+// [/MANKIND-ADD]
+
+// [MANKIND-ADD] - OPTIMIZE_ARPA_CACHE - Кэширование данных ARPA для хелм-консоли.
+/**
+ * Возвращает данные ARPA (список кораблей в радиусе сенсоров с cpa/tcpa/brg).
+ * Результат кэшируется на ARPA_REFRESH_INTERVAL тиков, чтобы не гонять сканирование
+ * и тригонометрию на каждое обновление UI каждой открытой хелм-консоли.
+ * Заодно это означает, что физика столкновений (calculate_cpa в non-info режиме)
+ * считается один раз за интервал, а не на каждый запрос tgui.
+ */
+/datum/overmap/ship/controlled/proc/get_arpa_data()
+	if(last_arpa_refresh && (world.time - last_arpa_refresh < ARPA_REFRESH_INTERVAL) && length(arpa_cache))
+		return arpa_cache
+	last_arpa_refresh = world.time
+	var/list/cached = list()
+	var/list/arpobjects = check_proximity()
+	for(var/datum/overmap/ship/controlled/object as anything in arpobjects)
+		if(!istype(object, /datum/overmap/ship/controlled))
+			continue
+		var/list/cpa_list = calculate_cpa(src, object, TRUE)
+		var/list/known_data = get_known_ship_name(object)
+		cached += list(list(
+			name = known_data["name"],
+			known = known_data["known"],
+			scannable = TRUE,
+			ref = REF(object),
+			brg = cpa_list["brg"],
+			cpa = cpa_list["cpa"],
+			tcpa = cpa_list["tcpa"]
+		))
+	src.arpa_cache = cached
+	return cached
+// [/MANKIND-ADD]
 
 // [MANKIND-ADD] - HIDE_SHIP_META - Единый способ показать имя корабля: свои видят настоящее, чужие — обезличенное
 /// Returns the ship name as seen by [user]. Crew members (owner candidates) see the real name, everyone else sees "Unknown Ship".

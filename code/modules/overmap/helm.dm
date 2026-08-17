@@ -199,27 +199,8 @@
 
 	.["calibrating"] = calibrating
 	// [MANKIND-ADD] - MANKIND_OVERMAP_ARPA - Это вагабонд насрал
-	.["arpa_ships"] = list()
-	var/list/arpobjects = current_ship.check_proximity()
-	var/arpdequeue_pointer = 0
-	while (arpdequeue_pointer++ < arpobjects.len)
-		var/datum/overmap/ship/controlled/object = arpobjects[arpdequeue_pointer]
-		if(!istype(object, /datum/overmap/ship/controlled)) //Not an overmap object, ignore this
-			continue
-
-		var/list/cpa_list = calculate_cpa(current_ship, object, TRUE)
-		var/list/known_data = current_ship.get_known_ship_name(object)
-		var/list/other_data = list(
-			name = known_data["name"],
-			known = known_data["known"],
-			scannable = istype(object, /datum/overmap/ship/controlled),
-			ref = REF(object),
-			brg = cpa_list["brg"],
-			cpa = cpa_list["cpa"],
-			tcpa = cpa_list["tcpa"]
-		)
-		.["arpa_ships"] += list(other_data)
-// [/MANKIND-ADD]
+	.["arpa_ships"] = current_ship.get_arpa_data()
+	// [/MANKIND-ADD]
 	.["canRename"] = COOLDOWN_FINISHED(current_ship, rename_cooldown)
 	.["otherInfo"] = list()
 	var/list/objects = current_ship.get_nearby_overmap_objects(empty_if_src_docked = FALSE)
