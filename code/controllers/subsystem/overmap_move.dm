@@ -2,6 +2,10 @@ TIMER_SUBSYSTEM_DEF(overmap_movement)
 	name = "Overmap Movement"
 	priority = FIRE_PRIORITY_OVERMAP_MOVEMENT
 
+// [MANKIND-ADD] - OPTIMIZE_SHIP_COLLISION_DEBRIS - Кулдаун осколков при столкновении шипов в тиках (30 = 3 секунды)
+#define SHIP_COLLISION_DEBRIS_COOLDOWN 30
+// [/MANKIND-ADD]
+
 // [MANKIND-ADD] - MANKIND_OVERMAP_COLLISION - Это вагабонд насрал
 
 /proc/get_relative_motion(var/A, var/B)
@@ -24,6 +28,7 @@ TIMER_SUBSYSTEM_DEF(overmap_movement)
 /datum/overmap/ship/controlled
 	var/last_proximity_alert = 0
 	var/last_collision_alert = 0
+	var/last_collision_debris = 0
 
 /proc/calculate_cpa(datum/overmap/ship/controlled/A, datum/overmap/ship/controlled/B, info = FALSE)
 	var/cpa = -1
@@ -91,8 +96,15 @@ TIMER_SUBSYSTEM_DEF(overmap_movement)
 					B.adjust_speed(-B.speed_x/2 + alt_opposite_x, -B.speed_y/2 + alt_opposite_y)
 				else
 					B.vector_to_add = list("x" = -B.speed_x/2 + alt_opposite_x, "y" = -B.speed_y/2 + alt_opposite_y)
-				spawn_meteors_alt(round(60 SECONDS * MAGNITUDE(relative_motion_x, relative_motion_y))+1, list(/obj/effect/meteor/invisible), A.shuttle_port.get_virtual_level(), A.shuttle_port, angle2dir_cardinal(SIMPLIFY_DEGREES((bearing-A.bow_heading+90))))
-				spawn_meteors_alt(round(60 SECONDS * MAGNITUDE(relative_motion_x, relative_motion_y))+1, list(/obj/effect/meteor/invisible), B.shuttle_port.get_virtual_level(), B.shuttle_port, angle2dir_cardinal(SIMPLIFY_DEGREES((bearing-A.bow_heading+270))))
+				// [MANKIND-EDIT] - OPTIMIZE_SHIP_COLLISION_DEBRIS - Кулдаун на спавн осколков.
+				// Раньше spawn_meteors_alt вызывался каждый раз без ограничений, и при долгом
+				// перекрытии кораблей осколки спавнились каждую секунду на каждый хелм-запрос.
+				if((world.time - A.last_collision_debris >= SHIP_COLLISION_DEBRIS_COOLDOWN) && (world.time - B.last_collision_debris >= SHIP_COLLISION_DEBRIS_COOLDOWN))
+					A.last_collision_debris = world.time
+					B.last_collision_debris = world.time
+					spawn_meteors_alt(round(60 SECONDS * MAGNITUDE(relative_motion_x, relative_motion_y))+1, list(/obj/effect/meteor/invisible), A.shuttle_port.get_virtual_level(), A.shuttle_port, angle2dir_cardinal(SIMPLIFY_DEGREES((bearing-A.bow_heading+90))))
+					spawn_meteors_alt(round(60 SECONDS * MAGNITUDE(relative_motion_x, relative_motion_y))+1, list(/obj/effect/meteor/invisible), B.shuttle_port.get_virtual_level(), B.shuttle_port, angle2dir_cardinal(SIMPLIFY_DEGREES((bearing-A.bow_heading+270))))
+				// [/MANKIND-EDIT]
 
 	return list("cpa" = round(cpa), "tcpa" = round(tcpa/10), "brg" = round(SIMPLIFY_DEGREES(bearing-A.bow_heading)))
 
