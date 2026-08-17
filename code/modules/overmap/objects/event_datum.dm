@@ -21,6 +21,8 @@
 	var/mountain_height_override
 	// [MANKIND-ADD] - MANKIND_OVERMAP_EVENT_LAYER - Если TRUE, токен ивента получает рандомный слой (3, 4 или 5), чтобы корабль рендерился поверх или под ивентом
 	var/randomize_token_layer = FALSE
+	/// Если задан (не 0), токен ивента всегда получает этот слой вместо рандома. 3/4 - корабль поверх ивента, 5 - корабль под ивентом
+	var/fixed_token_layer = 0
 	// [/MANKIND-ADD]
 
 /datum/overmap/event/Initialize(position, datum/overmap_star_system/system_spawned_in, set_lifespan,...)
@@ -32,6 +34,8 @@
 	// [MANKIND-ADD] - MANKIND_OVERMAP_EVENT_LAYER - Рандомный слой токена: 3/4 - корабль поверх ивента, 5 - корабль под ивентом
 	if(randomize_token_layer)
 		token.layer = pick(3, 4, 5)
+	else if(fixed_token_layer)
+		token.layer = fixed_token_layer
 	// [/MANKIND-ADD]
 
 	if(lifespan || set_lifespan)
@@ -419,9 +423,11 @@
 	// base_icon_state = "nebula"	// ORIGINAL
 	token_icon_state = "nebula_1"
 	base_icon_state = "nebula_1"
-	// [MANKIND-ADD] - MANKIND_OVERMAP_EVENT_LAYER - Рандомный слой токена ивента (корабль поверх или под ивентом)
-	randomize_token_layer = TRUE
-	// [/MANKIND-ADD]
+	// [MANKIND-EDIT] - MANKIND_OVERMAP_EVENT_LAYER - Туманность всегда рендерится поверх корабля (корабль всегда на нижнем слое), без рандома
+	// randomize_token_layer = TRUE	// ORIGINAL
+	randomize_token_layer = FALSE
+	fixed_token_layer = 5
+	// [/MANKIND-EDIT]
 	// [/MANKIND-EDIT]
 	// [MANKIND-REMOVE] - MANKIND_OVERMAP_ICON - спрайты некросивые получаюца
 	// default_color = "#c053f3"
