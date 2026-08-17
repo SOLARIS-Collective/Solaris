@@ -332,7 +332,8 @@
 			new_label = trim(new_label)
 			if(!length(new_label))
 				return
-			if(!reject_bad_text(new_label, MAX_CHARTER_LEN) || CHAT_FILTER_CHECK(new_label))
+			// reject_bad_text_rus разрешает кириллицу (личные заметки-метки).
+			if(!reject_bad_text_rus(new_label, MAX_CHARTER_LEN) || CHAT_FILTER_CHECK(new_label))
 				say("Error: Label rejected by system.")
 				return
 			// Метка — личная заметка наблюдателя, не требует нахождения в одном тайле.
@@ -353,7 +354,8 @@
 			new_label = trim(new_label)
 			if(!length(new_label))
 				return
-			if(!reject_bad_text(new_label, MAX_CHARTER_LEN) || CHAT_FILTER_CHECK(new_label))
+			// reject_bad_text_rus разрешает кириллицу (личные заметки-метки).
+			if(!reject_bad_text_rus(new_label, MAX_CHARTER_LEN) || CHAT_FILTER_CHECK(new_label))
 				say("Error: Label rejected by system.")
 				return
 			current_ship.set_ship_label(to_label, new_label)
