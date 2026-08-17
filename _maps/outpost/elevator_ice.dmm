@@ -18,19 +18,17 @@
 "e" = (
 /obj/structure/elevator_platform,
 /obj/structure/crate_shelf,
+/obj/machinery/status_display/elevator{
+	pixel_x = -32
+	},
+/obj/effect/spawner/random/entertainment/plushie_mankind_all,
 /turf/template_noop,
 /area/template_noop)
 "r" = (
 /obj/structure/elevator_platform,
 /obj/machinery/elevator_floor_button{
-	pixel_y = 25
-	},
-/turf/template_noop,
-/area/template_noop)
-"v" = (
-/obj/structure/elevator_platform,
-/obj/machinery/status_display/elevator{
-	pixel_y = 32
+	dir = 4;
+	pixel_x = -25
 	},
 /turf/template_noop,
 /area/template_noop)
@@ -54,7 +52,7 @@ A
 e
 "}
 (2,1,1) = {"
-v
+A
 A
 A
 A
