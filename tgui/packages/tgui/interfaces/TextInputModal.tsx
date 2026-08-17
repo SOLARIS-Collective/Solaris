@@ -58,7 +58,7 @@ export const TextInputModal = (props, context) => {
     (message.length && large_buttons ? 5 : 0);
 
   return (
-    <Window title={title} width={600} height={400} resizable={false}>
+    <Window title={title} width={400} height={windowHeight} resizable={false}>
       {timeout && <Loader value={timeout} />}
       <Window.Content
         onKeyDown={(event) => {
