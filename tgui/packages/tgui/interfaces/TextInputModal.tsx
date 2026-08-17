@@ -64,10 +64,10 @@ export const TextInputModal = (props, context) => {
         onKeyDown={(event) => {
           const keyCode = window.event ? event.which : event.keyCode;
           if (keyCode === KEY_ENTER && (!visualMultiline || !event.shiftKey)) {
-            act('Применить', { entry: input });
+            act('submit', { entry: input });
           }
           if (keyCode === KEY_ESCAPE) {
-            act('Отменить');
+            act('cancel');
           }
         }}
       >
@@ -106,13 +106,13 @@ const InputArea = (props, context) => {
       autoSelect
       height={multiline || input.length >= 30 ? '100%' : '1.8rem'}
       maxLength={max_length}
-      onEscape={() => act('Отменить')}
+      onEscape={() => act('cancel')}
       onEnter={(event) => {
         if (visualMultiline && event.shiftKey) {
           return;
         }
         event.preventDefault();
-        act('Применить', { entry: input });
+        act('submit', { entry: input });
       }}
       onInput={(_, value) => onType(value)}
       placeholder="Напечатайте что-нибудь..."
