@@ -18,11 +18,29 @@
 		QUEUE_SMOOTH(gen_turf)
 		QUEUE_SMOOTH_NEIGHBORS(gen_turf)
 
-		for(var/turf/open/space/adj in RANGE_TURFS(1, gen_turf))
-			adj.check_starlight(gen_turf)
-
 		// CHECK_TICK here is fine -- we are assuming that the turfs we're generating are staying relatively constant
 		CHECK_TICK
+
+	// [MANKIND-EDIT] - MANKIND_OPT_PLANETGEN - check_starlight нужен только турфам на рамке
+	// блока: только они могут граничить с космосом. Раньше RANGE_TURFS(1) гонялся по каждому турфу.
+	var/min_x = INFINITY
+	var/min_y = INFINITY
+	var/max_x = -INFINITY
+	var/max_y = -INFINITY
+	for(var/turf/gen_turf as anything in turfs)
+		if(gen_turf.x < min_x)
+			min_x = gen_turf.x
+		if(gen_turf.x > max_x)
+			max_x = gen_turf.x
+		if(gen_turf.y < min_y)
+			min_y = gen_turf.y
+		if(gen_turf.y > max_y)
+			max_y = gen_turf.y
+	for(var/turf/gen_turf as anything in turfs)
+		if(gen_turf.x != min_x && gen_turf.x != max_x && gen_turf.y != min_y && gen_turf.y != max_y)
+			continue
+		for(var/turf/open/space/adj in RANGE_TURFS(1, gen_turf))
+			adj.check_starlight(gen_turf)
 
 	message = "MAPGEN: MAPGEN REF [REF(src)] ([type]) HAS FINISHED POST GEN IN [(REALTIMEOFDAY - start_time)/10]s"
 	log_shuttle(message)

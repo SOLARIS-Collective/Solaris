@@ -832,9 +832,19 @@ SUBSYSTEM_DEF(overmap)
 
 	mapgen.pre_generation(dynamic_datum)
 
+	// [MANKIND-EDIT] - MANKIND_OPT_PLANETGEN - блок турфов считаем один раз и переиспользуем
+	// во всех фазах (раньше get_unreserved_block() дёргался 3 раза, пересобирая список ~40k турфов).
+	var/list/unreserved_block = vlevel.get_unreserved_block()
+
+	// [MANKIND-EDIT] - MANKIND_OPT_PLANETGEN - раскладку биомов считаем заранее отдельной фазой:
+	// hot-цикл материализации остаётся чистым DM без rust-g/rand на каждый турф.
+	if(istype(mapgen, /datum/map_generator/planet_generator))
+		var/datum/map_generator/planet_generator/planet_mapgen = mapgen
+		planet_mapgen.precompute_biomes(unreserved_block)
+
 	// the generataed turfs start unpopulated (i.e. no flora / fauna / etc.). we add that AFTER placing the ruin, relying on the ruin's areas to determine what gets populated
 	log_shuttle("SSOVERMAP: START_DYN_E: RUNNING MAPGEN REF [REF(mapgen)] FOR VLEV [vlevel.id] OF TYPE [mapgen.type]")
-	mapgen.generate_turfs(vlevel.get_unreserved_block())
+	mapgen.generate_turfs(unreserved_block)
 	var/list/ruin_turfs = list()
 	var/list/ruin_templates = list()
 	if(used_ruin)
@@ -857,10 +867,10 @@ SUBSYSTEM_DEF(overmap)
 	// and ALSO prevents the ruin from being spaced when it spawns in
 	// WITHOUT needing to fill the reservation with a bunch of dummy turfs
 	if(dynamic_datum.populate_turfs)
-		mapgen.populate_turfs(vlevel.get_unreserved_block())
+		mapgen.populate_turfs(unreserved_block)
 
 	///post generation things, such as greebles or smoothening out terrain generation.
-	mapgen.post_generation(vlevel.get_unreserved_block())
+	mapgen.post_generation(unreserved_block)
 
 	if(dynamic_datum.weather_controller_type)
 		new dynamic_datum.weather_controller_type(mapzone)
