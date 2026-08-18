@@ -46,8 +46,8 @@ RUINTYPE_WATER
 RUINTYPE_YELLOW
 */
 
-#ifndef MODPACK_CELADON_RUINS
-#define MODPACK_CELADON_RUINS
+#ifndef MODPACK_MANKIND_RUINS
+#define MODPACK_MANKIND_RUINS
 
 #include "anima.dm"
 #include "asteroid.dm"
