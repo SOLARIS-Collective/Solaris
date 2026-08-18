@@ -225,6 +225,14 @@
 		WRITE_LOG(GLOB.world_mankind_admin_log, "[text]")
 // [/MANKIND-ADD]
 
+// [SOLARIS-ADD] - Логирование генерации/загрузки планет.
+// Пишет в planets.txt (с таймстампом) и, если admin_visible = TRUE, в чат админов.
+/proc/log_planet(text, admin_visible = FALSE)
+	WRITE_LOG(GLOB.world_planets_log, "[time_stamp()] [text]")
+	if(admin_visible)
+		message_admins(text)
+// [/SOLARIS-ADD]
+
 /* Log to both DD and the logfile. */
 /proc/log_world(text)
 #ifdef USE_CUSTOM_ERROR_HANDLER
