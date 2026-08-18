@@ -411,7 +411,7 @@
 
 //pew pew
 /obj/item/mine/directional/mine_effect(mob/victim)
-	if(casingtype && target_turf && victim ?(src.loc != victim.loc) : victim == null)
+	if(casingtype && target_turf && (victim ? (src.loc != victim.loc) : victim == null))
 		var/obj/item/ammo_casing/casing = new casingtype(src)
 		casing.fire_casing(target_turf, null, null, null, 30, ran_zone(), 60, src)
 	. = ..()
@@ -676,7 +676,7 @@
 	. = ..()
 	//if you somehow explode it while on the same tile, you win bonus shrapnel
 	//also spews stuff everywhere if it's triggered while not set up
-	if(!target_turf || victim ? (victim.loc == src.loc) : victim == null)
+	if(!target_turf || (victim ? (victim.loc == src.loc) : victim == null))
 		explosion(src, range_devastation, range_heavy, range_light, range_flash, 1, 0, range_flame, 0, 1)
 		var/casingammo = casingtype.projectile_type
 		var/shredammo = shredtype.projectile_type
