@@ -239,15 +239,16 @@ distance_multiplier - Can be used to multiply the distance at which the sound is
 		src.mob.send_sound_scaled(sound(SSticker.login_music, repeat = 0, wait = 0, volume = vol, channel = CHANNEL_LOBBYMUSIC), FS_LOBBY, CHANNEL_LOBBYMUSIC, vol)
 		// [/MANKIND-EDIT]
 // [MANKIND-ADD] - MUSIC_MANKIND
-		if(SSticker.login_music_name)
-			var/music_name = SSticker.login_music_name
+		var/music_name = "Untitled"
+		if(findtext(SSticker.login_music, "title_music/sounds"))
+			music_name = SSticker.login_music
 			var/slash_position = findlasttext(music_name, "/")
 			if(slash_position)
 				music_name = copytext(music_name, slash_position + 1)
 			var/dot_position = findlasttext(music_name, ".")
 			if(dot_position)
 				music_name = copytext(music_name, 1, dot_position)
-			to_chat(src, span_redteamradio("<B>Музыка в лобби: [music_name]</B>"))
+		to_chat(src, span_redteamradio("<B>Музыка в лобби: [music_name]</B>"))
 // [/MANKIND-ADD]
 
 /proc/get_rand_frequency()
