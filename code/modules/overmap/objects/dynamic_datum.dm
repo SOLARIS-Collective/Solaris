@@ -348,6 +348,11 @@
 	loading = TRUE
 	log_shuttle("[src] [REF(src)] LEVEL_INIT")
 
+	// [SOLARIS-ADD] - Логирование времени загрузки уровня.
+	var/load_start_time = REALTIMEOFDAY
+	log_planet("PLANET: СТАРТ загрузки уровня \"[name]\" ([planet?.name || "no planet"]) по запросу стыковки", FALSE)
+	// [/SOLARIS-ADD]
+
 	// [MANKIND-EDIT] - MANKIND_FIXES - try/catch, чтобы loading гарантированно сбрасывался даже при
 	// исключении внутри генерации. Иначе планета навсегда оставалась в состоянии "being scanned".
 	try
@@ -375,6 +380,10 @@
 		stack_trace("load_level for [src] failed: [error]")
 		. = FALSE
 	// [/MANKIND-EDIT]
+
+	// [SOLARIS-ADD] - Логирование времени загрузки уровня.
+	log_planet("PLANET: ФИНИШ загрузки уровня \"[name]\" ([planet?.name || "no planet"]). Итог: [. ? "успех" : "ПРОВАЛ"] за [(REALTIMEOFDAY - load_start_time)/10]s", TRUE)
+	// [/SOLARIS-ADD]
 
 	loading = FALSE
 	return .
