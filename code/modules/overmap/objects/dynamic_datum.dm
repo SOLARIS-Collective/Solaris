@@ -22,6 +22,9 @@
 	var/can_preserve = TRUE
 	///What kind of planet the level is, if it's a planet at all.
 	var/datum/planet_type/planet
+	// [MANKIND-ADD] - MANKIND_OPT_PREGEN_SEEDS - бандл пред-генерации по сидам для этого уровня
+	var/datum/planet_pregen_bundle/pregen_bundle
+	// [/MANKIND-ADD]
 	///Planet's flavor name, if it is a planet.
 	var/planet_name
 	///List of probabilities for each type of planet.
@@ -201,6 +204,15 @@
 		planet = SSmapping.planet_types[force_encounter ? force_encounter : pick_weight_allow_zero(probabilities)]
 
 	set_planet_type(planet)
+
+	// [MANKIND-ADD] - MANKIND_OPT_PREGEN_SEEDS - если для типа планеты есть заготовленный
+	// бандл (сид + параметры), начинаем считать раскладку биомов заранее, пока игрок ещё
+	// летит к планете. К стыковке сетка будет готова, и материализация пройдёт без rust-g.
+	var/planet_type_path = ispath(planet) ? planet : planet?.type
+	pregen_bundle = SSmapping.get_pregen_bundle(planet_type_path)
+	if(pregen_bundle && !pregen_bundle.grid)
+		INVOKE_ASYNC(pregen_bundle, TYPE_PROC_REF(/datum/planet_pregen_bundle, precompute_layout))
+	// [/MANKIND-ADD]
 
 	// use the ruin type in template if it exists, or pick from ruin list if IT exists; otherwise null
 	selected_ruin = template || (ruin_type ? pick_weight_allow_zero(SSmapping.ruin_types_probabilities[ruin_type]) : null)

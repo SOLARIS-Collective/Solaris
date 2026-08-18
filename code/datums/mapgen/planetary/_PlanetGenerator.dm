@@ -58,6 +58,18 @@
 	// a turf's biome for populating it without having to recalculate (which is impossible, due to drift)
 	var/list/turf_biome_cache
 
+	// [MANKIND-ADD] - MANKIND_OPT_PREGEN_SEEDS - Пред-посчитанная раскладка биомов.
+	// Плоский список индексов (y-1)*grid_width+x по относительным координатам 1..grid_width x 1..grid_height.
+	// Считается отдельной фазой (можно заранее, до стыковки), чтобы материализация турфов
+	// не дёргала rust-g и rand() на каждый тайл.
+	var/list/precomputed_grid
+	/// Смещение сетки (левый нижний угол блока генерации) для индексации по турфу
+	var/grid_offset_x = 0
+	var/grid_offset_y = 0
+	/// Ширина сетки в клетках
+	var/grid_width = 0
+	// [/MANKIND-ADD]
+
 
 /datum/map_generator/planet_generator/New(...)
 	// initialize the perlin seeds
@@ -108,10 +120,35 @@
 	if(turf_biome_cache[a_turf])
 		return turf_biome_cache[a_turf]
 
+	// [MANKIND-ADD] - MANKIND_OPT_PREGEN_SEEDS - если раскладка пред-посчитана, читаем из сетки
+	if(length(precomputed_grid))
+		var/grid_x = a_turf.x - grid_offset_x + 1
+		var/grid_y = a_turf.y - grid_offset_y + 1
+		if(grid_x >= 1 && grid_x <= grid_width && grid_y >= 1 && grid_y <= length(precomputed_grid) / grid_width)
+			var/datum/biome/grid_biome = precomputed_grid[(grid_y - 1) * grid_width + grid_x]
+			turf_biome_cache[a_turf] = grid_biome
+			return grid_biome
+	// [/MANKIND-ADD]
+
+	turf_biome_cache[a_turf] = compute_biome_at(a_turf.x, a_turf.y)
+	return turf_biome_cache[a_turf]
+
+/// Вычисляет биом для координаты (x, y).
+/// * deterministic_drift - TRUE для пред-посчитанной сетки: дрифт границ считается хэшем
+/// координат (детерминированно), чтобы сетка воспроизводилась из сида. Иначе rand() как раньше.
+/datum/map_generator/planet_generator/proc/compute_biome_at(x, y, deterministic_drift = FALSE)
 	// random offset coordinates to fuzz biome borders.
 	// not actually huge on this for several reasons but it works alright to cover up small perlin artifacts
-	var/drift_x = (a_turf.x + rand(-BIOME_RANDOM_SQUARE_DRIFT, BIOME_RANDOM_SQUARE_DRIFT)) / perlin_zoom
-	var/drift_y = (a_turf.y + rand(-BIOME_RANDOM_SQUARE_DRIFT, BIOME_RANDOM_SQUARE_DRIFT)) / perlin_zoom
+	var/drift_x
+	var/drift_y
+	if(deterministic_drift)
+		var/hash_1 = (x * 73856093) ^ (y * 19349663)
+		var/hash_2 = (x * 83492791) ^ (y * 1299709)
+		drift_x = (x + (hash_1 % 3) - 1) / perlin_zoom
+		drift_y = (y + (hash_2 % 3) - 1) / perlin_zoom
+	else
+		drift_x = (x + rand(-BIOME_RANDOM_SQUARE_DRIFT, BIOME_RANDOM_SQUARE_DRIFT)) / perlin_zoom
+		drift_y = (y + rand(-BIOME_RANDOM_SQUARE_DRIFT, BIOME_RANDOM_SQUARE_DRIFT)) / perlin_zoom
 
 	var/heat_level
 	var/humidity_level
@@ -165,8 +202,29 @@
 
 		sel_biome = SSmapping.biomes[cave_biome_table[heat_level][humidity_level]]
 
-	turf_biome_cache[a_turf] = sel_biome
 	return sel_biome
+
+/// Считает раскладку биомов для блока width x height (относительные координаты 1..w, 1..h)
+/// без обращения к турфам. Возвращает плоский список индексов (y-1)*width+x.
+/// Тяжёлая часть (rust-g шум) выносится сюда - эту фазу можно запускать заранее.
+/datum/map_generator/planet_generator/proc/precompute_biome_grid(width, height)
+	precomputed_grid = new /list(width * height)
+	var/start_time = REALTIMEOFDAY
+	for(var/y in 1 to height)
+		for(var/x in 1 to width)
+			precomputed_grid[(y - 1) * width + x] = compute_biome_at(x, y, TRUE)
+		CHECK_TICK
+	var/message = "MAPGEN: MAPGEN REF [REF(src)] ([type]) PRECOMPUTED GRID [width]x[height] IN [(REALTIMEOFDAY - start_time)/10]s"
+	log_shuttle(message)
+	log_world(message)
+	return precomputed_grid
+
+/// Привязывает пред-посчитанную сетку к блоку генерации по абсолютным координатам.
+/datum/map_generator/planet_generator/proc/set_precomputed_grid(list/grid, offset_x, offset_y, new_grid_width)
+	precomputed_grid = grid
+	grid_offset_x = offset_x
+	grid_offset_y = offset_y
+	grid_width = new_grid_width
 
 #undef BIOME_RANDOM_SQUARE_DRIFT
 
