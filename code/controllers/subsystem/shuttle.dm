@@ -519,7 +519,12 @@ SUBSYSTEM_DEF(shuttle)
 					if(!selected_system)
 						return //if selected_system didnt get selected, we nope out, this is very bad
 				if(!new_ship)
+					// [SOLARIS-ADD] - Логирование времени создания корабля через Shuttle Manipulator.
+					var/manip_spawn_start_time = REALTIMEOFDAY
+					log_shuttle("SHUTTLE MANIPULATOR: СТАРТ создания корабля \"[S]\" админом [key_name(user)]")
 					new_ship = new(ship_loc, selected_system, S)
+					log_shuttle("SHUTTLE MANIPULATOR: ФИНИШ создания корабля \"[S]\" админом [key_name(user)]. Итог: [new_ship?.shuttle_port ? "успех" : "ПРОВАЛ"] за [(REALTIMEOFDAY - manip_spawn_start_time) / 10]s")
+					// [/SOLARIS-ADD]
 				if(new_ship?.shuttle_port)
 					user.forceMove(new_ship.get_jump_to_turf())
 					message_admins("[key_name_admin(user)] loaded [new_ship] ([S]) with the shuttle manipulator.")

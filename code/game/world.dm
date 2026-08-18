@@ -147,6 +147,7 @@ GLOBAL_VAR(restart_counter)
 	GLOB.world_shuttle_log = "[GLOB.log_directory]/shuttle.log"
 	GLOB.world_mankind_economic_log = "[GLOB.log_directory]/world_mankind_economic.log" // [MANKIND-ADD] - MANKIND_COMPONENTS_LOGS
 	GLOB.world_mankind_admin_log = "[GLOB.log_directory]/admin.log" // [MANKIND-ADD] - Добавляем логирование админских действий.
+	GLOB.world_planets_log = "[GLOB.log_directory]/planets.txt" // [SOLARIS-ADD] - Логирование генерации/загрузки планет.
 
 	GLOB.demo_log = "[GLOB.log_directory]/demo.log"
 
@@ -170,6 +171,7 @@ GLOBAL_VAR(restart_counter)
 	start_log(GLOB.world_shuttle_log)
 	start_log(GLOB.world_mankind_economic_log) // [MANKIND-ADD] - MANKIND_COMPONENTS_LOGS
 	start_log(GLOB.world_mankind_admin_log) // [MANKIND-ADD] - Добавляем логирование админских действий.
+	start_log(GLOB.world_planets_log) // [SOLARIS-ADD] - Логирование генерации/загрузки планет.
 
 	var/latest_changelog = file("[global.config.directory]/../html/changelogs/archive/" + time2text(world.timeofday, "YYYY-MM") + ".yml")
 	GLOB.changelog_hash = fexists(latest_changelog) ? md5(latest_changelog) : 0 //for telling if the changelog has changed recently
