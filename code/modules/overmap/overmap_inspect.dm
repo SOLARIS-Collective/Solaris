@@ -55,8 +55,11 @@
 	. = ..()
 	src.focus = focus
 	src.inspector = inspector
-	RegisterSignal(src.focus, COMSIG_QDELETING, PROC_REF(qdel))
-	RegisterSignal(src.inspector, COMSIG_QDELETING, PROC_REF(qdel))
+	RegisterSignal(src.focus, COMSIG_QDELETING, PROC_REF(close))
+	RegisterSignal(src.inspector, COMSIG_QDELETING, PROC_REF(close))
+
+/datum/overmap_inspect/proc/close()
+	qdel(src)
 
 /datum/overmap_inspect/Destroy()
 	UnregisterSignal(focus, COMSIG_QDELETING)
@@ -83,7 +86,9 @@
 	switch(action)
 		if("inspect")
 			var/datum/overmap/token = locate(params["ref"])
-			if(istype(token, /datum/overmap))
+			if(istype(token, /datum/overmap) && token != focus)
+				UnregisterSignal(focus, COMSIG_QDELETING)
+				RegisterSignal(token, COMSIG_QDELETING, PROC_REF(close))
 				focus = token
 		if("load")
 			if(!check_rights(R_DEBUG))

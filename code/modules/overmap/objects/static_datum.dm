@@ -134,15 +134,26 @@
 	loading = TRUE
 	log_shuttle("[src] [REF(src)] LEVEL_INIT")
 
+	// [SOLARIS-ADD] - Логирование времени загрузки уровня.
+	var/load_start_time = REALTIMEOFDAY
+	log_planet("PLANET: СТАРТ загрузки уровня \"[name]\" по запросу стыковки", FALSE)
+	// [/SOLARIS-ADD]
+
 	// use the ruin type in template if it exists, or pick from ruin list if IT exists; otherwise null
 	var/list/static_encounter_values = current_overmap.spawn_static_encounter(src, map_to_load)
 	if(!length(static_encounter_values))
+		// [SOLARIS-ADD] - Логирование времени загрузки уровня.
+		log_planet("PLANET: ПРОВАЛ загрузки уровня \"[name]\" за [(REALTIMEOFDAY - load_start_time)/10]s", TRUE)
+		// [/SOLARIS-ADD]
 		return FALSE
 
 	mapzone = static_encounter_values[1]
 	reserve_docks = static_encounter_values[2]
 
 	SEND_SIGNAL(src, COMSIG_OVERMAP_LOADED)
+	// [SOLARIS-ADD] - Логирование времени загрузки уровня.
+	log_planet("PLANET: ФИНИШ загрузки уровня \"[name]\". Успех за [(REALTIMEOFDAY - load_start_time)/10]s", TRUE)
+	// [/SOLARIS-ADD]
 	loading = FALSE
 	return TRUE
 

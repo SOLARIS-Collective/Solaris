@@ -1,5 +1,5 @@
-#ifndef MODPACK_CELADON_HUD
-#define MODPACK_CELADON_HUD
+#ifndef MODPACK_MANKIND_HUD
+#define MODPACK_MANKIND_HUD
 
 #include "_hud.dm"
 
