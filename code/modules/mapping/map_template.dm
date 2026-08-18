@@ -47,7 +47,9 @@
 	var/list/obj/machinery/atmospherics/atmos_machines = list()
 	var/list/obj/structure/cable/cables = list()
 	var/list/atom/atoms = list()
-	var/list/area/areas = list()
+	// [MANKIND-EDIT] - MANKIND_OPT_INIT_BOUNDS - обычный список + ассоц. дедуп (без .Keys())
+	var/list/areas = list()
+	var/list/area_seen = list()
 
 	var/list/turfs = block(
 		locate(
@@ -63,7 +65,12 @@
 		)
 	for(var/L in turfs)
 		var/turf/B = L
-		areas |= B.loc
+		// [MANKIND-EDIT] - MANKIND_OPT_INIT_BOUNDS - areas |= B.loc делает линейный поиск
+		// на каждый турф (секунды на полном z). Ассоциативный дедуп O(1); .Keys() в этой
+		// сборке BYOND недоступен, поэтому копим результат сразу.
+		if(!area_seen[B.loc])
+			area_seen[B.loc] = TRUE
+			areas += B.loc
 		for(var/A in B)
 			atoms += A
 			if(istype(A, /obj/structure/cable))
@@ -85,22 +92,31 @@
 	if(!init_atmos)
 		return
 
+	// [MANKIND-EDIT] - MANKIND_OPT_INIT_BOUNDS - air_update_turf() нужен только по рамке
+	// в 1 тайл вокруг шаблона (турфы интерьера получили воздух при загрузке). Раньше
+	// воздух пересчитывался по всему bounds+-2, что на полном z съедало секунды.
 	//calculate all turfs inside the border
 	var/list/template_and_bordering_turfs = block(
 		locate(
-			max(bounds[MAP_MINX]-2, 1),
-			max(bounds[MAP_MINY]-2, 1),
+			max(bounds[MAP_MINX]-1, 1),
+			max(bounds[MAP_MINY]-1, 1),
 			bounds[MAP_MINZ]
 			),
 		locate(
-			min(bounds[MAP_MAXX]+2, world.maxx),
-			min(bounds[MAP_MAXY]+2, world.maxy),
+			min(bounds[MAP_MAXX]+1, world.maxx),
+			min(bounds[MAP_MAXY]+1, world.maxy),
 			bounds[MAP_MAXZ]
 			)
 		)
 	for(var/turf/affected_turf as anything in template_and_bordering_turfs)
 		affected_turf.blocks_air = initial(affected_turf.blocks_air)
 		affected_turf.air_update_turf(TRUE)
+		affected_turf.levelupdate()
+		// placing ruins in after planet generation was causing mis-smooths. maybe there's a better fix? not sure
+		QUEUE_SMOOTH(affected_turf)
+
+	// интерьер шаблона: воздух не трогаем, только levelupdate и сглаживание
+	for(var/turf/affected_turf as anything in turfs)
 		affected_turf.levelupdate()
 		// placing ruins in after planet generation was causing mis-smooths. maybe there's a better fix? not sure
 		QUEUE_SMOOTH(affected_turf)
