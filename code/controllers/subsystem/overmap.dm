@@ -870,9 +870,16 @@ SUBSYSTEM_DEF(overmap)
 			// [/MANKIND-EDIT]
 			vlevel.z_value
 		)
+		// [SOLARIS-ADD] - Логирование времени загрузки руины.
+		var/ruin_start_time = REALTIMEOFDAY
+		log_planet("RUIN: СТАРТ загрузки руины \"[used_ruin.name]\" ([used_ruin.type]) в [COORD(ruin_turf)]", TRUE)
+		// [/SOLARIS-ADD]
 		used_ruin.load(ruin_turf)
 		ruin_turfs[used_ruin.name] = ruin_turf
 		ruin_templates[used_ruin.name] = used_ruin
+		// [SOLARIS-ADD] - Логирование времени загрузки руины.
+		log_planet("RUIN: ФИНИШ загрузки руины \"[used_ruin.name]\" ([used_ruin.type]) за [(REALTIMEOFDAY - ruin_start_time)/10]s", TRUE)
+		// [/SOLARIS-ADD]
 
 	// [SOLARIS-ADD] - Логирование времени генерации планеты.
 	log_planet("PLANET: Загрузка руины [used_ruin ? used_ruin.name : "нет"]: [(REALTIMEOFDAY - phase_start)/10]s")
