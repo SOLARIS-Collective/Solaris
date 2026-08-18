@@ -310,7 +310,14 @@ SUBSYSTEM_DEF(overmap)
 		ship_loc = SSovermap.outposts[1]
 
 	ship_spawning = TRUE
+	// [SOLARIS-ADD] - Логирование времени создания корабля при покупке.
+	var/ship_spawn_start_time = REALTIMEOFDAY
+	var/mob/buyer = usr
+	var/buyer_key = buyer ? key_name(buyer) : "UNKNOWN"
+	log_shuttle("[src] SHIP PURCHASE: СТАРТ создания корабля \"[template]\" игроком [buyer_key]")
 	. = new /datum/overmap/ship/controlled(ship_loc, system_to_spawn_in, template)
+	log_shuttle("[src] SHIP PURCHASE: ФИНИШ создания корабля \"[template]\" игроком [buyer_key]. Итог: [. ? "успех" : "ПРОВАЛ"] за [(REALTIMEOFDAY - ship_spawn_start_time) / 10]s")
+	// [/SOLARIS-ADD]
 	ship_spawning = FALSE
 
 /**
