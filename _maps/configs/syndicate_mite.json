@@ -3,7 +3,7 @@
 	"map_name": "Mite-class Mining Shuttle",
 	"map_short_name": "Mite",
 	"description": "Шаттл класса «Mite» был разработан Gorlex Marauder в результате отчаянной попытки противостоять растущей экспансии TPG в сфере добычи материалов. Однако затея не увенчалась успехом, и переоборудование «Jet Lancer» было прекращено. В настоящий момент сохранившиеся экземпляры пользуются небольшой популярностью у разведывательных групп, поскольку для работы и обслуживания судна требуется не более двух человек.",
-	"map_path": "_maps/_mod_celadon/shuttles/syndicate/syndicate_mite.dmm",
+	"map_path": "_maps/shuttles/syndicate/syndicate_mite.dmm",
 	"enabled": true,
 	"limit": 1,
 	"sensor_range": 4,
