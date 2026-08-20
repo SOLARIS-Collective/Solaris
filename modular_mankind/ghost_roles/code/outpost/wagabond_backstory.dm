@@ -217,6 +217,204 @@ GLOBAL_LIST_INIT(wagabond_goal_entries, list(
 	list("text" = "Вы мечтаете, чтобы {CHARACTER} наконец перестал рассказывать всем о той ночи.", "tag" = "МОЛЧАНИЕ {CHARACTER}"),
 ))
 
+// Карта "сырой тег -> предметы". По смыслу предыстории бродяге кладутся
+// близкие вещи в рюкзак при спавне. Ключи совпадают с тегами из списков выше
+// (до подстановки токенов {FACTION}/{SHIP} и т.д.).
+GLOBAL_LIST_INIT(wagabond_tag_loot, list(
+	// === КЕМ БЫЛ ===
+	"ВЕТЕРАН ФЛОТА {FACTION}" = list(/obj/item/clothing/shoes/jackboots, /obj/item/coin, /obj/item/spacecash/bundle/c100),
+	"ПИЛОТ ИМПЕРСКОГО ФЛОТА" = list(/obj/item/clothing/head/beret/black, /obj/item/flashlight),
+	"СТРАЖ РУБЕЖЕЙ" = list(/obj/item/melee/knife/survival, /obj/item/flashlight),
+	"ШАХТЁР НАНОТРЕЙЗЕН" = list(/obj/item/crowbar, /obj/item/flashlight, /obj/item/stack/medical/gauze),
+	"УЧЁНЫЙ АРТЕФАКТА" = list(/obj/item/book/manual, /obj/item/pen, /obj/item/reagent_containers/pill/mannitol),
+	"КОЛОНИСТ-ФЕРМЕР" = list(/obj/item/kitchen/fork, /obj/item/reagent_containers/food/snacks/egg),
+	"ТЕХНИК КОВЧЕГА" = list(/obj/item/wrench, /obj/item/crowbar),
+	"СОЛДАТ ХРИСТИАНСКОЙ АРМИИ" = list(/obj/item/melee/knife/combat, /obj/item/reagent_containers/pill/stimulant),
+	"РАЗВЕДЧИК КСО" = list(/obj/item/pen, /obj/item/coin, /obj/item/spacecash/bundle/c50),
+	"ИНЖЕНЕР БЛЮСПЕЙСА" = list(/obj/item/wrench, /obj/item/crowbar, /obj/item/flashlight),
+	"ОХРАННИК ФАБРИКИ" = list(/obj/item/melee/knife/switchblade, /obj/item/flashlight),
+	"ВОЕНВРАЧ" = list(/obj/item/stack/medical/gauze, /obj/item/reagent_containers/pill/tramal),
+	"СВЯЩЕННИК ЦЕРКВИ" = list(/obj/item/book/manual, /obj/item/match),
+	"КОНТРАБАНДИСТ" = list(/obj/item/storage/fancy/cigarettes/cigpack_robust, /obj/item/lighter, /obj/item/spacecash/bundle/c500),
+	"КАПИТАН {SHIP}" = list(/obj/item/clothing/head/beret/black, /obj/item/coin, /obj/item/spacecash/bundle/c500),
+	"ИМПЕРСКИЙ ХРОНИКЁР" = list(/obj/item/pen, /obj/item/book/manual, /obj/item/paper),
+	"БЕЖЕНЕЦ-ЭЛЬФ" = list(/obj/item/coin, /obj/item/kitchen/fork),
+	"ДВОРФ-КУЗНЕЦ" = list(/obj/item/wrench, /obj/item/melee/knife/kitchen),
+	"АСТРОЛОГ" = list(/obj/item/book/manual, /obj/item/pen),
+	"ИНСТРУКТОР ПО ВЫЖИВАНИЮ" = list(/obj/item/melee/knife/survival, /obj/item/flashlight, /obj/item/stack/medical/bruise_pack),
+	"ФЛАГМАНСКАЯ СЛУЖБА {SHIP}" = list(/obj/item/spacecash/bundle/c100, /obj/item/coin),
+	"БЫВШИЙ КАПИТАН {SHIP}" = list(/obj/item/clothing/head/beret/black, /obj/item/spacecash/bundle/c1000),
+	"БУХГАЛТЕР {FACTION}" = list(/obj/item/pen, /obj/item/spacecash/bundle/c500),
+	"АРМЕЙСКИЙ ПОВАР" = list(/obj/item/kitchen/fork, /obj/item/reagent_containers/food/drinks/beer),
+	"ПИЛОТ ШАТТЛА" = list(/obj/item/flashlight, /obj/item/spacecash/bundle/c100),
+	"ТЕЛОХРАНИТЕЛЬ" = list(/obj/item/melee/knife/combat, /obj/item/coin),
+	"ПЛАЗМЕНЩИК" = list(/obj/item/crowbar, /obj/item/wrench, /obj/item/flashlight),
+	"КАРТОГРАФ" = list(/obj/item/pen, /obj/item/book/manual, /obj/item/flashlight),
+	"АДВОКАТ ЕРЕТИКОВ" = list(/obj/item/pen, /obj/item/paper, /obj/item/spacecash/bundle/c100),
+	"ИНЖЕНЕР АРЕСА" = list(/obj/item/wrench, /obj/item/crowbar, /obj/item/spacecash/bundle/c100),
+	"ПРОДАВЕЦ ГАЗИРОВКИ" = list(/obj/item/reagent_containers/food/drinks/bottle/hcider),
+	"РЕКЛАМНОЕ ЛИЦО" = list(/obj/item/coin, /obj/item/pen),
+	"БЫВШИЙ ТАКСИСТ" = list(/obj/item/spacecash/bundle/c50, /obj/item/coin),
+	"ДАНТИСТ" = list(/obj/item/pen, /obj/item/spacecash/bundle/c100),
+	"АДВОКАТ" = list(/obj/item/pen, /obj/item/paper, /obj/item/spacecash/bundle/c50),
+	"АСТРОГЕОЛОГ" = list(/obj/item/flashlight, /obj/item/crowbar),
+	"БУХГАЛТЕР ФЛОТА {FACTION}" = list(/obj/item/pen, /obj/item/spacecash/bundle/c100),
+	"СУДЬЯ БОЁВ" = list(/obj/item/coin, /obj/item/spacecash/bundle/c50),
+	"СМОТРИТЕЛЬ ЗООПАРКА" = list(/obj/item/kitchen/fork, /obj/item/coin),
+	"НОЧНОЙ СТОРОЖ" = list(/obj/item/flashlight, /obj/item/coin),
+	"ТРЕНЕР" = list(/obj/item/spacecash/bundle/c50, /obj/item/coin),
+	"МЕТРДОТЕЛЬ" = list(/obj/item/kitchen/fork, /obj/item/coin),
+	"ГИД" = list(/obj/item/flashlight, /obj/item/spacecash/bundle/c50),
+	"АСТРОПСИХОЛОГ" = list(/obj/item/book/manual, /obj/item/pen, /obj/item/reagent_containers/pill/psicodine),
+	"МЕХАНИК" = list(/obj/item/wrench, /obj/item/crowbar),
+	"ПОВАР" = list(/obj/item/kitchen/fork, /obj/item/reagent_containers/food/drinks/bottle/whiskey),
+	"СТРИПТИЗЁР" = list(/obj/item/spacecash/bundle/c50, /obj/item/lighter),
+	"МАССАЖИСТ" = list(/obj/item/spacecash/bundle/c100, /obj/item/coin),
+	"ОСОБЫЙ ПОЧТАЛЬОН" = list(/obj/item/pen, /obj/item/spacecash/bundle/c20),
+	"ОФИЦИАНТ" = list(/obj/item/kitchen/fork, /obj/item/coin),
+	"НОЧНАЯ ЗВЕЗДА" = list(/obj/item/lighter, /obj/item/coin),
+	"КОНСУЛЬТАНТ" = list(/obj/item/spacecash/bundle/c100, /obj/item/lighter),
+	"ТРЕНЕР ПО СОБЛАЗНЕНИЮ" = list(/obj/item/pen, /obj/item/coin, /obj/item/spacecash/bundle/c50),
+	"МОДЕЛЬ" = list(/obj/item/coin, /obj/item/lighter),
+	"АДМИНИСТРАТОР КУРОРТА" = list(/obj/item/spacecash/bundle/c500, /obj/item/pen),
+	"ЛИЧНЫЙ ТРЕНЕР" = list(/obj/item/spacecash/bundle/c100, /obj/item/coin),
+	"СВАДЕБНЫЙ ФОТОГРАФ" = list(/obj/item/pen, /obj/item/spacecash/bundle/c100),
+	"САНИТАР" = list(/obj/item/stack/medical/gauze, /obj/item/stack/medical/bruise_pack),
+	"ПЕВЕЦ" = list(/obj/item/coin, /obj/item/lighter),
+	"ГУРУ" = list(/obj/item/book/manual, /obj/item/lighter, /obj/item/reagent_containers/pill/happinesspsych),
+	// === КАК СКАТИЛСЯ ===
+	"ПОГЛОЩЁН МЕРЗОСТЬЮ" = list(/obj/item/melee/knife/survival, /obj/item/stack/medical/gauze),
+	"ПРОДАЛ ГРАЖДАНСТВО" = list(/obj/item/spacecash/bundle/c20, /obj/item/reagent_containers/food/drinks/bottle/vodka),
+	"КРАСНЫЕ ГЛАЗА" = list(/obj/item/reagent_containers/pill/charcoal, /obj/item/coin),
+	"ОПОЗДАЛ НА СТО ЛЕТ" = list(/obj/item/flashlight, /obj/item/reagent_containers/food/drinks/bottle/hcider),
+	"ПРОИГРАЛ {SHIP}" = list(/obj/item/coin, /obj/item/spacecash/bundle/pocketchange),
+	"ЕРЕТИК" = list(/obj/item/book/manual, /obj/item/lighter),
+	"ДЕЗЕРТИР {FACTION}" = list(/obj/item/melee/knife/survival, /obj/item/spacecash/bundle/c20),
+	"ДОЛГ СИНДИКАТУ" = list(/obj/item/coin, /obj/item/spacecash/bundle/c20),
+	"СТРАХОВКА" = list(/obj/item/reagent_containers/food/drinks/bottle/whiskey, /obj/item/reagent_containers/food/drinks/beer),
+	"ВЗРЫВ ПЛАЗМЫ" = list(/obj/item/crowbar, /obj/item/stack/medical/bruise_pack),
+	"НАРУШИЛ КАРАНТИН" = list(/obj/item/reagent_containers/pill/mutadone, /obj/item/coin),
+	"ЛЖЕСВИДЕТЕЛЬ" = list(/obj/item/pen, /obj/item/coin),
+	"УГНАЛИ {SHIP}" = list(/obj/item/spacecash/bundle/c20, /obj/item/coin),
+	"СПОР С {CHARACTER}" = list(/obj/item/reagent_containers/food/drinks/beer, /obj/item/stack/medical/gauze),
+	"ОГРАБЛЕН АККОРДОМ" = list(/obj/item/coin, /obj/item/spacecash/bundle/c10),
+	"ТРАВМА НА ДОБЫЧЕ" = list(/obj/item/stack/medical/gauze, /obj/item/reagent_containers/pill/iron),
+	"ПОТЕРЯЛ ГОЛОС" = list(/obj/item/pen, /obj/item/paper),
+	"СПИСАН ЗА ПЬЯНСТВО" = list(/obj/item/reagent_containers/food/drinks/bottle/vodka, /obj/item/lighter),
+	"ТРОНУЛ АРТЕФАКТ" = list(/obj/item/reagent_containers/pill/mannitol, /obj/item/flashlight),
+	"БЕЗ ШТАНОВ" = list(/obj/item/spacecash/bundle/pocketchange, /obj/item/coin),
+	"БРОШЕН ЭКИПАЖЕМ" = list(/obj/item/coin, /obj/item/stack/medical/bruise_pack),
+	"ПОДСТАВА {CHARACTER}" = list(/obj/item/paper, /obj/item/pen),
+	"КОЛОНИЯ СГОРЕЛА" = list(/obj/item/reagent_containers/food/drinks/bottle/whiskey, /obj/item/lighter),
+	"УКРАЛ КАЗНУ" = list(/obj/item/coin, /obj/item/spacecash/bundle/c100),
+	"РАЗЖАЛОВАН НА {SHIP}" = list(/obj/item/clothing/head/beret/black, /obj/item/coin),
+	"ПРОСПОРИЛ ПАМЯТЬ" = list(/obj/item/pen, /obj/item/paper),
+	"ПРОДАЛ ДАННЫЕ" = list(/obj/item/storage/fancy/cigarettes/cigpack_syndicate, /obj/item/coin),
+	"КУЛЬТ АРТЕФАКТА" = list(/obj/item/lighter, /obj/item/coin),
+	"БЕГЛЕЦ ИЗ {FACTION}" = list(/obj/item/spacecash/bundle/pocketchange, /obj/item/melee/knife/survival),
+	"РАЗНЕСЁН МЕРЗОСТЬЮ" = list(/obj/item/stack/medical/gauze, /obj/item/flashlight),
+	"УДАРИЛ НАЧАЛЬНИКА" = list(/obj/item/reagent_containers/food/drinks/bottle/whiskey, /obj/item/spacecash/bundle/c10),
+	"КАЗИНО" = list(/obj/item/coin, /obj/item/spacecash/bundle/pocketchange),
+	"ЭКОНОМИЯ" = list(/obj/item/coin, /obj/item/spacecash/bundle/c10),
+	"СТРАХОВКА {SHIP}" = list(/obj/item/reagent_containers/food/drinks/bottle/whiskey, /obj/item/coin),
+	"ТАНЕЦ НА СТОЛЕ" = list(/obj/item/reagent_containers/food/drinks/beer, /obj/item/spacecash/bundle/c10),
+	"ПРОДАЛ СЕКРЕТЫ" = list(/obj/item/storage/fancy/cigarettes/cigpack_syndicate, /obj/item/spacecash/bundle/c100),
+	"ЗАСТУКАЛ {CAPTAIN}" = list(/obj/item/coin, /obj/item/spacecash/bundle/pocketchange),
+	"ПРОСНУЛСЯ БЕЗ ШТАНОВ" = list(/obj/item/spacecash/bundle/pocketchange, /obj/item/coin),
+	"НОМЕР С {CHARACTER}" = list(/obj/item/spacecash/bundle/pocketchange, /obj/item/coin),
+	"СОБЛАЗНЯЛ {CHARACTER}" = list(/obj/item/reagent_containers/food/drinks/bottle/wine, /obj/item/coin),
+	"НОЧНОЙ ЭФИР" = list(/obj/item/lighter, /obj/item/coin),
+	"ЦВЕТЫ ДЛЯ {CHARACTER}" = list(/obj/item/pen, /obj/item/paper),
+	"СЛОМАЛ ШЕСТ" = list(/obj/item/coin, /obj/item/spacecash/bundle/c10),
+	"ЩЕДРЫЕ ЧАЕВЫЕ" = list(/obj/item/coin, /obj/item/spacecash/bundle/pocketchange),
+	"ЭКСПЕРИМЕНТ" = list(/obj/item/reagent_containers/pill/mutadone, /obj/item/reagent_containers/pill/mannitol),
+	"ФЛИРТ НА МОСТИКЕ" = list(/obj/item/pen, /obj/item/coin),
+	"АУКЦИОН" = list(/obj/item/coin, /obj/item/spacecash/bundle/c20),
+	"ЧАЙ С {CHARACTER}" = list(/obj/item/reagent_containers/food/drinks/bottle/wine, /obj/item/kitchen/fork),
+	"ЧАСТНЫЕ УРОКИ" = list(/obj/item/spacecash/bundle/c50, /obj/item/pen),
+	"ПОЦЕЛУЙ РУКИ" = list(/obj/item/coin, /obj/item/spacecash/bundle/c10),
+	"ЖЕНИЛСЯ НА БУТЫЛКЕ" = list(/obj/item/reagent_containers/food/drinks/bottle/vodka, /obj/item/coin),
+	"ВРАГ ФЛОТА {FACTION}" = list(/obj/item/melee/knife/survival, /obj/item/spacecash/bundle/c20),
+	"СПИСАН ЗА АЛКОГОЛЬ" = list(/obj/item/reagent_containers/food/drinks/bottle/vodka, /obj/item/lighter),
+	"БОЛЕЗНЬ" = list(/obj/item/reagent_containers/pill/iron, /obj/item/reagent_containers/pill/insulin),
+	"ВОЙНА" = list(/obj/item/stack/medical/gauze, /obj/item/coin),
+	"КОНФИСКАЦИЯ {SHIP}" = list(/obj/item/spacecash/bundle/c20, /obj/item/coin),
+	"ПРОСПОРИЛ {CHARACTER}" = list(/obj/item/coin, /obj/item/spacecash/bundle/c10),
+	"РАЗЖАЛОВАН" = list(/obj/item/clothing/head/beret/black, /obj/item/coin),
+	"ПОТЕРЯЛ СБЕРЕЖЕНИЯ" = list(/obj/item/coin, /obj/item/spacecash/bundle/pocketchange),
+	"СПИСАН С {SHIP}" = list(/obj/item/spacecash/bundle/c20, /obj/item/coin),
+	"ПРОДАЛ ПЕЧЕНЬ" = list(/obj/item/reagent_containers/pill/iron, /obj/item/spacecash/bundle/c20),
+	"УВОЛЕН ЗА ПИВО" = list(/obj/item/reagent_containers/food/drinks/beer, /obj/item/coin),
+	"БАНАНОВАЯ КОЖУРА" = list(/obj/item/spacecash/bundle/pocketchange, /obj/item/coin),
+	"ЛОТЕРЕЯ" = list(/obj/item/coin, /obj/item/spacecash/bundle/c10),
+	"СХЕМА {CHARACTER}" = list(/obj/item/pen, /obj/item/paper),
+	"ШАРЛАТАН" = list(/obj/item/reagent_containers/pill/salbutamol, /obj/item/coin),
+	"ВЗОРВАЛ СКЛАД" = list(/obj/item/crowbar, /obj/item/spacecash/bundle/c10),
+	"УКРАЛ ОБЕД" = list(/obj/item/kitchen/fork, /obj/item/coin),
+	"СКАЧКИ" = list(/obj/item/coin, /obj/item/spacecash/bundle/pocketchange),
+	"ПОХМЕЛЬЕ С {CHARACTER}" = list(/obj/item/reagent_containers/food/drinks/ale, /obj/item/spacecash/bundle/c10),
+	// === ЧЕГО ХОЧЕТ ===
+	"ХОЧЕТ ГРАЖДАНСТВА" = list(/obj/item/pen, /obj/item/paper),
+	"ИЩЕТ КОВЧЕГ" = list(/obj/item/coin, /obj/item/flashlight),
+	"ИЩЕТ {CHARACTER}" = list(/obj/item/paper, /obj/item/pen, /obj/item/coin),
+	"ИЩЕТ БЛЮСПЕЙС" = list(/obj/item/flashlight, /obj/item/coin),
+	"ХОЧЕТ МЕСТИ" = list(/obj/item/melee/knife/combat, /obj/item/flashlight),
+	"ВЕРБУЕТСЯ НА {SHIP}" = list(/obj/item/spacecash/bundle/c100, /obj/item/coin),
+	"ИЩЕТ ЛЕКАРСТВО" = list(/obj/item/reagent_containers/pill/mannitol, /obj/item/storage/pill_bottle),
+	"ХОЧЕТ СТАТЬ КАПИТАНОМ" = list(/obj/item/clothing/head/beret/black, /obj/item/coin),
+	"ИЩЕТ СЕМЬЮ {CHARACTER}" = list(/obj/item/paper, /obj/item/coin),
+	"ЖДЁТ ПРИЗНАНИЯ {FACTION}" = list(/obj/item/coin, /obj/item/pen),
+	"ПИШЕТ ХРОНИКУ" = list(/obj/item/pen, /obj/item/paper, /obj/item/book/manual),
+	"ИЩЕТ ПРИСТАНИЩЕ" = list(/obj/item/spacecash/bundle/c100, /obj/item/flashlight),
+	"ИЩЕТ КАПИТАНА {CAPTAIN}" = list(/obj/item/coin, /obj/item/pen),
+	"ХОЧЕТ ТАВЕРНУ" = list(/obj/item/reagent_containers/food/drinks/beer, /obj/item/kitchen/fork),
+	"ХОЧЕТ КРИОСНА" = list(/obj/item/flashlight, /obj/item/spacecash/bundle/c100),
+	"ИЩЕТ СВИДЕТЕЛЯ" = list(/obj/item/pen, /obj/item/paper),
+	"МЕСТЬ {CHARACTER}" = list(/obj/item/melee/knife/switchblade, /obj/item/coin),
+	"КОПИТ НА ШАТТЛ" = list(/obj/item/spacecash/bundle/c500, /obj/item/coin),
+	"ИЩЕТ ИМПЕРАТОРА" = list(/obj/item/coin, /obj/item/book/manual),
+	"ХОЧЕТ СВОЕЙ СМЕРТИ" = list(/obj/item/pen, /obj/item/paper),
+	"ИЩЕТ ГРУЗ" = list(/obj/item/flashlight, /obj/item/crowbar),
+	"ЖДЁТ ПРИЗНАНИЯ {CHARACTER}" = list(/obj/item/pen, /obj/item/paper),
+	"ВСТУПИТЬ В ОПОЛЧЕНИЕ {FACTION}" = list(/obj/item/melee/knife/survival, /obj/item/spacecash/bundle/c100),
+	"ИЩЕТ ЗАНАЧКУ" = list(/obj/item/coin, /obj/item/spacecash/bundle/pocketchange),
+	"ЖДЁТ ОЧИЩЕНИЯ" = list(/obj/item/coin, /obj/item/lighter),
+	"ВЫКУПАЕТ {SHIP}" = list(/obj/item/spacecash/bundle/c500, /obj/item/coin),
+	"ХОЧЕТ СЛАВЫ" = list(/obj/item/pen, /obj/item/paper),
+	"ИЩЕТ ХРАМ" = list(/obj/item/book/manual, /obj/item/lighter),
+	"ТОРГУЕТСЯ С НАНОТРЕЙЗЕН" = list(/obj/item/spacecash/bundle/c100, /obj/item/coin),
+	"ИЩЕТ ЛЕТОПИСЦА" = list(/obj/item/pen, /obj/item/paper, /obj/item/book/manual),
+	"ИЩЕТ СПОНСОРА" = list(/obj/item/spacecash/bundle/c500, /obj/item/coin),
+	"ПИШЕТ МЕМУАРЫ" = list(/obj/item/pen, /obj/item/paper, /obj/item/book/manual),
+	"ТЯЖБА С {FACTION}" = list(/obj/item/pen, /obj/item/paper, /obj/item/spacecash/bundle/c50),
+	"ИЩЕТ БУТЫЛКУ" = list(/obj/item/reagent_containers/food/drinks/bottle/whiskey, /obj/item/coin),
+	"ХОЧЕТ ТЁПЛОЙ ПОСТЕЛИ" = list(/obj/item/coin, /obj/item/spacecash/bundle/c50),
+	"СКУЧАЕТ ПО {SHIP}" = list(/obj/item/coin, /obj/item/toy/plush/carpplushie),
+	"ЖДЁТ ВОЗМЕЗДИЯ {CHARACTER}" = list(/obj/item/coin, /obj/item/melee/knife/switchblade),
+	"ЖДЁТ ПЕНСИЮ" = list(/obj/item/spacecash/bundle/c100, /obj/item/coin),
+	"ИЩЕТ ЛОТЕРЕЮ" = list(/obj/item/coin, /obj/item/spacecash/bundle/c10),
+	"НАЙМЁТ {CHARACTER}" = list(/obj/item/spacecash/bundle/c500, /obj/item/pen),
+	"ЧАЙ С {CHARACTER}" = list(/obj/item/reagent_containers/food/drinks/bottle/wine, /obj/item/kitchen/fork),
+	"ХОЧЕТ ОТКРЫТЬ КЛУБ" = list(/obj/item/spacecash/bundle/c500, /obj/item/kitchen/fork),
+	"ИЩЕТ {CAPTAIN}" = list(/obj/item/coin, /obj/item/pen),
+	"ХОЧЕТ НА ОБЛОЖКУ" = list(/obj/item/coin, /obj/item/lighter),
+	"НОЧНАЯ ЗВЕЗДА" = list(/obj/item/lighter, /obj/item/coin),
+	"ИЩЕТ ПАРТНЁРА" = list(/obj/item/coin, /obj/item/spacecash/bundle/c50),
+	"СОБЛАЗНИТЬ {CAPTAIN}" = list(/obj/item/reagent_containers/food/drinks/bottle/wine, /obj/item/coin),
+	"ПИШЕТ КНИГУ" = list(/obj/item/pen, /obj/item/paper, /obj/item/book/manual),
+	"ИЩЕТ КЛИНИКУ" = list(/obj/item/reagent_containers/pill/mannitol, /obj/item/stack/medical/gauze),
+	"КУЛЬТУРА {FACTION}" = list(/obj/item/coin, /obj/item/lighter),
+	"НАЙМЁТ МАССАЖИСТА" = list(/obj/item/spacecash/bundle/c500, /obj/item/coin),
+	"ХОЧЕТ ТАНЦЕВАТЬ" = list(/obj/item/coin, /obj/item/lighter),
+	"ХОЧЕТ КРАСИВОГО" = list(/obj/item/lighter, /obj/item/coin),
+	"МОЛЧАНИЕ {CHARACTER}" = list(/obj/item/coin, /obj/item/spacecash/bundle/c50),
+))
+
+/// Возвращает копию списка предметов для тега предыстории.
+/proc/wagabond_get_loot_for_tag(tag)
+	var/list/loot = GLOB.wagabond_tag_loot[tag]
+	return loot ? loot.Copy() : list()
+
 // Фолбэки на случай пустого раунда (нет кораблей или игроков)
 GLOBAL_LIST_INIT(wagabond_faction_fallbacks, list(FACTION_SYNDICATE, FACTION_NT, FACTION_SOLCON, FACTION_INTEQ, FACTION_PIRATES, FACTION_ELYSIUM, FACTION_SRM, FACTION_CLIP, FACTION_FRONTIERSMEN, FACTION_PGF, FACTION_RAMZI, FACTION_INDEPENDENT))
 
@@ -296,18 +494,23 @@ GLOBAL_LIST_INIT(wagabond_ship_fallbacks, list("Ковчег «Вечность�
 	var/fall_tag
 	/// Тег для блока "чего хочет"
 	var/goal_tag
+	/// Предметы по предыстории (пути типов, создаются при спавне)
+	var/list/loot = list()
 
 /datum/wagabond_backstory/New(mob/exclude_mob)
 	. = ..()
 	var/list/former_entry = pick(GLOB.wagabond_former_entries)
 	former = former_entry["text"]
 	former_tag = former_entry["tag"]
+	loot += wagabond_get_loot_for_tag(former_tag)
 	var/list/fall_entry = pick(GLOB.wagabond_fall_entries)
 	fall = fall_entry["text"]
 	fall_tag = fall_entry["tag"]
+	loot += wagabond_get_loot_for_tag(fall_tag)
 	var/list/goal_entry = pick(GLOB.wagabond_goal_entries)
 	goal = goal_entry["text"]
 	goal_tag = goal_entry["tag"]
+	loot += wagabond_get_loot_for_tag(goal_tag)
 
 	// Живые данные текущего раунда
 	var/faction_name = pick_round_faction_name(null)
@@ -350,3 +553,5 @@ GLOBAL_LIST_INIT(wagabond_ship_fallbacks, list("Ковчег «Вечность�
 	var/obj/item/paper/crumpled/wagabond_memory/note = new(new_spawn.loc)
 	note.add_raw_text(note_text)
 	new_spawn.equip_to_slot_or_del(note, ITEM_SLOT_BACKPACK)
+	for(var/item_type in backstory.loot)
+		new_spawn.equip_to_slot_or_del(new item_type(new_spawn.loc), ITEM_SLOT_BACKPACK)
