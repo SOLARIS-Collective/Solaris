@@ -819,6 +819,14 @@ SUBSYSTEM_DEF(overmap)
 	if(!dynamic_datum.default_baseturf)
 		CRASH("spawn_dynamic_encounter called with overmap datum [REF(dynamic_datum)], which lacks a default_baseturf!")
 
+	// [SOLARIS-ADD] - Приватный модуль: квадрантная сетка планет (ленивая генерация).
+	// Требует #define SOLARIS_GRID; без флага компилируется оригинальная полная генерация.
+#ifdef SOLARIS_GRID
+	if(dynamic_datum.default_baseturf != /turf/open/space)
+		return spawn_dynamic_encounter_grid(dynamic_datum, ruin_type)
+#endif
+	// [/SOLARIS-ADD]
+
 	var/datum/map_generator/mapgen = new dynamic_datum.mapgen
 	var/datum/map_template/ruin/used_ruin = ispath(ruin_type) ? (new ruin_type) : ruin_type
 	SSblackbox.record_feedback("tally", "encounter_spawned", 1, "[dynamic_datum.mapgen]")

@@ -13,7 +13,7 @@
 
 // #define OMNI_ACCESS // Требуется ОМНИ доступ
 // После ввести
-// git submodule update --init modular_solaris/_private
+// git submodule update --init modular_solaris/_omni_access
 // или
 // git submodule update --init --recursive
 #ifdef OMNI_ACCESS
