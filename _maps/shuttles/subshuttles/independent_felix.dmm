@@ -339,20 +339,6 @@
 	pixel_y = -2;
 	dir = 8
 	},
-/obj/machinery/button/shieldwallgen{
-	dir = 8;
-	id = "Caliban_subshuttle_port_holo";
-	pixel_x = 27;
-	pixel_y = 11;
-	name = "Port Holo switch"
-	},
-/obj/machinery/button/shieldwallgen{
-	dir = 8;
-	id = "Caliban_subshuttle_starboard_holo";
-	pixel_x = 27;
-	pixel_y = -3;
-	name = "Starboard Holo Switch"
-	},
 /obj/machinery/airalarm/directional/south,
 /turf/open/floor/plasteel/white,
 /area/ship/bridge)
