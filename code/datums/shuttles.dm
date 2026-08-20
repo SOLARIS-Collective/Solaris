@@ -39,6 +39,8 @@
 	// [/MANKIND-EDIT]
 	/// The prefix of the ship's name.
 	var/prefix = "ISV"
+	/// The class of this ship.
+	var/ship_class = "Ship"
 	/// The name of the ship's manufacturer.
 	var/manufacturer = "Unknown"
 	/// The faction this ship belongs to.

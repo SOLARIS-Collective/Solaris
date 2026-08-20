@@ -118,9 +118,6 @@
 	///ONLY USED FOR NON-SIMULATED SHIPS. The amount per burn that this ship accelerates
 	var/acceleration_speed = 0.02
 
-	///Is this ship hidden? If true we hide the ships name/class on the token.
-	var/hidden = FALSE
-
 	var/registered_to_docked = FALSE
 
 // [MANKIND-ADD] - MANKIND_OVERMAP_STUFF - Это вагабонд насрал
@@ -599,3 +596,21 @@
 /datum/overmap/ship/overmap_move(new_x, new_y)
 	. = ..()
 	token.update_screen()
+
+/datum/overmap/ship/activate_cloak()
+	. = ..()
+	animate(token, 0.8 SECONDS, alpha = 0, color = (HAS_TRAIT(src, TRAIT_BLUESPACE_SHIFT) ? COLOR_BLUE : COLOR_RED))
+	addtimer(CALLBACK(src, PROC_REF(after_activate_cloak)), 0.8 SECONDS)
+
+/datum/overmap/ship/proc/after_activate_cloak()
+	if(!HAS_TRAIT(src, TRAIT_CLOAKED))
+		return
+	token.name = "???"
+	token.desc = "There's no identification of what this is. It's possible to get more information with your radar by getting closer."
+	token.icon_state = "unknown"
+
+/datum/overmap/ship/deactivate_cloak()
+	if(!token.alpha)
+		token.color = HAS_TRAIT(src, TRAIT_BLUESPACE_SHIFT) ? COLOR_BLUE : COLOR_RED
+		animate(token, 0.8 SECONDS, alpha = token::alpha, color = current_overmap.primary_structure_color)
+	return ..()

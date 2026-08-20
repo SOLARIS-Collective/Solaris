@@ -101,6 +101,9 @@
 	///The ship's real name, without the prefix
 	var/real_name
 
+	///Image shown to helm console viewers while cloaked, allows the pilot to see
+	var/image/cloaked_image
+
 	///Stations the ship has been blacklisted from landing at, associative station = reason
 	var/list/blacklisted = list()
 
@@ -163,6 +166,7 @@
 		source_template = creation_template
 		unique_ship_access = source_template.unique_ship_access
 		job_slots = source_template.job_slots?.Copy()
+		ship_class = source_template.ship_class
 		stationary_icon_state = creation_template.token_icon_state
 		alter_token_appearance()
 		if(create_shuttle)
@@ -240,6 +244,9 @@
 /datum/overmap/ship/controlled/proc/get_known_ship_name(datum/overmap/ship/controlled/target)
 	if(!istype(target))
 		return list("name" = target?.name || "Unknown", "known" = FALSE)
+	// [CLOAK] - Маскированный корабль определяется только по классу, если он достаточно близко.
+	if(HAS_TRAIT(target, TRAIT_CLOAKED))
+		return list("name" = "Unidentified [target.ship_class]", "known" = FALSE)
 	// A ship with omni_arpa uses the classic ARPA: it sees real names of all ships at range.
 	if(omni_arpa)
 		return list("name" = target.name, "known" = TRUE)
@@ -277,6 +284,8 @@
 	var/list/arpobjects = check_proximity()
 	for(var/datum/overmap/ship/controlled/object as anything in arpobjects)
 		if(!istype(object, /datum/overmap/ship/controlled))
+			continue
+		if(HAS_TRAIT(object, TRAIT_CLOAKED)) // [CLOAK] - Маскированные корабли невидимы для дальних сенсоров ARPA
 			continue
 		var/list/cpa_list = calculate_cpa(src, object, TRUE)
 		var/list/known_data = get_known_ship_name(object)
@@ -754,6 +763,32 @@
 	if(our_helm)
 		our_helm.cancel_jump()
 
+/datum/overmap/ship/controlled/activate_cloak()
+	. = ..()
+	var/mutable_appearance/token_appearance = new(token)
+	cloaked_image = new(loc = token)
+	token_appearance.dir = token.dir
+	token_appearance.appearance_flags = RESET_COLOR|RESET_ALPHA
+	token_appearance.alpha = 64
+	cloaked_image.appearance = token_appearance
+	for(var/obj/machinery/computer/helm/helm_console as anything in helms)
+		for(var/user_ref in helm_console.concurrent_users)
+			var/mob/user = locate(user_ref)
+			if(!user)
+				continue
+			user.client.images += cloaked_image
+
+/datum/overmap/ship/controlled/deactivate_cloak()
+	. = ..()
+	if(!cloaked_image)
+		return
+	for(var/obj/machinery/computer/helm/helm_console as anything in helms)
+		for(var/user_ref in helm_console.concurrent_users)
+			var/mob/user = locate(user_ref)
+			if(!user)
+				continue
+			user.client.images -= cloaked_image
+	QDEL_NULL(cloaked_image)
 
 /obj/item/key/ship
 	name = "ship key"

@@ -22,6 +22,7 @@ import {
 import { Window } from '../layouts';
 import { Table } from '../components/Table';
 import { decodeHtmlEntities } from 'common/string';
+import { toFixed } from '../../common/math';
 
 export const HelmConsole = (_props, context) => {
   const { data } = useBackend(context);
@@ -61,7 +62,7 @@ export const HelmConsole = (_props, context) => {
 
 const SharedContent = (_props, context) => {
   const { act, data } = useBackend(context);
-  const { isViewer, canRename, shipInfo = [], otherInfo = [], arpa_ships = [], calibrating, omni_arpa } = data;
+  const { isViewer, canRename, shipInfo = [], otherInfo = [], arpa_ships = [], calibrating, omni_arpa, cloaked, cloakChargePercent, hasCloaking } = data;
   let flyable = !data.docking && !data.docked;
   return (
     <>
@@ -149,6 +150,31 @@ const SharedContent = (_props, context) => {
               disabled={isViewer}
               onClick={() => act('send_sos')}
             />
+            {hasCloaking && (
+              <>
+                <Button
+                  tooltip="Cloak"
+                  tooltipPosition="left"
+                  icon="user-secret"
+                  selected={cloaked}
+                  disabled={isViewer}
+                  onClick={() => act('toggle_cloak')}
+                />
+                <ProgressBar
+                  value={cloakChargePercent}
+                  minValue={0}
+                  maxValue={100}
+                  width="72px"
+                  ranges={{
+                    good: [50, Infinity],
+                    average: [15, 50],
+                    bad: [-Infinity, 15],
+                  }}
+                >
+                  {toFixed(cloakChargePercent, 1)}%
+                </ProgressBar>
+              </>
+            )}
             <Button
               tooltip={calibrating ? 'Cancel Jump' : 'Bluespace Jump'}
               tooltipPosition="left"
@@ -170,13 +196,13 @@ const SharedContent = (_props, context) => {
           {otherInfo.map((ship) => (
             <Table.Row key={ship.ref || ship.name}>
               <Table.Cell>
-                {ship.known ? (
+                {ship.hidden ? 'Unidentified ' + ship.object_class : (ship.known ? (
                   <span>
                     <Icon name="check" color="good" /> {ship.name}
                   </span>
                 ) : (
                   ship.name
-                )}
+                ))}
               </Table.Cell>
               {!isViewer && !omni_arpa && (
                 <Table.Cell>

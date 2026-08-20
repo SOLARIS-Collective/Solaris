@@ -17,6 +17,8 @@
 	// [/MANKIND-ADD]
 	///A quick description of the event. Should fit into a quick tgui hoverover tip.
 	var/desc
+	///The class of this object, used in place of its name when cloaked or obscured.
+	var/ship_class = "Object"
 	///Extra info that would fit into a sidebar or an extra pane such as. Should fit into a quick tgui hoverover tip.
 	var/extra_info
 	///the color of the event if it isn't overridden by the overmap
@@ -136,6 +138,8 @@
 	if(!char_rep && name)
 		char_rep = name[1]
 
+	RegisterSignal(src, SIGNAL_ADDTRAIT(TRAIT_CLOAKED), PROC_REF(activate_cloak))
+	RegisterSignal(src, SIGNAL_REMOVETRAIT(TRAIT_CLOAKED), PROC_REF(deactivate_cloak))
 	Initialize(arglist(args))
 
 /datum/overmap/Destroy(force)
@@ -763,6 +767,19 @@
 	if(current_overmap.override_object_colors)
 		token.color = current_overmap.primary_color
 	current_overmap.post_edit_token_state(src)
+
+	// [CLOAK] - Скрываем токен корабля от чужих радаров, пока активен клаоакинг
+	if(HAS_TRAIT(src, TRAIT_CLOAKED))
+		token.name = "???"
+		token.desc = "There's no identification of what this is. It's possible to get more information with your radar by getting closer."
+		token.icon_state = "unknown"
+	// [/CLOAK]
+
+/datum/overmap/proc/activate_cloak()
+	alter_token_appearance()
+
+/datum/overmap/proc/deactivate_cloak()
+	alter_token_appearance()
 
 /*
  * For use when this datum is just completely fucked with no real solutions.
