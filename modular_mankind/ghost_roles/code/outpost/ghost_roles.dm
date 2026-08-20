@@ -116,6 +116,8 @@
 	new /obj/structure/bed/outpost/wagabond(drop_location())
 	return ..()
 
+// Wagabond special() переопределён в wagabond_backstory.dm
+
 /obj/effect/mob_spawn/human/elysium_outpost/wagabond/Initialize()
 	. = ..()
 	var/area/A = get_area(src)
