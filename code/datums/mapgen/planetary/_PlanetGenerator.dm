@@ -110,17 +110,8 @@
 
 	// random offset coordinates to fuzz biome borders.
 	// not actually huge on this for several reasons but it works alright to cover up small perlin artifacts
-#ifdef SOLARIS_GRID
-	// [SOLARIS-EDIT] - Приватный модуль: детерминированный дрифт по координатам.
-	// Раньше rand() давал разный дрифт при каждой генерации одной и той же координаты —
-	// при ленивой генерации клеток биомы на стыках не совпадали бы.
-	var/drift_x = (a_turf.x + ((a_turf.x * 7 + a_turf.y * 13) % 3) - 1) / perlin_zoom
-	var/drift_y = (a_turf.y + ((a_turf.x * 11 + a_turf.y * 17) % 3) - 1) / perlin_zoom
-	// [/SOLARIS-EDIT]
-#else
 	var/drift_x = (a_turf.x + rand(-BIOME_RANDOM_SQUARE_DRIFT, BIOME_RANDOM_SQUARE_DRIFT)) / perlin_zoom
 	var/drift_y = (a_turf.y + rand(-BIOME_RANDOM_SQUARE_DRIFT, BIOME_RANDOM_SQUARE_DRIFT)) / perlin_zoom
-#endif
 
 	var/heat_level
 	var/humidity_level

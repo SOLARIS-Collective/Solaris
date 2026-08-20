@@ -12,11 +12,6 @@
 
 	///The active turf reservation, if there is one
 	var/datum/map_zone/mapzone
-#ifdef SOLARIS_GRID
-	// [SOLARIS-ADD] - Приватный модуль: квадрантная сетка планеты (ленивая генерация)
-	var/datum/planet_grid/grid
-	// [/SOLARIS-ADD]
-#endif
 	///The preset ruin template to load, if/when it is loaded.
 	var/datum/map_template/template
 	///The docking port in the reserve
@@ -96,28 +91,10 @@
 	if(mapzone)
 		mapzone.clear_reservation()
 		QDEL_NULL(mapzone)
-#ifdef SOLARIS_GRID
-	// [SOLARIS-ADD] - Приватный модуль: сетка ссылается на mapzone/vlevel/mapgen, чистим после резервации
-	QDEL_NULL(grid)
-	// [/SOLARIS-ADD]
-#endif
 
 /datum/overmap/dynamic/get_jump_to_turf()
-#ifdef SOLARIS_GRID
-	// [SOLARIS-ADD] - Приватный модуль: доки создаются только при посадке —
-	// до неё прыгаем к руине или к токену на овермапе
-	if(reserve_docks && reserve_docks.len)
-		return get_turf(pick(reserve_docks))
-	if(length(ruin_turfs))
-		for(var/ruin_name in ruin_turfs)
-			return ruin_turfs[ruin_name]
-	if(token)
-		return get_turf(token)
-	// [/SOLARIS-ADD]
-#else
 	if(reserve_docks)
 		return get_turf(pick(reserve_docks))
-#endif
 
 /datum/overmap/dynamic/pre_docked(datum/overmap/ship/controlled/dock_requester, override_dock)
 	if(loading)
@@ -146,17 +123,7 @@
 		if(!dock_to_use)
 			if(alt_message)
 				return new /datum/docking_ticket(_docking_error = "[src] has free docks, however vessel is unable to fit in any. Attempt manual docking for more information. Aborting docking.")
-#ifdef SOLARIS_GRID
-			// [SOLARIS-ADD] - Приватный модуль: свободных доков нет — открываем новое место посадки
-			if(grid?.request_new_dock(dock_requester))
-				for(var/obj/docking_port/stationary/dock as anything in reserve_docks)
-					if(!dock.docked && dock_requester.shuttle_port.check_dock(dock, TRUE, FALSE))
-						dock_to_use = dock
-						break
-			// [/SOLARIS-ADD]
-#endif
-			if(!dock_to_use)
-				return new /datum/docking_ticket(_docking_error = "[src] does not have any free docks. Aborting docking.")
+			return new /datum/docking_ticket(_docking_error = "[src] does not have any free docks. Aborting docking.")
 		return new /datum/docking_ticket(dock_to_use, src, dock_requester)
 
 /datum/overmap/dynamic/get_dockable_locations(datum/overmap/requesting_interactor)
@@ -427,12 +394,7 @@
 	load_level()
 
 	message_admins(span_big("Click here to jump to the overmap token: " + ADMIN_JMP(token)))
-#ifdef SOLARIS_GRID
-	// [SOLARIS-ADD] - Приватный модуль: доков может ещё не быть (создаются при посадке)
-	if(reserve_docks && reserve_docks.len)
-	// [/SOLARIS-ADD]
-#endif
-		message_admins(span_big("Click here to jump to the overmap dock: " + ADMIN_JMP(reserve_docks[1])))
+	message_admins(span_big("Click here to jump to the overmap dock: " + ADMIN_JMP(reserve_docks[1])))
 	for(var/ruin in ruin_turfs)
 		var/turf/ruin_turf = ruin_turfs[ruin]
 		message_admins(span_big("Click here to jump to \"[ruin]\": " + ADMIN_JMP(ruin_turf)))

@@ -934,14 +934,7 @@
 		encounter.selected_ruin  = null
 	if(admin_load_instant)
 		encounter.admin_load()
-#ifdef SOLARIS_GRID
-		// [SOLARIS-ADD] - Приватный модуль: доков может ещё не быть (создаются при посадке)
-		var/dock_link = (encounter.reserve_docks && encounter.reserve_docks.len) ? ", and here to go to the dock: [ADMIN_JMP(encounter.reserve_docks[1])]" : ""
-		message_admins("Click here to jump to the overmap token: [ADMIN_JMP(encounter.token)][dock_link]")
-		// [/SOLARIS-ADD]
-#else
 		message_admins("Click here to jump to the overmap token: [ADMIN_JMP(encounter.token)], and here to go to the dock: [ADMIN_JMP(encounter.reserve_docks[1])]")
-#endif
 	else
 		message_admins("Click here to jump to the overmap token: [ADMIN_JMP(encounter.token)]")
 	BLACKBOX_LOG_ADMIN_VERB("Spawn Planet/Ruin")
