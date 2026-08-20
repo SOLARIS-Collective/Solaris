@@ -372,7 +372,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(!client)
 		return
 	if(!mind || QDELETED(mind.current) || mind.current.loc == null)
-		to_chat(src, span_warning("А тела то и нет."))
+		to_chat(src, span_warning("А тела-то и нет."))
 		return
 	if(!can_reenter_corpse)
 		to_chat(src, span_warning("Не могу вернуться в тело."))
@@ -561,7 +561,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	// 		return
 	if(!client)
 		return
-	var/poll_client = tgui_alert(usr, "Возврат в лобби-меню, это отменит возможность возрождение этим персонажем.\nВы ТОЧНО уверены?", "Респавн", list("Верни меня в лобби", "Я передумал"))
+	var/poll_client = tgui_alert(usr, "Возврат в лобби-меню отменит возможность возрождения этим персонажем.\nВы ТОЧНО уверены?", "Респавн", list("Верни меня в лобби", "Я передумал"))
 	if(poll_client != "Верни меня в лобби")
 		return
 	// [/MANKIND-EDIT]
