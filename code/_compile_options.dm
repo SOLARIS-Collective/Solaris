@@ -111,4 +111,4 @@
 	#endif
 #endif
 
-//#define SOLARIS_GRID
+#define SOLARIS_GRID
