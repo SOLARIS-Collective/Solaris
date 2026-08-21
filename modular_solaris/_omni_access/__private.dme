@@ -1,0 +1,17 @@
+#include "code/cryopod_animation.dm"
+#include "code/discord.dm"
+#include "code/observer.dm"
+
+// [SOLARIS-ADD] - QUADRANT_GRID - Приватная квадрантная сетка планет.
+// Включается ТОЛЬКО при #define SOLARIS_GRID в code/_compile_options.dm:
+// этот флаг определяется рано (shiptest.dme:19) и переключает своп инклудов
+// на копии из code/overrides (в них есть var/grid у dynamic_datum).
+// OMNI_ACCESS определяется поздно (modular_solaris.dme) и сетку включить не может.
+#ifdef SOLARIS_GRID
+#include "code/quadrant_grid/config.dm"
+#include "code/quadrant_grid/_defines.dm"
+#include "code/quadrant_grid/planet_grid.dm"
+#else
+#warn QUADRANT_GRID: OMNI_ACCESS включён, но SOLARIS_GRID не задан - приватный модуль собирается БЕЗ квадрантной сетки. Добавь #define SOLARIS_GRID в code/_compile_options.dm
+#endif
+// [/SOLARIS-ADD]
