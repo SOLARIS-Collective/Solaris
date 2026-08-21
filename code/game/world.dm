@@ -2,10 +2,31 @@
 
 GLOBAL_VAR(restart_counter)
 
-/// Rolling window of raw CPU readings, used for lag compensation.
-GLOBAL_VAR_INIT(cpu_usage_window, list())
-/// Previous tick's world.cpu reading, used to derive the raw per-tick value.
-GLOBAL_VAR_INIT(last_cpu_reading, 0)
+/// The world.time we last refreshed our raw cpu readings at, guards against recording twice in one tick
+GLOBAL_VAR_INIT(last_cpu_refresh, -1)
+
+// Tick control variables
+/// Should we intentionally consume cpu time to try to keep SendMaps deltas constant?
+GLOBAL_VAR_INIT(attempt_corrective_cpu, TRUE)
+/// Should we use the corrective cpu threshold to calculate the mc's target cpu?
+GLOBAL_VAR_INIT(use_dynamic_mc_limit, TRUE)
+
+// MC dynamic autoaccounting variables
+/// What value are we attempting to correct cpu TO (autoaccounts for lag, ideally)
+GLOBAL_VAR_INIT(corrective_cpu_threshold, 0)
+/// What cpu value are we trying to meet safely.
+/// For reasons I do not yet understand 90 is too high for this on highpop. I think it has to do with
+/// maptick being averaged/spikey? unsure.
+GLOBAL_VAR_INIT(corrective_cpu_target, 85)
+/// What cpu value we actually end up pinning ticks to, used for debug display
+GLOBAL_VAR_INIT(corrective_cpu_cost, 0)
+/// How far away from the average can we get before discarding a datapoint (threshold adjustment)
+GLOBAL_VAR_INIT(corrective_cpu_ratio, 30)
+/// How far away from the average can we get before discarding a datapoint (glide size)
+GLOBAL_VAR_INIT(glide_threshold_ratio, 10)
+
+/// Rolling window of raw (deaveraged where possible) per-tick cpu readings
+GLOBAL_VAR_INIT(raw_cpu_values, list())
 
 /**
  * Here is where a round itself is actually begun and setup.
@@ -99,59 +120,83 @@ GLOBAL_VAR_INIT(last_cpu_reading, 0)
 	#endif
 
 /world/Tick()
-	// Raw CPU usage for this tick. When auxcpu is loaded we get the true deaveraged value
-	// directly; otherwise we approximate it from world.cpu (a running average) by comparing
-	// against the previous tick's reading.
-	var/raw_cpu
-	if(GLOB.auxcpu_loaded)
-		raw_cpu = current_true_cpu()
-	else
-		var/current_cpu = world.cpu
-		raw_cpu = max(current_cpu - GLOB.last_cpu_reading, 0)
-		GLOB.last_cpu_reading = current_cpu
+	refresh_cpu_values()
 
-	// Keep a rolling window of raw CPU readings so we can average out noise.
-	LAZYADD(GLOB.cpu_usage_window, raw_cpu)
-	var/list/window = GLOB.cpu_usage_window
-	if(length(window) > GLOB.cpu_sample_window)
+	// Attempt to correct cpu overrun by consuming spare tick time ourselves.
+	// This keeps the period between SendMaps() calls consistent, which stops clients
+	// from skipping frames (and thus stuttering), at the cost of burning idle cpu.
+	// The MC cooperates by limiting itself to the same threshold (see TICK_LIMIT_RUNNING),
+	// and update_cpu_compensation() lowers the threshold if passive overrun persists.
+	if(GLOB.attempt_corrective_cpu && GLOB.corrective_cpu_threshold > TICK_USAGE)
+		CONSUME_UNTIL(GLOB.corrective_cpu_threshold)
+
+/// Pushes this tick's raw cpu reading into our rolling window.
+/// Safe to call multiple times per tick, only the first call records.
+/world/proc/refresh_cpu_values()
+	if(GLOB.last_cpu_refresh == world.time)
+		return
+	GLOB.last_cpu_refresh = world.time
+	var/list/window = GLOB.raw_cpu_values
+	window += current_true_cpu()
+	if(length(window) > CPU_COMPENSATION_WINDOW)
 		window.Cut(1, 2)
 
-	// CPU stabilization: if enabled, burn spare tick time up to the target usage level.
-	// This keeps the gap between SendMaps() calls as consistent as possible, which
-	// significantly reduces visible frame stutter (a BYOND engine quirk).
-	if(GLOB.cpu_stabilization_enabled && world.tick_usage < GLOB.cpu_stabilization_target)
-		var/burn_until = GLOB.cpu_stabilization_target
-		while(world.tick_usage < burn_until)
-			// Busy-wait on a cheap operation to consume CPU without doing real work.
-			var/dummy = 0
-			for(var/i in 1 to 100)
-				dummy += i
-			if(dummy == -1) // never true, prevents the loop from being optimized away
-				break
-
-	// Update the lag-compensation multiplier from the fresh CPU data.
-	update_glide_size_multiplier()
-
-/// Recomputes the glide size multiplier from recent CPU usage, dropping outliers.
-/world/proc/update_glide_size_multiplier()
-	var/list/window = GLOB.cpu_usage_window
-	if(!length(window))
+/// Updates [GLOB.glide_size_multiplier] and [GLOB.corrective_cpu_threshold] to account for any persistent lag we may be experiencing
+/proc/update_cpu_compensation()
+	world.refresh_cpu_values()
+	var/list/cpu_values = GLOB.raw_cpu_values
+	if(!length(cpu_values))
 		return
-	// Drop the top and bottom 10% of readings to remove lag spikes and idle noise.
-	var/list/sorted = window.Copy()
-	sortTim(sorted, /proc/cmp_numeric_asc)
-	var/trim = max(round(length(sorted) * 0.1), 1)
-	if(length(sorted) > trim * 2)
-		sorted.Cut(1, trim + 1)
-		sorted.Cut(length(sorted) - trim + 1)
-	// Average the remaining readings.
-	var/total = 0
-	for(var/value in sorted)
-		total += value
-	var/avg_cpu = total / length(sorted)
-	// Convert CPU percentage into a glide multiplier: higher CPU means ticks take longer,
-	// so glides need to be slower (multiplier closer to 1).
-	GLOB.glide_size_multiplier = clamp(100 / max(100 - avg_cpu, 1), 1, 2)
+
+	// We've got a big ass list of cpu values from the last however many ticks
+	// We want to know how much passive tick overrun we're experiencing, so we can:
+	// A: Compensate clientside glide times to line up with how long we predict each tick to actually take
+	// B: Pin cpu usage to a consistant value, so we can provide verbs time to execute and to ensure there is
+	//   a consistent period of time between each map send to clients
+	//   (since if things aren't consistent clients will have to jump frames, which leads to jitter)
+	// In order to do this effectively we want to work out the average cpu cost, ignoring large spikes from uncontrolable parts of the codebase
+	// Glide size only needs correcting when ticks take LONGER then nominal (overtime), so every reading is
+	// floored at 100 before averaging. The result is always <= 1.
+	var/capped_sum = 0
+	var/non_zero = 0
+	for(var/value in cpu_values)
+		capped_sum += max(value, 100)
+		if(value != 0)
+			non_zero += 1
+
+	var/first_capped_average = non_zero ? capped_sum / non_zero : 100
+	var/trimmed_capped_sum = 0
+	var/cap_used = 0
+	for(var/value in cpu_values)
+		// If we're within glide_threshold_ratio% of the capped average, include us in the capped sum
+		if(value && max(value, 100) / first_capped_average - 1 <= GLOB.glide_threshold_ratio / 100)
+			trimmed_capped_sum += max(value, 100)
+			cap_used += 1
+
+	var/final_capped_average = trimmed_capped_sum ? trimmed_capped_sum / cap_used : first_capped_average
+	GLOB.glide_size_multiplier = min(100 / final_capped_average, 1)
+
+	// Now account for passive overrun (mc + maptick + verbs eating past our target).
+	// If it persists we lower the threshold, so the corrective burn leaves room for it instead of forcing overtime.
+	var/base_sum = 0
+	var/base_non_zero = 0
+	for(var/value in cpu_values)
+		if(value != 0)
+			base_sum += value
+			base_non_zero += 1
+	var/base_average = base_non_zero ? base_sum / base_non_zero : 1
+	var/trimmed_max_value = 0
+	for(var/value in cpu_values)
+		// If we deviate more then corrective_cpu_ratio% above the average (a spike), skip us over
+		if(value && value / base_average - 1 <= GLOB.corrective_cpu_ratio / 100)
+			trimmed_max_value = max(value, trimmed_max_value)
+
+	if(trimmed_max_value > GLOB.corrective_cpu_target)
+		GLOB.corrective_cpu_threshold = GLOB.corrective_cpu_target - (trimmed_max_value - GLOB.corrective_cpu_target)
+		GLOB.corrective_cpu_cost = trimmed_max_value
+	else
+		GLOB.corrective_cpu_threshold = GLOB.corrective_cpu_target
+		GLOB.corrective_cpu_cost = 0
 
 /world/proc/InitTgs()
 	TgsNew(new /datum/tgs_event_handler/impl, TGS_SECURITY_TRUSTED)

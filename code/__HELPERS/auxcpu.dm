@@ -2,55 +2,77 @@
 //
 // auxcpu exposes the "raw" (deaveraged) per-tick CPU values that BYOND keeps
 // internally as a 16-entry moving average. This lets us do much more accurate
-// lag compensation for gliding than the approximation we can derive from
-// world.cpu alone.
+// lag compensation for gliding and cpu stabilization than what we can derive
+// from world.cpu alone.
 //
-// To configure, create a `auxcpu.config.dm` and set:
-//
-// #define AUXCPU "path/to/auxcpu_byondapi"
-// Override the .dll/.so detection logic with a fixed path or with detection
-// logic of your own.
+// The library is loaded at runtime if present:
+// - On Windows, `auxcpu_byondapi.dll` next to the executable (repo root).
+// - On Linux, `libauxcpu_byondapi.so` in the working directory (TGS deployment
+//   root) or in `~/.byond/bin/`.
 //
 // If the library is not present at runtime, every proc here falls back to the
-// best approximation available from world.cpu / world.map_cpu, so the game
-// still works without the dependency.
+// best approximation available from world.cpu, so the game still works without
+// the dependency (glide compensation just gets less precise).
 
-#ifndef AUXCPU
-// Default automatic AUXCPU detection.
-// On Windows, looks for `auxcpu_byondapi.dll`.
-// On Linux, looks in `.` and `~/.byond/bin` for `libauxcpu_byondapi.so`.
-/var/__auxcpu
+/// Macro for getting the auxcpu library file
+#define AUXCPU_DLL (world.system_type == MS_WINDOWS ? "auxcpu_byondapi.dll" : __detect_auxcpu())
 
 /proc/__detect_auxcpu()
-	if (world.system_type == UNIX)
-		if (fexists("./libauxcpu_byondapi.so"))
-			return __auxcpu = "./libauxcpu_byondapi.so"
-		else if (fexists("[world.GetConfig("env", "HOME")]/.byond/bin/libauxcpu_byondapi.so"))
-			return __auxcpu = "[world.GetConfig("env", "HOME")]/.byond/bin/libauxcpu_byondapi.so"
-		else
-			return __auxcpu = "libauxcpu_byondapi.so"
+	if(IsAdminAdvancedProcCall())
+		return "libauxcpu_byondapi.so"
+	if (fexists("./libauxcpu_byondapi.so"))
+		return "./libauxcpu_byondapi.so"
+	else if (fexists("[world.GetConfig("env", "HOME")]/.byond/bin/libauxcpu_byondapi.so"))
+		return "[world.GetConfig("env", "HOME")]/.byond/bin/libauxcpu_byondapi.so"
 	else
-		return __auxcpu = "auxcpu_byondapi.dll"
-
-#define AUXCPU (__auxcpu || __detect_auxcpu())
-#endif
+		return "libauxcpu_byondapi.so"
 
 /// Whether the auxcpu library was successfully loaded and hooked this round.
 GLOBAL_VAR_INIT(auxcpu_loaded, FALSE)
 
+#ifdef OPENDREAM
+
+// OpenDream cannot load byondapi libraries, always use approximations.
+
+/world/proc/setup_external_cpu()
+	return FALSE
+
+/world/proc/cleanup_external_cpu()
+	return
+
+/proc/current_true_cpu()
+	return world.cpu
+
+/proc/current_cpu_index()
+	return WRAP(world.time, 1, INTERNAL_CPU_SIZE + 1)
+
+/proc/true_cpu_at_index(index)
+	if(index == current_cpu_index())
+		return current_true_cpu()
+	return 0
+
+/proc/cpu_values()
+	var/list/values = list()
+	for(var/i in 1 to INTERNAL_CPU_SIZE)
+		values += true_cpu_at_index(i)
+	return values
+
+#else
+
 /// Loads the auxcpu library and hooks its signatures. Returns TRUE on success.
 /world/proc/setup_external_cpu()
 	. = FALSE
-	if(!fexists(AUXCPU))
-		// Library not present, fall back to world.cpu approximations.
+	if(!fexists(AUXCPU_DLL))
+		log_world("auxcpu: library not found, falling back to world.cpu averaging")
 		return FALSE
-	if(!call_ext(AUXCPU, "byond:find_signatures")())
-		// Library present but failed to hook, fall back to world.cpu approximations.
+	if(!call_ext(AUXCPU_DLL, "byond:find_signatures")())
+		log_world("auxcpu: failed to find signatures, falling back to world.cpu averaging")
 		return FALSE
 	GLOB.auxcpu_loaded = TRUE
+	log_world("auxcpu: signatures found, raw CPU tracking enabled")
 	return TRUE
 
-/// Unloads/cleans up the auxcpu library. No-op for now.
+/// Unloads/cleans up the auxcpu library. No-op for now, kept for API parity.
 /world/proc/cleanup_external_cpu()
 	return
 
@@ -58,29 +80,39 @@ GLOBAL_VAR_INIT(auxcpu_loaded, FALSE)
 /proc/current_true_cpu()
 	if(!GLOB.auxcpu_loaded)
 		return world.cpu
-	return call_ext(AUXCPU, "byond:current_true_cpu")()
+	var/static/__current_true_cpu
+	__current_true_cpu ||= load_ext(AUXCPU_DLL, "byond:current_true_cpu")
+	return call_ext(__current_true_cpu)()
 
-/// Returns the index (1..16) of the current tick in BYOND's internal CPU buffer.
+/// Returns the index (1..[INTERNAL_CPU_SIZE]) of the current tick in BYOND's internal CPU buffer.
 /proc/current_cpu_index()
 	if(!GLOB.auxcpu_loaded)
 		return WRAP(world.time, 1, INTERNAL_CPU_SIZE + 1)
-	var/actual_index = call_ext(AUXCPU, "byond:current_cpu_index")()
+	var/static/__current_cpu_index
+	__current_cpu_index ||= load_ext(AUXCPU_DLL, "byond:current_cpu_index")
+	var/actual_index = call_ext(__current_cpu_index)()
 	return WRAP(actual_index + 1, 1, INTERNAL_CPU_SIZE + 1)
 
-/// Returns the raw CPU value stored at the given index (1..16) of BYOND's buffer.
+/// Returns the raw CPU value stored at the given index (1..[INTERNAL_CPU_SIZE]) of BYOND's buffer.
 /proc/true_cpu_at_index(index)
+	var/actual_index = WRAP(index - 1, 0, INTERNAL_CPU_SIZE)
 	if(!GLOB.auxcpu_loaded)
 		if(index == current_cpu_index())
 			return current_true_cpu()
 		return 0
-	var/actual_index = WRAP(index - 1, 0, INTERNAL_CPU_SIZE)
-	return call_ext(AUXCPU, "byond:true_cpu_at_index")(actual_index)
+	var/static/__true_cpu_at_index
+	__true_cpu_at_index ||= load_ext(AUXCPU_DLL, "byond:true_cpu_at_index")
+	return call_ext(__true_cpu_at_index)(actual_index)
 
-/// Returns a list of the raw CPU values for all 16 slots of BYOND's buffer.
+/// Returns a list of the raw CPU values for all [INTERNAL_CPU_SIZE] slots of BYOND's buffer.
 /proc/cpu_values()
 	if(!GLOB.auxcpu_loaded)
 		var/list/values = list()
 		for(var/i in 1 to INTERNAL_CPU_SIZE)
 			values += true_cpu_at_index(i)
 		return values
-	return call_ext(AUXCPU, "byond:cpu_values")()
+	var/static/__cpu_values
+	__cpu_values ||= load_ext(AUXCPU_DLL, "byond:cpu_values")
+	return call_ext(__cpu_values)()
+
+#endif
