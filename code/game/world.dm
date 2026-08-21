@@ -32,6 +32,12 @@ GLOBAL_VAR(restart_counter)
 	log_world("World loaded at [time_stamp()]!")
 	SSmetrics.world_init_time = REALTIMEOFDAY // Important
 
+	// [SOLARIS] - Запас под крупные мап-боксы: мир расширяется до 208x208.
+	// Новые турфы создаются как /turf/open/space/basic (задано в /world блоке).
+	if(world.maxx < 208 || world.maxy < 208)
+		world.maxx = max(world.maxx, 208)
+		world.maxy = max(world.maxy, 208)
+
 	make_datum_references_lists()	//initialises global lists for referencing frequently used datums (so that we only ever do it once)
 
 	GLOB.config_error_log = GLOB.world_manifest_log = GLOB.world_pda_log = GLOB.world_job_debug_log = GLOB.sql_error_log = GLOB.world_href_log = GLOB.world_runtime_log = GLOB.world_attack_log = GLOB.world_game_log = GLOB.world_shuttle_log = GLOB.world_mankind_admin_log = "data/logs/config_error.[GUID()].log" //temporary file used to record errors with loading config, moved to log directory once logging is set bl
