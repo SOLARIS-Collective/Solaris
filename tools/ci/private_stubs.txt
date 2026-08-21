@@ -1,0 +1,8 @@
+# Манифест двойников приватного модуля для CI-сборки без сабмодуля.
+# Формат: <путь внутри modular_solaris/_omni_access>|<публичный оригинал от корня репо>
+# Добавляйте строку при появлении нового свопа на файл из _omni_access в shiptest.dme.
+# Скрипт: tools/ci/stub_private_module.sh
+modular_solaris/_omni_access/code/overrides/overmap.dm|code/controllers/subsystem/overmap.dm
+modular_solaris/_omni_access/code/overrides/_PlanetGenerator.dm|code/datums/mapgen/planetary/_PlanetGenerator.dm
+modular_solaris/_omni_access/code/overrides/randomverbs.dm|code/modules/admin/verbs/randomverbs.dm
+modular_solaris/_omni_access/code/overrides/dynamic_datum.dm|code/modules/overmap/objects/dynamic_datum.dm

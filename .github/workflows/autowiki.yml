@@ -25,13 +25,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Stub private module
-        run: |
-          mkdir -p modular_solaris/_omni_access/code/overrides
-          printf '// Приватный модуль исключён из CI-сборки\n' > modular_solaris/_omni_access/__private.dme
-          cp code/controllers/subsystem/overmap.dm modular_solaris/_omni_access/code/overrides/overmap.dm
-          cp code/datums/mapgen/planetary/_PlanetGenerator.dm modular_solaris/_omni_access/code/overrides/_PlanetGenerator.dm
-          cp code/modules/admin/verbs/randomverbs.dm modular_solaris/_omni_access/code/overrides/randomverbs.dm
-          cp code/modules/overmap/objects/dynamic_datum.dm modular_solaris/_omni_access/code/overrides/dynamic_datum.dm
+        run: bash tools/ci/stub_private_module.sh
 
       - name: Setup BYOND cache
         id: cache-byond
