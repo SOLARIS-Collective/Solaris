@@ -68,9 +68,7 @@
   );
 
   // Layouts
-  @include meta.load-css(
-    '~tgui/styles/layouts/Layout.scss'
-  );
+  @include meta.load-css('~tgui/styles/layouts/Layout.scss');
   @include meta.load-css('~tgui/styles/layouts/Window.scss');
   @include meta.load-css(
     '~tgui/styles/layouts/TitleBar.scss',

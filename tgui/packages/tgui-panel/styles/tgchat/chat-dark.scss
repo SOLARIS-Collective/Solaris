@@ -401,7 +401,7 @@ em {
   color: #fcdf03;
 }
 
-.ramziradio_long  {
+.ramziradio_long {
   color: #5a4d3f;
 }
 .ramziradio_short {
@@ -428,7 +428,7 @@ em {
 .centcomradio_long {
   color: #2681a5;
 }
-.elysiumradio ,
+.elysiumradio,
 .elysiumradio_long {
   color: #12692f;
 }
@@ -532,11 +532,10 @@ em {
   border-left: 4px solid var(--priority-accent);
   border-radius: 0;
   background: #101713;
-  box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.03),
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.03),
     inset 0 1px 0 rgba(255, 255, 255, 0.04);
   color: var(--priority-body-color);
-  font-family: "Trebuchet MS", Verdana, sans-serif;
+  font-family: 'Trebuchet MS', Verdana, sans-serif;
   overflow: hidden;
 }
 
@@ -545,7 +544,7 @@ em {
 }
 
 .priority_announcement::after {
-  content: "";
+  content: '';
   position: absolute;
   top: 0.7rem;
   left: 1rem;
@@ -558,8 +557,7 @@ em {
 }
 
 .priority_announcement--important {
-  box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.03),
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.03),
     inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
@@ -574,7 +572,7 @@ em {
   border-radius: 0;
   background: var(--priority-badge-bg);
   color: var(--priority-badge-color);
-  font-family: Consolas, "Courier New", monospace;
+  font-family: Consolas, 'Courier New', monospace;
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.16em;
@@ -724,8 +722,7 @@ em {
   border: 1px solid var(--system-border);
   border-left: 4px solid var(--system-accent);
   background: #12171d;
-  box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.03),
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.03),
     inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
@@ -735,7 +732,7 @@ em {
   border: 1px solid var(--system-border);
   background: var(--system-label-bg);
   color: var(--system-label-color);
-  font-family: Consolas, "Courier New", monospace;
+  font-family: Consolas, 'Courier New', monospace;
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.14em;
@@ -758,7 +755,7 @@ em {
   border-top: 1px solid var(--system-divider);
   border-bottom: 1px solid var(--system-divider);
   color: var(--system-focus-color);
-  font-family: Consolas, "Courier New", monospace;
+  font-family: Consolas, 'Courier New', monospace;
   font-size: 1.45rem;
   font-weight: 800;
   letter-spacing: 0.12em;
@@ -1429,7 +1426,8 @@ em {
 
 // [MANKIND-ADD] - Staffwho verb colors
 
-.host, .project_lead {
+.host,
+.project_lead {
   color: hsl(27, 87.7%, 60%);
 }
 

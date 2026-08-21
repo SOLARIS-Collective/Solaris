@@ -3,7 +3,7 @@
 	desc = "An abandoned and infected city. A place you don't want to be."
 	planet = DYNAMIC_WORLD_OLD_TOWN
 	color = COLOR_NAVY
-	mapgen = null
+	mapgen = /datum/map_generator/planet_generator/sand
 	gravity = GRAVITY_DAMAGE_TRESHOLD
 	default_baseturf = /turf/open/floor/plating/asteroid/wasteplanet
 	weather_controller_type = /datum/weather_controller/desert

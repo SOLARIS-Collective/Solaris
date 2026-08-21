@@ -29,7 +29,7 @@
 	if(trails[3])
 		trails[3].alpha = 0
 
-/datum/overmap/ship/proc/update_trails(var/obj/shiptrail/newtrail)
+/datum/overmap/ship/proc/update_trails(obj/shiptrail/newtrail)
 	if(trails[1])
 		trails[1].alpha = 128
 		if(trails[2])
@@ -307,7 +307,7 @@
  */
 
 // [MANKIND-ADD] - MANKIND_OVERMAP_STUFF - Это вагабонд насрал
-/datum/overmap/ship/proc/not_tick_move(var/xmov, var/ymov)
+/datum/overmap/ship/proc/not_tick_move(xmov, ymov)
 	if(QDELING(src))
 		return
 	overmap_move(x + xmov, y + ymov)
