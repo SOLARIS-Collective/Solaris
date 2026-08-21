@@ -166,6 +166,8 @@ jobs:
           sudo apt-get install -y libcurl4:i386
 
       - name: Compile All Maps
+        env:
+          CBT_MAP_CHUNK: ${{ matrix.chunk }}/3
         run: |
           source $HOME/BYOND/byond/bin/byondsetup
           tools/build/build --ci dm -DCIBUILDING -DCITESTING -DALL_MAPS -DFULL_INIT

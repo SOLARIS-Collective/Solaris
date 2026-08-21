@@ -17,7 +17,11 @@ jobs:
   compile_all_maps:
     name: Compile Maps
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        chunk: [0, 1, 2]
 
     steps:
       - uses: actions/checkout@v4
