@@ -8,11 +8,25 @@
 #endif
 // Tick limit while running normally
 #define TICK_BYOND_RESERVE 2
-#define TICK_LIMIT_RUNNING (max(100 - TICK_BYOND_RESERVE - MAPTICK_LAST_INTERNAL_TICK_USAGE, MAPTICK_MC_MIN_RESERVE))
+#define TICK_VERB_RESERVE 4
+#define TICK_EXPECTED_SAFE_MAX (100 - TICK_BYOND_RESERVE - TICK_VERB_RESERVE - MAPTICK_LAST_INTERNAL_TICK_USAGE)
+/// Tick limit while running normally.
+/// With dynamic MC limiting enabled we limit ourselves to the corrective cpu threshold
+/// (see code/game/world.dm), so the corrective burn in /world/Tick can pin usage to a
+/// consistent level without fighting the MC for tick time.
+#define TICK_LIMIT_RUNNING (max(GLOB.use_dynamic_mc_limit ? GLOB.corrective_cpu_threshold : TICK_EXPECTED_SAFE_MAX, MAPTICK_MC_MIN_RESERVE))
 /// Tick limit used to resume things in stoplag
 #define TICK_LIMIT_TO_RUN 70
 /// Tick limit for MC while running
 #define TICK_LIMIT_MC 70
+
+/// Size of the moving average BYOND stores {map_)cpu values in
+#define INTERNAL_CPU_SIZE 16
+
+/// Consumes spare tick cpu until TICK_USAGE reaches the target percentage.
+/// Used to pin tick usage to a consistent level so the gap between SendMaps() calls
+/// stays constant (clients skip frames when it varies, which reads as stutter).
+#define CONSUME_UNTIL(target_usage) while(TICK_USAGE < (target_usage)) ;
 
 /// for general usage of tick_usage
 #define TICK_USAGE world.tick_usage
@@ -28,3 +42,24 @@
 #define TICK_CHECK_HIGH_PRIORITY (TICK_USAGE > 95)
 /// runs stoplag if tick_usage is above 95, for high priority usage
 #define CHECK_TICK_HIGH_PRIORITY (TICK_CHECK_HIGH_PRIORITY? stoplag() : 0)
+
+/// How many ticks worth of cpu info to hold onto
+#define TICK_INFO_SIZE 30
+/// Nicely formats cpu usage values for user display
+#define FORMAT_CPU(cpu) round(cpu, 0.01)
+/// Converts a tick from the last TICK_INFO_SIZE ticks to an index to use to access that tick's cpu info
+#define TICK_INFO_TICK2INDEX(tick) ((round(tick, 1) % TICK_INFO_SIZE) + 1)
+/// Gets the current tick info index
+#define TICK_INFO_INDEX(...) TICK_INFO_TICK2INDEX(DS2TICKS(world.time))
+
+// All the different sorts of display types we can use for our cpu plotting graph
+#define USAGE_DISPLAY_EARLY_SLEEPERS "Early Sleep"
+#define USAGE_DISPLAY_MC "MC"
+#define USAGE_DISPLAY_LATE_SLEEPERS "Late Sleep"
+#define USAGE_DISPLAY_SLEEPERS "Total Sleep"
+#define USAGE_DISPLAY_PRE_TICK "Before Tick"
+#define USAGE_DISPLAY_MAPTICK "Maptick"
+#define USAGE_DISPLAY_PRE_VERBS "Normal CPU"
+#define USAGE_DISPLAY_VERBS "Verbs"
+#define USAGE_DISPLAY_VERB_TIMING "Verb Timing"
+#define USAGE_DISPLAY_COMPLETE_CPU "Complete CPU"
