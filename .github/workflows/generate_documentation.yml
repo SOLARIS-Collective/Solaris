@@ -24,6 +24,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Stub private module
+        run: |
+          mkdir -p modular_solaris/_omni_access
+          printf '// Приватный модуль исключён из CI-сборки\n' > modular_solaris/_omni_access/__private.dme
       - name: Restore SpacemanDMM cache
         uses: actions/cache@v4
         with:

@@ -39,6 +39,11 @@ jobs:
           ref: master
       - uses: actions/checkout@v4
 
+      - name: Stub private module
+        run: |
+          mkdir -p modular_solaris/_omni_access
+          printf '// Приватный модуль исключён из CI-сборки\n' > modular_solaris/_omni_access/__private.dme
+
       - name: Restore SpacemanDMM cache
         id: cache-spacemandmm
         uses: actions/cache@v4
@@ -138,6 +143,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+
+      - name: Stub private module
+        run: |
+          mkdir -p modular_solaris/_omni_access
+          printf '// Приватный модуль исключён из CI-сборки\n' > modular_solaris/_omni_access/__private.dme
 
       - name: Setup cache
         id: cache-byond
