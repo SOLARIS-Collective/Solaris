@@ -62,6 +62,9 @@ GLOBAL_VAR_INIT(auxcpu_loaded, FALSE)
 /// Loads the auxcpu library and hooks its signatures. Returns TRUE on success.
 /world/proc/setup_external_cpu()
 	. = FALSE
+	if(!CONFIG_GET(flag/load_auxcpu_library))
+		log_world("auxcpu: disabled by config (LOAD_AUXCPU_LIBRARY), using world.cpu averaging")
+		return FALSE
 	if(!fexists(AUXCPU_DLL))
 		log_world("auxcpu: library not found, falling back to world.cpu averaging")
 		return FALSE

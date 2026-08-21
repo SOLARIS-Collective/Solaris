@@ -22,8 +22,6 @@
 
 /// Size of the moving average BYOND stores {map_)cpu values in
 #define INTERNAL_CPU_SIZE 16
-/// How many ticks worth of raw cpu samples we keep around for compensation math
-#define CPU_COMPENSATION_WINDOW 30
 
 /// Consumes spare tick cpu until TICK_USAGE reaches the target percentage.
 /// Used to pin tick usage to a consistent level so the gap between SendMaps() calls
@@ -44,3 +42,24 @@
 #define TICK_CHECK_HIGH_PRIORITY (TICK_USAGE > 95)
 /// runs stoplag if tick_usage is above 95, for high priority usage
 #define CHECK_TICK_HIGH_PRIORITY (TICK_CHECK_HIGH_PRIORITY? stoplag() : 0)
+
+/// How many ticks worth of cpu info to hold onto
+#define TICK_INFO_SIZE 30
+/// Nicely formats cpu usage values for user display
+#define FORMAT_CPU(cpu) round(cpu, 0.01)
+/// Converts a tick from the last TICK_INFO_SIZE ticks to an index to use to access that tick's cpu info
+#define TICK_INFO_TICK2INDEX(tick) ((round(tick, 1) % TICK_INFO_SIZE) + 1)
+/// Gets the current tick info index
+#define TICK_INFO_INDEX(...) TICK_INFO_TICK2INDEX(DS2TICKS(world.time))
+
+// All the different sorts of display types we can use for our cpu plotting graph
+#define USAGE_DISPLAY_EARLY_SLEEPERS "Early Sleep"
+#define USAGE_DISPLAY_MC "MC"
+#define USAGE_DISPLAY_LATE_SLEEPERS "Late Sleep"
+#define USAGE_DISPLAY_SLEEPERS "Total Sleep"
+#define USAGE_DISPLAY_PRE_TICK "Before Tick"
+#define USAGE_DISPLAY_MAPTICK "Maptick"
+#define USAGE_DISPLAY_PRE_VERBS "Normal CPU"
+#define USAGE_DISPLAY_VERBS "Verbs"
+#define USAGE_DISPLAY_VERB_TIMING "Verb Timing"
+#define USAGE_DISPLAY_COMPLETE_CPU "Complete CPU"
