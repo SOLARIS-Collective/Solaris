@@ -240,7 +240,7 @@ distance_multiplier - Can be used to multiply the distance at which the sound is
 		// [/MANKIND-EDIT]
 // [MANKIND-ADD] - MUSIC_MANKIND
 		var/music_name = "Untitled"
-		if(findtext(SSticker.login_music, "title_music/sounds"))
+		if(SSticker.login_music)
 			music_name = SSticker.login_music
 			var/slash_position = findlasttext(music_name, "/")
 			if(slash_position)
