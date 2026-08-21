@@ -367,10 +367,10 @@
 		GLOB.ship_select_tgui = new /datum/ship_select(src)
 
 	// [MANKIND-ADD] - MANKIND: DISCORD VERIFY
-	if(CONFIG_GET(flag/DiscordVerify))
-		if(!checkDiscordVerify(src.ckey))
-			to_chat(usr, span_danger("Ваш аккаунт не верифицирован в Discord.\n Пожалуйста, используйте кнопку 'Verify Discord Account' во вкладке 'Special Verbs' для Discord верификации."))
-			return
+	// if(CONFIG_GET(flag/DiscordVerify))
+	// 	if(!checkDiscordVerify(src.ckey))
+	// 		to_chat(usr, span_danger("Ваш аккаунт не верифицирован в Discord.\n Пожалуйста, используйте кнопку 'Verify Discord Account' во вкладке 'Special Verbs' для Discord верификации."))
+	// 		return
 	// [/MANKIND-ADD]
 
 	GLOB.ship_select_tgui.ui_interact(src)

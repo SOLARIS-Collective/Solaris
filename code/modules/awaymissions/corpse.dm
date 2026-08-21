@@ -52,10 +52,10 @@
 		return
 
 	// [MANKIND-ADD] - MANKIND: DISCORD VERIFY
-	if(CONFIG_GET(flag/DiscordVerify))
-		if(!checkDiscordVerify(user.ckey))
-			to_chat(usr, span_danger("Ваш аккаунт не верифицирован в Discord.\n Пожалуйста, используйте кнопку 'Verify Discord Account' во вкладке 'Special Verbs' для Discord верификации."))
-			return
+	// if(CONFIG_GET(flag/DiscordVerify))
+	// 	if(!checkDiscordVerify(user.ckey))
+	// 		to_chat(usr, span_danger("Ваш аккаунт не верифицирован в Discord.\n Пожалуйста, используйте кнопку 'Verify Discord Account' во вкладке 'Special Verbs' для Discord верификации."))
+	// 		return
 	// [/MANKIND-ADD]
 
 	var/ghost_role = alert("Become [mob_name]? (Warning, You can no longer be revived!)",,"Yes","No")
