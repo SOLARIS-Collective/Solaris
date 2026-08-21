@@ -11,6 +11,7 @@ GLOBAL_DATUM_INIT(cpu_tracker, /atom/movable/screen/usage_display, new())
 	// how many people are looking at us right now?
 	var/viewer_count = 0
 	/// What modes CAN the graph display?
+	// [SOLARIS] - USAGE_DISPLAY_VERBS / USAGE_DISPLAY_VERB_TIMING removed: no verb tracking ported
 	var/list/graph_options = list(
 		USAGE_DISPLAY_EARLY_SLEEPERS,
 		USAGE_DISPLAY_MC,
@@ -19,8 +20,6 @@ GLOBAL_DATUM_INIT(cpu_tracker, /atom/movable/screen/usage_display, new())
 		USAGE_DISPLAY_PRE_TICK,
 		USAGE_DISPLAY_MAPTICK,
 		USAGE_DISPLAY_PRE_VERBS,
-		USAGE_DISPLAY_VERBS,
-		USAGE_DISPLAY_VERB_TIMING,
 		USAGE_DISPLAY_COMPLETE_CPU,
 	)
 	var/atom/movable/screen/graph_display/bars/cpu_display/graph_display
@@ -193,7 +192,8 @@ GLOBAL_DATUM_INIT(cpu_tracker, /atom/movable/screen/usage_display, new())
 			return TRUE
 		if("set_graph_scale")
 			var/current_value = graph_display.max_displayable_cpu
-			var/max_cpu = tgui_input_number(usr, "What should be the highest displayable cpu value?", "Max CPU", max_value = INFINITY, min_value = 1, default = current_value)
+			// [SOLARIS] - native input, NumberInputModal is missing from this base's tgui bundle
+			var/max_cpu = input(usr, "What should be the highest displayable cpu value?", "Max CPU", current_value) as null|num
 			if(!isnum(max_cpu) || max_cpu < 1)
 				return TRUE
 			graph_display.set_max_display(max_cpu)
@@ -218,30 +218,45 @@ GLOBAL_DATUM_INIT(cpu_tracker, /atom/movable/screen/usage_display, new())
 			graph_display.set_focused_mc(focused_entry)
 			return TRUE
 		if("set_corrective_target")
-			var/target_cpu = tgui_input_number(usr, "What should we attempt to correct up to?", "Correct CPU", max_value = INFINITY, min_value = 0, default = GLOB.corrective_cpu_target) || 0
-			GLOB.corrective_cpu_target = target_cpu
+			// [SOLARIS] - native input, NumberInputModal is missing from this base's tgui bundle
+			var/target_cpu = input(usr, "What should we attempt to correct up to?", "Correct CPU", GLOB.corrective_cpu_target) as null|num
+			if(isnull(target_cpu))
+				return TRUE
+			GLOB.corrective_cpu_target = max(target_cpu, 0)
 			return TRUE
 		if("set_corrective_ratio")
-			var/target_ratio = tgui_input_number(usr, "How tolerant of distance from the average should we be?", "Correct CPU Ratio", max_value = INFINITY, min_value = 0, default = GLOB.corrective_cpu_ratio) || 0
-			GLOB.corrective_cpu_ratio = target_ratio
+			var/target_ratio = input(usr, "How tolerant of distance from the average should we be?", "Correct CPU Ratio", GLOB.corrective_cpu_ratio) as null|num
+			if(isnull(target_ratio))
+				return TRUE
+			GLOB.corrective_cpu_ratio = max(target_ratio, 0)
 			return TRUE
 		if("set_glide_ratio")
-			var/target_ratio = tgui_input_number(usr, "How tolerant of distance from the average should we be?", "Glide Ratio", max_value = INFINITY, min_value = 0, default = GLOB.glide_threshold_ratio) || 0
-			GLOB.glide_threshold_ratio = target_ratio
+			var/target_ratio = input(usr, "How tolerant of distance from the average should we be?", "Glide Ratio", GLOB.glide_threshold_ratio) as null|num
+			if(isnull(target_ratio))
+				return TRUE
+			GLOB.glide_threshold_ratio = max(target_ratio, 0)
 			return TRUE
 		if("set_floor")
-			var/floor_cpu = tgui_input_number(usr, "How low should we allow the cpu to go?", "Floor CPU", max_value = INFINITY, min_value = 0, default = 0) || 0
-			GLOB.floor_cpu = floor_cpu
+			var/floor_cpu = input(usr, "How low should we allow the cpu to go?", "Floor CPU", 0) as null|num
+			if(isnull(floor_cpu))
+				return TRUE
+			GLOB.floor_cpu = max(floor_cpu, 0)
 			return TRUE
 		if("set_sustain_cpu")
-			var/sustain_cpu = tgui_input_number(usr, "What should we randomly set our cpu to?", "Sustain CPU", max_value = INFINITY, min_value = 0, default = 0) || 0
-			GLOB.sustain_cpu = sustain_cpu
+			var/sustain_cpu = input(usr, "What should we randomly set our cpu to?", "Sustain CPU", 0) as null|num
+			if(isnull(sustain_cpu))
+				return TRUE
+			GLOB.sustain_cpu = max(sustain_cpu, 0)
 			return TRUE
 		if("set_sustain_chance")
-			var/sustain_cpu_chance = tgui_input_number(usr, "What % of the time should we floor at Sustain CPU", "Sustain CPU %", max_value = 100, min_value = 0, default = 0) || 0
-			GLOB.sustain_cpu_chance = sustain_cpu_chance
+			var/sustain_cpu_chance = input(usr, "What % of the time should we floor at Sustain CPU", "Sustain CPU %", 0) as null|num
+			if(isnull(sustain_cpu_chance))
+				return TRUE
+			GLOB.sustain_cpu_chance = clamp(sustain_cpu_chance, 0, 100)
 			return TRUE
 		if("set_spike")
-			var/spike_cpu = tgui_input_number(usr, "How high should we spike cpu usage", "Spike CPU", max_value = INFINITY, min_value = 0, default = 0) || 0
-			GLOB.spike_cpu = spike_cpu
+			var/spike_cpu = input(usr, "How high should we spike cpu usage", "Spike CPU", 0) as null|num
+			if(isnull(spike_cpu))
+				return TRUE
+			GLOB.spike_cpu = max(spike_cpu, 0)
 			return TRUE

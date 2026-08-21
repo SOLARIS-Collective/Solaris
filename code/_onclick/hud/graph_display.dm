@@ -458,6 +458,9 @@ INITIALIZE_IMMEDIATE(/atom/movable/screen/graph_part)
 	var/list/verb_info = list()
 
 /atom/movable/screen/graph_part/bar/multi_segment/verbs/refresh_bar(list/value)
+	// [SOLARIS] - no verb tracking, guard against null/scalar pushes
+	if(!islist(value) || length(value) < 2)
+		return ..(islist(value) && length(value) ? value[1] : 0)
 	verb_info = value[2]
 	return ..(value[1])
 
