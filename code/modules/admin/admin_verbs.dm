@@ -30,8 +30,8 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/client/proc/requests,
 	/client/proc/fax_panel, /*send a paper to fax*/
 	/client/proc/show_all_verbs,				// [MANKIND-ADD] - ADMIN-PANEL - Black Reality
-	/client/proc/manage_chatfilter,				// [MANKIND-ADD] - BRAINDEAD-SYSTEM
-	/client/proc/toggle_chatfilter_hardcore,	// [MANKIND-ADD] - BRAINDEAD-SYSTEM
+	// /client/proc/manage_chatfilter,				// [MANKIND-ADD] - BRAINDEAD-SYSTEM
+	// /client/proc/toggle_chatfilter_hardcore,	// [MANKIND-ADD] - BRAINDEAD-SYSTEM
 	)
 GLOBAL_LIST_INIT(admin_verbs_admin, world.AVerbsAdmin())
 GLOBAL_PROTECT(admin_verbs_admin)

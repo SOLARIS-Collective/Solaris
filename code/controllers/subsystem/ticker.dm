@@ -19,6 +19,8 @@ SUBSYSTEM_DEF(ticker)
 
 	var/login_music							//music played in pregame lobby
 	var/login_music_name					//music played in pregame lobby
+	var/list/login_music_playlist = list()	//all lobby tracks to cycle through
+	var/login_music_index = 0				//index of the currently playing track in the playlist
 	var/round_end_sound						//music/jingle played when the world reboots
 	var/round_end_sound_sent = TRUE			//If all clients have loaded it
 
@@ -94,11 +96,8 @@ SUBSYSTEM_DEF(ticker)
 				if(L[1] == "exclude")
 					continue
 				music += S
-				login_music_name = S
 
 	var/old_login_music = trim(file2text("data/last_round_lobby_music.txt"))
-	if(music.len > 1)
-		music -= old_login_music
 
 	for(var/S in music)
 		var/list/L = splittext(S,".")
@@ -110,9 +109,20 @@ SUBSYSTEM_DEF(ticker)
 
 	if(!length(music))
 		music = world.file2list(ROUND_START_MUSIC_LIST, "\n")
-		login_music = pick(music)
+		for(var/S in music)
+			if(trim(S))
+				login_music_playlist += trim(S)
 	else
-		login_music = "[global.config.directory]/title_music/sounds/[pick(music)]"
+		for(var/S in music)
+			login_music_playlist += "[global.config.directory]/title_music/sounds/[S]"
+
+	if(length(login_music_playlist))
+		if(login_music_playlist.len > 1)
+			login_music_playlist -= old_login_music //don't start on the track that ended last round
+		login_music_index = rand(1, length(login_music_playlist))
+		login_music = login_music_playlist[login_music_index]
+		login_music_name = login_music
+		queue_login_music_advance()
 
 
 	if(!GLOB.syndicate_code_phrase)
@@ -139,6 +149,32 @@ SUBSYSTEM_DEF(ticker)
 	generate_selectable_species()
 
 	return ..()
+
+///Schedules the next lobby track change based on the length of the current track.
+/datum/controller/subsystem/ticker/proc/queue_login_music_advance()
+	var/track_length = 0
+	if(RUST_G)
+		track_length = SSsound_cache.get_sound_length(login_music)
+	if(track_length <= 0)
+		track_length = 300
+	addtimer(CALLBACK(src, PROC_REF(advance_login_music)), (track_length + 2) SECONDS)
+
+///Advances to the next lobby track in a loop and pushes it to all lobby clients.
+/datum/controller/subsystem/ticker/proc/advance_login_music()
+	if(!length(login_music_playlist))
+		return
+
+	login_music_index++
+	if(login_music_index > length(login_music_playlist))
+		login_music_index = 1
+	login_music = login_music_playlist[login_music_index]
+	login_music_name = login_music
+
+	for(var/client/C in GLOB.clients)
+		if(isnewplayer(C.mob) && (C.prefs?.toggles & SOUND_LOBBY))
+			C.playtitlemusic()
+
+	queue_login_music_advance()
 
 /datum/controller/subsystem/ticker/fire()
 	switch(current_state)
@@ -406,6 +442,11 @@ SUBSYSTEM_DEF(ticker)
 	mode = SSticker.mode
 
 	login_music = SSticker.login_music
+	login_music_name = SSticker.login_music_name
+	login_music_playlist = SSticker.login_music_playlist
+	login_music_index = SSticker.login_music_index
+	if(length(login_music_playlist))
+		queue_login_music_advance()
 	round_end_sound = SSticker.round_end_sound
 
 	minds = SSticker.minds
@@ -578,6 +619,8 @@ SUBSYSTEM_DEF(ticker)
 	var/sound/end_of_round_sound_ref = sound(round_end_sound)
 	for(var/mob/M in GLOB.player_list)
 		if(M.client.prefs?.toggles & SOUND_ENDOFROUND)
-			SEND_SOUND(M.client, end_of_round_sound_ref)
+			// [MANKIND-EDIT] - MANKIND_FIXES - Применяем масштабирование громкости по категории End of Round
+			M.send_sound_scaled(end_of_round_sound_ref, FS_ENDOFROUND)
+			// [/MANKIND-EDIT]
 
 	text2file(login_music, "data/last_round_lobby_music.txt")

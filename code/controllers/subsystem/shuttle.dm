@@ -335,11 +335,8 @@ SUBSYSTEM_DEF(shuttle)
 
 	if(!loading_zone)
 		CRASH("failed to reserve an area for shuttle template loading")
-	// [MANKIND-EDIT] - OPTIMIZE_SHIP_LOADING - Убран избыточный fill_in()
-	// Первый fill_in() заливал loading-зону космосом, но template.load()
-	// сразу перезаписывает все тайлы шаттла. Работа впустую.
-	// loading_zone.fill_in(turf_type = /turf/open/space/transit/south)
-	// [/MANKIND-EDIT]
+	// Откат
+	loading_zone.fill_in(turf_type = /turf/open/space/transit/south)
 
 	var/turf/BL = locate(loading_zone.low_x, loading_zone.low_y, loading_zone.z_value)
 	if(!template.load(BL, centered = FALSE, register = FALSE))
@@ -522,7 +519,12 @@ SUBSYSTEM_DEF(shuttle)
 					if(!selected_system)
 						return //if selected_system didnt get selected, we nope out, this is very bad
 				if(!new_ship)
+					// [SOLARIS-ADD] - Логирование времени создания корабля через Shuttle Manipulator.
+					var/manip_spawn_start_time = REALTIMEOFDAY
+					log_shuttle("SHUTTLE MANIPULATOR: СТАРТ создания корабля \"[S]\" админом [key_name(user)]")
 					new_ship = new(ship_loc, selected_system, S)
+					log_shuttle("SHUTTLE MANIPULATOR: ФИНИШ создания корабля \"[S]\" админом [key_name(user)]. Итог: [new_ship?.shuttle_port ? "успех" : "ПРОВАЛ"] за [(REALTIMEOFDAY - manip_spawn_start_time) / 10]s")
+					// [/SOLARIS-ADD]
 				if(new_ship?.shuttle_port)
 					user.forceMove(new_ship.get_jump_to_turf())
 					message_admins("[key_name_admin(user)] loaded [new_ship] ([S]) with the shuttle manipulator.")

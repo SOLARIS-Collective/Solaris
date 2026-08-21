@@ -228,7 +228,7 @@
 				continue
 
 			L.adjustFireLoss(20 * seconds_per_tick)
-			if(L) //mobs turning into object corpses could get deleted here.
+			if(!QDELETED(L)) //mobs turning into object corpses could get deleted here.
 				L.AddElement(/datum/element/perma_fire_overlay)
 				L.adjust_fire_stacks(20 * seconds_per_tick)
 				L.ignite_mob()

@@ -3844,7 +3844,7 @@
 /obj/machinery/telecomms/hub{
 	autolinkers = list("solgov","broadcasterA","receiverA","solgovPDA","SolHub");
 	network = "SolNet";
-	id = "Solgov Hub"
+	id = "SolGov Hub"
 	},
 /obj/structure/window/reinforced{
 	dir = 8;

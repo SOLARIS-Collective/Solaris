@@ -52,6 +52,11 @@ GLOBAL_VAR(world_mankind_admin_log)
 GLOBAL_PROTECT(world_mankind_admin_log)
 // [/MANKIND-ADD]
 
+// [SOLARIS-ADD] - Логирование генерации/загрузки планет.
+GLOBAL_VAR(world_planets_log)
+GLOBAL_PROTECT(world_planets_log)
+// [/SOLARIS-ADD]
+
 GLOBAL_VAR(perf_log)
 GLOBAL_PROTECT(perf_log)
 

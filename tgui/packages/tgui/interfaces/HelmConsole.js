@@ -61,7 +61,15 @@ export const HelmConsole = (_props, context) => {
 
 const SharedContent = (_props, context) => {
   const { act, data } = useBackend(context);
-  const { isViewer, canRename, shipInfo = [], otherInfo = [], arpa_ships = [], calibrating, omni_arpa } = data;
+  const {
+    isViewer,
+    canRename,
+    shipInfo = [],
+    otherInfo = [],
+    arpa_ships = [],
+    calibrating,
+    omni_arpa,
+  } = data;
   let flyable = !data.docking && !data.docked;
   return (
     <>
@@ -80,12 +88,12 @@ const SharedContent = (_props, context) => {
         }
         buttons={
           <Button
-              tooltip="Refresh Ship Stats"
-              tooltipPosition="left"
-              icon="sync"
-              disabled={isViewer}
-              onClick={() => act('reload_ship')}
-            />
+            tooltip="Refresh Ship Stats"
+            tooltipPosition="left"
+            icon="sync"
+            disabled={isViewer}
+            onClick={() => act('reload_ship')}
+          />
         }
       >
         <LabeledList>
@@ -127,7 +135,8 @@ const SharedContent = (_props, context) => {
           )}
         </LabeledList>
       </Section>
-      <Section title="Radar"
+      <Section
+        title="Radar"
         buttons={
           <>
             <Button // [MANKIND-ADD] - TRANSPONDER_GOING_DARK - Переключатель транспондера
@@ -137,7 +146,9 @@ const SharedContent = (_props, context) => {
                   : 'Transponder OFF - ship is anonymous'
               }
               tooltipPosition="left"
-              icon={data.transponder_active ? 'broadcast-tower' : 'broadcast-tower'}
+              icon={
+                data.transponder_active ? 'broadcast-tower' : 'broadcast-tower'
+              }
               color={data.transponder_active ? 'green' : 'red'}
               disabled={isViewer}
               onClick={() => act('toggle_transponder')}
@@ -159,7 +170,7 @@ const SharedContent = (_props, context) => {
             />
           </>
         }
-		>
+      >
         <Table>
           <Table.Row bold>
             <Table.Cell>Name</Table.Cell>
@@ -180,7 +191,7 @@ const SharedContent = (_props, context) => {
               </Table.Cell>
               {!isViewer && !omni_arpa && (
                 <Table.Cell>
-                  {ship.scannable && (
+                  {!!ship.scannable && (
                     <Button
                       tooltip="Set Label"
                       tooltipPosition="left"
@@ -261,7 +272,7 @@ const SharedContent = (_props, context) => {
         {arpa_ships.map((ship) => (
           <Table.Row key={ship.ref || ship.name}>
             <Table.Cell>{ship.name}</Table.Cell>
-            {!isViewer && !omni_arpa && ship.scannable && (
+            {!isViewer && !omni_arpa && !!ship.scannable && (
               <Table.Cell>
                 <Button
                   tooltip="Set Label"

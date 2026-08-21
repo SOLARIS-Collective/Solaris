@@ -1,5 +1,9 @@
 /obj/item/robot_module/Initialize()
 	. = ..()
+	// [MANKIND-EDIT] Copy the type-level lists so we don't mutate the shared list
+	// declared in the type definition (BYOND shares it between all instances).
+	basic_modules = basic_modules.Copy()
+	emag_modules = emag_modules.Copy()
 	if(!(/obj/item/extinguisher in basic_modules))
 		basic_modules += /obj/item/extinguisher/mini
 	if(!(/obj/item/weldingtool in basic_modules))

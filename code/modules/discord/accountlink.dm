@@ -12,10 +12,10 @@
 		to_chat(src, span_warning("Wait for the Discord subsystem to finish initialising"))
 		return
 	// [MANKIND-ADD] - Проверка на то, что система верификации включена
-	if(CONFIG_GET(flag/DiscordVerify))
-		if(checkDiscordVerify(src.ckey))
-			to_chat(usr, span_danger("Ваш аккаунт уже привязан к DISCORD. Больше не жми на эту кнопку, пожалуйста."))
-			return
+	// if(CONFIG_GET(flag/DiscordVerify))
+	// 	if(checkDiscordVerify(src.ckey))
+	// 		to_chat(usr, span_danger("Ваш аккаунт уже привязан к DISCORD. Больше не жми на эту кнопку, пожалуйста."))
+	// 		return
 	// [/MANKIND-ADD]
 	var/message = ""
 	// Simple sanity check to prevent a user doing this too often

@@ -1022,9 +1022,6 @@
 	},
 /obj/structure/disposalpipe/segment,
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/sign/elysium{
-	pixel_x = 32
-	},
 /turf/open/floor/plasteel/patterned/brushed{
 	light_color = "#1B1D2E";
 	light_range = 2;
@@ -1479,9 +1476,6 @@
 /obj/machinery/light/small/directional/east{
 	light_color = "#FF0000";
 	pixel_y = -10
-	},
-/obj/structure/sign/elysium{
-	pixel_x = 32
 	},
 /turf/open/floor/plasteel/patterned/brushed{
 	light_color = "#1B1D2E";
@@ -4623,14 +4617,14 @@ FX
 ai
 TX
 ai
-ai
 aG
+sx
+sx
 sx
 sx
 XP
 aG
 Xz
-bj
 bj
 ai
 TX
@@ -4665,14 +4659,14 @@ ai
 ai
 TX
 lb
-ai
 aG
+sx
+sx
 sx
 sx
 sx
 aG
 TX
-bj
 bj
 ai
 TX
@@ -4707,14 +4701,14 @@ bj
 Vs
 TX
 TX
-TX
 aG
+sx
+sx
 sx
 sx
 sx
 aG
 aH
-ai
 bj
 TX
 TX
@@ -4749,13 +4743,13 @@ aY
 ab
 aY
 aY
-aY
 ab
 ab
 ab
 ab
 ab
-aY
+ab
+ab
 aY
 aY
 aY

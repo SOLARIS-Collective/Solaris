@@ -6,16 +6,16 @@
 @use 'sass:color';
 @use '../base.scss';
 
-
-
 $bg-lightness: color.lightness(base.$color-bg);
 $is-dark-bg: $bg-lightness <= 50;
 
-$scrollbar-thumb-color: if($is-dark-bg,
+$scrollbar-thumb-color: if(
+  $is-dark-bg,
   rgba(255, 255, 255, 0.25),
   rgba(0, 0, 0, 0.2)
 );
-$scrollbar-track-color: if($is-dark-bg,
+$scrollbar-track-color: if(
+  $is-dark-bg,
   rgba(255, 255, 255, 0.06),
   rgba(0, 0, 0, 0.06)
 );

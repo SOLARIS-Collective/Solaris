@@ -54,15 +54,28 @@ export const NoWarningParameter = new Juke.Parameter({
 
 export const DmMapsIncludeTarget = new Juke.Target({
   executes: async () => {
-    const folders = [
+    const allFiles = [
       ...Juke.glob("_maps/outpost/**/*.dmm"),
       ...Juke.glob("_maps/RandomRuins/**/*.dmm"),
       ...Juke.glob("_maps/shuttles/**/*.dmm"),
       ...Juke.glob("_maps/templates/**/*.dmm"),
       ...Juke.glob("_maps/PentestMaps/**/*.dmm"),
-    ];
+    ].sort();
+    let files = allFiles;
+    const chunk = process.env.CBT_MAP_CHUNK;
+    if (chunk) {
+      const [index, total] = chunk.split("/").map((x) => parseInt(x, 10));
+      if (!(total > 0) || !(index >= 0 && index < total)) {
+        throw new Error(`Invalid CBT_MAP_CHUNK: ${chunk}`);
+      }
+      const size = Math.ceil(allFiles.length / total);
+      files = allFiles.slice(index * size, (index + 1) * size);
+      Juke.logger.info(
+        `Map chunk ${index}/${total}: compiling ${files.length} of ${allFiles.length} maps`
+      );
+    }
     const content =
-      folders
+      files
         .map((file) => file.replace("_maps/", ""))
         .map((file) => `#include "${file}"`)
         .join("\n") + "\n";

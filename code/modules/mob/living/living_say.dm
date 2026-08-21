@@ -420,6 +420,8 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	return TRUE
 
 /mob/living/proc/can_speak_vocal(message, datum/language/language) //Check AFTER handling of xeno and ling channels
+	if(QDELETED(src))
+		return FALSE
 	if(!language)
 		language = get_selected_language()
 

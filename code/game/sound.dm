@@ -213,22 +213,42 @@ distance_multiplier - Can be used to multiply the distance at which the sound is
 	S.status = SOUND_UPDATE
 	SEND_SOUND(src, S)
 
+/// [MANKIND-ADD] - MANKIND_FIXES - Отправляет звук с применением масштабирования громкости по категории (sound_flag).
+/// Используется для путей, которые обходят playsound_local (SEND_SOUND напрямую), чтобы слайдеры громкости работали.
+/mob/proc/send_sound_scaled(soundin, sound_flag = FS_GENERAL, channel = 0, volume = 100)
+	if(!client)
+		return
+	var/sound/S = istype(soundin, /sound) ? soundin : sound(soundin)
+	S.volume = volume
+	if(client.prefs?.sound_volume)
+		S.volume = round(S.volume * (client.prefs.sound_volume[sound_flag] / 100))
+	if(S.volume <= 0)
+		return
+	if(channel)
+		S.channel = channel
+	S.wait = 0
+	SEND_SOUND(src, S)
+// [/MANKIND-ADD]
+
 /client/proc/playtitlemusic(vol = 85)
 	set waitfor = FALSE
 	UNTIL(SSticker.login_music) //wait for SSticker init to set the login music
 
 	if(prefs && (prefs.toggles & SOUND_LOBBY))
-		SEND_SOUND(src, sound(SSticker.login_music, repeat = 0, wait = 0, volume = vol, channel = CHANNEL_LOBBYMUSIC)) // MAD JAMS
+		// [MANKIND-EDIT] - MANKIND_FIXES - Применяем масштабирование громкости по категории Lobby
+		src.mob.send_sound_scaled(sound(SSticker.login_music, repeat = 0, wait = 0, volume = vol, channel = CHANNEL_LOBBYMUSIC), FS_LOBBY, CHANNEL_LOBBYMUSIC, vol)
+		// [/MANKIND-EDIT]
 // [MANKIND-ADD] - MUSIC_MANKIND
-		if(SSticker.login_music_name)
-			var/music_name = SSticker.login_music_name
+		var/music_name = "Untitled"
+		if(SSticker.login_music)
+			music_name = SSticker.login_music
 			var/slash_position = findlasttext(music_name, "/")
 			if(slash_position)
 				music_name = copytext(music_name, slash_position + 1)
 			var/dot_position = findlasttext(music_name, ".")
 			if(dot_position)
 				music_name = copytext(music_name, 1, dot_position)
-			to_chat(src, span_redteamradio("<B>Музыка в лобби: [music_name]</B>"))
+		to_chat(src, span_redteamradio("<B>Музыка в лобби: [music_name]</B>"))
 // [/MANKIND-ADD]
 
 /proc/get_rand_frequency()

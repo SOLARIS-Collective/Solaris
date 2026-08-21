@@ -1591,10 +1591,6 @@
 	mouse_opacity = 0
 	},
 /area/hangar)
-"SU" = (
-/obj/structure/sign/elysium,
-/turf/closed/indestructible/reinforced,
-/area/hangar)
 "SY" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/trimline/opaque/yellow/filled/warning{
@@ -5352,7 +5348,7 @@ nD
 Pg
 Ky
 UY
-SU
+eH
 Ji
 Ji
 Ji
@@ -5625,7 +5621,7 @@ eH
 eH
 eH
 eH
-SU
+eH
 fh
 NV
 xo

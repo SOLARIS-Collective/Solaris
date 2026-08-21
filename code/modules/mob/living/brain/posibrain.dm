@@ -103,10 +103,10 @@ GLOBAL_VAR(posibrain_notify_cooldown)
 		return
 
 	// [MANKIND-ADD] - MANKIND: DISCORD VERIFY
-	if(CONFIG_GET(flag/DiscordVerify))
-		if(!checkDiscordVerify(user.ckey))
-			to_chat(usr, span_danger("Ваш аккаунт не верифицирован в Discord.\n Пожалуйста, используйте кнопку 'Verify Discord Account' во вкладке 'Special Verbs' для Discord верификации."))
-			return
+	// if(CONFIG_GET(flag/DiscordVerify))
+	// 	if(!checkDiscordVerify(user.ckey))
+	// 		to_chat(usr, span_danger("Ваш аккаунт не верифицирован в Discord.\n Пожалуйста, используйте кнопку 'Verify Discord Account' во вкладке 'Special Verbs' для Discord верификации."))
+	// 		return
 	// [/MANKIND-ADD]
 
 	var/posi_ask = alert("Become a [name]? (Warning, You can no longer be revived, and all past lives will be forgotten!)","Are you positive?","Yes","No")

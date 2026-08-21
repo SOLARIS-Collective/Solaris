@@ -893,7 +893,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/newscaster/security_unit, 30)
 /obj/item/newspaper/attack_self(mob/user)
 	if(ishuman(user))
 		var/mob/living/carbon/human/human_user = user
-		var/dat="<meta http-equiv='X-UA-Compatible' content='IE=edge' charset='UTF-8'/>"
+		var/dat="<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\"><html><head><meta http-equiv='X-UA-Compatible' content='IE=edge'><meta charset='UTF-8'></head><body>"
 		pages = 0
 		switch(screen)
 			if(0) //Cover
@@ -965,7 +965,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/newscaster/security_unit, 30)
 				if(scribble_page==curr_page)
 					dat+="<BR><I>В конце этой страницы есть небольшая каракуля... \"[scribble]\"</I>"
 				dat+= "<HR><DIV STYLE='float:left;'><A href='byond://?src=[REF(src)];prev_page=1'>Previous Page</A></DIV>"
-		dat+="<BR><HR><div align='center'>[curr_page+1]</div>"
+		dat+="<BR><HR><div align='center'>[curr_page+1]</div></body></html>"
 		human_user << browse(dat, "window=newspaper_main;size=300x400")
 		onclose(human_user, "newspaper_main")
 	else

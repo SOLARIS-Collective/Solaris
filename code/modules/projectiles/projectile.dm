@@ -307,13 +307,13 @@
 		if(limb_hit)
 			organ_hit_text = " in \the [parse_zone(limb_hit)]"
 		if(suppressed==SUPPRESSED_VERY)
-			playsound(loc, hitsound, 5, TRUE, -1)
+			playsound(loc, hitsound, 5, TRUE, -1, sound_flag = FS_WEAPONS)
 		else if(suppressed)
-			playsound(loc, hitsound, 5, TRUE, -1)
+			playsound(loc, hitsound, 5, TRUE, -1, sound_flag = FS_WEAPONS)
 			to_chat(L, span_userdanger("You're shot by \a [src][organ_hit_text]!"))
 		else
 			if(hitsound)
-				playsound(get_turf(L), hitsound, 100, TRUE, -1)
+				playsound(get_turf(L), hitsound, 100, TRUE, -1, sound_flag = FS_WEAPONS)
 			L.visible_message(span_danger("[L] is hit by \a [src][organ_hit_text]!"), \
 					span_userdanger("You're hit by \a [src][organ_hit_text]!"), null, COMBAT_MESSAGE_RANGE)
 		L.on_hit(src)
@@ -401,7 +401,7 @@
 			if(hitscan)
 				store_hitscan_collision(pcache)
 			if(ricochet_sound)
-				playsound(get_turf(src), ricochet_sound, 120, TRUE, 2) //make it loud, we want to make it known when a ricochet happens. for aesthetic reasons mostly
+				playsound(get_turf(src), ricochet_sound, 120, TRUE, 2, sound_flag = FS_WEAPONS) //make it loud, we want to make it known when a ricochet happens. for aesthetic reasons mostly
 			return TRUE
 
 	var/distance = get_dist(T, starting) // Get the distance between the turf shot from and the mob we hit and use that for the calculations.
@@ -715,7 +715,7 @@
 	if(fired_from)
 		SEND_SIGNAL(fired_from, COMSIG_PROJECTILE_BEFORE_FIRE, src, original)
 	//If no angle needs to resolve it from xo/yo!
-	if(shrapnel_type)
+	if(shrapnel_type && !QDELETED(src))
 		AddElement(/datum/element/embed, projectile_payload = shrapnel_type)
 	if(!log_override && firer && original)
 		log_combat(firer, original, "fired at", src, "from [get_area_name(src, TRUE)]")

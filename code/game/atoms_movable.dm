@@ -1208,7 +1208,8 @@
 	return TRUE
 /// Returns selected language, if it can be spoken, or finds, sets and returns a new selected language if possible.
 /atom/movable/proc/get_selected_language()
-	return get_language_holder().get_selected_language()
+	var/datum/language_holder/our_holder = get_language_holder()
+	return our_holder?.get_selected_language()
 
 /// Gets a random understood language, useful for hallucinations and such.
 /atom/movable/proc/get_random_understood_language()

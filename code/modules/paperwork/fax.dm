@@ -282,9 +282,10 @@
 	data["fax_id"] = fax_id
 	data["fax_name"] = fax_name
 	data["visible"] = visible_to_network
+	data["has_paper"] = !!loaded_item_ref?.resolve()
 	// In this case, we don't care if the fax is hacked or in the syndicate's network. The main thing is to check the visibility of other faxes.
 	data["frontier_network"] = (frontier_network || (obj_flags & EMAGGED))
-	// [MANKIND-ADD] - FAX_SEND_ONLY_CENTCOMM - Только факсы ЦК (admin) могут отправлять; корабельные только принимают.
+	// [MANKIND-ADD] - FAX_SEND_ONLY_CENTCOM - Только факсы ЦК (admin) могут отправлять; корабельные только принимают.
 	data["can_send"] = !!admin_fax_id
 	// [/MANKIND-ADD]
 	data["fax_history"] = fax_history

@@ -271,7 +271,7 @@
 
 	// [MANKIND-EDIT] - MANKIND_QOL - Перевод законов ИИ
 	// var/list = "<b>Which laws do you want to include when stating them for the crew?</b><br><br>" // ORIGINAL
-	var/list = "<meta http-equiv='X-UA-Compatible' content='IE=edge' charset='UTF-8'/><b>Which laws do you want to include when stating them for the crew?</b><br><br>"
+	var/list = "<meta http-equiv='X-UA-Compatible' content='IE=edge'><meta charset='UTF-8'/><b>Which laws do you want to include when stating them for the crew?</b><br><br>"
 	// [/MANKIND-EDIT]
 
 	if (laws.zeroth)

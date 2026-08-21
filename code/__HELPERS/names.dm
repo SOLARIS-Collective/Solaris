@@ -45,7 +45,7 @@ GLOBAL_VAR(command_name)
 /proc/station_name()
 	if(!GLOB.station_name)
 		var/newname
-		var/config_station_name = CONFIG_GET(string/stationname)
+		var/config_station_name = CONFIG_GET(string/stationnames)
 		if(config_station_name)
 			newname = config_station_name
 		else

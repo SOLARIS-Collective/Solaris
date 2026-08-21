@@ -35,6 +35,12 @@ GLOBAL_VAR_INIT(last_cpu_reading, 0)
 	log_world("World loaded at [time_stamp()]!")
 	SSmetrics.world_init_time = REALTIMEOFDAY // Important
 
+	// [SOLARIS] - Запас под крупные мап-боксы: мир расширяется до 208x208.
+	// Новые турфы создаются как /turf/open/space/basic (задано в /world блоке).
+	if(world.maxx < 208 || world.maxy < 208)
+		world.maxx = max(world.maxx, 208)
+		world.maxy = max(world.maxy, 208)
+
 	make_datum_references_lists()	//initialises global lists for referencing frequently used datums (so that we only ever do it once)
 
 	GLOB.config_error_log = GLOB.world_manifest_log = GLOB.world_pda_log = GLOB.world_job_debug_log = GLOB.sql_error_log = GLOB.world_href_log = GLOB.world_runtime_log = GLOB.world_attack_log = GLOB.world_game_log = GLOB.world_shuttle_log = GLOB.world_mankind_admin_log = "data/logs/config_error.[GUID()].log" //temporary file used to record errors with loading config, moved to log directory once logging is set bl
@@ -208,6 +214,7 @@ GLOBAL_VAR_INIT(last_cpu_reading, 0)
 	GLOB.world_shuttle_log = "[GLOB.log_directory]/shuttle.log"
 	GLOB.world_mankind_economic_log = "[GLOB.log_directory]/world_mankind_economic.log" // [MANKIND-ADD] - MANKIND_COMPONENTS_LOGS
 	GLOB.world_mankind_admin_log = "[GLOB.log_directory]/admin.log" // [MANKIND-ADD] - Добавляем логирование админских действий.
+	GLOB.world_planets_log = "[GLOB.log_directory]/planets.txt" // [SOLARIS-ADD] - Логирование генерации/загрузки планет.
 
 	GLOB.demo_log = "[GLOB.log_directory]/demo.log"
 
@@ -231,6 +238,7 @@ GLOBAL_VAR_INIT(last_cpu_reading, 0)
 	start_log(GLOB.world_shuttle_log)
 	start_log(GLOB.world_mankind_economic_log) // [MANKIND-ADD] - MANKIND_COMPONENTS_LOGS
 	start_log(GLOB.world_mankind_admin_log) // [MANKIND-ADD] - Добавляем логирование админских действий.
+	start_log(GLOB.world_planets_log) // [SOLARIS-ADD] - Логирование генерации/загрузки планет.
 
 	var/latest_changelog = file("[global.config.directory]/../html/changelogs/archive/" + time2text(world.timeofday, "YYYY-MM") + ".yml")
 	GLOB.changelog_hash = fexists(latest_changelog) ? md5(latest_changelog) : 0 //for telling if the changelog has changed recently
