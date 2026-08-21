@@ -134,8 +134,7 @@
 	new /obj/structure/bed/outpost/wagabond(drop_location())
 	return ..()
 
-// /obj/effect/mob_spawn/human/elysium_outpost/wagabond/special(mob/living/new_spawn)
-// 	new_spawn.fully_replace_character_name(null, random_unique_name(gender))
+// Wagabond special() переопределён в wagabond_backstory.dm
 
 /obj/effect/mob_spawn/human/elysium_outpost/wagabond/Initialize()
 	. = ..()

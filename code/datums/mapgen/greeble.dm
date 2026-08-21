@@ -53,6 +53,7 @@
 
 /datum/map_template/greeble
 	var/description
+	should_place_on_top = FALSE
 	var/static/types_cached = FALSE
 	var/static/list/blacklisted_turfs
 	var/static/list/whitelisted_turfs
