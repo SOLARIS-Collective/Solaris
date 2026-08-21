@@ -77,8 +77,8 @@
 			spaceproofed[clothing_part] = TRUE
 	RegisterSignal(mod.wearer, COMSIG_ATOM_BULLET_ACT, PROC_REF(on_bullet_act)) // [MANKIND-ADD] - CELADON_MODSUITS
 
- // [MANKIND-ADD] - CELADON_MODSUITS
- /// Попытка заставить эту штуку потреблять энергию при попадании.
+// [MANKIND-ADD] - CELADON_MODSUITS
+/// Попытка заставить эту штуку потреблять энергию при попадании.
 /obj/item/mod/module/armor_booster/proc/on_bullet_act(datum/source, obj/projectile/projectile, def_zone)
 	if(EVA_boosted)
 		if(prob(disable_chance) && !mod.malfunctioning)
@@ -115,7 +115,7 @@
 		remove_pressure_protection = !EVA_boosted
 		to_chat(user, span_notice("You [EVA_boosted ? "overrided" : "reverted"] [src] EVA limiters."))
 	return TRUE
- // [/MANKIND-ADD]
+// [/MANKIND-ADD]
 
 /obj/item/mod/module/armor_booster/on_deactivation(display_message = TRUE, deleting = FALSE)
 	. = ..()

@@ -343,7 +343,16 @@
 	SSovermap.controlled_ships -= src
 	current_overmap.controlled_ships -= src
 	helms.Cut()
-	QDEL_LIST(missions)
+	// [MANKIND-FIX] - QDEL_LIST(missions) падал на null.Cut(): Destroy() миссии вызывает
+	// LAZYREMOVE(servant.missions, src), где servant == этот корабль, т.е. удаляет миссию
+	// из того же списка, по которому идёт итерация. При удалении последней миссии
+	// LAZYREMOVE обнуляет missions, и последующий missions.Cut() падает на null.Cut().
+	// Копируем список и обнуляем его ДО цикла, чтобы Destroy() миссий не трогал его.
+	var/list/datum/mission/old_missions = missions
+	missions = null
+	for(var/datum/mission/M as anything in old_missions)
+		qdel(M)
+	// [/MANK-EDIT]
 	LAZYCLEARLIST(owner_candidates)
 	if(!QDELETED(shuttle_port))
 		shuttle_port.current_ship = null
@@ -501,7 +510,7 @@
 
 // [MANKIND-EDIT] - OVERMAP PHYSICS - Это вагабонд насрал
 // /datum/overmap/ship/controlled/tick_move()
-/datum/overmap/ship/controlled/not_tick_move(var/xmov, var/ymov)
+/datum/overmap/ship/controlled/not_tick_move(xmov, ymov)
 // [/MANKIND-EDIT]
 	if(avg_fuel_amnt < 1)
 		//Slow down a little when there's no fuel

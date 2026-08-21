@@ -52,7 +52,7 @@ export const VendingMankind = (props, context) => {
         {!all_items_free && (
           <UserSection user={user} miningvendor={miningvendor} />
         )}
-        {((!miningvendor && !all_items_free) &&
+        {!miningvendor && !all_items_free && (
           <CashSection current_amount={current_amount} act={act} />
         )}
         <Section
@@ -113,6 +113,3 @@ export const VendingMankind = (props, context) => {
     </Window>
   );
 };
-
-
-

@@ -20,17 +20,17 @@
 
 //(The actually good scarves)
 
-/datum/gear/scarf/scarfes/striped
-	subtype_path = /datum/gear/scarf/scarfes//striped
+/datum/gear/scarf/scarfes
+	subtype_path = /datum/gear/scarf/scarfes
 
-/datum/gear/scarf/scarfes/striped/red
+/datum/gear/scarf/scarfes/striped_red
 	display_name = "striped scarf, red"
 	path = /obj/item/clothing/neck/stripedredscarf
 
-/datum/gear/scarf/scarfes/striped/green
+/datum/gear/scarf/scarfes/striped_green
 	display_name = "striped scarf, green"
 	path = /obj/item/clothing/neck/stripedgreenscarf
 
-/datum/gear/scarf/scarfes/striped/blue
+/datum/gear/scarf/scarfes/striped_blue
 	display_name = "striped scarf, blue"
 	path = /obj/item/clothing/neck/stripedbluescarf

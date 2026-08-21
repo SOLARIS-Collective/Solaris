@@ -152,7 +152,7 @@
 	for(var/obj/effect/landmark/centcom_orbit_token/token in GLOB.centcom_orbit_tokens)
 		var/list/centcom_data = list()
 		centcom_data["ref"] = REF(token)
-		centcom_data["full_name"] = "CentComm"
+		centcom_data["full_name"] = "CentCom"
 		centcom_data["extra"] = "Central Command"
 		maps += list(centcom_data)
 

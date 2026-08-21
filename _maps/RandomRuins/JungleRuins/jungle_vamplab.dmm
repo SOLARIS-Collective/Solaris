@@ -1085,7 +1085,6 @@
 	})
 "NF" = (
 /obj/item/storage/secure/safe/lab{
-	l_code = "52578";
 	pixel_y = -34
 	},
 /turf/open/floor/plasteel/tech,
