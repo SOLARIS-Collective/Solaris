@@ -541,3 +541,8 @@ COMMENDATION_PERCENT_POLL 0.05
 # Enable global The Voices
 # Uncomment this to allow player's speech voices #
 ENABLE_GLOBAL_W_TTS_VOICES
+
+## QUADRANT_GRID - приватная квадрантная сетка планет (рантайм-переключатель).
+## Работает только в приватной сборке (ОМНИ доступ). 1 - включить, 0 - выключить.
+## Меняется на живом сервере без перекомпиляции.
+USE_QUADRANT_GRID 1

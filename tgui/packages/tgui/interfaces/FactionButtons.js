@@ -210,7 +210,10 @@ export const FactionButtons = (props, context) => {
     <Stack fill>
       {/* Левый информационный блок */}
       <Stack.Item basis="180px" grow={0} shrink={0}>
-        <Box fill style={{ height: '100%', width: '180px', overflow: 'hidden' }}>
+        <Box
+          fill
+          style={{ height: '100%', width: '180px', overflow: 'hidden' }}
+        >
           <FactionInfo
             selectedFaction={selectedFaction}
             factionInfo={factionInfo}
@@ -365,7 +368,10 @@ export const FactionButtons = (props, context) => {
 
       {/* Правый информационный блок */}
       <Stack.Item basis="180px" grow={0} shrink={0}>
-        <Box fill style={{ height: '100%', width: '180px', overflow: 'hidden' }}>
+        <Box
+          fill
+          style={{ height: '100%', width: '180px', overflow: 'hidden' }}
+        >
           <FactionInfo
             selectedFaction={selectedFaction}
             factionInfo={factionInfo}
