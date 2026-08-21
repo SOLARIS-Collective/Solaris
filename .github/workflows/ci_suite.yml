@@ -137,7 +137,11 @@ jobs:
     name: Compile Maps
     needs: start_gate
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        chunk: [0, 1, 2]
 
     steps:
       - uses: actions/checkout@v3
