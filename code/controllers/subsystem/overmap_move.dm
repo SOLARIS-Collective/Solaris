@@ -8,7 +8,7 @@ TIMER_SUBSYSTEM_DEF(overmap_movement)
 
 // [MANKIND-ADD] - MANKIND_OVERMAP_COLLISION - Это вагабонд насрал
 
-/proc/get_relative_motion(var/A, var/B)
+/proc/get_relative_motion(A, B)
 	var/mins = -1
 	if(A > 0 && B > 0)
 		return B-A

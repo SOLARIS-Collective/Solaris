@@ -492,7 +492,7 @@
 
 // [MANKIND-EDIT] - OVERMAP PHYSICS - Это вагабонд насрал
 // /datum/overmap/ship/controlled/tick_move()
-/datum/overmap/ship/controlled/not_tick_move(var/xmov, var/ymov)
+/datum/overmap/ship/controlled/not_tick_move(xmov, ymov)
 // [/MANKIND-EDIT]
 	if(avg_fuel_amnt < 1)
 		//Slow down a little when there's no fuel

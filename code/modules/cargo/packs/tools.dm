@@ -230,6 +230,6 @@
 	)
 	crate_name = "foam tank crate"
 	crate_type = /obj/structure/closet/crate/large
-  no_bundle = TRUE
+	no_bundle = TRUE
 
 [/MANKIND-REMOVE] */
