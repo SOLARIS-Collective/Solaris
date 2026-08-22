@@ -25,7 +25,7 @@
 			"officer": true,
 			"slots": 1
 		},
-		"Hardliner Consultant": {
+		"Hardliner Officer": {
 			"outfit": "/datum/outfit/job/cel/syndicate/captain/gorlex",
 			"officer": true,
 			"slots": 1

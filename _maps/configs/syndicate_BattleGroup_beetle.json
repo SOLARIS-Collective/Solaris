@@ -11,7 +11,7 @@
 	"faction": "/datum/faction/syndicate",
 	"tags": ["Боевой"],
 	"namelists": [
-		"GORLEX",
+		"2nd BattleGroup",
 		"NATURAL_AGGRESSIVE",
 		"BEASTS",
 		"WEAPONS",
@@ -22,7 +22,7 @@
 			"outfit": "/datum/outfit/job/cel/syndicate/captain/gorlex",
 			"officer": true,
 			"slots": 1,
-			"name": "Gorlex Squad leader"
+			"name": "Squad leader 2nd BattleGroup"
 		},
 		"Paramedic": {
 			"outfit": "/datum/outfit/job/cel/syndicate/doctor/gorlex",

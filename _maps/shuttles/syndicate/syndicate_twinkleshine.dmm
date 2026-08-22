@@ -5543,6 +5543,7 @@
 	pixel_y = -2;
 	name = "ammo can (Buckshot)"
 	},
+/obj/item/storage/toolbox/ammo/c50bmg,
 /turf/open/floor/mineral/plastitanium,
 /area/ship/security/armory)
 "Fs" = (

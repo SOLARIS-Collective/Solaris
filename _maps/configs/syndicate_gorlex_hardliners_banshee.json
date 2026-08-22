@@ -1,0 +1,34 @@
+{
+	"$schema": "https://raw.githubusercontent.com/CeladonSS13/Shiptest/beta-dev/_maps/ship_config_schema.json",
+	"map_name": "Banshee-class",
+	"map_short_name": "Banshee",
+	"description": "«Banshee» — ",
+	"map_path": "_maps/shuttles/syndicate/hardliners_banshee.dmm",
+	"enabled" : true,
+	"limit": 1,
+	"sensor_range": 10,
+	"faction": "/datum/faction/syndicate",
+	"prefix": "BSSV",
+	"tags": [
+		"Боевой"
+	],
+	"namelists": [
+		"GORLEX",
+		"NATURAL_AGGRESSIVE"
+	],
+	"job_slots": {
+		"Squad Leader": {
+			"outfit": "/datum/outfit/job/cel/syndicate/captain",
+			"officer": true,
+			"slots": 1
+		},
+		"Combat Engineer": {
+			"outfit": "/datum/outfit/job/cel/syndicate/engineer",
+			"slots": 1
+		},
+		"Commando": {
+			"outfit": "/datum/outfit/job/cel/syndicate/security",
+			"slots": 1
+		}
+	}
+}

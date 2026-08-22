@@ -44,10 +44,6 @@
 /obj/effect/turf_decal/corner/opaque/beige/half{
 	dir = 4
 	},
-/obj/structure/sign/flag/ngr{
-	dir = 4;
-	pixel_x = -32
-	},
 /turf/open/floor/plasteel/mono/dark,
 /area/ship/bridge)
 "aE" = (
@@ -3106,10 +3102,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
 	dir = 4
 	},
-/obj/structure/sign/flag/ngr{
-	dir = 4;
-	pixel_x = -32
-	},
 /turf/open/floor/plasteel/mono/dark,
 /area/ship/cargo/office)
 "zV" = (
@@ -4196,9 +4188,6 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/corner/opaque/tan/half,
-/obj/structure/sign/flag/ngr{
-	pixel_y = 32
-	},
 /obj/structure/chair/handrail,
 /obj/structure/cable{
 	icon_state = "4-8"
