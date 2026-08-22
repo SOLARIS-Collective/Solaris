@@ -399,7 +399,7 @@ GLOBAL_DATUM(tick_info, /datum/tick_holder)
 	GLOB.world_shuttle_log = "[GLOB.log_directory]/shuttle.log"
 	GLOB.world_mankind_economic_log = "[GLOB.log_directory]/world_mankind_economic.log" // [MANKIND-ADD] - MANKIND_COMPONENTS_LOGS
 	GLOB.world_mankind_admin_log = "[GLOB.log_directory]/admin.log" // [MANKIND-ADD] - Добавляем логирование админских действий.
-	GLOB.world_planets_log = "[GLOB.log_directory]/planets.txt" // [SOLARIS-ADD] - Логирование генерации/загрузки планет.
+	GLOB.world_planets_log = "[GLOB.log_directory]/planets.log" // [SOLARIS-ADD] - Логирование генерации/загрузки планет и отладки посадки.
 
 	GLOB.demo_log = "[GLOB.log_directory]/demo.log"
 
