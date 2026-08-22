@@ -170,6 +170,10 @@ GLOBAL_VAR_INIT(spike_cpu, 0)
 	if(tick_info)
 		tick_info.tick_cpu_usage[current_index] = TICK_USAGE
 
+	// [SOLARIS] - per-tick cpu recording (see tick_control.dm)
+	if(GLOB.cpu_recorder)
+		GLOB.cpu_recorder.record_tick(tick_info, current_index)
+
 /// Holds and tracks information about the past [TICK_INFO_SIZE] ticks
 /// Global datum, so it survives MC restarts and is available before GLOB exists
 /datum/tick_holder

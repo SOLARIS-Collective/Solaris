@@ -1,5 +1,71 @@
 INITIALIZE_IMMEDIATE(/atom/movable/screen/usage_display)
 GLOBAL_DATUM_INIT(cpu_tracker, /atom/movable/screen/usage_display, new())
+// [SOLARIS] - per-tick cpu recorder for offline test analysis
+GLOBAL_DATUM_INIT(cpu_recorder, /datum/cpu_recorder, new())
+
+/// How often (in ticks) the per-subsystem breakdown is written into the record.
+/// Core metrics are written every tick; ss is the bulk of the size.
+#define RECORDER_SS_INTERVAL 10
+
+/// Writes one JSON object per tick while enabled, into the current round's log dir
+/// (data/logs/.../round-*/auxcp_rec.log), falling back to repo root before logs init.
+/// Format: JSONL - one compact json_encode()'d object per line, # comment lines mark sessions.
+/// Subsystem costs ("ss") are sampled every [RECORDER_SS_INTERVAL] ticks to keep the file small;
+/// gaps in "time" values == server stalls/freezes.
+/// Uses rustg async logging - writes are flushed from a Rust thread, zero tick blocking.
+/// Appends across sessions, numbered per round.
+/// [SOLARIS]
+/datum/cpu_recorder
+	var/recording = FALSE
+	var/ticks_logged = 0
+	var/sessions_started = 0
+	var/recording_path
+
+/datum/cpu_recorder/proc/start_recording()
+	if(recording)
+		return FALSE
+	recording_path = "[GLOB?.log_directory ? "[GLOB.log_directory]/" : ""]auxcp_rec.log"
+	sessions_started++
+	recording = TRUE
+	ticks_logged = 0
+	var/session_stamp = time2text(world.realtime, "YYYY-MM-DD hh:mm:ss")
+	WRITE_LOG_NO_FORMAT(recording_path, "# session #[sessions_started] start=[session_stamp] time=[world.time] tick_lag=[world.tick_lag] \
+		compensation=[GLOB.attempt_corrective_cpu] mc_limit=[GLOB.use_dynamic_mc_limit] target=[GLOB.corrective_cpu_target] \
+		ratio=[GLOB.corrective_cpu_ratio] glide_ratio=[GLOB.glide_threshold_ratio] auxcpu=[GLOB.auxcpu_loaded] ss_interval=[RECORDER_SS_INTERVAL]\n")
+	return TRUE
+
+/datum/cpu_recorder/proc/stop_recording()
+	if(!recording)
+		return
+	recording = FALSE
+	var/stop_stamp = time2text(world.realtime, "YYYY-MM-DD hh:mm:ss")
+	WRITE_LOG_NO_FORMAT(recording_path, "# stopped=[stop_stamp] time=[world.time] ticks=[ticks_logged]\n")
+
+/datum/cpu_recorder/proc/record_tick(datum/tick_holder/tick_info, index)
+	if(!recording || !recording_path || !tick_info)
+		return
+	var/list/entry = list(
+		"stamp" = time2text(world.realtime, "hh:mm:ss"),
+		"time" = world.time,
+		"raw" = tick_info.cpu_values[index],
+		"start" = tick_info.pre_tick_cpu_usage[index],
+		"sleep" = tick_info.mc_start_usage[index],
+		"mc" = tick_info.mc_usage[index],
+		"post" = tick_info.post_mc_usage[index],
+		"map" = tick_info.maptick_usage[index],
+		"end" = tick_info.tick_cpu_usage[index],
+		"corr" = tick_info.corrected_ticks[index],
+		"thr" = GLOB.corrective_cpu_threshold,
+		"glide" = GLOB.glide_size_multiplier,
+	)
+	if((ticks_logged % RECORDER_SS_INTERVAL) == 0)
+		var/list/subsystems = list()
+		for(var/subsystem_path in tick_info.last_subsystem_usages)
+			subsystems["[replacetext("[subsystem_path]", "/datum/controller/subsystem/", "")]"] = tick_info.last_subsystem_usages[subsystem_path]
+		entry["ss"] = subsystems
+	WRITE_LOG_NO_FORMAT(recording_path, json_encode(entry) + "\n")
+	ticks_logged++
+
 /// Holds graphing/maptext stuff that displays/debugs cpu usage information
 /atom/movable/screen/usage_display
 	screen_loc = "LEFT:8, CENTER-6"
@@ -69,7 +135,9 @@ GLOBAL_DATUM_INIT(cpu_tracker, /atom/movable/screen/usage_display, new())
 		Toggles: \
 			<a href='byond://?src=[REF(src)];act=toggle_compensation'>CPU Compensation [GLOB.attempt_corrective_cpu]</a> \
 			<a href='byond://?src=[REF(src)];act=toggle_mc_limit'>Dynamic MC Limit [GLOB.use_dynamic_mc_limit]</a> \
-			<a href='byond://?src=[REF(src)];act=toggle_graph'>CPU Graphing [display_graph]</a>\n\
+			<a href='byond://?src=[REF(src)];act=toggle_graph'>CPU Graphing [display_graph]</a> \
+			<span style=\"color:[GLOB.cpu_recorder.recording ? "#FF0000" : "#000000"];\">\
+				<a href='byond://?src=[REF(src)];act=toggle_recording'>REC [GLOB.cpu_recorder.recording ? "ON [GLOB.cpu_recorder.ticks_logged]" : "OFF"]</a></span>\n\
 		Glide: ([GLOB.glide_size_multiplier])\n\
 		Graph: \
 			Displaying \[<a href='byond://?src=[REF(src)];act=set_graph_mode'>[graph_display.display_mode]</a>\] \
@@ -183,6 +251,17 @@ GLOBAL_DATUM_INIT(cpu_tracker, /atom/movable/screen/usage_display, new())
 				graph_display.alpha = 255
 			else
 				graph_display.alpha = 0
+			return TRUE
+		if("toggle_recording")
+			// [SOLARIS] - per-tick cpu recording to the round's log dir
+			if(GLOB.cpu_recorder.recording)
+				GLOB.cpu_recorder.stop_recording()
+				to_chat(usr, span_notice("CPU recording stopped: [GLOB.cpu_recorder.ticks_logged] ticks written to [GLOB.cpu_recorder.recording_path]"))
+			else
+				if(GLOB.cpu_recorder.start_recording())
+					to_chat(usr, span_notice("CPU recording started, appending to [GLOB.cpu_recorder.recording_path]"))
+				else
+					to_chat(usr, span_warning("CPU recording failed to start"))
 			return TRUE
 		if("set_graph_mode")
 			var/mode = tgui_input_list(usr, "What kind of info should we graph?", "Graph Mode?", graph_options)
