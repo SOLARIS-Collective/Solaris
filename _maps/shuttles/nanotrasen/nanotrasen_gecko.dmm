@@ -1045,6 +1045,9 @@
 /area/ship/engineering/engine)
 "kM" = (
 /obj/effect/turf_decal/borderfloor,
+/obj/structure/chair/comfy/shuttle{
+	dir = 1
+	},
 /turf/open/floor/plasteel/telecomms_floor,
 /area/ship/bridge)
 "kS" = (
