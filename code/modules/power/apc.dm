@@ -208,7 +208,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/power/apc/auto_name, 25)
 	/*if (!req_access)
 		req_access = list(ACCESS_ENGINE_EQUIP)*/
 	if (!armor)
-		armor = list("melee" = 20, "bullet" = 20, "laser" = 10, "energy" = 100, "bomb" = 30, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 50)
+		// [SOLARIS-EDIT] getArmor вместо legacy-списка (см. structures.dm)
+		armor = getArmor(melee = 20, bullet = 20, laser = 10, energy = 100, bomb = 30, bio = 100, rad = 100, fire = 90, acid = 50)
 	..()
 	GLOB.apcs_list += src
 
