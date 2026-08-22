@@ -1517,9 +1517,7 @@
 	pixel_x = -20;
 	pixel_y = -7
 	},
-/obj/machinery/power/apc/auto_name/directional/west{
-	pixel_y = 5
-	},
+/obj/machinery/power/apc/auto_name/directional/west,
 /turf/open/floor/plasteel/dark,
 /area/ship/crew/canteen)
 "gW" = (
@@ -3582,9 +3580,7 @@
 	pixel_x = -19;
 	pixel_y = -7
 	},
-/obj/machinery/power/apc/auto_name/directional/west{
-	pixel_y = 5
-	},
+/obj/machinery/power/apc/auto_name/directional/west,
 /turf/open/floor/plasteel/patterned/cargo_one,
 /area/ship/cargo)
 "qP" = (
@@ -3893,9 +3889,6 @@
 /obj/machinery/door/airlock/grunge{
 	dir = 4;
 	name = "Cargo Bay"
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 4
@@ -6994,9 +6987,7 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/power/apc/auto_name/directional/west{
-	pixel_y = 5
-	},
+/obj/machinery/power/apc/auto_name/directional/west,
 /obj/machinery/light_switch{
 	dir = 4;
 	pixel_x = -20;
@@ -8032,9 +8023,7 @@
 /obj/effect/turf_decal/trimline/opaque/yellow/line{
 	dir = 8
 	},
-/obj/machinery/power/apc/auto_name/directional/west{
-	pixel_y = 5
-	},
+/obj/machinery/power/apc/auto_name/directional/west,
 /obj/machinery/light_switch{
 	dir = 4;
 	pixel_x = -20;
@@ -10003,7 +9992,7 @@
 	},
 /obj/machinery/door/airlock/security/brig{
 	dir = 8;
-	name = "master at arms quater";
+	name = "Master At Arms Quater";
 	req_access_txt = "3"
 	},
 /turf/open/floor/plasteel/tech,

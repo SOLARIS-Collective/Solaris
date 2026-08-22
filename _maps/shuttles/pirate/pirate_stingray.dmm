@@ -3102,9 +3102,7 @@
 /obj/effect/turf_decal/techfloor{
 	dir = 8
 	},
-/obj/machinery/power/apc/auto_name/directional/west{
-	pixel_y = -2
-	},
+/obj/machinery/power/apc/auto_name/directional/west,
 /obj/machinery/light_switch{
 	dir = 4;
 	pixel_x = -19;

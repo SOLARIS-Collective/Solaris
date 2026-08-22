@@ -2655,9 +2655,7 @@
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc/auto_name/directional/north{
-	pixel_x = 2
-	},
+/obj/machinery/power/apc/auto_name/directional/north,
 /obj/structure/table/wood,
 /obj/machinery/chem_dispenser/drinks,
 /obj/machinery/light_switch{
@@ -3302,7 +3300,6 @@
 /area/ship/crew/canteen)
 "gj" = (
 /obj/machinery/firealarm/directional/north,
-/obj/machinery/light/directional/east,
 /obj/machinery/light/directional/east,
 /obj/structure/table/wood,
 /obj/machinery/chem_dispenser/drinks/beer,

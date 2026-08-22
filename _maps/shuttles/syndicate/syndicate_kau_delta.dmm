@@ -508,7 +508,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/airlock/grunge{
-	name = "Cargo bay"
+	name = "Cargo Bay"
 	},
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
@@ -889,7 +889,6 @@
 /turf/open/floor/mineral/plastitanium/red,
 /area/ship/security/armory)
 "ri" = (
-/obj/structure/catwalk/over,
 /obj/structure/catwalk/over,
 /turf/open/floor/engine/hull/reinforced,
 /area/ship/external)
@@ -2044,10 +2043,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 1
 	},
-/obj/machinery/power/apc/auto_name/directional/east{
-	pixel_x = 26;
-	pixel_y = 1
-	},
+/obj/machinery/power/apc/auto_name/directional/east,
 /obj/structure/cable,
 /obj/structure/cable{
 	icon_state = "1-2"

@@ -2060,9 +2060,7 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/auto_name/directional/north{
-	pixel_x = -9
-	},
+/obj/machinery/power/apc/auto_name/directional/north,
 /obj/machinery/light_switch{
 	pixel_y = 23;
 	pixel_x = 17
@@ -3227,9 +3225,7 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/auto_name/directional/east{
-	pixel_y = 8
-	},
+/obj/machinery/power/apc/auto_name/directional/east,
 /obj/machinery/light_switch{
 	dir = 8;
 	pixel_x = 20;

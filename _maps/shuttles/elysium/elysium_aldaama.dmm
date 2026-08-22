@@ -4733,7 +4733,6 @@
 /area/ship/bridge)
 "VU" = (
 /obj/structure/catwalk/over,
-/obj/structure/catwalk/over,
 /turf/open/floor/plating,
 /area/ship/external)
 "We" = (

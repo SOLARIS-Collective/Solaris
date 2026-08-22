@@ -2540,7 +2540,7 @@
 /turf/open/floor/plating/foam,
 /area/ship/external/dark)
 "Ij" = (
-/obj/machinery/conveyor/inverted{
+/obj/machinery/conveyor{
 	dir = 4;
 	id = "furnace"
 	},
@@ -3187,9 +3187,6 @@
 /obj/effect/turf_decal/box/corners,
 /obj/structure/crate_shelf,
 /obj/structure/closet/crate/secure/loot,
-/obj/structure/closet/crate/secure/loot{
-	pixel_y = 12
-	},
 /turf/open/floor/plating{
 	icon_state = "panelscorched"
 	},

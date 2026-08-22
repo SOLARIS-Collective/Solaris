@@ -2565,7 +2565,6 @@
 /area/ruin/space/has_grav/singularitylab/cargo)
 "kw" = (
 /obj/structure/lattice/catwalk,
-/obj/structure/lattice/catwalk,
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},

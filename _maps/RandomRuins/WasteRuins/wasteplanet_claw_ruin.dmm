@@ -435,7 +435,7 @@
 	},
 /obj/machinery/button/door{
 	id = "Internalblastdoors";
-	name = "Internal blast doors";
+	name = "Internal Blast Doors";
 	dir = 8;
 	pixel_y = -4;
 	pixel_x = 7
@@ -1716,7 +1716,7 @@
 "zp" = (
 /obj/effect/decal/cleanable/blood/tracks,
 /obj/machinery/door/poddoor/shuttledock/tgmc{
-	name = "Internal blast doors";
+	name = "Internal Blast Doors";
 	id = "Internalblastdoors"
 	},
 /obj/structure/cable{
@@ -3131,7 +3131,7 @@
 "UF" = (
 /obj/effect/turf_decal/borderfloorblack,
 /obj/machinery/door/airlock/command{
-	name = "Patrol Leader's quarters"
+	name = "Patrol Leader's Quarters"
 	},
 /obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/plasteel/tech,
@@ -3163,7 +3163,7 @@
 /area/ship/crew)
 "UY" = (
 /obj/machinery/door/poddoor/shuttledock/tgmc{
-	name = "Internal blast doors";
+	name = "Internal Blast Doors";
 	id = "Internalblastdoors"
 	},
 /obj/machinery/door/firedoor/border_only,

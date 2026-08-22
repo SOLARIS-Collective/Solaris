@@ -726,8 +726,7 @@
 	pixel_y = -10
 	},
 /obj/machinery/power/apc/auto_name/directional/east{
-	pixel_x = 25;
-	pixel_y = 2
+	pixel_x = 25
 	},
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -1554,8 +1553,7 @@
 /area/ship/hallway/central)
 "cT" = (
 /obj/machinery/power/apc/auto_name/directional/west{
-	pixel_x = -25;
-	pixel_y = 7
+	pixel_x = -25
 	},
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -1964,8 +1962,7 @@
 /obj/effect/spawner/random/bedsheet,
 /obj/structure/curtain/bounty,
 /obj/machinery/power/apc/auto_name/directional/east{
-	pixel_x = 25;
-	pixel_y = 2
+	pixel_x = 25
 	},
 /obj/structure/cable{
 	icon_state = "0-2"

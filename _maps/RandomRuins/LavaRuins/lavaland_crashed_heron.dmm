@@ -78,7 +78,6 @@
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/overmap_encounter/planetoid/lava/explored)
 "aaP" = (
-/obj/structure/lattice,
 /obj/structure/catwalk/over/plated_catwalk/dark,
 /obj/item/shard{
 	pixel_x = 1;
@@ -13400,7 +13399,6 @@
 /turf/open/floor/plasteel/dark,
 /area/ruin/unpowered/corprejectrooms)
 "auN" = (
-/obj/structure/lattice,
 /obj/structure/catwalk/over/plated_catwalk/dark,
 /obj/machinery/suit_storage_unit/open,
 /obj/item/clothing/suit/space/hardsuit/ert/sec{
@@ -13575,10 +13573,6 @@
 /turf/open/floor/plasteel/patterned/brushed,
 /area/ruin/unpowered/corprejectrooms)
 "avb" = (
-/obj/structure/chair/office{
-	name = "tactical swivel chair";
-	dir = 4
-	},
 /obj/structure/chair/office{
 	name = "tactical swivel chair";
 	dir = 4
@@ -14196,9 +14190,6 @@
 "avO" = (
 /obj/structure/table/wood/reinforced,
 /obj/structure/chair/office,
-/obj/structure/chair/office{
-	dir = 1
-	},
 /turf/open/floor/wood{
 	color = "#55391a"
 	},

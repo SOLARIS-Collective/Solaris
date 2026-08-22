@@ -354,8 +354,7 @@
 /area/ship/bridge)
 "lP" = (
 /obj/machinery/power/apc/auto_name/directional/west{
-	dir = 4;
-	pixel_x = 32
+	dir = 4
 	},
 /obj/structure/cable{
 	d2 = 2;
@@ -654,8 +653,7 @@
 "ua" = (
 /obj/structure/catwalk/over/plated_catwalk/dark,
 /obj/machinery/power/apc/auto_name/directional/west{
-	dir = 4;
-	pixel_x = 32
+	dir = 4
 	},
 /obj/structure/cable{
 	icon_state = "0-8"

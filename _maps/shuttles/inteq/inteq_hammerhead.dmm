@@ -90,10 +90,6 @@
 	dir = 1;
 	id = "Hamm_ext_win"
 	},
-/obj/machinery/door/poddoor/shutters{
-	dir = 1;
-	id = "Hamm_ext_win"
-	},
 /obj/structure/curtain/bounty,
 /turf/open/floor/plating,
 /area/ship/crew/dorm)
@@ -866,7 +862,6 @@
 /obj/machinery/power/terminal{
 	dir = 4
 	},
-/obj/structure/catwalk/over/plated_catwalk/dark,
 /obj/structure/catwalk/over/plated_catwalk/dark,
 /obj/effect/turf_decal/industrial/caution{
 	dir = 4
@@ -2992,7 +2987,6 @@
 /area/ship/maintenance/central)
 "tz" = (
 /obj/structure/catwalk/over/plated_catwalk/dark,
-/obj/structure/catwalk/over/plated_catwalk/dark,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
@@ -4221,9 +4215,6 @@
 	},
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "Centr_lock"
-	},
-/obj/machinery/door/firedoor/border_only{
-	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -5832,7 +5823,6 @@
 	icon_state = "1-2"
 	},
 /obj/structure/catwalk/over/plated_catwalk/dark,
-/obj/structure/catwalk/over/plated_catwalk/dark,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/airlock/command{
 	name = "Комната Изобретателя 2 класса";
@@ -6964,7 +6954,6 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/structure/catwalk/over/plated_catwalk/dark,
 /obj/structure/catwalk/over/plated_catwalk/dark,
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable/yellow{

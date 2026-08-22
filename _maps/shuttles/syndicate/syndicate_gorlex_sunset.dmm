@@ -172,7 +172,7 @@
 /obj/structure/fans/tiny,
 /obj/machinery/door/poddoor/shutters{
 	id = "sunsetexit";
-	name = "Emergency exit"
+	name = "Emergency Exit"
 	},
 /turf/open/floor/plating,
 /area/ship/engineering)
@@ -476,9 +476,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
 	dir = 5
 	},
-/obj/machinery/power/apc/auto_name/directional/south{
-	pixel_x = 8
-	},
+/obj/machinery/power/apc/auto_name/directional/south,
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
@@ -892,9 +890,7 @@
 	dir = 5
 	},
 /obj/effect/decal/cleanable/oil,
-/obj/machinery/power/apc/auto_name/directional/east{
-	pixel_y = 8
-	},
+/obj/machinery/power/apc/auto_name/directional/east,
 /obj/machinery/light_switch{
 	dir = 8;
 	pixel_x = 20;
@@ -1113,7 +1109,7 @@
 "si" = (
 /obj/machinery/door/poddoor/shutters{
 	id = "sunsetexit2";
-	name = "Emergency exit"
+	name = "Emergency Exit"
 	},
 /obj/structure/fans/tiny,
 /turf/open/floor/plating,
@@ -1225,9 +1221,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
 	dir = 10
 	},
-/obj/machinery/power/apc/auto_name/directional/north{
-	pixel_x = 8
-	},
+/obj/machinery/power/apc/auto_name/directional/north,
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
@@ -1370,9 +1364,7 @@
 /turf/open/floor/marble/black,
 /area/ship/bridge)
 "xJ" = (
-/obj/machinery/power/apc/auto_name/directional/south{
-	pixel_x = 5
-	},
+/obj/machinery/power/apc/auto_name/directional/south,
 /obj/structure/cable,
 /obj/effect/turf_decal/industrial/traffic/corner{
 	dir = 4
@@ -1715,9 +1707,6 @@
 /area/ship/medical)
 "BJ" = (
 /obj/structure/cable{
-	icon_state = "0-2"
-	},
-/obj/structure/cable{
 	d2 = 2;
 	icon_state = "0-2"
 	},
@@ -2048,9 +2037,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
 	dir = 6
 	},
-/obj/machinery/power/apc/auto_name/directional/west{
-	pixel_y = 4
-	},
+/obj/machinery/power/apc/auto_name/directional/west,
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
@@ -2229,9 +2216,7 @@
 /area/ship/engineering)
 "GN" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer4,
-/obj/machinery/power/apc/auto_name/directional/west{
-	pixel_y = 4
-	},
+/obj/machinery/power/apc/auto_name/directional/west,
 /obj/structure/cable{
 	d2 = 2;
 	icon_state = "0-2"
@@ -2309,9 +2294,7 @@
 /turf/open/floor/marble/black,
 /area/ship/bridge)
 "Jv" = (
-/obj/machinery/power/apc/auto_name/directional/south{
-	pixel_x = 8
-	},
+/obj/machinery/power/apc/auto_name/directional/south,
 /obj/structure/cable,
 /obj/machinery/light_switch{
 	dir = 1;
@@ -2592,9 +2575,7 @@
 /turf/open/floor/marble/black,
 /area/ship/hallway/central)
 "NZ" = (
-/obj/machinery/power/apc/auto_name/directional/west{
-	pixel_y = 5
-	},
+/obj/machinery/power/apc/auto_name/directional/west,
 /obj/structure/cable{
 	d2 = 2;
 	icon_state = "0-2"
@@ -2737,9 +2718,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer2{
 	dir = 4
 	},
-/obj/machinery/power/apc/auto_name/directional/west{
-	pixel_y = -5
-	},
+/obj/machinery/power/apc/auto_name/directional/west,
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
@@ -3214,9 +3193,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
 	dir = 9
 	},
-/obj/machinery/power/apc/auto_name/directional/south{
-	pixel_x = 8
-	},
+/obj/machinery/power/apc/auto_name/directional/south,
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
@@ -3392,7 +3369,7 @@
 /obj/machinery/button/door{
 	pixel_y = -3;
 	id = "sunsetexit2";
-	name = "Emergency exit";
+	name = "Emergency Exit";
 	dir = 4;
 	pixel_x = 8;
 	req_ship_access = 1;
@@ -3408,7 +3385,7 @@
 /obj/machinery/button/door{
 	pixel_y = 9;
 	id = "sunsetexit";
-	name = "Emergency exit";
+	name = "Emergency Exit";
 	dir = 4;
 	pixel_x = 8;
 	req_access = list(50, 10, 5, 1, 20);

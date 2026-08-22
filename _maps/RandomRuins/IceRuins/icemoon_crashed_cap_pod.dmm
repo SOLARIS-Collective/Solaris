@@ -264,7 +264,6 @@
 /area/overmap_encounter/planetoid/ice/explored)
 "Sv" = (
 /obj/structure/lattice,
-/obj/structure/lattice,
 /turf/open/floor/plating/asteroid/snow/icemoon,
 /area/overmap_encounter/planetoid/ice/explored)
 "Tq" = (

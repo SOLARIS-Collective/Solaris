@@ -456,7 +456,7 @@
 /obj/machinery/door/airlock/maintenance_hatch{
 	icon_state = "closed";
 	dir = 4;
-	name = "Cargo Bay hatch"
+	name = "Cargo Bay Hatch"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	icon_state = "pipe11-2";
@@ -2391,7 +2391,7 @@
 	dir = 1
 	},
 /obj/machinery/door/airlock/maintenance_hatch{
-	name = "starboard EVA hatch"
+	name = "Starboard EVA Hatch"
 	},
 /turf/open/floor/plasteel/tech/grid,
 /area/ship/engineering)

@@ -958,8 +958,7 @@
 	},
 /obj/effect/turf_decal/spline/plain/opaque/syndiered,
 /obj/machinery/power/apc/auto_name/directional/south{
-	dir = 1;
-	pixel_y = 29
+	dir = 1
 	},
 /obj/structure/cable{
 	icon_state = "0-8"

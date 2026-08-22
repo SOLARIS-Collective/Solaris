@@ -4105,7 +4105,6 @@
 /area/ship/security)
 "JO" = (
 /turf/template_noop,
-/turf/template_noop,
 /area/template_noop)
 "JY" = (
 /obj/effect/turf_decal/corner_steel_grid/full{

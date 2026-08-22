@@ -3685,9 +3685,6 @@
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
 /turf/open/floor/engine/hull/reinforced/interior,
 /area/ruin/powered)
 "Gw" = (

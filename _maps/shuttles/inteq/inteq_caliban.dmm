@@ -672,9 +672,7 @@
 	pixel_x = -20;
 	pixel_y = -7
 	},
-/obj/machinery/power/apc/auto_name/directional/west{
-	pixel_y = 5
-	},
+/obj/machinery/power/apc/auto_name/directional/west,
 /turf/open/floor/plasteel/patterned/brushed,
 /area/ship/crew/toilet)
 "ej" = (
@@ -6799,9 +6797,7 @@
 	pixel_x = -20;
 	pixel_y = -7
 	},
-/obj/machinery/power/apc/auto_name/directional/west{
-	pixel_y = 5
-	},
+/obj/machinery/power/apc/auto_name/directional/west,
 /turf/open/floor/plasteel/tech,
 /area/ship/security)
 "IJ" = (

@@ -495,10 +495,6 @@
 	id = "flowerwindows";
 	dir = 8
 	},
-/obj/machinery/door/poddoor/shutters{
-	id = "flowerwindows";
-	dir = 8
-	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -881,9 +877,6 @@
 "FE" = (
 /obj/machinery/power/terminal{
 	dir = 8
-	},
-/obj/structure/cable{
-	icon_state = "0-4"
 	},
 /obj/structure/cable{
 	icon_state = "0-4"

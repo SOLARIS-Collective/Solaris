@@ -43,7 +43,7 @@
 /area/ship/construction)
 "dz" = (
 /obj/machinery/door/airlock/survival_pod/glass{
-	name = "airtight airlock";
+	name = "Airtight Airlock";
 	CanAtmosPass = 0;
 	desc = "It opens and closes. This one have new airtight technology"
 	},

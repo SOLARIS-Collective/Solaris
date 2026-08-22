@@ -1967,7 +1967,6 @@
 	pixel_x = 12
 	},
 /obj/machinery/power/apc/auto_name/directional/north{
-	pixel_y = 0;
 	pixel_x = 25;
 	dir = 4
 	},

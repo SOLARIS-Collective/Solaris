@@ -39,10 +39,7 @@
 /obj/effect/decal/cleanable/plastic,
 /obj/effect/decal/cleanable/glass/plastitanium,
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/power/apc/auto_name/directional/west{
-	pixel_y = 4;
-	pixel_x = -26
-	},
+/obj/machinery/power/apc/auto_name/directional/west,
 /turf/open/floor/plating{
 	icon_state = "plastic"
 	},

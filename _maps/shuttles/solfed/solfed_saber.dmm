@@ -3055,9 +3055,6 @@
 /obj/structure/table/reinforced{
 	color = "#c1b6a5"
 	},
-/obj/structure/table/reinforced{
-	color = "#c1b6a5"
-	},
 /obj/effect/turf_decal/trimline/opaque/blue/warning{
 	dir = 9
 	},
@@ -3567,7 +3564,7 @@
 /obj/machinery/door/window/brigdoor/westleft{
 	dir = 2;
 	req_one_access_txt = "2";
-	name = "Prisoner cell"
+	name = "Prisoner Cell"
 	},
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plasteel/mono/white,
@@ -4754,7 +4751,7 @@
 "JZ" = (
 /obj/machinery/door/airlock/hatch{
 	dir = 1;
-	name = "Check point"
+	name = "Check Point"
 	},
 /obj/structure/curtain/cloth/elysium,
 /obj/machinery/door/firedoor/border_only{

@@ -3126,9 +3126,6 @@
 /obj/effect/turf_decal/corner/opaque/orange/full,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
 	},
@@ -3320,9 +3317,6 @@
 /turf/open/floor/plasteel/dark,
 /area/ship/medical)
 "sI" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
@@ -3781,7 +3775,6 @@
 "wa" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2,
 /obj/structure/table/wood,
-/obj/structure/table/wood,
 /obj/item/bong/lungbuster,
 /turf/open/floor/wood/walnut,
 /area/ship/cargo)
@@ -3983,9 +3976,6 @@
 /area/ship/science/ai_chamber)
 "wZ" = (
 /obj/effect/turf_decal/industrial/warning{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
 /obj/machinery/door/firedoor/border_only{
@@ -4236,9 +4226,6 @@
 	locked = 1
 	},
 /obj/effect/turf_decal/industrial/warning{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
 /obj/machinery/door/firedoor/border_only{
@@ -5148,7 +5135,6 @@
 /area/ship/crew/dorm)
 "CO" = (
 /obj/structure/catwalk,
-/obj/structure/lattice,
 /turf/open/floor/plating/rust,
 /area/ship/engineering/atmospherics)
 "CP" = (
@@ -5292,10 +5278,7 @@
 	pixel_x = 4;
 	pixel_y = -4
 	},
-/obj/machinery/power/apc/auto_name/directional/north{
-	pixel_x = -1;
-	pixel_y = 29
-	},
+/obj/machinery/power/apc/auto_name/directional/north,
 /obj/machinery/light_switch{
 	pixel_y = 23;
 	pixel_x = 11
@@ -5821,9 +5804,6 @@
 /area/ship/cargo)
 "Gn" = (
 /obj/effect/turf_decal/industrial/warning{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
 /obj/machinery/door/firedoor/border_only{
@@ -6594,9 +6574,6 @@
 	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
 /obj/structure/extinguisher_cabinet/directional/east,
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -7062,9 +7039,6 @@
 	dir = 4
 	},
 /obj/machinery/door/firedoor/border_only{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
 	dir = 8
 	},
 /obj/machinery/door/firedoor/border_only{
@@ -7385,9 +7359,6 @@
 /area/ship/engineering/atmospherics)
 "Pd" = (
 /obj/effect/turf_decal/industrial/warning{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/border_only{
 	dir = 4
 	},
 /obj/machinery/door/poddoor/shutters{

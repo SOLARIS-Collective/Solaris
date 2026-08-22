@@ -491,7 +491,7 @@
 	},
 /obj/item/wrench/medical,
 /obj/machinery/door/window/westright{
-	name = "Medical storage";
+	name = "Medical Storage";
 	dir = 4
 	},
 /obj/machinery/light/colored/white{
@@ -1298,9 +1298,7 @@
 /obj/structure/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/auto_name/directional/west{
-	pixel_y = -5
-	},
+/obj/machinery/power/apc/auto_name/directional/west,
 /obj/effect/turf_decal/trimline/opaque/solgovgold/line{
 	dir = 8
 	},
@@ -1846,9 +1844,7 @@
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc/auto_name/directional/east{
-	pixel_y = 9
-	},
+/obj/machinery/power/apc/auto_name/directional/east,
 /obj/effect/turf_decal/corner/opaque/solgovblue/border{
 	dir = 4
 	},

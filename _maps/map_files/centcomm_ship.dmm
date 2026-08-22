@@ -3583,7 +3583,7 @@
 /obj/structure/fans/tiny,
 /obj/machinery/door/poddoor/shuttledock/tgmc{
 	dir = 1;
-	name = "blast door";
+	name = "Blast Door";
 	id = "angarcentcom"
 	},
 /turf/open/floor/plating,
@@ -5224,7 +5224,6 @@
 /obj/item/reagent_containers/glass/beaker/large/fuel,
 /obj/item/reagent_containers/glass/beaker/large/fuel,
 /obj/structure/closet/wall/white/directional/east,
-/obj/structure/closet/crate/medical,
 /obj/item/food/grown/cannabis/death,
 /obj/item/food/grown/cannabis/death,
 /obj/structure/extinguisher_cabinet/directional/south,

@@ -1419,11 +1419,6 @@
 "ov" = (
 /obj/structure/closet/emcloset,
 /obj/machinery/power/apc/auto_name/directional/north,
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2";
-	pixel_y = 1
-	},
 /obj/effect/turf_decal/industrial/outline/grey,
 /obj/machinery/light/directional/west,
 /obj/structure/cable{

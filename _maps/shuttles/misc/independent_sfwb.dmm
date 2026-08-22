@@ -670,8 +670,6 @@
 	id = "thruster"
 	},
 /obj/structure/closet/crate/medical,
-/obj/structure/closet/crate/medical,
-/obj/structure/closet/crate/medical,
 /turf/open/floor/plating,
 /area/ship/bridge)
 "Yy" = (
