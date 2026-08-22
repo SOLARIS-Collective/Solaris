@@ -12,6 +12,9 @@
 	log_shuttle(message)
 	log_world(message)
 
+	// [SOLARIS-ADD] TEMP DEBUG: ловим провалы >2s между итерациями
+	var/watch_last = REALTIMEOFDAY
+	var/watch_i = 0
 	for(var/turf/gen_turf as anything in turfs)
 		gen_turf.AfterChange(CHANGETURF_IGNORE_AIR)
 
@@ -20,6 +23,11 @@
 
 		for(var/turf/open/space/adj in RANGE_TURFS(1, gen_turf))
 			adj.check_starlight(gen_turf)
+
+		watch_i++
+		if(REALTIMEOFDAY - watch_last > 20)
+			log_grid_stall(REALTIMEOFDAY - watch_last, "post_generation ([gen_turf.x],[gen_turf.y],[gen_turf.z]) #[watch_i]")
+			watch_last = REALTIMEOFDAY
 
 		// CHECK_TICK here is fine -- we are assuming that the turfs we're generating are staying relatively constant
 		CHECK_TICK
@@ -38,9 +46,17 @@
 	log_shuttle(message)
 	log_world(message)
 
+	// [SOLARIS-ADD] TEMP DEBUG: ловим провалы >2s между итерациями (нативные затыки)
+	var/watch_last = REALTIMEOFDAY
+	var/watch_i = 0
+	var/watch_total = length(turfs)
 	for(var/turf/gen_turf as anything in turfs)
 		// deferring AfterChange() means we don't get huge atmos flows in the middle of making changes
 		generate_turf(gen_turf, CHANGETURF_IGNORE_AIR|CHANGETURF_DEFER_CHANGE|CHANGETURF_DEFER_BATCH)
+		watch_i++
+		if(REALTIMEOFDAY - watch_last > 20)
+			log_grid_stall(REALTIMEOFDAY - watch_last, "generate_turfs ([gen_turf.x],[gen_turf.y],[gen_turf.z]) #[watch_i]/[watch_total]")
+			watch_last = REALTIMEOFDAY
 		CHECK_TICK
 
 	message = "MAPGEN: MAPGEN REF [REF(src)] ([type]) HAS FINISHED TURF GEN IN [(REALTIMEOFDAY - start_time)/10]s"
@@ -56,8 +72,13 @@
 	log_shuttle(message)
 	log_world(message)
 
+	// [SOLARIS-ADD] TEMP DEBUG: ловим провалы >2s между итерациями
+	var/watch_last = REALTIMEOFDAY
 	for(var/turf/gen_turf as anything in turfs)
 		populate_turf(gen_turf)
+		if(REALTIMEOFDAY - watch_last > 20)
+			log_grid_stall(REALTIMEOFDAY - watch_last, "populate_turfs ([gen_turf.x],[gen_turf.y],[gen_turf.z])")
+			watch_last = REALTIMEOFDAY
 		CHECK_TICK
 
 	message = "MAPGEN: MAPGEN REF [REF(src)] ([type]) HAS FINISHED TURF POPULATION IN [(REALTIMEOFDAY - start_time)/10]s"
