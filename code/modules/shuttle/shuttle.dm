@@ -655,6 +655,9 @@
 
 	//if we are trying to dock to an adjustable port, but we are only checking if we can even land, dont actually check since it hasn't adjusted yet
 	if(!S.adjust_dock_for_landing || S.adjust_dock_for_landing && intention_to_dock)
+		// [SOLARIS-ADD] TEMP DEBUG - лог параметров стыковки (квадрантная сетка)
+		log_grid("GRID CAN_DOCK: [src.name] -> \"[S.name]\" ([S.type]): док тайл ([S.x],[S.y],[S.z]) dir=[S.dir] box=[S.width]x[S.height] офс=[S.dwidth],[S.dheight]; корабль [width]x[height] офс=[dwidth],[dheight] dir=[dir] порт_напр=[port_direction]; union dw=[tow_dwidth] dh=[tow_dheight] rw=[tow_rwidth] rh=[tow_rheight]")
+		// [/SOLARIS-ADD]
 		if(tow_dwidth > S.dwidth)
 			return SHUTTLE_DWIDTH_TOO_LARGE
 
@@ -678,10 +681,34 @@
 
 	//see above; adjustable port will not have adjusted and thus this reading will be wrong
 	if(!S.adjust_dock_for_landing || S.adjust_dock_for_landing && intention_to_dock)
-		for(var/turf/closed/indestructible/edgeturf as anything in return_ordered_turfs(S.x, S.y, S.z, S.dir))
+		// [SOLARIS-ADD] TEMP DEBUG - границы проекции посадки и точка касания края
+		var/list/projected_turfs = return_ordered_turfs(S.x, S.y, S.z, S.dir)
+		var/proj_found = FALSE
+		var/proj_min_x = 0
+		var/proj_max_x = 0
+		var/proj_min_y = 0
+		var/proj_max_y = 0
+		for(var/turf/proj_turf as anything in projected_turfs)
+			if(!proj_turf)
+				continue
+			if(!proj_found)
+				proj_found = TRUE
+				proj_min_x = proj_turf.x
+				proj_max_x = proj_turf.x
+				proj_min_y = proj_turf.y
+				proj_max_y = proj_turf.y
+			else
+				proj_min_x = min(proj_min_x, proj_turf.x)
+				proj_max_x = max(proj_max_x, proj_turf.x)
+				proj_min_y = min(proj_min_y, proj_turf.y)
+				proj_max_y = max(proj_max_y, proj_turf.y)
+		log_grid("GRID PROJECTION: посадка на \"[S.name]\" ([S.type]): проекция [proj_min_x],[proj_min_y]-[proj_max_x],[proj_max_y], тайл дока ([S.x],[S.y]) dir=[S.dir]")
+		for(var/turf/closed/indestructible/edgeturf as anything in projected_turfs)
 			if(!istype(edgeturf))
 				continue
+			log_grid("GRID EDGE_HIT: [src.name] -> \"[S.name]\", стена [edgeturf.type] в ([edgeturf.x],[edgeturf.y],[edgeturf.z])")
 			return SHUTTLE_TOUCHES_EDGE
+		// [/SOLARIS-ADD]
 
 	return SHUTTLE_CAN_DOCK
 
