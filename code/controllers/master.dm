@@ -53,6 +53,11 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	/// The type of the last subsystem to be fire()'d.
 	var/last_type_processed
 
+	/// List of subsystems who ran in the last tick mapped against their cost (only populated when debugging, unused otherwise)
+	var/list/subsystems_to_cost
+	/// List of subsystems who ran in the last tick mapped against their tick allocation (only populated when debugging, unused otherwise)
+	var/list/subsystems_to_allocations
+
 	var/datum/controller/subsystem/queue_head //!Start of queue linked list
 	var/datum/controller/subsystem/queue_tail //!End of queue linked list (used for appending to the list)
 	var/queue_priority_count = 0 //Running total so that we don't have to loop thru the queue each run to split up the tick
@@ -363,10 +368,25 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 		tickdrift = max(0, MC_AVERAGE_FAST(tickdrift, (((REALTIMEOFDAY - init_timeofday) - (world.time - init_time)) / world.tick_lag)))
 		var/starting_tick_usage = TICK_USAGE
 
+		// Record that the mc fired this tick, and when. Used by /datum/tick_holder to split up cpu costs
+		if (GLOB.tick_info)
+			var/tick_index = TICK_INFO_INDEX()
+			GLOB.tick_info.mc_fired[tick_index] = world.time
+			GLOB.tick_info.mc_start_usage[tick_index] = starting_tick_usage
+			GLOB.tick_info.mc_finished_usage[tick_index] = starting_tick_usage // base state in case of sleep in loop() somehow
+			GLOB.tick_info.last_subsystem_usages = subsystems_to_cost
+			GLOB.tick_info.last_subsystem_allocations = subsystems_to_allocations
+		subsystems_to_cost = list()
+		subsystems_to_allocations = list()
+
+		update_cpu_compensation()
+
 		if (init_stage != init_stage_completed)
 			return MC_LOOP_RTN_NEWSTAGES
 		if (processing <= 0)
 			current_ticklimit = TICK_LIMIT_RUNNING
+			if (GLOB.tick_info)
+				GLOB.tick_info.mc_finished_usage[TICK_INFO_INDEX()] = TICK_USAGE
 			sleep(10)
 			continue
 
@@ -377,6 +397,8 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 			if (starting_tick_usage > TICK_LIMIT_MC) //if there isn't enough time to bother doing anything this tick, sleep a bit.
 				sleep_delta *= 2
 				current_ticklimit = TICK_LIMIT_RUNNING * 0.5
+				if (GLOB.tick_info)
+					GLOB.tick_info.mc_finished_usage[TICK_INFO_INDEX()] = TICK_USAGE
 				sleep(world.tick_lag * (processing * sleep_delta))
 				continue
 
@@ -425,6 +447,8 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 				iteration++
 			error_level++
 			current_ticklimit = TICK_LIMIT_RUNNING
+			if (GLOB.tick_info)
+				GLOB.tick_info.mc_finished_usage[TICK_INFO_INDEX()] = TICK_USAGE
 			sleep(10)
 			continue
 
@@ -437,6 +461,8 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 					iteration++
 				error_level++
 				current_ticklimit = TICK_LIMIT_RUNNING
+				if (GLOB.tick_info)
+					GLOB.tick_info.mc_finished_usage[TICK_INFO_INDEX()] = TICK_USAGE
 				sleep(10)
 				continue
 		error_level--
@@ -455,6 +481,8 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 			current_ticklimit = TICK_LIMIT_RUNNING
 			if (processing * sleep_delta <= world.tick_lag)
 				current_ticklimit -= (TICK_LIMIT_RUNNING * 0.25) //reserve the tail 1/4 of the next tick for the mc if we plan on running next tick
+		if (GLOB.tick_info)
+			GLOB.tick_info.mc_finished_usage[TICK_INFO_INDEX()] = TICK_USAGE
 		sleep(world.tick_lag * (processing * sleep_delta))
 
 
@@ -566,6 +594,11 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 			tick_usage = TICK_USAGE
 			var/state = queue_node.ignite(queue_node_paused)
 			tick_usage = TICK_USAGE - tick_usage
+
+			// Only populated when someone is actually watching the debug graphs, costs nothing otherwise
+			if(GLOB?.cpu_tracker?.display_graph)
+				subsystems_to_cost[queue_node.type] = tick_usage
+				subsystems_to_allocations[queue_node.type] = tick_precentage
 
 			if (state == SS_RUNNING)
 				state = SS_IDLE

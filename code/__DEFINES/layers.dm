@@ -210,6 +210,13 @@
 #define SPLASHSCREEN_LAYER 75
 #define SPLASHSCREEN_PLANE 75
 
+/// Debug cpu graphing plane, sits above the hud so graphs draw over everything
+#define GRAPHING_PLANE 76
+/// Layer for the actual graphed data / maptext on [GRAPHING_PLANE]
+#define CPU_DISPLAY_LAYER 1000
+/// Layer for graph frames, drawn over the bars
+#define CPU_GRAPH_FRAME_LAYER 1000.1
+
 #define ADMIN_POPUP_LAYER 1
 
 #define SPLASHSCREEN_RENDER_TARGET "SPLASHSCREEN_PLANE"
