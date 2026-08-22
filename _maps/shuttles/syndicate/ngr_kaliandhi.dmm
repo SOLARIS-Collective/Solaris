@@ -1846,7 +1846,6 @@
 /obj/effect/turf_decal/corner/opaque/red/mono,
 /obj/item/gun/ballistic/automatic/smg/sidewinder/no_mag,
 /obj/item/gun/ballistic/automatic/pistol/asp/no_mag,
-/obj/item/gun/ballistic/automatic/assault/hydra/dmr/no_mag,
 /obj/item/gun/ballistic/shotgun/automatic/bulldog/no_mag,
 /obj/effect/turf_decal/borderfloorblack{
 	dir = 1
