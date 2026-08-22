@@ -377,7 +377,8 @@
 			SEND_SIGNAL(src, COMSIG_OVERMAP_LOADED)
 			. = TRUE
 	catch(var/exception/error)
-		stack_trace("load_level for [src] failed: [error]")
+		// [SOLARIS-EDIT] логируем место возбуждения исключения, а не только stack_trace
+		stack_trace("load_level for [src] failed: [error.name] at [error.file]:[error.line]")
 		. = FALSE
 	// [/MANKIND-EDIT]
 
