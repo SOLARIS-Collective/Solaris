@@ -137,6 +137,8 @@
 
 /turf/closed/bullet_act(obj/projectile/P)
 	. = ..()
+	if(!isclosedturf(src)) // [SOLARIS-ADD] - guard against changed/stale builds hitting this on open turfs
+		return
 	var/dam = get_proj_damage(P)
 	var/shooter = P.firer
 	if(!dam)
@@ -153,7 +155,10 @@
 	// if dam is below t_min, then the hit has no effect
 	return (damage < t_min ? 0 : damage)
 
-/turf/closed/proc/get_proj_damage(obj/projectile/P, t_min = min_dam)
+/turf/proc/get_proj_damage(obj/projectile/P, t_min = 0) // [SOLARIS-ADD] - open turfs take no projectile integrity damage
+	return 0
+
+/turf/closed/get_proj_damage(obj/projectile/P, t_min = min_dam)
 	var/dam = P.damage
 	if(proj_bonus_damage_flags & P.wall_damage_flags)
 		dam = P.wall_damage_override
