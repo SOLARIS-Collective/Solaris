@@ -2173,7 +2173,7 @@
 /area/ship/engineering/communications)
 "io" = (
 /obj/machinery/door/airlock/command{
-	name = "Science director's quarters";
+	name = "Science Director's Quarters";
 	dir = 8;
 	req_access_txt = "30"
 	},
@@ -6767,9 +6767,6 @@
 	desc = "A cherry-red beret issued issued to all elite Nanotrasen officials.";
 	name = "CentCom formal beret";
 	armor = list("melee" = 30, "bullet" = 15, "laser" = 30, "energy" = 40, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
-	},
-/obj/structure/cable{
-	icon_state = "0-8"
 	},
 /obj/item/clothing/head/centhat,
 /obj/item/gun/energy/e_gun/e_old,
@@ -12160,7 +12157,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/airlock/command{
-	name = "First Officer's quarters";
+	name = "First Officer's Quarters";
 	dir = 8;
 	req_access_txt = "57"
 	},
@@ -13437,7 +13434,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/window/brigdoor{
-	name = "Weapons storage"
+	name = "Weapons Storage"
 	},
 /turf/open/floor/plasteel/tech,
 /area/ship/security/armory)
@@ -14203,7 +14200,7 @@
 /area/ship/engineering/atmospherics)
 "ZK" = (
 /obj/machinery/door/airlock/command{
-	name = "Captain's quarters";
+	name = "Captain's Quarters";
 	dir = 8;
 	req_access_txt = "20"
 	},

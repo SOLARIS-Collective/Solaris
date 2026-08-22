@@ -7380,7 +7380,6 @@
 	icon_state = "1-2"
 	},
 /obj/structure/catwalk/over/plated_catwalk/dark,
-/obj/structure/catwalk/over/plated_catwalk/dark,
 /turf/open/floor/plating,
 /area/ship/engineering/engine)
 "Sz" = (
@@ -8061,7 +8060,7 @@
 "Xn" = (
 /obj/machinery/door/airlock/engineering/glass/critical{
 	req_access_txt = "10";
-	name = "Supermatter core access";
+	name = "Supermatter Core Access";
 	dir = 4;
 	rad_insulation = 1
 	},

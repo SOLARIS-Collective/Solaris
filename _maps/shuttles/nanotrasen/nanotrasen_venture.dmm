@@ -502,10 +502,6 @@
 /obj/item/melee/classic_baton/telescopic,
 /turf/open/floor/plasteel/tech/grid,
 /area/ship/engineering)
-"nQ" = (
-/obj/item/clothing/shoes/winterboots/ice_boots,
-/turf/closed/wall/mineral/titanium/nodiagonal,
-/area/ship/cargo/port)
 "pt" = (
 /obj/structure/cable{
 	icon_state = "0-8"
@@ -1181,27 +1177,10 @@
 /obj/effect/spawner/random/food_or_drink/ration,
 /obj/effect/spawner/random/food_or_drink/ration,
 /obj/effect/spawner/random/food_or_drink/ration,
-/obj/item/reagent_containers/food/drinks/waterbottle/large{
-	pixel_x = 8;
-	name = "John Trasen's Reserve"
-	},
-/obj/item/reagent_containers/food/drinks/waterbottle/large{
-	pixel_x = 8;
-	name = "John Trasen's Reserve"
-	},
-/obj/item/reagent_containers/food/drinks/waterbottle/large{
-	pixel_x = 8;
-	name = "John Trasen's Reserve"
-	},
-/obj/item/reagent_containers/food/drinks/waterbottle/large{
-	pixel_x = 8;
-	name = "John Trasen's Reserve"
-	},
 /obj/effect/turf_decal/siding/thinplating/corner{
 	dir = 1
 	},
 /obj/effect/turf_decal/trimline/opaque/nsorange/corner,
-/obj/structure/closet/firecloset/wall/directional/north,
 /obj/effect/mapping_helpers/crate_shelve,
 /obj/machinery/conveyor_switch{
 	id = "venture_belt"
@@ -1387,6 +1366,24 @@
 	},
 /obj/machinery/light/directional/south,
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/closet/firecloset/wall/directional/north,
+/obj/item/clothing/shoes/winterboots/ice_boots,
+/obj/item/reagent_containers/food/drinks/waterbottle/large{
+	pixel_x = 8;
+	name = "John Trasen's Reserve"
+	},
+/obj/item/reagent_containers/food/drinks/waterbottle/large{
+	pixel_x = 8;
+	name = "John Trasen's Reserve"
+	},
+/obj/item/reagent_containers/food/drinks/waterbottle/large{
+	pixel_x = 8;
+	name = "John Trasen's Reserve"
+	},
+/obj/item/reagent_containers/food/drinks/waterbottle/large{
+	pixel_x = 8;
+	name = "John Trasen's Reserve"
+	},
 /turf/open/floor/plasteel/patterned/grid/dark,
 /area/ship/cargo/port)
 "EV" = (
@@ -2528,7 +2525,7 @@ DD
 "}
 (16,1,1) = {"
 Hp
-nQ
+Nn
 AT
 qr
 Nn

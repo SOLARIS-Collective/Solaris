@@ -390,14 +390,12 @@
 /obj/machinery/light_switch{
 	pixel_x = -20;
 	dir = 4;
-	pixel_y = -10
-	},
-/obj/machinery/power/apc/auto_name/directional/west{
-	pixel_y = 3
+	pixel_y = -11
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
+/obj/machinery/power/apc/auto_name/directional/west,
 /turf/open/floor/plasteel/dark,
 /area/ship/bridge)
 "fA" = (
@@ -720,16 +718,14 @@
 /obj/effect/turf_decal/trimline/opaque/orange/warning{
 	dir = 5
 	},
-/obj/machinery/power/apc/auto_name/directional/north{
-	pixel_x = -4
-	},
+/obj/machinery/power/apc/auto_name/directional/north,
 /obj/structure/cable{
 	d2 = 2;
 	icon_state = "0-2"
 	},
 /obj/structure/punching_bag,
 /obj/machinery/light_switch{
-	pixel_x = 8;
+	pixel_x = 11;
 	pixel_y = 22
 	},
 /turf/open/floor/plasteel/heavymetal/var4,
@@ -1402,9 +1398,6 @@
 /turf/open/floor/suns/hatch/walnut,
 /area/ship/crew)
 "tl" = (
-/obj/machinery/power/terminal{
-	dir = 8
-	},
 /obj/machinery/power/terminal{
 	dir = 8
 	},
@@ -2703,12 +2696,10 @@
 /obj/effect/turf_decal/trimline/opaque/orange/warning{
 	dir = 6
 	},
-/obj/machinery/power/apc/auto_name/directional/south{
-	pixel_x = 6
-	},
+/obj/machinery/power/apc/auto_name/directional/south,
 /obj/structure/cable,
 /obj/machinery/light_switch{
-	pixel_x = -8;
+	pixel_x = 11;
 	pixel_y = -20;
 	dir = 1
 	},
@@ -3450,14 +3441,11 @@
 /obj/structure/cable,
 /obj/effect/turf_decal/nanotrasen/ns/bottom,
 /obj/machinery/light_switch{
-	pixel_x = -8;
+	pixel_x = -13;
 	pixel_y = -20;
 	dir = 1
 	},
-/obj/machinery/power/apc/auto_name/directional/south{
-	pixel_x = 6;
-	pixel_y = -29
-	},
+/obj/machinery/power/apc/auto_name/directional/south,
 /obj/effect/turf_decal/trimline/opaque/nsorange/line,
 /turf/open/floor/plasteel/heavymetal,
 /area/ship/storage)

@@ -351,9 +351,7 @@
 	dir = 8
 	},
 /obj/structure/cable,
-/obj/machinery/power/apc/auto_name/directional/south{
-	pixel_x = -5
-	},
+/obj/machinery/power/apc/auto_name/directional/south,
 /obj/machinery/light_switch{
 	dir = 1;
 	pixel_x = 7;
@@ -1080,9 +1078,6 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
 	},
@@ -1541,7 +1536,7 @@
 /area/ship/engineering/electrical)
 "tA" = (
 /obj/machinery/door/window/westright{
-	name = "Medical storage"
+	name = "Medical Storage"
 	},
 /turf/open/floor/plasteel/white,
 /area/ship/medical/surgery)
@@ -1964,7 +1959,7 @@
 /obj/item/wrench/medical,
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/machinery/door/window/westright{
-	name = "Medical storage"
+	name = "Medical Storage"
 	},
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
 	dir = 8
@@ -1988,9 +1983,6 @@
 "Ao" = (
 /obj/structure/cable{
 	icon_state = "4-8"
-	},
-/obj/structure/cable{
-	icon_state = "1-8"
 	},
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -3326,7 +3318,7 @@
 /area/ship/engineering/atmospherics)
 "Sl" = (
 /obj/machinery/door/window/westright{
-	name = "Medical storage"
+	name = "Medical Storage"
 	},
 /obj/structure/table/chem,
 /obj/item/reagent_containers/glass/beaker/plastic{
@@ -3616,7 +3608,6 @@
 	pixel_x = 3;
 	pixel_y = 8
 	},
-/obj/machinery/door/firedoor/border_only,
 /obj/item/stack/sheet/mineral/plasma/five,
 /turf/open/floor/plasteel/white,
 /area/ship/medical)

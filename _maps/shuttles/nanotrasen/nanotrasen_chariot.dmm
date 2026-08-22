@@ -3017,7 +3017,6 @@
 /area/ship/science/ai_chamber)
 "Am" = (
 /obj/structure/table/wood,
-/obj/structure/table/wood,
 /obj/machinery/light/directional/south,
 /obj/effect/turf_decal/siding/wood,
 /turf/open/floor/wood,

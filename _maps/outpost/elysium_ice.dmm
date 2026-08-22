@@ -588,12 +588,6 @@
 /obj/effect/turf_decal/corner/opaque/grey/mono,
 /obj/machinery/light/small/directional/north,
 /obj/structure/closet/crate/coffin,
-/obj/structure/closet/crate/coffin{
-	pixel_y = 5
-	},
-/obj/structure/closet/crate/coffin{
-	pixel_y = 10
-	},
 /turf/open/floor/plasteel/dark,
 /area/outpost/medical/morgue)
 "aqS" = (
@@ -901,9 +895,6 @@
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 8
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
 	},
 /turf/open/floor/wood/ebony,
 /area/outpost/crew/bar/theatre)
@@ -14493,12 +14484,6 @@
 "iFd" = (
 /obj/effect/turf_decal/corner/opaque/grey/mono,
 /obj/structure/closet/crate/coffin,
-/obj/structure/closet/crate/coffin{
-	pixel_y = 5
-	},
-/obj/structure/closet/crate/coffin{
-	pixel_y = 10
-	},
 /turf/open/floor/plasteel/dark,
 /area/outpost/medical/morgue)
 "iFs" = (
@@ -17653,12 +17638,8 @@
 	},
 /area/outpost/exterior)
 "kFh" = (
-/obj/structure/chair/pew/left{
-	pixel_y = 3
-	},
 /obj/structure/chair/pew{
-	dir = 4;
-	pixel_y = -14
+	dir = 6
 	},
 /turf/open/floor/wood/birch{
 	planetary_atmos = 1
@@ -21140,7 +21121,7 @@
 /obj/machinery/door/poddoor/ert{
 	id = "outpost_ghost_artist";
 	dir = 4;
-	name = "artist blast door"
+	name = "Artist Blast Door"
 	},
 /obj/machinery/door/airlock/plasma/glass{
 	dir = 4
@@ -25220,9 +25201,6 @@
 	dir = 1
 	},
 /obj/machinery/door/firedoor/border_only,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
 /obj/machinery/door/poddoor/ert{
 	id = "ice_sec_medicals"
 	},
@@ -34035,9 +34013,6 @@
 	icon_state = "1-2"
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
 /obj/structure/grille,
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -34680,6 +34655,7 @@
 /area/outpost/security/reseption)
 "vpk" = (
 /obj/item/radio/intercom/directional/east,
+/obj/structure/closet/crate/medical,
 /turf/open/floor/plasteel/darkgreenfull/darkgreen{
 	dir = 5
 	},
@@ -36095,8 +36071,7 @@
 /area/outpost/vacant_rooms/office)
 "wkt" = (
 /obj/machinery/power/apc/auto_name/directional/east{
-	req_access_txt = "8100, 8111";
-	pixel_y = -3
+	req_access_txt = "8100, 8111"
 	},
 /obj/structure/cable{
 	d2 = 2;
@@ -38380,9 +38355,7 @@
 /turf/open/floor/engine/hull/reinforced,
 /area/outpost/fraction/inteq)
 "xBm" = (
-/obj/structure/chair/pew/right{
-	pixel_y = 3
-	},
+/obj/structure/chair/pew/right,
 /obj/machinery/light/small/directional/north,
 /obj/item/reagent_containers/glass/bucket/wooden{
 	pixel_y = -16;
@@ -38783,11 +38756,10 @@
 /obj/item/reagent_containers/glass/beaker/large/fuel,
 /obj/item/reagent_containers/glass/beaker/large/fuel,
 /obj/item/reagent_containers/glass/beaker/large/fuel,
-/obj/structure/closet/wall/white/directional/east,
-/obj/structure/closet/crate/medical,
 /obj/item/food/grown/cannabis/death,
 /obj/item/food/grown/cannabis/death,
 /obj/structure/extinguisher_cabinet/directional/south,
+/obj/structure/closet/wall/white/directional/east,
 /turf/open/floor/plasteel/darkgreenfull/darkgreen{
 	dir = 6
 	},
