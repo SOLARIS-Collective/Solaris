@@ -22,6 +22,11 @@ GLOBAL_VAR_INIT(corrective_cpu_ratio, 30)
 /// How far away from the average can we get before discarding a datapoint (glide size)
 GLOBAL_VAR_INIT(glide_threshold_ratio, 10)
 
+/// How far the ideal glide multiplier must drift from the applied one before we adjust it (deadband against per-tick wobble)
+#define GLIDE_HYSTERESIS_BAND 0.04
+/// Max glide multiplier change per tick while adjusting; recovery toward full speed runs at double this rate
+#define GLIDE_HYSTERESIS_SLEW 0.03
+
 // Debug tools, lets admins set artificial load to test the compensation system with
 /// Lets us set the floor of cpu consumption
 GLOBAL_VAR_INIT(floor_cpu, 0)
@@ -315,7 +320,13 @@ GLOBAL_DATUM(tick_info, /datum/tick_holder)
 			trimmed_max_value = max(value, trimmed_max_value)
 
 	var/final_capped_average = trimmed_capped_sum ? trimmed_capped_sum / cap_used : first_capped_average
-	GLOB.glide_size_multiplier = min(100 / final_capped_average, 1)
+	var/glide_target = min(100 / final_capped_average, 1)
+	// Anti-jitter: hold the multiplier while the ideal value stays inside the deadband, then slew toward it.
+	// Per-tick wobble here reads as stutter on clients; recovery toward 1.0 is twice as fast.
+	if(glide_target < GLOB.glide_size_multiplier - GLIDE_HYSTERESIS_BAND)
+		GLOB.glide_size_multiplier = max(glide_target, GLOB.glide_size_multiplier - GLIDE_HYSTERESIS_SLEW)
+	else if(glide_target > GLOB.glide_size_multiplier + GLIDE_HYSTERESIS_BAND)
+		GLOB.glide_size_multiplier = min(glide_target, GLOB.glide_size_multiplier + GLIDE_HYSTERESIS_SLEW * 2)
 
 	// Now account for passive overrun (mc + maptick eating past our target).
 	// If it persists we lower the threshold, so the corrective burn leaves room for it instead of forcing overtime.
