@@ -372,7 +372,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(!client)
 		return
 	if(!mind || QDELETED(mind.current) || mind.current.loc == null)
-		to_chat(src, span_warning("А тела то и нет."))
+		to_chat(src, span_warning("А тела-то и нет."))
 		return
 	if(!can_reenter_corpse)
 		to_chat(src, span_warning("Не могу вернуться в тело."))
@@ -383,7 +383,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	client.view_size.setDefault(getScreenSize())//Let's reset so people can't become allseeing gods
 	SStgui.on_transfer(src, mind.current) // Transfer NanoUIs.
 	if(mind.current.stat == DEAD && SSlag_switch.measures[DISABLE_DEAD_KEYLOOP])
-		to_chat(src, span_warning("Чтобы покинуть тело используй кнопку Призрак."))
+		to_chat(src, span_warning("Используй кнопку \"Призрак\", чтобы покинуть тело."))
 	mind.current.key = key
 	mind.current.client.init_verbs()
 	mind.current.ignore_SSD = FALSE
@@ -561,7 +561,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	// 		return
 	if(!client)
 		return
-	var/poll_client = tgui_alert(usr, "Возврат в лобби-меню, это отменит возможность возрождение этим персонажем.\nВы ТОЧНО уверены?", "Респавн", list("Верни меня в лобби", "Я передумал"))
+	var/poll_client = tgui_alert(usr, "Возврат в лобби-меню отменит возможность возрождения этим персонажем.\nВы ТОЧНО уверены?", "Респавн", list("Верни меня в лобби", "Я передумал"))
 	if(poll_client != "Верни меня в лобби")
 		return
 	// [/MANKIND-EDIT]

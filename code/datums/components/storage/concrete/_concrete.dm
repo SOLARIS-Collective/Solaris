@@ -133,7 +133,7 @@
 		I.remove_outline()
 		if(ismob(parent.loc))
 			var/mob/M = parent.loc
-			I.dropped(M)
+			I.dropped(M, TRUE) // [MANKIND-FIX] don't play drop sound on item extraction. only pickup sound should be played
 	if(new_location)
 		//Reset the items values
 		_removal_reset(AM)
