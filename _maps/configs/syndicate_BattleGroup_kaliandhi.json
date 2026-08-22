@@ -1,0 +1,54 @@
+{
+	"$schema": "https://raw.githubusercontent.com/CeladonSS13/Shiptest/beta-dev/_maps/ship_config_schema.json",
+	"map_name": "Kaliandhi-class",
+	"map_short_name": "Kaliandhi",
+	"description": "Боевое судно, используемое 2nd BattleGroup для поддержки в бою ",
+	"map_path": "_maps/shuttles/syndicate/ngr_kaliandhi.dmm",
+	"enabled": true,
+	"limit": 1,
+	"sensor_range": 8,
+	"prefix": "BSSV",
+	"faction": "/datum/faction/syndicate",
+	"tags": ["Боевой"],
+	"namelists": [
+		"2nd BattleGroup",
+		"NATURAL_AGGRESSIVE",
+		"BEASTS",
+		"WEAPONS",
+		"ACLF"
+	],
+	"job_slots": {
+		"Squad leader": {
+			"outfit": "/datum/outfit/job/cel/syndicate/captain/gorlex",
+			"officer": true,
+			"slots": 1,
+			"name": "Squad leader 2nd BattleGroup"
+		},
+		"Hardliner Officer": {
+			"outfit": "/datum/outfit/job/cel/syndicate/captain/gorlex",
+			"officer": true,
+			"slots": 1
+		},
+		"Paramedic": {
+			"outfit": "/datum/outfit/job/cel/syndicate/doctor/gorlex",
+			"slots": 1,
+			"name": "Paramedic"
+		},
+		"Mechanic": {
+			"outfit": "/datum/outfit/job/cel/syndicate/engineer/gorlex",
+			"slots": 1
+		},
+		"Cybersun miner": {
+			"outfit": "/datum/outfit/job/cel/syndicate/miner/cybersun",
+			"slots": 1
+		},
+		"Cybersun assistant": {
+			"outfit": "/datum/outfit/job/cel/syndicate/assistant/cybersun",
+			"slots": 2
+		},
+		"Operative": {
+			"outfit": "/datum/outfit/job/cel/syndicate/security/gorlex",
+			"slots": 3
+		}
+	}
+}

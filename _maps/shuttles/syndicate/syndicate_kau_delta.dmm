@@ -147,6 +147,9 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
 	dir = 8
 	},
+/obj/effect/turf_decal/gorlex/three_one{
+	pixel_y = -6
+	},
 /turf/open/floor/mineral/plastitanium,
 /area/ship/bridge)
 "dB" = (
@@ -1249,6 +1252,9 @@
 "xN" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/holopad/emergency/command,
+/obj/effect/turf_decal/gorlex/three_three{
+	pixel_y = -6
+	},
 /turf/open/floor/mineral/plastitanium,
 /area/ship/bridge)
 "yo" = (
@@ -2562,6 +2568,9 @@
 "VE" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
 	dir = 8
+	},
+/obj/effect/turf_decal/gorlex/three_two{
+	pixel_y = -6
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ship/bridge)

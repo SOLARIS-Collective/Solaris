@@ -21,6 +21,20 @@
 	icon_state = "nakamura"
 	is_editable = TRUE
 
+/obj/structure/sign/nanotrasen/red_hawk
+	name = "\improper Red Hawk"
+	sign_change_name = "Corporate Logo - Red Hawk"
+	desc = "A sign with Red Hawk's VI logo on it."
+	icon_state = "Red_Hawk"
+	is_editable = TRUE
+
+/obj/structure/sign/nanotrasen/blue_hawk
+	name = "\improper Vigilitas Interstellar logo sign"
+	sign_change_name = "Corporate Logo - Blue Hawk"
+	desc = "A sign with Blue Hawk's VI logo on it."
+	icon_state = "blue_hawk"
+	is_editable = TRUE
+
 //clothing reflavor
 //nakamura
 /obj/item/clothing/under/nanotrasen/engineering/director

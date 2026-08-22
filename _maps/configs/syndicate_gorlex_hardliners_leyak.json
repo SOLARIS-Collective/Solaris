@@ -1,0 +1,44 @@
+{
+	"$schema": "https://raw.githubusercontent.com/CeladonSS13/Shiptest/beta-dev/_maps/ship_config_schema.json",
+	"map_name": "Leyak-class",
+	"map_short_name": "Leyak",
+	"description": "«Leyak» — созданный корабль на основе.",
+	"map_path": "_maps/shuttles/syndicate/hardliners_leyak.dmm",
+	"enabled" : true,
+	"limit": 1,
+	"sensor_range": 9,
+	"faction": "/datum/faction/syndicate",
+	"prefix": "BSSV",
+	"tags": [
+		"Боевой"
+	],
+	"namelists": [
+		"GORLEX",
+		"NATURAL_AGGRESSIVE"
+	],
+	"job_slots": {
+		"Squad Leader": {
+			"outfit": "/datum/outfit/job/cel/syndicate/captain",
+			"officer": true,
+			"slots": 1
+		},
+		"Intelligence Officer": {
+			"outfit": "/datum/outfit/job/cel/syndicate/head_of_personnel/cybersun",
+			"officer": true,
+			"slots": 1
+		},
+		"First lieutenant": {
+			"outfit": "/datum/outfit/job/cel/syndicate/hos/gorlex/lieutenant",
+			"officer": true,
+			"slots": 1
+		},
+		"Commando": {
+			"outfit": "/datum/outfit/job/cel/syndicate/security",
+			"slots": 2
+		},
+		"Junior Agent": {
+			"outfit": "/datum/outfit/job/cel/syndicate/assistant",
+			"slots": 2
+		}
+	}
+}
