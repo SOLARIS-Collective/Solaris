@@ -99,6 +99,11 @@
 /datum/overmap/dynamic/pre_docked(datum/overmap/ship/controlled/dock_requester, override_dock)
 	if(loading)
 		return new /datum/docking_ticket(_docking_error = "[src] is currently being scanned for suitable docking locations by another ship. Please wait.")
+	// [MANKIND-EDIT] - MANKIND_FIXES - Синхронная генерация планеты.
+	// Асинхронная генерация (INVOKE_ASYNC + stoplag/CHECK_TICK внутри mapgen) на BYOND 515.1633
+	// вызывала нативный краш сервера при посадке (срабатывал при слишком большом числе suspended
+	// процов, auxtools#87). Генерация теперь идёт в калстеке стыковки и yield-ится через stoplag,
+	// так что сервер продолжает тикать, просто под нагрузкой.
 	if(!load_level())
 		return new /datum/docking_ticket(_docking_error = "[src] cannot be docked to.")
 	else
@@ -333,35 +338,55 @@
  * * visiting shuttle - The docking port of the shuttle visiting the level.
  */
 /datum/overmap/dynamic/proc/load_level()
-	if(SSlag_switch.measures[DISABLE_PLANETGEN] && !(HAS_TRAIT(usr, TRAIT_BYPASS_MEASURES)))
+	if(SSlag_switch.measures[DISABLE_PLANETGEN] && !(usr && HAS_TRAIT(usr, TRAIT_BYPASS_MEASURES)))
 		return FALSE
 	if(mapzone)
 		return TRUE
+	if(loading)
+		return FALSE
 
 	loading = TRUE
 	log_shuttle("[src] [REF(src)] LEVEL_INIT")
 
-	var/list/dynamic_encounter_values = current_overmap.spawn_dynamic_encounter(src, selected_ruin)
-	if(!length(dynamic_encounter_values))
-		return FALSE
+	// [SOLARIS-ADD] - Логирование времени загрузки уровня.
+	var/load_start_time = REALTIMEOFDAY
+	log_planet("PLANET: СТАРТ загрузки уровня \"[name]\" ([planet?.name || "no planet"]) по запросу стыковки", FALSE)
+	// [/SOLARIS-ADD]
 
-	mapzone = dynamic_encounter_values[1]
-	reserve_docks = dynamic_encounter_values[2]
-	ruin_turfs = dynamic_encounter_values[3]
-	spawned_ruins = dynamic_encounter_values[4]
+	// [MANKIND-EDIT] - MANKIND_FIXES - try/catch, чтобы loading гарантированно сбрасывался даже при
+	// исключении внутри генерации. Иначе планета навсегда оставалась в состоянии "being scanned".
+	try
+		var/list/dynamic_encounter_values = current_overmap.spawn_dynamic_encounter(src, selected_ruin)
+		if(!length(dynamic_encounter_values))
+			. = FALSE
+		else
+			mapzone = dynamic_encounter_values[1]
+			reserve_docks = dynamic_encounter_values[2]
+			ruin_turfs = dynamic_encounter_values[3]
+			spawned_ruins = dynamic_encounter_values[4]
 
-	var/datum/virtual_level/our_likely_vlevel = mapzone.virtual_levels[1]
-	if(istype(our_likely_vlevel) && selfloop)
-		our_likely_vlevel.selfloop()
+			var/datum/virtual_level/our_likely_vlevel = mapzone.virtual_levels[1]
+			if(istype(our_likely_vlevel) && selfloop)
+				our_likely_vlevel.selfloop()
 
-	for(var/obj/docking_port/stationary/port in reserve_docks)
-		if(port.roundstart_template)
-			port.name = "[name] auxillary docking location"
-			port.load_roundstart()
+			for(var/obj/docking_port/stationary/port in reserve_docks)
+				if(port.roundstart_template)
+					port.name = "[name] auxillary docking location"
+					port.load_roundstart()
 
-	SEND_SIGNAL(src, COMSIG_OVERMAP_LOADED)
+			SEND_SIGNAL(src, COMSIG_OVERMAP_LOADED)
+			. = TRUE
+	catch(var/exception/error)
+		stack_trace("load_level for [src] failed: [error]")
+		. = FALSE
+	// [/MANKIND-EDIT]
+
+	// [SOLARIS-ADD] - Логирование времени загрузки уровня.
+	log_planet("PLANET: ФИНИШ загрузки уровня \"[name]\" ([planet?.name || "no planet"]). Итог: [. ? "успех" : "ПРОВАЛ"] за [(REALTIMEOFDAY - load_start_time)/10]s", TRUE)
+	// [/SOLARIS-ADD]
+
 	loading = FALSE
-	return TRUE
+	return .
 
 /datum/overmap/dynamic/admin_load()
 	preserve_level = TRUE

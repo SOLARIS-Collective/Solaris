@@ -4,12 +4,12 @@ GLOBAL_LIST_EMPTY(loadout_parent_categories) // [MANKIND-ADD] - MANKIND_QOL_LOAD
 
 /datum/loadout_category
 	var/category = ""
-	 // [MANKIND-ADD] - MANKIND_QOL_LOADOUT
+	// [MANKIND-ADD] - MANKIND_QOL_LOADOUT
 	var/parent_category = "" // Родительская категория
 	var/category_icon = "" // Иконка категории
 	var/category_order = 0 // Порядок сортировки
 	var/list/subcategories = list() // Подкатегории
-	 // [/MANKIND-ADD]
+	// [/MANKIND-ADD]
 	var/list/gear = list()
 
 // [MANKIND-EDIT] - MANKIND_QOL_LOADOUT
@@ -95,7 +95,7 @@ GLOBAL_LIST_EMPTY(loadout_parent_categories) // [MANKIND-ADD] - MANKIND_QOL_LOAD
 	// [MANKIND-ADD] - MANKIND_QOL_LOADOUT
 	///Factions that can spawn with this item.
 	var/list/allowed_factions
-	// Примеры 	allowed_factions = list("NanoTrasen", "Syndicate", "Independent", "InteQ", "SolFed", "Pirates", "Elysium")
+	// Примеры 	allowed_factions = list("Nanotrasen", "Syndicate", "Independent", "InteQ", "SolFed", "Pirates", "Elysium")
 	// [/MANKIND-ADD]
 	///Stop certain species from receiving this gear
 	var/list/species_blacklist

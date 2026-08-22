@@ -36,7 +36,7 @@ SUBSYSTEM_DEF(jukeboxes)
 		if(!(M?.client?.prefs.toggles & SOUND_JUKEBOX))
 			continue
 
-		M.playsound_local(M, null, 100, channel = youvegotafreejukebox[2], S = song_to_init)
+		M.playsound_local(M, null, 100, channel = youvegotafreejukebox[2], S = song_to_init, sound_flag = FS_JUKEBOX)
 	return activejukeboxes.len
 
 /datum/controller/subsystem/jukeboxes/Recover()
@@ -142,7 +142,7 @@ SUBSYSTEM_DEF(jukeboxes)
 
 			// [MANKIND-EDIT] - FIXES_JUKEBOX - Для работоспособности звука, выносим громкость в общий параметр объекта
 			// M.playsound_local(currentturf, null, jukebox.volume, channel = jukeinfo[2], S = song_played, envwet = (inrange ? -250 : 0), envdry = (inrange ? 0 : -10000))
-			M.playsound_local(currentturf, null, juke_volume, channel = jukeinfo[2], S = song_played, envwet = (inrange ? -250 : 0), envdry = (inrange ? 0 : -10000))
+			M.playsound_local(currentturf, null, juke_volume, channel = jukeinfo[2], S = song_played, envwet = (inrange ? -250 : 0), envdry = (inrange ? 0 : -10000), sound_flag = FS_JUKEBOX)
 			// [/MANKIND-EDIT]
 
 			if(MC_TICK_CHECK)

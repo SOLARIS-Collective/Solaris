@@ -3,7 +3,7 @@
 	"map_name": "Mite-class Mining Shuttle",
 	"map_short_name": "Mite",
 	"description": "Шаттл класса «Mite» был разработан Мародер Горлекса для малых групп оперативников и внедрение в разные сектора сеть Синдиката. Однако затея не увенчалась успехом, и переоборудование «Jet Lancer» было прекращено. В настоящий момент сохранившиеся экземпляры отправлены на консервацию ковчега для использование небольших у разведывательных групп, поскольку для работы и обслуживания судна требуется не более двух человек.",
-	"map_path": "_maps/_mod_celadon/shuttles/syndicate/syndicate_mite.dmm",
+	"map_path": "_maps/shuttles/syndicate/syndicate_mite.dmm",
 	"enabled": true,
 	"limit": 1,
 	"sensor_range": 4,

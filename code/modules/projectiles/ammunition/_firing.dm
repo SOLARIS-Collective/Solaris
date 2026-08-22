@@ -68,11 +68,15 @@
 	if(targloc == curloc)
 		if(target) //if the target is right on our location we'll skip the travelling code in the proj's fire()
 			direct_target = target
+	var/prepared = TRUE
 	if(!direct_target)
 		if(user)
-			BB.preparePixelProjectile(target, user, modifiers, spread)
+			prepared = BB.preparePixelProjectile(target, user, modifiers, spread)
 		else
-			BB.preparePixelProjectile(target, curloc, modifiers, spread)
+			prepared = BB.preparePixelProjectile(target, curloc, modifiers, spread)
+	if(!prepared || QDELETED(BB))
+		BB = null
+		return FALSE
 	BB.fire(null, direct_target)
 	BB = null
 	return TRUE

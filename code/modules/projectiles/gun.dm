@@ -718,9 +718,9 @@
 		simulate_recoil(user, recoil_temp, actual_angle)
 
 	if(suppressed)
-		playsound(user, suppressed_sound, suppressed_volume, vary_fire_sound, ignore_walls = FALSE, extrarange = SILENCED_SOUND_EXTRARANGE, falloff_distance = 0)
+		playsound(user, suppressed_sound, suppressed_volume, vary_fire_sound, ignore_walls = FALSE, extrarange = SILENCED_SOUND_EXTRARANGE, falloff_distance = 0, sound_flag = FS_WEAPONS)
 	else
-		playsound(user, fire_sound, fire_sound_volume, vary_fire_sound)
+		playsound(user, fire_sound, fire_sound_volume, vary_fire_sound, sound_flag = FS_WEAPONS)
 		if(message)
 			if(pointblank)
 				user.visible_message(

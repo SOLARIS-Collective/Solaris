@@ -77,7 +77,7 @@
 /obj/structure/grille,
 /obj/machinery/door/poddoor/shutters{
 	dir = 4;
-	id = 74572
+	id = "windows"
 	},
 /turf/open/floor/engine/hull/reinforced/interior,
 /area/ship/bridge)
@@ -196,7 +196,7 @@
 	pixel_y = 24
 	},
 /obj/machinery/button/door{
-	id = 74573;
+	id = "windows";
 	name = "windows";
 	pixel_x = 8;
 	pixel_y = 25
@@ -339,20 +339,6 @@
 	pixel_y = -2;
 	dir = 8
 	},
-/obj/machinery/button/shieldwallgen{
-	dir = 8;
-	id = "Caliban_subshuttle_port_holo";
-	pixel_x = 27;
-	pixel_y = 11;
-	name = "Port Holo switch"
-	},
-/obj/machinery/button/shieldwallgen{
-	dir = 8;
-	id = "Caliban_subshuttle_starboard_holo";
-	pixel_x = 27;
-	pixel_y = -3;
-	name = "Starboard Holo Switch"
-	},
 /obj/machinery/airalarm/directional/south,
 /turf/open/floor/plasteel/white,
 /area/ship/bridge)
@@ -492,7 +478,7 @@
 /obj/structure/window/plasma/reinforced/plastitanium,
 /obj/machinery/door/poddoor/shutters{
 	dir = 4;
-	id = 74572
+	id = "windows"
 	},
 /turf/open/floor/engine/hull/reinforced/interior,
 /area/ship/bridge)

@@ -344,6 +344,12 @@
 	for (var/path in subtypesof(/datum/design))
 		var/datum/design/D = path
 
+		// [SOLARIS-ADD] - Пропускаем дизайны без собственного id (абстрактные родители),
+		// иначе несколько таких дизайнов дублируют спрайт "IGNORE_THIS_DESIGN" и роняют register().
+		if(initial(D.id) == DESIGN_ID_IGNORE)
+			continue
+		// [/SOLARIS-ADD]
+
 		var/icon_file
 		var/icon_state
 		var/icon/I

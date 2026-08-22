@@ -29,11 +29,16 @@ export const SoundPanelSettings = (props: SoundPanelSettingsProps, context) => {
     '4096': 'Голоса',
   };
 
-  const flagKeys = Object.keys(sound_volume || {})
-    .sort((a, b) => Number(a) - Number(b));
+  const flagKeys = Object.keys(sound_volume || {}).sort(
+    (a, b) => Number(a) - Number(b)
+  );
 
   return (
-    <Window width={480} height={Math.min(flagKeys.length * 28 + 60, 600)} title="Настройки звука">
+    <Window
+      width={480}
+      height={Math.min(flagKeys.length * 28 + 60, 600)}
+      title="Настройки звука"
+    >
       <Window.Content>
         <Section title="">
           <LabeledList>
@@ -49,7 +54,11 @@ export const SoundPanelSettings = (props: SoundPanelSettingsProps, context) => {
                     <>
                       <Button
                         icon="play"
-                        color={playing_flag === Number(flag) ? 'green' : 'transparent'}
+                        color={
+                          playing_flag === Number(flag)
+                            ? 'green'
+                            : 'transparent'
+                        }
                         tooltip="Тест"
                         onClick={() =>
                           act('test_sound', {
@@ -61,9 +70,7 @@ export const SoundPanelSettings = (props: SoundPanelSettingsProps, context) => {
                         icon="stop-circle"
                         color="transparent"
                         tooltip="Стоп"
-                        onClick={() =>
-                          act('stop_sound', {})
-                        }
+                        onClick={() => act('stop_sound', {})}
                       />
                     </>
                   }

@@ -165,9 +165,6 @@
 	light_color = "#FF0000";
 	pixel_y = -10
 	},
-/obj/structure/sign/elysium{
-	pixel_x = 32
-	},
 /turf/open/floor/plasteel/patterned/brushed{
 	light_color = "#1B1D2E";
 	light_range = 2;
@@ -1848,9 +1845,6 @@
 /obj/machinery/light/small/directional/east{
 	light_color = "#FF0000";
 	pixel_y = 10
-	},
-/obj/structure/sign/elysium{
-	pixel_x = 32
 	},
 /turf/open/floor/plasteel/patterned/brushed{
 	light_color = "#1B1D2E";
@@ -6191,14 +6185,14 @@ rK
 JN
 Go
 JN
-JN
 fJ
+mQ
+mQ
 mQ
 mQ
 kq
 fJ
 uS
-ap
 ap
 ap
 VR
@@ -6253,14 +6247,14 @@ JN
 JN
 Go
 iB
-JN
 fJ
+mQ
+mQ
 mQ
 mQ
 mQ
 fJ
 Go
-ap
 ap
 BK
 yG
@@ -6315,14 +6309,14 @@ ap
 WR
 Go
 Go
-Go
 fJ
+mQ
+mQ
 mQ
 mQ
 mQ
 fJ
 Wd
-JN
 ap
 JN
 Go
@@ -6377,13 +6371,13 @@ aT
 aa
 aT
 aT
-aT
 aa
 aa
 aa
 aa
 aa
-aT
+aa
+aa
 aT
 aT
 aT

@@ -618,10 +618,6 @@
 	planetary_atmos = 1
 	},
 /area/hangar)
-"pr" = (
-/obj/structure/sign/elysium,
-/turf/closed/indestructible/reinforced,
-/area/hangar)
 "qa" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 6
@@ -3848,7 +3844,7 @@ Kg
 ce
 jd
 FQ
-pr
+MP
 CK
 CK
 CK
@@ -4011,7 +4007,7 @@ MP
 MP
 MP
 MP
-pr
+MP
 Qk
 Io
 Yn

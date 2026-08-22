@@ -30,8 +30,8 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/client/proc/requests,
 	/client/proc/fax_panel, /*send a paper to fax*/
 	/client/proc/show_all_verbs,				// [MANKIND-ADD] - ADMIN-PANEL - Black Reality
-	/client/proc/manage_chatfilter,				// [MANKIND-ADD] - BRAINDEAD-SYSTEM
-	/client/proc/toggle_chatfilter_hardcore,	// [MANKIND-ADD] - BRAINDEAD-SYSTEM
+	// /client/proc/manage_chatfilter,				// [MANKIND-ADD] - BRAINDEAD-SYSTEM
+	// /client/proc/toggle_chatfilter_hardcore,	// [MANKIND-ADD] - BRAINDEAD-SYSTEM
 	)
 GLOBAL_LIST_INIT(admin_verbs_admin, world.AVerbsAdmin())
 GLOBAL_PROTECT(admin_verbs_admin)
@@ -205,6 +205,7 @@ GLOBAL_PROTECT(admin_verbs_debug)
 	/client/proc/view_runtimes,
 	/client/proc/pump_random_event,
 	/client/proc/reload_configuration,
+	/client/proc/toggle_cpu_debug,
 	/client/proc/reload_autotransfer_schedule, // PENTEST - Reload the autotransfer schedule from config
 	/client/proc/jumptoarea,
 	/client/proc/jumptocoord,
@@ -893,3 +894,12 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 
 	SStgui.close_uis(usr)
 // [/MANKIND-ADD]
+
+/client/proc/toggle_cpu_debug()
+	set category = "Debug"
+	set name = "Toggle Cpu Controls"
+	set desc = "Enables performance debug view, graphing cpu usage across the tick"
+
+	if(!holder || !check_rights(R_DEBUG))
+		return
+	GLOB.cpu_tracker.toggle_cpu_debug(src)

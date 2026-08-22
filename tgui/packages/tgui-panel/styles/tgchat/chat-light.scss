@@ -506,11 +506,10 @@ h2.alert {
   border-left: 4px solid var(--priority-accent);
   border-radius: 0;
   background: #f4f8f4;
-  box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.55),
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.55),
     inset 0 1px 0 rgba(255, 255, 255, 0.65);
   color: var(--priority-body-color);
-  font-family: "Trebuchet MS", Verdana, sans-serif;
+  font-family: 'Trebuchet MS', Verdana, sans-serif;
   overflow: hidden;
 }
 
@@ -519,7 +518,7 @@ h2.alert {
 }
 
 .priority_announcement::after {
-  content: "";
+  content: '';
   position: absolute;
   top: 0.7rem;
   left: 1rem;
@@ -532,8 +531,7 @@ h2.alert {
 }
 
 .priority_announcement--important {
-  box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.7),
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.7),
     inset 0 1px 0 rgba(255, 255, 255, 0.82);
 }
 
@@ -548,7 +546,7 @@ h2.alert {
   border-radius: 0;
   background: var(--priority-badge-bg);
   color: var(--priority-badge-color);
-  font-family: Consolas, "Courier New", monospace;
+  font-family: Consolas, 'Courier New', monospace;
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.16em;
@@ -697,8 +695,7 @@ h2.alert {
   border: 1px solid var(--system-border);
   border-left: 4px solid var(--system-accent);
   background: #f5f7fa;
-  box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.5),
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.5),
     inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
@@ -708,7 +705,7 @@ h2.alert {
   border: 1px solid var(--system-border);
   background: var(--system-label-bg);
   color: var(--system-label-color);
-  font-family: Consolas, "Courier New", monospace;
+  font-family: Consolas, 'Courier New', monospace;
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.14em;
@@ -731,7 +728,7 @@ h2.alert {
   border-top: 1px solid var(--system-divider);
   border-bottom: 1px solid var(--system-divider);
   color: var(--system-focus-color);
-  font-family: Consolas, "Courier New", monospace;
+  font-family: Consolas, 'Courier New', monospace;
   font-size: 1.45rem;
   font-weight: 800;
   letter-spacing: 0.12em;
@@ -1381,7 +1378,8 @@ h2.alert {
 
 // [MANKIND-ADD] - Staffwho verb colors
 
-.host, .project_lead {
+.host,
+.project_lead {
   color: hsl(27, 80%, 50%);
 }
 

@@ -1,10 +1,19 @@
 import { Box, Button, Table, Section, Stack } from '../../components';
 import { classes } from 'common/react';
 
-
 // Строка с товаром
 export const VendingRow = (props, context) => {
-  const { product, productStock, custom, all_items_free, user, miningvendor, current_amount, access, act } = props;
+  const {
+    product,
+    productStock,
+    custom,
+    all_items_free,
+    user,
+    miningvendor,
+    current_amount,
+    access,
+    act,
+  } = props;
   const free = all_items_free || product.price === 0;
   const affix = miningvendor ? ' mp' : ' cr';
 
@@ -63,12 +72,11 @@ export const VendingRow = (props, context) => {
             disabled={
               productStock === 0 ||
               (!free &&
-                (
-                  (!user || (!miningvendor && product.price > user.cash) || (miningvendor && product.price > user.points))
-                  &&
-                  (!current_amount || (!miningvendor && product.price > current_amount))
-                )
-              )
+                (!user ||
+                  (!miningvendor && product.price > user.cash) ||
+                  (miningvendor && product.price > user.points)) &&
+                (!current_amount ||
+                  (!miningvendor && product.price > current_amount)))
             }
             content={free ? 'FREE' : product.price + affix}
             onClick={() =>
@@ -86,7 +94,7 @@ export const VendingRow = (props, context) => {
 // Раздел с данными пользователя
 export const UserSection = (props, context) => {
   const { user, miningvendor } = props;
-  return(
+  return (
     <Section title="User">
       {(user && (
         <Box>
@@ -113,34 +121,31 @@ export const UserSection = (props, context) => {
 // Раздел с балансом вендомата
 export const CashSection = (props, context) => {
   const { current_amount, act } = props;
-  return(
+  return (
     <Section>
       <Stack>
         <Stack.Item grow>
           Machine balance is{' '}
-              {
-                <b>
-                  {current_amount}{' '}{'credits'}
-                </b>
-              }
+          {
+            <b>
+              {current_amount} {'credits'}
+            </b>
+          }
         </Stack.Item>
         <Stack.Item>
           <Button.Input
-              disabled={
-                (!current_amount)
-              }
-              content="Withdraw Cash"
-              currentValue={current_amount}
-              defaultValue={0}
-              onCommit={(e, value) =>
-                act('withdrawCash', {
-                  value: value,
-                })
-              }
+            disabled={!current_amount}
+            content="Withdraw Cash"
+            currentValue={current_amount}
+            defaultValue={0}
+            onCommit={(e, value) =>
+              act('withdrawCash', {
+                value: value,
+              })
+            }
           />
         </Stack.Item>
       </Stack>
     </Section>
   );
 };
-

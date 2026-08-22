@@ -212,6 +212,7 @@
 #include "code\__DEFINES\traits\traits.dm"
 #include "code\__DEFINES\xyz\modular_defines.dm"
 #include "code\__HELPERS\_auxtools_api.dm"
+#include "code\__HELPERS\auxcpu.dm"
 #include "code\__HELPERS\_lists.dm"
 #include "code\__HELPERS\_logging.dm"
 #include "code\__HELPERS\_planes.dm"
@@ -331,6 +332,8 @@
 #include "code\_onclick\hud\drones.dm"
 #include "code\_onclick\hud\fullscreen.dm"
 #include "code\_onclick\hud\generic_dextrous.dm"
+#include "code\_onclick\hud\graph_display.dm"
+#include "code\_onclick\hud\tick_control.dm"
 #include "code\_onclick\hud\ghost.dm"
 #include "code\_onclick\hud\holograms.dm"
 #include "code\_onclick\hud\hud.dm"
@@ -409,7 +412,16 @@
 #include "code\controllers\subsystem\mouse_entered.dm"
 #include "code\controllers\subsystem\npcpool.dm"
 #include "code\controllers\subsystem\overlays.dm"
+// [SOLARIS-ADD] - QUADRANT_GRID: приватная квадрантная сетка планет.
+// #define SOLARIS_GRID в code/_compile_options.dm переключает сборку на
+// приватные копии файлов из modular_solaris\_omni_access\code\overrides.
+// Без флага компилируется оригинальный код (поведение по умолчанию).
+#ifndef SOLARIS_GRID
 #include "code\controllers\subsystem\overmap.dm"
+#else
+#include "modular_solaris\_omni_access\code\overrides\overmap.dm"
+#endif
+// [/SOLARIS-ADD]
 #include "code\controllers\subsystem\overmap_move.dm"
 #include "code\controllers\subsystem\pai.dm"
 #include "code\controllers\subsystem\parallax.dm"
@@ -857,7 +869,11 @@
 #include "code\datums\mapgen\Whitesandsatmos.dm"
 #include "code\datums\mapgen\greebles\jungleplanet.dm"
 #include "code\datums\mapgen\greebles\sandplanet.dm"
+#ifndef SOLARIS_GRID
 #include "code\datums\mapgen\planetary\_PlanetGenerator.dm"
+#else
+#include "modular_solaris\_omni_access\code\overrides\_PlanetGenerator.dm"
+#endif
 #include "code\datums\mapgen\planetary\AsteroidGenerator.dm"
 #include "code\datums\mapgen\planetary\battlefield_generator.dm"
 #include "code\datums\mapgen\planetary\BeachGenerator.dm"
@@ -1885,7 +1901,11 @@
 #include "code\modules\admin\verbs\possess.dm"
 #include "code\modules\admin\verbs\pray.dm"
 #include "code\modules\admin\verbs\purrbation.dm"
+#ifndef SOLARIS_GRID
 #include "code\modules\admin\verbs\randomverbs.dm"
+#else
+#include "modular_solaris\_omni_access\code\overrides\randomverbs.dm"
+#endif
 #include "code\modules\admin\verbs\reestablish_db_connection.dm"
 #include "code\modules\admin\verbs\rejuvenate.dm"
 #include "code\modules\admin\verbs\requests.dm"
@@ -2319,12 +2339,12 @@
 #include "code\modules\clothing\suits\jobs.dm"
 #include "code\modules\clothing\suits\labcoat.dm"
 #include "code\modules\clothing\suits\miscellaneous.dm"
+#include "code\modules\clothing\suits\overcoats.dm"
 #include "code\modules\clothing\suits\pufferjackets.dm"
 #include "code\modules\clothing\suits\reactive_armour.dm"
 #include "code\modules\clothing\suits\toggles.dm"
 #include "code\modules\clothing\suits\utility.dm"
 #include "code\modules\clothing\suits\windbreakers.dm"
-#include "code\modules\clothing\suits\overcoats.dm"
 #include "code\modules\clothing\suits\wintercoats.dm"
 #include "code\modules\clothing\suits\wiz_robe.dm"
 #include "code\modules\clothing\under\_under.dm"
@@ -3183,7 +3203,11 @@
 #include "code\modules\overmap\overmap_token.dm"
 #include "code\modules\overmap\overmap_turf.dm"
 
+#ifndef SOLARIS_GRID
 #include "code\modules\overmap\objects\dynamic_datum.dm"
+#else
+#include "modular_solaris\_omni_access\code\overrides\dynamic_datum.dm"
+#endif
 #include "code\modules\overmap\objects\event_datum.dm"
 #include "code\modules\overmap\objects\jump_point.dm"
 #include "code\modules\overmap\objects\overmap_spawner.dm"

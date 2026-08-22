@@ -223,7 +223,9 @@ SUBSYSTEM_DEF(vote)
 		generated_actions += voting_action
 
 		if(current_vote.vote_sound && (new_voter.prefs.toggles & SOUND_ANNOUNCEMENTS))
-			SEND_SOUND(new_voter, sound(current_vote.vote_sound))
+			// [MANKIND-EDIT] - MANKIND_FIXES - Применяем масштабирование громкости по категории Announcements
+			new_voter.mob.send_sound_scaled(sound(current_vote.vote_sound), FS_ANNOUNCEMENTS)
+			// [/MANKIND-EDIT]
 
 	return TRUE
 

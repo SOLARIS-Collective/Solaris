@@ -1146,10 +1146,6 @@
 /obj/structure/sign/poster/contraband/borg_fancy_2,
 /turf/closed/indestructible/reinforced,
 /area/hangar)
-"yv" = (
-/obj/structure/sign/elysium,
-/turf/closed/indestructible/reinforced,
-/area/hangar)
 "yM" = (
 /obj/effect/turf_decal/trimline/opaque/yellow/filled/warning{
 	dir = 8
@@ -3454,7 +3450,7 @@ mY
 mY
 iZ
 DD
-yv
+iZ
 Zq
 wN
 LN

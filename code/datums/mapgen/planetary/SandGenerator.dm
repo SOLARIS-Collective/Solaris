@@ -180,7 +180,7 @@
 /datum/biome/sand/sulfur_plains //plains
 	open_turf_types = list(/turf/open/floor/plating/asteroid/whitesands/lit = 1)
 	flora_spawn_chance = 0
-	feature_spawn_chance = 1.4
+	feature_spawn_chance = 0.3
 	feature_spawn_list = list(
 		/obj/effect/spawner/random/greeble/sulfurpool = 1
 	)

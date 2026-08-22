@@ -7,6 +7,7 @@
 #include "code/outpost/drop_location.dm"
 #include "code/outpost/ghost_roles.dm"
 #include "code/outpost/outfits.dm"
+#include "code/outpost/wagabond_backstory.dm"
 
 #include "code/ruin/card_id.dm"
 #include "code/ruin/spawner.dm"

@@ -442,7 +442,7 @@
 /datum/mind/proc/show_memory(mob/recipient, window=1)
 	if(!recipient)
 		recipient = current
-	var/output = "<meta http-equiv='X-UA-Compatible' content='IE=edge' charset='UTF-8'/><B>[current.real_name]'s Memories:</B><br>"
+	var/output = "<meta http-equiv='X-UA-Compatible' content='IE=edge'><meta charset='UTF-8'/><B>[current.real_name]'s Memories:</B><br>"
 	output += memory
 
 

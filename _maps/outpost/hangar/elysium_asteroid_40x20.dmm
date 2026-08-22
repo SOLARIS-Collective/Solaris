@@ -846,10 +846,6 @@
 	planetary_atmos = 1
 	},
 /area/hangar)
-"qq" = (
-/obj/structure/sign/elysium,
-/turf/closed/indestructible/reinforced,
-/area/hangar)
 "qH" = (
 /obj/structure/flora/grass/both{
 	pixel_x = 23;
@@ -3577,7 +3573,7 @@ gu
 gu
 gu
 gu
-qq
+ie
 rX
 UN
 jy
