@@ -21,7 +21,6 @@
 
 	spawned_player.forceMove(get_turf(user))
 
-GLOBAL_LIST_INIT(ic_autoemote, list())
 /client/proc/manage_chatfilter()
 /client/proc/toggle_chatfilter_hardcore()
 /mob/proc/check_for_brainrot(message)

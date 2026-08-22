@@ -4,6 +4,8 @@
 
 // Part from "code\modules\mob\mob_say.dm"
 
+GLOBAL_LIST_INIT(ic_autoemote, list())
+
 // Overrides verbs to use input() instead of verb arguments
 ///The me emote verb
 /mob/verb/me_verb_2()
