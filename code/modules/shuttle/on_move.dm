@@ -139,6 +139,12 @@ All ShuttleMove procs go here
 	//Dealing with the turf we left behind
 	oldT.TransferComponents(src)
 	src.base_icon_state = oldT.base_icon_state
+	// [SOLARIS-ADD] после перелёта пересобираем визуал усиленных стен: копиТурф
+	// раздаёт icon/icon_state в обход сглаживания, из-за чего троица
+	// base_icon_state/icon/icon_state могла приехать рассинхронизированной
+	// (чёрные тайлы на корпусе после посадки на планету)
+	if(istype(src, /turf/closed/wall/r_wall))
+		src.update_appearance()
 	SEND_SIGNAL(oldT, COMSIG_TURF_AFTER_SHUTTLE_MOVE, src) //Mostly for decals
 
 	if(rotation)
