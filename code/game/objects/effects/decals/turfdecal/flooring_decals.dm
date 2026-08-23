@@ -62,7 +62,7 @@
 	/obj/effect/turf_decal/trimline/##color_name/warning { \
 		icon_state = "trimline_warn";					\
 	}													\
-	/obj/effect/turf_decal/trimline/##color_name/warning { \
+	/obj/effect/turf_decal/trimline/##color_name/warning/holo { \
 		icon_state = "trimline_warn_a";					\
 	}													\
 	/obj/effect/turf_decal/trimline/##color_name/filled { \
