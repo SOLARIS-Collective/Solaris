@@ -35,10 +35,7 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install deps
-        run: |
-          python -m pip install --upgrade pip
-          python -m pip install PyGithub pyyaml
+      # Скрипт использует только стандартную библиотеку — зависимости не нужны
 
       - name: Generate summary
         id: generate
@@ -51,7 +48,13 @@ jobs:
           ARGS=""
           if [ -n "$YEAR" ]; then ARGS="$ARGS --year $YEAR"; fi
           if [ -n "$MONTH" ]; then ARGS="$ARGS --month $MONTH"; fi
-          python tools/monthly_pr_summary/generate_monthly_summary.py $ARGS
+          python "tools/monthly_pr_summary/Итоговый отчет за месяц.py" $ARGS
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: monthly-summary
+          path: html/changelogs/monthly/
 
       - name: Commit and push
         env:
