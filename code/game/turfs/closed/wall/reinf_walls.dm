@@ -236,16 +236,17 @@
 		switch(d_state)
 			if(SUPPORT_LINES, COVER)
 				icon = 'icons/turf/walls/rwalls/reinforced_wall_2.dmi'
-				return ..()
 			if(CUT_COVER)
 				icon = 'icons/turf/walls/rwalls/reinforced_wall_3.dmi'
-				return ..()
 			if(ANCHOR_BOLTS, SUPPORT_RODS)
 				icon = 'icons/turf/walls/rwalls/reinforced_wall_4.dmi'
-				return ..()
 			if(SHEATH)
 				icon = 'icons/turf/walls/rwalls/reinforced_wall_5.dmi'
-				return ..()
+		// [SOLARIS-ADD] держим icon_state в базе новой иконки: без этого после
+		// подмены остаётся стейт родного дми (например plastitanium_wall-12),
+		// которого в reinforced_wall_*.dmi нет — тайл рендерится чёрным
+		icon_state = "[base_icon_state]-[smoothing_junction]"
+		return ..()
 	else
 		icon = initial(icon)
 		base_icon_state = initial(base_icon_state)
