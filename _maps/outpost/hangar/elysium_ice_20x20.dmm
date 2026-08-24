@@ -63,10 +63,16 @@
 	},
 /area/hangar)
 "az" = (
-/obj/effect/spawner/structure/window/reinforced/indestructible,
-/turf/open/floor/plating{
+/obj/effect/turf_decal/borderfloor{
+	dir = 6
+	},
+/obj/effect/turf_decal/industrial/fire/corner{
+	dir = 1
+	},
+/turf/open/floor/plasteel/patterned/brushed{
 	light_color = "#1B1D2E";
-	light_range = 2
+	light_range = 2;
+	planetary_atmos = 1
 	},
 /area/hangar)
 "aB" = (
@@ -409,9 +415,6 @@
 	planetary_atmos = 1
 	},
 /area/hangar)
-"hg" = (
-/turf/open/floor/plasteel/tech,
-/area/hangar)
 "hv" = (
 /obj/effect/turf_decal/borderfloor/full,
 /obj/machinery/light/floor{
@@ -429,19 +432,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/dark,
 /area/hangar)
-"hG" = (
-/obj/effect/decal/fakelattice,
-/obj/machinery/light/small/directional/east{
-	light_color = "#FF0000";
-	color = "#FF0000"
-	},
-/obj/effect/decal/cleanable/dirt{
-	color = "#808080"
-	},
-/turf/open/floor/plasteel/elevatorshaft{
-	planetary_atmos = 1
-	},
-/area/hangar)
 "ic" = (
 /obj/effect/decal/fakelattice,
 /obj/effect/decal/cleanable/dirt{
@@ -453,14 +443,6 @@
 	},
 /turf/open/floor/plasteel/elevatorshaft{
 	planetary_atmos = 1
-	},
-/area/hangar)
-"im" = (
-/obj/structure/flora/grass/both,
-/obj/structure/flora/grass/both,
-/turf/open/floor/plating/asteroid/snow/temperatre{
-	light_color = "#1B1D2E";
-	light_range = 2
 	},
 /area/hangar)
 "jO" = (
@@ -479,8 +461,18 @@
 	},
 /area/hangar)
 "lf" = (
-/obj/effect/turf_decal/industrial/outline/yellow,
-/turf/open/floor/plasteel/tech,
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/structure/chair{
+	dir = 4
+	},
+/obj/item/cigbutt{
+	pixel_x = 3;
+	pixel_y = 13
+	},
+/obj/effect/turf_decal/industrial/warning,
+/turf/open/floor/plasteel/tech/grid,
 /area/hangar)
 "me" = (
 /obj/effect/turf_decal/siding/white{
@@ -499,12 +491,21 @@
 /turf/closed/indestructible/reinforced,
 /area/hangar)
 "mG" = (
-/obj/structure/railing{
-	dir = 8
+/obj/effect/turf_decal/borderfloor,
+/obj/structure/railing/corner{
+	dir = 1
 	},
-/turf/open/floor/plating/asteroid/snow/temperatre{
+/obj/effect/turf_decal/siding/white/corner{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/industrial/fire/corner{
+	dir = 4
+	},
+/turf/open/floor/plasteel/patterned/brushed{
 	light_color = "#1B1D2E";
-	light_range = 2
+	light_range = 2;
+	planetary_atmos = 1
 	},
 /area/hangar)
 "mL" = (
@@ -517,10 +518,6 @@
 	light_range = 2;
 	planetary_atmos = 1
 	},
-/area/hangar)
-"mR" = (
-/obj/machinery/door/airlock/outpost,
-/turf/open/floor/plasteel/tech,
 /area/hangar)
 "mV" = (
 /obj/effect/turf_decal/borderfloor{
@@ -880,14 +877,9 @@
 	},
 /area/hangar)
 "AF" = (
-/obj/effect/turf_decal/borderfloor{
-	dir = 6
-	},
-/turf/open/floor/plasteel/patterned/brushed{
-	light_color = "#1B1D2E";
-	light_range = 2;
-	planetary_atmos = 1
-	},
+/obj/effect/turf_decal/industrial/outline/yellow,
+/obj/effect/turf_decal/industrial/warning,
+/turf/open/floor/plasteel/tech,
 /area/hangar)
 "Bk" = (
 /obj/machinery/disposal/deliveryChute{
@@ -916,18 +908,8 @@
 	},
 /area/hangar)
 "Er" = (
-/obj/effect/turf_decal/industrial/fire/corner{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/turf_decal/borderfloor{
-	dir = 4
-	},
-/turf/open/floor/plasteel/patterned/brushed{
-	light_color = "#1B1D2E";
-	light_range = 2;
+/obj/effect/spawner/structure/window/reinforced/indestructible,
+/turf/open/floor/plating{
 	planetary_atmos = 1
 	},
 /area/hangar)
@@ -1141,22 +1123,6 @@
 	planetary_atmos = 1
 	},
 /area/hangar)
-"IA" = (
-/obj/effect/decal/fakelattice,
-/obj/effect/decal/cleanable/dirt{
-	color = "#808080"
-	},
-/obj/machinery/light/small/directional/south{
-	light_color = "#FF0000";
-	color = "#FF0000";
-	dir = 4;
-	pixel_y = 0;
-	pixel_x = 28
-	},
-/turf/open/floor/plasteel/elevatorshaft{
-	planetary_atmos = 1
-	},
-/area/hangar)
 "IG" = (
 /obj/structure/catwalk/over/plated_catwalk,
 /obj/effect/decal/cleanable/dirt,
@@ -1332,17 +1298,15 @@
 	},
 /area/hangar)
 "MZ" = (
-/obj/structure/railing{
-	dir = 8
+/obj/effect/turf_decal/borderfloor,
+/obj/effect/turf_decal/industrial/fire{
+	dir = 1
 	},
-/obj/structure/chair{
-	dir = 4
+/turf/open/floor/plasteel/patterned/brushed{
+	light_color = "#1B1D2E";
+	light_range = 2;
+	planetary_atmos = 1
 	},
-/obj/item/cigbutt{
-	pixel_x = 3;
-	pixel_y = 13
-	},
-/turf/open/floor/plasteel/tech/grid,
 /area/hangar)
 "Ny" = (
 /obj/effect/turf_decal/industrial/fire{
@@ -1379,14 +1343,6 @@
 	planetary_atmos = 1
 	},
 /area/hangar)
-"ON" = (
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/effect/turf_decal/industrial/warning,
-/obj/effect/decal/cleanable/ash,
-/turf/open/floor/plasteel/tech/grid,
-/area/hangar)
 "PB" = (
 /obj/effect/decal/fakelattice,
 /obj/effect/decal/cleanable/dirt{
@@ -1411,13 +1367,6 @@
 	light_color = "#1B1D2E";
 	light_range = 2;
 	planetary_atmos = 1
-	},
-/area/hangar)
-"Qu" = (
-/obj/structure/flora/tree/dead,
-/turf/open/floor/plating/asteroid/snow/temperatre{
-	light_color = "#1B1D2E";
-	light_range = 2
 	},
 /area/hangar)
 "Rk" = (
@@ -1683,32 +1632,6 @@
 	light_range = 2
 	},
 /area/hangar)
-"XN" = (
-/obj/effect/turf_decal/industrial/fire{
-	dir = 1
-	},
-/turf/open/floor/plasteel/patterned/brushed{
-	light_color = "#1B1D2E";
-	light_range = 2;
-	planetary_atmos = 1
-	},
-/area/hangar)
-"YH" = (
-/obj/effect/turf_decal/industrial/fire/corner{
-	dir = 4
-	},
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/effect/turf_decal/siding/white{
-	dir = 8
-	},
-/turf/open/floor/plasteel/patterned/brushed{
-	light_color = "#1B1D2E";
-	light_range = 2;
-	planetary_atmos = 1
-	},
-/area/hangar)
 "YN" = (
 /obj/effect/turf_decal/borderfloor{
 	dir = 4
@@ -1824,11 +1747,6 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
 "}
 (2,1,1) = {"
 ac
@@ -1838,6 +1756,18 @@ ac
 ac
 ac
 ac
+rj
+ac
+rj
+rj
+ac
+ac
+ac
+aM
+rj
+GX
+rj
+rj
 ac
 ac
 ac
@@ -1845,26 +1775,9 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+aM
+aM
+aM
 ac
 ac
 ac
@@ -1879,35 +1792,30 @@ ac
 ac
 ac
 ac
-ac
+MI
 rj
 rj
 rj
 rj
 rj
-ac
-ac
-ac
-aM
 rj
 rj
 rj
 rj
 rj
+rj
+rj
+rj
+rj
+rj
+rj
 ac
 ac
-ac
-ac
-ac
-ac
-aM
-aM
-aM
-ac
-ac
-ac
-ac
-ac
+TA
+rj
+rj
+rj
+rj
 ac
 ac
 ac
@@ -1920,385 +1828,6 @@ ac
 ac
 ac
 ac
-ac
-ac
-MI
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-ac
-ac
-TA
-rj
-rj
-rj
-rj
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-"}
-(5,1,1) = {"
-ac
-ac
-ac
-ac
-ac
-ac
-rj
-rj
-rj
-rj
-rj
-MI
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-MI
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-ac
-ac
-ac
-ac
-ac
-"}
-(6,1,1) = {"
-ac
-ac
-ac
-ac
-ac
-rj
-rj
-rj
-rj
-MN
-rj
-rj
-rj
-MI
-rj
-rj
-rj
-MI
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-MN
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-ac
-ac
-ac
-ac
-ac
-"}
-(7,1,1) = {"
-ac
-ac
-ac
-ac
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-MN
-rj
-rj
-rj
-MI
-rj
-rj
-TA
-rj
-MI
-rj
-MI
-rj
-rj
-rj
-GX
-rj
-rj
-ac
-ac
-ac
-ac
-"}
-(8,1,1) = {"
-ac
-ac
-ac
-rj
-rj
-rj
-GX
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-TA
-rj
-aM
-ac
-ac
-ac
-"}
-(9,1,1) = {"
-ac
-ac
-ac
-rj
-MI
-rj
-rj
-rj
-rj
-rj
-rj
-MI
-rj
-rj
-MN
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-MI
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-ac
-ac
-ac
-"}
-(10,1,1) = {"
-ac
-ac
-aM
-rj
-rj
-rj
-rj
-MN
-rj
-rj
-rj
-rj
-rj
-TA
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-MI
-rj
-MN
-rj
-rj
-rj
-rj
-Qu
-rj
-rj
-MI
-rj
-rj
-rj
-GX
-rj
-aM
-ac
-ac
-"}
-(11,1,1) = {"
-ac
-ac
-aM
-rj
-rj
-GX
-rj
-Qu
-rj
-rj
-rj
-rj
-MN
-rj
-rj
-rj
-MI
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-MI
-rj
-rj
-rj
-MI
-rj
-rj
-rj
-rj
-MI
-rj
-rj
-aM
-ac
-ac
-"}
-(12,1,1) = {"
-ac
-ac
-ac
-rj
-rj
-rj
-rj
-rj
-rj
-MI
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-MI
-rj
-ac
-ac
-ac
-"}
-(13,1,1) = {"
-ac
-ac
-ac
-rj
-MI
-rj
 rj
 Aj
 bA
@@ -2327,18 +1856,13 @@ YN
 Xd
 FM
 rj
-rj
-rj
-rj
-ac
 ac
 ac
 "}
-(14,1,1) = {"
+(5,1,1) = {"
 ac
 ac
 ac
-rj
 rj
 rj
 rj
@@ -2368,21 +1892,16 @@ gy
 cB
 oi
 nK
-rj
-rj
 GX
 rj
 ac
-ac
-ac
 "}
-(15,1,1) = {"
+(6,1,1) = {"
 ac
 ac
 ac
 ac
-ac
-rj
+GX
 rj
 aC
 rQ
@@ -2410,16 +1929,11 @@ aB
 nr
 rQ
 nK
-rj
-rj
 MN
 TA
-am
-am
-am
-"}
-(16,1,1) = {"
 ac
+"}
+(7,1,1) = {"
 ac
 ac
 ac
@@ -2452,16 +1966,11 @@ aJ
 nr
 ap
 nK
-rj
-rj
 GX
 rj
-am
-hg
-am
-"}
-(17,1,1) = {"
 ac
+"}
+(8,1,1) = {"
 ac
 ac
 ac
@@ -2496,14 +2005,9 @@ rQ
 nK
 rj
 rj
-rj
-rj
-mR
-hg
-am
-"}
-(18,1,1) = {"
 ac
+"}
+(9,1,1) = {"
 ac
 ac
 ac
@@ -2536,23 +2040,18 @@ aJ
 nr
 rQ
 aT
-MI
 rj
-rj
-rj
-am
-am
-am
+ac
+ac
 "}
-(19,1,1) = {"
+(10,1,1) = {"
 am
 am
 am
 am
 GD
 Ny
-YH
-wn
+mG
 rQ
 av
 aJ
@@ -2578,23 +2077,18 @@ aJ
 aO
 rQ
 nK
-rj
-rj
 MI
 ac
 ac
-ac
-ac
 "}
-(20,1,1) = {"
+(11,1,1) = {"
 am
 WL
 NG
 Ma
 bO
 uV
-XN
-Vt
+MZ
 rQ
 av
 aJ
@@ -2621,22 +2115,17 @@ nr
 rQ
 nK
 rj
-GX
-rj
-ac
-ac
 ac
 ac
 "}
-(21,1,1) = {"
+(12,1,1) = {"
 am
 bT
 dm
 am
 EJ
 gY
-Er
-AF
+az
 rQ
 av
 aJ
@@ -2662,22 +2151,17 @@ aJ
 nr
 NO
 nK
-rj
-rj
-ac
-ac
 ac
 ac
 ac
 "}
-(22,1,1) = {"
+(13,1,1) = {"
 TY
 df
 Rk
 LY
 cZ
 cZ
-mL
 mL
 GW
 av
@@ -2704,21 +2188,16 @@ ad
 nr
 NO
 nK
-MI
-rj
 aM
 ac
 ac
-ac
-ac
 "}
-(23,1,1) = {"
+(14,1,1) = {"
 am
 jO
 wr
 am
 mV
-yU
 yU
 xR
 IG
@@ -2746,22 +2225,17 @@ aJ
 nr
 NO
 nK
-rj
-GX
-ac
-ac
 ac
 ac
 ac
 "}
-(24,1,1) = {"
+(15,1,1) = {"
 am
 am
 am
 am
 kO
 oC
-kO
 cI
 MG
 av
@@ -2788,16 +2262,11 @@ aJ
 nr
 NO
 uC
-rj
-rj
-ac
-ac
 ac
 ac
 ac
 "}
-(25,1,1) = {"
-ac
+(16,1,1) = {"
 ac
 ac
 TA
@@ -2830,16 +2299,11 @@ aJ
 nr
 rQ
 TF
-rj
-MI
-ac
-ac
 ac
 ac
 ac
 "}
-(26,1,1) = {"
-ac
+(17,1,1) = {"
 ac
 ac
 rj
@@ -2872,22 +2336,17 @@ aJ
 nr
 NO
 TF
-rj
-ac
-ac
-ac
 ac
 ac
 ac
 "}
-(27,1,1) = {"
+(18,1,1) = {"
 ac
 ac
 am
 bi
 YO
-MZ
-ON
+lf
 nT
 MG
 av
@@ -2914,21 +2373,16 @@ ad
 aO
 ap
 nK
-MN
-ac
-ac
-ac
 ac
 ac
 ac
 "}
-(28,1,1) = {"
+(19,1,1) = {"
 ac
 ac
 am
 Lu
 Wh
-hg
 wL
 Vt
 KA
@@ -2956,21 +2410,16 @@ aJ
 aO
 rQ
 nK
-rj
-ac
-ac
-ac
 ac
 ac
 ac
 "}
-(29,1,1) = {"
+(20,1,1) = {"
 ac
 ac
 am
 pU
 oN
-hg
 wL
 Vt
 KA
@@ -2998,22 +2447,17 @@ aJ
 aO
 rQ
 nK
-MI
-rj
-ac
-ac
 ac
 ac
 ac
 "}
-(30,1,1) = {"
+(21,1,1) = {"
 ac
 ac
 am
 uG
 BE
-lf
-wL
+AF
 Vt
 KA
 av
@@ -3040,22 +2484,17 @@ aJ
 nr
 rQ
 nK
-GX
-rj
 aM
 ac
 ac
-ac
-ac
 "}
-(31,1,1) = {"
+(22,1,1) = {"
 am
 am
 am
 pU
 nH
-lf
-wL
+AF
 Vt
 KA
 av
@@ -3082,21 +2521,16 @@ aJ
 nr
 NO
 nK
-rj
-rj
 aM
 ac
 ac
-ac
-ac
 "}
-(32,1,1) = {"
+(23,1,1) = {"
 am
 ER
 Sv
 WN
 Ac
-mG
 bi
 KN
 MG
@@ -3124,22 +2558,17 @@ ad
 nr
 NO
 nK
-rj
-MI
-ac
-ac
 ac
 ac
 ac
 "}
-(33,1,1) = {"
+(24,1,1) = {"
 am
 pU
 am
 am
 dL
 MN
-rj
 Fi
 MG
 aT
@@ -3166,21 +2595,16 @@ aJ
 nr
 rQ
 nK
-rj
-GX
-ac
-ac
 ac
 ac
 ac
 "}
-(34,1,1) = {"
+(25,1,1) = {"
 am
 pU
 HR
 am
 MI
-rj
 rj
 Fi
 KA
@@ -3208,22 +2632,17 @@ aJ
 nr
 ap
 nK
-rj
-rj
-ac
-ac
 ac
 ac
 ac
 "}
-(35,1,1) = {"
+(26,1,1) = {"
 am
 am
 mE
 am
 rj
 GX
-rj
 aC
 KA
 SW
@@ -3250,21 +2669,16 @@ Qb
 ES
 ap
 nK
-MI
-TA
-ac
-ac
 ac
 ac
 ac
 "}
-(36,1,1) = {"
+(27,1,1) = {"
 am
 GJ
 Bk
 am
-rj
-rj
+ac
 rj
 aC
 Vw
@@ -3292,22 +2706,17 @@ ap
 ap
 FS
 uC
-rj
-ac
-ac
-ac
 ac
 ac
 ac
 "}
-(37,1,1) = {"
+(28,1,1) = {"
 am
 am
 am
 am
-rj
-MI
-rj
+ac
+ac
 Ww
 aZ
 aZ
@@ -3334,26 +2743,21 @@ Ul
 Ul
 Ul
 YU
-MN
-ac
-ac
-ac
 ac
 ac
 ac
 "}
-(38,1,1) = {"
+(29,1,1) = {"
 ac
 ac
 ac
-rj
-rj
-rj
-rj
-rj
-rj
-rj
-rj
+ac
+ac
+ac
+ac
+ac
+ac
+aM
 rj
 rj
 rj
@@ -3374,29 +2778,24 @@ rj
 rj
 MN
 rj
-rj
-rj
-GX
-rj
 ac
 ac
 ac
 ac
 ac
 "}
-(39,1,1) = {"
+(30,1,1) = {"
 ac
 ac
 ac
-rj
-rj
-MI
-rj
-MN
-rj
-rj
-rj
-rj
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
 GX
 MI
 rj
@@ -3412,38 +2811,33 @@ MI
 rj
 rj
 rj
-MI
-rj
-GX
-rj
-rj
-MI
-rj
-rj
+ac
+ac
+ac
+ac
 ac
 ac
 ac
 ac
 ac
 "}
-(40,1,1) = {"
+(31,1,1) = {"
 ac
 ac
 ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+aM
 rj
-GX
 rj
 rj
-Qu
 rj
 MI
-rj
-MN
-rj
-rj
-rj
-MI
-rj
 rj
 YY
 wn
@@ -3453,38 +2847,33 @@ TQ
 rj
 rj
 GX
-rj
-MI
-rj
-rj
-rj
-rj
-rj
-rj
-rj
+ac
+ac
+ac
+ac
+ac
 ac
 ac
 ac
 ac
 ac
 "}
-(41,1,1) = {"
+(32,1,1) = {"
 ac
 ac
 ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
 rj
 rj
 rj
-rj
-rj
-GX
-rj
-rj
-rj
-rj
-rj
-Qu
-rj
+MI
 rj
 LA
 GT
@@ -3494,40 +2883,35 @@ Iz
 XC
 rj
 rj
-MI
-rj
-rj
-rj
-MI
-rj
-MI
-rj
-rj
-GX
+ac
+ac
+ac
+ac
+ac
+ac
 ac
 ac
 ac
 ac
 ac
 "}
-(42,1,1) = {"
+(33,1,1) = {"
 ac
 ac
 ac
-aM
-rj
-rj
-GX
-MI
-rj
-rj
-rj
-GX
-rj
-rj
-rj
-rj
 ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+rj
+rj
+rj
+rj
+rj
 am
 VP
 am
@@ -3536,39 +2920,34 @@ am
 am
 am
 TA
-rj
-MI
-rj
-rj
-rj
-GX
-rj
-rj
-rj
-rj
+ac
+ac
+ac
+ac
+ac
+ac
 ac
 ac
 ac
 ac
 ac
 "}
-(43,1,1) = {"
+(34,1,1) = {"
 ac
 ac
 ac
 ac
 ac
 ac
-rj
-rj
-rj
-MI
-rj
-rj
-MI
-rj
+ac
+ac
+ac
 ac
 aM
+MI
+rj
+rj
+rj
 ac
 am
 hw
@@ -3578,14 +2957,10 @@ bI
 aL
 am
 ac
-rj
-rj
-rj
-rj
-rj
-rj
-im
-rj
+ac
+ac
+ac
+ac
 ac
 ac
 ac
@@ -3594,7 +2969,7 @@ ac
 ac
 ac
 "}
-(44,1,1) = {"
+(35,1,1) = {"
 ac
 ac
 ac
@@ -3602,15 +2977,14 @@ ac
 ac
 ac
 ac
-TA
+ac
+ac
+ac
+ac
 rj
 rj
-MI
 rj
-rj
-ac
-ac
-ac
+GX
 ac
 am
 sV
@@ -3621,12 +2995,8 @@ pr
 am
 ac
 ac
-rj
-MI
-rj
-MI
-rj
-rj
+ac
+ac
 ac
 ac
 ac
@@ -3636,7 +3006,7 @@ ac
 ac
 ac
 "}
-(45,1,1) = {"
+(36,1,1) = {"
 am
 am
 am
@@ -3645,14 +3015,13 @@ am
 am
 am
 am
-az
-az
-az
-az
 am
 am
 am
-am
+Er
+Er
+Er
+Er
 am
 am
 am
@@ -3664,10 +3033,6 @@ am
 am
 am
 am
-az
-az
-az
-az
 am
 am
 am
@@ -3678,13 +3043,12 @@ am
 am
 am
 "}
-(46,1,1) = {"
+(37,1,1) = {"
 am
 aY
 aY
 aY
 ao
-dM
 Dh
 Dh
 al
@@ -3710,23 +3074,18 @@ aY
 al
 al
 cf
-al
-Dh
-PB
-al
 ao
 aY
 al
 Dh
 am
 "}
-(47,1,1) = {"
+(38,1,1) = {"
 am
 aY
 aY
 aY
 ao
-aY
 Dh
 Dh
 Dh
@@ -3752,32 +3111,27 @@ aY
 ic
 al
 aY
-KC
-Dh
-al
-ic
 ao
 aY
 aY
 Dh
 am
 "}
-(48,1,1) = {"
+(39,1,1) = {"
 am
 aY
 aY
 aY
 ao
-aY
 dM
 aY
-hG
+al
 aY
 aY
 al
 Dh
 Dh
-IA
+qg
 aY
 aY
 ao
@@ -3794,17 +3148,13 @@ aY
 al
 Dh
 Dh
-qg
-Dh
-Dh
-aY
 ao
 aY
 al
 Dh
 am
 "}
-(49,1,1) = {"
+(40,1,1) = {"
 am
 am
 am
@@ -3812,25 +3162,7 @@ am
 am
 ac
 ac
-ac
 am
-ac
-ac
-ac
-ac
-ac
-am
-ac
-ac
-am
-am
-am
-am
-am
-am
-am
-ac
-ac
 ac
 ac
 ac
@@ -3839,262 +3171,23 @@ ac
 am
 ac
 ac
+am
+am
+am
+am
+am
+am
+am
+ac
+ac
+ac
+ac
+ac
+ac
 ac
 am
 am
 am
 am
 am
-"}
-(50,1,1) = {"
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-"}
-(51,1,1) = {"
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-"}
-(52,1,1) = {"
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-"}
-(53,1,1) = {"
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-"}
-(54,1,1) = {"
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-"}
-(55,1,1) = {"
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
 "}
