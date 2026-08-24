@@ -1,5 +1,6 @@
 /// This is the main proc. It instantly moves our mobile port to stationary port `new_dock`.
 /obj/docking_port/mobile/proc/initiate_docking(obj/docking_port/stationary/new_dock, movement_direction, force=FALSE)
+	AUXCPU_PHASE("shuttle_move") // [SOLARIS-ADD] - SHIP_LOAD_LAG
 	// Crashing this ship with NO SURVIVORS
 	if(new_dock.docked == src)
 		remove_ripples()
@@ -53,6 +54,7 @@
 	var/list/areas_to_move = list() //unique assoc list of areas on turfs being moved
 
 	. = preflight_check(old_turfs, new_turfs, areas_to_move, rotation)
+	AUXCPU_PHASE("mv_preflight") // [SOLARIS-ADD] - SHIP_LOAD_LAG - метка на время ПОСЛЕ возврата preflight (сам он с CHECK_TICK)
 	if(.)
 		remove_ripples()
 		return
@@ -71,10 +73,12 @@
 	// same time any mobs there are trampled, to avoid any discrepancy where
 	// the ripples go away before it is safe.
 
+	AUXCPU_PHASE("mv_takeoff") // [SOLARIS-ADD] - SHIP_LOAD_LAG
 	takeoff(old_turfs, new_turfs, moved_atoms, rotation, movement_direction, old_dock, new_dock, underlying_old_area, all_towed_shuttles)
 
 	CHECK_TICK
 
+	AUXCPU_PHASE("mv_cleanup_runway") // [SOLARIS-ADD] - SHIP_LOAD_LAG
 	cleanup_runway(new_dock, old_turfs, new_turfs, areas_to_move, moved_atoms, rotation, movement_direction, underlying_old_area, all_towed_shuttles)
 
 	CHECK_TICK
@@ -85,6 +89,7 @@
 		docked.docked = null
 	docked = new_dock
 
+	AUXCPU_PHASE("mv_poddoors") // [SOLARIS-ADD] - SHIP_LOAD_LAG
 	check_poddoors()
 
 	// remove any stragglers just in case, and clear the list
@@ -92,6 +97,7 @@
 
 	play_engine_sound(src, launch_sound)
 	play_engine_sound(old_dock, launch_sound)
+	AUXCPU_PHASE_END // [SOLARIS-ADD] - SHIP_LOAD_LAG
 	return DOCKING_SUCCESS
 
 /obj/docking_port/mobile/proc/throw_exception(exception/e)
@@ -101,6 +107,9 @@
 	var/list/exceptions_list = list()
 	// Recount turfs since we've got them all anyways
 	var/new_turf_count = 0
+	// [SOLARIS-ADD] - SHIP_LOAD_LAG - список буксируемых шаттлов инвариантен, не пересобираем его на каждый турф
+	var/list/all_towed_shuttles = get_all_towed_shuttles()
+	// [/SOLARIS-ADD]
 	for(var/i in 1 to old_turfs.len)
 		try
 			CHECK_TICK
@@ -115,7 +124,7 @@
 			var/area/old_area = oldT.loc
 
 			var/list/area/all_shuttle_areas = list()
-			for(var/obj/docking_port/mobile/M in get_all_towed_shuttles())
+			for(var/obj/docking_port/mobile/M in all_towed_shuttles)
 				all_shuttle_areas |= M.shuttle_areas
 			move_mode = old_area.beforeShuttleMove(all_shuttle_areas)											//areas											//areas
 
@@ -162,8 +171,20 @@
 	//Matrix multiply to get from current coords to new coords
 	//Calculate this before this mobile port moves
 	var/matrix/displacement_matrix = matrix(-src.x, -src.y, MATRIX_TRANSLATE) * matrix(rotation, MATRIX_ROTATE) *matrix(new_dock.x, new_dock.y, MATRIX_TRANSLATE)
+	var/shuttle_tiles_since_yield = 0 // [SOLARIS-ADD] - SHIP_LOAD_LAG
 	for(var/i in 1 to old_turfs.len)
 		try
+			// [SOLARIS-ADD] - SHIP_LOAD_LAG - атомарный перенос ПО ТАЙЛАМ: содержимое тайла и его турф
+			// переезжают в одном тике БЕЗ yield между ними. Yield между ними позволял другим процессам
+			// (SSair и пр.) увидеть мобов, стоящих на ещё не созданном полу транзита, и душить/дмажить их.
+			// CHECK_TICK раз в 20 рабочих тайлов: пер-тайловый yield давал тысячи видимых промежуточных
+			// кадров («корабль разрывает на части») и растягивал переезд по времени.
+			var/move_mode_early = old_turfs[old_turfs[i]]
+			if(move_mode_early & (MOVE_CONTENTS | MOVE_TURF))
+				shuttle_tiles_since_yield++
+				if(shuttle_tiles_since_yield >= 20)
+					shuttle_tiles_since_yield = 0
+					CHECK_TICK
 			var/turf/oldT = old_turfs[i]
 			var/turf/newT = new_turfs[i]
 			var/move_mode = old_turfs[oldT]
@@ -177,14 +198,7 @@
 							moved_atoms[moving_atom] = oldT
 					catch(var/exception/e1)
 						exceptions_list += e1
-		catch(var/exception/e1)
-			exceptions_list += e1
 
-	for(var/i in 1 to old_turfs.len)
-		try
-			var/turf/oldT = old_turfs[i]
-			var/turf/newT = new_turfs[i]
-			var/move_mode = old_turfs[oldT]
 			if(move_mode & MOVE_TURF)
 				var/area/ship/A = oldT.loc
 				var/obj/docking_port/mobile/top_shuttle = A?.mobile_port
@@ -203,11 +217,13 @@
 
 				if(shuttle_layers > 0)
 					oldT.onShuttleMove(newT, movement_force, movement_direction, shuttle_layers)									//turfs
-		catch(var/exception/e2)
-			exceptions_list += e2
+		catch(var/exception/e1)
+			exceptions_list += e1
 
 	for(var/i in 1 to old_turfs.len)
 		try
+			// [SOLARIS-ADD] - SHIP_LOAD_LAG - фаза свапа областей тоже дробится
+			CHECK_TICK
 			var/turf/oldT = old_turfs[i]
 			var/turf/newT = new_turfs[i]
 			var/move_mode = old_turfs[oldT]
@@ -244,6 +260,8 @@
 
 	for(var/obj/docking_port/stationary/docking_point in docking_points)
 		try
+			// [SOLARIS-ADD] - SHIP_LOAD_LAG
+			CHECK_TICK
 			if(!(docking_point in moved_atoms))
 				var/matrix/new_loc_matrix = matrix(docking_point.x, docking_point.y, MATRIX_TRANSLATE) * displacement_matrix
 				var/oldT = get_turf(docking_point)
@@ -259,6 +277,7 @@
 
 /obj/docking_port/mobile/proc/cleanup_runway(obj/docking_port/stationary/new_dock, list/old_turfs, list/new_turfs, list/areas_to_move, list/moved_atoms, rotation, movement_direction, area/underlying_old_area, list/all_towed_shuttles)
 	var/list/exceptions_list = list()
+	var/shuttle_tiles_since_yield = 0 // [SOLARIS-ADD] - SHIP_LOAD_LAG
 	for(var/area/A1 in underlying_old_area)
 		try
 			CHECK_TICK
@@ -281,7 +300,11 @@
 
 	for(var/i in 1 to old_turfs.len)
 		try
-			CHECK_TICK
+			// [SOLARIS-ADD] - SHIP_LOAD_LAG - чанковый yield раз в 20 тайлов (см. takeoff)
+			shuttle_tiles_since_yield++
+			if(shuttle_tiles_since_yield >= 20)
+				shuttle_tiles_since_yield = 0
+				CHECK_TICK
 			if(!(old_turfs[old_turfs[i]] & MOVE_TURF))
 				continue
 			var/turf/oldT = old_turfs[i]
@@ -292,7 +315,11 @@
 
 	for(var/i in 1 to moved_atoms.len)
 		try
-			CHECK_TICK
+			// [SOLARIS-ADD] - SHIP_LOAD_LAG
+			shuttle_tiles_since_yield++
+			if(shuttle_tiles_since_yield >= 20)
+				shuttle_tiles_since_yield = 0
+				CHECK_TICK
 			var/atom/movable/moved_object = moved_atoms[i]
 			if(QDELETED(moved_object))
 				continue
@@ -320,7 +347,11 @@
 
 	for(var/i in 1 to old_turfs.len)
 		try
-			CHECK_TICK
+			// [SOLARIS-ADD] - SHIP_LOAD_LAG - чанковый yield раз в 20 тайлов (см. takeoff)
+			shuttle_tiles_since_yield++
+			if(shuttle_tiles_since_yield >= 20)
+				shuttle_tiles_since_yield = 0
+				CHECK_TICK
 			if(!(old_turfs[old_turfs[i]] & MOVE_CONTENTS | MOVE_TURF))
 				continue
 			var/turf/oldT = old_turfs[i]
@@ -331,7 +362,11 @@
 
 	for(var/i in 1 to moved_atoms.len)
 		try
-			CHECK_TICK
+			// [SOLARIS-ADD] - SHIP_LOAD_LAG
+			shuttle_tiles_since_yield++
+			if(shuttle_tiles_since_yield >= 20)
+				shuttle_tiles_since_yield = 0
+				CHECK_TICK
 			var/atom/movable/moved_object = moved_atoms[i]
 			if(QDELETED(moved_object))
 				continue
