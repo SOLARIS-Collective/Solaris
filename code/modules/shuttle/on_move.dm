@@ -181,8 +181,9 @@ All ShuttleMove procs go here
 	return TRUE
 
 /turf/proc/lateShuttleMove(turf/oldT)
-	AfterChange()
-	oldT.AfterChange()
+	// [SOLARIS-ADD] - SHIP_LOAD_LAG - Не копируем воздух если турф не изменен
+	AfterChange(CHANGETURF_INHERIT_AIR)
+	oldT.AfterChange(CHANGETURF_INHERIT_AIR)
 
 
 /////////////////////////////////////////////////////////////////////////////////////
