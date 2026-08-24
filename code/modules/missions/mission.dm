@@ -157,12 +157,18 @@
 		target_account.bank_card_talk("[payment] credits deposited to account, balance is now [target_account.account_balance]cr.")
 		remaining_value = remaining_value - payment
 	servant.ship_account.adjust_money(remaining_value, CREDIT_LOG_MISSION)
+	// [SOLARIS-ADD] - STOCK_MARKET
+	SSstock_market.on_mission_result(servant, TRUE)
+	// [/SOLARIS-ADD]
 	qdel(src)
 
 /datum/mission/proc/give_up()
 	if(QDELING(src))
 		return
 	SSblackbox.record_feedback("nested tally", "[blackbox_prefix]mission", 1, list(name, "abandoned"))
+	// [SOLARIS-ADD] - STOCK_MARKET
+	SSstock_market.on_mission_result(servant, FALSE)
+	// [/SOLARIS-ADD]
 	qdel(src)
 
 /datum/mission/proc/spawn_reward(loc)

@@ -1,0 +1,14 @@
+#ifndef MODPACK_SOLARIS_STOCK_MARKET
+#define MODPACK_SOLARIS_STOCK_MARKET
+
+#include "_stock_market.dm"
+
+#include "code/_defines.dm"
+#include "code/company.dm"
+#include "code/emitters.dm"
+#include "code/news_events.dm"
+#include "code/brokerage.dm"
+#include "code/subsystem.dm"
+#include "code/roundend_report.dm"
+
+#endif

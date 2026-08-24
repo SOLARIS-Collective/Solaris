@@ -35,6 +35,7 @@
 #include "mobs/_mobs.dme"
 
 // --- MISC --- //
+#include "stock_market/_stock_market.dme"
 
 // --- RETURNS --- //
 

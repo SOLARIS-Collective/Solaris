@@ -46,6 +46,9 @@ GLOBAL_LIST_EMPTY(cargo_landing_zones)
 	return
 
 /datum/cargo_market/proc/make_order(mob/user, list/unprocessed_packs, atom/landing_zone)
+	// [SOLARIS-ADD] - STOCK_MARKET
+	SSstock_market.on_cargo_trade(user, unprocessed_packs)
+	// [/SOLARIS-ADD]
 	while(unprocessed_packs.len > 0)
 		var/datum/supply_pack/initial_pack = unprocessed_packs[1]
 		if(initial_pack.no_bundle)
