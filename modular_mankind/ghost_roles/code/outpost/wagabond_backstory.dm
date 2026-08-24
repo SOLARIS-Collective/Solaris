@@ -10,7 +10,7 @@
 //   {CAPTAIN}    - имена капитанов (владельцев) кораблей в раунде
 // Плейсхолдеры в фигурных скобках (DM их не интерполирует), в рантайме они
 // заменяются реальными данными через wagabond_replace_tokens.
-// Результат выводится в чат тегами, сохраняется в память и выдаётся
+// Результат сохраняется в память (панель Memories) и выдаётся
 // физической мятой запиской в рюкзаке, чтобы её можно было показывать другим.
 
 GLOBAL_LIST_INIT(wagabond_former_entries, list(
@@ -529,10 +529,6 @@ GLOBAL_LIST_INIT(wagabond_ship_fallbacks, list("Ковчег «Вечность�
 	fall_tag = wagabond_replace_tokens(fall_tag, faction_name, faction_name_2, ship_name, ship_name_2, character_name, character_name_2, captain_name, captain_name_2)
 	goal_tag = wagabond_replace_tokens(goal_tag, faction_name, faction_name_2, ship_name, ship_name_2, character_name, character_name_2, captain_name, captain_name_2)
 
-/// Строка тегов для быстрого взгляда: БЫВШИЙ ВРАЧ / ДОЛГИ / ИЩЕТ СЕМЬЮ
-/datum/wagabond_backstory/proc/get_tags()
-	return "[former_tag] / [fall_tag] / [goal_tag]"
-
 /// Связный рассказ из трёх блоков
 /datum/wagabond_backstory/proc/get_narrative()
 	return "[former] [fall] [goal]"
@@ -546,10 +542,7 @@ GLOBAL_LIST_INIT(wagabond_ship_fallbacks, list("Ковчег «Вечность�
 		return
 	var/datum/wagabond_backstory/backstory = new(new_spawn)
 	var/note_text = backstory.get_narrative()
-	to_chat(new_spawn, "<span class='big bold'>В глубине сознания всплывают обрывки прошлой жизни...</span>")
-	to_chat(new_spawn, span_notice(backstory.get_tags()))
-	to_chat(new_spawn, span_notice(backstory.get_narrative()))
-	new_spawn.mind?.store_memory("Вы - бродяга. Ваша предыстория: [note_text]")
+	new_spawn.mind?.store_memory("В глубине сознания всплывают обрывки прошлой жизни... [note_text]")
 	var/obj/item/paper/crumpled/wagabond_memory/note = new(new_spawn.loc)
 	note.add_raw_text(note_text)
 	new_spawn.equip_to_slot_or_del(note, ITEM_SLOT_BACKPACK)
