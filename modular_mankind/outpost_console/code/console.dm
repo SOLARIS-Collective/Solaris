@@ -84,16 +84,31 @@
 
 		if("purchase")
 			var/list/purchasing = params["cart"]
-			var/total_cost = text2num(params["total"])
 			var/area/current_area = get_area(src)
-			var/list/packs = list()
-			for(var/item in purchasing)
-				var/id = item["id"]
-				var/datum/supply_pack/pack = SSshuttle.supply_packs[text2path(id)]
-				if(pack)
-					packs += pack
+			// [SOLARIS-EDIT] - FIXES_CARGO_CONSOLE - лимит позиций, валидация и серверный расчёт цены (клиентскому total доверять нельзя)
+			if(!length(purchasing))
+				return TRUE
+			if(length(purchasing) > MAX_CARGO_ORDER_ITEMS)
+				message_cooldown = console_cooldown_feedback(src, "ERROR: Maximum [MAX_CARGO_ORDER_ITEMS] items per order! Transaction canceled.", message_cooldown)
+				return TRUE
 
-			if(!length(packs) || !charge_account?.has_money(total_cost) || !istype(current_area))
+			var/list/packs = list()
+			var/total_cost = 0
+			for(var/item in purchasing)
+				var/id
+				if(islist(item))
+					id = item["id"]
+				else if(istext(item))
+					id = item
+				var/datum/supply_pack/pack = id ? SSshuttle.supply_packs[text2path(id)] : null
+				if(!pack)
+					message_cooldown = console_cooldown_feedback(src, "ERROR: Invalid order! Transaction canceled.", message_cooldown)
+					return TRUE
+				packs += pack
+				total_cost += pack.cost
+			// [/SOLARIS-EDIT]
+
+			if(!charge_account?.has_money(total_cost) || !istype(current_area))
 				message_cooldown = console_cooldown_feedback(src, "ERROR: Insufficent funds! Transaction canceled.", message_cooldown)
 				return TRUE
 

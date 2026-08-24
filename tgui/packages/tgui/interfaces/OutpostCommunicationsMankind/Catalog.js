@@ -1,6 +1,6 @@
 import { flow } from 'common/fp';
 import { filter, sortBy } from 'common/collections';
-import { useBackend, useSharedState } from '../../backend';
+import { useBackend, useLocalState, useSharedState } from '../../backend';
 import {
   Button,
   Flex,
@@ -33,9 +33,12 @@ export const CargoCatalog = (props, context) => {
     ''
   );
 
-  const [cart, setCart] = useSharedState(context, 'cart', []);
+  // [SOLARIS-EDIT] - FIXES_CARGO_CONSOLE
+  // на BYOND 516 длинные topic-вызовы через cef_to_byond
+  // обрезаются/теряются - из-за этого корзина раньше "ломалась" после ~6 позиций).
+  const [cart, setCart] = useLocalState(context, 'cart', []);
 
-  const MAX_CART_ITEMS = 6;
+  const MAX_CART_ITEMS = 20;
 
   const cartTotal = cart.reduce(
     (cartTotal, entry) =>
@@ -68,9 +71,14 @@ export const CargoCatalog = (props, context) => {
               content="Purchase"
               disabled={cart.length === 0 || cart.length > MAX_CART_ITEMS}
               onClick={() => {
+                // [SOLARIS-EDIT] - FIXES_CARGO_CONSOLE
+                // Отправляем только идентификаторы позиций; цену и состав
+                // заказа сервер считает сам
                 act('purchase', {
-                  cart: cart,
-                  total: cartTotal,
+                  cart: cart.map((pack) => ({
+                    id: pack.id,
+                    ref: pack.ref,
+                  })),
                 });
                 setCart([]);
               }}

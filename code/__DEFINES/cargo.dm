@@ -77,3 +77,8 @@ GLOBAL_LIST_INIT(podstyles, list(\
 
 /// The highest amount of orders you can have of one thing at any one time
 #define CARGO_MAX_ORDER 50
+
+// [SOLARIS-ADD] - FIXES_CARGO_CONSOLE
+/// Максимум позиций в одном заказе через консоль связи (защита от спама подами и href-махинаций)
+#define MAX_CARGO_ORDER_ITEMS 20
+// [/SOLARIS-ADD]
