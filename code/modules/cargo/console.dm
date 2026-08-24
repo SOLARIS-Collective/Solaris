@@ -177,7 +177,6 @@
 		// if("add")
 		if("purchase")
 			var/list/purchasing = params["cart"]
-			var/total_cost = text2num(params["total"])
 			// [SOLARIS-ADD] - FIXES_CARGO_CONSOLE
 			if(!current_ship)
 				return
@@ -190,18 +189,34 @@
 				say("Outpost cargo unavailable!")
 				return
 
+			// [SOLARIS-EDIT] - FIXES_CARGO_CONSOLE - лимит позиций, валидация и серверный расчёт цены (клиентскому total доверять нельзя)
+			if(purchasing.len > MAX_CARGO_ORDER_ITEMS)
+				say("ERROR: Maximum [MAX_CARGO_ORDER_ITEMS] items per order!")
+				return
+
+			var/list/unprocessed_packs = list()
+			var/total_cost = 0
+			for(var/item in purchasing)
+				var/ref
+				if(islist(item))
+					ref = item["ref"]
+				else if(istext(item))
+					ref = item
+				var/datum/supply_pack/current_item = ref ? locate(ref) in current_outpost.market.supply_packs : null
+				if(!current_item)
+					say("ERROR: Invalid order! Transaction canceled.")
+					return
+				unprocessed_packs += current_item
+				total_cost += current_item.get_price(current_faction)
+
 			if(!charge_account.adjust_money(-total_cost, CREDIT_LOG_CARGO))
 				say("Insufficent funds!")
 				return
 
 			playsound(src, 'sound/machines/twobeep_high.ogg', 50, TRUE)
 			say("Order incoming!")
-
-			var/list/unprocessed_packs = list()
-			for(var/list/current_item as anything in purchasing)
-				unprocessed_packs += locate(current_item["ref"]) in current_outpost.market.supply_packs
-
 			current_outpost.market.make_order(usr, unprocessed_packs, return_crate_spawner())
+			// [/SOLARIS-EDIT]
 
 		if("mission-act")
 			var/datum/mission/mission = locate(params["ref"])
