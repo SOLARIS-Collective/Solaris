@@ -1684,9 +1684,7 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/auto_name/directional/north{
-	pixel_y = 27
-	},
+/obj/machinery/power/apc/auto_name/directional/north,
 /obj/effect/turf_decal/trimline/opaque/solgovblue/filled/line{
 	dir = 1
 	},
@@ -2191,9 +2189,7 @@
 	pixel_x = 20;
 	pixel_y = -11
 	},
-/obj/machinery/power/apc/auto_name/directional/east{
-	pixel_y = 1
-	},
+/obj/machinery/power/apc/auto_name/directional/east,
 /obj/structure/cable{
 	d2 = 2;
 	icon_state = "0-2"
@@ -2281,10 +2277,7 @@
 	pixel_x = -11;
 	pixel_y = 23
 	},
-/obj/machinery/power/apc/auto_name/directional/north{
-	pixel_y = 27;
-	pixel_x = 3
-	},
+/obj/machinery/power/apc/auto_name/directional/north,
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
@@ -5801,10 +5794,7 @@
 /obj/effect/turf_decal/spline/fancy/opaque/black{
 	dir = 8
 	},
-/obj/machinery/power/apc/auto_name/directional/north{
-	pixel_y = 27;
-	pixel_x = 3
-	},
+/obj/machinery/power/apc/auto_name/directional/north,
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
@@ -6025,10 +6015,7 @@
 	},
 /obj/effect/turf_decal/techfloor,
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/power/apc/auto_name/directional/north{
-	pixel_y = 27;
-	pixel_x = 3
-	},
+/obj/machinery/power/apc/auto_name/directional/north,
 /obj/machinery/light_switch{
 	pixel_x = -11;
 	pixel_y = 23

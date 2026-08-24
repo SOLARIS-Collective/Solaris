@@ -3370,11 +3370,6 @@
 	id = "skybreaker_flasher";
 	desc = "A floor-mounted flashbulb device."
 	},
-/obj/machinery/flasher{
-	name = "floor-mounted flash";
-	id = "skybreaker_flasher";
-	desc = "A floor-mounted flashbulb device."
-	},
 /turf/open/floor/plasteel/strongdark,
 /area/ship/security)
 "Tp" = (

@@ -718,12 +718,15 @@
 /turf/open/floor/mineral/titanium/tiled,
 /area/ship/medical)
 "fW" = (
+/obj/machinery/door/firedoor/window,
+/obj/structure/cable,
+/obj/structure/grille,
 /obj/structure/window/reinforced/fulltile/shuttle,
 /obj/machinery/door/poddoor/shutters{
 	id = "bolide_win_bridge";
 	dir = 4
 	},
-/turf/closed/wall/mineral/titanium/nodiagonal,
+/turf/open/floor/engine/hull/interior,
 /area/ship/bridge)
 "ge" = (
 /obj/structure/cable{
@@ -4244,13 +4247,6 @@
 	name = "bay window shutters";
 	id = "bolide_bay_win_2"
 	},
-/obj/machinery/button/door{
-	dir = 4;
-	pixel_y = 7;
-	name = "external window shutters";
-	id = "bolide_bay_win_1";
-	pixel_x = 1
-	},
 /obj/structure/table/reinforced/titaniumglass,
 /turf/open/floor/plasteel/mono/dark,
 /area/ship/crew/office)
@@ -4437,12 +4433,12 @@
 /obj/structure/cable{
 	icon_state = "0-2"
 	},
+/obj/machinery/door/firedoor/window,
+/obj/structure/window/reinforced/fulltile/shuttle,
 /obj/machinery/door/poddoor/shutters{
 	id = "bolide_win_bridge";
 	dir = 4
 	},
-/obj/machinery/door/firedoor/window,
-/obj/structure/window/reinforced/fulltile/shuttle,
 /turf/open/floor/engine/hull/interior,
 /area/ship/bridge)
 "EM" = (
@@ -5455,13 +5451,15 @@
 /turf/open/floor/plasteel/tech,
 /area/ship/engineering/engines/starboard)
 "Lh" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable,
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
 /obj/machinery/door/firedoor/window,
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/structure/grille,
 /obj/structure/window/reinforced/fulltile/shuttle,
 /obj/machinery/door/poddoor/shutters{
 	id = "bolide_win_bridge";
@@ -7070,7 +7068,6 @@
 /area/ship/hangar)
 "WS" = (
 /obj/structure/grille,
-/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable,
 /obj/structure/cable{
 	icon_state = "0-2"

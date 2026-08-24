@@ -202,9 +202,6 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
 /turf/open/floor/plating/asteroid/rockplanet,
 /area/overmap_encounter/planetoid/rockplanet/explored)
 "fM" = (
@@ -435,7 +432,6 @@
 /area/ruin/rockplanet/lasttemplar/office)
 "mk" = (
 /obj/structure/catwalk/over/plated_catwalk/dark,
-/obj/structure/catwalk/over/plated_catwalk/dark,
 /obj/effect/turf_decal/borderfloorblack/cee,
 /obj/effect/turf_decal/borderfloorblack/cee,
 /obj/structure/cable/yellow{
@@ -471,7 +467,6 @@
 /turf/open/floor/concrete/pavement/rockplanet/lit,
 /area/overmap_encounter/planetoid/rockplanet/explored)
 "nd" = (
-/obj/structure/catwalk/over/plated_catwalk/dark,
 /obj/structure/catwalk/over/plated_catwalk/dark,
 /obj/effect/turf_decal/borderfloorblack/cee,
 /turf/open/floor/plating/asteroid/rockplanet,
@@ -641,7 +636,6 @@
 /turf/open/floor/suns/dark,
 /area/ruin/rockplanet/lasttemplar/office)
 "rA" = (
-/obj/structure/catwalk/over/plated_catwalk/dark,
 /obj/structure/catwalk/over/plated_catwalk/dark,
 /obj/effect/turf_decal/borderfloorblack/cee,
 /obj/structure/cable/yellow{

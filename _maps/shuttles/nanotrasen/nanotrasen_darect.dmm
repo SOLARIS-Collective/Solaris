@@ -1107,7 +1107,7 @@
 "sc" = (
 /obj/effect/turf_decal/borderfloorblack,
 /obj/machinery/door/airlock/command{
-	name = "Patrol Leader's quarters"
+	name = "Patrol Leader's Quarters"
 	},
 /turf/open/floor/plasteel/tech,
 /area/ship/bridge)
@@ -1498,9 +1498,6 @@
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
 	},
 /obj/machinery/door/airlock/wood{
 	name = "Dormitories"

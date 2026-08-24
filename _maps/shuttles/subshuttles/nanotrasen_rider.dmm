@@ -25,17 +25,16 @@
 	color = "#212d60"
 	},
 /obj/machinery/light/colored/red{
-	dir = 1
+	dir = 1;
+	pixel_y = 15
 	},
-/obj/machinery/power/apc/auto_name/directional/north{
-	pixel_x = -4
-	},
+/obj/machinery/power/apc/auto_name/directional/north,
 /obj/structure/cable{
 	d2 = 2;
 	icon_state = "0-2"
 	},
 /obj/machinery/light_switch{
-	pixel_x = 8;
+	pixel_x = 11;
 	pixel_y = 22
 	},
 /turf/open/floor/plasteel/lightdark,
@@ -45,7 +44,9 @@
 	dir = 2;
 	color = "#212d60"
 	},
-/obj/machinery/light/colored/red,
+/obj/machinery/light/colored/red{
+	pixel_y = -5
+	},
 /obj/machinery/power/smes/engineering{
 	charge = 4e+006
 	},

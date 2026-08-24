@@ -2137,11 +2137,6 @@
 	pixel_x = -30;
 	pixel_y = 31
 	},
-/obj/structure/closet/firecloset/wall{
-	pixel_y = 0;
-	dir = 8;
-	pixel_x = -30
-	},
 /turf/open/floor/plasteel/white,
 /area/overmap_encounter/planetoid/cave/explored)
 "Ap" = (

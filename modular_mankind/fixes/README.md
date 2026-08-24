@@ -370,8 +370,11 @@ FIXES_FLAVOR
 - `tgui/packages/tgui/styles/components/TextArea.scss`
 
 FIXES_CARGO_CONSOLE
-- `code/modules/cargo/console.dm`
-- `tgui/packages/tgui/interfaces/OutpostCommunicationsMankind/Catalog.js`
+- `code/modules/cargo/console.dm` : `ui_act("purchase")` - сервер сам считает стоимость заказа (`get_price`), валидирует каждую позицию и ограничивает размер заказа `MAX_CARGO_ORDER_ITEMS`; клиентской сумме больше не доверяем
+- `code/modules/cargo/packs.dm` : добавлен `/datum/supply_pack/proc/get_price()` - цена пака с учётом фракционной скидки для серверного расчёта заказа
+- `code/__defines/cargo.dm` : добавлен `MAX_CARGO_ORDER_ITEMS = 20`
+- `modular_mankind/outpost_console/code/console.dm` : `ui_act("purchase")` у фракционных консолей - серверный расчёт стоимости по `pack.cost`, валидация `id`, лимит позиций
+- `tgui/packages/tgui/interfaces/OutpostCommunicationsMankind/Catalog.js` : корзина переведена с `useSharedState` на `useLocalState` (на BYOND 516 весь массив позиций, гоняемый через `setSharedState` при каждом клике, превышал лимит topic-вызова в `cef_to_byond` - из-за этого в корзину нельзя было положить больше ~6 позиций и лимит пришлось понизить); при покупке отправляются только `id`/`ref` позиций; `MAX_CART_ITEMS` снова 20
 
 FIXES_SLOW_LANDING_MOVE
 - `code/datums/elements/immerse.dm`

@@ -1,0 +1,654 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"bw" = (
+/obj/machinery/button/door{
+	dir = 4;
+	pixel_y = 4;
+	pixel_x = -23;
+	id = "sierra_blast";
+	name = "Sierra Cargo Door"
+	},
+/obj/machinery/button/shieldwallgen{
+	dir = 4;
+	id = "sierra_holo";
+	pixel_x = -22;
+	pixel_y = -6
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ship/bridge)
+"cs" = (
+/obj/structure/sign/number/random,
+/turf/closed/wall/mineral/titanium,
+/area/ship/bridge)
+"cD" = (
+/obj/structure/table,
+/obj/structure/railing{
+	dir = 4;
+	layer = 4.1
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ship/bridge)
+"cT" = (
+/obj/machinery/portable_atmospherics/canister/air,
+/obj/machinery/atmospherics/components/unary/portables_connector/visible/layer2{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-8"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ship/bridge)
+"ey" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ship/bridge)
+"eX" = (
+/turf/open/floor/plasteel/dark,
+/area/ship/bridge)
+"ir" = (
+/obj/machinery/power/shuttle/engine/electric{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/turf/open/floor/plating,
+/area/ship/bridge)
+"iC" = (
+/obj/structure/closet/emcloset/wall/directional/east,
+/turf/open/floor/plasteel/dark,
+/area/ship/bridge)
+"jt" = (
+/turf/template_noop,
+/area/template_noop)
+"jR" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector/atmos/atmos_waste{
+	dir = 1
+	},
+/obj/structure/catwalk/over/plated_catwalk/dark,
+/turf/open/floor/plating,
+/area/ship/bridge)
+"kP" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/turf/open/floor/plating,
+/area/ship/bridge)
+"mw" = (
+/obj/structure/window/reinforced,
+/obj/machinery/power/smes/shuttle/precharged{
+	dir = 1
+	},
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/obj/machinery/door/window{
+	dir = 1
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "sierra_engine"
+	},
+/turf/open/floor/plating,
+/area/ship/bridge)
+"mV" = (
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/ship/bridge)
+"od" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-4"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ship/bridge)
+"qg" = (
+/obj/machinery/light/directional/east,
+/obj/machinery/suit_storage_unit,
+/turf/open/floor/plasteel/dark,
+/area/ship/bridge)
+"qU" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/components/binary/pump/layer2{
+	name = "Ship Atmos Network";
+	desc = "This pumps takes gasses from another ship. To be used when docked inside a hangerbay. A pump that moves gas by pressure."
+	},
+/obj/machinery/atmospherics/components/binary/pump/layer4{
+	dir = 1;
+	name = "Ship Scrubber Network";
+	desc = "This pumps vents gasses into another ships scrubber network. To be used when docked inside a hangerbay. A pump that moves gas by pressure."
+	},
+/turf/open/floor/plasteel/dark,
+/area/ship/bridge)
+"rm" = (
+/obj/machinery/light/directional/west,
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ship/bridge)
+"sQ" = (
+/obj/structure/table,
+/obj/machinery/light/directional/west,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/item/storage/firstaid/brute{
+	pixel_x = -10;
+	pixel_y = 11
+	},
+/obj/item/storage/firstaid/fire{
+	pixel_x = 3;
+	pixel_y = 9
+	},
+/obj/item/storage/firstaid/medical{
+	pixel_x = -9;
+	pixel_y = 2
+	},
+/obj/item/storage/firstaid/o2{
+	pixel_x = 2;
+	pixel_y = 0
+	},
+/obj/machinery/door/window{
+	icon_state = "right";
+	name = "Medical Supplies";
+	opacity = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/ship/bridge)
+"vv" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "sierra_blast"
+	},
+/obj/machinery/power/shieldwallgen/atmos/roundstart{
+	dir = 4;
+	id = "sierra_holo"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-4"
+	},
+/turf/open/floor/plating,
+/area/ship/bridge)
+"vG" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ship/bridge)
+"wt" = (
+/obj/machinery/power/terminal,
+/obj/structure/table,
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ship/bridge)
+"wD" = (
+/obj/structure/grille,
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/poddoor/shutters{
+	id = "sierra_window"
+	},
+/turf/open/floor/plating,
+/area/ship/bridge)
+"wZ" = (
+/obj/machinery/power/port_gen/pacman,
+/obj/structure/cable/yellow{
+	icon_state = "0-8"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ship/bridge)
+"Ad" = (
+/obj/machinery/power/smes/engineering,
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/dark,
+/area/ship/bridge)
+"CJ" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 9
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ship/bridge)
+"EW" = (
+/obj/machinery/power/terminal{
+	dir = 8
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/item/storage/toolbox/emergency,
+/obj/item/storage/toolbox/electrical,
+/obj/item/storage/toolbox/mechanical,
+/obj/structure/cable,
+/obj/item/stack/sheet/mineral/plasma/ten,
+/turf/open/floor/plasteel/dark,
+/area/ship/bridge)
+"Fd" = (
+/obj/item/radio/intercom/wideband/directional/west,
+/turf/open/floor/plasteel/dark,
+/area/ship/bridge)
+"GN" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ship/bridge)
+"Jc" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/obj/structure/railing{
+	dir = 4;
+	layer = 4.1
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ship/bridge)
+"Kh" = (
+/obj/machinery/power/shuttle/engine/electric{
+	dir = 4
+	},
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/turf/open/floor/plating,
+/area/ship/bridge)
+"Km" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-8"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ship/bridge)
+"KH" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/turf/open/floor/plating,
+/area/ship/bridge)
+"KM" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4;
+	name = "Helm"
+	},
+/obj/item/radio/intercom/directional/west,
+/turf/open/floor/plasteel/dark,
+/area/ship/bridge)
+"LB" = (
+/obj/machinery/holopad/emergency/medical,
+/turf/open/floor/plasteel/dark,
+/area/ship/bridge)
+"LQ" = (
+/obj/structure/table,
+/obj/item/radio/intercom/wideband/table{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ship/bridge)
+"MX" = (
+/obj/machinery/computer/helm{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ship/bridge)
+"Nq" = (
+/obj/machinery/button/door{
+	dir = 4;
+	pixel_y = 7;
+	pixel_x = -23;
+	id = "sierra_window";
+	name = "Sierra Windows"
+	},
+/obj/machinery/button/door{
+	dir = 4;
+	pixel_y = -6;
+	pixel_x = -23;
+	id = "sierra_engine";
+	name = "Sierra Engine Blast Doors"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ship/bridge)
+"Nr" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ship/bridge)
+"OB" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/power/smes/shuttle/precharged{
+	dir = 2
+	},
+/obj/structure/cable{
+	icon_state = "0-1"
+	},
+/obj/machinery/door/window,
+/obj/machinery/door/poddoor/preopen{
+	id = "sierra_engine"
+	},
+/turf/open/floor/plating,
+/area/ship/bridge)
+"Ph" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ship/bridge)
+"Pp" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/firedoor/border_only{
+	dir = 1
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "sierra_blast"
+	},
+/obj/machinery/power/shieldwallgen/atmos/roundstart{
+	dir = 8;
+	id = "sierra_holo"
+	},
+/obj/docking_port/mobile{
+	can_move_docking_ports = 1;
+	preferred_direction = 4;
+	port_direction = 8;
+	dir = 2;
+	name = "sierra dock"
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-8"
+	},
+/turf/open/floor/plating,
+/area/ship/bridge)
+"Ql" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+/obj/machinery/airalarm/directional/west,
+/turf/open/floor/plasteel/dark,
+/area/ship/bridge)
+"QJ" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
+	dir = 8
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ship/bridge)
+"QQ" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 8
+	},
+/obj/machinery/light_switch{
+	dir = 8;
+	pixel_x = 23
+	},
+/turf/open/floor/plasteel/dark,
+/area/ship/bridge)
+"Se" = (
+/obj/machinery/power/terminal{
+	dir = 1
+	},
+/obj/machinery/stasis,
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ship/bridge)
+"Te" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 8
+	},
+/obj/structure/railing{
+	dir = 4;
+	layer = 4.1
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ship/bridge)
+"We" = (
+/obj/machinery/light/directional/east,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
+	dir = 10
+	},
+/turf/open/floor/plasteel/dark,
+/area/ship/bridge)
+"Yw" = (
+/obj/machinery/door/firedoor/border_only{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 8
+	},
+/obj/structure/closet/firecloset/wall/directional/south,
+/obj/machinery/atmospherics/components/binary/pump/layer4{
+	dir = 4;
+	name = "Off Ship Scrubber Network";
+	desc = "This pumps vents gasses outside the ship. Not to be used when docked inside a hangerbay. A pump that moves gas by pressure."
+	},
+/turf/open/floor/plasteel/dark,
+/area/ship/bridge)
+"YC" = (
+/obj/machinery/power/apc/auto_name/directional/east{
+	locked = 0
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-8"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ship/bridge)
+"YK" = (
+/obj/structure/sign/number/random,
+/turf/closed/wall/mineral/titanium/nodiagonal,
+/area/ship/bridge)
+"YW" = (
+/turf/closed/wall/mineral/titanium,
+/area/ship/bridge)
+"Zb" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ship/bridge)
+"Zc" = (
+/obj/structure/grille,
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/poddoor/shutters{
+	dir = 8;
+	id = "sierra_window"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ship/bridge)
+"ZM" = (
+/obj/structure/grille,
+/obj/effect/spawner/structure/window/shuttle,
+/obj/machinery/door/poddoor/shutters{
+	id = "sierra_window"
+	},
+/obj/machinery/atmospherics/pipe/layer_manifold,
+/turf/open/floor/plating,
+/area/ship/bridge)
+
+(1,1,1) = {"
+jt
+YW
+mV
+mV
+mV
+mV
+YW
+jt
+"}
+(2,1,1) = {"
+ir
+mV
+sQ
+Fd
+Ql
+rm
+mV
+Kh
+"}
+(3,1,1) = {"
+kP
+OB
+Se
+Nr
+LB
+wt
+mw
+KH
+"}
+(4,1,1) = {"
+mV
+mV
+cD
+Ph
+Jc
+Te
+mV
+mV
+"}
+(5,1,1) = {"
+vv
+bw
+Km
+QJ
+od
+cT
+Ad
+mV
+"}
+(6,1,1) = {"
+Pp
+qU
+vG
+GN
+ey
+CJ
+EW
+YK
+"}
+(7,1,1) = {"
+mV
+eX
+iC
+QQ
+YC
+Zb
+wZ
+YK
+"}
+(8,1,1) = {"
+YW
+mV
+YW
+YW
+YW
+Yw
+mV
+cs
+"}
+(9,1,1) = {"
+jt
+wD
+qg
+KM
+Nq
+We
+ZM
+jR
+"}
+(10,1,1) = {"
+jt
+YW
+mV
+MX
+LQ
+mV
+YW
+jt
+"}
+(11,1,1) = {"
+jt
+jt
+YW
+Zc
+Zc
+YW
+jt
+jt
+"}

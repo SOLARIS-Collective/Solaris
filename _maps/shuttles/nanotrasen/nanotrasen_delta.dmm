@@ -365,16 +365,13 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/light_switch{
-	pixel_x = -8;
+	pixel_x = -13;
 	pixel_y = 22
 	},
 /obj/structure/table/reinforced/titaniumglass,
 /obj/machinery/recharger,
 /obj/effect/turf_decal/road/line/opaque/white,
-/obj/machinery/power/apc/auto_name/directional/north{
-	pixel_x = 4;
-	pixel_y = 28
-	},
+/obj/machinery/power/apc/auto_name/directional/north,
 /turf/open/floor/plasteel/dark,
 /area/ship/bridge)
 "bO" = (

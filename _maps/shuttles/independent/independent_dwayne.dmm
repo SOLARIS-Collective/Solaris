@@ -1871,8 +1871,7 @@
 	pixel_y = 1
 	},
 /obj/machinery/power/apc/auto_name/directional/east{
-	pixel_x = 25;
-	pixel_y = 2
+	pixel_x = 25
 	},
 /obj/structure/cable{
 	icon_state = "0-2"

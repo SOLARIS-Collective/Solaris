@@ -4557,9 +4557,6 @@
 /obj/effect/turf_decal/steeldecal/steel_decals10{
 	dir = 6
 	},
-/obj/machinery/shower{
-	dir = 8
-	},
 /obj/effect/turf_decal/corner/opaque/black/border,
 /turf/open/floor/plasteel/freezer,
 /area/ship/crew/toilet)

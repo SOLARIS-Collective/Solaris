@@ -818,8 +818,6 @@
 /area/ruin)
 "CV" = (
 /obj/structure/lattice,
-/obj/structure/lattice,
-/obj/structure/lattice,
 /turf/open/floor/plating/asteroid/snow/icemoon,
 /area/overmap_encounter/planetoid/cave/explored)
 "Di" = (

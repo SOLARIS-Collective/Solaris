@@ -628,7 +628,7 @@
 /obj/machinery/door/poddoor{
 	id = "Arm_Wr_AS";
 	dir = 4;
-	name = "Armory blast door"
+	name = "Armory Blast Door"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/asteroid/wreckeroutpost/armory)
@@ -993,7 +993,7 @@
 "nW" = (
 /obj/machinery/door/airlock/multi_tile/base/glass{
 	dir = 4;
-	name = "Bar airlock"
+	name = "Bar Airlock"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 4
@@ -1482,7 +1482,7 @@
 /obj/machinery/door/poddoor{
 	id = "Arm_Wr_AS";
 	dir = 4;
-	name = "Armory blast door"
+	name = "Armory Blast Door"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/asteroid/wreckeroutpost/armory)
@@ -3279,7 +3279,7 @@
 /area/ruin/asteroid/wreckeroutpost/maint)
 "Sa" = (
 /obj/machinery/door/airlock/multi_tile/base/glass{
-	name = "Bar airlock"
+	name = "Bar Airlock"
 	},
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/firedoor/border_only{

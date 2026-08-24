@@ -2101,7 +2101,7 @@
 /area/overmap_encounter/planetoid/ice/explored)
 "eA" = (
 /obj/machinery/door/keycard{
-	name = "medbay locked door";
+	name = "Medbay Locked Door";
 	puzzle_id = "baseNC_IS_NoPuz"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -2556,7 +2556,7 @@
 "fx" = (
 /obj/machinery/door/keycard{
 	puzzle_id = "baseNC_IS_PuzBot";
-	name = "botany locked door"
+	name = "Botany Locked Door"
 	},
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -4519,7 +4519,7 @@
 /area/overmap_encounter/planetoid/ice/explored)
 "jL" = (
 /obj/machinery/door/keycard{
-	name = "janitor locked door";
+	name = "Janitor Locked Door";
 	puzzle_id = "baseNC_IS_PuzJan"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -17482,7 +17482,7 @@
 "Mi" = (
 /obj/machinery/door/keycard{
 	puzzle_id = "baseNC_IS_PuzEng";
-	name = "engineering locked door"
+	name = "Engineering Locked Door"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -20516,7 +20516,7 @@
 "SA" = (
 /obj/machinery/door/keycard{
 	puzzle_id = "baseNC_IS_PuzChem";
-	name = "chemical locked door"
+	name = "Chemical Locked Door"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
@@ -23281,7 +23281,7 @@
 	dir = 1
 	},
 /obj/machinery/door/keycard{
-	name = "kitchen locked door";
+	name = "Kitchen Locked Door";
 	puzzle_id = "baseNC_IS_PuzKit"
 	},
 /obj/effect/turf_decal/techfloor,
@@ -23314,7 +23314,7 @@
 	},
 /obj/machinery/door/keycard{
 	puzzle_id = "baseNC_IS_PuzArm";
-	name = "chemical locked door"
+	name = "Chemical Locked Door"
 	},
 /obj/structure/cable{
 	icon_state = "1-2"

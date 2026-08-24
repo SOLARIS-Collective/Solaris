@@ -4140,7 +4140,7 @@
 /obj/machinery/door/window/brigdoor{
 	dir = 1;
 	req_access_txt = "3";
-	name = "security spaceworks"
+	name = "Security Spaceworks"
 	},
 /obj/structure/window/plasma/reinforced/spawner/west,
 /obj/item/tank/internals/oxygen,
@@ -5148,7 +5148,7 @@
 /obj/machinery/door/window/brigdoor{
 	dir = 1;
 	req_access_txt = "1";
-	name = "nonlethal weapons"
+	name = "Nonlethal Weapons"
 	},
 /obj/structure/window/plasma/reinforced/spawner/west,
 /obj/item/gun/energy/temperature{
@@ -5515,7 +5515,7 @@
 /obj/machinery/door/window/brigdoor{
 	dir = 1;
 	req_access_txt = "3";
-	name = "LETHAL weapons"
+	name = "LETHAL Weapons"
 	},
 /obj/item/gun/energy/e_gun/e_old/iot{
 	pixel_y = -4;
@@ -5713,7 +5713,7 @@
 /obj/machinery/door/window/brigdoor{
 	dir = 1;
 	req_access_txt = "3";
-	name = "tactical armor"
+	name = "Tactical Armor"
 	},
 /obj/structure/window/plasma/reinforced/spawner/west,
 /obj/effect/turf_decal/corner/opaque/vired/half,
@@ -6690,7 +6690,6 @@
 /area/ship/engineering/atmospherics)
 "Wy" = (
 /obj/structure/closet/emcloset/wall/directional/north,
-/obj/structure/closet/crate/bin,
 /obj/machinery/light/broken/directional/east,
 /obj/effect/turf_decal/corner/opaque/ntblue/border{
 	dir = 5

@@ -75,6 +75,11 @@
 	dir = 4
 	},
 /obj/machinery/light/small/directional/north,
+/obj/item/toy/plush/lizardplushie{
+	pixel_x = 10;
+	pixel_y = 5;
+	name = "lizard plushie (Can you see me?)"
+	},
 /turf/open/floor/pod/dark,
 /area/ship/engineering)
 "fm" = (
@@ -591,6 +596,11 @@
 /obj/effect/turf_decal/corner/opaque/black/three_quarters{
 	layer = 2;
 	dir = 4
+	},
+/obj/item/toy/plush/lizardplushie{
+	pixel_x = 10;
+	pixel_y = 5;
+	name = "lizard plushie (Can you see me?)"
 	},
 /turf/open/floor/engine/hull/reinforced{
 	icon = 'modular_mankind/_storage_icons/icons/structures/floors/metal_2.dmi';

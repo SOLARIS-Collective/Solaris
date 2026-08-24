@@ -565,9 +565,7 @@
 /obj/structure/railing/wood{
 	dir = 8
 	},
-/obj/machinery/power/apc/auto_name/directional/west{
-	pixel_x = -30
-	},
+/obj/machinery/power/apc/auto_name/directional/west,
 /obj/machinery/light_switch,
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -2344,9 +2342,6 @@
 /turf/open/floor/plasteel/tech,
 /area/ship/crew/crewtwo)
 "vx" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
-	dir = 8
-	},
 /obj/structure/toilet{
 	dir = 8;
 	pixel_x = 6

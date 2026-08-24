@@ -493,7 +493,6 @@
 /area/science/misc_lab)
 "FD" = (
 /obj/structure/table/wood,
-/obj/structure/table/wood,
 /obj/item/paper_bin,
 /obj/item/pen/fountain,
 /turf/open/floor/mineral/titanium/purple,

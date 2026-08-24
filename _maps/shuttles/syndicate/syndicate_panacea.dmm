@@ -2932,9 +2932,7 @@
 /obj/machinery/light/directional/east,
 /obj/machinery/fax/syndicate,
 /obj/machinery/power/apc/auto_name/directional/west{
-	dir = 1;
-	pixel_x = 2;
-	pixel_y = 24
+	dir = 1
 	},
 /obj/machinery/light_switch{
 	pixel_x = -10;

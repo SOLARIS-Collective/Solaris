@@ -35,7 +35,7 @@ SUBSYSTEM_DEF(statpanels)
 
 		global_data = list(
 			"Round ID: [GLOB.round_id ? GLOB.round_id : "NULL"]",
-			"Next Autotransfer (Updates Every Min): [cached_autotransfer_text]", // PENTEST ADDITION - Display autotransfer schedule status
+			// [MANKIND-DELETE] undo pentest 'next autotransfer' addition
 			"Time Dilation: [round(SStime_track.time_dilation_current,1)]% AVG:([round(SStime_track.time_dilation_avg_fast,1)]%, [round(SStime_track.time_dilation_avg,1)]%, [round(SStime_track.time_dilation_avg_slow,1)]%)",
 			"\n",
 			"Current Outpost: [SSticker.round_start_timeofday ? SSovermap.get_main_outpost() : "The round hasn't started yet!"]",

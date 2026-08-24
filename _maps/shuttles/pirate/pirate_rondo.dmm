@@ -1033,9 +1033,6 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
 /obj/structure/closet/body_bag,
 /obj/effect/gibspawner/human/bodypartless,
 /obj/item/bodypart/head/riol{
@@ -3097,9 +3094,6 @@
 	icon_state = "1-2"
 	},
 /obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/structure/cable{
 	icon_state = "2-4"
 	},
 /turf/open/floor/plasteel/tech/grid,
@@ -3317,9 +3311,6 @@
 	icon_state = "1-2"
 	},
 /obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/structure/cable{
 	icon_state = "1-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
@@ -3426,9 +3417,6 @@
 /area/ship/external)
 "Tm" = (
 /obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/obj/structure/cable{
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer2{

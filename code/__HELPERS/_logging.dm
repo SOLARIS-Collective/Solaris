@@ -233,6 +233,12 @@
 		message_admins(text)
 // [/SOLARIS-ADD]
 
+// [SOLARIS-ADD] - Отладка квадрантной сетки: строка попадает и в planets.log раунда,
+// и в консоль Dream Daemon (файл dd.log без TGS может не создаваться).
+/proc/log_grid(text)
+	WRITE_LOG(GLOB.world_planets_log, "[time_stamp()] [text]")
+	SEND_TEXT(world.log, text)
+
 /* Log to both DD and the logfile. */
 /proc/log_world(text)
 #ifdef USE_CUSTOM_ERROR_HANDLER

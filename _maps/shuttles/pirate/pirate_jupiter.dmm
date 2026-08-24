@@ -1538,9 +1538,7 @@
 "vW" = (
 /obj/structure/window/reinforced,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer4,
-/obj/machinery/power/apc/auto_name/directional/north{
-	pixel_x = -6
-	},
+/obj/machinery/power/apc/auto_name/directional/north,
 /obj/machinery/newscaster/directional/north{
 	pixel_x = 9
 	},
@@ -2315,10 +2313,6 @@
 /turf/open/floor/plating/airless,
 /area/ship/external)
 "Ga" = (
-/obj/structure/cable{
-	icon_state = "4-8";
-	color = "#00aa00"
-	},
 /obj/machinery/door/window/brigdoor{
 	dir = 8;
 	req_access_txt = "20"

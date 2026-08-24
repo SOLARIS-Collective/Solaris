@@ -1,0 +1,43 @@
+{
+	"$schema": "https://raw.githubusercontent.com/CeladonSS13/Shiptest/beta-dev/_maps/ship_config_schema.json",
+	"map_name": "derecho-class",
+	"map_short_name": "Derecho",
+	"description": "Боевое-шахтерское судно, используемое 2nd BattleGroup для поддержки в бою. ",
+	"map_path": "_maps/shuttles/syndicate/ngr_derecho.dmm",
+	"enabled": true,
+	"limit": 1,
+	"sensor_range": 9,
+	"prefix": "BSSV",
+	"faction": "/datum/faction/syndicate",
+	"tags": ["Боевой",
+	"Шахтерский"],
+	"namelists": [
+		"2nd BattleGroup",
+		"NATURAL_AGGRESSIVE",
+		"BEASTS",
+		"WEAPONS",
+		"ACLF"
+	],
+	"job_slots": {
+		"Squad leader": {
+			"outfit": "/datum/outfit/job/cel/syndicate/captain/gorlex",
+			"officer": true,
+			"slots": 1,
+			"name": "Squad leader 2nd BattleGroup"
+		},
+		"Paramedic": {
+			"outfit": "/datum/outfit/job/cel/syndicate/doctor/gorlex",
+			"slots": 1,
+			"name": "Paramedic"
+		},
+		"Mechanic": {
+			"outfit": "/datum/outfit/job/cel/syndicate/engineer/gorlex",
+			"slots": 1
+
+		},
+		"Operative": {
+			"outfit": "/datum/outfit/job/cel/syndicate/security/gorlex",
+			"slots": 2
+		}
+	}
+}

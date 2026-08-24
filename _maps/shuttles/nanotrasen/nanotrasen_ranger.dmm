@@ -1916,7 +1916,7 @@
 /obj/machinery/door/firedoor/border_only,
 /obj/effect/turf_decal/corner/opaque/red/full,
 /obj/machinery/door/airlock/security/glass{
-	name = "Security specialist's room"
+	name = "Security Specialist's Room"
 	},
 /turf/open/floor/plasteel/dark,
 /area/ship/security)

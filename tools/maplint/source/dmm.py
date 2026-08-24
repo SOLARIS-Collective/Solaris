@@ -43,6 +43,7 @@ class DMMParser:
     def __init__(self, reader: IO):
         self.dmm = DMM()
         self.reader = reader
+        self.var_edits_closed_pop = False
 
     def parse(self):
         if "dmm2tgm" not in self.next_line():
@@ -93,8 +94,11 @@ class DMMParser:
             if content_end == ")":
                 break
             elif content_end == "{":
+                self.var_edits_closed_pop = False
                 while (var_edit := self.parse_var_edit()) is not None:
                     content.var_edits[var_edit[0]] = var_edit[1]
+                if self.var_edits_closed_pop:
+                    break
             elif content_end == ",":
                 continue
 
@@ -104,7 +108,22 @@ class DMMParser:
 
     def parse_var_edit(self):
         line = self.next_line()
-        if line == "\t},":
+        if line is None:
+            self.raise_error("Unexpected end of file while parsing var edits.")
+
+        stripped = line.rstrip()
+
+        if stripped == "\t},":
+            return None
+
+        if stripped == "\t})":
+            self.var_edits_closed_pop = True
+            return None
+
+        if stripped == "\t}":
+            closing_line = self.next_line()
+            self.expect(closing_line is not None and closing_line.strip() == ")", "Expected ')' after var edits.")
+            self.var_edits_closed_pop = True
             return None
 
         var_edit_match = REGEX_VAR_EDIT.match(line)

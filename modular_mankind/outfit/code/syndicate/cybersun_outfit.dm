@@ -111,7 +111,7 @@
 
 //MARK: Kansatsu
 
-/datum/outfit/job/cel/syndicate/captain/cybersun
+/datum/outfit/job/cel/syndicate/captain/cybersunk
 	name = "Syndi Cybersun - Captain"
 
 	id = /obj/item/card/id/cel/syndicate/captain/cybersun
@@ -125,7 +125,7 @@
 						/obj/item/modular_computer/tablet/syndicate_contract_uplink,
 						/obj/item/uplink/nuclear)
 
-/datum/outfit/job/cel/syndicate/head_of_personnel/cybersun
+/datum/outfit/job/cel/syndicate/head_of_personnel/cybersunk
 	name = "Syndi Cybersun - Intelligence Officer"
 	id_assignment = "Intelligence Officer"
 
@@ -142,7 +142,7 @@
 						/obj/item/stack/telecrystal/five,
 						/obj/item/uplink/old)
 
-/datum/outfit/job/cel/syndicate/miner/cybersun
+/datum/outfit/job/cel/syndicate/miner/cybersunk
 	name = "Syndi Cybersun - Field Agent"
 	id_assignment = "Field Agent"
 
@@ -157,7 +157,7 @@
 						/obj/item/stack/telecrystal/five,
 						/obj/item/stack/telecrystal/five)
 
-/datum/outfit/job/cel/syndicate/engineer/cybersun
+/datum/outfit/job/cel/syndicate/engineer/cybersunk
 	name = "Syndi Cybersun - Engineer"
 
 	id = /obj/item/card/id/cel/syndicate/crew/engineer/cybersun

@@ -386,7 +386,7 @@
 	name = "Aft Hallway"
 	},
 /obj/structure/foamedmetal,
-/turf/closed/wall/mineral/plastitanium,
+/turf/open/floor/hangar/plasteel/dark,
 /area/overmap_encounter/planetoid/asteroid/explored)
 "lp" = (
 /obj/machinery/atmospherics/components/unary/shuttle/fire_heater,

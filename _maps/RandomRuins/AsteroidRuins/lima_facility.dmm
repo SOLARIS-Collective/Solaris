@@ -3273,9 +3273,6 @@
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
@@ -7271,9 +7268,6 @@
 	},
 /obj/structure/cable{
 	icon_state = "1-8"
-	},
-/obj/structure/cable{
-	icon_state = "2-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2{
 	dir = 5

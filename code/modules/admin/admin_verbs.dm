@@ -205,6 +205,7 @@ GLOBAL_PROTECT(admin_verbs_debug)
 	/client/proc/view_runtimes,
 	/client/proc/pump_random_event,
 	/client/proc/reload_configuration,
+	/client/proc/toggle_cpu_debug,
 	/client/proc/reload_autotransfer_schedule, // PENTEST - Reload the autotransfer schedule from config
 	/client/proc/jumptoarea,
 	/client/proc/jumptocoord,
@@ -893,3 +894,12 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 
 	SStgui.close_uis(usr)
 // [/MANKIND-ADD]
+
+/client/proc/toggle_cpu_debug()
+	set category = "Debug"
+	set name = "Toggle Cpu Controls"
+	set desc = "Enables performance debug view, graphing cpu usage across the tick"
+
+	if(!holder || !check_rights(R_DEBUG))
+		return
+	GLOB.cpu_tracker.toggle_cpu_debug(src)

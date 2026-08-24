@@ -162,3 +162,13 @@
 	plane = FIELD_OF_VISION_BLOCKER_PLANE
 	render_target = FIELD_OF_VISION_BLOCKER_RENDER_TARGET
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+
+/// Debug graphing plane, hidden unless the client has cpu debug view enabled (see tick_control.dm)
+/atom/movable/screen/plane_master/graphing
+	name = "graphing plane master"
+	plane = GRAPHING_PLANE
+	appearance_flags = PLANE_MASTER|NO_CLIENT_COLOR
+	alpha = 0
+
+/atom/movable/screen/plane_master/graphing/backdrop(mob/mymob)
+	alpha = mymob?.client?.displaying_cpu_debug ? 255 : 0

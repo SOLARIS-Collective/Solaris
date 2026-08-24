@@ -631,9 +631,7 @@
 	icon_state = "plant-21";
 	pixel_x = -7
 	},
-/obj/machinery/power/apc/auto_name/directional/north{
-	pixel_x = -2
-	},
+/obj/machinery/power/apc/auto_name/directional/north,
 /obj/machinery/light_switch{
 	dir = 2;
 	pixel_x = 10;
@@ -950,9 +948,7 @@
 /obj/machinery/sleeper{
 	dir = 8
 	},
-/obj/machinery/power/apc/auto_name/directional/east{
-	pixel_y = 1
-	},
+/obj/machinery/power/apc/auto_name/directional/east,
 /obj/machinery/light_switch{
 	dir = 8;
 	pixel_y = -12;
@@ -1267,9 +1263,7 @@
 	dir = 5
 	},
 /obj/effect/turf_decal/corner/opaque/cybersunteal/border,
-/obj/machinery/power/apc/auto_name/directional/south{
-	pixel_x = -2
-	},
+/obj/machinery/power/apc/auto_name/directional/south,
 /obj/structure/cable/cyan,
 /obj/machinery/light_switch{
 	dir = 1;
@@ -2146,9 +2140,7 @@
 /turf/open/floor/plasteel/mono/white,
 /area/ship/medical)
 "nX" = (
-/obj/machinery/power/apc/auto_name/directional/north{
-	pixel_x = -1
-	},
+/obj/machinery/power/apc/auto_name/directional/north,
 /obj/machinery/light_switch{
 	dir = 2;
 	pixel_x = 11;
@@ -2621,9 +2613,7 @@
 /obj/machinery/photocopier{
 	pixel_x = 1
 	},
-/obj/machinery/power/apc/auto_name/directional/west{
-	pixel_y = -3
-	},
+/obj/machinery/power/apc/auto_name/directional/west,
 /obj/machinery/light_switch{
 	dir = 4;
 	pixel_x = -20;
@@ -2687,9 +2677,7 @@
 /obj/item/clothing/mask/gas/syndicate,
 /obj/item/tank/jetpack/oxygen,
 /obj/structure/cable/cyan,
-/obj/machinery/power/apc/auto_name/directional/south{
-	pixel_x = -2
-	},
+/obj/machinery/power/apc/auto_name/directional/south,
 /obj/machinery/light_switch{
 	dir = 1;
 	pixel_x = 10;
@@ -2750,9 +2738,7 @@
 /obj/structure/cable/cyan{
 	icon_state = "0-4"
 	},
-/obj/machinery/power/apc/auto_name/directional/south{
-	pixel_x = -2
-	},
+/obj/machinery/power/apc/auto_name/directional/south,
 /obj/machinery/light_switch{
 	dir = 1;
 	pixel_x = 10;
@@ -3105,9 +3091,7 @@
 /obj/structure/cable/cyan{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/auto_name/directional/north{
-	pixel_x = -1
-	},
+/obj/machinery/power/apc/auto_name/directional/north,
 /obj/machinery/light_switch{
 	dir = 2;
 	pixel_x = 11;
@@ -5094,9 +5078,7 @@
 	pixel_x = 5;
 	pixel_y = 4
 	},
-/obj/machinery/power/apc/auto_name/directional/north{
-	pixel_x = -2
-	},
+/obj/machinery/power/apc/auto_name/directional/north,
 /obj/machinery/light_switch{
 	dir = 2;
 	pixel_x = 10;
@@ -5403,9 +5385,7 @@
 	},
 /area/ship/crew/ccommons)
 "Mh" = (
-/obj/machinery/power/apc/auto_name/directional/west{
-	pixel_y = -3
-	},
+/obj/machinery/power/apc/auto_name/directional/west,
 /obj/machinery/light_switch{
 	dir = 4;
 	pixel_x = -20;
@@ -5456,9 +5436,7 @@
 /obj/structure/cable/cyan{
 	icon_state = "0-4"
 	},
-/obj/machinery/power/apc/auto_name/directional/north{
-	pixel_x = -3
-	},
+/obj/machinery/power/apc/auto_name/directional/north,
 /obj/machinery/light_switch{
 	dir = 2;
 	pixel_x = 9;
@@ -6141,9 +6119,7 @@
 	dir = 5
 	},
 /obj/effect/turf_decal/corner/opaque/cybersunteal/border,
-/obj/machinery/power/apc/auto_name/directional/south{
-	pixel_x = -2
-	},
+/obj/machinery/power/apc/auto_name/directional/south,
 /obj/machinery/light_switch{
 	dir = 1;
 	pixel_x = 10;
@@ -6780,9 +6756,7 @@
 	dir = 4
 	},
 /obj/structure/chair/comfy/purple/corpo/directional/west,
-/obj/machinery/power/apc/auto_name/directional/north{
-	pixel_x = -2
-	},
+/obj/machinery/power/apc/auto_name/directional/north,
 /obj/machinery/light_switch{
 	dir = 2;
 	pixel_x = 10;

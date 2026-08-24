@@ -2525,9 +2525,6 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
 /turf/open/floor/plating,
 /area/outpost/hallway/central)
 "bXe" = (
@@ -3031,18 +3028,13 @@
 /turf/open/floor/plasteel/dark,
 /area/outpost/operations)
 "coh" = (
-/obj/machinery/power/apc/auto_name/directional/north{
-	req_access_txt = "8100, 8111";
-	dir = 4;
-	pixel_y = 0;
-	pixel_x = 29
-	},
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
 /obj/effect/turf_decal/corner/transparent/blue/half{
 	dir = 4
 	},
+/obj/machinery/power/apc/auto_name/directional/east,
 /turf/open/floor/plasteel/white,
 /area/outpost/medical/hall_2)
 "coJ" = (
@@ -6525,12 +6517,7 @@
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc/auto_name/directional/south{
-	req_access_txt = "8100, 8111";
-	dir = 1;
-	pixel_y = 29;
-	pixel_x = -1
-	},
+/obj/machinery/power/apc/auto_name/directional/north,
 /turf/open/floor/plasteel/dark,
 /area/outpost/crew/lounge/cab_1)
 "eFk" = (
@@ -18212,7 +18199,6 @@
 /turf/open/floor/concrete/slab_2,
 /area/outpost/hallway/central)
 "nfh" = (
-/obj/structure/lattice/clockwork,
 /obj/structure/lattice/catwalk,
 /turf/open/space/basic,
 /area/outpost/external)
@@ -22675,7 +22661,6 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel,
-/turf/open/floor/plasteel,
 /area/outpost/crew/bar/bar_zone)
 "qtk" = (
 /obj/effect/spawner/random/trash/grime,
@@ -25064,7 +25049,8 @@
 	name = "Bathroom Stall 1";
 	id_tag = "aster_bar_stall1"
 	},
-/turf/closed/indestructible/reinforced,
+/obj/structure/fans/tiny/invisible,
+/turf/open/floor/plasteel/dark,
 /area/outpost/crew/lounge/cab_1)
 "sbF" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer2{
@@ -29154,13 +29140,8 @@
 	color = "#792f27";
 	dir = 6
 	},
-/obj/machinery/power/apc/auto_name/directional/south{
-	req_access_txt = "8100, 8111";
-	dir = 4;
-	pixel_y = 2;
-	pixel_x = 28
-	},
 /obj/structure/cable,
+/obj/machinery/power/apc/auto_name/directional/east,
 /turf/open/floor/carpet,
 /area/outpost/crew/library)
 "vdv" = (
@@ -30353,23 +30334,6 @@
 /obj/structure/sign/flag/syndie/directional/north,
 /turf/open/floor/mineral/plastitanium/red,
 /area/outpost/fraction/syndi)
-"vOE" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 1
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/concrete/slab_1,
-/area/outpost/crew/library)
 "vOI" = (
 /obj/effect/turf_decal/hardline_small/left,
 /turf/open/floor/plasteel/patterned/cargo_one,
@@ -41237,7 +41201,7 @@ pdc
 pdc
 pdc
 cGD
-wci
+hOg
 pdc
 pdc
 pdc
@@ -41614,7 +41578,7 @@ pdc
 pdc
 pdc
 pdc
-wci
+nfh
 pdc
 pdc
 pdc
@@ -42735,7 +42699,7 @@ pdc
 pdc
 pdc
 pdc
-wci
+nfh
 pdc
 pdc
 pdc
@@ -56958,7 +56922,7 @@ qIB
 qIB
 tjs
 xTc
-vOE
+lgo
 dDF
 lDg
 vdc

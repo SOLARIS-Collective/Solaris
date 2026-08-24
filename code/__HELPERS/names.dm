@@ -77,7 +77,7 @@ GLOBAL_VAR(command_name)
 		name = ""
 
 	// Prefix
-	var/holiday_name = pick(GLOB.holidays)
+	var/holiday_name = length(GLOB.holidays) ? pick(GLOB.holidays) : null
 	if(holiday_name)
 		var/datum/holiday/holiday = GLOB.holidays[holiday_name]
 		if(istype(holiday, /datum/holiday/friday_thirteenth))
