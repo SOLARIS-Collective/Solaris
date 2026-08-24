@@ -184,6 +184,7 @@
 	if(!main_template)
 		CRASH("[src] ([src.type]) tried to load without a template!")
 
+	AUXCPU_PHASE("outpost_load") // [SOLARIS-ADD] - SHIP_LOAD_LAG
 	log_game("[src] [REF(src)] OUTPOST MAP LEVEL INIT")
 	log_shuttle("[src] [REF(src)] OUTPOST MAP LEVEL INIT")
 
@@ -243,12 +244,14 @@
 		var/obj/structure/elevator_platform/plat
 
 		// load the template
+		AUXCPU_PHASE("elevator_load") // [SOLARIS-ADD] - SHIP_LOAD_LAG
 		elevator_template.load(anchor_landmark.loc)
 		plat = locate(/obj/structure/elevator_platform) in anchor_landmark.loc
 		// create the shaft datum
 		shaft_datums += new /datum/hangar_shaft(shaft_name, plat.master_datum)
 		// give the elevator a first floor
 		plat.master_datum.add_floor_landmarks(anchor_landmark, shaft_li - anchor_landmark)
+	AUXCPU_PHASE_END // [SOLARIS-ADD] - SHIP_LOAD_LAG: outpost fully loaded
 
 /datum/overmap/outpost/pre_docked(datum/overmap/ship/controlled/dock_requester, override_dock)
 	var/obj/docking_port/stationary/h_dock

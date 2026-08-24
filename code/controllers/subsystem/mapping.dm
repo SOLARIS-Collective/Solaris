@@ -498,12 +498,14 @@ SUBSYSTEM_DEF(mapping)
 	var/list/allocation_coords // PENTEST START
 
 	// If a zlevel_role is specified, try to allocate on a zlevel with that role first
+	AUXCPU_PHASE("vlevel_alloc") // [SOLARIS-ADD] - SHIP_LOAD_LAG
 	if(zlevel_role)
 		allocation_coords = get_free_level_by_role(zlevel_role, allocation_type, width, height, allocation_jump)
 
 	// If role-based allocation failed or wasn't specified, fall back to standard allocation
 	if(!allocation_coords)
 		allocation_coords = SSmapping.get_free_allocation(allocation_type, width, height, allocation_jump, zlevel_role) // PENTEST EDIT - Pass zlevel_role
-		// PENTEST END
+	// PENTEST END
+	AUXCPU_PHASE_END // [SOLARIS-ADD] - SHIP_LOAD_LAG
 
 	return new /datum/virtual_level(new_name, traits, mapzone, allocation_coords[1], allocation_coords[2], allocation_coords[1] + width, allocation_coords[2] + height, allocation_coords[3])

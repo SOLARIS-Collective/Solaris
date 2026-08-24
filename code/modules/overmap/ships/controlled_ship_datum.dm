@@ -383,6 +383,7 @@
 	return TRUE
 
 /datum/overmap/ship/controlled/start_dock(datum/overmap/to_dock, datum/docking_ticket/ticket)
+	AUXCPU_PHASE("dock_start") // [SOLARIS-ADD] - SHIP_LOAD_LAG
 	log_shuttle("[src] [REF(src)] DOCKING: STARTED REQUEST FOR [to_dock] AT [ticket.target_port]")
 	refresh_engines()
 	priority_announce("A vessel is beginning docking procedures. Completion in [dock_time/10] seconds.", "Docking Announcement", zlevel = shuttle_port.virtual_z())
@@ -391,8 +392,10 @@
 	shuttle_port.play_engine_sound(ticket.target_port, shuttle_port.landing_sound)
 
 /datum/overmap/ship/controlled/complete_dock(datum/overmap/dock_target, datum/docking_ticket/ticket)
+	AUXCPU_PHASE("dock_complete") // [SOLARIS-ADD] - SHIP_LOAD_LAG
 	shuttle_port.initiate_docking(ticket.target_port)
 	. = ..()
+	AUXCPU_PHASE_END // [SOLARIS-ADD] - SHIP_LOAD_LAG
 	log_shuttle("[src] [REF(src)] COMPLETE DOCK: FINISHED DOCKING TO [dock_target] AT [ticket.target_port]")
 
 /datum/overmap/ship/controlled/Undock(force = FALSE)

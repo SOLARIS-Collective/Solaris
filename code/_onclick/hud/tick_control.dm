@@ -57,6 +57,8 @@ GLOBAL_DATUM_INIT(cpu_recorder, /datum/cpu_recorder, new())
 		"corr" = tick_info.corrected_ticks[index],
 		"thr" = GLOB.corrective_cpu_threshold,
 		"glide" = GLOB.glide_size_multiplier,
+		// [SOLARIS] - SHIP_LOAD_LAG: phase label for freeze attribution
+		"ph" = GLOB.auxcpu_phase,
 	)
 	if((ticks_logged % RECORDER_SS_INTERVAL) == 0)
 		var/list/subsystems = list()

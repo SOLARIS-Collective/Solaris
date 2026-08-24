@@ -238,6 +238,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 			if (subsystem.flags & SS_NO_INIT || subsystem.initialized) //Don't init SSs with the correspondig flag or if they already are initialzized
 				continue
 			current_initializing_subsystem = subsystem
+			AUXCPU_PHASE("ss:[subsystem.name]") // [SOLARIS-ADD] - SHIP_LOAD_LAG: attribute boot ticks to the initializing subsystem
 			subsystem.Initialize(REALTIMEOFDAY)
 			CHECK_TICK
 		current_initializing_subsystem = null
@@ -266,6 +267,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	if(sleep_offline_after_initializations && CONFIG_GET(flag/resume_after_initializations))
 		world.sleep_offline = FALSE
 	initializations_finished_with_no_players_logged_in = initialized_tod < REALTIMEOFDAY - 10
+	AUXCPU_PHASE_END // [SOLARIS-ADD] - SHIP_LOAD_LAG: boot done, stop labeling ticks
 
 
 /datum/controller/master/proc/SetRunLevel(new_runlevel)

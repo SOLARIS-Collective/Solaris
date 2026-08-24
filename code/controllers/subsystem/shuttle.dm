@@ -331,6 +331,7 @@ SUBSYSTEM_DEF(shuttle)
 /datum/controller/subsystem/shuttle/proc/load_template(datum/map_template/shuttle/template, datum/overmap/ship/controlled/parent, spawn_transit = TRUE)
 	. = FALSE
 	var/loading_mapzone = SSmapping.create_map_zone("Shuttle Loading Zone")
+	AUXCPU_PHASE("lt_loading_zone") // [SOLARIS-ADD] - SHIP_LOAD_LAG
 	var/datum/virtual_level/loading_zone = SSmapping.create_virtual_level("[template.name] Loading Level", list(ZTRAIT_RESERVED = TRUE), loading_mapzone, template.width, template.height, ALLOCATION_FREE)
 
 	if(!loading_zone)
@@ -343,6 +344,7 @@ SUBSYSTEM_DEF(shuttle)
 		return
 
 	var/affected = template.get_affected_turfs(BL, centered=FALSE)
+	AUXCPU_PHASE("lt_port_scan") // [SOLARIS-ADD] - SHIP_LOAD_LAG
 	var/obj/docking_port/mobile/new_shuttle
 	var/list/stationary_ports = list()
 	// Search the turfs for docking ports
@@ -375,7 +377,9 @@ SUBSYSTEM_DEF(shuttle)
 	for(var/obj/docking_port/stationary/S in stationary_ports)
 		S.owner_ship = new_shuttle
 		S.load_roundstart()
+	AUXCPU_PHASE("lt_docks_subshuttles") // [SOLARIS-ADD] - SHIP_LOAD_LAG
 
+	AUXCPU_PHASE("lt_transit") // [SOLARIS-ADD] - SHIP_LOAD_LAG
 	var/obj/docking_port/mobile/transit_dock = generate_transit_dock(new_shuttle, template.tranist_x_offset, template.tranist_y_offset)
 
 	if(!transit_dock)
@@ -387,9 +391,11 @@ SUBSYSTEM_DEF(shuttle)
 		qdel(src, TRUE)
 		CRASH("Template shuttle [new_shuttle] cannot dock at [transit_dock] ([result]).")
 
+	AUXCPU_PHASE("lt_flight") // [SOLARIS-ADD] - SHIP_LOAD_LAG
 	new_shuttle.initiate_docking(transit_dock)
 	new_shuttle.linkup(transit_dock, parent)
 
+	AUXCPU_PHASE("lt_cleanup") // [SOLARIS-ADD] - SHIP_LOAD_LAG
 	var/area/fill_area = GLOB.areas_by_type[/area/space]
 	loading_zone.fill_in(turf_type = /turf/open/space/transit/south, area_override = fill_area ? fill_area : /area/space)
 	QDEL_NULL(loading_zone)
@@ -398,6 +404,7 @@ SUBSYSTEM_DEF(shuttle)
 	template.post_load(new_shuttle)
 	new_shuttle.register()
 	new_shuttle.reset_air()
+	AUXCPU_PHASE_END // [SOLARIS-ADD] - SHIP_LOAD_LAG
 
 	return new_shuttle
 

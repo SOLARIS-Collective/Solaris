@@ -174,6 +174,7 @@
 // Do not call except via load() above.
 /datum/parsed_map/proc/_load_impl(x_offset = 1, y_offset = 1, z_offset = world.maxz + 1, cropMap = FALSE, no_changeturf = FALSE, x_lower = -INFINITY, x_upper = INFINITY, y_lower = -INFINITY, y_upper = INFINITY, placeOnTop = FALSE, timeout = null)
 	PRIVATE_PROC(TRUE)
+	AUXCPU_PHASE("tpl_buildcache") // [SOLARIS-ADD] - SHIP_LOAD_LAG
 	var/list/modelCache = build_cache(no_changeturf)
 	var/space_key = modelCache[SPACE_KEY]
 	var/list/bounds
@@ -187,6 +188,7 @@
 	// Tell ss atoms that we're doing maploading
 	// We'll have to account for this in the following tick_checks so it doesn't overflow
 	SSatoms.map_loader_begin()
+	AUXCPU_PHASE("tpl_grid") // [SOLARIS-ADD] - SHIP_LOAD_LAG
 
 	//used for sending the maxx and maxy expanded global signals at the end of this proc
 	var/has_expanded_world_maxx = FALSE
@@ -354,11 +356,16 @@
 
 	// And we are done lads, call it off
 	SSatoms.map_loader_stop()
+	AUXCPU_PHASE("tpl_afterchange") // [SOLARIS-ADD] - SHIP_LOAD_LAG
 	if(!no_changeturf)
 		for(var/t in block(locate(bounds[MAP_MINX], bounds[MAP_MINY], bounds[MAP_MINZ]), locate(bounds[MAP_MAXX], bounds[MAP_MAXY], bounds[MAP_MAXZ])))
 			var/turf/T = t
 			//we do this after we load everything in. if we don't; we'll have weird atmos bugs regarding atmos adjacent turfs
 			T.AfterChange(CHANGETURF_IGNORE_AIR)
+			// [SOLARIS-ADD] - SHIP_LOAD_LAG - отдаём тик между AfterChange, иначе крупный шаблон
+			// (корабль игрока) кладёт весь хвост в один непрерывный кусок тика = мега-тик.
+			CHECK_TICK
+			// [/SOLARIS-ADD]
 
 	#ifdef TESTING
 	if(turfsSkipped)
@@ -371,6 +378,7 @@
 	if(did_expand)
 		world.refresh_atmos_grid()
 
+	AUXCPU_PHASE_END // [SOLARIS-ADD] - SHIP_LOAD_LAG: parsed_map загружен
 	return TRUE
 
 GLOBAL_LIST_EMPTY(map_model_default)

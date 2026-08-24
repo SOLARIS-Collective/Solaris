@@ -609,8 +609,10 @@ GLOBAL_DATUM(tick_info, /datum/tick_holder)
 		hub_password = "SORRYNOPASSWORD"
 
 /world/proc/incrementMaxZ()
+	AUXCPU_PHASE("incrementMaxZ") // [SOLARIS-ADD] - SHIP_LOAD_LAG
 	maxz++
 	world.refresh_atmos_grid()
+	AUXCPU_PHASE_END // [SOLARIS-ADD] - SHIP_LOAD_LAG
 
 /world/proc/change_fps(new_value = 20)
 	if(new_value <= 0)

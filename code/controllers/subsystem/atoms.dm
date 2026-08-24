@@ -14,10 +14,12 @@ SUBSYSTEM_DEF(atoms)
 	// ^ if this is not null after InitializeAtoms() is done, this list will fill up with every atom in the world initialized afterwards!
 
 /datum/controller/subsystem/atoms/Initialize(timeofday)
+	AUXCPU_PHASE("ss_atoms_init") // [SOLARIS-ADD] - SHIP_LOAD_LAG
 	GLOB.fire_overlay.appearance_flags = RESET_COLOR
 	setupGenetics() //to set the mutations' sequence
 	initialized = INITIALIZATION_INNEW_MAPLOAD
 	InitializeAtoms()
+	AUXCPU_PHASE_END // [SOLARIS-ADD] - SHIP_LOAD_LAG
 	return ..()
 
 /datum/controller/subsystem/atoms/proc/InitializeAtoms(list/atoms, list/atoms_to_return = null)

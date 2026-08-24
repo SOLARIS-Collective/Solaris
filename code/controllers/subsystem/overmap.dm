@@ -621,6 +621,7 @@ SUBSYSTEM_DEF(overmap)
  */
 /datum/overmap_star_system/proc/create_map()
 #ifndef NOOVERMAP
+	AUXCPU_PHASE("create_map") // [SOLARIS-ADD] - SHIP_LOAD_LAG
 	// [MANKIND-EDIT] - OPTIMIZE_OVERMAP_LAZY_GEN - Ленивая генерация
 	// Создаём dynamic-миры и события ��е сразу, а распределённо в fire()
 	// по несколько за тик. Это разгружает инициализацию раунда.
@@ -643,6 +644,7 @@ SUBSYSTEM_DEF(overmap)
 
 	if(has_outpost)
 		spawn_outpost()
+	AUXCPU_PHASE_END // [SOLARIS-ADD] - SHIP_LOAD_LAG
 
 /**
  * VERY Simple random generation for overmap events, spawns the event in a random turf and sometimes spreads it out similar to ores
@@ -754,6 +756,7 @@ SUBSYSTEM_DEF(overmap)
  * Creates a single outpost somewhere near the center of the system.
  */
 /datum/overmap_star_system/proc/spawn_outpost()
+	AUXCPU_PHASE("spawn_outpost") // [SOLARIS-ADD] - SHIP_LOAD_LAG
 	var/list/location = get_unused_overmap_square_in_radius(rand(4, round(size/5)))
 
 	if(fexists(OUTPOST_OVERRIDE_FILEPATH))
@@ -782,6 +785,7 @@ SUBSYSTEM_DEF(overmap)
 				continue
 			if(nearby_event.interference_power)
 				qdel(nearby_event)
+	AUXCPU_PHASE_END // [SOLARIS-ADD] - SHIP_LOAD_LAG
 	return
 
 /**

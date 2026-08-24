@@ -30,6 +30,9 @@
 /// Whether the auxcpu library was successfully loaded and hooked this round.
 GLOBAL_VAR_INIT(auxcpu_loaded, FALSE)
 
+// [SOLARIS-ADD] - Current boot/load phase label for auxcp_rec.log attribution
+GLOBAL_VAR_INIT(auxcpu_phase, "")
+
 #ifdef OPENDREAM
 
 // OpenDream cannot load byondapi libraries, always use approximations.

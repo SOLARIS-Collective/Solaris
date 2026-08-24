@@ -109,13 +109,17 @@ SUBSYSTEM_DEF(air)
 	return ..()
 
 /datum/controller/subsystem/air/Initialize(timeofday)
+	AUXCPU_PHASE("ssair_allturfs") // [SOLARIS-ADD] - SHIP_LOAD_LAG
 	map_loading = FALSE
 	setup_allturfs()
+	AUXCPU_PHASE("ssair_machinery") // [SOLARIS-ADD] - SHIP_LOAD_LAG
 	setup_atmos_machinery()
+	AUXCPU_PHASE("ssair_pipes") // [SOLARIS-ADD] - SHIP_LOAD_LAG
 	setup_pipenets()
 	gas_reactions = init_gas_reactions()
 	auxtools_update_reactions()
 	gas_data = GLOB.gas_data
+	AUXCPU_PHASE_END // [SOLARIS-ADD] - SHIP_LOAD_LAG
 	return ..()
 
 /datum/controller/subsystem/air/proc/extools_update_ssair()

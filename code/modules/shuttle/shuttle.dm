@@ -562,6 +562,9 @@
 	for(var/place in shuttle_areas)
 		var/area/area = place
 		area.connect_to_shuttle(src, dock)
+		// [SOLARIS-ADD] - SHIP_LOAD_LAG - обходим тысячи атомов корабля; отдаём тик на каждую область
+		CHECK_TICK
+		// [/SOLARIS-ADD]
 		for(var/each in place)
 			var/atom/atom = each
 			atom.connect_to_shuttle(src, dock)

@@ -61,6 +61,9 @@ SUBSYSTEM_DEF(machines)
 			var/datum/powernet/NewPN = new()
 			NewPN.add_cable(PC)
 			propagate_network(PC,PC.powernet)
+		// [SOLARIS-ADD] - SHIP_LOAD_LAG - propagate_network рекурсивно идёт по сети, дробим по кабелям
+		CHECK_TICK
+		// [/SOLARIS-ADD]
 
 /datum/controller/subsystem/machines/Recover()
 	if (istype(SSmachines.processing))
