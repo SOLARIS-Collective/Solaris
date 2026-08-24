@@ -71,7 +71,8 @@
 
 /obj/item/mod/module/shield/Destroy()
 	. = ..()
-	UnregisterSignal(device,COMSIG_MOD_SHIELD_DESTROYED)
+	if(!isnull(device))
+		UnregisterSignal(device,COMSIG_MOD_SHIELD_DESTROYED)
 
 
 /obj/item/mod/module/shield/on_activation()
