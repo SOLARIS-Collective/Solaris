@@ -16,6 +16,8 @@
 
 
 /datum/map_template/outpost/hangar
+	// [SOLARIS-ADD] - SHIP_LOAD_LAG - Тут итак ангары а под ними космос
+	should_place_on_top = TRUE
 	var/dock_width
 	var/dock_height
 
