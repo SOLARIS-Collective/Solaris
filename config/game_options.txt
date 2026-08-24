@@ -568,3 +568,9 @@ CORRECTIVE_CPU_TARGET 85
 ## BYOND build. Only enable after verifying the shipped binary works on your host.
 #LOAD_AUXCPU_LIBRARY 0
 LOAD_AUXCPU_LIBRARY 1
+
+## Label auxcp_rec.log rows with the current boot/load phase name ("ph" field):
+## tpl_air_update, mv_takeoff, ss_atoms_init, ... so a freeze tick attributes to an exact stage.
+## OFF by default: labels are inert until enabled, zero cost. Recording itself is always manual -
+## toggle it with the REC button in the tick control UI. Uncomment to enable labels:
+#AUXCP_PHASE_LABELS

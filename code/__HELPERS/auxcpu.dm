@@ -33,6 +33,10 @@ GLOBAL_VAR_INIT(auxcpu_loaded, FALSE)
 // [SOLARIS-ADD] - Current boot/load phase label for auxcp_rec.log attribution
 GLOBAL_VAR_INIT(auxcpu_phase, "")
 
+// [SOLARIS-ADD] - Runtime gate for phase labels; driven by the AUXCP_PHASE_LABELS game option.
+// Off by default: AUXCPU_PHASE macros do nothing until the flag is set in config.
+GLOBAL_VAR_INIT(auxcp_phases_enabled, FALSE)
+
 #ifdef OPENDREAM
 
 // OpenDream cannot load byondapi libraries, always use approximations.
