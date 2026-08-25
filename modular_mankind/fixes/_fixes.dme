@@ -19,7 +19,6 @@
 #include "code/magboots.dm"
 #include "code/medicine_surgery.dm"
 #include "code/mobs_construct.dm"
-#include "code/newscaster.dm"
 #include "code/plants_data_disk.dm"
 #include "code/railings.dm"
 #include "code/ramzi_mob.dm"

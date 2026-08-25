@@ -1,4 +1,4 @@
-/* [MANKIND-REMOVE] - Перенесено в modular_mankind\fixes\code\newscaster.dm
+/* [MANKIND-REMOVE] - Перенесено в modular_mankind\newscaster
 GLOBAL_DATUM_INIT(news_network, /datum/newscaster/feed_network, new)
 GLOBAL_LIST_EMPTY(allCasters)
 

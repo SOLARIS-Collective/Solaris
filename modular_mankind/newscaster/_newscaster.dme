@@ -1,0 +1,10 @@
+#ifndef MODPACK_MANKIND_NEWSCASTER
+#define MODPACK_MANKIND_NEWSCASTER
+
+#include "_newscaster.dm"
+
+#include "code/newscaster_data.dm"
+#include "code/newscaster_machine.dm"
+#include "code/newspaper.dm"
+
+#endif
