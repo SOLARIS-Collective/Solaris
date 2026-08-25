@@ -123,10 +123,14 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/newscaster/security_unit, 30)
 	news_alert(channel, update_alert)
 
 /obj/machinery/newscaster/proc/create_virtual_channels()
+	var/list/to_remove = list()
 	for(var/datum/newscaster/feed_channel/channel in GLOB.news_network.network_channels)
 		if(channel.author == "Виртуальный канал")
-			GLOB.news_network.network_channels -= channel
-			qdel(channel)
+			to_remove += channel
+
+	for(var/datum/newscaster/feed_channel/channel in to_remove)
+		GLOB.news_network.network_channels -= channel
+		qdel(channel)
 
 	if(GLOB.news_network.network_channels.len < 4)
 		var/list/templates = list(
@@ -137,9 +141,8 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/newscaster/security_unit, 30)
 		)
 
 		var/channels_to_add = min(4 - GLOB.news_network.network_channels.len, templates.len)
-		for(var/i = 1 to channels_to_add)
-			var/list/template = pick(templates)
-			templates -= template
+		for(var/i in 1 to channels_to_add)
+			var/list/template = templates[i]
 
 			var/datum/newscaster/feed_channel/virtual_channel = new /datum/newscaster/feed_channel
 			virtual_channel.channel_name = template["channel"]
@@ -298,8 +301,23 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/newscaster/security_unit, 30)
 			var/crime_desc = input(usr, "Опишите преступление:", "Преступление") as message
 			if(!crime_desc)
 				crime_desc = "Неизвестное преступление"
-			GLOB.news_network.submitWanted(criminal_name, crime_desc, scanned_user, null, 0, 1)
-			to_chat(usr, span_notice("Объявлен розыск: [criminal_name]"))
+			var/datum/picture/picture_to_use = null
+			var/attach_photo = alert(usr, "Прикрепить фото преступника?", "Розыск", "Да", "Нет") == "Да"
+			if(attach_photo && ishuman(usr))
+				var/mob/living/carbon/human/H = usr
+				var/obj/item/held = H.get_active_held_item()
+				if(istype(held, /obj/item/photo))
+					var/obj/item/photo/P = held
+					picture_to_use = P.picture
+				else
+					held = H.get_inactive_held_item()
+					if(istype(held, /obj/item/photo))
+						var/obj/item/photo/P = held
+						picture_to_use = P.picture
+					else
+						to_chat(usr, span_warning("В руке нет фото. Розыск будет без фотографии."))
+			GLOB.news_network.submitWanted(criminal_name, crime_desc, scanned_user, picture_to_use, 0, 1)
+			to_chat(usr, span_notice("Объявлен розыск: [criminal_name][picture_to_use ? " (с фото)" : ""]"))
 			. = TRUE
 
 		if("clear_wanted")

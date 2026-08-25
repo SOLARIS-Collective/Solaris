@@ -76,6 +76,7 @@
 @include meta.load-css('./interfaces/Fabricator.scss');
 @include meta.load-css('./interfaces/Emojipedia.scss');
 @include meta.load-css('./interfaces/NtosNotepad.scss');
+@include meta.load-css('./interfaces/Newspaper.scss');
 
 // Layouts
 @include meta.load-css('./layouts/Layout.scss');
@@ -87,9 +88,9 @@
 @include meta.load-css('highlight.js/scss/github-dark.scss');
 
 // NT Theme
-.Layout__content {
-  background-image: url('../assets/bg-pentest.png');
-  background-size: 70%;
-  background-position: center;
-  background-repeat: no-repeat;
-}
+// .Layout__content {
+//   background-image: url('../assets/bg-pentest.png');
+//   background-size: 70%;
+//   background-position: center;
+//   background-repeat: no-repeat;
+// }

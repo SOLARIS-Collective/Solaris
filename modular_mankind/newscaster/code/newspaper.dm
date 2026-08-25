@@ -29,6 +29,17 @@
 	for(var/datum/newscaster/feed_channel/iterated_feed_channel in GLOB.news_network.network_channels)
 		news_content += iterated_feed_channel
 
+	// Sort by channel_ID for stable page order
+	var/content_len = news_content.len
+	for(var/i in 1 to content_len - 1)
+		for(var/j in i + 1 to content_len)
+			var/datum/newscaster/feed_channel/a = news_content[i]
+			var/datum/newscaster/feed_channel/b = news_content[j]
+			if(a.channel_ID > b.channel_ID)
+				var/temp = news_content[i]
+				news_content[i] = news_content[j]
+				news_content[j] = temp
+
 	for(var/datum/newscaster/wanted_message/wanted in GLOB.news_network.wanted_issues)
 		if(wanted.active)
 			wantedAuthor = wanted.scannedUser
@@ -36,7 +47,6 @@
 			wantedBody = wanted.body
 			if(wanted.img)
 				wantedPhoto = wanted.img
-			break
 
 	if(!wantedCriminal && GLOB.news_network.wanted_issue.active)
 		wantedAuthor = GLOB.news_network.wanted_issue.scannedUser
@@ -75,6 +85,7 @@
 		channels_list += list(list(
 			"name" = channel.channel_name,
 			"author" = channel.author,
+			"desc" = channel.channel_desc,
 			"messages" = message_count
 		))
 	data["channels"] = channels_list
@@ -88,6 +99,7 @@
 			if(current_channel)
 				channel_data["name"] = current_channel.channel_name
 				channel_data["author"] = current_channel.author
+				channel_data["desc"] = current_channel.channel_desc
 				channel_data["censored"] = current_channel.censored
 
 				for(var/datum/newscaster/feed_message/message in current_channel.messages)
@@ -123,6 +135,17 @@
 				curr_page--
 				playsound(loc, "pageturn", 50, TRUE)
 				. = TRUE
+		if("set_page")
+			var/display_page = text2num(params["page"])
+			if(!isnull(display_page))
+				var/target_page = display_page - 1
+				var/max_page = pages + 2
+				if(wantedCriminal)
+					max_page++
+				if(target_page >= 0 && target_page <= max_page)
+					curr_page = target_page
+					playsound(loc, "pageturn", 50, TRUE)
+					. = TRUE
 
 /obj/item/newspaper/attackby(obj/item/W, mob/living/user, params)
 	if(istype(W, /obj/item/pen))

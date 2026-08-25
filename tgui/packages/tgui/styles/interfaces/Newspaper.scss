@@ -1,0 +1,268 @@
+/* Newspaper — vintage newspaper styling */
+
+.Newspaper {
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: #14100b;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #7a6238;
+    border: 1px solid #4a3a22;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #a8906c;
+  }
+}
+
+/* Running header on inner pages */
+.Newspaper__Running {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-bottom: 4px;
+  margin-bottom: 12px;
+  border-bottom: 3px double #7a6238;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 11px;
+  color: #9c8560;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+.Newspaper__RunningPage {
+  font-style: italic;
+  text-transform: none;
+  letter-spacing: 1px;
+}
+
+/* Ornamental divider: line — mark — line */
+.Newspaper__Ornament {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.Newspaper__OrnamentLine {
+  flex: 1 1 auto;
+  height: 1px;
+  background-color: #7a6238;
+}
+
+.Newspaper__OrnamentMark {
+  color: #b8985e;
+  font-size: 11px;
+  letter-spacing: 4px;
+  white-space: nowrap;
+}
+
+/* Section title flanked by ornament lines */
+.Newspaper__SectionTitle {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  white-space: nowrap;
+}
+
+/* Framed box with vintage double border */
+.Newspaper__Box {
+  border: 3px double #7a6238;
+  background-color: #161009;
+}
+
+/* Article body text */
+.Newspaper__Body {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #e0cda6;
+  text-align: justify;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Drop cap on the first article of a channel page */
+.Newspaper__Dropcap::first-letter {
+  font-size: 260%;
+  line-height: 0.8;
+  float: left;
+  padding: 4px 7px 0 0;
+  font-weight: bold;
+  color: #eeb255;
+}
+
+/* Italic byline under articles */
+.Newspaper__Byline {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 11px;
+  font-style: italic;
+  color: #9c8560;
+}
+
+/* Table of contents rows */
+.Newspaper__TocRow {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 3px;
+}
+
+.Newspaper__TocRow--clickable {
+  cursor: pointer;
+  padding: 1px 2px;
+  margin: -1px -2px 3px;
+  border-radius: 2px;
+}
+
+.Newspaper__TocRow--clickable:hover {
+  background-color: rgba(238, 178, 85, 0.1);
+}
+
+.Newspaper__TocRow--clickable:hover .Newspaper__TocName {
+  color: #eeb255;
+}
+
+.Newspaper__TocName {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 12px;
+  color: #e0cda6;
+}
+
+.Newspaper__TocPage {
+  flex: 0 0 auto;
+  margin-left: 6px;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 12px;
+  color: #a8906c;
+}
+
+/* Sensation article titles */
+.Newspaper__ArticleTitle {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 13px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  line-height: 1.35;
+  color: #f0a050;
+  padding-bottom: 4px;
+  margin-bottom: 5px;
+  border-bottom: 3px double #7a6238;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.Newspaper__ArticleNum {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 12px;
+  color: #b8985e;
+  margin-right: 4px;
+}
+
+/* Multi-column layout for classifieds */
+.Newspaper__Columns {
+  column-count: 2;
+  column-gap: 16px;
+  column-rule: 1px solid #4a3a22;
+}
+
+.Newspaper__AdItem {
+  break-inside: avoid;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+}
+
+/* Advertisement block */
+.Newspaper__Ad {
+  border: 1px dashed #7a6238;
+  background-color: #14100b;
+  padding: 7px 9px;
+  margin-top: 12px;
+}
+
+.Newspaper__AdLabel {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 9px;
+  color: #9c8560;
+  letter-spacing: 5px;
+  text-align: center;
+  margin-bottom: 3px;
+}
+
+.Newspaper__AdText {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 12px;
+  font-style: italic;
+  color: #d8c49e;
+  line-height: 1.45;
+  text-align: center;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.Newspaper__AdPhone {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 11px;
+  color: #a8906c;
+  text-align: center;
+  margin-top: 3px;
+}
+
+/* Handwritten margin note */
+.Newspaper__Scribble {
+  border: 1px dashed #a8906c;
+  background-color: #14100b;
+  padding: 6px 8px;
+  margin-top: 12px;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 11px;
+  font-style: italic;
+  color: #a8906c;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+/* End of article mark */
+.Newspaper__EndMark {
+  color: #7a6238;
+  font-size: 11px;
+  letter-spacing: 8px;
+  white-space: nowrap;
+}
+
+/* Wanted page layout */
+.Newspaper__WantedRow {
+  display: flex;
+  gap: 12px;
+}
+
+.Newspaper__WantedInfo {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* Navigation buttons */
+.Newspaper__NavBtn {
+  font-family: Georgia, 'Times New Roman', serif !important;
+  background-color: #241c12 !important;
+  border: 1px solid #7a6238 !important;
+  color: #e0cda6 !important;
+  font-size: 12px !important;
+}
+
+.Newspaper__NavBtn:hover {
+  background-color: #3a2d1a !important;
+  color: #f2e3c2 !important;
+}
