@@ -35,7 +35,7 @@
 	if(bounds)
 		width = bounds[MAP_MAXX] // Assumes all templates are rectangular, have a single Z level, and begin at 1,1,1
 		height = bounds[MAP_MAXY]
-		if(cache)
+		if(cache || keep_cached_map)
 			cached_map = parsed
 	return bounds
 
