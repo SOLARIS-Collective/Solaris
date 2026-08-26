@@ -19,6 +19,7 @@ SUBSYSTEM_DEF(mapping)
 	var/list/mission_pois = list()
 
 	var/list/ship_purchase_list
+	var/list/all_ship_purchase_list
 
 	var/list/shuttle_templates = list()
 	var/list/shelter_templates = list()
@@ -145,6 +146,7 @@ SUBSYSTEM_DEF(mapping)
 	preloadRuinTemplates()
 	preloadShuttleTemplates()
 	load_ship_templates()
+	apply_ship_rotation()
 	preloadShelterTemplates()
 	preloadOutpostTemplates()
 
@@ -314,6 +316,34 @@ SUBSYSTEM_DEF(mapping)
 		map_templates[S.file_name] = S
 #undef CHECK_STRING_EXISTS
 #undef CHECK_LIST_EXISTS
+
+	all_ship_purchase_list = ship_purchase_list.Copy()
+
+/datum/controller/subsystem/mapping/proc/apply_ship_rotation()
+	if(!GLOB.ship_rotation_enabled)
+		return
+	if(!all_ship_purchase_list || !length(all_ship_purchase_list))
+		return
+
+	var/list/ships_by_faction = list()
+	for(var/name in all_ship_purchase_list)
+		var/datum/map_template/shuttle/T = all_ship_purchase_list[name]
+		var/faction_name = T.faction?.name || "Unknown"
+		if(!ships_by_faction[faction_name])
+			ships_by_faction[faction_name] = list()
+		ships_by_faction[faction_name][T.name] = T
+
+	ship_purchase_list = list()
+	for(var/faction_name in ships_by_faction)
+		var/list/faction_ships = ships_by_faction[faction_name]
+		var/half_count = max(1, round(length(faction_ships) / 2))
+		var/list/keys = faction_ships.Copy()
+		for(var/i in 1 to half_count)
+			var/key = pick(keys)
+			ship_purchase_list[key] = faction_ships[key]
+			keys -= key
+
+	log_world("Ротация кораблей применена: [length(ship_purchase_list)] кораблей из [length(all_ship_purchase_list)] доступных.")
 
 /datum/controller/subsystem/mapping/proc/preloadShelterTemplates()
 	for(var/item in subtypesof(/datum/map_template/shelter))

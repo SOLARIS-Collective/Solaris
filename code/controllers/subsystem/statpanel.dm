@@ -47,7 +47,8 @@ SUBSYSTEM_DEF(statpanels)
 			"Internal Round Timer: [SSticker.round_start_timeofday ? ROUND_TIME() : "The round hasn't started yet!"]",
 			"\n",
 			"Playing/Connected: [get_active_player_count()]/[length(GLOB.clients)]",
-			"Crew Percentage/Ship Locking Cap: [SSovermap.ship_crew_percentage()]%/[SSovermap.ship_locking_percentage()]%"
+			"Crew Percentage/Ship Locking Cap: [SSovermap.ship_crew_percentage()]%/[SSovermap.ship_locking_percentage()]%",
+			"Ротация кораблей: [GLOB.ship_rotation_enabled ? "ВКЛ" : "ВЫКЛ"]"
 		)
 
 		if(SSshuttle.jump_mode != BS_JUMP_IDLE)

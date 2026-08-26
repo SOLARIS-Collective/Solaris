@@ -446,6 +446,13 @@
 	if(.)
 		GLOB.corrective_cpu_target = config_entry_value
 
+/datum/config_entry/flag/ship_rotation
+
+/datum/config_entry/flag/ship_rotation/ValidateAndSet(str_val)
+	. = ..()
+	if(.)
+		GLOB.ship_rotation_enabled = config_entry_value
+
 /datum/config_entry/flag/load_auxcpu_library	//opt-in gate: load the auxcpu byondapi library (.dll/.so) for raw cpu readings
 
 /datum/config_entry/flag/auxcp_phase_labels	//opt-in gate: label auxcp_rec.log rows with boot/load phase names ("ph" field). Recording stays manual via REC.
