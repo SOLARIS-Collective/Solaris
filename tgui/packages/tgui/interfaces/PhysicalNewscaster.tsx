@@ -26,7 +26,7 @@ export const PhysicalNewscaster = (props, context) => {
             <LabeledList.Item label="Режим безопасности">
               {security_mode ? 'Да' : 'Нет'}
             </LabeledList.Item>
-            <LabeledList.Item label="Бумага">{paper || 0}</LabeledList.Item>
+            <LabeledList.Item label="Бумага">{paper}</LabeledList.Item>
           </LabeledList>
 
           <Section title="Каналы">
@@ -232,7 +232,7 @@ export const PhysicalNewscaster = (props, context) => {
                       <Box italic color={w.active ? 'white' : 'grey'}>
                         Опубликовано: {w.author}
                       </Box>
-                      {security_mode && w.active && (
+                      {security_mode && w.active ? (
                         <Button
                           icon="times"
                           color="red"
@@ -244,10 +244,10 @@ export const PhysicalNewscaster = (props, context) => {
                         >
                           Отменить этот розыск
                         </Button>
-                      )}
+                      ) : null}
                     </Box>
                   ))}
-                {(!wanted || !wanted.length) && <Box>Нет розысков</Box>}
+                {(!wanted || !wanted.length) ? <Box>Нет розысков</Box> : null}
               </>
             ) : (
               <Box>Выберите канал для просмотра новостей</Box>
@@ -260,7 +260,7 @@ export const PhysicalNewscaster = (props, context) => {
               disabled={!paper || paper <= 0}
               onClick={() => act('print_newspaper')}
             >
-              Печать газеты ({paper || 0})
+              Печать газеты ({paper})
             </Button>
             {security_mode ? (
               <>
