@@ -11,17 +11,12 @@
 
 // --- PRIVATE --- //
 
-// Для приватной сборки (ОМНИ доступ):
-// 1) git submodule update --init modular_solaris/_omni_access
-// 2) #define SOLARIS_GRID в code/_compile_options.dm - включает квадрантную
-//    сетку планет (своп инклудов в shiptest.dme на копии из _omni_access\code\overrides)
-// 3) Раскомментировать строку ниже:
-#define OMNI_ACCESS // Требуется ОМНИ доступ
-// Без SOLARIS_GRID приватный модуль собирается, но БЕЗ квадрантной сетки.
+// #define OMNI_ACCESS // Требуется ОМНИ доступ
+
 #ifdef OMNI_ACCESS
-	#include "_omni_access/__private.dme"
+	#include "_private/__private.dme"
 #else
-	#include "_public/__public.dme"
+	#include "_public/__public.dm"
 #endif
 
 // --- ICONS --- //

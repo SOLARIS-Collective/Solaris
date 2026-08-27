@@ -197,6 +197,7 @@
 /turf/open/floor/plating/ice/airless
 	initial_gas_mix = AIRLESS_ATMOS
 
+// modular_mankind/_storage_icons/icons/structures/snow.dmi
 /turf/open/floor/plating/snowed
 	name = "snowed-over plating"
 	desc = "A section of heated plating, helps keep the snow from stacking up too high."

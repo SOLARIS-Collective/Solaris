@@ -6,7 +6,6 @@ import { useBackend } from '../backend';
 import {
   Button,
   ByondUi,
-  Box,
   Icon,
   LabeledList,
   Section,
@@ -106,7 +105,7 @@ const SharedContent = (_props, context) => {
             >
               <AnimatedNumber value={shipInfo.sensor_range} />
             </ProgressBar>
-            <Box inline ml={1} mt={1}>
+            <Table.Cell>
               <Button
                 tooltip="Decrease Signal Length"
                 tooltipPosition="right"
@@ -126,7 +125,7 @@ const SharedContent = (_props, context) => {
                 // [/MANKIND-ADD] - subshuttle fix
                 onClick={() => act('sensor_increase')}
               />
-            </Box>
+            </Table.Cell>
           </LabeledList.Item>
           {shipInfo.mass && (
             <LabeledList.Item label="Mass">

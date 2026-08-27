@@ -50,6 +50,7 @@
 #include "code\__DEFINES\clothing.dm"
 #include "code\__DEFINES\colors.dm"
 #include "code\__DEFINES\combat.dm"
+#include "code\__DEFINES\~modular_mankind\combat_events.dm"
 #include "code\__DEFINES\configuration.dm"
 #include "code\__DEFINES\construction.dm"
 #include "code\__DEFINES\contracts.dm"
@@ -3203,8 +3204,17 @@
 #include "code\modules\overmap\overmap_inspect.dm"
 #include "code\modules\overmap\overmap_token.dm"
 #include "code\modules\overmap\overmap_turf.dm"
-
-#ifndef SOLARIS_GRID
+#include "code\modules\overmap\transponder.dm"
+#include "code\modules\overmap\combat\auto_update_controller.dm"
+#include "code\modules\overmap\combat\combat_event_manager.dm"
+#include "code\modules\overmap\combat\combat_system.dm"
+#include "code\modules\overmap\combat\fire_control_console.dm"
+#include "code\modules\overmap\combat\ship_damage_system.dm"
+#include "code\modules\overmap\combat\ship_default_stats.dm"
+#include "code\modules\overmap\combat\ship_integration.dm"
+#include "code\modules\overmap\combat\ship_projectile.dm"
+#include "code\modules\overmap\combat\ship_weapon.dm"
+#include "code\modules\overmap\combat\status_bridge.dm"
 #include "code\modules\overmap\objects\dynamic_datum.dm"
 #else
 #include "modular_solaris\_omni_access\code\overrides\dynamic_datum.dm"

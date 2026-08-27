@@ -52,19 +52,81 @@
 	/// Множитель скорости перезарядки
 	var/recharge_multiplier = 1.0
 
+	/// Менеджер событий для оповещений
+	var/datum/combat_event_manager/event_manager
+
+	/// Время последнего процессинга
+	var/last_process_time = 0
+
+	/// Интервал процессинга (в тиках)
+	var/process_interval = 1 SECONDS
+
+	/// Приоритет процессинга (1-10, выше = чаще)
+	var/process_priority = 5
+
+	/// Счетчик процессингов для статистики
+	var/process_counter = 0
+
+	/// Флаг оптимизации процессинга
+	var/optimized_processing = TRUE
+
+	/// Кэшированные данные для оптимизации
+	var/list/cached_data = list()
+
 /datum/ship_combat_system/New(datum/overmap/ship/controlled/ship_ref)
 	. = ..()
 	ship = ship_ref
-	initialize_weapons()
+	// Задержка инициализации оружия, чтобы убедиться, что все пушки уже инициализированы
+	addtimer(CALLBACK(src, PROC_REF(initialize_weapons)), 2 SECONDS)
+	initialize_event_manager()
+	initialize_optimized_processing()
 	START_PROCESSING(SSprocessing, src)
 
 /datum/ship_combat_system/Destroy()
 	STOP_PROCESSING(SSprocessing, src)
+	cleanup_event_manager()
 	weapons.Cut()
 	target = null
 	control_console = null
 	active_projectiles.Cut()
+	cached_data.Cut()
 	return ..()
+
+/**
+ * Инициализация менеджера событий
+ */
+/datum/ship_combat_system/proc/initialize_event_manager()
+	if(!event_manager)
+		event_manager = new /datum/combat_event_manager(src)
+		LOG_SHIP_COMBAT("CombatSystem: Менеджер событий инициализирован для [ship?.name || "неизвестный корабль"]")
+
+/**
+ * Очистка менеджера событий
+ */
+/datum/ship_combat_system/proc/cleanup_event_manager()
+	if(event_manager)
+		QDEL_NULL(event_manager)
+
+/**
+ * Инициализация оптимизированного процессинга
+ */
+/datum/ship_combat_system/proc/initialize_optimized_processing()
+	last_process_time = world.time
+	process_counter = 0
+	cached_data = list(
+		"last_target_check" = 0,
+		"last_weapon_update" = 0,
+		"last_projectile_update" = 0
+	)
+
+	// Адаптивный интервал на основе приоритета
+	switch(process_priority)
+		if(1 to 3)
+			process_interval = 2 SECONDS
+		if(4 to 7)
+			process_interval = 1 SECONDS
+		if(8 to 10)
+			process_interval = 0.5 SECONDS
 
 /**
  * Инициализация вооружения корабля
@@ -108,6 +170,10 @@
 	target = target_ref
 	target_lock_status = SHIP_TARGET_LOCK_LOCKED
 	target_lock_start_time = world.time
+
+	// Уведомляем о захвате цели
+	if(event_manager)
+		event_manager.notify_target_acquired(target_ref)
 
 	return TRUE
 
@@ -229,7 +295,11 @@
 	// Запускаем оружие
 	weapon.fire()
 
-	// Оповещаем консоль
+	// Оповещаем через систему событий
+	if(event_manager)
+		event_manager.notify_projectile_launched(projectile, weapon)
+
+	// Оповещаем консоль (для обратной совместимости)
 	if(control_console)
 		control_console.on_weapon_fired(weapon, projectile, flight_time)
 
@@ -248,13 +318,18 @@
 	// Удаляем из активных снарядов
 	active_projectiles -= projectile
 
+	var/damage = 0
 	if(actual_hit && projectile.target && !QDELETED(projectile.target))
 		// Наносим урон цели
-		var/damage = projectile.weapon.damage * damage_multiplier
+		damage = projectile.weapon.damage * damage_multiplier
 		projectile.target.take_damage(damage, projectile.weapon.damage_type)
 
 		// Оповещаем о попадании
 		broadcast_hit_notification(projectile, damage)
+
+	// Оповещаем через систему событий
+	if(event_manager)
+		event_manager.notify_projectile_hit(projectile, actual_hit, damage)
 
 	// Уничтожаем снаряд
 	qdel(projectile)
@@ -292,28 +367,150 @@
 	return sqrt(dx*dx + dy*dy)
 
 /**
- * Основной процесс системы боя
+ * Основной процесс системы боя (оптимизированный)
  */
 /datum/ship_combat_system/process()
 	if(QDELETED(src) || QDELETED(ship))
 		return
 
-	// Обрабатываем захват цели
-	process_target_lock()
+	process_counter++
+	var/current_time = world.time
 
-	// Обновляем статус вооружения
+	// Проверка интервала процессинга
+	if(current_time - last_process_time < process_interval)
+		return
+
+	last_process_time = current_time
+
+	// Оптимизированная обработка с приоритетами
+	var/updates_made = FALSE
+
+	// ПРИОРИТЕТ 1: Критические изменения (захват цели, потеря цели)
+	if(process_target_lock_optimized())
+		updates_made = TRUE
+
+	// ПРИОРИТЕТ 2: Обновление вооружения (с кэшированием)
+	if(current_time - cached_data["last_weapon_update"] >= 0.5 SECONDS)
+		if(process_weapons_optimized())
+			updates_made = TRUE
+		cached_data["last_weapon_update"] = current_time
+
+	// ПРИОРИТЕТ 3: Обновление снарядов (с кэшированием)
+	if(current_time - cached_data["last_projectile_update"] >= 0.3 SECONDS)
+		if(process_projectiles_optimized())
+			updates_made = TRUE
+		cached_data["last_projectile_update"] = current_time
+
+	// ПРИОРИТЕТ 4: Валидация и очистка (редко)
+	if(process_counter % 10 == 0)
+		optimized_cleanup()
+
+	// Отправляем уведомления только при изменениях
+	if(updates_made && event_manager)
+		notify_system_update()
+
+/**
+ * Оптимизированная обработка захвата цели
+ */
+/datum/ship_combat_system/proc/process_target_lock_optimized()
+	var/old_status = target_lock_status
+	var/old_target = target
+
+	// Обрабатываем только если есть изменения
+	if(target_lock_status == SHIP_TARGET_LOCK_ACQUIRING)
+		process_target_lock()
+
+	// Проверяем изменения
+	if(target_lock_status != old_status || target != old_target)
+		if(event_manager)
+			if(target_lock_status == SHIP_TARGET_LOCK_LOCKED && old_status != SHIP_TARGET_LOCK_LOCKED)
+				event_manager.notify_target_acquired(target)
+			else if(target_lock_status == SHIP_TARGET_LOCK_LOST)
+				event_manager.notify_target_lost(old_target, "status_change")
+			else
+				event_manager.notify_target_lock_changed(old_status, target_lock_status)
+		return TRUE
+
+	return FALSE
+
+/**
+ * Оптимизированная обработка вооружения
+ */
+/datum/ship_combat_system/proc/process_weapons_optimized()
+	var/updates_made = FALSE
+
 	for(var/obj/machinery/ship_weapon/weapon in weapons)
 		if(QDELETED(weapon))
 			weapons -= weapon
+			updates_made = TRUE
 			continue
+
+		var/old_state = weapon.weapon_state
+		var/old_can_fire = weapon.can_fire()
+
 		weapon.process()
 
-	// Проверяем активные снаряды
+		// Проверяем изменения состояния
+		if(weapon.weapon_state != old_state || weapon.can_fire() != old_can_fire)
+			if(event_manager)
+				event_manager.notify_weapon_status_changed(weapon, old_state, weapon.weapon_state)
+			updates_made = TRUE
+
+	return updates_made
+
+/**
+ * Оптимизированная обработка снарядов
+ */
+/datum/ship_combat_system/proc/process_projectiles_optimized()
+	var/updates_made = FALSE
+
 	for(var/obj/projectile/ship_projectile/projectile in active_projectiles)
 		if(QDELETED(projectile))
 			active_projectiles -= projectile
 			continue
+
 		projectile.process_flight()
+
+		// Проверяем завершение полета
+		if(projectile.flight_progress >= 1.0 || QDELETED(projectile))
+			updates_made = TRUE
+
+	return updates_made
+
+/**
+ * Оптимизированная очистка ресурсов
+ */
+/datum/ship_combat_system/proc/optimized_cleanup()
+	// Очистка удаленных объектов
+	for(var/i = length(weapons) to 1 step -1)
+		if(QDELETED(weapons[i]))
+			weapons.Cut(i, i + 1)
+
+	for(var/i = length(active_projectiles) to 1 step -1)
+		if(QDELETED(active_projectiles[i]))
+			active_projectiles.Cut(i, i + 1)
+
+	// Валидация цели
+	if(target && QDELETED(target))
+		if(event_manager)
+			event_manager.notify_target_lost(target, "deleted")
+		target = null
+		target_lock_status = SHIP_TARGET_LOCK_NONE
+
+/**
+ * Уведомление об обновлении системы
+ */
+/datum/ship_combat_system/proc/notify_system_update()
+	if(!event_manager)
+		return
+
+	// Отправляем событие об общем обновлении системы
+	event_manager.emit_event(COMBAT_EVENT_COMBAT_STATUS_CHANGED, list(
+		"combat_active" = combat_active,
+		"target_lock_status" = target_lock_status,
+		"weapons_count" = length(weapons),
+		"projectiles_count" = length(active_projectiles)
+	))
 
 // ==================== ВСПОМОГАТЕЛЬНЫЕ ПРОЦЕДУРЫ ====================
 
