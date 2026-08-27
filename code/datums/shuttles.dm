@@ -8,11 +8,6 @@
 
 	var/list/movement_force // If set, overrides default movement_force on shuttle
 
-	// [SOLARIS-ADD] - SHIP_LOAD_LAG
-	/// Cache the parsed map so we don't re-parse .dmm files on every shuttle load.
-	keep_cached_map = TRUE
-	// [/SOLARIS-ADD]
-
 	/// This offsets where the ship is in the transit level.
 	var/tranist_x_offset
 	/// This offsets where the ship is in the transit level.

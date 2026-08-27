@@ -8,10 +8,6 @@
 	// (Interestingly, this is much less of a problem for ruins: PlaceOnTop ignores the top closed turf in the baseturfs stack
 	// of the new tile, meaning that placing plating on top of a wall doesn't result in a wall underneath the plating.)
 	should_place_on_top = FALSE
-	// [SOLARIS-ADD] - SHIP_LOAD_LAG
-	/// Cache parsed map for outposts - loaded once at roundstart, but hangars reuse the same pattern
-	keep_cached_map = TRUE
-	// [/SOLARIS-ADD]
 	var/outpost_name = "Fallback Outpost"
 	var/outpost_administrator = "Fallback Administration"
 
