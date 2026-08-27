@@ -543,6 +543,8 @@ GLOBAL_LIST_EMPTY(map_model_default)
 	// If we are currently editing a path or not
 	var/editing = FALSE
 	for(var/model_key in grid_models)
+		CHECK_TICK
+
 		// We're going to split models by newline
 		// This guarentees that each entry will be of interest to us
 		// Then we'll process them step by step
@@ -562,10 +564,6 @@ GLOBAL_LIST_EMPTY(map_model_default)
 		////////////////////////////////////////////////////////
 		// string representation of the path to init
 		for(var/line in lines)
-			// We do this here to avoid needing to check at each return statement
-			// No harm in it anyway
-			CHECK_TICK
-
 			if(!length(line))
 				continue
 
@@ -670,6 +668,8 @@ GLOBAL_LIST_EMPTY(map_model_default)
 	// Used here to remove the cost of needing to make a new list for each fields entry when it's set manually later
 	var/static/list/default_list = list(GLOB.map_model_default)
 	for(var/model_key in grid_models)
+		CHECK_TICK
+
 		//will contain all members (paths) in model (in our example : /turf/unsimulated/wall)
 		var/list/members = list()
 		//will contain lists filled with corresponding variables, if any (in our example : list(icon_state = "rock") and list())
@@ -713,7 +713,6 @@ GLOBAL_LIST_EMPTY(map_model_default)
 
 			//then fill the members_attributes list with the corresponding variables
 			members_attributes += fields
-			CHECK_TICK
 
 		//check and see if we can just skip this turf
 		//So you don't have to understand this horrid statement, we can do this if
