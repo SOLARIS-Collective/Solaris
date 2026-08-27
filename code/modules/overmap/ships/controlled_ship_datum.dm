@@ -8,10 +8,11 @@
 /datum/overmap/ship/controlled
 	token_type = /obj/overmap/rendered
 	dock_time = 10 SECONDS
+
+	// [MANKIND-EDIT] - OVERMAP SENSORS
+	// OLD CODE: interaction_options = list(INTERACTION_OVERMAP_DOCK, INTERACTION_OVERMAP_QUICKDOCK, INTERACTION_OVERMAP_HAIL, INTERACTION_OVERMAP_INTERDICTION)
 	interaction_options = list(INTERACTION_OVERMAP_DOCK, INTERACTION_OVERMAP_QUICKDOCK, INTERACTION_OVERMAP_INTERDICTION)
 	interaction_hail = list(INTERACTION_OVERMAP_HAIL)
-
-	// [MANKIND-ADD] - OVERMAP SENSORS
 	var/default_sensor_range = 4
 	// [/MANKIND-ADD]
 
@@ -53,7 +54,8 @@
 	/// List of mob refs indexed by their job instance
 	var/list/datum/weakref/job_holder_refs = list()
 
-	var/list/datum/mind/owner_candidates
+	/// Dictionary of all candidate minds associated with a list containing their real name and whether they are eligible
+	var/list/list/owner_candidates
 
 	/// The mob of the current ship owner. Tracking mostly uses this; that lets us pick up on logouts, which let us
 	/// determine if a player is switching to control of a mob with a different mind, who thus shouldn't be the ship owner.
@@ -72,6 +74,22 @@
 
 	/// an assoc list
 	var/ship_modules = list()
+
+	/// Whether this ship's transponder is broadcasting its identity.
+	/// When active the ship reveals its real name and faction to everyone; when inactive it stays anonymous.
+	var/transponder_active = FALSE
+
+	// [MANKIND-ADD] - STEALTH_ARPA - Классическая ARPA с реальными именами кораблей на дистанции.
+	/// If TRUE, this ship's helm uses the classic ARPA: real ship names at range, no label buttons.
+	var/omni_arpa = FALSE
+	// [/MANKIND-ADD]
+
+	// [MANKIND-ADD] - OPTIMIZE_ARPA_CACHE - Кэш данных ARPA для хелм-консоли.
+	/// Результат сканирования ARPA, обновляется раз в ARPA_REFRESH_INTERVAL тиков.
+	var/list/arpa_cache = list()
+	/// Тик последнего обновления arpa_cache.
+	var/last_arpa_refresh = 0
+	// [/MANKIND-ADD]
 
 	/// Short memo of the ship shown to new joins
 	var/memo = null
@@ -93,6 +111,11 @@
 	COOLDOWN_DECLARE(rename_prefix_cooldown)
 	/// [/MANKIND-ADD]
 
+	// [MANKIND-ADD] - MANKIND_OVERMAP_SCANNER - Личные заметки (метки) наблюдателя о кораблях.
+	/// Assoc list of WEAKREFs to ships this vessel has labelled. Value: list("label" = string). Stored on the observer, not the target.
+	var/list/known_ships = list()
+	// [/MANKIND-ADD]
+
 /datum/overmap/ship/controlled/Rename(new_name, force = FALSE)
 	var/old_name = name
 	var/full_name = "Error"
@@ -106,7 +129,7 @@
 		return FALSE
 
 	message_admins("[key_name_admin(usr)] renamed vessel '[old_name]' to '[full_name]'")
-	log_admin("[usr.ckey] ([usr.real_name]) on [key_name(src)] has renamed vessel '[old_name]' to '[full_name]'")
+	log_admin("[key_name(usr)] on [key_name(src)] has renamed vessel '[old_name]' to '[full_name]'")
 	SSblackbox.record_feedback("text", "ship_renames", 1, full_name)
 
 	real_name = new_name
@@ -153,6 +176,12 @@
 
 			refresh_engines()
 		default_sensor_range = source_template.def_sensor_range
+		// [MANKIND-ADD] - Сенсоры корабля при создании теперь получают максимальное значение, вместо 1.
+		sensor_range = default_sensor_range
+		// [/MANKIND-ADD]
+		// [MANKIND-ADD] - STEALTH_ARPA - Классическая ARPA с реальными именами кораблей на дистанции.
+		omni_arpa = source_template.omni_arpa
+		// [/MANKIND-ADD]
 		ship_account = new(name, source_template.starting_funds)
 		if(outpost_special_docking_perms)
 			outpost_special_dock_perms = TRUE
@@ -169,6 +198,7 @@
 #endif
 	SSovermap.controlled_ships += src
 	current_overmap.controlled_ships += src
+	AddComponent(/datum/component/overmap_proximity)
 
 	GLOB.ship_select_tgui?.update_static_data_for_all_viewers()
 	GLOB.crew_manifest_tgui?.update_static_data_for_all_viewers()
@@ -192,13 +222,128 @@
 /datum/overmap/ship/controlled/proc/get_faction()
 	return source_template.faction
 
+// [MANKIND-ADD] - TRANSPONDER_GOING_DARK - Транспондер: добровольное раскрытие идентичности корабля
+/// Re-renders the overmap token to reflect whether the transponder is broadcasting.
+/// When active the ship reveals its real name; otherwise it stays anonymous.
+/datum/overmap/ship/controlled/proc/refresh_transponder_state()
+	token_display_name = transponder_active ? name : "???"
+	alter_token_appearance()
+// [/MANKIND-ADD]
+
+/**
+ * Returns the display name and known flag used by ARPA/Radar for [target].
+ *
+ * Non-ship overmap objects (outposts, etc) are shown plainly. Ships are shown
+ * by their real name if broadcasting a transponder or allied faction, otherwise
+ * by a manual label, or as "Unknown Ship".
+ */
+/datum/overmap/ship/controlled/proc/get_known_ship_name(datum/overmap/ship/controlled/target)
+	if(!istype(target))
+		return list("name" = target?.name || "Unknown", "known" = FALSE)
+	// A ship with omni_arpa uses the classic ARPA: it sees real names of all ships at range.
+	if(omni_arpa)
+		return list("name" = target.name, "known" = TRUE)
+	// A ship broadcasting its transponder reveals its identity to everyone, but is not remembered.
+	if(target.transponder_active)
+		return list("name" = target.name, "known" = TRUE)
+	// Allies recognize each other at a glance; pirates and independents stay anonymous.
+	var/datum/faction/our_faction = get_faction()
+	var/datum/faction/their_faction = target.get_faction()
+	if(our_faction && their_faction && our_faction == their_faction \
+		&& !istype(their_faction, /datum/faction/pirate) && !istype(their_faction, /datum/faction/independent))
+		return list("name" = target.name, "known" = TRUE)
+	// A manual label is a personal note for the observer; it persists until overwritten.
+	var/label = known_ships[WEAKREF(target)]?["label"]
+	return list("name" = label ? label : "Unknown Ship", "known" = FALSE)
+
+// [MANKIND-ADD] - OPTIMIZE_ARPA_CACHE - Интервал обновления кэша ARPA в тиках (10 = 1 секунда).
+// Определён здесь, т.к. используется в get_arpa_data(), а controlled_ship_datum.dm включается раньше ship_datum.dm.
+#define ARPA_REFRESH_INTERVAL 10
+// [/MANKIND-ADD]
+
+// [MANKIND-ADD] - OPTIMIZE_ARPA_CACHE - Кэширование данных ARPA для хелм-консоли.
+/**
+ * Возвращает данные ARPA (список кораблей в радиусе сенсоров с cpa/tcpa/brg).
+ * Результат кэшируется на ARPA_REFRESH_INTERVAL тиков, чтобы не гонять сканирование
+ * и тригонометрию на каждое обновление UI каждой открытой хелм-консоли.
+ * Заодно это означает, что физика столкновений (calculate_cpa в non-info режиме)
+ * считается один раз за интервал, а не на каждый запрос tgui.
+ */
+/datum/overmap/ship/controlled/proc/get_arpa_data()
+	if(last_arpa_refresh && (world.time - last_arpa_refresh < ARPA_REFRESH_INTERVAL) && length(arpa_cache))
+		return arpa_cache
+	last_arpa_refresh = world.time
+	var/list/cached = list()
+	var/list/arpobjects = check_proximity()
+	for(var/datum/overmap/ship/controlled/object as anything in arpobjects)
+		if(!istype(object, /datum/overmap/ship/controlled))
+			continue
+		var/list/cpa_list = calculate_cpa(src, object, TRUE)
+		var/list/known_data = get_known_ship_name(object)
+		cached += list(list(
+			name = known_data["name"],
+			known = known_data["known"],
+			scannable = TRUE,
+			ref = REF(object),
+			brg = cpa_list["brg"],
+			cpa = cpa_list["cpa"],
+			tcpa = cpa_list["tcpa"]
+		))
+	src.arpa_cache = cached
+	return cached
+// [/MANKIND-ADD]
+
+// [MANKIND-ADD] - HIDE_SHIP_META - Единый способ показать имя корабля: свои видят настоящее, чужие — обезличенное
+/// Returns the ship name as seen by [user]. Crew members (owner candidates) see the real name, everyone else sees "Unknown Ship".
+/datum/overmap/ship/controlled/proc/get_display_name(mob/user)
+	if(transponder_active)
+		return name
+	if(user?.mind && (user.mind in owner_candidates))
+		return name
+	return "Unknown Ship"
+
+/// Returns the name shown on the overmap token as seen by [user]. omni_arpa observers see the real name even when the transponder is off.
+/datum/overmap/ship/controlled/proc/get_token_display_name(mob/user)
+	if(transponder_active)
+		return name
+	if(user?.mind && (user.mind in owner_candidates))
+		return name
+	var/datum/overmap/ship/controlled/observer = SSshuttle.get_ship(user)
+	if(observer?.omni_arpa)
+		return name
+	return "???"
+// [/MANKIND-ADD]
+
+/// Overrides the name shown in the overmap inspect UI (right-click on token). omni_arpa observers see the real name even when the transponder is off.
+/datum/overmap/ship/controlled/basic_ui_data(mob/user)
+	return list(
+		"ref" = REF(src),
+		"name" = get_token_display_name(user)
+	)
+
+/// Stores a manual label for [target] as a personal note for the observer. Persists until overwritten.
+/datum/overmap/ship/controlled/proc/set_ship_label(datum/overmap/ship/controlled/target, new_label)
+	if(!istype(target))
+		return FALSE
+	LAZYSET(known_ships, WEAKREF(target), list("label" = new_label))
+	return TRUE
+
 /datum/overmap/ship/controlled/Destroy()
 	//SHOULD be called first
 	. = ..()
 	SSovermap.controlled_ships -= src
 	current_overmap.controlled_ships -= src
 	helms.Cut()
-	QDEL_LIST(missions)
+	// [MANKIND-FIX] - QDEL_LIST(missions) падал на null.Cut(): Destroy() миссии вызывает
+	// LAZYREMOVE(servant.missions, src), где servant == этот корабль, т.е. удаляет миссию
+	// из того же списка, по которому идёт итерация. При удалении последней миссии
+	// LAZYREMOVE обнуляет missions, и последующий missions.Cut() падает на null.Cut().
+	// Копируем список и обнуляем его ДО цикла, чтобы Destroy() миссий не трогал его.
+	var/list/datum/mission/old_missions = missions
+	missions = null
+	for(var/datum/mission/M as anything in old_missions)
+		qdel(M)
+	// [/MANK-EDIT]
 	LAZYCLEARLIST(owner_candidates)
 	if(!QDELETED(shuttle_port))
 		shuttle_port.current_ship = null
@@ -238,16 +383,19 @@
 	return TRUE
 
 /datum/overmap/ship/controlled/start_dock(datum/overmap/to_dock, datum/docking_ticket/ticket)
+	AUXCPU_PHASE("dock_start") // [SOLARIS-ADD] - SHIP_LOAD_LAG
 	log_shuttle("[src] [REF(src)] DOCKING: STARTED REQUEST FOR [to_dock] AT [ticket.target_port]")
 	refresh_engines()
-	priority_announce("Beginning docking procedures. Completion in [dock_time/10] seconds.", "Docking Announcement", sender_override = name, zlevel = shuttle_port.virtual_z())
+	priority_announce("A vessel is beginning docking procedures. Completion in [dock_time/10] seconds.", "Docking Announcement", zlevel = shuttle_port.virtual_z())
 	shuttle_port.create_ripples(ticket.target_port, dock_time)
 	shuttle_port.play_engine_sound(shuttle_port, shuttle_port.landing_sound)
 	shuttle_port.play_engine_sound(ticket.target_port, shuttle_port.landing_sound)
 
 /datum/overmap/ship/controlled/complete_dock(datum/overmap/dock_target, datum/docking_ticket/ticket)
+	AUXCPU_PHASE("dock_complete") // [SOLARIS-ADD] - SHIP_LOAD_LAG
 	shuttle_port.initiate_docking(ticket.target_port)
 	. = ..()
+	AUXCPU_PHASE_END // [SOLARIS-ADD] - SHIP_LOAD_LAG
 	log_shuttle("[src] [REF(src)] COMPLETE DOCK: FINISHED DOCKING TO [dock_target] AT [ticket.target_port]")
 
 /datum/overmap/ship/controlled/Undock(force = FALSE)
@@ -261,7 +409,7 @@
 			SSshuttle.transit_requesters -= shuttle_port
 			SSshuttle.generate_transit_dock(shuttle_port) // We need a port, NOW.
 
-	priority_announce("Beginning undocking procedures. Completion in [dock_time/10] seconds.", "Docking Announcement", sender_override = name, zlevel = shuttle_port.virtual_z())
+	priority_announce("A vessel is beginning undocking procedures. Completion in [dock_time/10] seconds.", "Docking Announcement", zlevel = shuttle_port.virtual_z())
 	shuttle_port.play_engine_sound(shuttle_port, shuttle_port.takeoff_sound)
 
 	. = ..()
@@ -277,8 +425,10 @@
 		return new /datum/docking_ticket(override_dock, src, dock_requester)
 
 	for(var/obj/docking_port/stationary/docking_port in shuttle_port.docking_points)
-		if(dock_requester.shuttle_port.check_dock(docking_port))
+		if(dock_requester.shuttle_port.check_dock(docking_port, TRUE, FALSE))
 			return new /datum/docking_ticket(docking_port, src, dock_requester)
+	if(shuttle_port.docking_points.len)
+		return new /datum/docking_ticket(_docking_error = "ERROR: [src] has docking ports, however vessel is unable to dock to any. Attempt manual docking for more information. Aborting docking.")
 	return ..()
 
 /datum/overmap/ship/controlled/get_dockable_locations(datum/overmap/requesting_interactor)
@@ -354,7 +504,7 @@
 
 // [MANKIND-EDIT] - OVERMAP PHYSICS - Это вагабонд насрал
 // /datum/overmap/ship/controlled/tick_move()
-/datum/overmap/ship/controlled/not_tick_move(var/xmov, var/ymov)
+/datum/overmap/ship/controlled/not_tick_move(xmov, ymov)
 // [/MANKIND-EDIT]
 	if(avg_fuel_amnt < 1)
 		//Slow down a little when there's no fuel
@@ -585,7 +735,6 @@
 	[span_bold("Velocity: ")][round(get_speed(), 0.1)] Gm/s"}
 	*/
 	desc = {"[span_boldnotice("IFF is reporting the following:")]
-	[span_bold("Affiliation: ")][source_template.faction.name]
 	[span_bold("Velocity: ")][round(get_speed(), 0.1)] Gm/s"}
 	// [/MANKIND-EDIT]
 	return ..()

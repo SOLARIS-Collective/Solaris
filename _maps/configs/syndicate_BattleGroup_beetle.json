@@ -1,0 +1,42 @@
+{
+	"$schema": "https://raw.githubusercontent.com/CeladonSS13/Shiptest/beta-dev/_maps/ship_config_schema.json",
+	"map_name": "Beetle-class Battle Schnau",
+	"map_short_name": "Beetle",
+	"description": "Боевое судно, используемое 2nd BattleGroup для поддержки в бою на дальних дистанциях или в мелких рейдах по ликвидации важных целей. Было разработано при поддержке GEC для модернизации судна; упор сделан на быстрые операции. В качестве выдающихся капитанов им выданы модернизированные снайперские винтовки в ограниченном количестве.",
+	"map_path": "_maps/shuttles/syndicate/syndicate_gorlex_beetle.dmm",
+	"enabled": true,
+	"limit": 1,
+	"sensor_range": 8,
+	"prefix": "BSSV",
+	"faction": "/datum/faction/syndicate",
+	"tags": ["Боевой"],
+	"namelists": [
+		"2nd BattleGroup",
+		"NATURAL_AGGRESSIVE",
+		"BEASTS",
+		"WEAPONS",
+		"ACLF"
+	],
+	"job_slots": {
+		"Squad leader": {
+			"outfit": "/datum/outfit/job/cel/syndicate/captain/gorlex",
+			"officer": true,
+			"slots": 1,
+			"name": "Squad leader 2nd BattleGroup"
+		},
+		"Paramedic": {
+			"outfit": "/datum/outfit/job/cel/syndicate/doctor/gorlex",
+			"slots": 1,
+			"name": "Paramedic"
+		},
+		"Mechanic": {
+			"outfit": "/datum/outfit/job/cel/syndicate/engineer/gorlex",
+			"slots": 1
+
+		},
+		"Operative": {
+			"outfit": "/datum/outfit/job/cel/syndicate/security/gorlex",
+			"slots": 3
+		}
+	}
+}

@@ -1,0 +1,71 @@
+name: Monthly PR summary
+
+on:
+  schedule:
+    # 28-е число каждого месяца, 00:00 UTC
+    - cron: "0 0 28 * *"
+  workflow_dispatch:
+    inputs:
+      year:
+        description: "Год (по умолчанию текущий)"
+        required: false
+        type: number
+      month:
+        description: "Месяц 1-12 (по умолчанию текущий)"
+        required: false
+        type: number
+
+jobs:
+  generate:
+    name: "Generate monthly PR summary"
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      # Скрипт использует только стандартную библиотеку — зависимости не нужны
+
+      - name: Generate summary
+        id: generate
+        env:
+          GITHUB_TOKEN: ${{ secrets.CHANGELOG_TOKEN || secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          YEAR: ${{ inputs.year }}
+          MONTH: ${{ inputs.month }}
+        run: |
+          ARGS=""
+          if [ -n "$YEAR" ]; then ARGS="$ARGS --year $YEAR"; fi
+          if [ -n "$MONTH" ]; then ARGS="$ARGS --month $MONTH"; fi
+          python "tools/monthly_pr_summary/Итоговый отчет за месяц.py" $ARGS
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: monthly-summary
+          path: html/changelogs/monthly/
+
+      - name: Commit and push
+        env:
+          GITHUB_TOKEN: ${{ secrets.CHANGELOG_TOKEN || secrets.GITHUB_TOKEN }}
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "Monthly PR Summary"
+          git add html/changelogs/monthly
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git commit -m "Automatic monthly PR summary [ci skip]"
+          git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:${GITHUB_REF_NAME}

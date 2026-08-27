@@ -173,7 +173,19 @@
 						return
 					S.use(2)
 					to_chat(user, span_notice("You create a false wall. Push on it to open or close the passage."))
-					var/F = text2path("/obj/structure/falsewall/[M]")
+					var/static/list/falsewall_types = list(
+						"wood" = /obj/structure/falsewall/wood,
+						"sandstone" = /obj/structure/falsewall/sandstone,
+						"diamond" = /obj/structure/falsewall/diamond,
+						"uranium" = /obj/structure/falsewall/uranium,
+						"plasma" = /obj/structure/falsewall/plasma,
+						"gold" = /obj/structure/falsewall/gold,
+						"silver" = /obj/structure/falsewall/silver,
+						"titanium" = /obj/structure/falsewall/titanium,
+						"plastitanium" = /obj/structure/falsewall/plastitanium,
+						"abductor" = /obj/structure/falsewall/abductor,
+					)
+					var/F = falsewall_types[M]
 					var/obj/structure/FW = new F (loc)
 					transfer_fingerprints_to(FW)
 					qdel(src)

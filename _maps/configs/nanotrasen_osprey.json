@@ -1,17 +1,16 @@
 {
-	"$schema": "https://raw.githubusercontent.com/PentestSS13/Pentest/master/_maps/ship_config_schema.json",
+	"$schema": "https://raw.githubusercontent.com/CeladonSS13/Shiptest/beta-dev/_maps/_mod_celadon/ship_config_schema.json",
 	"map_name": "Osprey-class Exploration Cruiser",
-	"map_short_name": "Osprey-class",
-	"map_path": "_maps/PentestMaps/Shuttles/nanotrasen/nanotrasen_osprey.dmm",
+	"map_short_name": "Osprey",
+	"description": "Одни из самых современных суден флота Нанотрейзен и престижное задание для их капитанов, знаменитые 'Osprey', участвовавшие в самых драматических астронавигационных столкновениях ICW, продолжают жить в качестве очень хорошо оборудованного исследовательского судна. Прошедшие значительную модернизацию после того, как они стали артиллерийскими платформами Bluespace, современные Osprey используют сенсорное оборудование военного класса и системы искусственного интеллекта для разведки и научной работы. Среди особенностей - хорошо оснащенные медицинские, кулинарные и научные помещения и ядро ИИ, а также общекорабельная система утилизации и доставки и очень вместительный грузовой отсек. Однако мощные (хотя и нестабильные) двигатели на суперматерии, которые приводили в движение первые партии 'Osprey', были вычеркнуты при их реконструкции, а заменяющие их генераторы оставили современные 'Osprey' в состоянии некоторой нехватки энергии. В ЩИТСПАВНЕ ПО ПРИЧИНЕ: Заменен на Целестис!",
+	"map_path": "_maps/shuttles/nanotrasen/nanotrasen_osprey.dmm",
+	"enabled": true,
+	"limit": 1,
+	"sensor_range": 9,
+	"starting_funds": 4000,
+	"prefix": "NTRSV",
 	"faction": "/datum/faction/nt",
-	"prefix": "NTSV",
-	"manufacturer": "Nanotrasen Spaceworks",
-	"description": "Some of the most modern ships in Nanotrasen’s fleet and a prestigious assignment for their captains, the famed Osprey of the ICW’s most dramatic astronautical engagements lives on as a very well-appointed exploration ship. Extensively refurbished from their origins as Bluespace Artillery platforms, the contemporary Osprey repurposes military-grade sensor equipment and AI systems for exploration and scientific work. Features include respectably-equipped medical, culinary, and scientific facilities and an AI core, as well as a ship-wide disposals and delivery system and a very spacious cargo bay. However, the powerful (if temperamental) supermatter engines that powered the initial batch of Ospreys were stripped out during their rebuilds, and the replacement generator banks have left contemporary Ospreys somewhat power-starved.",
-	"tags": [
-		"Cargo",
-		"Robotics",
-		"Generalist"
-	],
+	"tags": ["Исследовательский", "ИИ"],
 	"namelists": [
 		"NANOTRASEN",
 		"SPACE",
@@ -20,67 +19,46 @@
 	],
 	"job_slots": {
 		"Captain": {
-			"outfit": "/datum/outfit/job/nanotrasen/captain",
+			"outfit": "/datum/outfit/job/cel/nanotrasen/captain",
 			"officer": true,
 			"slots": 1
 		},
-		"First Officer": {
-			"outfit": "/datum/outfit/job/nanotrasen/hop",
+		"Science Director": {
+			"outfit": "/datum/outfit/job/cel/nanotrasen/rd",
 			"officer": true,
 			"slots": 1
 		},
 		"Scientist": {
-			"outfit": "/datum/outfit/job/nanotrasen/scientist",
-			"slots": 1
+			"outfit": "/datum/outfit/job/cel/nanotrasen/scientist",
+			"slots": 2
 		},
 		"Medical Doctor": {
-			"outfit": "/datum/outfit/job/nanotrasen/doctor",
+			"outfit": "/datum/outfit/job/cel/nanotrasen/doctor",
 			"slots": 1
 		},
 		"Paramedic": {
-			"outfit": "/datum/outfit/job/nanotrasen/paramedic",
+			"outfit": "/datum/outfit/job/cel/nanotrasen/paramedic",
 			"slots": 1
 		},
 		"Engineer": {
-			"outfit": "/datum/outfit/job/nanotrasen/engineer",
+			"outfit": "/datum/outfit/job/cel/nanotrasen/engineer",
 			"slots": 1
 		},
 		"Atmospheric Technician": {
-			"outfit": "/datum/outfit/job/nanotrasen/atmos",
-			"slots": 1
-		},
-		"Quartermaster": {
-			"outfit": "/datum/outfit/job/nanotrasen/quartermaster",
-			"slots": 1
-		},
-		"Cargo Technician": {
-			"outfit": "/datum/outfit/job/nanotrasen/cargo_tech",
+			"outfit": "/datum/outfit/job/cel/nanotrasen/atmos",
 			"slots": 1
 		},
 		"Shaft Miner": {
-			"outfit": "/datum/outfit/job/nanotrasen/miner",
-			"slots": 1
+			"outfit": "/datum/outfit/job/cel/nanotrasen/miner",
+			"slots": 2
 		},
 		"Cook": {
-			"outfit": "/datum/outfit/job/cook",
-			"slots": 1
-		},
-		"Janitor": {
-			"outfit": "/datum/outfit/job/janitor",
+			"outfit": "/datum/outfit/job/cel/nanotrasen/cook",
 			"slots": 1
 		},
 		"Assistant": {
-			"outfit": "/datum/outfit/job/nanotrasen/assistant",
-			"slots": 3
+			"outfit": "/datum/outfit/job/cel/nanotrasen/assistant",
+			"slots": 2
 		}
-	},
-	"limit": 1,
-	"starting_funds": 4000,
-	"enabled": true,
-	"space_spawn": false,
-
-	"architect": "Apogee-dev",
-	"contributors": [
-		"Unknown"
-	]
+	}
 }

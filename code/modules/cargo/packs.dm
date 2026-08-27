@@ -75,6 +75,16 @@
 /datum/supply_pack/proc/randomize_stock()
 	stock = rand(stock_min, stock_max)
 
+// [SOLARIS-ADD] - FIXES_CARGO_CONSOLE
+/// Итоговая цена пака для покупателя заданной фракции (с учётом faction_discount).
+/// Сервер считает стоимость заказа сам, не доверяя клиентской сумме из tgui.
+/datum/supply_pack/proc/get_price(datum/faction/customer_faction)
+	var/same_faction = faction ? faction.allowed_faction(customer_faction) : FALSE
+	if(same_faction && faction_discount)
+		return cost - (cost * (faction_discount * 0.01))
+	return cost
+// [/SOLARIS-ADD]
+
 /datum/supply_pack/proc/cycle(cost = TRUE, availibility = TRUE, stock = FALSE, force_appear = FALSE)
 	if(cost)
 		randomize_cost()

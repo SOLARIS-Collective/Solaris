@@ -24,6 +24,7 @@ GLOBAL_VAR_INIT(Debug, FALSE)	// global debug switch
 GLOBAL_VAR_INIT(Debug2, FALSE)
 
 GLOBAL_VAR_INIT(ship_spawn_enabled, TRUE)
+GLOBAL_VAR_INIT(ship_rotation_enabled, FALSE)
 
 //This was a define, but I changed it to a variable so it can be changed in-game.(kept the all-caps definition because... code...) -Errorage
 //Protecting these because the proper way to edit them is with the config/secrets

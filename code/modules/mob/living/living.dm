@@ -562,6 +562,9 @@
 /mob/living/proc/can_inject(mob/user, target_zone, injection_flags)
 	return TRUE
 
+/mob/living/proc/is_exposed(mob/user, target_zone, error_msg)
+	return TRUE
+
 /**
  * Like can_inject, but it can perform side effects.
  *
@@ -2149,23 +2152,23 @@ GLOBAL_VAR_INIT(ssd_indicator_overlay, mutable_appearance('icons/mob/ssd_indicat
 /* // [MANKIND-REMOVE] - Убрал не используется, пересмотреть
 // [MANKIND-ADD] - MANKIND_EMOTES
 /**
-  * Sets the mob's direction lock towards a given atom.
-  *
-  * Arguments:
-  * * a - The atom to face towards.
-  * * track - If TRUE, updates our direction relative to the atom when moving.
-  */
+ * Sets the mob's direction lock towards a given atom.
+ *
+ * Arguments:
+ * * a - The atom to face towards.
+ * * track - If TRUE, updates our direction relative to the atom when moving.
+ */
 /mob/living/proc/set_forced_look(atom/A, track = FALSE)
 	forced_look = track ? A.UID() : get_cardinal_dir(src, A)
 	to_chat(src, "<span class='userdanger'>You are now facing [track ? A : dir2text(forced_look)]. To cancel this, shift-middleclick yourself.</span>")
 	throw_alert("direction_lock", /atom/movable/screen/alert/direction_lock)
 
 /**
-  * Clears the mob's direction lock if enabled.
-  *
-  * Arguments:
-  * * quiet - Whether to display a chat message.
-  */
+ * Clears the mob's direction lock if enabled.
+ *
+ * Arguments:
+ * * quiet - Whether to display a chat message.
+ */
 /mob/living/proc/clear_forced_look(quiet = FALSE)
 	if(!forced_look)
 		return

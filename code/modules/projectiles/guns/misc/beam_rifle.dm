@@ -404,7 +404,9 @@
 	if(!BB.suppressed && firing_effect_type)
 		new firing_effect_type(get_turf(src), firing_dir)
 	var/modifiers = params2list(params)
-	BB.preparePixelProjectile(target, user, modifiers, spread)
+	if(!BB.preparePixelProjectile(target, user, modifiers, spread) || QDELETED(BB))
+		BB = null
+		return FALSE
 	BB.fire(gun? gun.lastangle : null, null)
 	BB = null
 	return TRUE

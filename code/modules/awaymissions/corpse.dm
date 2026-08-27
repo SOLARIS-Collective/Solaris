@@ -52,10 +52,10 @@
 		return
 
 	// [MANKIND-ADD] - MANKIND: DISCORD VERIFY
-	if(CONFIG_GET(flag/DiscordVerify))
-		if(!checkDiscordVerify(user.ckey))
-			to_chat(usr, span_danger("Ваш аккаунт не верифицирован в Discord.\n Пожалуйста, используйте кнопку 'Verify Discord Account' во вкладке 'Special Verbs' для Discord верификации."))
-			return
+	// if(CONFIG_GET(flag/DiscordVerify))
+	// 	if(!checkDiscordVerify(user.ckey))
+	// 		to_chat(usr, span_danger("Ваш аккаунт не верифицирован в Discord.\n Пожалуйста, используйте кнопку 'Verify Discord Account' во вкладке 'Special Verbs' для Discord верификации."))
+	// 		return
 	// [/MANKIND-ADD]
 
 	var/ghost_role = alert("Become [mob_name]? (Warning, You can no longer be revived!)",,"Yes","No")
@@ -371,6 +371,13 @@
 	name = "dead wolf"
 	mob_type = /mob/living/simple_animal/hostile/asteroid/wolf
 
+/obj/effect/mob_spawn/animal_corpse/monkey
+	name = "dead monkey"
+	mob_type = /mob/living/carbon/monkey
+
+/obj/effect/mob_spawn/animal_corpse/junglefowl //chicken
+	name = "dead monkey"
+	mob_type = /mob/living/simple_animal/hostile/retaliate/chicken
 
 // I'll work on making a list of corpses people request for maps, or that I think will be commonly used. Syndicate operatives for example.
 

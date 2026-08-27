@@ -51,6 +51,11 @@
 		var/rando_race = pick(GLOB.roundstart_races)
 		pref_species = new rando_race()
 	features = random_features()
+	// [SOLARIS-ADD] - SOLARIS_W_TTS_VOICES - Дает спавнящимся мобам рандомный голос и параметры
+	w_tts_voices_id = pick(GLOB.w_tts_voices_random_list)
+	w_tts_voices_pitch = ((gender == MALE ? rand(60, 120) : (gender == FEMALE ? rand(80, 140) : rand(60,140))) / 100)
+	w_tts_voices_variance = rand(10, 40) / 100
+	// [/SOLARIS-ADD]
 
 /datum/preferences/proc/random_species()
 	var/random_species_type = GLOB.species_list[pick(GLOB.roundstart_races)]
@@ -67,6 +72,15 @@
 
 	if(selected_outfit && show_gear)
 		selected_outfit.equip(mannequin, TRUE, preference_source = parent)
+
+	// Apply visual quirks
+	if(SSquirks?.initialized)
+		mannequin.cleanse_quirk_datums()
+		for(var/quirk_name in all_quirks)
+			var/datum/quirk/quirk_type = SSquirks.quirks[quirk_name]
+			if(!(quirk_type::quirk_flags & QUIRK_CHANGES_APPEARANCE))
+				continue
+			mannequin.add_quirk(quirk_type, parent, TRUE)
 
 	parent.show_character_previews(new /mutable_appearance(mannequin))
 	unset_busy_human_dummy(DUMMY_HUMAN_SLOT_PREFERENCES)

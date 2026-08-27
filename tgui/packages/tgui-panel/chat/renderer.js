@@ -248,7 +248,12 @@ class ChatRenderer {
       if (regexStr) {
         highlightRegex = new RegExp('(' + regexStr + ')', flags);
       } else {
-        const pattern = `${matchWord ? '\\b' : ''}(${lines.join('|')})${
+        // Escape regex metacharacters in literal words so that chat
+        // highlights like "[Foo]" or "3:10 to X" cannot crash
+        // the client with a SyntaxError on new RegExp().
+        const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const words = (highlightWords || lines).map(escapeRegex);
+        const pattern = `${matchWord ? '\\b' : ''}(${words.join('|')})${
           matchWord ? '\\b' : ''
         }`;
         highlightRegex = new RegExp(pattern, flags);

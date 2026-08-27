@@ -25,6 +25,11 @@
 	var/def_sensor_range = 4
 	// [/MANKIND-ADD]
 
+	// [MANKIND-ADD] - STEALTH_ARPA - Классическая ARPA с реальными именами кораблей на дистанции.
+	/// If TRUE, this ship's helm uses the classic ARPA: real ship names at range, no label buttons.
+	var/omni_arpa = FALSE
+	// [/MANKIND-ADD]
+
 	var/list/job_slots = list()
 	var/list/name_categories = list("GENERAL")
 	/// The icon state the ship usesship_generic
@@ -61,10 +66,7 @@
 	if(path)
 		mappath = path
 	else if(category && file_name)
-		// [MANKIND-EDIT] - MANKIND_CONFIGS_MAPS - Меняем сабшатлы на наши
-		// mappath = "_maps/shuttles/[category]/[file_name].dmm" // ORIGINAL
-		mappath = "_maps/_modular_solaris/shuttles/[category]/[file_name].dmm"
-		// [/MANKIND-EDIT]
+		mappath = "_maps/shuttles/[category]/[file_name].dmm"
 	. = ..()
 
 /datum/map_template/shuttle/preload_size(path, cache)
@@ -120,6 +122,7 @@
 	for(var/turf/turf in turfs)
 		turfs[turf] = turf.loc
 	keep_cached_map = TRUE //We need to access some stuff here below for shuttle skipovers
+	// Откат
 	. = ..(T, centered, init_atmos = TRUE)
 	keep_cached_map = initial(keep_cached_map)
 	if(!.)
@@ -355,6 +358,7 @@
 	faction = /datum/faction/independent
 	starting_funds = 0
 	unique_ship_access = FALSE
+	def_sensor_range = 2
 
 /datum/map_template/shuttle/subshuttles/pill
 	file_name = "independent_pill"

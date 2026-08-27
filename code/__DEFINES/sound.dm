@@ -9,6 +9,21 @@
 #define CHANNEL_BUZZ 1013
 #define CHANNEL_BICYCLE 1012
 
+/// Sound flags for volume control categories
+#define FS_GENERAL (1<<0)
+#define FS_LOBBY (1<<1)
+#define FS_AMBIENCE (1<<2)
+#define FS_WEAPONS (1<<3)
+#define FS_ANNOUNCEMENTS (1<<4)
+#define FS_INSTRUMENTS (1<<5)
+#define FS_JUKEBOX (1<<6)
+#define FS_RADIO (1<<7)
+#define FS_PRAYERS (1<<8)
+#define FS_ADMIN (1<<9)
+#define FS_SHIP_AMBIENCE (1<<10)
+#define FS_ENDOFROUND (1<<11)
+#define FS_VOICES (1<<12)
+
 ///Default range of a sound.
 #define SOUND_RANGE 17
 ///default extra range for sounds considered to be quieter

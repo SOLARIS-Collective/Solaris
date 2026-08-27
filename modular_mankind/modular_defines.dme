@@ -5,6 +5,7 @@
 // Тут указываем путь до нашего файла с дефайном!
 
 #include "..\code\__DEFINES\~modular_mankind\access.dm"
+#include "..\code\__DEFINES\~modular_mankind\atom_hud.dm"
 #include "..\code\__DEFINES\~modular_mankind\map.dm"
 #include "..\code\__DEFINES\~modular_mankind\achievements.dm"
 #include "..\code\__DEFINES\~modular_mankind\colors.dm"

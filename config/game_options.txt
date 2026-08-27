@@ -537,3 +537,44 @@ COMMENDATION_PERCENT_POLL 0.05
 
 ## Whether native FoV is enabled for all people.
 #NATIVE_FOV
+
+# Enable global The Voices
+# Uncomment this to allow player's speech voices #
+ENABLE_GLOBAL_W_TTS_VOICES
+
+## QUADRANT_GRID - приватная квадрантная сетка планет (рантайм-переключатель).
+## Работает только в приватной сборке (ОМНИ доступ). 1 - включить, 0 - выключить.
+## Меняется на живом сервере без перекомпиляции.
+USE_QUADRANT_GRID 1
+
+## SHIP_ROTATION - Включает ротацию кораблей. Каждый раунд случайная половина кораблей
+## доступна для покупки на каждую фракцию. Требует перезагрузки сервера.
+## 1 - включить, 0 - выключить.
+SHIP_ROTATION 1
+
+## TICK STABILIZATION ###
+## Burn spare tick time to pin cpu usage to a consistent level.
+## Keeps the gap between map sends constant (less client stutter), at the cost of idle cpu.
+## Enabled by default. Uncomment with 0 to disable.
+#ATTEMPT_CORRECTIVE_CPU 0
+
+## Master controller limits itself to the same threshold, so subsystems
+## don't fight the corrective burn over tick time. Enabled by default.
+#USE_DYNAMIC_MC_LIMIT 0
+
+## What cpu percentage we try to stabilize ticks at.
+## Values above ~85 can be too aggressive during highpop spikes.
+CORRECTIVE_CPU_TARGET 85
+
+## Load the auxcpu byondapi library (auxcpu_byondapi.dll / libauxcpu_byondapi.so) if present,
+## enabling accurate raw per-tick cpu readings for movement compensation.
+## OFF by default: the library memhacks the BYOND process and must match your server's
+## BYOND build. Only enable after verifying the shipped binary works on your host.
+#LOAD_AUXCPU_LIBRARY 0
+LOAD_AUXCPU_LIBRARY 1
+
+## Label auxcp_rec.log rows with the current boot/load phase name ("ph" field):
+## tpl_air_update, mv_takeoff, ss_atoms_init, ... so a freeze tick attributes to an exact stage.
+## OFF by default: labels are inert until enabled, zero cost. Recording itself is always manual -
+## toggle it with the REC button in the tick control UI. Uncomment to enable labels:
+#AUXCP_PHASE_LABELS

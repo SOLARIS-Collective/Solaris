@@ -82,16 +82,30 @@
 
 	var/list/objects = current_ship.get_nearby_overmap_objects()
 	var/list/ships = list()
+	var/list/ship_names = list()
 	for(var/datum/overmap/ship/controlled/ship in objects)
 		ships += ship.shuttle_port
+		ship_names += current_ship.get_known_ship_name(ship)["name"]
 	for(var/datum/overmap/object in objects)
 		for(var/datum/overmap/ship/controlled/ship in object.contents)
 			ships += ship.shuttle_port
+			ship_names += current_ship.get_known_ship_name(ship)["name"]
 
 	if(ships.len == 0)
 		visible_message(span_warning("Отсутствуют корабли поблизости."))
 		return
-	var/obj/docking_port/mobile/selected = tgui_input_list(user, "Выберите шаттл для телепортации", "Меню транслокации", ships)
+	// [MANKIND-EDIT] - TRANSPONDER_GOING_DARK - Список целей берёт имена из радара (get_known_ship_name), чтобы не палить реальное имя в обход транспондера.
+	var/selected_name = tgui_input_list(user, "Выберите шаттл для телепортации", "Меню транслокации", ship_names)
+	if(!selected_name)
+		return
+	var/obj/docking_port/mobile/selected
+	for(var/i in 1 to ships.len)
+		if(ship_names[i] == selected_name)
+			selected = ships[i]
+			break
+	if(!selected)
+		return
+	// [/MANKIND-EDIT]
 
 	var/area/target = tgui_input_list(user, "Выберите зону шаттла для телепортации", "Меню транслокации", selected.shuttle_areas)
 	if(target)

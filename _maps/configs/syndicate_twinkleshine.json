@@ -1,17 +1,15 @@
 {
-	"$schema": "https://raw.githubusercontent.com/PentestSS13/Pentest/master/_maps/ship_config_schema.json",
+	"$schema": "https://raw.githubusercontent.com/CeladonSS13/Shiptest/beta-dev/_maps/ship_config_schema.json",
 	"map_name": "Twinkleshine-class Battle Cruiser",
-	"map_short_name": "Twinkleshine-class",
+	"map_short_name": "Twinkleshine",
+	"description": "После уничтожения более крупных линейных крейсеров класса 'Starfury' во время в эпоху войны ксеногосударства спроектировала 'Twinkleshine' в качестве замены, чтобы занять освободившуюся теперь роль флагмана. Однако война подошла к концу, прежде чем какие-либо образцы этого класса смогли увидеть бои. Теперь они хранятся на ковчегах как ценный символ могущества и единства Синдиката в Империи. В теории как и в случае с классом 'Starfury', экипажи 'Twinkleshine' состоят из представителей всех фракций членов Синдиката. В силу политической необходимости никто не согласился бы, чтобы Cybersun управлял такими мощными кораблями в одиночку. В то время как экипажи 'Twinkleshine', предположительно отбираются за более дипломатичные наклонности, чем можно было бы ожидать политическая ситуация на борту 'Twinkleshine' часто бывает деликатной, особенно по мере того, как напряженность между элементами Синдиката продолжает нарастать. Тем не менее, они остаются самыми мощными единичными активами в объединенном арсенале Синдиката и часто выполняют роль изображения силы в пограничном пространстве.",
 	"map_path": "_maps/shuttles/syndicate/syndicate_twinkleshine.dmm",
+	"enabled" : false,
+	"limit": 1,
+	"sensor_range": 9,
 	"faction": "/datum/faction/syndicate",
-	"prefix": "SSV",
-	"manufacturer": "Cybersun",
-	"description": "After the destruction of the larger Starfury-class Battle Cruisers during the Inter-Corporate War, Cybersun engineered the Twinkleshine as a replacement to fill the now-vacant flagship role. However, the war came to a close before any examples of this class could see combat. Now, they are kept as a valuable symbol of the Syndicate’s might and unity – in theory. As with the Starfury-class, Twinkleshine crews contain a mix of all Syndicate member factions as a matter of political necessity – none would consent to Cybersun operating such powerful ships alone. While Twinkleshine crews are supposedly selected for more diplomatic tendencies than one might expect, the political situation aboard a Twinkleshine is often delicate, particularly as tensions between the Syndicate’s corporate and anti-corporate elements continue to build. Nevertheless, they remain the most potent singular assets in the Syndicate’s combined arsenal, and frequently serve the role of power projection in Frontier space.",
-	"tags": [
-		"Engineering",
-		"Combat",
-		"Service",
-		"Medical"
+	"prefix": "ASSV",
+	"tags": ["Флагман", "Административный"
 	],
 	"namelists": [
 		"GORLEX",
@@ -20,54 +18,38 @@
 	],
 	"job_slots": {
 		"Flotilla Admiral": {
-			"outfit": "/datum/outfit/job/syndicate/captain/twink",
+			"outfit": "/datum/outfit/job/cel/syndicate/captain/twink",
 			"officer": true,
 			"slots": 1
 		},
 		"Lieutenant": {
-			"outfit": "/datum/outfit/job/syndicate/hos/twink",
-			"officer": true,
-			"slots": 1
-		},
-		"Redshield Officer": {
-			"outfit": "/datum/outfit/job/syndicate/hos/suns/twink",
+			"outfit": "/datum/outfit/job/cel/syndicate/hos/twink",
 			"officer": true,
 			"slots": 1
 		},
 		"Medic": {
-			"outfit": "/datum/outfit/job/syndicate/paramedic/twink",
+			"outfit": "/datum/outfit/job/cel/syndicate/paramedic/twink",
 			"slots": 2
 		},
 		"Engineer": {
-			"outfit": "/datum/outfit/job/syndicate/engineer/twink",
+			"outfit": "/datum/outfit/job/cel/syndicate/engineer/twink",
 			"slots": 2
 		},
 		"Operative": {
-			"outfit": "/datum/outfit/job/syndicate/security/twink",
+			"outfit": "/datum/outfit/job/cel/syndicate/security/twink",
 			"slots": 5
 		},
 		"Bartender": {
-			"outfit": "/datum/outfit/job/syndicate/bartender/twink",
+			"outfit": "/datum/outfit/job/cel/syndicate/bartender/twink",
 			"slots": 1
 		},
 		"Miner": {
-			"outfit": "/datum/outfit/job/syndicate/miner/twink",
-			"slots": 1
-		},
-		"Deck Assistant": {
-			"outfit": "/datum/outfit/job/syndicate/assistant/twink",
+			"outfit": "/datum/outfit/job/cel/syndicate/miner/twink",
 			"slots": 2
+		},
+		"Junior Agent": {
+			"outfit": "/datum/outfit/job/cel/syndicate/assistant/twink",
+			"slots": 3
 		}
-	},
-	"limit": 0,
-	"starting_funds": 2000,
-	"enabled": false,
-	"space_spawn": false,
-
-	"token_icon_state": "ship_massive_war",
-
-	"architect": "rye-rice",
-	"contributors": [
-		"No Contributors"
-	]
+	}
 }

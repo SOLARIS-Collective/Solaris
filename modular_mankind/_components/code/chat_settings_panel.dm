@@ -81,25 +81,21 @@
 /datum/sound_panel/ui_status(mob/user)
 	return UI_INTERACTIVE
 
-/datum/sound_panel/ui_data(mob/user)
+/datum/sound_panel
+	var/playing_flag = 0
 
-	if(!usr?.client)
+/datum/sound_panel/ui_data(mob/user)
+	if(!user?.client)
 		return
 
-	var/client/C = usr.client
-
+	var/client/C = user.client
 	var/list/data = list()
 
-	data["adminhelp"] 		= C.prefs.toggles & SOUND_ADMINHELP
-	data["midi"] 			= C.prefs.toggles & SOUND_MIDI
-	data["ambience"] 		= C.prefs.toggles & SOUND_AMBIENCE
-	data["lobby"] 			= C.prefs.toggles & SOUND_LOBBY
-	data["instruments"] 	= C.prefs.toggles & SOUND_INSTRUMENTS
-	data["ship_ambience"] 	= C.prefs.toggles & SOUND_SHIP_AMBIENCE
-	data["prayers"] 		= C.prefs.toggles & SOUND_PRAYERS
-	data["announcements"] 	= C.prefs.toggles & SOUND_ANNOUNCEMENTS
-	data["endofround"] 		= C.prefs.toggles & SOUND_ENDOFROUND
-	data["jukebox"] 		= C.prefs.toggles & SOUND_JUKEBOX
+	data["sound_volume"] = list()
+	for(var/flag in C.prefs.sound_volume)
+		data["sound_volume"]["[flag]"] = C.prefs.sound_volume[flag]
+
+	data["playing_flag"] = playing_flag
 
 	return data
 
@@ -113,36 +109,62 @@
 	var/client/C = usr.client
 
 	switch(action)
-		if("adminhelp")
-			C.prefs.toggles ^= SOUND_ADMINHELP
-		if("midi")
-			C.prefs.toggles ^= SOUND_MIDI
-			C?.tgui_panel?.stop_music()
-			usr.stop_sound_channel(CHANNEL_ADMIN)
-		if("ambience")
-			C.prefs.toggles ^= SOUND_AMBIENCE
-			usr.stop_sound_channel(CHANNEL_AMBIENCE)
-			usr.stop_sound_channel(CHANNEL_BUZZ)
-			usr.client.update_ambience_pref()
-		if("lobby")
-			C.prefs.toggles ^= SOUND_LOBBY
-			usr.stop_sound_channel(CHANNEL_LOBBYMUSIC)
-			if(isnewplayer(usr))
-				C.playtitlemusic()
-		if("instruments")
-			C.prefs.toggles ^= SOUND_INSTRUMENTS
-		if("ship_ambience")
-			C.prefs.toggles ^= SOUND_SHIP_AMBIENCE
-			usr.stop_sound_channel(CHANNEL_BUZZ)
-		if("prayers")
-			C.prefs.toggles ^= SOUND_PRAYERS
-		if("announcements")
-			C.prefs.toggles ^= SOUND_ANNOUNCEMENTS
-		if("endofround")
-			C.prefs.toggles ^= SOUND_ENDOFROUND
-		if("jukebox")
-			C.prefs.toggles ^= SOUND_JUKEBOX
-			usr.stop_sound_channel(CHANNEL_JUKEBOX)
+		if("set_volume")
+			var/flag = text2num(params["flag"])
+			var/volume = clamp(text2num(params["volume"]), 0, 100)
+			C.prefs.sound_volume[flag] = volume
+			// [MANKIND-ADD] - MANKIND_FIXES - Рескейл уже играющих канальных звуков при изменении громкости
+			switch(flag)
+				if(FS_JUKEBOX)
+					usr.set_sound_channel_volume(CHANNEL_JUKEBOX, volume)
+				if(FS_AMBIENCE)
+					usr.set_sound_channel_volume(CHANNEL_AMBIENCE, volume)
+				if(FS_SHIP_AMBIENCE)
+					usr.set_sound_channel_volume(CHANNEL_BUZZ, volume)
+			// [/MANKIND-ADD]
+
+		if("test_sound")
+			var/flag = text2num(params["flag"])
+			var/test_sound
+			switch(flag)
+				if(FS_GENERAL)
+					test_sound = 'sound/misc/notice1.ogg'
+				if(FS_LOBBY)
+					test_sound = 'sound/ambience/title1.ogg'
+				if(FS_AMBIENCE)
+					test_sound = 'sound/ambience/ambigen1.ogg'
+				if(FS_WEAPONS)
+					test_sound = 'sound/weapons/gun/rifle/skm.ogg'
+				if(FS_ANNOUNCEMENTS)
+					test_sound = 'sound/misc/announce.ogg'
+				if(FS_INSTRUMENTS)
+					test_sound = 'sound/items/bikehorn.ogg'
+				if(FS_JUKEBOX)
+					test_sound = 'sound/ambience/title2.ogg'
+				if(FS_RADIO)
+					test_sound = 'sound/items/radiostatic.ogg'
+				if(FS_PRAYERS)
+					test_sound = 'sound/effects/bodyfall1.ogg'
+				if(FS_ADMIN)
+					test_sound = 'sound/misc/server-ready.ogg'
+				if(FS_SHIP_AMBIENCE)
+					test_sound = 'sound/ambience/shipambience.ogg'
+				if(FS_ENDOFROUND)
+					test_sound = 'sound/roundend/boowomp.ogg'
+				if(FS_VOICES)
+					test_sound = 'sound/effects/meow1.ogg'
+			if(test_sound)
+				var/sound/test_sound_to_play = sound(test_sound)
+				test_sound_to_play.volume = round(100 * (C.prefs.sound_volume[flag] / 100))
+				test_sound_to_play.channel = CHANNEL_ADMIN
+				test_sound_to_play.wait = 0
+				if(test_sound_to_play.volume > 0)
+					SEND_SOUND(usr, test_sound_to_play)
+				playing_flag = flag
+
+		if("stop_sound")
+			SEND_SOUND(usr, sound(null, repeat = 0, wait = 0, channel = CHANNEL_ADMIN))
+			playing_flag = 0
 
 	C.prefs.save_preferences()
 	. = TRUE

@@ -562,6 +562,9 @@
 	for(var/place in shuttle_areas)
 		var/area/area = place
 		area.connect_to_shuttle(src, dock)
+		// [SOLARIS-ADD] - SHIP_LOAD_LAG - обходим тысячи атомов корабля; отдаём тик на каждую область
+		CHECK_TICK
+		// [/SOLARIS-ADD]
 		for(var/each in place)
 			var/atom/atom = each
 			atom.connect_to_shuttle(src, dock)
@@ -635,25 +638,40 @@
 		// attempt to move us where we currently are, it will get weird.
 			return SHUTTLE_ALREADY_DOCKED
 
-	if(S.adjust_dock_for_landing && intention_to_dock)
+	if(S.adjust_dock_for_landing)
 		if(S.is_adjusting_now)
 			return SHUTTLE_PORT_IS_ADJUSTING
-		S.adjust_dock_to_shuttle(src)
+		//since we width/height is more like a box where the ship can land IN, we can easily check if we can land here
+		if(height > S.height)
+			if (width > S.height && height > S.width)
+				return SHUTTLE_ADJUSTABLE_OUR_HEIGHT_TOO_LARGE
+		if(width > S.width)
+			if (height > S.width && width > S.height)
+				return SHUTTLE_ADJUSTABLE_OUR_WIDTH_TOO_LARGE
+		//hopefully that reduces the amount of procesing nesaary before running this proc's math
+		if(intention_to_dock)
+			S.adjust_dock_to_shuttle(src)
+
 
 	if(istype(S, /obj/docking_port/stationary/transit))
 		return SHUTTLE_CAN_DOCK
 
-	if(tow_dwidth > S.dwidth)
-		return SHUTTLE_DWIDTH_TOO_LARGE
+	//if we are trying to dock to an adjustable port, but we are only checking if we can even land, dont actually check since it hasn't adjusted yet
+	if(!S.adjust_dock_for_landing || S.adjust_dock_for_landing && intention_to_dock)
+		// [SOLARIS-ADD] TEMP DEBUG - лог параметров стыковки (квадрантная сетка)
+		log_grid("GRID CAN_DOCK: [src.name] -> \"[S.name]\" ([S.type]): док тайл ([S.x],[S.y],[S.z]) dir=[S.dir] box=[S.width]x[S.height] офс=[S.dwidth],[S.dheight]; корабль [width]x[height] офс=[dwidth],[dheight] dir=[dir] порт_напр=[port_direction]; union dw=[tow_dwidth] dh=[tow_dheight] rw=[tow_rwidth] rh=[tow_rheight]")
+		// [/SOLARIS-ADD]
+		if(tow_dwidth > S.dwidth)
+			return SHUTTLE_DWIDTH_TOO_LARGE
 
-	if(tow_rwidth > S.width-S.dwidth)
-		return SHUTTLE_WIDTH_TOO_LARGE
+		if(tow_rwidth > S.width-S.dwidth)
+			return SHUTTLE_WIDTH_TOO_LARGE
 
-	if(tow_dheight > S.dheight)
-		return SHUTTLE_DHEIGHT_TOO_LARGE
+		if(tow_dheight > S.dheight)
+			return SHUTTLE_DHEIGHT_TOO_LARGE
 
-	if(tow_rheight > S.height-S.dheight)
-		return SHUTTLE_HEIGHT_TOO_LARGE
+		if(tow_rheight > S.height-S.dheight)
+			return SHUTTLE_HEIGHT_TOO_LARGE
 
 	for(var/obj/docking_port/stationary/current_port as anything in docking_points)
 		//if any of our docks has disable_on_owner_ship_dock set, has something docked to us, and we aren't going to a transit zone or an adjustable dock(usually planetary), don't land
@@ -664,10 +682,36 @@
 	if(S.disable_on_owner_ship_dock && (!istype(S.owner_ship.docked, /obj/docking_port/stationary/transit)))
 		return SHUTTLE_TARGET_MOBILEDOCK_FORBIDS_DOCKING
 
-	for(var/turf/closed/indestructible/edgeturf as anything in return_ordered_turfs(S.x, S.y, S.z, S.dir))
-		if(!istype(edgeturf))
-			continue
-		return SHUTTLE_TOUCHES_EDGE
+	//see above; adjustable port will not have adjusted and thus this reading will be wrong
+	if(!S.adjust_dock_for_landing || S.adjust_dock_for_landing && intention_to_dock)
+		// [SOLARIS-ADD] TEMP DEBUG - границы проекции посадки и точка касания края
+		var/list/projected_turfs = return_ordered_turfs(S.x, S.y, S.z, S.dir)
+		var/proj_found = FALSE
+		var/proj_min_x = 0
+		var/proj_max_x = 0
+		var/proj_min_y = 0
+		var/proj_max_y = 0
+		for(var/turf/proj_turf as anything in projected_turfs)
+			if(!proj_turf)
+				continue
+			if(!proj_found)
+				proj_found = TRUE
+				proj_min_x = proj_turf.x
+				proj_max_x = proj_turf.x
+				proj_min_y = proj_turf.y
+				proj_max_y = proj_turf.y
+			else
+				proj_min_x = min(proj_min_x, proj_turf.x)
+				proj_max_x = max(proj_max_x, proj_turf.x)
+				proj_min_y = min(proj_min_y, proj_turf.y)
+				proj_max_y = max(proj_max_y, proj_turf.y)
+		log_grid("GRID PROJECTION: посадка на \"[S.name]\" ([S.type]): проекция [proj_min_x],[proj_min_y]-[proj_max_x],[proj_max_y], тайл дока ([S.x],[S.y]) dir=[S.dir]")
+		for(var/turf/closed/indestructible/edgeturf as anything in projected_turfs)
+			if(!istype(edgeturf))
+				continue
+			log_grid("GRID EDGE_HIT: [src.name] -> \"[S.name]\", стена [edgeturf.type] в ([edgeturf.x],[edgeturf.y],[edgeturf.z])")
+			return SHUTTLE_TOUCHES_EDGE
+		// [/SOLARIS-ADD]
 
 	return SHUTTLE_CAN_DOCK
 

@@ -5,7 +5,8 @@
 "b" = (
 /obj/machinery/porta_turret/ship/inteq/light{
 	dir = 5;
-	id = "thunder_grid"
+	id = "thunder_grid";
+	scan_range = 9
 	},
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ship/bridge)
@@ -529,7 +530,8 @@
 "O" = (
 /obj/machinery/porta_turret/ship/inteq/light{
 	dir = 10;
-	id = "thunder_grid"
+	id = "thunder_grid";
+	scan_range = 9
 	},
 /obj/structure/sign/warning/securearea{
 	pixel_y = 28;
@@ -572,7 +574,8 @@
 "R" = (
 /obj/machinery/porta_turret/ship/inteq/light{
 	dir = 6;
-	id = "thunder_grid"
+	id = "thunder_grid";
+	scan_range = 9
 	},
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ship/bridge)
@@ -599,7 +602,8 @@
 "T" = (
 /obj/machinery/porta_turret/ship/inteq/light{
 	dir = 9;
-	id = "thunder_grid"
+	id = "thunder_grid";
+	scan_range = 9
 	},
 /obj/structure/sign/warning/securearea{
 	pixel_y = -24;

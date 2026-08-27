@@ -81,15 +81,21 @@ export const ShipBrowser = (props, context) => {
     });
   }
 
-  // Сортируем корабли
+  // Сортируем корабли: доступные сверху, ротированные внизу
   const sorted = [...filtered];
   if (sortBy === 'alphabet') {
-    sorted.sort((a, b) => (a?.name || '').localeCompare(b?.name || ''));
+    sorted.sort((a, b) => {
+      if (a?.rotated_out !== b?.rotated_out) return a?.rotated_out ? 1 : -1;
+      return (a?.name || '').localeCompare(b?.name || '');
+    });
   } else if (sortBy === 'crew') {
-    sorted.sort(
-      (a, b) => (Number(b?.crewCount) || 0) - (Number(a?.crewCount) || 0)
-    );
+    sorted.sort((a, b) => {
+      if (a?.rotated_out !== b?.rotated_out) return a?.rotated_out ? 1 : -1;
+      return (Number(b?.crewCount) || 0) - (Number(a?.crewCount) || 0);
+    });
   }
+
+  const rotatedCount = sorted.filter((t) => t?.rotated_out).length;
 
   const toggleTag = (tag) => {
     setSelectedTags((prev) =>
@@ -214,12 +220,13 @@ export const ShipBrowser = (props, context) => {
                 : 'Корабли не найдены для выбранной фракции'}
             </Box>
           ) : (
-            <Section title={`Доступные к покупке (${sorted.length})`}>
+            <Section title={`Доступные к покупке${rotatedCount > 0 ? ` (не в ротации: ${rotatedCount})` : ''}`}>
               {sorted.map((t, idx) => (
                 <Collapsible
                   key={`${t?.name || 'ship'}-${idx}`}
                   title={t?.name || 'Unknown Ship'}
                   color={
+                    (t?.rotated_out && 'grey') ||
                     (!data.shipSpawnAllowed && 'average') ||
                     (Number(t?.curNum) >= Number(t?.limit) &&
                       Number(t?.limit) > 0 &&
@@ -228,8 +235,10 @@ export const ShipBrowser = (props, context) => {
                   }
                   buttons={
                     <Button
-                      content="Buy"
+                      content={t?.rotated_out ? 'Недоступно' : 'Buy'}
                       tooltip={
+                        (t?.rotated_out &&
+                          'Корабль не доступен в текущем раунде') ||
                         (!data.shipSpawnAllowed &&
                           'Больше кораблей не может быть создано в это время.') ||
                         (Number(t?.curNum) >= Number(t?.limit) &&
@@ -239,6 +248,7 @@ export const ShipBrowser = (props, context) => {
                           'Корабль в процессе создания. Пожалуйста, подождите.')
                       }
                       disabled={
+                        t?.rotated_out ||
                         !data.shipSpawnAllowed ||
                         data.shipSpawning ||
                         (Number(t?.curNum) >= Number(t?.limit) &&

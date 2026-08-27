@@ -11,6 +11,10 @@
 /datum/overmap
 	/// The name of this overmap datum, propogated to the token, docking port, and areas.
 	var/name
+	// [MANKIND-ADD] - HIDE_SHIP_META - Скрываем мету корабля на овермапе
+	///Overrides the name shown on the overmap token. If empty, the real name is used.
+	var/token_display_name
+	// [/MANKIND-ADD]
 	///A quick description of the event. Should fit into a quick tgui hoverover tip.
 	var/desc
 	///Extra info that would fit into a sidebar or an extra pane such as. Should fit into a quick tgui hoverover tip.
@@ -29,8 +33,9 @@
 
 	/// The total lists of interactions vessels can do with this object. If nothing, then vessels are unable to interact with this object.
 	var/list/interaction_options
+	// [MANKIND-ADD] - New Helm Console Interface
 	var/list/interaction_hail
-
+	// [/MANKIND-ADD]
 	/// The time, in deciseconds, needed for this object to call
 	var/dock_time
 	/// The current docking timer ID.
@@ -343,7 +348,7 @@
 	var/choice = tgui_input_list(usr, "What would you like to do at [interact_target]?", "Interact", possible_interactions, timeout = 10 SECONDS)
 	return do_interaction_with(user, interact_target, choice)
 
-
+// [MANKIND-ADD] - New Helm Console Interface
 /datum/overmap/proc/show_hail_menu(mob/living/user, datum/overmap/interact_target)
 	if(!user)
 		return
@@ -356,6 +361,7 @@
 		return "There is nothing of interest at [interact_target]."
 
 	return do_hail(user, interact_target)
+// [/MANKIND-ADD]
 
 /**
  * This handles the selection of an interaction
@@ -371,7 +377,7 @@
 			return
 		if(INTERACTION_OVERMAP_DOCK)
 			if(docked_to || docking)
-				return "ERROR: Unable to do this currently! Reduce speed or undock!"
+				return "ERROR: Unable to do this while docked! Undock first!"
 
 			var/list/dockables = interact_target.get_dockable_locations(src)
 			if(!dockables.len)
@@ -382,13 +388,17 @@
 			return Dock(interact_target, choice)
 		if(INTERACTION_OVERMAP_QUICKDOCK)
 			if(docked_to || docking)
-				return "ERROR: Unable to do this currently! Undock first!"
+				return "ERROR: Unable to do this while docked! Undock first!"
 			return Dock(interact_target)
+		// 	[MANKIND-REMOVE] - New Helm Console Interface
+		// if(INTERACTION_OVERMAP_HAIL)
+		// 	return do_hail(user, interact_target)
+		// [/MANKIND-REMOVE]
 		if(INTERACTION_OVERMAP_INTERDICTION)
 			if(docked_to || docking)
-				return "ERROR: Unable to do this currently! Reduce speed or undock!"
+				return "ERROR: Unable to do this while docked! Undock first!"
 			if(interact_target.docked_to || interact_target.docking)
-				return "ERROR: Unable to do this currently! Target is docked or docking!"
+				return "ERROR: Unable to do this while target is docked or docking!"
 
 			var/list/dockables = get_dockable_locations(src)
 			if(!dockables.len)
@@ -427,9 +437,18 @@
 	var/input = stripped_input(user, "Please choose a message to hail the target with.", "Hailing Vessel")
 	if(!input)
 		return
-	priority_announce("[html_decode(input)]", "Outbound Hail to [interact_target]", 'sound/effects/hail.ogg', sender_override = name, zlevel = shuttle_port.virtual_z())
-	interact_target.relay_message(user,interact_target, input)
-	deadchat_broadcast(" hailed the <span class='name'>[interact_target.name]</span>: [input]", "<span class='name'>[user.real_name]</span>", user, message_type=DEADCHAT_ANNOUNCEMENT)
+	// [MANKIND-ADD] - TRANSPONDER_GOING_DARK - Hail не палит имя, если транспондер выключен
+	var/display_name = istype(src, /datum/overmap/ship/controlled) ? get_display_name(user) : name
+	var/datum/overmap/ship/controlled/target_ship = istype(interact_target, /datum/overmap/ship/controlled) ? interact_target : null
+	var/target_name = target_ship ? target_ship.get_display_name() : interact_target.name
+	// [MANKIND-EDIT] - OMNI_ARPA_HAIL - omni_arpa отправитель всегда видит настоящее имя получателя
+	if(target_ship && omni_arpa)
+		target_name = target_ship.name
+	// [/MANKIND-EDIT]
+	// [/MANKIND-ADD]
+	priority_announce("[html_decode(input)]", "Outbound Hail to [target_name]", 'sound/effects/hail.ogg', "Hail", sender_override = display_name, zlevel = shuttle_port.virtual_z())
+	interact_target.relay_message(user, src, input)
+	deadchat_broadcast(" hailed the <span class='name'>[target_name]</span>: [input]", "<span class='name'>[user.real_name]</span>", user, message_type=DEADCHAT_ANNOUNCEMENT)
 	return
 
 /**
@@ -448,7 +467,15 @@
  * * requesting_interactor - The overmap datum requesting the options.
  */
 /datum/overmap/ship/controlled/relay_message(mob/living/user, datum/overmap/requesting_interactor, message)
-	priority_announce("[html_decode(message)]", "Incoming Hail", 'sound/effects/hail.ogg', sender_override = requesting_interactor.name, zlevel = shuttle_port.virtual_z())
+	// [MANKIND-ADD] - TRANSPONDER_GOING_DARK - Получатель видит имя отправителя в зависимости от его транспондера
+	var/datum/overmap/ship/controlled/sender_ship = istype(requesting_interactor, /datum/overmap/ship/controlled) ? requesting_interactor : null
+	var/sender_name = sender_ship ? sender_ship.get_display_name() : requesting_interactor.name
+	// [MANKIND-EDIT] - OMNI_ARPA_HAIL - omni_arpa получатель всегда видит настоящее имя отправителя
+	if(sender_ship && omni_arpa)
+		sender_name = sender_ship.name
+	// [/MANKIND-EDIT]
+	// [/MANKIND-ADD]
+	priority_announce("[html_decode(message)]", "Incoming Hail", 'sound/effects/hail.ogg', "Hail", sender_override = sender_name, zlevel = shuttle_port.virtual_z())
 	return
 
 /**
@@ -460,8 +487,10 @@
 /datum/overmap/proc/get_interactions(mob/living/user, datum/overmap/requesting_interactor)
 	return interaction_options
 
+// [MANKIND-ADD] - New Helm Console Interface
 /datum/overmap/proc/get_hail(mob/living/user, datum/overmap/requesting_interactor)
 	return interaction_hail
+// [/MANKIND-ADD]
 /**
  * Gets all the available interaction options.
  *
@@ -597,8 +626,14 @@
 /datum/overmap/proc/complete_undock()
 	SHOULD_CALL_PARENT(TRUE)
 	var/datum/overmap/container = docked_to
-	while(container && !container.x || !container.y)
+	// [MANKIND-EDIT] - MANKIND_FIXES - Защита от бесконечного цикла при повреждённой цепочке доков
+	var/undock_chain_guard = 0
+	while(container && (!container.x || !container.y))
+		if(undock_chain_guard++ >= MAX_UNDOCK_CHAIN_LENGTH)
+			stack_trace("complete_undock: dock chain exceeded [MAX_UNDOCK_CHAIN_LENGTH] links, aborting undock!")
+			return
 		container = container.docked_to
+	// [/MANKIND-EDIT]
 	current_overmap = container.current_overmap // so we dont accidentally slingshot hundreds of au undocking
 	current_overmap.overmap_container[container.x][container.y] += src
 	// [MANKIND-ADD] - MANKIND_FIXES
@@ -716,7 +751,8 @@
  */
 
 /datum/overmap/proc/alter_token_appearance()
-	token.name = name
+	// [MANKIND-EDIT] - HIDE_SHIP_META - Не показываем настоящее имя корабля, используем при необходимости обезличенное
+	token.name = token_display_name ? token_display_name : name
 	token.desc = desc
 
 	token.icon_state = token_icon_state

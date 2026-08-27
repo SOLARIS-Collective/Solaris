@@ -45,7 +45,7 @@ GLOBAL_VAR(command_name)
 /proc/station_name()
 	if(!GLOB.station_name)
 		var/newname
-		var/config_station_name = CONFIG_GET(string/stationname)
+		var/config_station_name = CONFIG_GET(string/stationnames)
 		if(config_station_name)
 			newname = config_station_name
 		else
@@ -77,7 +77,7 @@ GLOBAL_VAR(command_name)
 		name = ""
 
 	// Prefix
-	var/holiday_name = pick(GLOB.holidays)
+	var/holiday_name = length(GLOB.holidays) ? pick(GLOB.holidays) : null
 	if(holiday_name)
 		var/datum/holiday/holiday = GLOB.holidays[holiday_name]
 		if(istype(holiday, /datum/holiday/friday_thirteenth))

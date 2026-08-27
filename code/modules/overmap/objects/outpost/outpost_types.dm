@@ -12,13 +12,12 @@
 	var/outpost_administrator = "Fallback Administration"
 
 /datum/map_template/outpost/New()
-	// [MANKIND-EDIT] - MANKIND_CONFIGS_MAPS
-	// . = ..(path = "_maps/outpost/[name].dmm") // ORIGINAL
-	. = ..(path = "_maps/_modular_solaris/outpost/[name].dmm")
-	// [/MANKIND-EDIT]
+	. = ..(path = "_maps/outpost/[name].dmm")
 
 
 /datum/map_template/outpost/hangar
+	// [SOLARIS-ADD] - SHIP_LOAD_LAG - Тут итак ангары а под ними космос
+	should_place_on_top = TRUE
 	var/dock_width
 	var/dock_height
 
@@ -202,145 +201,3 @@
 	name = "hangar/cybersun_gas_giant_56x40"
 	dock_width = 56
 	dock_height = 40
-
-/*
-	/datum/overmap/outpost subtypes
-*/
-// [MANKIND-REMOVE] - MANKIND_CONFIGS_MAPS - Отправляется в щитспавн по приказу Head of Maps
-/*
-/datum/overmap/outpost/indie_space
-	token_icon_state = "station_cylinder"
-	main_template = /datum/map_template/outpost/indie_space
-	elevator_template = /datum/map_template/outpost/elevator_indie
-	faction = FACTION_INDEPENDENT
-	// Uses "default" hangars (indie_space).
-*/
-// [/MANKIND-REMOVE]
-/*
-/datum/overmap/outpost/nanotrasen_asteroid
-	token_icon_state = "station_asteroid_0"
-	main_template = /datum/map_template/outpost/nt_asteroid
-
-/datum/overmap/outpost/nanotrasen_ice
-	token_icon_state = "station_asteroid"
-	main_template = /datum/map_template/outpost/nanotrasen_ice
-	elevator_template = /datum/map_template/outpost/elevator_ice
-	faction = FACTION_NT
-	weather_controller_type = /datum/weather_controller/chill
-	hangar_templates = list(
-		/datum/map_template/outpost/hangar/nt_ice_20x20,
-		/datum/map_template/outpost/hangar/nt_ice_40x20,
-		/datum/map_template/outpost/hangar/nt_ice_40x40,
-		/datum/map_template/outpost/hangar/nt_ice_56x20,
-		/datum/map_template/outpost/hangar/nt_ice_56x40
-	)
-	faction = /datum/faction/nt
-
-/datum/overmap/outpost/ngr_rock
-	token_icon_state = "station_asteroid"
-	main_template = /datum/map_template/outpost/ngr_rock
-	elevator_template = /datum/map_template/outpost/elevator_rock
-	weather_controller_type = /datum/weather_controller/rockplanet_safe
-	hangar_templates = list(
-		/datum/map_template/outpost/hangar/ngr_rock_20x20,
-		/datum/map_template/outpost/hangar/ngr_rock_40x20,
-		/datum/map_template/outpost/hangar/ngr_rock_40x40,
-		/datum/map_template/outpost/hangar/ngr_rock_56x20,
-		/datum/map_template/outpost/hangar/ngr_rock_56x40
-	)
-
-/datum/overmap/outpost/clip_ocean
-	token_icon_state = "station_planet"
-	main_template = /datum/map_template/outpost/clip_ocean
-	elevator_template = /datum/map_template/outpost/elevator_clip
-	weather_controller_type = /datum/weather_controller/lush
-	hangar_templates = list(
-		/datum/map_template/outpost/hangar/clip_ocean_20x20,
-		/datum/map_template/outpost/hangar/clip_ocean_40x20,
-		/datum/map_template/outpost/hangar/clip_ocean_40x40,
-		/datum/map_template/outpost/hangar/clip_ocean_56x20,
-		/datum/map_template/outpost/hangar/clip_ocean_56x40
-	)
-
-/datum/overmap/outpost/cybersun_gas_giant
-	token_icon_state = "gas_giant_outpost"
-	//icon = 'icons/misc/overmap_larger.dmi'
-	main_template = /datum/map_template/outpost/cybersun_gas_giant
-	elevator_template = /datum/map_template/outpost/elevator_cybersun
-	weather_controller_type = /datum/weather_controller/thousand_eyes
-	hangar_templates = list(
-		/datum/map_template/outpost/hangar/cybersun_gas_giant_20x20,
-		/datum/map_template/outpost/hangar/cybersun_gas_giant_40x20,
-		/datum/map_template/outpost/hangar/cybersun_gas_giant_40x40,
-		/datum/map_template/outpost/hangar/cybersun_gas_giant_56x20,
-		/datum/map_template/outpost/hangar/cybersun_gas_giant_56x40
-	)
-	main_level_ztraits = list(
-		ZTRAIT_GAS_GIANT = TRUE,
-		ZTRAIT_STATION = TRUE,
-		ZTRAIT_SUN_TYPE = AZIMUTH,
-		ZTRAIT_GRAVITY = STANDARD_GRAVITY
-	)
-	hangar_ztraits =  list(
-		ZTRAIT_GAS_GIANT = TRUE,
-		ZTRAIT_SUN_TYPE = STATIC_EXPOSED,
-		ZTRAIT_GRAVITY = STANDARD_GRAVITY
-	)
-
-
-/datum/overmap/outpost/cybersun_gas_giant/alter_token_appearance()
-	token.name = name
-	token.desc = desc
-	token.icon = 'icons/misc/overmap_large.dmi'
-	token.icon_state = token_icon_state
-	token.color = current_overmap.secondary_structure_color
-	if(flag_overlay)
-		token.cut_overlays()
-		token.add_overlay("colonized")
-	if(current_overmap.override_object_colors)
-		token.color = current_overmap.primary_color
-	current_overmap.post_edit_token_state(src)
-
-/datum/overmap/outpost/no_main_level // For example and adminspawn.
-	main_template = null
-	elevator_template = /datum/map_template/outpost/elevator_test
-	// Using a second list of hangar templates.
-	hangar_templates = list(
-		/datum/map_template/outpost/hangar/nt_asteroid_20x20,
-		/datum/map_template/outpost/hangar/nt_asteroid_40x20,
-		/datum/map_template/outpost/hangar/nt_asteroid_40x40,
-		/datum/map_template/outpost/hangar/nt_asteroid_56x20,
-		/datum/map_template/outpost/hangar/nt_asteroid_56x40
-	)
-*/
-// [MANKIND-REMOVE] - MANKIND_CONFIGS_MAPS - Перенесено в модуль в maps
-// /datum/overmap/outpost/nanotrasen_ice
-// 	token_icon_state = "station_asteroid_0"
-// 	main_template = /datum/map_template/outpost/nanotrasen_ice
-// 	elevator_template = /datum/map_template/outpost/elevator_ice
-// 	hangar_templates = list(
-// 		/datum/map_template/outpost/hangar/nt_ice_20x20,
-// 		/datum/map_template/outpost/hangar/nt_ice_40x20,
-// 		/datum/map_template/outpost/hangar/nt_ice_40x40,
-// 		/datum/map_template/outpost/hangar/nt_ice_56x20,
-// 		/datum/map_template/outpost/hangar/nt_ice_56x40
-// 	)
-	// faction = /datum/faction/nt
-
-// /datum/overmap/outpost/ngr_rock
-// 	token_icon_state = "station_asteroid_0"
-// 	main_template = /datum/map_template/outpost/ngr_rock
-// 	elevator_template = /datum/map_template/outpost/elevator_rock
-// 	hangar_templates = list(
-// 		/datum/map_template/outpost/hangar/ngr_rock_20x20,
-// 		/datum/map_template/outpost/hangar/ngr_rock_40x20,
-// 		/datum/map_template/outpost/hangar/ngr_rock_40x40,
-// 		/datum/map_template/outpost/hangar/ngr_rock_56x20,
-// 		/datum/map_template/outpost/hangar/ngr_rock_56x40
-// 	)
-
-// /datum/overmap/outpost/no_main_level // For example and adminspawn.
-// 	main_template = null
-// 	elevator_template = /datum/map_template/outpost/elevator_test
-// 	// Uses "test" hangars.
-// [/MANKIND-REMOVE]

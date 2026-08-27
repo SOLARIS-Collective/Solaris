@@ -19,12 +19,24 @@
 	var/datum/map_generator/empty_space_mapgen
 	/// Override the mountain value of the mapgen to this value.
 	var/mountain_height_override
+	// [MANKIND-ADD] - MANKIND_OVERMAP_EVENT_LAYER - Если TRUE, токен ивента получает рандомный слой (3, 4 или 5), чтобы корабль рендерился поверх или под ивентом
+	var/randomize_token_layer = FALSE
+	/// Если задан (не 0), токен ивента всегда получает этот слой вместо рандома. 3/4 - корабль поверх ивента, 5 - корабль под ивентом
+	var/fixed_token_layer = 0
+	// [/MANKIND-ADD]
 
 /datum/overmap/event/Initialize(position, datum/overmap_star_system/system_spawned_in, set_lifespan,...)
 	. = ..()
 	SSovermap.events += src
 	current_overmap.events += src
 	alter_token_appearance()
+
+	// [MANKIND-ADD] - MANKIND_OVERMAP_EVENT_LAYER - Рандомный слой токена: 3/4 - корабль поверх ивента, 5 - корабль под ивентом
+	if(randomize_token_layer)
+		token.layer = pick(3, 4, 5)
+	else if(fixed_token_layer)
+		token.layer = fixed_token_layer
+	// [/MANKIND-ADD]
 
 	if(lifespan || set_lifespan)
 		if(set_lifespan)
@@ -80,6 +92,9 @@
 	name = "asteroid field (moderate)"
 	desc = "An area of space rich with asteroids, going fast through here could prove dangerous"
 	base_icon_state = "meteor_medium_"
+	// [MANKIND-ADD] - MANKIND_OVERMAP_EVENT_LAYER - Рандомный слой токена ивента (корабль поверх или под ивентом)
+	randomize_token_layer = TRUE
+	// [/MANKIND-ADD]
 	// [MANKIND-REMOVE] - MANKIND_OVERMAP_ICON - спрайты некросивые получаюца
 	// default_color = "#a08444"
 	// [/MANKIND-REMOVE]
@@ -183,6 +198,9 @@
 	// [MANKIND-EDIT] - MANKIND_OVERMAP_ICON - спрайты некросивые получаюца
 	// base_icon_state = "emp_medium_"	// ORIGINAL
 	base_icon_state = "emp_moderate_"
+	// [MANKIND-ADD] - MANKIND_OVERMAP_EVENT_LAYER - Рандомный слой токена ивента (корабль поверх или под ивентом)
+	randomize_token_layer = TRUE
+	// [/MANKIND-ADD]
 	// [/MANKIND-EDIT]
 	// [MANKIND-REMOVE] - MANKIND_OVERMAP_ICON - спрайты некросивые получаюца
 	// default_color = "#4066ff"
@@ -320,6 +338,9 @@
 	name = "electrical storm (moderate)"
 	desc = "A buildup of static electrity, an unfortunately common sight on the frontier. Disturbing it tends to lead to intense electrical discharges"
 	base_icon_state = "electrical_medium_"
+	// [MANKIND-ADD] - MANKIND_OVERMAP_EVENT_LAYER - Рандомный слой токена ивента (корабль поверх или под ивентом)
+	randomize_token_layer = TRUE
+	// [/MANKIND-ADD]
 	// [MANKIND-REMOVE] - MANKIND_OVERMAP_ICON - спрайты некросивые получаюца
 	// default_color = "#e8e85c"
 	// [/MANKIND-REMOVE]
@@ -402,6 +423,11 @@
 	// base_icon_state = "nebula"	// ORIGINAL
 	token_icon_state = "nebula_1"
 	base_icon_state = "nebula_1"
+	// [MANKIND-EDIT] - MANKIND_OVERMAP_EVENT_LAYER - Туманность всегда рендерится поверх корабля (корабль всегда на нижнем слое), без рандома
+	// randomize_token_layer = TRUE	// ORIGINAL
+	randomize_token_layer = FALSE
+	fixed_token_layer = 5
+	// [/MANKIND-EDIT]
 	// [/MANKIND-EDIT]
 	// [MANKIND-REMOVE] - MANKIND_OVERMAP_ICON - спрайты некросивые получаюца
 	// default_color = "#c053f3"
@@ -584,6 +610,9 @@
 	name = "anomaly field"
 	desc = "A highly anomalous area of space, disturbing it leads to the manifestation of odd spatial phenomena"
 	base_icon_state = "anomaly"
+	// [MANKIND-ADD] - MANKIND_OVERMAP_EVENT_LAYER - Рандомный слой токена ивента (корабль поверх или под ивентом)
+	randomize_token_layer = TRUE
+	// [/MANKIND-ADD]
 	// [MANKIND-REMOVE] - MANKIND_OVERMAP_ICON - спрайты некросивые получаюца
 	// default_color = "#d6c633"
 	// [/MANKIND-REMOVE]
@@ -646,6 +675,9 @@ GLOBAL_LIST_INIT(overmap_event_pick_list, list(
 	name = "radiation storm (moderate)"
 	desc = "An area with a high concentration of gamma rays. Better not take long here."
 	base_icon_state = "gamma_medium_"
+	// [MANKIND-ADD] - MANKIND_OVERMAP_EVENT_LAYER - Рандомный слой токена ивента (корабль поверх или под ивентом)
+	randomize_token_layer = TRUE
+	// [/MANKIND-ADD]
 	// [MANKIND-REMOVE] - MANKIND_OVERMAP_ICON - спрайты некросивые получаюца
 	// default_color = "#d651c2"
 	// [/MANKIND-REMOVE]

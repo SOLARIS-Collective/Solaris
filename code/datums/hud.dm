@@ -3,7 +3,7 @@
 GLOBAL_LIST_EMPTY(all_huds)
 
 //GLOBAL HUD LIST
-GLOBAL_LIST_INIT(huds, list(
+GLOBAL_LIST_INIT(huds, alist(
 	DATA_HUD_SECURITY_BASIC = new/datum/atom_hud/data/human/security/basic(),
 	DATA_HUD_SECURITY_ADVANCED = new/datum/atom_hud/data/human/security/advanced(),
 	DATA_HUD_MEDICAL_BASIC = new/datum/atom_hud/data/human/medical/basic(),
@@ -30,13 +30,13 @@ GLOBAL_LIST_INIT(huds, list(
 	))
 
 /datum/atom_hud
-	var/list/atom/hudatoms = list() //list of all atoms which display this hud
-	var/list/hudusers = list() //list with all mobs who can see the hud
-	var/list/hud_icons = list() //these will be the indexes for the atom's hud_list
+	var/list/atom/hudatoms = alist() //list of all atoms which display this hud
+	var/list/hudusers = alist() //list with all mobs who can see the hud
+	var/list/hud_icons = alist() //these will be the indexes for the atom's hud_list
 
-	var/list/next_time_allowed = list() //mobs associated with the next time this hud can be added to them
-	var/list/queued_to_see = list() //mobs that have triggered the cooldown and are queued to see the hud, but do not yet
-	var/hud_exceptions = list() // huduser = list(ofatomswiththeirhudhidden) - aka everyone hates targeted invisiblity
+	var/list/next_time_allowed = alist() //mobs associated with the next time this hud can be added to them
+	var/list/queued_to_see = alist() //mobs that have triggered the cooldown and are queued to see the hud, but do not yet
+	var/hud_exceptions = alist() // huduser = list(ofatomswiththeirhudhidden) - aka everyone hates targeted invisiblity
 
 /datum/atom_hud/New()
 	GLOB.all_huds += src
@@ -103,7 +103,7 @@ GLOBAL_LIST_INIT(huds, list(
 	if(hudusers[hud_user])
 		remove_from_single_hud(hud_user,hidden_atom)
 	if(!hud_exceptions[hud_user])
-		hud_exceptions[hud_user] = list(hidden_atom)
+		hud_exceptions[hud_user] = alist(hidden_atom)
 	else
 		hud_exceptions[hud_user] += hidden_atom
 

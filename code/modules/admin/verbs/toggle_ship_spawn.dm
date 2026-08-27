@@ -39,3 +39,24 @@
 		message_admins(message)
 		log_game(message)
 	BLACKBOX_LOG_ADMIN_VERB("Toggle Automatic Ship Spawn Locking")
+
+/client/proc/toggle_ship_rotation()
+	set name = "Toggle Ship Rotation"
+	set category = "Server"
+	set desc = "Включает/выключает ротацию кораблей. При включении половина кораблей каждой фракции случайно доступна для покупки."
+
+	if(!holder)
+		to_chat(src, "Только администраторы могут использовать эту команду.", confidential = TRUE)
+		return
+	if(check_rights(R_ADMIN, 1))
+		GLOB.ship_rotation_enabled ^= TRUE
+		var/message
+		if(GLOB.ship_rotation_enabled)
+			message = "[key_name_admin(usr)] включил ротацию кораблей."
+			to_chat(world, "<B>Ротация кораблей включена. Ротация применится при следующем старте сервера.</B>", confidential = TRUE)
+		else
+			message = "[key_name_admin(usr)] выключил ротацию кораблей."
+			to_chat(world, "<B>Ротация кораблей выключена. Все корабли будут доступны при следующем старте сервера.</B>", confidential = TRUE)
+		message_admins(message)
+		log_game(message)
+	BLACKBOX_LOG_ADMIN_VERB("Toggle Ship Rotation")

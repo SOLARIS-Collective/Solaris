@@ -1,0 +1,8 @@
+#ifndef MODPACK_MANKIND_HUD
+#define MODPACK_MANKIND_HUD
+
+#include "_hud.dm"
+
+#include "code/hud_ghost.dm"
+
+#endif

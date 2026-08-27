@@ -27,9 +27,11 @@
 	name = "Haymaker-class Command Post"
 	description = "Frontiersmen"
 
-/datum/map_template/shuttle/subshuttles/bambulance
+/datum/map_template/shuttle/subshuttles/ambulance
+	file_name = "syndicate_ambulance"
 	name = "Gauze-class Ambulance Pod"
 	description = "Syndicate - Cybersun"
+	prefix = "sMSSV"
 
 //your subshuttle here //why is my subshuttle here
 /datum/map_template/shuttle/subshuttles/falcon
@@ -175,3 +177,11 @@
 	name = "Felon Drug Carrier"
 	description = "Elysium"
 	prefix = "sESV"
+
+// Субшатлы для аванпостов
+/datum/map_template/shuttle/subshuttles/felix
+	file_name = "independent_felix"
+	name = "Felix Medical Shield Ship"
+	description = "Independent"
+	prefix = "sISV"
+	def_sensor_range = 8

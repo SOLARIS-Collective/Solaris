@@ -282,9 +282,12 @@
 	data["fax_id"] = fax_id
 	data["fax_name"] = fax_name
 	data["visible"] = visible_to_network
+	data["has_paper"] = !!loaded_item_ref?.resolve()
 	// In this case, we don't care if the fax is hacked or in the syndicate's network. The main thing is to check the visibility of other faxes.
 	data["frontier_network"] = (frontier_network || (obj_flags & EMAGGED))
-	data["has_paper"] = !!loaded_item_ref?.resolve()
+	// [MANKIND-ADD] - FAX_SEND_ONLY_CENTCOM - Только факсы ЦК (admin) могут отправлять; корабельные только принимают.
+	data["can_send"] = !!admin_fax_id
+	// [/MANKIND-ADD]
 	data["fax_history"] = fax_history
 	data["special_faxes"] = special_networks
 	return data
@@ -308,6 +311,9 @@
 			var/obj/item/loaded = loaded_item_ref?.resolve()
 			if(!loaded)
 				return
+			if(!admin_fax_id)
+				balloon_alert(usr, "передача недоступна")
+				return
 			var/destination = params["id"]
 			if(send(loaded, destination))
 				log_fax(loaded, destination, params["name"])
@@ -318,6 +324,9 @@
 			var/obj/item/loaded = loaded_item_ref?.resolve()
 			var/obj/thing_to_send
 			if(!loaded)
+				return
+			if(!admin_fax_id)
+				balloon_alert(usr, "передача недоступна")
 				return
 			if(istype(loaded, /obj/item/paper))
 				var/obj/item/paper/fax_paper = loaded

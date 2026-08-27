@@ -951,7 +951,7 @@
 /turf/open/floor/plating/asteroid/dirt/grass/beach,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "qe" = (
-/obj/effect/mob_spawn/human/corpse/clip/vc,
+/obj/effect/mob_spawn/human/corpse/solfed/marine/pistol,
 /turf/open/floor/concrete/slab_1,
 /area/ruin/beach/village/armory)
 "qk" = (
@@ -1022,9 +1022,9 @@
 /turf/open/floor/plating/asteroid/sand/lit,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "rz" = (
-/obj/effect/mob_spawn/human/corpse/clip/minuteman,
 /obj/machinery/light/small/directional/south,
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/mob_spawn/human/corpse/solfed/marine,
 /turf/open/floor/concrete/slab_1,
 /area/ruin/beach/village/armory)
 "rA" = (
@@ -1266,7 +1266,9 @@
 /obj/effect/decal/cleanable/blood/tracks,
 /obj/item/clothing/head/helmet/m10/clip_vc{
 	pixel_x = -10;
-	pixel_y = -9
+	pixel_y = -9;
+	desc = "A special, lightweight and padded helmet issued to Vehicle Crewmen of the SolFed. Features noise-reducing technology and a microphone that automatically connects with worn headsets. Hopefully protects you from bumpy rides.";
+	name = "\improper SolFed CM-12 Helmet"
 	},
 /turf/open/floor/concrete/slab_1,
 /area/ruin/beach/village/armory)
@@ -1405,7 +1407,7 @@
 /area/ruin/beach/village/dorm)
 "xN" = (
 /obj/effect/decal/cleanable/blood/gibs/core,
-/obj/effect/mob_spawn/human/corpse/clip/minuteman,
+/obj/effect/mob_spawn/human/corpse/solfed/marine/melee,
 /turf/open/floor/concrete/slab_1,
 /area/ruin/beach/village/armory)
 "xO" = (
@@ -1460,7 +1462,7 @@
 /obj/effect/decal/cleanable/blood/splatter{
 	icon_state = "floor4"
 	},
-/obj/effect/mob_spawn/human/corpse/clip/vc,
+/obj/effect/mob_spawn/human/corpse/solfed/marine/sniper,
 /turf/open/floor/plating/asteroid/sand/lit,
 /area/overmap_encounter/planetoid/beachplanet/explored)
 "yT" = (
@@ -1789,7 +1791,9 @@
 	},
 /obj/item/clothing/head/helmet/bulletproof/x11/clip{
 	pixel_x = 6;
-	pixel_y = -5
+	pixel_y = -5;
+	name = "\improper SolFed CM-11 Helmet";
+	desc = "A large, bulky bulletproof helmet in the distinctive blue coloring of the SolFed. Features a little attachment rail on the side where you can mount a flashlight."
 	},
 /turf/open/floor/concrete/slab_1,
 /area/ruin/beach/village/armory)
@@ -1830,11 +1834,11 @@
 /obj/structure/closet/crate/internals,
 /obj/item/clothing/mask/gas/frontiersmen,
 /obj/item/clothing/mask/gas/frontiersmen,
-/obj/item/clothing/mask/gas/clip,
-/obj/item/clothing/mask/gas/clip,
-/obj/item/tank/internals/emergency_oxygen/engi,
-/obj/item/tank/internals/emergency_oxygen/engi,
 /obj/effect/turf_decal/siding/thinplating,
+/obj/item/clothing/mask/gas/solfed,
+/obj/item/clothing/mask/gas/solfed,
+/obj/item/tank/internals/emergency_oxygen/engi,
+/obj/item/tank/internals/emergency_oxygen/engi,
 /turf/open/floor/plasteel/tech/techmaint,
 /area/ruin/beach/village/armory)
 "Fa" = (

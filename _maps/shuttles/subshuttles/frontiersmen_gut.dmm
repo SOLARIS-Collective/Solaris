@@ -20,6 +20,7 @@
 /obj/effect/turf_decal/industrial/warning{
 	dir = 4
 	},
+/obj/machinery/newscaster/directional/east,
 /turf/open/floor/plasteel/patterned/brushed,
 /area/ship/storage)
 "bY" = (
@@ -60,9 +61,8 @@
 /turf/open/floor/plasteel/patterned/brushed,
 /area/ship/storage)
 "dJ" = (
-/obj/machinery/porta_turret/ship/frontiersmen{
-	dir = 5;
-	id = "gut_grid"
+/obj/machinery/porta_turret/ship/ballistic{
+	dir = 5
 	},
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ship/storage)
@@ -306,10 +306,7 @@
 	dir = 9
 	},
 /obj/machinery/computer/helm,
-/obj/machinery/turretid/ship{
-	pixel_y = 24;
-	id = "gut_grid"
-	},
+/obj/machinery/newscaster/directional/north,
 /turf/open/floor/plasteel/telecomms_floor,
 /area/ship/storage)
 "sk" = (
@@ -365,6 +362,7 @@
 /obj/effect/turf_decal/techfloor{
 	dir = 4
 	},
+/obj/machinery/holopad,
 /turf/open/floor/plasteel/telecomms_floor,
 /area/ship/storage)
 "uA" = (
@@ -401,9 +399,8 @@
 /turf/open/floor/plasteel/tech,
 /area/ship/storage)
 "vJ" = (
-/obj/machinery/porta_turret/ship/frontiersmen{
-	dir = 9;
-	id = "gut_grid"
+/obj/machinery/porta_turret/ship/ballistic{
+	dir = 9
 	},
 /turf/closed/wall/r_wall/syndicate/nodiagonal,
 /area/ship/storage)
@@ -483,9 +480,8 @@
 /turf/open/floor/plasteel/patterned/brushed,
 /area/ship/storage)
 "GQ" = (
-/obj/machinery/porta_turret/ship/frontiersmen{
-	dir = 5;
-	id = "gut_grid"
+/obj/machinery/porta_turret/ship/ballistic{
+	dir = 5
 	},
 /turf/closed/wall/mineral/plastitanium,
 /area/ship/storage)
@@ -513,13 +509,6 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel/patterned/brushed,
-/area/ship/storage)
-"Jn" = (
-/obj/machinery/porta_turret/ship/frontiersmen{
-	dir = 6;
-	id = "gut_grid"
-	},
-/turf/closed/wall/mineral/plastitanium,
 /area/ship/storage)
 "JX" = (
 /obj/effect/turf_decal/industrial/warning,
@@ -589,9 +578,8 @@
 /turf/open/floor/plasteel/tech,
 /area/ship/storage)
 "RY" = (
-/obj/machinery/porta_turret/ship/frontiersmen{
-	dir = 9;
-	id = "gut_grid"
+/obj/machinery/porta_turret/ship/ballistic{
+	dir = 9
 	},
 /turf/closed/wall/mineral/plastitanium,
 /area/ship/storage)
@@ -825,6 +813,6 @@ Xf
 Xf
 Xf
 Xf
-Jn
+ii
 rv
 "}

@@ -168,7 +168,7 @@
 	var/list/allowed_directions = list("north", "east", "south", "west")
 
 	var/list/allowed_states = list(
-	"loadingarea","delivery","warning","warningcorner","warningcee","warningfulltile","warningfull","box_corners","box","caution","stand_clear",
+	"loadingarea","delivery","warning","warningcorner","warningcee","warningfulltile","warningfull","box_corners","box","caution","stand_clear","stand_clear_a",
 	"arrows","overstripe","overstripecorner","overstripefull","overstripecee","stripe","stripecorner","stripefull","stripecee","stripefulltile",
 	"danger","dangercorner","dangerfull","dangercee",
 	"chapel", "outline", "spline_fancy",
@@ -186,7 +186,7 @@
 	"siding_thinplating_corner","siding_wideplating_line","siding_wideplating_end","siding_wideplating_corner","siding_wood_line",
 	"siding_wood_corner","siding_wood_end","trimline","trimline_corner","trimline_end","trimline_box","trimline_arrow_cw","trimline_arrow_ccw","trimline_fill",
 	"trimline_corner_fill","trimline_end_fill","trimline_box_fill","trimline_arrow_cw_fill","trimline_arrow_ccw_fill",
-	"trimline_shrink_cw","trimline_shrink_ccw","trimline_warn", "trimline_warn_fill",
+	"trimline_shrink_cw","trimline_shrink_ccw","trimline_warn","trimline_warn_a","trimline_warn_fill",
 	"road","road_edge", "road_stripes", "road_stop", "road_slow", "road_line", "road_line_edge"
 	)
 

@@ -34,6 +34,8 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	var/custom_price
 	///Does the item have a custom premium price override
 	var/custom_premium_price
+	///Which category/tab this product belongs to in the UI
+	var/category = "Misc"
 
 /**
 	* # vending machines
@@ -95,6 +97,11 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	*	form should be list(/type/path, /type/path2) as there is only ever one in stock
 	*/
 	var/list/premium 	= list()
+
+	///Category names shown as tabs in the UI, in display order
+	var/list/categories = list()
+	///Maps a category name to a list of product typepaths
+	var/list/product_categories = list()
 
 	///String of slogans separated by semicolons, optional
 	var/product_slogans = ""
@@ -324,7 +331,21 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 		R.max_amount = amount
 		R.custom_price = initial(temp.custom_price)
 		R.custom_premium_price = initial(temp.custom_premium_price)
+		R.category = get_product_category(typepath)
 		recordlist += R
+
+/obj/machinery/vending/proc/get_product_category(typepath)
+	var/typepath_text = "[typepath]"
+	var/best_category = "Misc"
+	var/best_length = 0
+	for(var/cat in product_categories)
+		for(var/prefix in product_categories[cat])
+			var/prefix_text = "[prefix]"
+			if(typepath_text == prefix_text || findtext(typepath_text, prefix_text, 1, length(prefix_text) + 1) == 1)
+				if(length(prefix_text) > best_length)
+					best_length = length(prefix_text)
+					best_category = cat
+	return best_category
 /**
 	* Refill a vending machine from a refill canister
 	*
@@ -568,11 +589,9 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 							squish_part = C.bodyparts[zone]
 							if(!squish_part)
 								continue
-							if(IS_ORGANIC_LIMB(squish_part))
-								var/type_wound = pick(list(/datum/wound/blunt/severe, /datum/wound/blunt/moderate))
-								squish_part.force_wound_upwards(type_wound)
-							else
-								squish_part.receive_damage(brute=30)
+							var/severity = pick(WOUND_SEVERITY_MODERATE, WOUND_SEVERITY_SEVERE, WOUND_SEVERITY_CRITICAL)
+							if(!C.cause_wound_of_type_and_severity(WOUND_BLUNT, squish_part, severity, wound_source = "crushed by [src]"))
+								squish_part.receive_damage(brute = 30)
 						C.visible_message(
 							span_userdanger("[C]'s body is maimed underneath the mass of [src]!"),
 							span_userdanger("Your body is maimed underneath the mass of [src]!"),
@@ -722,6 +741,7 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	. = list()
 	.["all_items_free"] = all_items_free
 	.["miningvendor"] = mining_point_vendor
+	.["categories"] = categories
 	.["product_records"] = list()
 	for (var/datum/data/vending_product/R in product_records)
 		var/list/data = list(
@@ -729,7 +749,8 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 			name = R.name,
 			price = R.custom_price || default_price,
 			max_amount = R.max_amount,
-			ref = REF(R)
+			ref = REF(R),
+			category = R.category
 		)
 		.["product_records"] += list(data)
 	.["coin_records"] = list()
@@ -740,7 +761,8 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 			price = R.custom_premium_price || extra_price,
 			max_amount = R.max_amount,
 			ref = REF(R),
-			premium = TRUE
+			premium = TRUE,
+			category = R.category
 		)
 		.["coin_records"] += list(data)
 	.["hidden_records"] = list()
@@ -751,7 +773,8 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 			price = R.custom_premium_price || extra_price,											//WS Edit - vendor incorrect contraband price fix
 			max_amount = R.max_amount,
 			ref = REF(R),
-			premium = TRUE
+			premium = TRUE,
+			category = R.category
 		)
 		.["hidden_records"] += list(data)
 

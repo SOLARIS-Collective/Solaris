@@ -7,8 +7,14 @@
 #Ignore byond config folder.
 /cfg/**/*
 
+# Generated commit summaries
+commit-summary.md
+summary.md
+
 # Ignore compiled linux libs in the root folder, e.g. librust_g.so
 /*.so
+# auxcpu is shipped with the codebase on purpose (see code/__HELPERS/auxcpu.dm)
+!/libauxcpu_byondapi.so
 
 #Ignore compiled files and other files generated during compilation.
 *.mdme
@@ -20,6 +26,7 @@
 *.lk
 *.int
 *.backup
+*.diff
 /shiptest.json
 ### https://raw.github.com/github/gitignore/cc542de017c606138a87ee4880e5f06b3a306def/Global/Linux.gitignore
 
@@ -203,5 +210,5 @@ check_regex_output.txt
 # Autowiki
 /tools/autowiki/node_modules
 
-# Private
-/code/__DEFINES/~modular_solaris/private_config_solaris.dm
+/code/modules/overmap/combat/*
+/.kodik/*

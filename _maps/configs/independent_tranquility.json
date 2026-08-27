@@ -1,16 +1,17 @@
 {
-	"$schema": "https://raw.githubusercontent.com/PentestSS13/Pentest/master/_maps/ship_config_schema.json",
+	"$schema": "https://raw.githubusercontent.com/CeladonSS13/Shiptest/beta-dev/_maps/_mod_celadon/ship_config_schema.json",
 	"map_name": "Tranquility-class Flying Apartment Complex",
-	"map_short_name": "Tranquility-class",
-	"map_path": "_maps/PentestMaps/Shuttles/independent/independent_tranquility.dmm",
+	"map_short_name": "Tranquility",
+	"description": "Большинство суден имеют четкое назначение - исследовательские, добывающие, грузовые и так далее - но класс 'Tranquility' является заметным исключением из этого правила. 'Tranquility' - довольно спокойное и уравновешенное судно, созданное по образцу традиционных жилых комплексов. Оснащенные несколькими независимыми каютами, большой общей столовой и очень малым количеством промышленного оборудования или средств самообороны, судна класса 'Tranquility' часто можно встретить лениво курсирующими по Фронтиру, устраивающими ситкомовские выходки и отказывающимися от более целенаправленного подхода многих своих современников.",
+	"map_path": "_maps/shuttles/independent/independent_tranquility.dmm",
+	"enabled": true,
+	"limit": 1,
+	"sensor_range": 8,
+	"prefix": "ЕSV",
 	"faction": "/datum/faction/independent",
-	"prefix": "SV",
-	"manufacturer": "UNKNOWN",
-	"description": "While most vessels have some form of clear utility in mind – research, mining, cargo hauling, and so on – the Tranquility-class is a notable exception to this rule. The Tranquility is, fittingly, a fairly calm and level-headed affair, modeled around traditional apartment complexes. Fitted with several independent quarters, a large communal canteen and very little in the way of industrial equipment or self-defense tools, Tranquility-classes are often found cruising lazily around the Frontier, getting up to sitcom-esque antics and eschewing the more focused approach of many of their contemporaries.",
 	"tags": [
-		"RP Focus",
-		"Service",
-		"Generalist"
+		"РП Фокус",
+		"Сервисный"
 	],
 	"namelists": [
 		"GENERAL",
@@ -19,38 +20,29 @@
 	],
 	"job_slots": {
 		"Captain": {
-			"outfit": "/datum/outfit/job/independent/captain/western",
+			"outfit": "/datum/outfit/job/cel/independent/captain/western",
 			"officer": true,
 			"slots": 1
 		},
 		"Scholar": {
-			"outfit": "/datum/outfit/job/independent/curator",
+			"outfit": "/datum/outfit/job/cel/independent/curator",
 			"slots": 1
 		},
 		"Medical Tenant": {
-			"outfit": "/datum/outfit/job/independent/chemist",
+			"outfit": "/datum/outfit/job/cel/independent/chemist",
 			"slots": 1
 		},
 		"Engineering Tenant": {
-			"outfit": "/datum/outfit/job/independent/engineer",
+			"outfit": "/datum/outfit/job/cel/independent/engineer",
 			"slots": 1
 		},
 		"Tenant": {
-			"outfit": "/datum/outfit/job/independent/curator/dungeonmaster",
+			"outfit": "/datum/outfit/job/cel/independent/curator/dungeonmaster",
 			"slots": 1
 		},
 		"Resident Artist": {
-			"outfit": "/datum/outfit/job/independent/assistant/artist",
+			"outfit": "/datum/outfit/job/cel/independent/assistant/artist",
 			"slots": 1
 		}
-	},
-	"limit": 0,
-	"starting_funds": 2000,
-	"enabled": false,
-	"space_spawn": false,
-
-	"architect": "PrefabQuasar",
-	"contributors": [
-		"No Contributors"
-	]
+	}
 }

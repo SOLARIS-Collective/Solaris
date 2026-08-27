@@ -9,7 +9,8 @@
 	item_state = "rouma_work"
 	icon = 'icons/obj/clothing/faction/srm/uniforms.dmi'
 	mob_overlay_icon = 'icons/mob/clothing/faction/srm/uniforms.dmi'
-	supports_variations = KEPORI_VARIATION
+	supports_variations = KEPORI_VARIATION | VOX_VARIATION
+	vox_override_icon = 'icons/mob/clothing/faction/srm/vox.dmi'
 	roll_sleeves = TRUE
 
 /obj/item/clothing/under/suit/roumain/alt

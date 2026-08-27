@@ -5,7 +5,7 @@
 //	You do not need to raise this if you are adding new values that have sane defaults.
 //	Only raise this value when changing the meaning/format/name/layout of an existing value
 //	where you would want the updater procs below to run
-#define SAVEFILE_VERSION_MAX 42
+#define SAVEFILE_VERSION_MAX 43	// [SOLARIS-EDIT] - SOLARIS_W_TTS_VOICES // ORIGINAL // #define SAVEFILE_VERSION_MAX 42
 
 /*
 SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Carn
@@ -93,6 +93,11 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 			toggles &= ~FAST_MC_REFRESH
 
 		toggles |= SOUND_RADIO
+
+	// [SOLARIS-ADD] - SOLARIS_W_TTS_VOICES
+	if(current_version < 43) //Bitflag toggles don't set their defaults when they're added, always defaulting to off instead.
+		toggles |= SOUND_THE_VOICE
+	// [/SOLARIS-ADD]
 
 /datum/preferences/proc/update_character(current_version, savefile/S)
 	if(current_version < 39)
@@ -207,6 +212,12 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["windowflash"], windowflashing)
 	READ_FILE(S["be_special"] , be_special)
 
+	sound_volume = alist()
+	for(var/flag in list(FS_GENERAL, FS_LOBBY, FS_AMBIENCE, FS_WEAPONS, FS_ANNOUNCEMENTS, FS_INSTRUMENTS, FS_JUKEBOX, FS_RADIO, FS_PRAYERS, FS_ADMIN, FS_SHIP_AMBIENCE, FS_ENDOFROUND, FS_VOICES))
+		var/volume
+		READ_FILE(S["sound_volume_[flag]"], volume)
+		sound_volume[flag] = volume || 100
+
 
 	READ_FILE(S["default_slot"], default_slot)
 	READ_FILE(S["chat_toggles"], chat_toggles)
@@ -215,7 +226,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["ghost_orbit"], ghost_orbit)
 	READ_FILE(S["ghost_accs"], ghost_accs)
 	READ_FILE(S["ghost_others"], ghost_others)
-	READ_FILE(S["ignoring"], ignoring)
 	READ_FILE(S["ghost_hud"], ghost_hud)
 	READ_FILE(S["inquisitive_ghost"], inquisitive_ghost)
 	READ_FILE(S["uses_glasses_colour"], uses_glasses_colour)
@@ -224,7 +234,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["ambientocclusion"], ambientocclusion)
 	READ_FILE(S["screentip_pref"], screentip_pref)
 	READ_FILE(S["auto_fit_viewport"], auto_fit_viewport)
-	READ_FILE(S["widescreenpref"], widescreenpref)
 	READ_FILE(S["pixel_size"], pixel_size)
 	READ_FILE(S["scaling_method"], scaling_method)
 	READ_FILE(S["menuoptions"], menuoptions)
@@ -291,7 +300,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	ambientocclusion	= sanitize_integer(ambientocclusion, FALSE, TRUE, initial(ambientocclusion))
 	screentip_pref = sanitize_integer(screentip_pref, FALSE, TRUE, initial(screentip_pref))
 	auto_fit_viewport	= sanitize_integer(auto_fit_viewport, FALSE, TRUE, initial(auto_fit_viewport))
-	widescreenpref  = sanitize_integer(widescreenpref, FALSE, TRUE, initial(widescreenpref))
 	pixel_size		= sanitize_integer(pixel_size, PIXEL_SCALING_AUTO, PIXEL_SCALING_3X, initial(pixel_size))
 	scaling_method  = sanitize_text(scaling_method, initial(scaling_method))
 	ghost_form		= sanitize_inlist(ghost_form, GLOB.ghost_forms, initial(ghost_form))
@@ -359,6 +367,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["buttons_locked"], buttons_locked)
 	WRITE_FILE(S["windowflash"], windowflashing)
 	WRITE_FILE(S["be_special"], be_special)
+	for(var/flag in list(FS_GENERAL, FS_LOBBY, FS_AMBIENCE, FS_WEAPONS, FS_ANNOUNCEMENTS, FS_INSTRUMENTS, FS_JUKEBOX, FS_RADIO, FS_PRAYERS, FS_ADMIN, FS_SHIP_AMBIENCE, FS_ENDOFROUND, FS_VOICES))
+		WRITE_FILE(S["sound_volume_[flag]"], sound_volume[flag])
 	WRITE_FILE(S["default_slot"], default_slot)
 	WRITE_FILE(S["toggles"], toggles)
 	WRITE_FILE(S["chat_toggles"], chat_toggles)
@@ -366,7 +376,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["ghost_orbit"], ghost_orbit)
 	WRITE_FILE(S["ghost_accs"], ghost_accs)
 	WRITE_FILE(S["ghost_others"], ghost_others)
-	WRITE_FILE(S["ignoring"], ignoring)
 	WRITE_FILE(S["ghost_hud"], ghost_hud)
 	WRITE_FILE(S["inquisitive_ghost"], inquisitive_ghost)
 	WRITE_FILE(S["uses_glasses_colour"], uses_glasses_colour)
@@ -375,7 +384,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["ambientocclusion"], ambientocclusion)
 	WRITE_FILE(S["screentip_pref"], screentip_pref)
 	WRITE_FILE(S["auto_fit_viewport"], auto_fit_viewport)
-	WRITE_FILE(S["widescreenpref"], widescreenpref)
 	WRITE_FILE(S["pixel_size"], pixel_size)
 	WRITE_FILE(S["scaling_method"], scaling_method)
 	WRITE_FILE(S["menuoptions"], menuoptions)
@@ -444,7 +452,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["socks_color"], socks_color)
 	READ_FILE(S["backpack"], backpack)
 	READ_FILE(S["jumpsuit_style"], jumpsuit_style)
-	READ_FILE(S["phobia"], phobia)
+	READ_FILE(S["scarred_eye_side"], scarred_eye_side)
 	READ_FILE(S["generic_adjective"], generic_adjective)
 	READ_FILE(S["randomise"],  randomise)
 	READ_FILE(S["height_filter"], height_filter)
@@ -454,7 +462,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		if(!prosthetic_limbs[zone])
 			prosthetic_limbs[zone] = PROSTHETIC_NORMAL // necessary to prevent old savefiles from breaking the interface
 	READ_FILE(S["learned_languages"], learned_languages)
-	if(!learned_languages?.len) init_learned_languages()
 	READ_FILE(S["native_language"], native_language)
 	native_language ||= /datum/language/common
 	READ_FILE(S["feature_mcolor"], features["mcolor"])
@@ -572,6 +579,14 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	//Flavor Text
 	S["feature_flavor_text"]		>> features["flavor_text"]
 
+	// [SOLARIS-ADD] - SOLARIS_W_TTS_VOICES
+	// Voices
+	S["w_tts_voices_id"] >> w_tts_voices_id
+	S["w_tts_voices_speed"] >> w_tts_voices_speed
+	S["w_tts_voices_pitch"] >> w_tts_voices_pitch
+	S["w_tts_voices_variance"] >> w_tts_voices_variance
+	// [/SOLARIS-ADD]
+
 	//try to fix any outdated data if necessary
 	//preference updating will handle saving the updated data for us.
 	if(needs_update >= 0)
@@ -580,6 +595,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	//Sanitize
 	real_name = reject_bad_name(real_name)
 	gender = sanitize_gender(gender)
+	pronouns = sanitize_pronouns(pronouns)
+	learned_languages = sanitize_learned_languages(learned_languages)
 	if(!real_name)
 		real_name = random_unique_name(gender)
 
@@ -716,6 +733,14 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	features["riol_tail_markings_color"]		= sanitize_hexcolor(features["riol_tail_markings_color"])
 	// [/MANKIND-ADD]
 
+	// [SOLARIS-ADD] - SOLARIS_W_TTS_VOICES
+	w_tts_voices_id = sanitize_inlist(w_tts_voices_id, GLOB.w_tts_voices_list, pick(GLOB.w_tts_voices_random_list))
+	var/datum/w_tts_voices/w_tts_voices_path = GLOB.w_tts_voices_list[w_tts_voices_id]
+	w_tts_voices_speed = sanitize_num_clamp(w_tts_voices_speed, initial(w_tts_voices_path.minspeed), initial(w_tts_voices_path.maxspeed), initial(w_tts_voices_speed))
+	w_tts_voices_pitch = sanitize_num_clamp(w_tts_voices_pitch, initial(w_tts_voices_path.minpitch), initial(w_tts_voices_path.maxpitch), W_TTS_VOICES_PITCH_RAND(gender))
+	w_tts_voices_variance = sanitize_num_clamp(w_tts_voices_variance, initial(w_tts_voices_path.minvariance), initial(w_tts_voices_path.maxvariance), W_TTS_VOICES_VARIANCE_RAND)
+	// [/SOLARIS-ADD]
+
 	all_quirks = SANITIZE_LIST(all_quirks)
 
 //Make sure all quirks are compatible
@@ -754,7 +779,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["backpack"]					, backpack)
 	WRITE_FILE(S["randomise"]					, randomise)
 	WRITE_FILE(S["species"]						, pref_species.id)
-	WRITE_FILE(S["phobia"]						, phobia)
+	WRITE_FILE(S["scarred_eye_side"]			, scarred_eye_side)
 	WRITE_FILE(S["generic_adjective"]			, generic_adjective)
 	WRITE_FILE(S["height_filter"]				, height_filter)
 	WRITE_FILE(S["prosthetic_limbs"]			, prosthetic_limbs)
@@ -833,6 +858,13 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["riol_body_markings_color"], 		features["riol_body_markings_color"])
 	WRITE_FILE(S["riol_tail_markings_color"], 		features["riol_tail_markings_color"])
 	// [/MANKIND-ADD]
+
+	// [SOLARIS-ADD] - SOLARIS_W_TTS_VOICES
+	WRITE_FILE(S["w_tts_voices_id"], 						w_tts_voices_id)
+	WRITE_FILE(S["w_tts_voices_speed"], 					w_tts_voices_speed)
+	WRITE_FILE(S["w_tts_voices_pitch"], 					w_tts_voices_pitch)
+	WRITE_FILE(S["w_tts_voices_variance"], 					w_tts_voices_variance)
+	// [/SOLARIS-ADD]
 
 	//Flavor text
 	WRITE_FILE(S["feature_flavor_text"]			, features["flavor_text"])

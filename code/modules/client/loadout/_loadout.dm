@@ -4,12 +4,12 @@ GLOBAL_LIST_EMPTY(loadout_parent_categories) // [MANKIND-ADD] - MANKIND_QOL_LOAD
 
 /datum/loadout_category
 	var/category = ""
-	 // [MANKIND-ADD] - MANKIND_QOL_LOADOUT
+	// [MANKIND-ADD] - MANKIND_QOL_LOADOUT
 	var/parent_category = "" // Родительская категория
 	var/category_icon = "" // Иконка категории
 	var/category_order = 0 // Порядок сортировки
 	var/list/subcategories = list() // Подкатегории
-	 // [/MANKIND-ADD]
+	// [/MANKIND-ADD]
 	var/list/gear = list()
 
 // [MANKIND-EDIT] - MANKIND_QOL_LOADOUT
@@ -95,7 +95,7 @@ GLOBAL_LIST_EMPTY(loadout_parent_categories) // [MANKIND-ADD] - MANKIND_QOL_LOAD
 	// [MANKIND-ADD] - MANKIND_QOL_LOADOUT
 	///Factions that can spawn with this item.
 	var/list/allowed_factions
-	// Примеры 	allowed_factions = list("NanoTrasen", "Syndicate", "Independent", "InteQ", "SolFed", "Pirates", "Elysium")
+	// Примеры 	allowed_factions = list("Nanotrasen", "Syndicate", "Independent", "InteQ", "SolFed", "Pirates", "Elysium")
 	// [/MANKIND-ADD]
 	///Stop certain species from receiving this gear
 	var/list/species_blacklist
@@ -239,20 +239,36 @@ GLOBAL_LIST_EMPTY(loadout_parent_categories) // [MANKIND-ADD] - MANKIND_QOL_LOAD
 /proc/cmp_loadout_category_order(list/a, list/b)
 	return a[1] - b[1]
 
-///Генерирует древовидную навигацию для loadout
+///Генерирует иерархическую навигацию для loadout
 /proc/generate_loadout_tree_navigation(current_tab)
 	var/list/dat = list()
-	dat += "<div style='text-align: center; margin: 5px 0; padding: 5px; background: #2a2a2a; border-radius: 5px;'>"
-	var/firstcat = 1
-	for(var/category in GLOB.loadout_categories)
-		if(firstcat)
-			firstcat = 0
-		else
-			dat += " | "
-		if(category == current_tab)
-			dat += "<span style='color: #90EE90; font-weight: bold; padding: 2px 6px; background: #3a3a3a; border-radius: 3px;'>[category]</span>"
-		else
-			dat += "<a href='byond://?_src_=prefs;preference=gear;select_category=[category]' style='color: #87CEEB; text-decoration: none; padding: 2px 6px; border-radius: 3px;'>[category]</a>"
+	dat += "<div style='margin: 5px 0; padding: 8px; background: #1e1e2e; border: 1px solid #333; border-radius: 6px;'>"
+
+	// Проходим по родительским категориям
+	for(var/parent_name in GLOB.loadout_parent_categories)
+		var/datum/loadout_category/parent_LC = GLOB.loadout_parent_categories[parent_name]
+		var/has_active_child = FALSE
+
+		// Проверяем, есть ли активная подкатегория
+		for(var/sub_name in parent_LC.subcategories)
+			if(sub_name == current_tab)
+				has_active_child = TRUE
+				break
+
+		// Заголовок родительской категории
+		var/header_style = has_active_child ? "color: #87CEEB; font-weight: bold;" : "color: #777; font-weight: bold;"
+		dat += "<div style='margin: 4px 0 2px 0; padding: 2px 6px; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;'>"
+		dat += "<span style='[header_style]'>[parent_LC.category]</span>"
+		dat += "</div>"
+
+		// Подкатегории
+		dat += "<div style='display: flex; flex-wrap: wrap; gap: 3px; padding: 0 4px 6px 4px;'>"
+		for(var/sub_name in parent_LC.subcategories)
+			if(sub_name == current_tab)
+				dat += "<span style='color: #90EE90; font-weight: bold; padding: 3px 8px; background: #2a4a2a; border-radius: 4px; font-size: 12px;'>[sub_name]</span>"
+			else
+				dat += "<a href='byond://?_src_=prefs;preference=gear;select_category=[sub_name]' style='color: #87CEEB; text-decoration: none; padding: 3px 8px; background: #2a2a3a; border-radius: 4px; font-size: 12px; transition: background 0.2s;' onmouseover='this.style.background=\"#3a3a4a\"' onmouseout='this.style.background=\"#2a2a3a\"'>[sub_name]</a>"
+		dat += "</div>"
 	dat += "</div>"
 	return dat.Join()
 

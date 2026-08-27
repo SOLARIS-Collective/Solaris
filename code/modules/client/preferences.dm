@@ -47,6 +47,23 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/tgui_lock = FALSE
 	var/windowflashing = TRUE
 	var/toggles = TOGGLES_DEFAULT
+
+	/// Sound category volume levels (0-100), keyed by FS_*
+	var/list/sound_volume = alist(
+		FS_GENERAL = 100,
+		FS_LOBBY = 100,
+		FS_AMBIENCE = 100,
+		FS_WEAPONS = 100,
+		FS_ANNOUNCEMENTS = 100,
+		FS_INSTRUMENTS = 100,
+		FS_JUKEBOX = 100,
+		FS_RADIO = 100,
+		FS_PRAYERS = 100,
+		FS_ADMIN = 100,
+		FS_SHIP_AMBIENCE = 100,
+		FS_ENDOFROUND = 100,
+		FS_VOICES = 100,
+	)
 	var/db_flags
 	var/chat_toggles = TOGGLES_DEFAULT_CHAT
 	var/ghost_form = "ghost"
@@ -66,6 +83,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/slot_randomized					//keeps track of round-to-round randomization of the character slot, prevents overwriting
 	var/real_name						//our character's name
 	var/gender = MALE					//gender of character (well duh)
+	var/pronouns = "He"					//pronouns of character
 	var/age = 30						//age of character
 	var/underwear = "Nude"				//Type of underwear
 	var/underwear_color = "000"			//Greyscale color of underwear
@@ -139,7 +157,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 							"vox_neck_quills" = "Plain",
 							"elzu_horns" = "None",
 							"elzu_tail" = "None",
-							"flavor_text" = ""
+							"flavor_text" = "",
+							"wttsvoicessound" = "mutedc3",	// [SOLARIS-ADD] - SOLARIS_W_TTS_VOICES
+							"wttsvoicesspeed" = "4",
+							"wttsvoicespitch" = "2",
+							"wttsvoicesvary" = "0",	// [/SOLARIS-ADD]
 						)
 	var/height_filter = "Normal"
 	var/list/randomise = list(
@@ -175,7 +197,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 							BODY_ZONE_R_LEG = PROSTHETIC_NORMAL,
 						)
 	var/fbp = FALSE
-	var/phobia = "spiders"
+	var/scarred_eye_side = SCAR_RIGHT
 	var/list/alt_titles_preferences = list()
 	var/list/custom_names = list()
 	var/preferred_ai_core_display = "Blue"
@@ -196,15 +218,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/static/list/language_level_costs = list(LANGUAGE_UNKNOWN = 0, LANGUAGE_RECOGNIZED = 1, LANGUAGE_FAMILIAR = 2, LANGUAGE_FLUENT = 3)
 
 	// 0 = character settings, 1 = game preferences
-	var/current_tab = 0
+	var/current_tab = CHAR_SETUP_TAB	// [SOLARIS-EDIT] - SOLARIS_W_TTS_VOICES - Упрощаем понимание кода // ORIGINAL // var/current_tab = 0
 
 	var/show_gear = TRUE
 	var/show_loadout = TRUE
 
 	var/unlock_content = FALSE
 	var/custom_ooc = FALSE
-
-	var/list/ignoring = list()
 
 	var/clientfps = 60 //WS Edit - Client FPS Tweak
 
@@ -217,8 +237,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/ambientocclusion = TRUE
 	///Should we automatically fit the viewport?
 	var/auto_fit_viewport = TRUE
-	///Should we be in the widescreen mode set by the config?
-	var/widescreenpref = FALSE
 	///What size should pixels be displayed as? 0 is strech to fit
 	var/pixel_size = 0
 	///What scaling method should we use? Distort = Nearest Neighbor
@@ -242,6 +260,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	// [MANKIND-ADD] - MANKIND_QOL_LOADOUT
 	///Scroll position in gear menu
 	var/gear_scroll_pos = 0
+	///Search query for gear filtering
+	var/gear_search = ""
 	// [/MANKIND-ADD]
 
 	var/action_buttons_screen_locs = list()
@@ -261,6 +281,14 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	///
 	var/hearted_until
 
+	// [SOLARIS-ADD] - SOLARIS_W_TTS_VOICES
+	// Vocal voice prefs
+	var/w_tts_voices_id = "mutedc3"
+	var/w_tts_voices_speed = 4
+	var/w_tts_voices_pitch = 1
+	var/w_tts_voices_variance = 0.2
+	COOLDOWN_DECLARE(w_tts_voices_previewing)
+	// [/SOLARIS-ADD]
 
 
 /datum/preferences/New(client/C)
@@ -306,12 +334,21 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	update_preview_icon(show_gear, show_loadout)
 	var/list/dat = list("<center>")
 
-	dat += "<a href='byond://?_src_=prefs;preference=tab;tab=0' [current_tab == 0 ? "class='linkOn'" : ""]>Character Setup</a>"
-	dat += "<a href='byond://?_src_=prefs;preference=tab;tab=1' [current_tab == 1 ? "class='linkOn'" : ""]>Character Appearance</a>"
-	dat += "<a href='byond://?_src_=prefs;preference=tab;tab=2' [current_tab == 2 ? "class='linkOn'" : ""]>Gear</a>"
-	dat += "<a href='byond://?_src_=prefs;preference=tab;tab=3' [current_tab == 3 ? "class='linkOn'" : ""]>Game Preferences</a>"
-	dat += "<a href='byond://?_src_=prefs;preference=tab;tab=4' [current_tab == 4 ? "class='linkOn'" : ""]>OOC Preferences</a>"
-	dat += "<a href='byond://?_src_=prefs;preference=tab;tab=5' [current_tab == 5 ? "class='linkOn'" : ""]>Custom Keybindings</a>"
+	// [SOLARIS-EDIT] - SOLARIS_W_TTS_VOICES - Упрощаем понимание кода
+	// dat += "<a href='byond://?_src_=prefs;preference=tab;tab=0' [current_tab == 0 ? "class='linkOn'" : ""]>Character Setup</a>"
+	// dat += "<a href='byond://?_src_=prefs;preference=tab;tab=1' [current_tab == 1 ? "class='linkOn'" : ""]>Character Appearance</a>"
+	// dat += "<a href='byond://?_src_=prefs;preference=tab;tab=2' [current_tab == 2 ? "class='linkOn'" : ""]>Gear</a>"
+	// dat += "<a href='byond://?_src_=prefs;preference=tab;tab=3' [current_tab == 3 ? "class='linkOn'" : ""]>Game Preferences</a>"
+	// dat += "<a href='byond://?_src_=prefs;preference=tab;tab=4' [current_tab == 4 ? "class='linkOn'" : ""]>OOC Preferences</a>"
+	// dat += "<a href='byond://?_src_=prefs;preference=tab;tab=5' [current_tab == 5 ? "class='linkOn'" : ""]>Custom Keybindings</a>"	// ORIGINAL
+	dat += "<a href='byond://?_src_=prefs;preference=character_tab;tab=[CHAR_SETUP_TAB]' [current_tab == CHAR_SETUP_TAB ? "class='linkOn'" : ""]>Character Setup</a>"
+	dat += "<a href='byond://?_src_=prefs;preference=character_tab;tab=[CHAR_APPEARANCE_TAB]' [current_tab == CHAR_APPEARANCE_TAB ? "class='linkOn'" : ""]>Character Appearance</a>"
+	dat += "<a href='byond://?_src_=prefs;preference=character_tab;tab=[CHAR_LOADOUT_TAB]' [current_tab == CHAR_LOADOUT_TAB ? "class='linkOn'" : ""]>Gear</a>"
+	dat += "<a href='byond://?_src_=prefs;preference=character_tab;tab=[CHAR_GAMEPREFERENCES_TAB]' [current_tab == CHAR_GAMEPREFERENCES_TAB ? "class='linkOn'" : ""]>Game Preferences</a>"
+	dat += "<a href='byond://?_src_=prefs;preference=character_tab;tab=[CHAR_OOC_TAB]' [current_tab == CHAR_OOC_TAB ? "class='linkOn'" : ""]>OOC Preferences</a>"
+	dat += "<a href='byond://?_src_=prefs;preference=character_tab;tab=[CHAR_KEYBINDINGS_TAB]' [current_tab == CHAR_KEYBINDINGS_TAB ? "class='linkOn'" : ""]>Custom Keybindings</a>"
+	dat += "<a href='byond://?_src_=prefs;preference=character_tab;tab=[CHAR_SPEECH_TAB]' [current_tab == CHAR_SPEECH_TAB ? "class='linkOn'" : ""]>Speech</a>"
+	// [/SOLARIS-EDIT]
 
 	if(!path)
 		dat += "<div class='notice'>Please create an account to save your preferences</div>"
@@ -320,7 +357,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	dat += "<HR>"
 
 	switch(current_tab)
-		if (0) // Character Setup
+		if(CHAR_SETUP_TAB) // Character Setup // [SOLARIS-EDIT] - SOLARIS_W_TTS_VOICES - Упрощаем понимание кода // ORIGINAL // if (0)
 			if(path)
 				var/savefile/S = new /savefile(path)
 				if(S)
@@ -403,7 +440,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<tr><td><b>[get_language_point_balance()]</b> points left.</td></tr>"
 			dat += "<tr><td><a href='byond://?_src_=prefs;preference=native_language;task=input'><b>Native Language: </b>[initial(native_language.name)]</a></td></tr>"
 			if(!learned_languages?.len)
-				init_learned_languages()
+				learned_languages = sanitize_learned_languages()
 			for(var/datum/language/lang_type as anything in learned_languages)
 				if(lang_type == native_language)
 					continue
@@ -423,7 +460,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 			dat += "<br><b>Wallet Style:</b><BR><a href ='?_src_=prefs;preference=wallet;task=input'>[wallet]</a>"	// [MANKIND-ADD] - MANKIND_WALLETS
 
-		if(1) //Character Appearance
+		if(CHAR_APPEARANCE_TAB) //Character Appearance // [SOLARIS-EDIT] - SOLARIS_W_TTS_VOICES - Упрощаем понимание кода // ORIGINAL // if(1)
 			if(path)
 				var/savefile/S = new /savefile(path)
 				if(S)
@@ -455,18 +492,30 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 			if(!(NO_UNDERWEAR in pref_species.species_traits))
 				dat += "<b>Underwear:</b><br><a href ='?_src_=prefs;preference=underwear;task=input'>[underwear]</a>"
+				// [MANKIND-ADD] - Добавление кнопки для смены одежды.
+				dat += "<br>"
+				dat += "<a href='byond://?_src_=prefs;preference=previous_underwear;task=input'>&lt;</a> <a href='byond://?_src_=prefs;preference=next_underwear;task=input'>&gt;</a>"
+				// [/MANKIND-ADD]
 				dat += "<a href='byond://?_src_=prefs;preference=toggle_random;random_type=[RANDOM_UNDERWEAR]'>[(randomise[RANDOM_UNDERWEAR]) ? "Lock" : "Unlock"]</A><br>"
 
 				dat += "<b>Underwear Color:</b><br><span style='border: 1px solid #161616; background-color: #[underwear_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='byond://?_src_=prefs;preference=underwear_color;task=input'>Change</a>"
 				dat += "<a href='byond://?_src_=prefs;preference=toggle_random;random_type=[RANDOM_UNDERWEAR_COLOR]'>[(randomise[RANDOM_UNDERWEAR_COLOR]) ? "Lock" : "Unlock"]</A><br>"
 
 				dat += "<b>Undershirt:</b><br><a href ='?_src_=prefs;preference=undershirt;task=input'>[undershirt]</a>"
+				// [MANKIND-ADD] - Добавление кнопки для смены одежды.
+				dat += "<br>"
+				dat += "<a href='byond://?_src_=prefs;preference=previous_undershirt;task=input'>&lt;</a> <a href='byond://?_src_=prefs;preference=next_undershirt;task=input'>&gt;</a>"
+				// [/MANKIND-ADD]
 				dat += "<a href='byond://?_src_=prefs;preference=toggle_random;random_type=[RANDOM_UNDERSHIRT]'>[(randomise[RANDOM_UNDERSHIRT]) ? "Lock" : "Unlock"]</A><br>"
 
 				dat += "<b>Undershirt Color:</b><br><span style='border: 1px solid #161616; background-color: #[undershirt_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='byond://?_src_=prefs;preference=undershirt_color;task=input'>Change</a>"
 				dat += "<a href='byond://?_src_=prefs;preference=toggle_random;random_type=[RANDOM_UNDERSHIRT_COLOR]'>[(randomise[RANDOM_UNDERSHIRT_COLOR]) ? "Lock" : "Unlock"]</A><br>"
 
 				dat += "<b>Socks:</b><br><a href ='?_src_=prefs;preference=socks;task=input'>[socks]</a>"
+				// [MANKIND-ADD] - Добавление кнопки для смены одежды.
+				dat += "<br>"
+				dat += "<a href='byond://?_src_=prefs;preference=previous_socks;task=input'>&lt;</a> <a href='byond://?_src_=prefs;preference=next_socks;task=input'>&gt;</a>"
+				// [/MANKIND-ADD]
 				dat += "<a href='byond://?_src_=prefs;preference=toggle_random;random_type=[RANDOM_SOCKS]'>[(randomise[RANDOM_SOCKS]) ? "Lock" : "Unlock"]</A><br>"
 
 				dat += "<b>Socks Color:</b><br><span style='border: 1px solid #161616; background-color: #[socks_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='byond://?_src_=prefs;preference=socks_color;task=input'>Change</a>"
@@ -519,6 +568,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "<h3>Hairstyle</h3>"
 
 				dat += "<a href='byond://?_src_=prefs;preference=hairstyle;task=input'>[hairstyle]</a>"
+				dat += "<br>" // [MANKIND-ADD]
 				dat += "<a href='byond://?_src_=prefs;preference=previous_hairstyle;task=input'>&lt;</a> <a href='byond://?_src_=prefs;preference=next_hairstyle;task=input'>&gt;</a>"
 				dat += "<a href='byond://?_src_=prefs;preference=toggle_random;random_type=[RANDOM_HAIRSTYLE]'>[(randomise[RANDOM_HAIRSTYLE]) ? "Lock" : "Unlock"]</A>"
 
@@ -529,6 +579,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				dat += "<a href='byond://?_src_=prefs;preference=hair_gradient_style;task=input'>[features["grad_style"]]</a>"
 
+				dat += "<br>" // [MANKIND-ADD]
 				dat += "<a href='byond://?_src_=prefs;preference=previous_hair_gradient_style;task=input'>&lt;</a> <a href='byond://?_src_=prefs;preference=next_hair_gradient_style;task=input'>&gt;</a><BR>"
 
 				dat += "<span style='border:1px solid #161616; background-color: #[features["grad_color"]];'>&nbsp;&nbsp;&nbsp;</span> <a href='byond://?_src_=prefs;preference=hair_gradient;task=input'>Change</a>"
@@ -538,6 +589,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "<BR><h3>Facial Hairstyle</h3>"
 
 				dat += "<a href='byond://?_src_=prefs;preference=facial_hairstyle;task=input'>[facial_hairstyle]</a>"
+				dat += "<br>" // [MANKIND-ADD]
 				dat += "<a href='byond://?_src_=prefs;preference=previous_facehairstyle;task=input'>&lt;</a> <a href='byond://?_src_=prefs;preference=next_facehairstyle;task=input'>&gt;</a>"
 				dat += "<a href='byond://?_src_=prefs;preference=toggle_random;random_type=[RANDOM_FACIAL_HAIRSTYLE]'>[(randomise[RANDOM_FACIAL_HAIRSTYLE]) ? "Lock" : "Unlock"]</A>"
 
@@ -922,6 +974,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					dat += "</td>"
 					mutant_category = 0
 
+			//TGUI preferences when
+			if("Scarred Eye" in all_quirks)
+				if(!mutant_category)
+					dat += APPEARANCE_CATEGORY_COLUMN
+				dat += "<h3>Scarred Eye</h3>"
+				dat += "<a href='byond://?_src_=prefs;preference=scarred_eye_side;task=input'>[scarred_eye_side]</a><BR>"
+
 			// [MANKIND-ADD] - TAJARA
 			if("tajara_ears" in pref_species.default_features)
 				if(!mutant_category)
@@ -1133,23 +1192,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					mutant_category = 0
 			// [/MANKIND-ADD]
 
-			//Adds a thing to select which phobia because I can't be assed to put that in the quirks window
-			if("Phobia" in all_quirks)
-				if(!mutant_category)
-					dat += APPEARANCE_CATEGORY_COLUMN
-				dat += "<h3>Phobia</h3>"
-
-				dat += "<a href='byond://?_src_=prefs;preference=phobia;task=input'>[phobia]</a><BR>"
-
-				mutant_category++
-				if(mutant_category >= MAX_MUTANT_ROWS)
-					dat += "</td>"
-					mutant_category = 0
-
-			if(generic_adjective)
-				if(!mutant_category)
-					dat += APPEARANCE_CATEGORY_COLUMN
-
 			// begin generic adjective
 			if(!mutant_category)
 				dat += APPEARANCE_CATEGORY_COLUMN
@@ -1181,33 +1223,31 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "</td>"
 				mutant_category = 0
 
-			var/metal_skin = fbp || pref_species.inherent_biotypes & MOB_ROBOTIC
-			dat += metal_skin ? "<h3>Chassis Customization</h3>" : "<h3>Prosthetic Limbs</h3>"
-			dat += "<a href='byond://?_src_=prefs;preference=fbp'>Full Body Prosthesis: [fbp ? "Yes" : "No"]</a><br>"
+			// [MANKIND-EDIT] - CELADON_PROSTHETIC
+			// var/metal_skin = fbp || pref_species.inherent_biotypes & MOB_ROBOTIC
+			// dat += metal_skin ? "<h3>Chassis Customization</h3>" : "<h3>Prosthetic Limbs</h3>"
+			// dat += "<a href='byond://?_src_=prefs;preference=fbp'>Full Body Prosthesis: [fbp ? "Yes" : "No"]</a><br>"
 
-			dat += "<a href='byond://?_src_=prefs;preference=toggle_random;random_type=[RANDOM_PROSTHETIC]'>Random Prosthetic: [(randomise[RANDOM_PROSTHETIC]) ? "Yes" : "No"]</a><br>"
+			// dat += "<a href='byond://?_src_=prefs;preference=toggle_random;random_type=[RANDOM_PROSTHETIC]'>Random Prosthetic: [(randomise[RANDOM_PROSTHETIC]) ? "Yes" : "No"]</a><br>"
 
-			dat += "<table>"
-			for(var/index in prosthetic_limbs)
-				if(!metal_skin && (index == BODY_ZONE_CHEST || index == BODY_ZONE_HEAD))
-					continue
-				var/bodypart_name = parse_zone(index)
-				dat += "<tr><td><b>[bodypart_name]:</b></td>"
-				dat += "<td><a href='byond://?_src_=prefs;preference=limbs;customize_limb=[index]'>[prosthetic_limbs[index]]</a></td></tr>"
-			dat += "</tr></table>"
-			// [MANKIND-EDIT] - MANKIND_LANIUS
-			//dat += "<h3>Prosthetic Limbs</h3>" // ORIGINAL
-			//dat += "<a href='byond://?_src_=prefs;preference=fbp'>Full Body Prosthesis: [fbp ? "Yes" : "No"]</a><br>"
-
-			//if(!fbp)
-				//dat += "<a href='byond://?_src_=prefs;preference=toggle_random;random_type=[RANDOM_PROSTHETIC]'>Random Prosthetic: [(randomise[RANDOM_PROSTHETIC]) ? "Yes" : "No"]</a><br>"
-
-				//dat += "<table>"
-				//for(var/index in prosthetic_limbs)
-					//var/bodypart_name = parse_zone(index)
-					//dat += "<tr><td><b>[bodypart_name]:</b></td>"
-					//dat += "<td><a href='byond://?_src_=prefs;preference=limbs;customize_limb=[index]'>[prosthetic_limbs[index]]</a></td></tr>"
-				//dat += "</table><br>" // ORIGINAL
+			// dat += "<table>"
+			// for(var/index in prosthetic_limbs)
+			// 	if(!metal_skin && (index == BODY_ZONE_CHEST || index == BODY_ZONE_HEAD))
+			// 		continue
+			// 	var/zone_name = parse_zone(index)
+			// 	dat += "<tr><td><b>[zone_name]:</b></td>"
+			// 	var/limb_name = prosthetic_limbs[index]
+			// 	dat += "<td><a href='byond://?_src_=prefs;preference=limbs;customize_limb=[index]'>[limb_name]</a>"
+			// 	switch(limb_name)
+			// 		if(PROSTHETIC_NORMAL, PROSTHETIC_AMPUTATED, PROSTHETIC_ROBOTIC)
+			// 			dat += "</td></tr>"
+			// 		else
+			// 			var/datum/sprite_accessory/body/limb_style = GLOB.alternative_body_list[limb_name]
+			// 			if(!limb_style?.desc)
+			// 				continue
+			// 			dat += "<a href='byond://?_src_=prefs;preference=body_desc;limb_style=[REF(limb_style)]'>?</a></td></tr>"
+			// [/MANKIND-EDIT]
+			dat += "</table><br>"
 			if(!istype(pref_species, /datum/species/lanius))
 				dat += "<h3>Prosthetic Limbs</h3>"
 				dat += "<a href='byond://?_src_=prefs;preference=fbp'>Full Body Prosthesis: [fbp ? "Yes" : "No"]</a><br>"
@@ -1221,7 +1261,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						dat += "<td><a href='byond://?_src_=prefs;preference=limbs;customize_limb=[index]'>[prosthetic_limbs[index]]</a></td></tr>"
 					dat += "</table><br>"
 			//[/MANKIND-EDIT]
-		if(2) //Loadout
+
+		if(CHAR_LOADOUT_TAB) //Loadout // [SOLARIS-EDIT] - SOLARIS_W_TTS_VOICES - Упрощаем понимание кода // ORIGINAL // if(2)
 			if(path)
 				var/savefile/S = new /savefile(path)
 				if(S)
@@ -1251,77 +1292,72 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					else
 						equipped_gear.Cut(i,i+1)
 
-			dat += "<table align='center' width='100%'>"
-			// [MANKIND-EDIT] - MANKIND_DONATE, MANKIND_QOL_LOADOUT
-			// dat += "<tr><td colspan=4><center><b>Current loadout usage: [length(equipped_gear)]/[CONFIG_GET(number/max_loadout_items)]</b> \[<a href='byond://?_src_=prefs;preference=gear;clear_loadout=1'>Clear Loadout</a>\] | \[<a href='byond://?_src_=prefs;preference=gear;toggle_loadout=1'>Toggle Loadout</a>\]</center></td></tr>"
-			dat += "<tr><td colspan=4 style='padding: 5px;'><div style='text-align: center; background: #2a2a2a; padding: 8px; border-radius: 5px; margin: 5px 0;'><b style='color: #87CEEB;'>Использовано слотов: [length(equipped_gear)]/[max_loadout_items]</b> | <a href='byond://?_src_=prefs;preference=gear;clear_loadout=1' style='color: #FF6B6B; text-decoration: none;'>Очистить</a> | <a href='byond://?_src_=prefs;preference=gear;toggle_loadout=1' style='color: #4ECDC4; text-decoration: none;'>Переключить</a></div></td></tr>"
-			// [/MANKIND-EDIT]
+			dat += "<div style='padding: 3px;'>"
 
+			// Toolbar: slots + search + actions
+			dat += "<div style='display: flex; align-items: center; gap: 6px; padding: 5px 8px; background: #1e1e2e; border: 1px solid #333; border-radius: 6px; margin-bottom: 4px;'>"
+			dat += "<span style='color: #87CEEB; font-weight: bold; font-size: 12px; flex-shrink: 0;'>Slots:</span>"
+			dat += "<span style='color: [length(equipped_gear) >= max_loadout_items ? "#FF6B6B" : "#90EE90"]; font-weight: bold; font-size: 12px; flex-shrink: 0;'>[length(equipped_gear)]/[max_loadout_items]</span>"
+			dat += "<div style='width: 1px; height: 16px; background: #444; flex-shrink: 0;'></div>"
+			dat += "<a href='byond://?_src_=prefs;preference=gear;clear_loadout=1' title='Remove all equipped items from your loadout' style='color: #FF6B6B; text-decoration: none; font-size: 11px; padding: 2px 6px; background: #2a1a1a; border-radius: 3px; border: 1px solid #553333; flex-shrink: 0;'>Clear</a>"
+			dat += "<div style='flex-grow: 1; position: relative;'>"
+			dat += "<input id='gear-search-input' type='text' placeholder='Search...' value='[gear_search]' "
+			dat += "style='width: 100%; padding: 3px 6px 3px 22px; background: #16161e; border: 1px solid #444; border-radius: 3px; color: #CCC; font-size: 11px; outline: none; box-sizing: border-box;' "
+			dat += "onkeydown='if(event.keyCode===13){window.location.href=\"byond://?_src_=prefs;preference=gear;gear_search=\"+encodeURIComponent(this.value);}' />"
+			dat += "<span style='position: absolute; left: 5px; top: 50%; transform: translateY(-50%); color: #666; font-size: 10px;'>&#128269;</span>"
+			dat += "</div>"
+			dat += "</div>"
 
-
-			// Навигация
-			dat += "<tr><td colspan=4>"
+			// Collapsible category navigation
+			dat += "<div style='margin-bottom: 4px;'>"
+			dat += "<div id='gear-nav-toggle' style='display: flex; align-items: center; gap: 6px; padding: 3px 8px; background: #1a1a2a; border: 1px solid #333; border-radius: 4px; cursor: pointer; user-select: none;' onclick='gearToggleNav()'>"
+			dat += "<span id='gear-nav-arrow' style='color: #87CEEB; font-size: 10px;'>&#9660;</span>"
+			dat += "<span style='color: #87CEEB; font-size: 11px; font-weight: bold;'>Categories</span>"
+			dat += "</div>"
+			dat += "<div id='gear-nav-body' style='display: none;'>"
 			dat += generate_loadout_tree_navigation(gear_tab)
-			dat += "</td></tr>"
+			dat += "</div>"
+			dat += "</div>"
 
 			var/datum/loadout_category/LC = GLOB.loadout_categories[gear_tab]
 			if(!LC)
-				// Если категория не найдена, выбираем первую доступную
 				for(var/cat_name in GLOB.loadout_categories)
 					gear_tab = cat_name
 					LC = GLOB.loadout_categories[gear_tab]
 					break
 
-			// [MANKIND-EDIT] - MANKIND_QOL_LOADOUT
-			// dat += "<tr><td colspan=3><hr></td></tr>"
-			// dat += "<tr><td colspan=3><b><center>[LC.category]</center></b></td></tr>"
-			// dat += "<tr><td colspan=3><hr></td></tr>"
+			// Item grid
+			dat += "<div id='gear-container' style='text-align: left; padding: 4px; max-height: 520px; overflow-y: auto; background: #16161e; border: 1px solid #333; border-radius: 6px;' onscroll='localStorage.setItem(\"gearScrollPos\", this.scrollTop);'>"
 
-			// dat += "<tr><td colspan=3><hr></td></tr>"
-			// dat += "<tr><td><b>Name</b></td>"
-			// dat += "<td><b>Restricted Jobs</b></td>"
-			// dat += "<td><b>Description</b></td></tr>"
-			// dat += "<tr><td colspan=3><hr></td></tr>"	// ORIGINAL
-			dat += "<tr><td colspan=4 style='padding: 5px 0;'><div style='text-align: center; font-weight: bold; font-size: 14px; color: #87CEEB; border-bottom: 1px solid #555; padding-bottom: 3px;'>[LC.category]</div></td></tr>"
 
-			// Сетка предметов
-			dat += "<tr><td colspan=4 style='padding: 0;'>"
-			dat += "<div id='gear-container' style='text-align: left; padding: 10px; max-height: 500px; overflow-y: auto; background: #1a1a1a; border: 1px solid #333; border-radius: 5px;' onscroll='localStorage.setItem(\"gearScrollPos\", this.scrollTop);'>"
-			// [/MANKIND-ADD]
+			dat += "<script>function gearToggleNav(){var nav=document.getElementById('gear-nav-body');var arrow=document.getElementById('gear-nav-arrow');var hidden=nav.style.display==='none';nav.style.display=hidden?'block':'none';arrow.innerHTML=hidden?'&#9660;':'&#9654;';localStorage.setItem('gearNavCollapsed',hidden?'0':'1');}var gc=localStorage.getItem('gearNavCollapsed');if(gc!=='1'){gearToggleNav();}</script>"
+			// Script to save/restore outer scroll position
+			dat += "<script>"
+			dat += "var outerScrollKey='gearOuterScrollPos';"
+			dat += "window.onload=function(){var p=localStorage.getItem(outerScrollKey);if(p){window.scrollTo(0,parseInt(p));localStorage.removeItem(outerScrollKey);}};"
+			dat += "</script>"
+
+			var/items_shown = 0
 			for(var/gear_name in LC.gear)
 				var/datum/gear/G = LC.gear[gear_name]
 				var/is_equipped = (G.display_name in equipped_gear)
-				// [MANKIND-EDIT] - MANKIND_QOL_LOADOUT
-				// dat += "<tr style='vertical-align:top; [is_equipped ? "background: #2a4a2a;" : ""]'>"
 
-				// // Колонка с предметом
-				// dat += "<td align='middle' width='20%'>"
-				// dat += "<a style='white-space:normal;' [(G.display_name in equipped_gear) ? "class='linkOn' " : ""]href='byond://?_src_=prefs;preference=gear;toggle_gear=[G.display_name]'>[G.display_name]</a><br/>"
-				// dat += "<img src='data:image/jpeg;base64,[G.base64icon]' class='loadoutPreview'><hr>"
-				// dat += "</td>"
+				if(gear_search && gear_search != "" && !G.matches_search(gear_search))
+					continue
 
-				// // Колонка с профессиями
-				// dat += "<td>"
-				// if(G.allowed_roles)
-				// 	dat += "<font size=2>"
-				// 	var/list/allowedroles = list()
-				// 	for(var/role in G.allowed_roles)
-				// 		allowedroles += role
-				// 	dat += english_list(allowedroles, null, ", ")
-				// 	dat += "</font>"
-				// dat += "</td>"
+				items_shown++
 
-				// // Колонка с описанием
-				// dat += "<td><font size=2><i>[G.description]</i></font></td>"
+				var/border_color = is_equipped ? "#90EE90" : "#3a3a4a"
+				var/bg_color = is_equipped ? "#1a3a2a" : "#1e1e2e"
+				dat += "<div style='width: 145px; min-height: 105px; border: 1px solid [border_color]; border-radius: 5px; padding: 4px; background: [bg_color]; text-align: center; display: inline-block; vertical-align: top; margin: 3px; cursor: pointer;' "
+				dat += "onclick=\"localStorage.setItem('gearOuterScrollPos',window.pageYOffset||document.documentElement.scrollTop);window.location.href='byond://?_src_=prefs;preference=gear;toggle_gear=[G.display_name]'\" "
+				dat += "onmouseover='this.style.borderColor=\"#87CEEB\"; this.style.transform=\"translateY(-1px)\"; this.style.boxShadow=\"0 2px 8px rgba(0,0,0,0.3)\"' "
+				dat += "onmouseout='this.style.borderColor=\"[border_color]\"; this.style.transform=\"translateY(0)\"; this.style.boxShadow=\"none\"' "
+				dat += ">"
 
-				// dat += "</tr>"	// ORIGINAL
-				// Карточка предмета
-				dat += "<div style='width: 200px; height: 150px; border: 2px solid [is_equipped ? "#90EE90" : "#555"]; border-radius: 8px; padding: 8px; background: [is_equipped ? "#2a4a2a" : "#1a1a1a"]; text-align: center; position: relative; display: inline-block; vertical-align: top; margin: 5px; cursor: pointer;' onclick=\"window.location.href='byond://?_src_=prefs;preference=gear;toggle_gear=[G.display_name]'\">"
-
-				// Фракция над картинкой
 				if(G.allowed_factions && G.allowed_factions.len)
 					var/list/faction_color_map = list(
-						"NanoTrasen" = "#283674",
+						"Nanotrasen" = "#283674",
 						"Syndicate" = "#9c0808",
 						"Independent" = "#7e6641",
 						"InteQ" = "#4d291F",
@@ -1333,33 +1369,35 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					for(var/role in G.allowed_factions)
 						var/color = faction_color_map[role] || "#FFD700"
 						colored_roles += "<span style='color: [color];'>[role]</span>"
-					dat += "<div style='margin: 2px 0 5px 0; font-size: 12px; font-weight: bold;'>[english_list(colored_roles, null, ", ")]</div>"
+					dat += "<div style='margin: 0 0 2px 0; font-size: 9px; font-weight: bold; line-height: 1.1;'>[english_list(colored_roles, null, ", ")]</div>"
 
-				// Иконка предмета
-				dat += "<div style='margin: 5px 0;'>"
-				dat += "<img src='data:image/jpeg;base64,[G.base64icon]' style='width: 64px; height: 64px; border: 1px solid #333;'>"
+				dat += "<div style='margin: 2px 0; padding: 2px; background: #12121a; border-radius: 3px; display: inline-block;'>"
+				dat += "<img src='data:image/jpeg;base64,[G.base64icon]' style='width: 40px; height: 40px; image-rendering: pixelated;'>"
 				dat += "</div>"
 
-				// Название предмета
-				dat += "<div style='margin: 3px 0; color: [is_equipped ? "#90EE90" : "#87CEEB"]; font-weight: bold; font-size: 12px;'>"
-				dat += "[is_equipped ? "✓ " : ""][G.display_name]"
+				dat += "<div style='margin: 2px 0 1px 0; color: [is_equipped ? "#90EE90" : "#87CEEB"]; font-weight: bold; font-size: 10px; line-height: 1.1;'>"
+				dat += "[is_equipped ? "\u2713 " : ""][G.display_name]"
 				dat += "</div>"
 
-				// Описание
-				dat += "<div style='margin: 2px 0; font-size: 12px; color: #CCC; text-align: left; height: 40px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;' title='[G.description]'>"
-				dat += "[G.description]"
+				var/short_desc = G.description
+				if(length(short_desc) > 50)
+					short_desc = copytext(short_desc, 1, 47) + "..."
+				dat += "<div style='font-size: 9px; color: #888; text-align: center; line-height: 1.1; min-height: 20px;' title='[G.description]'>"
+				dat += "[short_desc]"
 				dat += "</div>"
 
 				dat += "</div>"
+
+			if(items_shown == 0)
+				var/no_items_msg = gear_search ? "Nothing found for \"[gear_search]\"" : "No items in this category"
+				dat += "<div style='text-align: center; color: #666; padding: 20px; font-size: 12px;'>[no_items_msg]</div>"
 
 			dat += "</div>"
-			dat += "<script>setTimeout(function(){var container = document.getElementById('gear-container'); if(container) {var pos = localStorage.getItem('gearScrollPos'); if(pos) container.scrollTop = parseInt(pos);}}, 10);</script>"
-			dat += "</td></tr>"
-
-			dat += "</table>"
+			dat += "<script>setTimeout(function(){var c=document.getElementById('gear-container');if(c){var p=localStorage.getItem('gearScrollPos');if(p)c.scrollTop=parseInt(p);}},10);</script>"
+			dat += "</div>"
 			// [/MANKIND-EDIT]
 
-		if (3) // Game Preferences
+		if(CHAR_GAMEPREFERENCES_TAB) // Game Preferences // [SOLARIS-EDIT] - SOLARIS_W_TTS_VOICES - Упрощаем понимание кода // ORIGINAL // if (3)
 			dat += "<table><tr><td width='340px' height='300px' valign='top'>"
 			dat += "<h2>General Settings</h2>"
 			dat += "<b>UI Style:</b> <a href='byond://?_src_=prefs;task=input;preference=ui'>[UI_style]</a><br>"
@@ -1441,8 +1479,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 			dat += "<b>Ambient Occlusion:</b> <a href='byond://?_src_=prefs;preference=ambientocclusion'>[ambientocclusion ? "Enabled" : "Disabled"]</a><br>"
 			dat += "<b>Fit Viewport:</b> <a href='byond://?_src_=prefs;preference=auto_fit_viewport'>[auto_fit_viewport ? "Auto" : "Manual"]</a><br>"
-			if (CONFIG_GET(string/default_view) != CONFIG_GET(string/default_view_square))
-				dat += "<b>Widescreen:</b> <a href='byond://?_src_=prefs;preference=widescreenpref'>[widescreenpref ? "Enabled ([CONFIG_GET(string/default_view)])" : "Disabled ([CONFIG_GET(string/default_view_square)])"]</a><br>"
 
 			button_name = pixel_size
 			dat += "<b>Pixel Scaling:</b> <a href='byond://?_src_=prefs;preference=pixel_size'>[(button_name) ? "Pixel Perfect [button_name]x" : "Stretch to fit"]</a><br>"
@@ -1483,7 +1519,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<br>"
 			dat += "<b>Midround Antagonist:</b> <a href='byond://?_src_=prefs;preference=allow_midround_antag'>[(toggles & MIDROUND_ANTAG) ? "Enabled" : "Disabled"]</a><br>"
 			dat += "</td></tr></table>"
-		if(4) //OOC Preferences
+
+		if(CHAR_OOC_TAB) //OOC Preferences // [SOLARIS-EDIT] - SOLARIS_W_TTS_VOICES - Упрощаем понимание кода // ORIGINAL // if(4)
 			dat += "<table><tr><td width='340px' height='300px' valign='top'>"
 			dat += "<h2>OOC Settings</h2>"
 			dat += "<b>Window Flashing:</b> <a href='byond://?_src_=prefs;preference=winflash'>[(windowflashing) ? "Enabled":"Disabled"]</a><br>"
@@ -1566,7 +1603,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				dat += "</td>"
 			dat += "</tr></table>"
-		if(5) // Custom keybindings
+
+		if(CHAR_KEYBINDINGS_TAB) // Custom keybindings // [SOLARIS-EDIT] - SOLARIS_W_TTS_VOICES - Упрощаем понимание кода // ORIGINAL // if(5)
 			// Create an inverted list of keybindings -> key
 			var/list/user_binds = list()
 			for (var/key in key_bindings)
@@ -1607,6 +1645,21 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<br><br>"
 			dat += "<a href ='?_src_=prefs;preference=keybindings_reset'>\[Reset to default\]</a>"
 			dat += "</body>"
+
+		// [SOLARIS-ADD] - SOLARIS_W_TTS_VOICES - Упрощаем понимание кода
+		if(CHAR_SPEECH_TAB)	// The voices
+			dat += "<td width='340px' height='300px' valign='top'>"
+			dat += "<h2>Vocal Voice preferences</h2>"
+			var/datum/w_tts_voices/B = GLOB.w_tts_voices_list[w_tts_voices_id]
+			dat += "<b>Vocal Voice Sound:</b><BR>"
+			dat += "<a style='display:block;width:200px' href='?_src_=prefs;preference=wttsvoicessound;task=input'>[B ? initial(B.name) : "INVALID"]</a><BR>"
+			dat += "<b>Vocal Voice Speed:</b> <a href='byond://?_src_=prefs;preference=wttsvoicesspeed;task=input'>[w_tts_voices_speed]</a><BR>"
+			dat += "<b>Vocal Voice Pitch:</b> <a href='byond://?_src_=prefs;preference=wttsvoicespitch;task=input'>[w_tts_voices_pitch]</a><BR>"
+			dat += "<b>Vocal Voice Variance:</b> <a href='byond://?_src_=prefs;preference=wttsvoicesvary;task=input'>[w_tts_voices_variance]</a><BR>"
+			dat += "<BR><a href='byond://?_src_=prefs;preference=wttsvoicespreview'>Preview Voice</a><BR>"
+			dat += "</td>"
+			dat += "</tr></table>"
+		// [/SOLARIS-ADD]
 	dat += "<hr><center>"
 
 	if(!IsGuestKey(user.key))
@@ -1617,7 +1670,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	dat += "</center>"
 
 	winshow(user, "preferences_window", TRUE)
-	var/datum/browser/popup = new(user, "preferences_browser", "<div align='center'>Character Setup</div>", 640, 825)
+	var/datum/browser/popup = new(user, "preferences_browser", "<div align='center'>Character Setup</div>", 650, 825)
 	popup.set_content(dat.Join())
 	popup.open(FALSE)
 	onclose(user, "preferences_window", src)
@@ -1767,7 +1820,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/list/handled_conflicts = list()
 	for(var/quirk_name in SSquirks.quirks)
 		var/datum/quirk/quirk_type = SSquirks.quirks[quirk_name]
-		if(initial(quirk_type.mood_quirk) && CONFIG_GET(flag/disable_human_mood))
+		if((quirk_type::quirk_flags & QUIRK_MOODLET_BASED) && CONFIG_GET(flag/disable_human_mood))
 			quirk_conflicts[quirk_name] = "Mood and mood quirks are disabled."
 			if(!handled_conflicts["mood"])
 				handle_quirk_conflict("mood", null, user)
@@ -1812,7 +1865,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					all_quirks_new -= quirk_name
 					balance += initial(quirk_type.value)
 			if("mood")
-				if(initial(quirk_type.mood_quirk))
+				if(quirk_type::quirk_flags & QUIRK_MOODLET_BASED)
 					all_quirks_new -= quirk_name
 					balance += initial(quirk_type.value)
 			if("blacklist")
@@ -1863,11 +1916,16 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		if(SSquirks.quirk_points[q] > 0)
 			.++
 
-/datum/preferences/proc/init_learned_languages()
-	learned_languages = list()
+/datum/preferences/proc/sanitize_learned_languages(list/language_list)
+	var/list/new_language_list = list()
 	for(var/datum/language/lang_type as anything in subtypesof(/datum/language))
-		if(initial(lang_type.flags) & ROUNDSTART_LANGUAGE)
-			learned_languages[lang_type] = LANGUAGE_UNKNOWN
+		if(!(initial(lang_type.flags) & ROUNDSTART_LANGUAGE))
+			continue
+		if(!(lang_type in language_list))
+			new_language_list[lang_type] = LANGUAGE_UNKNOWN
+			continue
+		new_language_list[lang_type] = language_list[lang_type]
+	return new_language_list
 
 /datum/preferences/proc/get_language_point_balance()
 	var/points_balance = MAX_LANGUAGE_POINTS
@@ -2008,6 +2066,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		else if(href_list["toggle_loadout"])
 			show_loadout = !show_loadout
 			update_preview_icon(show_gear, show_loadout)	// [MANKIND-ADD] - MANKIND_QOL_LOADOUT
+		else if("gear_search" in href_list)
+			gear_search = url_decode(href_list["gear_search"])
 
 		ShowChoices(user)
 		return
@@ -2269,6 +2329,26 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					new_underwear = input(user, "Choose your character's underwear:", "Character Preference")  as null|anything in GLOB.underwear_list
 					if(new_underwear)
 						underwear = new_underwear
+
+				// [MANKIND-ADD] - Добавление кнопки для смены одежды.
+				if("previous_underwear")
+					underwear = previous_list_item(underwear, GLOB.underwear_list)
+
+				if("next_underwear")
+					underwear = next_list_item(underwear, GLOB.underwear_list)
+
+				if("previous_undershirt")
+					undershirt = previous_list_item(undershirt, GLOB.undershirt_list)
+
+				if("next_undershirt")
+					undershirt = next_list_item(undershirt, GLOB.undershirt_list)
+
+				if("previous_socks")
+					socks = previous_list_item(socks, GLOB.socks_list)
+
+				if("next_socks")
+					socks = next_list_item(socks, GLOB.socks_list)
+				// [/MANKIND-ADD]
 
 				if("underwear_color")
 					var/new_underwear_color = input(user, "Choose your character's underwear color:", "Character Preference","#"+underwear_color) as color|null
@@ -2598,7 +2678,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 							to_chat(usr, span_warning("You don't have enough language points!"))
 
 				if("reset_languages")
-					init_learned_languages()
+					learned_languages = sanitize_learned_languages()
 
 				if ("clientfps")
 					var/desiredfps = input(user, "Choose your desired fps. (0 = default, 60 FPS))", "Character Preference", clientfps)  as null|num //WS Edit - Client FPS Tweak -
@@ -2620,10 +2700,15 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					if(pickedPDAColor)
 						pda_color = pickedPDAColor
 
-				if("phobia")
-					var/phobiaType = input(user, "What is your character scared of?", "Quirk Preference", phobia) as null|anything in SStraumas.phobia_types
-					if(phobiaType)
-						phobia = phobiaType
+				if("scarred_eye_side")
+					var/scar_side = tgui_input_list(
+						user,
+						"Which eye is scarred?",
+						"Quirk Preference",
+						list(SCAR_LEFT, SCAR_RIGHT, SCAR_DOUBLE, SCAR_RANDOM),
+					)
+					if(scar_side)
+						scarred_eye_side = scar_side
 
 				if("generic_adjective")
 					var/selectAdj
@@ -2638,7 +2723,43 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					var/desiredlength = input(user, "Choose the max character length of shown Runechat messages. Valid range is 1 to [CHAT_MESSAGE_MAX_LENGTH] (default: [initial(max_chat_length)]))", "Character Preference", max_chat_length)  as null|num
 					if (!isnull(desiredlength))
 						max_chat_length = clamp(desiredlength, 1, CHAT_MESSAGE_MAX_LENGTH)
+				// [SOLARIS-ADD] - SOLARIS_W_TTS_VOICES
+				if("wttsvoicessound")
+					var/list/list_voices = list()
+					for(var/path in GLOB.w_tts_voices_list)
+						var/datum/w_tts_voices/B = GLOB.w_tts_voices_list[path]
+						if(initial(B.ignore))
+							continue
+						if(initial(B.ckeys_allowed))
+							var/list/allowed = initial(B.ckeys_allowed)
+							if(!allowed.Find(user.client.ckey))
+								continue
+						list_voices[initial(B.name)] = initial(B.id)
+					var/new_voice = input(user, "Choose your desired vocal voices:", "Character Preference") as null|anything in list_voices
+					if(new_voice)
+						w_tts_voices_id = list_voices[new_voice]
+						var/datum/w_tts_voices/B = GLOB.w_tts_voices_list[w_tts_voices_id] //Now we need sanitization to take into account w_tts_voices-specific min/max values
+						w_tts_voices_speed = round(clamp(w_tts_voices_speed, initial(B.minspeed), initial(B.maxspeed)), 1)
+						w_tts_voices_pitch = clamp(w_tts_voices_pitch, initial(B.minpitch), initial(B.maxpitch))
+						w_tts_voices_variance = clamp(w_tts_voices_variance, initial(B.minvariance), initial(B.maxvariance))
+				if("wttsvoicesspeed")
+					var/datum/w_tts_voices/B = GLOB.w_tts_voices_list[w_tts_voices_id]
+					var/voiceset = input(user, "Choose your desired voices speed (Higher is slower, lower is faster). Min: [initial(B.minspeed)]. Max: [initial(B.maxspeed)]", "Character Preference") as num|null
+					if(voiceset)
+						w_tts_voices_speed = round(clamp(voiceset, initial(B.minspeed), initial(B.maxspeed)), 1)
 
+				if("wttsvoicespitch")
+					var/datum/w_tts_voices/B = GLOB.w_tts_voices_list[w_tts_voices_id]
+					var/voiceset = input(user, "Choose your desired baseline voices pitch. Min: [initial(B.minpitch)]. Max: [initial(B.maxpitch)]", "Character Preference") as num|null
+					if(voiceset)
+						w_tts_voices_pitch = clamp(voiceset, initial(B.minpitch), initial(B.maxpitch))
+
+				if("wttsvoicesvary")
+					var/datum/w_tts_voices/B = GLOB.w_tts_voices_list[w_tts_voices_id]
+					var/voiceset = input(user, "Choose your desired baseline voices pitch. Min: [initial(B.minvariance)]. Max: [initial(B.maxvariance)]", "Character Preference") as num|null
+					if(voiceset)
+						w_tts_voices_variance = clamp(voiceset, initial(B.minvariance), initial(B.maxvariance))
+				// [/SOLARIS-ADD]
 		else
 			switch(href_list["preference"])
 				if("showgear")
@@ -2665,14 +2786,21 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						var/list/limb_options = list(PROSTHETIC_NORMAL, PROSTHETIC_ROBOTIC)
 						if(limb != BODY_ZONE_CHEST && limb != BODY_ZONE_HEAD)
 							limb_options.Add(PROSTHETIC_AMPUTATED) // starting without a head or chest causes instant death, must be disallowed
-						var/datum/sprite_accessory/ipc_chassis/limb_style
+
 						var/obj/item/bodypart/part_candidate
-						for(var/chassis in GLOB.ipc_chassis_list)
-							limb_style = GLOB.ipc_chassis_list[chassis]
-							part_candidate = limb_style.chassis_bodyparts[limb]
+						var/datum/sprite_accessory/body/limb_style
+						for(var/body in GLOB.alternative_body_list)
+							limb_style = GLOB.alternative_body_list[body]
+							part_candidate = limb_style.replacement_bodyparts[limb]
+							if(isnull(part_candidate))
+								continue
+							if(length(limb_style.allowed_species))
+								if(!(pref_species.type in limb_style.allowed_species))
+									continue
 							if(!(pref_species.bodytype & initial(part_candidate.bodytype))) // don't allow vox and kepori to select limbs that aren't compatible
 								continue
-							limb_options.Add(chassis)
+							limb_options.Add(body)
+
 						var/status = input(user, "You are modifying your [parse_zone(limb)], what should it be changed to?", "Character Preference", prosthetic_limbs[limb]) in limb_options
 						if(status)
 							prosthetic_limbs[limb] = status
@@ -2832,6 +2960,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if("endofround_sounds")
 					toggles ^= SOUND_ENDOFROUND
 
+				// [SOLARIS-ADD] - SOLARIS_W_TTS_VOICES - От порядка зависит в каком месте покажется настройка
+				if("sound_w_tts_voices")
+					toggles ^= SOUND_THE_VOICE
+				// [/SOLARIS-ADD]
+
 				if("ghost_ears")
 					chat_toggles ^= CHAT_GHOSTEARS
 
@@ -2903,10 +3036,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					if(auto_fit_viewport && parent)
 						parent.fit_viewport()
 
-				if("widescreenpref")
-					widescreenpref = !widescreenpref
-					user.client.view_size.setDefault(getScreenSize(widescreenpref))
-
 				if("pixel_size")
 					switch(pixel_size)
 						if(PIXEL_SCALING_AUTO)
@@ -2931,6 +3060,25 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 							scaling_method = SCALING_METHOD_NORMAL
 					user.client.view_size.setZoomMode()
 
+				// [SOLARIS-ADD] - SOLARIS_W_TTS_VOICES
+				if("wttsvoicespreview")
+					if(SSticker.current_state == GAME_STATE_STARTUP) //Timers don't tick at all during game startup, so let's just give an error message
+						to_chat(user, "<span class='warning'>Voice previews can't play during initialization!</span>")
+						return
+					if(!COOLDOWN_FINISHED(src, w_tts_voices_previewing))
+						return
+					if(!parent || !parent.mob)
+						return
+					COOLDOWN_START(src, w_tts_voices_previewing, (5 SECONDS))
+					var/atom/movable/voicebox = new(get_turf(parent.mob))
+					voicebox.set_w_tts_voices(w_tts_voices_id)
+					var/total_delay
+					for(var/i in 1 to (round((32 / w_tts_voices_speed)) + 1))
+						addtimer(CALLBACK(voicebox, /atom/movable/proc/w_tts_voices, list(parent.mob), 7, 70, rand((w_tts_voices_pitch * 100), (w_tts_voices_pitch*100) + (w_tts_voices_variance*100)) / 100), total_delay)
+						total_delay += rand(DS2TICKS(w_tts_voices_speed/4), DS2TICKS(w_tts_voices_speed/4) + DS2TICKS(w_tts_voices_speed/4)) TICKS
+					QDEL_IN(voicebox, total_delay)
+				// [/SOLARIS-ADD]
+
 				if("darkened_flash") //PENTEST ADDITION
 					darkened_flash = !darkened_flash
 
@@ -2947,11 +3095,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						random_character()
 						real_name = random_unique_name(gender)
 						save_character()
+					gear_search = ""
 
-				if("tab")
+				if("character_tab") // [CELADON-EDIT] - CELADON_W_TTS_VOICES - Улучшаем понимание кода // ORIGINAL // if("tab")
 					if (href_list["tab"])
 						current_tab = text2num(href_list["tab"])
-						if(current_tab == 2)
+						if(current_tab == CHAR_LOADOUT_TAB) // [CELADON-EDIT] - CELADON_W_TTS_VOICES - Улучшаем понимание кода // ORIGINAL // if(current_tab == 2)
 							show_loadout = TRUE
 
 				if("clear_heart")
@@ -3007,6 +3156,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	// [MANKIND-ADD] - MANKIND_RIOL
 	character.skin_tone_riol = skin_tone_riol
 	// [/MANKIND-ADD]
+	// [CELADON-ADD] - CELADON_W_TTS_VOICES
+	character.set_w_tts_voices(w_tts_voices_id)
+	character.vocal_speed = w_tts_voices_speed
+	character.vocal_pitch = w_tts_voices_pitch
+	character.vocal_pitch_range = w_tts_voices_variance
+	// [/CELADON-ADD]
 	character.underwear = underwear
 	character.underwear_color = underwear_color
 	character.undershirt = undershirt
@@ -3067,8 +3222,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					qdel(old_part)
 				character.regenerate_limb(pros_limb, robotic = TRUE)
 			else
-				var/datum/sprite_accessory/ipc_chassis/limb_style = GLOB.ipc_chassis_list[prosthetic_limbs[pros_limb]]
-				var/obj/item/bodypart/new_part = limb_style.chassis_bodyparts[pros_limb]
+				var/datum/sprite_accessory/body/limb_style = GLOB.alternative_body_list[prosthetic_limbs[pros_limb]]
+				var/obj/item/bodypart/new_part = limb_style.replacement_bodyparts[pros_limb]
 				new_part = new new_part()
 				if(old_part)
 					old_part.drop_limb(TRUE)
@@ -3121,7 +3276,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	character.set_mob_height(GLOB.height_filters[height_filter])
 
 	if(!character_setup && get_language_point_balance() < 0)
-		init_learned_languages() // no exploits allowed
+		learned_languages = sanitize_learned_languages() // no exploits allowed
 	character.grant_language(native_language)
 	character.get_language_holder().selected_language = native_language
 	for(var/datum/language/lang_type as anything in learned_languages)

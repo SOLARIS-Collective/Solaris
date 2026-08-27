@@ -20,6 +20,13 @@
 //Amount of times the overmap generator will attempt to place something before giving up
 #define MAX_OVERMAP_PLACEMENT_ATTEMPTS 5
 
+// [MANKIND-ADD] - MANKIND_FIXES - Максимальная глубина рекурсии спавна кластера событий
+#define MAX_OVERMAP_EVENT_CLUSTER_DEPTH 8
+
+// [MANKIND-ADD] - MANKIND_FIXES - Максимальная длина цепочки доков при undock
+#define MAX_UNDOCK_CHAIN_LENGTH 32
+// [/MANKIND-ADD]
+
 //I belive these are redundant now? No reason to use these, maybe remove?
 //Possible dynamic encounter types
 #define DYNAMIC_WORLD_LAVA "lava" //base planets
@@ -150,5 +157,4 @@
 //All the 'shipmodules' a ship can have.
 #define SHIPMODULE_BSDRIVE "bluespace_drive"
 #define SHIPMODULE_HELMCONSOLE "helm_console"
-#define SHIPMODULE_TRANSPONDER "transponder"
 

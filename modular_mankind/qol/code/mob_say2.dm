@@ -4,6 +4,8 @@
 
 // Part from "code\modules\mob\mob_say.dm"
 
+GLOBAL_LIST_INIT(ic_autoemote, list())
+
 // Overrides verbs to use input() instead of verb arguments
 ///The me emote verb
 /mob/verb/me_verb_2()
@@ -37,7 +39,7 @@
 		if(stat != DEAD)
 			if(GLOB.ic_autoemote[message])
 				message = "*[GLOB.ic_autoemote[message]]"
-			message = check_for_brainrot(message)
+			// message = check_for_brainrot(message) // Пока нету этого
 		QUEUE_OR_CALL_VERB_FOR(VERB_CALLBACK(src, TYPE_PROC_REF(/atom/movable, say), message), SSspeech_controller)
 
 // Overrides proc to use _char variants of findtext and copytext

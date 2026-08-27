@@ -27,7 +27,7 @@
 /datum/overmap/ui_data(mob/user)
 	. = list()
 	.["admin_rights"] = check_rights_for(user.client, R_DEBUG)
-	. += basic_ui_data()
+	. += basic_ui_data(user)
 	.["ascii"] = char_rep
 	.["desc"] = (isobj(token)) ? token.desc : ""
 	.["x"] = x || docked_to.x
@@ -35,13 +35,13 @@
 
 	.["dockedTo"] = list()
 	if(docked_to)
-		.["dockedTo"] += docked_to.basic_ui_data()
+		.["dockedTo"] += docked_to.basic_ui_data(user)
 
 	.["docked"] = list()
 	for(var/datum/overmap/docked in contents)
-		.["docked"] += list(docked.basic_ui_data())
+		.["docked"] += list(docked.basic_ui_data(user))
 
-/datum/overmap/proc/basic_ui_data()
+/datum/overmap/proc/basic_ui_data(mob/user)
 	return list(
 		"ref" = REF(src),
 		"name" = name
@@ -55,8 +55,11 @@
 	. = ..()
 	src.focus = focus
 	src.inspector = inspector
-	RegisterSignal(src.focus, COMSIG_QDELETING, PROC_REF(qdel))
-	RegisterSignal(src.inspector, COMSIG_QDELETING, PROC_REF(qdel))
+	RegisterSignal(src.focus, COMSIG_QDELETING, PROC_REF(close))
+	RegisterSignal(src.inspector, COMSIG_QDELETING, PROC_REF(close))
+
+/datum/overmap_inspect/proc/close()
+	qdel(src)
 
 /datum/overmap_inspect/Destroy()
 	UnregisterSignal(focus, COMSIG_QDELETING)
@@ -83,7 +86,9 @@
 	switch(action)
 		if("inspect")
 			var/datum/overmap/token = locate(params["ref"])
-			if(istype(token, /datum/overmap))
+			if(istype(token, /datum/overmap) && token != focus)
+				UnregisterSignal(focus, COMSIG_QDELETING)
+				RegisterSignal(token, COMSIG_QDELETING, PROC_REF(close))
 				focus = token
 		if("load")
 			if(!check_rights(R_DEBUG))

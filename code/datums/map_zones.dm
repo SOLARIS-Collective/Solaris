@@ -132,6 +132,7 @@
 /datum/virtual_level/proc/reserve_margin(margin)
 	if(reserved_margin)
 		CRASH("Sub Map Zone [name] tried reserving a margin while already reserving one.")
+	AUXCPU_PHASE("reserve_margin") // [SOLARIS-ADD] - SHIP_LOAD_LAG
 	reserved_margin = margin
 	mapping_margin = reserved_margin + MAPPING_MARGIN
 
@@ -157,6 +158,7 @@
 			for(var/turf/open/space/adj in RANGE_TURFS(1, Turf))
 				adj.check_starlight(Turf)
 			CHECK_TICK
+	AUXCPU_PHASE_END // [SOLARIS-ADD] - SHIP_LOAD_LAG
 
 /datum/virtual_level/proc/selfloop()
 	link_with(NORTH, src)
@@ -440,6 +442,7 @@
 	var/list/turf/block_turfs = get_block()
 
 	var/static/list/ignored_atoms = typecacheof(list(/mob/dead, /atom/movable/lighting_object))
+	AUXCPU_PHASE("clr_qdel_loop") // [SOLARIS-ADD] - SHIP_LOAD_LAG - метка намеренного без-yield куска
 	for(var/turf/turf as anything in block_turfs)
 		// don't waste time trying to qdelete the lighting object
 		for(var/atom/movable/thing as anything in turf.contents)
@@ -450,6 +453,9 @@
 			qdel(thing)
 			// DO NOT CHECK_TICK HERE. IT CAN CAUSE ITEMS TO GET LEFT BEHIND
 			// THIS IS REALLY IMPORTANT FOR CONSISTENCY. SORRY ABOUT THE LAG SPIKE
+	AUXCPU_PHASE_END // [SOLARIS-ADD] - SHIP_LOAD_LAG
+
+	AUXCPU_PHASE("clr_empty_loop") // [SOLARIS-ADD] - SHIP_LOAD_LAG
 
 	for(var/turf/turf as anything in block_turfs)
 		// Reset turf
@@ -474,6 +480,7 @@
 		for(var/turf/open/space/adj in RANGE_TURFS(1, turf))
 			adj.check_starlight(turf)
 		CHECK_TICK
+	AUXCPU_PHASE_END // [SOLARIS-ADD] - SHIP_LOAD_LAG
 
 	qdel(safeguard)
 
@@ -620,11 +627,13 @@
 				return
 
 	if(turf_type)
+		AUXCPU_PHASE("fill_in") // [SOLARIS-ADD] - SHIP_LOAD_LAG
 		for(var/turf/iterated_turf as anything in get_unreserved_block())
 			iterated_turf.ChangeTurf(turf_type, turf_type)
 			CHECK_TICK
 			if(QDELETED(src))
 				return
+		AUXCPU_PHASE_END // [SOLARIS-ADD] - SHIP_LOAD_LAG
 
 /turf/closed/indestructible/edge
 	name = "edge"

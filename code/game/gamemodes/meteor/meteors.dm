@@ -41,7 +41,14 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 
 // [MANKIND-ADD] - MANKIND_OVERMAP_COLLISION - Это вагабонд насрал
 
+// [MANKIND-ADD] - OPTIMIZE_SHIP_COLLISION_DEBRIS - Кап на количество осколков при столкновении шипов.
+// Раньше спавнилось round(600 * MAGNITUDE(скоростей)) + 1 невидимых метеоров (сотни!), каждый из которых
+// летает и взрывается внутри корабля — стабильный спайк лага на каждое столкновение.
+#define MAX_SHIP_COLLISION_DEBRIS 30
+// [/MANKIND-ADD]
+
 /proc/spawn_meteors_alt(number = 10, list/meteortypes, vlevel, port, dirc)
+	number = min(number, MAX_SHIP_COLLISION_DEBRIS) // [MANKIND-EDIT] - Кап осколков столкновения шипов. Обычные метеор-ивенты используют spawn_meteors() и не затронуты.
 	for(var/i = 0; i < number; i++)
 		spawn_meteor(meteortypes, vlevel, 0, port, dirc)
 
@@ -189,7 +196,7 @@ GLOBAL_LIST_INIT(meteorsC, list(/obj/effect/meteor/dust)) //for space dust event
 		var/thing_to_spawn = pick(meteordrop)
 		new thing_to_spawn(get_turf(src))
 
-/obj/effect/meteor/proc/chase_target(atom/chasing, delay = 1)
+/obj/effect/meteor/proc/chase_target(atom/chasing, delay = 3)
 	set waitfor = FALSE
 	if(chasing)
 		walk_towards(src, chasing, delay)

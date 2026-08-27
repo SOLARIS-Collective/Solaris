@@ -7,7 +7,7 @@
 		// [MANKIND-ADD] - MANKIND_FOOD_AND_DRINKS
 		/obj/item/reagent_containers/food/drinks/soda_cans/synthanol = 10,
 		// [/MANKIND-ADD]
-    /obj/item/reagent_containers/food/drinks/drinkingglass = 30,
+		/obj/item/reagent_containers/food/drinks/drinkingglass = 30,
 		/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass = 12,
 		/obj/item/reagent_containers/food/drinks/modglass/small = 10,
 		/obj/item/reagent_containers/food/drinks/modglass = 10,

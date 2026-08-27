@@ -127,17 +127,21 @@ SUBSYSTEM_DEF(shuttle)
 	///attempt at making transit levels bigger to allow for better ship to ship docking
 	if(transit_width <= 32) ///32 x 3 = 96 - small sized ships shouldnt be bigger than this
 		transit_width *= 3
-	else if(transit_width <= 63) // 63 x 2 = 127 -  127 is the defialt size of planets, ideally we dont go higher than this
+	else if(transit_width <= 63) // 63 x 2 = 127 -  127 is the default size of planets, ideally we dont go higher than this
 		transit_width *= 2
+	else if(transit_width <= 127) // fuckhuge ships should prbobaly max out here,
+		transit_width = 127 // ditto
 	else
-		transit_width = 127 // fuckhuge ships should prbobaly max out here
+		transit_width = 255 //...however, for the sake of edgecase handling, if a mapper decides to break all mapping conventions (map size larger than 127), we assume this is intentional,
 
 	if(transit_height <= 32) ///32 x 3 = 96 - small sized ships shouldnt be bigger than this
 		transit_height *= 3
-	else if(transit_height <= 63) // 63 x 2 = 127 -  127 is the defialt size of planets, ideally we dont go higher than this
+	else if(transit_height <= 63) // 63 x 2 = 127 -  127 is the default size of planets, ideally we dont go higher than this
 		transit_height *= 2
+	else if(transit_height <= 127) // fuckhuge ships should prbobaly max out here,
+		transit_height = 127 // ditto
 	else
-		transit_height = 127 // fuckhuge ships should prbobaly max out here
+		transit_height = 255 //...however, for the sake of edgecase handling, if a mapper decides to break all mapping conventions (map size larger than 127), we assume this is intentional,
 
 	var/transit_path = /turf/open/space/transit
 	switch(travel_dir)
@@ -162,7 +166,9 @@ SUBSYSTEM_DEF(shuttle)
 		mapzone,
 		transit_width,
 		transit_height,
-		ALLOCATION_FREE
+		ALLOCATION_FREE,
+		DEFAULT_ALLOC_JUMP, // PENTEST EDIT - Manditory ZLevels
+		ZLEVEL_ROLE_HYPERSPACE // PENTEST EDIT - Manditory ZLevels
 	)
 
 	vlevel.reserve_margin(TRANSIT_SIZE_BORDER)
@@ -325,10 +331,12 @@ SUBSYSTEM_DEF(shuttle)
 /datum/controller/subsystem/shuttle/proc/load_template(datum/map_template/shuttle/template, datum/overmap/ship/controlled/parent, spawn_transit = TRUE)
 	. = FALSE
 	var/loading_mapzone = SSmapping.create_map_zone("Shuttle Loading Zone")
+	AUXCPU_PHASE("lt_loading_zone") // [SOLARIS-ADD] - SHIP_LOAD_LAG
 	var/datum/virtual_level/loading_zone = SSmapping.create_virtual_level("[template.name] Loading Level", list(ZTRAIT_RESERVED = TRUE), loading_mapzone, template.width, template.height, ALLOCATION_FREE)
 
 	if(!loading_zone)
 		CRASH("failed to reserve an area for shuttle template loading")
+	// Откат
 	loading_zone.fill_in(turf_type = /turf/open/space/transit/south)
 
 	var/turf/BL = locate(loading_zone.low_x, loading_zone.low_y, loading_zone.z_value)
@@ -336,6 +344,7 @@ SUBSYSTEM_DEF(shuttle)
 		return
 
 	var/affected = template.get_affected_turfs(BL, centered=FALSE)
+	AUXCPU_PHASE("lt_port_scan") // [SOLARIS-ADD] - SHIP_LOAD_LAG
 	var/obj/docking_port/mobile/new_shuttle
 	var/list/stationary_ports = list()
 	// Search the turfs for docking ports
@@ -368,7 +377,9 @@ SUBSYSTEM_DEF(shuttle)
 	for(var/obj/docking_port/stationary/S in stationary_ports)
 		S.owner_ship = new_shuttle
 		S.load_roundstart()
+	AUXCPU_PHASE("lt_docks_subshuttles") // [SOLARIS-ADD] - SHIP_LOAD_LAG
 
+	AUXCPU_PHASE("lt_transit") // [SOLARIS-ADD] - SHIP_LOAD_LAG
 	var/obj/docking_port/mobile/transit_dock = generate_transit_dock(new_shuttle, template.tranist_x_offset, template.tranist_y_offset)
 
 	if(!transit_dock)
@@ -380,9 +391,11 @@ SUBSYSTEM_DEF(shuttle)
 		qdel(src, TRUE)
 		CRASH("Template shuttle [new_shuttle] cannot dock at [transit_dock] ([result]).")
 
+	AUXCPU_PHASE("lt_flight") // [SOLARIS-ADD] - SHIP_LOAD_LAG
 	new_shuttle.initiate_docking(transit_dock)
 	new_shuttle.linkup(transit_dock, parent)
 
+	AUXCPU_PHASE("lt_cleanup") // [SOLARIS-ADD] - SHIP_LOAD_LAG
 	var/area/fill_area = GLOB.areas_by_type[/area/space]
 	loading_zone.fill_in(turf_type = /turf/open/space/transit/south, area_override = fill_area ? fill_area : /area/space)
 	QDEL_NULL(loading_zone)
@@ -391,6 +404,7 @@ SUBSYSTEM_DEF(shuttle)
 	template.post_load(new_shuttle)
 	new_shuttle.register()
 	new_shuttle.reset_air()
+	AUXCPU_PHASE_END // [SOLARIS-ADD] - SHIP_LOAD_LAG
 
 	return new_shuttle
 
@@ -512,7 +526,12 @@ SUBSYSTEM_DEF(shuttle)
 					if(!selected_system)
 						return //if selected_system didnt get selected, we nope out, this is very bad
 				if(!new_ship)
+					// [SOLARIS-ADD] - Логирование времени создания корабля через Shuttle Manipulator.
+					var/manip_spawn_start_time = REALTIMEOFDAY
+					log_shuttle("SHUTTLE MANIPULATOR: СТАРТ создания корабля \"[S]\" админом [key_name(user)]")
 					new_ship = new(ship_loc, selected_system, S)
+					log_shuttle("SHUTTLE MANIPULATOR: ФИНИШ создания корабля \"[S]\" админом [key_name(user)]. Итог: [new_ship?.shuttle_port ? "успех" : "ПРОВАЛ"] за [(REALTIMEOFDAY - manip_spawn_start_time) / 10]s")
+					// [/SOLARIS-ADD]
 				if(new_ship?.shuttle_port)
 					user.forceMove(new_ship.get_jump_to_turf())
 					message_admins("[key_name_admin(user)] loaded [new_ship] ([S]) with the shuttle manipulator.")

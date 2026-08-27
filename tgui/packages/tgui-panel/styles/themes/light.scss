@@ -68,10 +68,7 @@
   );
 
   // Layouts
-  @include meta.load-css(
-    '~tgui/styles/layouts/Layout.scss',
-    $with: ('scrollbar-color-multiplier': -1)
-  );
+  @include meta.load-css('~tgui/styles/layouts/Layout.scss');
   @include meta.load-css('~tgui/styles/layouts/Window.scss');
   @include meta.load-css(
     '~tgui/styles/layouts/TitleBar.scss',

@@ -39,7 +39,9 @@
 	for(var/client/C in GLOB.admins)
 	// [MANKIND-ADD] Add Sound for Pray
 		if(C.prefs.toggles & SOUND_PRAYERS)
-			SEND_SOUND(C, sound('modular_mankind/_storage_sounds/sound/announce/pray.ogg'))
+			// [MANKIND-EDIT] - MANKIND_FIXES - Применяем масштабирование громкости по категории Prayers
+			C.mob.send_sound_scaled(sound('modular_mankind/_storage_sounds/sound/announce/pray.ogg'), FS_PRAYERS)
+			// [/MANKIND-EDIT]
 	// [/MANKIND-ADD]
 		if(C.prefs.chat_toggles & CHAT_PRAYER)
 			to_chat(C, msg, confidential = TRUE)

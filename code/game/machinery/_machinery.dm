@@ -140,7 +140,8 @@ Class Procs:
 
 /obj/machinery/Initialize(mapload, apply_default_parts = TRUE)
 	if(!armor)
-		armor = list("melee" = 25, "bullet" = 10, "laser" = 10, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 70)
+		// [SOLARIS-EDIT] getArmor вместо legacy-списка (см. structures.dm)
+		armor = getArmor(melee = 25, bullet = 10, laser = 10, energy = 0, bomb = 0, bio = 0, rad = 0, fire = 50, acid = 70)
 	. = ..()
 	GLOB.machines += src
 	RegisterSignal(src, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(power_change))

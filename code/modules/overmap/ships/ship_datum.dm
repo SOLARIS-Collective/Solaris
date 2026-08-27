@@ -29,7 +29,7 @@
 	if(trails[3])
 		trails[3].alpha = 0
 
-/datum/overmap/ship/proc/update_trails(var/obj/shiptrail/newtrail)
+/datum/overmap/ship/proc/update_trails(obj/shiptrail/newtrail)
 	if(trails[1])
 		trails[1].alpha = 128
 		if(trails[2])
@@ -84,6 +84,11 @@
 	// token_icon_state = "ship"
 	token_icon_state = "ship_point"
 	// [/MANKIND-EDIT]
+
+	// [MANKIND-ADD] - HIDE_SHIP_META - Обезличенное имя токена на овермапе (вместо настоящего имени корабля)
+	///The name shown on the overmap token instead of the real ship name.
+	token_display_name = "???"
+	// [/MANKIND-ADD]
 
 	///If TRUE stationary_icon_state and moving_icon_state are used instead of an overlay being applied to stationary_icon_state
 	var/legacy_rendering_switch = FALSE
@@ -149,11 +154,41 @@
 /datum/overmap/ship/proc/check_proximity()
 //	token.collision_alarm()
 	var/list/arpa_add = list()
-	for(var/obj/overmap/rendered/i in orange(4, token))
-		calculate_cpa(src, i.parent)
-		arpa_add |= i.parent
+	// [MANKIND-EDIT] - OVERMAP SENSORS - Радиус сканирования ARPA берётся из максимального значения сенсоров из конфига шипа, вместо жёстких 4.
+	// [MANKIND-EDIT] - OPTIMIZE_SENSOR_SCAN - Поиск по сетке overmap_container вместо orange(), чтобы не сканировать весь мир.
+	// Эквивалентно orange(scan_radius, token): центр — клетка корабля, радиус тот же. Пристыкованные корабли
+	// лежат в .contents пристыкованного объекта, поэтому обходим и их тоже.
+	var/datum/overmap/ship/controlled/self_ship = istype(src) ? src : null
+	var/scan_radius = self_ship ? self_ship.default_sensor_range : 4
+	if(!current_overmap || !current_overmap.overmap_container || !isnum(x) || !isnum(y))
+		return arpa_add
+	var/list/container = current_overmap.overmap_container
+	var/size = current_overmap.size
+	for(var/dx in -scan_radius to scan_radius)
+		var/check_x = ((x + dx - 1) % size) + 1
+		if(check_x < 1)
+			check_x += size
+		for(var/dy in -scan_radius to scan_radius)
+			var/check_y = ((y + dy - 1) % size) + 1
+			if(check_y < 1)
+				check_y += size
+			var/list/queue = list()
+			var/cell = container[check_x][check_y]
+			if(islist(cell))
+				queue += cell
+			else if(istype(cell, /datum/overmap))
+				queue += cell
+			while(length(queue))
+				var/datum/overmap/O = queue[length(queue)]
+				queue.len--
+				if(istype(O, /datum/overmap/ship/controlled) && O != src)
+					calculate_cpa(src, O)
+					arpa_add |= O
+				if(length(O.contents))
+					queue += O.contents
 	return arpa_add
-// [/MANKIND-ADD]
+	// [/MANKIND-EDIT]
+	// [/MANKIND-EDIT]
 
 // /datum/overmap/ship/Initialize(position, ...)	// КОД JOPA
 /datum/overmap/ship/Initialize(position, system_spawned_in, ...)
@@ -272,7 +307,7 @@
  */
 
 // [MANKIND-ADD] - MANKIND_OVERMAP_STUFF - Это вагабонд насрал
-/datum/overmap/ship/proc/not_tick_move(var/xmov, var/ymov)
+/datum/overmap/ship/proc/not_tick_move(xmov, ymov)
 	if(QDELING(src))
 		return
 	overmap_move(x + xmov, y + ymov)

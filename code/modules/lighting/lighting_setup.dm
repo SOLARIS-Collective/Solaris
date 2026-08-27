@@ -1,4 +1,5 @@
 /proc/create_all_lighting_objects()
+	AUXCPU_PHASE("create_lighting") // [SOLARIS-ADD] - SHIP_LOAD_LAG
 	for(var/turf/T in world)
 		var/area/A = T.loc
 		if(IS_DYNAMIC_LIGHTING(T) && IS_DYNAMIC_LIGHTING(A))
@@ -10,3 +11,4 @@
 			var/turf/open/space/S = T
 			S.recalculate_starlight()
 		CHECK_TICK
+	AUXCPU_PHASE_END // [SOLARIS-ADD] - SHIP_LOAD_LAG

@@ -49,6 +49,7 @@
 	var/list/atom/atoms = list()
 	var/list/area/areas = list()
 
+	AUXCPU_PHASE("tpl_collect") // [SOLARIS-ADD] - SHIP_LOAD_LAG
 	var/list/turfs = block(
 		locate(
 			bounds[MAP_MINX],
@@ -71,16 +72,23 @@
 				continue
 			if(istype(A, /obj/machinery/atmospherics))
 				atmos_machines += A
+		// [SOLARIS-ADD] - SHIP_LOAD_LAG - сбор атомов по большому шаблону не должен идти одним куском тика
+		CHECK_TICK
+		// [/SOLARIS-ADD]
 
 	SSmapping.reg_in_areas_in_z(areas)
 	if(SSatoms.initialized == INITIALIZATION_INSSATOMS)
 		return
 
+	AUXCPU_PHASE("tpl_init_atoms") // [SOLARIS-ADD] - SHIP_LOAD_LAG
 	SSatoms.InitializeAtoms(areas + turfs + atoms, returns_created_atoms ? created_atoms : null)
+	AUXCPU_PHASE("tpl_powernets") // [SOLARIS-ADD] - SHIP_LOAD_LAG
 	// NOTE, now that Initialize and LateInitialize run correctly, do we really
 	// need these two below?
 	SSmachines.setup_template_powernets(cables)
+	AUXCPU_PHASE("tpl_pipes_atmos") // [SOLARIS-ADD] - SHIP_LOAD_LAG
 	SSair.setup_template_machinery(atmos_machines)
+	AUXCPU_PHASE("tpl_air_update") // [SOLARIS-ADD] - SHIP_LOAD_LAG
 
 	if(!init_atmos)
 		return
@@ -104,6 +112,8 @@
 		affected_turf.levelupdate()
 		// placing ruins in after planet generation was causing mis-smooths. maybe there's a better fix? not sure
 		QUEUE_SMOOTH(affected_turf)
+		// [SOLARIS-ADD] - SHIP_LOAD_LAG - air_update по границам шаблона (турфы+маржа) дробим по тикам
+		CHECK_TICK
 
 /datum/map_template/proc/load_new_z()
 	var/x = round((world.maxx - width) * 0.5) + 1
@@ -159,11 +169,16 @@
 	for(var/turf/turf_to_disable as anything in border)
 		turf_to_disable.blocks_air = TRUE
 		turf_to_disable.air_update_turf(TRUE)
+		// [SOLARIS-ADD] - SHIP_LOAD_LAG - дробим блокировку воздуха по периметру шаблона
+		CHECK_TICK
+		// [/SOLARIS-ADD]
 
 	// Accept cached maps, but don't save them automatically - we don't want
 	// ruins clogging up memory for the whole round.
+	AUXCPU_PHASE("tpl_parse") // [SOLARIS-ADD] - SHIP_LOAD_LAG
 	var/datum/parsed_map/parsed = cached_map || new(file(mappath))
 	cached_map = keep_cached_map ? parsed : null
+	AUXCPU_PHASE("tpl_grid") // [SOLARIS-ADD] - SHIP_LOAD_LAG
 
 	var/list/turf_blacklist = list()
 	update_blacklist(T, turf_blacklist)
@@ -172,15 +187,18 @@
 	parsed.turf_blacklist = turf_blacklist
 	if(!parsed.load(T.x, T.y, T.z, cropMap=TRUE, no_changeturf=(SSatoms.initialized == INITIALIZATION_INSSATOMS), placeOnTop=should_place_on_top, timeout = timeout))
 		return
+	AUXCPU_PHASE("tpl_areas") // [SOLARIS-ADD] - SHIP_LOAD_LAG
 	var/list/bounds = parsed.bounds
 	if(!bounds)
 		return
 
 	if(!SSmapping.loading_ruins) //Will be done manually during mapping ss init
 		repopulate_sorted_areas()
+	AUXCPU_PHASE("init_bounds") // [SOLARIS-ADD] - SHIP_LOAD_LAG
 
 	//initialize things that are normally initialized after map load
 	initTemplateBounds(bounds, init_atmos)
+	AUXCPU_PHASE_END // [SOLARIS-ADD] - SHIP_LOAD_LAG: шаблон полностью загружен
 
 	log_game("[name] loaded at [T.x],[T.y],[T.z]")
 	return bounds

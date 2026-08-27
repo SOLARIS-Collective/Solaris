@@ -423,3 +423,40 @@
 	config_entry_value = 30
 
 /datum/config_entry/flag/native_fov
+
+// [SOLARIS] - Tick stabilization toggles, see code/game/world.dm
+/datum/config_entry/flag/attempt_corrective_cpu	//burn spare tick time to pin cpu usage to a consistent level
+/datum/config_entry/flag/attempt_corrective_cpu/ValidateAndSet(str_val)
+	. = ..()
+	if(.)
+		GLOB.attempt_corrective_cpu = config_entry_value
+
+/datum/config_entry/flag/use_dynamic_mc_limit	//mc limits itself to the corrective threshold so it doesn't fight the burn
+/datum/config_entry/flag/use_dynamic_mc_limit/ValidateAndSet(str_val)
+	. = ..()
+	if(.)
+		GLOB.use_dynamic_mc_limit = config_entry_value
+
+/datum/config_entry/number/corrective_cpu_target	//what cpu percentage we stabilize ticks at
+	config_entry_value = 85
+	min_val = 50
+	max_val = 95
+/datum/config_entry/number/corrective_cpu_target/ValidateAndSet(str_val)
+	. = ..()
+	if(.)
+		GLOB.corrective_cpu_target = config_entry_value
+
+/datum/config_entry/flag/ship_rotation
+
+/datum/config_entry/flag/ship_rotation/ValidateAndSet(str_val)
+	. = ..()
+	if(.)
+		GLOB.ship_rotation_enabled = config_entry_value
+
+/datum/config_entry/flag/load_auxcpu_library	//opt-in gate: load the auxcpu byondapi library (.dll/.so) for raw cpu readings
+
+/datum/config_entry/flag/auxcp_phase_labels	//opt-in gate: label auxcp_rec.log rows with boot/load phase names ("ph" field). Recording stays manual via REC.
+/datum/config_entry/flag/auxcp_phase_labels/ValidateAndSet(str_val)
+	. = ..()
+	if(.)
+		GLOB.auxcp_phases_enabled = config_entry_value

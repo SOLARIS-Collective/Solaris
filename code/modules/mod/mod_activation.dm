@@ -246,6 +246,8 @@
 	return wearer
 
 /obj/item/mod/control/CtrlClick(mob/user)
+	if(isobserver(user)) // PENTEST CHANGE - Prevent ghosts from triggering ctrl-click through auto-observe
+		return
 	. = ..()
 	quick_toggle(user)
 

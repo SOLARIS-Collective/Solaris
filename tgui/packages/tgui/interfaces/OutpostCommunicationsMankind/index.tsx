@@ -1,5 +1,13 @@
 import { useBackend, useSharedState } from '../../backend';
-import { ProgressBar, Section, Tabs, Button, LabeledList, Box, Stack } from '../../components';
+import {
+  ProgressBar,
+  Section,
+  Tabs,
+  Button,
+  LabeledList,
+  Box,
+  Stack,
+} from '../../components';
 import { Window } from '../../layouts';
 
 import { CargoCatalog } from './Catalog';
@@ -53,7 +61,9 @@ export const OutpostCommunicationsMankind = (props, context) => {
         />
         {tab === 'cargo' && <CargoExpressContent />}
         {tab === 'shipMissions' && !!onShip && <ShipMissionsContent />}
-        {tab === 'outpostMissions' && !!outpostDocked && (<OutpostMissionsContent />)}
+        {tab === 'outpostMissions' && !!outpostDocked && (
+          <OutpostMissionsContent />
+        )}
       </Window.Content>
     </Window>
   );
@@ -145,7 +155,11 @@ const MissionsList = (props, context) => {
             average: [0.25, 0.75],
             bad: [0, 0.25],
           }}
-          value={mission.progressPer}
+          value={
+            mission.duration > 0
+              ? (mission.duration - mission.remaining) / mission.duration
+              : 0
+          }
         />
       </Stack.Item>
 

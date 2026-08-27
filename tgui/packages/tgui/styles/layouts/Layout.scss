@@ -6,39 +6,39 @@
 @use 'sass:color';
 @use '../base.scss';
 
-$scrollbar-color-multiplier: 1 !default;
+$bg-lightness: color.lightness(base.$color-bg);
+$is-dark-bg: $bg-lightness <= 50;
+
+$scrollbar-thumb-color: if(
+  $is-dark-bg,
+  rgba(255, 255, 255, 0.25),
+  rgba(0, 0, 0, 0.2)
+);
+$scrollbar-track-color: if(
+  $is-dark-bg,
+  rgba(255, 255, 255, 0.06),
+  rgba(0, 0, 0, 0.06)
+);
 
 .Layout,
 .Layout * {
-  // Fancy scrollbar
-  scrollbar-base-color: color.scale(
-    base.$color-bg,
-    $lightness: -25% * $scrollbar-color-multiplier
-  );
-  scrollbar-face-color: color.scale(
-    base.$color-bg,
-    $lightness: 10% * $scrollbar-color-multiplier
-  );
-  scrollbar-3dlight-color: color.scale(
-    base.$color-bg,
-    $lightness: 0% * $scrollbar-color-multiplier
-  );
-  scrollbar-highlight-color: color.scale(
-    base.$color-bg,
-    $lightness: 0% * $scrollbar-color-multiplier
-  );
-  scrollbar-track-color: color.scale(
-    base.$color-bg,
-    $lightness: -25% * $scrollbar-color-multiplier
-  );
-  scrollbar-arrow-color: color.scale(
-    base.$color-bg,
-    $lightness: 50% * $scrollbar-color-multiplier
-  );
-  scrollbar-shadow-color: color.scale(
-    base.$color-bg,
-    $lightness: 10% * $scrollbar-color-multiplier
-  );
+  scrollbar-color: $scrollbar-thumb-color $scrollbar-track-color;
+  scrollbar-width: thin;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: $scrollbar-thumb-color;
+    border-radius: 3px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: $scrollbar-thumb-color;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: $scrollbar-track-color;
+  }
 }
 
 .Layout__content {
@@ -52,6 +52,6 @@ $scrollbar-color-multiplier: 1 !default;
 }
 
 .Layout__content--scrollable {
-  overflow-y: scroll;
+  overflow-y: auto;
   margin-bottom: 0;
 }

@@ -22,6 +22,8 @@
 	var/ban_cache = null
 	///Contains the last message sent by this client - used to protect against copy-paste spamming.
 	var/last_message = ""
+	///Current stat panel theme (dark/light). Restored on statbrowser reload.
+	var/stat_theme = "dark"
 	///contins a number of how many times a message identical to last_message was sent.
 	var/last_message_count = 0
 	///How many messages sent in the last 10 seconds

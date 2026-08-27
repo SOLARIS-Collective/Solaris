@@ -42,13 +42,13 @@ em						{font-style: normal;	font-weight: bold;}
 .binarysay a			{color: #00ff00;}
 .binarysay a:active, .binarysay a:visited {color: #88ff88;}
 .radio					{color: #008000;}
-.ntradio				{color: #4e3399;}
-.emrgradio				{color: #a30000;}
-.pirradio				{color: #948f02;}
+.ntradio				{color: #4E3399;}
+.emrgradio				{color: #A30000;}
+.pirradio				{color: #948F02;}
 .clipradio				{color: #337296;}
 .irmgradio				{color: #885231;}
-.pgfradio				{color: #127a35;}
-.syndradio				{color: ##612425;}
+.pgfradio				{color: #127A35;}
+.syndradio				{color: #612425;}
 .centcomradio			{color: #686868;}
 .aiprivradio			{color: #ff00ff;}
 .redteamradio			{color: #ff0000;}
@@ -134,21 +134,10 @@ h1.alert, h2.alert		{color: #000000;}
 .greentext				{color: #00FF00;	font-size: 3;}
 .redtext				{color: #FF0000;	font-size: 3;}
 .singing				{font-family: "Trebuchet MS", cursive, sans-serif; font-style: italic;}
-.hypnophrase			{color: #3bb5d3;	font-weight: bold;	animation: hypnocolor 1500ms infinite; animation-direction: alternate;}
-	@keyframes hypnocolor {
-		0%		{color: #0d0d0d;}
-		25%		{color: #410194;}
-		50%		{color: #7f17d8;}
-		75%		{color: #410194;}
-		100%	{color: #3bb5d3;}
-}
+.hypnophrase			{color: #3bb5d3;	font-weight: bold;}
 
-.phobia			{color: #dd0000;	font-weight: bold;	animation: phobia 750ms infinite;}
-	@keyframes phobia {
-		0%		{color: #0d0d0d;}
-		50%		{color: #dd0000;}
-		100%	{color: #0d0d0d;}
-}
+.phobia			{color: #dd0000;	font-weight: bold;}
+
 
 .icon					{height: 1em;	width: auto;}
 

@@ -62,8 +62,8 @@
 	/obj/effect/turf_decal/trimline/##color_name/warning { \
 		icon_state = "trimline_warn";					\
 	}													\
-	/obj/effect/turf_decal/trimline/##color_name/warning { \
-		icon_state = "trimline_warn";					\
+	/obj/effect/turf_decal/trimline/##color_name/warning/holo { \
+		icon_state = "trimline_warn_a";					\
 	}													\
 	/obj/effect/turf_decal/trimline/##color_name/filled { \
 		icon_state = "trimline_box_fill";				\
@@ -428,6 +428,16 @@ TURF_DECAL_COLOR_HELPER(transparent/cybersunteal, "#4C9C9C", 140)
 	color = COLOR_WHITE
 
 /obj/effect/turf_decal/industrial/stand_clear/red
+	color = COLOR_RED
+
+/obj/effect/turf_decal/industrial/stand_clear/holo
+	icon_state = "stand_clear_a"
+	color = COLOR_YELLOW
+
+/obj/effect/turf_decal/industrial/stand_clear/holo/white
+	color = COLOR_WHITE
+
+/obj/effect/turf_decal/industrial/stand_clear/holo/red
 	color = COLOR_RED
 
 /obj/effect/turf_decal/industrial/caution

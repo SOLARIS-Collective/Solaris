@@ -6,3 +6,21 @@
 
 // ПРИМЕР:
 #include "..\code\__DEFINES\~modular_solaris\example.dm"
+
+/// MARK: DEFINES
+#include "..\code\__DEFINES\~modular_solaris\loadout.dm"
+#include "..\code\__DEFINES\~modular_solaris\DNA.dm"
+#include "..\code\__DEFINES\~modular_solaris\say.dm"
+
+/// MARK: SIGNALS
+#include "..\code\__DEFINES\~modular_solaris\dcs\signals.dm"
+
+/// MARK: HELPERS
+#include "..\code\__DEFINES\~modular_solaris\_HELPERS\sanitize_values.dm"
+#include "..\code\__DEFINES\~modular_solaris\_HELPERS\yelling.dm"
+
+/// MARK: GLOBALVARS
+#include "..\code\__DEFINES\~modular_solaris\_globalvars\flavor_misc.dm"
+
+/// MARK: CONTROLLERS
+#include "..\code\__DEFINES\~modular_solaris\controllers\config_entry.dm"

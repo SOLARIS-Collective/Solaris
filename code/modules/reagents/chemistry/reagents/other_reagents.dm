@@ -411,16 +411,6 @@
 	H.visible_message("<b>[H]</b> suddenly transforms!")
 	randomize_human(H)
 
-/datum/reagent/aslimetoxin
-	name = "Advanced Mutation Toxin"
-	description = "An advanced corruptive toxin produced by slimes."
-	color = "#13BC5E" // rgb: 19, 188, 94
-	taste_description = "slime"
-
-/datum/reagent/aslimetoxin/expose_mob(mob/living/L, method=TOUCH, reac_volume)
-	if(method != TOUCH && method != SMOKE)
-		L.ForceContractDisease(new /datum/disease/transformation/slime(), FALSE, TRUE)
-
 /datum/reagent/oxygen
 	name = "Oxygen"
 	description = "A colorless, odorless gas. Grows on trees but is still pretty valuable."
@@ -906,6 +896,7 @@
 	color = "#A5F0EE" // rgb: 165, 240, 238
 	taste_description = "sourness"
 	reagent_weight = 0.6 //so it sprays further
+	var/robot_clean_power = 2
 	var/clean_types = CLEAN_WASH
 
 /datum/reagent/space_cleaner/expose_obj(obj/O, reac_volume)
@@ -931,6 +922,7 @@
 	description = "A powerful, acidic cleaner sold by Waffle Co. Affects organic matter while leaving other objects unaffected."
 	metabolization_rate = 1.5 * REAGENTS_METABOLISM
 	taste_description = "acid"
+	robot_clean_power = 15
 
 /datum/reagent/space_cleaner/ez_clean/on_mob_life(mob/living/carbon/M)
 	M.adjustBruteLoss(3.33)
@@ -2231,6 +2223,7 @@
 	self_consuming = TRUE
 	taste_description = "pure determination"
 	overdose_threshold = 45
+	process_flags = ALL
 	/// Whether we've had at least WOUND_DETERMINATION_SEVERE (2.5u) of determination at any given time. No damage slowdown immunity or indication we're having a second wind if it's just a single moderate wound
 	var/significant = FALSE
 
@@ -2274,20 +2267,6 @@
 	overdose_threshold = 20
 	taste_description = "sharp rocks"
 	var/healing = 2
-
-/datum/reagent/crystal_reagent/expose_mob(mob/living/M, method=TOUCH, reac_volume)
-	. = ..()
-	if(iscarbon(M))
-		var/mob/living/carbon/patient = M
-		for(var/i in patient.all_wounds)
-			var/datum/wound/iter_wound = i
-			iter_wound.on_crystal(reac_volume)
-		if(reac_volume >= 5 && HAS_TRAIT_FROM(patient, TRAIT_HUSK, "burn") && patient.stat == DEAD)
-			patient.adjustFireLoss(-500)
-			patient.cure_husk("burn")
-			patient.visible_message(span_nicegreen("[patient]'s body shivers as the crystal enters them, seared flesh returning to normal coloration as crystals grow under it!"))
-			patient.adjustCloneLoss(10)
-			patient.do_jitter_animation(200)
 
 /datum/reagent/crystal_reagent/on_mob_life(mob/living/carbon/M)
 	M.adjustToxLoss(-healing*REM, 0)

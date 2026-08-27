@@ -12,10 +12,10 @@
 		to_chat(src, span_warning("Wait for the Discord subsystem to finish initialising"))
 		return
 	// [MANKIND-ADD] - Проверка на то, что система верификации включена
-	if(CONFIG_GET(flag/DiscordVerify))
-		if(checkDiscordVerify(src.ckey))
-			to_chat(usr, span_danger("Ваш аккаунт уже привязан к DISCORD. Больше не жми на эту кнопку, пожалуйста."))
-			return
+	// if(CONFIG_GET(flag/DiscordVerify))
+	// 	if(checkDiscordVerify(src.ckey))
+	// 		to_chat(usr, span_danger("Ваш аккаунт уже привязан к DISCORD. Больше не жми на эту кнопку, пожалуйста."))
+	// 		return
 	// [/MANKIND-ADD]
 	var/message = ""
 	// Simple sanity check to prevent a user doing this too often
@@ -32,7 +32,7 @@
 		SSdiscord.reverify_cache[usr.ckey] = one_time_token
 		// [MANKIND-EDIT] - DISCORD VERIFY
 		// message = "Your one time token is: [one_time_token], Assuming you have the required living minutes in game, you can now verify yourself in discord by using the command <span class=\"warning\">\"!verify [one_time_token]\"</span>"
-		message = "Вы можете верифицировать себя в Discord, используя команду: <br><br><b>/verify code:[one_time_token]</b><br><br> Solaris Discord: https://discord.gg/invite/aFV8dpkAz"
+		message = "Вы можете верифицировать себя в Discord, используя команду: <br><br><b>/verify server:Shiptest code:[one_time_token]</b><br><br> Celadon Discord: https://discord.gg/invite/aFV8dpkAz"
 		// [/MANKIND-EDIT]
 
 	//Now give them a browse window so they can't miss whatever we told them

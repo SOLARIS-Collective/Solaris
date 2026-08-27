@@ -1,17 +1,16 @@
 {
-	"$schema": "https://raw.githubusercontent.com/PentestSS13/Pentest/master/_maps/ship_config_schema.json",
+	"$schema": "https://raw.githubusercontent.com/CeladonSS13/Shiptest/beta-dev/_maps/ship_config_schema.json",
 	"map_name": "Komodo-class Warship",
-	"map_short_name": "Komodo-class",
-	"map_path": "_maps/PentestMaps/Shuttles/syndicate/syndicate_gorlex_komodo.dmm",
-	"faction": "/datum/faction/syndicate/ngr",
-	"prefix": "NGRV",
-	"manufacturer": "Not A Company LLC",
-	"description": "An ICW-era design, the Komodo is a dedicated warship operated by the Gorlex Marauders. Contemporaries of the legendary Starfury-class, Komodos were the backbone of Gorlex and ACLF fleets during the ICW, and saw significant combat service – not always to a tragic end like their Cybersun companions. Contemporary examples often still bear the scars of ICW-period combat, and the dire financial straits of most Gorlex splinter factions means many of those survivors are in a state of poor repair. Despite the stresses of age, they remain capable ships, and often still have the heavier armament associated with their ICW deployments in storage.",
-	"tags": [
-		"RP Focus",
-		"Combat",
-		"Engineering"
-	],
+	"map_short_name": "Komodo",
+	"description": "«Komodo» сконструированный в эпоху войны ксеногосударства, является специализированным военным судном, управляемым Мародёрами Горлекса. Современники легендарного класса 'Starfury', 'Komodo' были основой флотов Горлекса и ACLF во время войны и прошли значительную боевую службу, не всегда с трагическим концом, как их товарищи по Cybersun. Современные примеры часто все еще несут на себе шрамы от боевых действий периода войны, а тяжелое финансовое положение большинства отколовшихся фракций Горлекс означает, что многие из выживших находятся в плачевном состоянии и выжившие отправлены на консервацию в ковчег за хорошую службу.",
+	"map_path": "_maps/shuttles/syndicate/syndicate_gorlex_komodo.dmm",
+	"map_id": "syndicate_gorlex_komodo",
+	"enabled": true,
+	"limit": 1,
+	"sensor_range": 8,
+	"prefix": "BSSV",
+	"faction": "/datum/faction/syndicate",
+	"tags": ["Боевой"],
 	"namelists": [
 		"GORLEX",
 		"NATURAL_AGGRESSIVE",
@@ -20,43 +19,38 @@
 	],
 	"job_slots": {
 		"Captain": {
-			"outfit": "/datum/outfit/job/syndicate/captain/gorlex",
+			"outfit": "/datum/outfit/job/cel/syndicate/captain/gorlex",
 			"officer": true,
 			"slots": 1
 		},
 		"Sergeant": {
-			"outfit": "/datum/outfit/job/syndicate/hos/gorlex",
+			"outfit": "/datum/outfit/job/cel/syndicate/hos/gorlex",
 			"officer": true,
 			"slots": 1
 		},
 		"Medic": {
-			"outfit": "/datum/outfit/job/syndicate/doctor/gorlex",
+			"outfit": "/datum/outfit/job/cel/syndicate/doctor/gorlex",
 			"slots": 1
 		},
 		"Mechanic": {
-			"outfit": "/datum/outfit/job/syndicate/engineer/gorlex",
+			"outfit": "/datum/outfit/job/cel/syndicate/engineer/gorlex",
 			"slots": 1
 		},
 		"Trooper": {
-			"outfit": "/datum/outfit/job/syndicate/security/gorlex",
+			"outfit": "/datum/outfit/job/cel/syndicate/security/gorlex",
 			"slots": 3
 		},
-		"Deck Assistant": {
-			"outfit": "/datum/outfit/job/syndicate/assistant/gorlex",
-			"slots": 2
+		"Miner": {
+			"outfit": "/datum/outfit/job/cel/syndicate/miner/gorlex",
+			"slots": 1
 		},
-		"Bridge Officer": {
-			"outfit": "/datum/outfit/job/syndicate/head_of_personnel/cybersun",
+		"Bridge officer": {
+			"outfit": "/datum/outfit/job/cel/syndicate/head_of_personnel",
+			"slots": 1
+		},
+		"Bartender": {
+			"outfit": "/datum/outfit/job/cel/syndicate/bartender",
 			"slots": 1
 		}
-	},
-	"limit": 1,
-	"starting_funds": 2000,
-	"enabled": true,
-	"space_spawn": false,
-
-	"architect": "Spockye",
-	"contributors": [
-		"No Contributors"
-	]
+	}
 }

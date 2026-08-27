@@ -21,6 +21,12 @@
 /turf/closed/indestructible/set_integrity(amount, devastate, mob/user)
 	return
 
+// [SOLARIS-ADD] неразрушимые стены (борта уровня, разделители квадрантов) не
+// должны накапливать вмятины от пуль и ударов — целостность им
+// и так не меняется, а декали остаются навсегда
+/turf/closed/indestructible/add_dent(denttype, x=rand(-8, 8), y=rand(-8, 8))
+	return
+
 /turf/closed/indestructible/dismantle_wall(devastate, mob/user)
 	return
 

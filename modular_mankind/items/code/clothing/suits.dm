@@ -71,9 +71,9 @@
 	strip_delay = 60
 	actions_types = list()
 
-/obj/item/clothing/suit/armor/vest/trauma
+/obj/item/clothing/suit/armor/vest/cybersun/trauma
 	name = "cybersun trauma team armor vest"
-	icon_state = "traumavest"
+	icon_state = "trauma_vest"
 	desc = "A set of stamped plasteel armor plates decorated with a medical cross and colors associated with the medical division of Cybersun."
 
 /obj/item/clothing/suit/toggle/leather_jacket
@@ -301,8 +301,17 @@
 /obj/item/clothing/suit/armor/vest/inteq
 	name = "InteQ armor vest"
 	desc = "A modded InteQ Type II armored vest that provides decent protection against most types of damage."
-	icon = 'modular_mankind/_storage_icons/icons/items/clothing/suit/armor_mankind.dmi'
-	mob_overlay_icon = 'modular_mankind/_storage_icons/icons/items/clothing/suit/overlay/armor_mankind.dmi'
+	icon = 'modular_mankind/_storage_icons/icons/items/clothing/suit/armor.dmi'
+	mob_overlay_icon = 'modular_mankind/_storage_icons/icons/items/clothing/suit/overlay/armor.dmi'
 	icon_state = "armor_inteq"
 	item_state = "armor_inteq"
 	armor = list("melee" = 38, "bullet" = 33, "laser" = 33, "energy" = 43, "bomb" = 28, "bio" = 3, "rad" = 3, "fire" = 53, "acid" = 53, "wound" = 10)
+
+/obj/item/clothing/suit/armor/vest/medicalshield
+	name = "MedicalShield armor vest"
+	desc = "A MedicalShield armored vest that provides decent protection against most types of damage."
+	icon = 'modular_mankind/_storage_icons/icons/items/clothing/suit/medshield.dmi'
+	mob_overlay_icon = 'modular_mankind/_storage_icons/icons/items/clothing/suit/overlay/medshield.dmi'
+	icon_state = "medshield_armor"
+	item_state = "medshield_armor"
+	armor = list("melee" = 4, "bullet" = 4, "laser" = 4, "energy" = 4, "bomb" = 4, "bio" = 3, "rad" = 3, "fire" = 53, "acid" = 53, "wound" = 10)

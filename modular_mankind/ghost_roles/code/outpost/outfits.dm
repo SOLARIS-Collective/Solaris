@@ -241,3 +241,45 @@
 	var/obj/item/storage/box/medigels/I = new(src)
 	H.equip_to_slot_or_del(I, ITEM_SLOT_BACKPACK)
 
+/datum/outfit/outpost/medic/medical_shield
+	name = "Medical Shield"
+
+	glasses = /obj/item/clothing/glasses/hud/toggle/medicalshield
+	mask = /obj/item/clothing/mask/gas/sechailer/medicalshield
+	uniform = /obj/item/clothing/under/rank/outpost/medicalshield
+	shoes = /obj/item/clothing/shoes/medicalshield_boots
+	suit =  /obj/item/clothing/suit/space/hardsuit/medicalshield_medical
+	gloves = /obj/item/clothing/gloves/medicalshield
+	id = /obj/item/card/id/outpost/medic/medical_shield
+	back = /obj/item/storage/backpack/medicalshield
+	suit_store = /obj/item/gun/energy/sharplite/x11
+	backpack_contents = list(/obj/item/stock_parts/cell/gun/sharplite/mini = 5,
+							/obj/item/clothing/suit/armor/vest/medicalshield,
+							/obj/item/storage/backpack/messenger/med = 1,
+							/obj/item/spacecash/bundle/c1000 = 3,
+							/obj/item/storage/firstaid/advanced)
+
+	box = /obj/item/storage/box/survival/medical
+
+	chameleon_extras = /obj/item/gun/syringe
+
+/datum/outfit/outpost/medic/medical_shield/marine
+	name = "Medical Shield Marine"
+
+	uniform = /obj/item/clothing/under/rank/outpost/medicalshield
+	shoes = /obj/item/clothing/shoes/medicalshield_boots
+	suit =  /obj/item/clothing/suit/space/hardsuit/medicalshield_medical/marine
+	gloves = /obj/item/clothing/gloves/medicalshield/long
+	id = /obj/item/card/id/outpost/medic/medical_shield
+	back = /obj/item/storage/backpack/medicalshield
+	suit_store = /obj/item/gun/energy/sharplite/x46
+	backpack_contents = list(/obj/item/stock_parts/cell/gun/sharplite/plus = 3,
+							/obj/item/clothing/suit/armor/vest/medicalshield,
+							/obj/item/storage/backpack/messenger/med = 1,
+							/obj/item/spacecash/bundle/c1000 = 5,
+							/obj/item/grenade/empgrenade = 2,
+							/obj/item/storage/firstaid/tactical)
+
+	box = /obj/item/storage/box/survival/medical
+
+	chameleon_extras = /obj/item/gun/syringe

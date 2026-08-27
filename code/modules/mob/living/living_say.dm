@@ -365,6 +365,12 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 			listening_movable.Hear(rendered, src, message_language, message, , spans, message_mods.Copy())
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_LIVING_SAY_SPECIAL, src, message)
 
+	// [SOLARIS-ADD] - SOLARIS_W_TTS_VOICES
+	var/is_yell = (say_test(message) == "2")
+	if(client && !eavesdrop_range && is_yell)	// Yell hook
+		listening |= process_yelling(listening, rendered, src, message_language, message, spans, message_mods, source)
+	// [/SOLARIS-ADD]
+
 	//speech bubble
 	var/list/speech_bubble_recipients = list()
 	for(var/mob/M in listening)
@@ -376,6 +382,25 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	// [/MANKIND-EDIT]
 	I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
 	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(flick_overlay_global), I, speech_bubble_recipients, 3 SECONDS)
+
+	// [SOLARIS-ADD] - SOLARIS_W_TTS_VOICES
+	// Listening gets trimmed here if a vocal w_tts_voices's present. If anyone ever makes this proc return listening, make sure to instead initialize a copy of listening in here to avoid wonkiness
+	if(SEND_SIGNAL(src, COMSIG_MOVABLE_QUEUE_W_TTS_VOICES, listening, args) || vocal_w_tts_voices || vocal_w_tts_voices_id)
+		for(var/mob/M in listening)
+			if(!M.client)
+				continue
+			if(!(M.client.prefs.toggles & SOUND_THE_VOICE))
+				listening -= M
+	if(SEND_SIGNAL(src, COMSIG_MOVABLE_QUEUE_W_TTS_VOICES, listening, args) || vocal_w_tts_voices || vocal_w_tts_voices_id) // Voice воспроизводится для всех слушателей
+		var/voices = min(round((LAZYLEN(message) / vocal_speed)) + 1, W_TTS_VOICES_MAX_VOICES)
+		var/total_delay
+		vocal_current_w_tts_voices = world.time
+		for(var/i in 1 to voices)
+			if(total_delay > W_TTS_VOICES_MAX_TIME)
+				break
+			addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, w_tts_voices), listening, (message_range * (is_yell ? 4 : 1)), (vocal_volume * (is_yell ? 1.5 : 1)), W_TTS_VOICES_DO_VARY(vocal_pitch, vocal_pitch_range), vocal_current_w_tts_voices), total_delay)
+			total_delay += rand(DS2TICKS(vocal_speed / W_TTS_VOICES_SPEED_BASELINE), DS2TICKS(vocal_speed / W_TTS_VOICES_SPEED_BASELINE) + DS2TICKS((vocal_speed / W_TTS_VOICES_SPEED_BASELINE) * (is_yell ? 0.5 : 1))) TICKS
+	// [/SOLARIS-ADD]
 
 /mob/proc/binarycheck()
 	return FALSE
@@ -395,6 +420,8 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	return TRUE
 
 /mob/living/proc/can_speak_vocal(message, datum/language/language) //Check AFTER handling of xeno and ling channels
+	if(QDELETED(src))
+		return FALSE
 	if(!language)
 		language = get_selected_language()
 

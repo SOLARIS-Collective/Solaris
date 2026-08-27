@@ -192,7 +192,10 @@
 				O.resistance_flags |= FLAMMABLE //Even fireproof things burn up in lava
 			if(O.resistance_flags & FIRE_PROOF)
 				O.resistance_flags &= ~FIRE_PROOF
-			if(O.armor.fire > 50) //obj with 100% fire armor still get slowly burned away.
+			// [SOLARIS-ADD] легаси-броня бывает списком — нормализуем, иначе .fire роняет загрузку руин на лаве
+			if(islist(O.armor))
+				O.armor = getArmor(arglist(O.armor))
+			if(istype(O.armor, /datum/armor) && O.armor.fire > 50) //obj with 100% fire armor still get slowly burned away.
 				O.armor = O.armor.setRating(fire = 50)
 			O.fire_act(10000, 1000 * seconds_per_tick)
 
@@ -228,7 +231,7 @@
 				continue
 
 			L.adjustFireLoss(20 * seconds_per_tick)
-			if(L) //mobs turning into object corpses could get deleted here.
+			if(!QDELETED(L)) //mobs turning into object corpses could get deleted here.
 				L.AddElement(/datum/element/perma_fire_overlay)
 				L.adjust_fire_stacks(20 * seconds_per_tick)
 				L.ignite_mob()

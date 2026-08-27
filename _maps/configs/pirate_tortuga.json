@@ -1,47 +1,49 @@
 {
-	"$schema": "https://raw.githubusercontent.com/shiptest-ss13/Shiptest/master/_maps/ship_config_schema.json",
+	"$schema": "https://raw.githubusercontent.com/CeladonSS13/Shiptest/beta-dev/_maps/ship_config_schema.json",
 	"map_name": "Tortuga-class Converted Cargo Freighter",
-	"faction": "/datum/faction/frontiersmen",
-	"prefix": "ISV",
-	"manufacturer": "Miskilamo Spacefaring",
-	"namelists": ["PIRATES", "BRITISH_NAVY"],
-	"map_short_name": "Tortuga-class",
+	"map_short_name": "Tortuga",
+	"description": "Изначально 'Tortuga' была грузовым транспортным судном, но теперь является импровизированным боевым кораблем, используемым флотом пограничников. Гражданские транспортные средства оснащены оборудованием для перевозки челноков, а обломки астероидов прикреплены к внешней части корпуса в качестве дешевой импровизированной брони и укрытия. 'Tortuga' выполняет двойную функцию - это разведывательный элемент и судно, способное создавать передовые базы в пределах сектора. В то время как шаттл класса 'Brawler', который перевозит 'Tortuga', обеспечивает удивительную скорость и дальность полета для своих абордажных групп, сама 'Tortuga' неповоротлива и почти беспомощна без своего шаттла. В щитспавне по причине: Пираты - судно оффов, уродский внешний вид, но баланс вооружения нормальный. В ЩИТСПАВНЕ ПО ПРИЧИНЕ: Сильный пирато шип для ивентов!",
 	"map_path": "_maps/shuttles/pirate/pirate_tortuga.dmm",
-	"description": "Originally a cargo transport vessel, the Tortuga is an improvised combat vessel used by the Frontiersmen fleet. Civilian transports are modified with shuttle handling facilities, and asteroid rubble is belted to the exterior of the hull as a form of cheap improvised armor and concealment. The Tortuga serves a dual purpose as a reconnaissance element and a vessel capable of establishing forward bases within a sector. While the Brawler-class shuttle carried by the Tortuga offers a surprising degree of speed and range to its boarding parties, the Tortuga itself is sluggish and nearly helpless without its shuttle.",
-	"tags": ["Combat", "Subshuttle"],
+	"subshuttle": "Brawler",
+	"enabled": false,
 	"limit": 1,
+	"sensor_range": 10,
+	"prefix": "RSV",
+	"faction": "/datum/faction/pirate",
+	"tags": [
+		"Боевой",
+		"Суб-шаттл"
+	],
+	"namelists": [
+		"PIRATES",
+		"BRITISH_NAVY"
+	],
 	"job_slots": {
 		"Captain": {
-			"outfit": "/datum/outfit/job/frontiersmen/captain",
+			"outfit": "/datum/outfit/job/cel/pirate/frontiersmen/captain",
 			"officer": true,
 			"slots": 1
 		},
 		"Deck Boss": {
-			"outfit": "/datum/outfit/job/frontiersmen/hos",
-			"officer": true,
-			"slots": 1
-		},
-		"Helmsman": {
-			"outfit": "/datum/outfit/job/frontiersmen/hop",
+			"outfit": "/datum/outfit/job/cel/pirate/frontiersmen/hos",
 			"officer": true,
 			"slots": 1
 		},
 		"Surgeon": {
-			"outfit": "/datum/outfit/job/frontiersmen/doctor",
+			"outfit": "/datum/outfit/job/cel/pirate/frontiersmen/doctor",
 			"slots": 1
 		},
 		"Mechanic": {
-			"outfit": "/datum/outfit/job/frontiersmen/engineer",
+			"outfit": "/datum/outfit/job/cel/pirate/frontiersmen/engineer",
 			"slots": 1
 		},
 		"Boarder": {
-			"outfit": "/datum/outfit/job/frontiersmen/security",
+			"outfit": "/datum/outfit/job/cel/pirate/frontiersmen/security",
 			"slots": 2
 		},
 		"Rookie": {
-			"outfit": "/datum/outfit/job/frontiersmen/assistant",
+			"outfit": "/datum/outfit/job/cel/pirate/frontiersmen/assistant",
 			"slots": 2
 		}
-	},
-	"enabled": false
+	}
 }

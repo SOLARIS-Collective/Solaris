@@ -36,7 +36,8 @@
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/ipc_screens, GLOB.ipc_screens_list)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/ipc_antennas, GLOB.ipc_antennas_list)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/ipc_tail, GLOB.ipc_tail_list)
-	init_sprite_accessory_subtypes(/datum/sprite_accessory/ipc_chassis, GLOB.ipc_chassis_list)
+	init_sprite_accessory_subtypes(/datum/sprite_accessory/body, GLOB.alternative_body_list)
+	init_sprite_accessory_subtypes(/datum/sprite_accessory/body/ipc_chassis, GLOB.ipc_chassis_list)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/moth_markings, GLOB.moth_markings_list)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/spider_legs, GLOB.spider_legs_list)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/spider_spinneret, GLOB.spider_spinneret_list)
@@ -109,6 +110,14 @@
 		GLOB.occupations += new_job
 		GLOB.name_occupations[new_job.name] = new_job
 		GLOB.type_occupations[path] = new_job
+
+	// [SOLARIS-ADD] - SOLARIS_W_TTS_VOICES
+	for(var/path in subtypesof(/datum/w_tts_voices))
+		var/datum/w_tts_voices/B = new path()
+		GLOB.w_tts_voices_list[B.id] = B
+		if(B.allow_random)
+			GLOB.w_tts_voices_random_list[B.id] = B
+	// [/SOLARIS-ADD]
 
 	// Keybindings
 	init_keybindings()

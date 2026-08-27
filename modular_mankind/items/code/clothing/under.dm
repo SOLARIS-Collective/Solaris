@@ -240,7 +240,7 @@
 	supports_variations = DIGITIGRADE_VARIATION_NO_NEW_ICON | VOX_VARIATION
 
 /obj/item/clothing/under/rank/civilian/lawyer/cel_purpl
-	name = "lawyer black suit"
+	name = "lawyer purple suit"
 	icon = 'modular_mankind/_storage_icons/icons/items/clothing/under/under.dmi'
 	mob_overlay_icon = 'modular_mankind/_storage_icons/icons/items/clothing/under/overlay/under.dmi'
 	icon_state = "lawyer_purp"
@@ -259,4 +259,14 @@
 	icon = 'modular_mankind/_storage_icons/icons/items/clothing/under/under.dmi'
 	mob_overlay_icon = 'modular_mankind/_storage_icons/icons/items/clothing/under/overlay/under.dmi'
 	icon_state = "purplebartender"
+
+/obj/item/clothing/under/rank/outpost
+	icon = 'modular_mankind/_storage_icons/icons/items/clothing/under/medshield.dmi'
+	mob_overlay_icon = 'modular_mankind/_storage_icons/icons/items/clothing/under/overlay/medshield.dmi'
+
+/obj/item/clothing/under/rank/outpost/medicalshield
+	name = "close medicalshield uniform"
+	desc = "A green uniform MedicalShield."
+	icon_state = "medshield_uniform"
+	item_state = "medshield_uniform"
 	item_state = "purplebartender"

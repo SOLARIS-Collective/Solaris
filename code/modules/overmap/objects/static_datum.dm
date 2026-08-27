@@ -69,13 +69,21 @@
 		return new /datum/docking_ticket(_docking_error = "[src] cannot be docked to.")
 	else
 		var/dock_to_use = override_dock
+		//if true, we say that we do in fact have free docks, just you cant fit in any of them for whatever reason. hopefully this is less vauge than "X Cannot be docked to."
+		var/alt_message = FALSE
 		if(!override_dock)
 			for(var/obj/docking_port/stationary/dock as anything in reserve_docks)
+				//meant for quick dock, as such we check if we can actually dock here before checking all other docking ports.
+				//This means you can name a docking port with a leading ! like '!Ship Starboard Stern Docking Port' to have priority over other docking ports
 				if(!dock.docked)
+					alt_message = TRUE
+				if(!dock.docked && dock_requester.shuttle_port.check_dock(dock, TRUE, FALSE))
 					dock_to_use = dock
 					break
 
 		if(!dock_to_use)
+			if(alt_message)
+				return new /datum/docking_ticket(_docking_error = "[src] has free docks, however vessel is unable to fit in any. Attempt manual docking for more information. Aborting docking.")
 			return new /datum/docking_ticket(_docking_error = "[src] does not have any free docks. Aborting docking.")
 		return new /datum/docking_ticket(dock_to_use, src, dock_requester)
 
@@ -126,15 +134,26 @@
 	loading = TRUE
 	log_shuttle("[src] [REF(src)] LEVEL_INIT")
 
+	// [SOLARIS-ADD] - Логирование времени загрузки уровня.
+	var/load_start_time = REALTIMEOFDAY
+	log_planet("PLANET: СТАРТ загрузки уровня \"[name]\" по запросу стыковки", FALSE)
+	// [/SOLARIS-ADD]
+
 	// use the ruin type in template if it exists, or pick from ruin list if IT exists; otherwise null
 	var/list/static_encounter_values = current_overmap.spawn_static_encounter(src, map_to_load)
 	if(!length(static_encounter_values))
+		// [SOLARIS-ADD] - Логирование времени загрузки уровня.
+		log_planet("PLANET: ПРОВАЛ загрузки уровня \"[name]\" за [(REALTIMEOFDAY - load_start_time)/10]s", TRUE)
+		// [/SOLARIS-ADD]
 		return FALSE
 
 	mapzone = static_encounter_values[1]
 	reserve_docks = static_encounter_values[2]
 
 	SEND_SIGNAL(src, COMSIG_OVERMAP_LOADED)
+	// [SOLARIS-ADD] - Логирование времени загрузки уровня.
+	log_planet("PLANET: ФИНИШ загрузки уровня \"[name]\". Успех за [(REALTIMEOFDAY - load_start_time)/10]s", TRUE)
+	// [/SOLARIS-ADD]
 	loading = FALSE
 	return TRUE
 

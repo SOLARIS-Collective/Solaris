@@ -29,7 +29,7 @@
 
 /datum/config_entry/string/serversqlname	// short form server name used for the DB
 
-/datum/config_entry/string/stationname	// station name (the name of the station in-game)
+/datum/config_entry/string/stationnames	// station name (the name of the station in-game)
 
 /datum/config_entry/number/lobby_countdown	// In between round countdown.
 	config_entry_value = 120
@@ -110,7 +110,11 @@
 
 /datum/config_entry/flag/auth_admin_testing // auth server allows admin testing and other actions
 
-/datum/config_entry/flag/DiscordVerify // [MANKIND-ADD] - Добавляем систему верификации аккаунтов через Discord
+// [MANKIND-ADD] - Добавляем систему верификации аккаунтов через Discord и систему статистики по спавну кораблей
+/datum/config_entry/flag/DiscordVerify
+
+/datum/config_entry/flag/ShipStats
+// [/MANKIND-ADD]
 
 /datum/config_entry/number/vote_delay	// minimum time between voting sessions (deciseconds, 10 minute default)
 	config_entry_value = 6000
@@ -504,9 +508,6 @@
 	min_val = 0
 
 /datum/config_entry/string/default_view
-	config_entry_value = "15x15"
-
-/datum/config_entry/string/default_view_square
 	config_entry_value = "15x15"
 
 /datum/config_entry/flag/log_pictures

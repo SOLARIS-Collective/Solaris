@@ -30,7 +30,7 @@
 /obj/machinery/computer/telecomms/server/ui_interact(mob/user)
 	. = ..()
 	// [/MANKIND-ADD] - MANKIND_FIXES - Support of cyrillic letters in browser window
-	var/dat = "<meta http-equiv='X-UA-Compatible' content='IE=edge' charset='UTF-8'/>"
+	var/dat = "<meta http-equiv='X-UA-Compatible' content='IE=edge'><meta charset='UTF-8'/>"
 	// [/MANKIND-ADD]
 	dat += "<TITLE>Telecommunication Server Monitor</TITLE><center><b>Telecommunications Server Monitor</b></center>"
 

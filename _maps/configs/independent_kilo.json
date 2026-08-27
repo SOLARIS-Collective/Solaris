@@ -1,43 +1,42 @@
 {
-	"$schema": "https://raw.githubusercontent.com/shiptest-ss13/Shiptest/master/_maps/ship_config_schema.json",
+	"$schema": "https://raw.githubusercontent.com/CeladonSS13/Shiptest/beta-dev/_maps/_mod_celadon/ship_config_schema.json",
 	"map_name": "Kilo-class Mining Ship",
-	"description": "The Kilo-class is a very old and miniscule pattern of mining ship, produced in vast numbers over the centuries and commonly found in scrapyards or forgotten in storage. Most examples on the Frontier have been restored by Miskilamo Spacefaring using parts from other nonfunctional Kilos, producing a ship that is as inexpensive as it is cramped and unreliable. The low cost and ease of repair or replacement nevertheless make the Kilo very popular among budget-minded captains.",
-	"tags": [
-		"Mining"
-	],
+	"map_short_name": "Kilo",
+	"description": "Судно класса 'Kilo' - это миниатюрное шахтерское судно, которое не поддается определению как самостоятельное космическое судно. Начав свою жизнь давным-давно как серия специально построенных шахтерских челноков, предназначенных для использования на аванпостах Фронтира, прогрессивные циклы перепроектирования для увеличения продолжительности миссии в конечном итоге привели к появлению громоздкого, клаустрофобного 'Kilo', который мы видим сегодня. Когда-то довольно многочисленные, 'Kilo' до сих пор часто встречаются на заброшенных станциях и в забытых складских отсеках, а их предельный возраст и плохие условия хранения обычно приводят их в особенно плачевное состояние. Экипажи 'Kilo' часто считаются довольно эксцентричными даже по стандартам Фронтира, а некоторые космонавты настаивают, что даже хорошо сбалансированный космонавт быстро станет неуклюжим в 'уникальной' среде 'Kilo'.",
+	"map_path": "_maps/shuttles/independent/independent_kilo.dmm",
+	"enabled": true,
+	"limit": 1,
+	"sensor_range": 7,
+	"starting_funds": 1500,
+	"prefix": "ЕSV",
 	"faction": "/datum/faction/independent",
-	"prefix": "SV",
-	"manufacturer": "Miskilamo Spacefaring",
+	"tags": ["Выживание"],
 	"namelists": [
 		"GENERAL",
 		"SPACE",
 		"NATURAL"
 	],
-	"map_short_name": "Kilo-class",
-	"tranist_x_offset": -15,
-	"tranist_y_offset": -20,
-	"starting_funds": 1500,
-	"map_path": "_maps/shuttles/independent/independent_kilo.dmm",
-	"token_icon_state": "ship_small_generic",
-	"limit": 1,
 	"job_slots": {
 		"Captain": {
-			"outfit": "/datum/outfit/job/independent/captain/cheap",
+			"outfit": "/datum/outfit/job/cel/independent/captain/western",
 			"officer": true,
 			"slots": 1
 		},
-		"Asteroid Miner": {
-			"outfit": "/datum/outfit/job/independent/miner/hazard",
+		"Ship's Doctor": {
+			"outfit": "/datum/outfit/job/cel/independent/doctor",
 			"slots": 1
 		},
-		"Mechanic": {
-			"outfit": "/datum/outfit/job/independent/engineer",
+		"Ship's Engineer": {
+			"outfit": "/datum/outfit/job/cel/independent/engineer",
+			"slots": 1
+		},
+		"Asteroid Miner": {
+			"outfit": "/datum/outfit/job/cel/independent/miner",
 			"slots": 1
 		},
 		"Deckhand": {
-			"outfit": "/datum/outfit/job/independent/assistant/cheap",
+			"outfit": "/datum/outfit/job/cel/independent/assistant",
 			"slots": 1
 		}
-	},
-	"enabled": true
+	}
 }

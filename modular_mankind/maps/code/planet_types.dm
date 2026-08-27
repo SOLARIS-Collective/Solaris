@@ -3,7 +3,7 @@
 	desc = "An abandoned and infected city. A place you don't want to be."
 	planet = DYNAMIC_WORLD_OLD_TOWN
 	color = COLOR_NAVY
-	mapgen = null
+	mapgen = /datum/map_generator/planet_generator/sand
 	gravity = GRAVITY_DAMAGE_TRESHOLD
 	default_baseturf = /turf/open/floor/plating/asteroid/wasteplanet
 	weather_controller_type = /datum/weather_controller/desert
@@ -78,7 +78,6 @@
 	landing_sound = 'sound/effects/planet_landing_1.ogg'
 
 /datum/planet_type/rock_night
-
 	name = "rock planet"
 	desc = "A rocky red world in the midst of terraforming. While some plants have taken hold, it is widely hostile to life."
 	planet = DYNAMIC_WORLD_ROCKPLANET_NIGHT
@@ -92,7 +91,6 @@
 	landing_sound = 'sound/effects/planet_landing_2.ogg'
 
 /datum/planet_type/beach_night
-
 	name = "beach planet"
 	desc = "The platonic ideal of vacation spots. Warm, comfortable temperatures, and a breathable atmosphere."
 	planet = DYNAMIC_WORLD_BEACHPLANET_NIGHT

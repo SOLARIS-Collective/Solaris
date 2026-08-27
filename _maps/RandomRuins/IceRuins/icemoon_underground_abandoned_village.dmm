@@ -23,7 +23,9 @@
 /obj/effect/turf_decal/corner/opaque/black{
 	dir = 1
 	},
-/obj/effect/turf_decal/corner/opaque/black,
+/obj/effect/turf_decal/corner/opaque/black{
+	dir = 2
+	},
 /turf/open/floor/plasteel,
 /area/ruin/powered)
 "cB" = (
@@ -62,6 +64,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/carpet,
 /area/ruin/powered)
+"gK" = (
+/obj/structure/vein/ice/classfour,
+/turf/open/floor/plating/asteroid/snow/icemoon,
+/area/overmap_encounter/planetoid/cave/explored)
 "he" = (
 /obj/structure/chair/sofa/brown/left/directional/south,
 /turf/closed/mineral/random/snow,
@@ -74,15 +80,8 @@
 	},
 /area/ruin/powered)
 "hI" = (
-/obj/item/reagent_containers/food/drinks/beer,
+/obj/item/reagent_containers/food/drinks/mead,
 /turf/open/floor/plating/ice/icemoon,
-/area/overmap_encounter/planetoid/cave/explored)
-"hY" = (
-/obj/effect/landmark/mission_poi/main/drill{
-	mission_index = 2
-	},
-/obj/structure/vein/ice/classfour,
-/turf/open/floor/plating/asteroid/snow/icemoon,
 /area/overmap_encounter/planetoid/cave/explored)
 "iz" = (
 /obj/structure/fence/door/opened{
@@ -143,7 +142,6 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/mission_poi/main,
 /turf/open/floor/wood,
 /area/ruin/powered)
 "mI" = (
@@ -210,7 +208,9 @@
 /obj/effect/turf_decal/corner/opaque/black{
 	dir = 1
 	},
-/obj/effect/turf_decal/corner/opaque/black,
+/obj/effect/turf_decal/corner/opaque/black{
+	dir = 2
+	},
 /turf/open/floor/plasteel,
 /area/ruin/powered)
 "tg" = (
@@ -252,7 +252,9 @@
 /obj/effect/turf_decal/corner/opaque/black{
 	dir = 1
 	},
-/obj/effect/turf_decal/corner/opaque/black,
+/obj/effect/turf_decal/corner/opaque/black{
+	dir = 2
+	},
 /turf/open/floor/plasteel,
 /area/ruin/powered)
 "us" = (
@@ -415,10 +417,10 @@
 /obj/item/clothing/head/bearpelt,
 /obj/structure/table/wood,
 /obj/item/food/burger/fish,
-/obj/item/reagent_containers/food/drinks/beer{
+/obj/item/reagent_containers/food/drinks/mead{
 	pixel_x = -4
 	},
-/obj/item/reagent_containers/food/drinks/beer{
+/obj/item/reagent_containers/food/drinks/mead{
 	pixel_x = 10;
 	pixel_y = 6
 	},
@@ -478,13 +480,6 @@
 /obj/structure/chair/comfy/orange/directional/east,
 /turf/open/floor/carpet,
 /area/ruin/powered)
-"OI" = (
-/obj/effect/landmark/mission_poi/guard{
-	type_to_spawn = /mob/living/simple_animal/hostile/human/frontier/ranged/trooper/internals;
-	mission_index = 2
-	},
-/turf/open/floor/plating/asteroid/snow/icemoon,
-/area/overmap_encounter/planetoid/cave/explored)
 "Pp" = (
 /obj/effect/spawner/random/vending/snack,
 /turf/open/floor/holofloor/wood,
@@ -550,7 +545,7 @@
 "UI" = (
 /obj/machinery/washing_machine,
 /obj/effect/decal/cleanable/blood,
-/obj/item/food/meat/slab/corgi,
+/obj/item/food/meat/slab,
 /turf/open/floor/wood,
 /area/ruin/powered)
 "Vn" = (
@@ -992,7 +987,7 @@ Og
 Og
 Og
 zT
-OI
+Og
 Og
 zT
 Og
@@ -1083,7 +1078,7 @@ zT
 Og
 Bq
 Og
-hY
+gK
 Og
 Og
 Og

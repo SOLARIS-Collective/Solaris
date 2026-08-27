@@ -21,6 +21,11 @@ SUBSYSTEM_DEF(overmap)
 	///List of all events
 	var/list/events = list()
 
+// [MANKIND-ADD] - MANKIND_OVERMAP_ICON_LAZY - Список тайлов овермапы для ленивой отрисовки звёздочек
+	/// Тайлы овермапы, которые ещё не получили декоративные звёздочки
+	var/list/turf/open/overmap/overmap_turfs_to_decorate = list()
+	// [/MANKIND-ADD]
+
 	/// The mandatory and default star system
 	var/datum/overmap_star_system/default_system
 
@@ -74,7 +79,46 @@ SUBSYSTEM_DEF(overmap)
 
 /datum/controller/subsystem/overmap/fire()
 #ifndef NOOVERMAP
+// [MANKIND-ADD] - MANKIND_OVERMAP_ICON_LAZY - Ленивая отрисовка звёздочек на тайлах овермапы
+	// По 50 тайлов за тик получают декоративные звёздочки
+	if(length(overmap_turfs_to_decorate))
+		var/batch_size = min(length(overmap_turfs_to_decorate), 50)
+		for(var/i in 1 to batch_size)
+			var/turf/open/overmap/T = overmap_turfs_to_decorate[1]
+			overmap_turfs_to_decorate.Cut(1, 2)
+			if(!QDELETED(T))
+				T.add_random_star_overlays()
+			if(MC_TICK_CHECK)
+				return
+	// [/MANKIND-ADD]
+
 	for(var/datum/overmap_star_system/current_system as anything in tracked_star_systems)
+		// [MANKIND-ADD] - OPTIMIZE_OVERMAP_LAZY_GEN - Ленивая генерация
+		// Создаём dynamic-миры по 5 за тик, а не все сразу при инициализации
+		if(current_system.pending_dynamic_spawns > 0)
+			var/batch_size = min(current_system.pending_dynamic_spawns, 5)
+			for(var/i in 1 to batch_size)
+				current_system.spawn_ruin_level()
+			current_system.pending_dynamic_spawns -= batch_size
+			if(MC_TICK_CHECK)
+				return
+
+		// Создаём кластеры событий по 3 за тик
+		if(current_system.pending_event_clusters > 0)
+			var/batch_size = min(current_system.pending_event_clusters, 3)
+			for(var/i in 1 to batch_size)
+				if(current_system.generator_type == OVERMAP_GENERATOR_RANDOM)
+					current_system.spawn_event_cluster(pick(subtypesof(/datum/overmap/event)), current_system.get_unused_overmap_square())
+				else if(length(current_system.pending_event_orbits))
+					current_system.spawn_single_event_in_orbit()
+				current_system.pending_event_clusters--
+				if(MC_TICK_CHECK)
+					return
+
+		// [/MANKIND-ADD]
+		// Пропускаем handle_dynamic_encounters пока идёт ленивая генерация
+		if(current_system.pending_dynamic_spawns > 0)
+			continue
 		if(!current_system.encounters_refresh)
 			continue
 		current_system.handle_dynamic_encounters()
@@ -82,7 +126,7 @@ SUBSYSTEM_DEF(overmap)
 	if(events_enabled)
 		for(var/datum/overmap/event/E as anything in events)
 			if(E.get_nearby_overmap_objects())
-				E.apply_effect()
+				INVOKE_ASYNC(E, TYPE_PROC_REF(/datum/overmap/event, apply_effect))
 				if(MC_TICK_CHECK)
 					return
 #endif
@@ -266,7 +310,14 @@ SUBSYSTEM_DEF(overmap)
 		ship_loc = SSovermap.outposts[1]
 
 	ship_spawning = TRUE
-	. = new /datum/overmap/ship/controlled(ship_loc, system_to_spawn_in, template) //This statement SHOULDN'T runtime (not counting runtimes actually in the constructor) so ship_spawning should always be toggled.
+	// [SOLARIS-ADD] - Логирование времени создания корабля при покупке.
+	var/ship_spawn_start_time = REALTIMEOFDAY
+	var/mob/buyer = usr
+	var/buyer_key = buyer ? key_name(buyer) : "UNKNOWN"
+	log_shuttle("[src] SHIP PURCHASE: СТАРТ создания корабля \"[template]\" игроком [buyer_key]")
+	. = new /datum/overmap/ship/controlled(ship_loc, system_to_spawn_in, template)
+	log_shuttle("[src] SHIP PURCHASE: ФИНИШ создания корабля \"[template]\" игроком [buyer_key]. Итог: [. ? "успех" : "ПРОВАЛ"] за [(REALTIMEOFDAY - ship_spawn_start_time) / 10]s")
+	// [/SOLARIS-ADD]
 	ship_spawning = FALSE
 
 /**
@@ -341,6 +392,15 @@ SUBSYSTEM_DEF(overmap)
 
 	///the list of dynamic planets that can spawn in this sector
 	var/list/dynamic_probabilities
+
+	// [MANKIND-ADD] - OPTIMIZE_OVERMAP_LAZY_GEN - Счётчики для ленивой генерации
+	/// Сколько dynamic-миров осталось создать (ленивая генерация в fire())
+	var/pending_dynamic_spawns = 0
+	/// Сколько кластеров событий осталось создать (ленивая генерация в fire())
+	var/pending_event_clusters = 0
+	/// Список орбит для ленивой генерации событий
+	var/list/pending_event_orbits
+	// [/MANKIND-ADD]
 
 	//fancy color shit! yayyyyy!
 
@@ -423,10 +483,17 @@ SUBSYSTEM_DEF(overmap)
 
 	var/encounter_name = name
 	var/datum/map_zone/mapzone = SSmapping.create_map_zone(encounter_name)
-	overmap_vlevel = SSmapping.create_virtual_level(encounter_name, list(), mapzone, size + MAP_EDGE_PAD * 2, size + MAP_EDGE_PAD * 2)
+	overmap_vlevel = SSmapping.create_virtual_level(encounter_name, list(), mapzone, size + MAP_EDGE_PAD * 2, size + MAP_EDGE_PAD * 2, ALLOCATION_QUADRANT, DEFAULT_ALLOC_JUMP, ZLEVEL_ROLE_OVERMAP) // PENTEST EDIT - Manditory ZLevels
 	overmap_vlevel.current_systen = src
 	overmap_vlevel.reserve_margin(MAP_EDGE_PAD)
 	overmap_vlevel.fill_in(/turf/open/overmap, /area/overmap)
+	// [MANKIND-ADD] - MANKIND_OVERMAP_ICON_LAZY - Собираем тайлы для ленивой отрисовки звёздочек
+	// Заполняем список тайлов овермапы для ленивой отрисовки звёздочек.
+	// Фильтруем get_block() — берём только /turf/open/overmap, а не краевые /turf/closed/indestructible/edge.
+	for(var/turf/T as anything in overmap_vlevel.get_block())
+		if(istype(T, /turf/open/overmap))
+			SSovermap.overmap_turfs_to_decorate += T
+	// [/MANKIND-ADD]
 	overmap_vlevel.selfloop()
 	var/area/our_area = get_area(OVERMAP_TOKEN_TURF(1, 1, src))
 
@@ -554,17 +621,30 @@ SUBSYSTEM_DEF(overmap)
  */
 /datum/overmap_star_system/proc/create_map()
 #ifndef NOOVERMAP
+	AUXCPU_PHASE("create_map") // [SOLARIS-ADD] - SHIP_LOAD_LAG
+	// [MANKIND-EDIT] - OPTIMIZE_OVERMAP_LAZY_GEN - Ленивая генерация
+	// Создаём dynamic-миры и события ��е сразу, а распределённо в fire()
+	// по несколько за тик. Это разгружает инициализацию раунда.
+	pending_dynamic_spawns = max_overmap_dynamic_events
+
 	switch(generator_type)
 		if(OVERMAP_GENERATOR_SOLAR)
-			spawn_events_in_orbits()
-		if(OVERMAP_GENERATOR_RANDOM)
-			spawn_events()
+			pending_event_orbits = list()
+			for(var/orbit_key in radius_positions)
+				var/orbit_num = text2num(orbit_key)
+				if(orbit_num >= 3)
+					pending_event_orbits += orbit_key
+			if(length(pending_event_orbits))
+				pending_event_clusters = CONFIG_GET(number/max_overmap_event_clusters)
 
-	spawn_ruin_levels()
+		if(OVERMAP_GENERATOR_RANDOM)
+			pending_event_clusters = CONFIG_GET(number/max_overmap_event_clusters)
+	// [/MANKIND-EDIT]
 #endif
 
 	if(has_outpost)
 		spawn_outpost()
+	AUXCPU_PHASE_END // [SOLARIS-ADD] - SHIP_LOAD_LAG
 
 /**
  * VERY Simple random generation for overmap events, spawns the event in a random turf and sometimes spreads it out similar to ores
@@ -618,6 +698,32 @@ SUBSYSTEM_DEF(overmap)
 /**
  * Creates an overmap object for each ruin level, making them accessible.
  */
+// [MANKIND-ADD] - OPTIMIZE_OVERMAP_LAZY_GEN - Одиночный спавн события в орбите
+/datum/overmap_star_system/proc/spawn_single_event_in_orbit()
+	if(CONFIG_GET(number/max_overmap_events) <= length(events))
+		pending_event_clusters = 0
+		return
+	if(!length(pending_event_orbits))
+		pending_event_clusters = 0
+		return
+
+	var/event_type = pick_weight(GLOB.overmap_event_pick_list)
+	var/selected_orbit = pick(pending_event_orbits)
+
+	var/list/T = get_unused_overmap_square_in_radius(selected_orbit)
+	if(!T)
+		pending_event_orbits -= selected_orbit
+		return
+
+	var/datum/overmap/event/E = new event_type(T, src)
+	for(var/list/position as anything in radius_positions[selected_orbit])
+		if(locate(/datum/overmap) in overmap_container[position["x"]][position["y"]])
+			continue
+		if(!prob(E.spread_chance))
+			continue
+		new event_type(position, src)
+// [/MANKIND-ADD]
+
 /datum/overmap_star_system/proc/spawn_ruin_levels()
 	for(var/i in 1 to max_overmap_dynamic_events)
 		spawn_ruin_level()
@@ -629,9 +735,13 @@ SUBSYSTEM_DEF(overmap)
 /**
  * See [/datum/controller/subsystem/overmap/proc/spawn_events], spawns "veins" (like ores) of events
  */
-/datum/overmap_star_system/proc/spawn_event_cluster(datum/overmap/event/type, list/location, chance)
+/datum/overmap_star_system/proc/spawn_event_cluster(datum/overmap/event/type, list/location, chance, depth = 0)
 	if(CONFIG_GET(number/max_overmap_events) <= LAZYLEN(events))
 		return
+	// [MANKIND-EDIT] - MANKIND_FIXES - Ограничение глубины рекурсии, чтобы избежать переполнения стека
+	if(depth >= MAX_OVERMAP_EVENT_CLUSTER_DEPTH)
+		return
+	// [/MANKIND-EDIT]
 	var/datum/overmap/event/E = new type(location, src)
 	if(!chance)
 		chance = E.spread_chance
@@ -640,12 +750,13 @@ SUBSYSTEM_DEF(overmap)
 
 			if(locate(/datum/overmap) in overmap_container[location["x"]][location["y"]])
 				continue
-			spawn_event_cluster(type, location, chance / 2)
+			spawn_event_cluster(type, location, chance / 2, depth + 1)
 
 /**
  * Creates a single outpost somewhere near the center of the system.
  */
 /datum/overmap_star_system/proc/spawn_outpost()
+	AUXCPU_PHASE("spawn_outpost") // [SOLARIS-ADD] - SHIP_LOAD_LAG
 	var/list/location = get_unused_overmap_square_in_radius(rand(4, round(size/5)))
 
 	if(fexists(OUTPOST_OVERRIDE_FILEPATH))
@@ -674,6 +785,7 @@ SUBSYSTEM_DEF(overmap)
 				continue
 			if(nearby_event.interference_power)
 				qdel(nearby_event)
+	AUXCPU_PHASE_END // [SOLARIS-ADD] - SHIP_LOAD_LAG
 	return
 
 /**
@@ -701,6 +813,11 @@ SUBSYSTEM_DEF(overmap)
  */
 /datum/overmap_star_system/proc/spawn_dynamic_encounter(datum/overmap/dynamic/dynamic_datum, ruin_type)
 	log_shuttle("SSOVERMAP: SPAWNING DYNAMIC ENCOUNTER STARTED")
+	// [SOLARIS-ADD] - Логирование времени генерации планеты.
+	var/start_time = REALTIMEOFDAY
+	var/phase_start = REALTIMEOFDAY
+	log_planet("PLANET: СТАРТ загрузки \"[dynamic_datum.name]\" (тип: [dynamic_datum.planet?.name || "unknown"], mapgen: [dynamic_datum.mapgen])", TRUE)
+	// [/SOLARIS-ADD]
 	if(!dynamic_datum)
 		CRASH("spawn_dynamic_encounter called without any datum to spawn!")
 	if(!dynamic_datum.default_baseturf)
@@ -720,7 +837,8 @@ SUBSYSTEM_DEF(overmap)
 		dynamic_datum.vlevel_width,
 		dynamic_datum.vlevel_height,
 		ALLOCATION_QUADRANT,
-		QUADRANT_MAP_SIZE
+		QUADRANT_MAP_SIZE, // PENTEST EDIT - Manditory ZLevels
+		ZLEVEL_ROLE_RUIN // PENTEST EDIT - Manditory ZLevels
 	)
 
 	// [MANKIND-ADD] - MANKIND_FIXES
@@ -728,11 +846,27 @@ SUBSYSTEM_DEF(overmap)
 	// [/MANKIND-ADD]
 	vlevel.reserve_margin(QUADRANT_SIZE_BORDER)
 
+	// [SOLARIS-ADD] - Логирование времени генерации планеты.
+	log_planet("PLANET: Резервирование карты/вирт-уровня: [(REALTIMEOFDAY - phase_start)/10]s")
+	phase_start = REALTIMEOFDAY
+	// [/SOLARIS-ADD]
+
 	mapgen.pre_generation(dynamic_datum)
+
+	// [SOLARIS-ADD] - Логирование времени генерации планеты.
+	log_planet("PLANET: pre_generation: [(REALTIMEOFDAY - phase_start)/10]s")
+	phase_start = REALTIMEOFDAY
+	// [/SOLARIS-ADD]
 
 	// the generataed turfs start unpopulated (i.e. no flora / fauna / etc.). we add that AFTER placing the ruin, relying on the ruin's areas to determine what gets populated
 	log_shuttle("SSOVERMAP: START_DYN_E: RUNNING MAPGEN REF [REF(mapgen)] FOR VLEV [vlevel.id] OF TYPE [mapgen.type]")
 	mapgen.generate_turfs(vlevel.get_unreserved_block())
+
+	// [SOLARIS-ADD] - Логирование времени генерации планеты.
+	log_planet("PLANET: generate_turfs: [(REALTIMEOFDAY - phase_start)/10]s")
+	phase_start = REALTIMEOFDAY
+	// [/SOLARIS-ADD]
+
 	var/list/ruin_turfs = list()
 	var/list/ruin_templates = list()
 	if(used_ruin)
@@ -747,9 +881,21 @@ SUBSYSTEM_DEF(overmap)
 			// [/MANKIND-EDIT]
 			vlevel.z_value
 		)
+		// [SOLARIS-ADD] - Логирование времени загрузки руины.
+		var/ruin_start_time = REALTIMEOFDAY
+		log_planet("RUIN: СТАРТ загрузки руины \"[used_ruin.name]\" ([used_ruin.type]) в [COORD(ruin_turf)]", TRUE)
+		// [/SOLARIS-ADD]
 		used_ruin.load(ruin_turf)
 		ruin_turfs[used_ruin.name] = ruin_turf
 		ruin_templates[used_ruin.name] = used_ruin
+		// [SOLARIS-ADD] - Логирование времени загрузки руины.
+		log_planet("RUIN: ФИНИШ загрузки руины \"[used_ruin.name]\" ([used_ruin.type]) за [(REALTIMEOFDAY - ruin_start_time)/10]s", TRUE)
+		// [/SOLARIS-ADD]
+
+	// [SOLARIS-ADD] - Логирование времени генерации планеты.
+	log_planet("PLANET: Загрузка руины [used_ruin ? used_ruin.name : "нет"]: [(REALTIMEOFDAY - phase_start)/10]s")
+	phase_start = REALTIMEOFDAY
+	// [/SOLARIS-ADD]
 
 	// fill in the turfs, AFTER generating the ruin. this prevents them from generating within the ruin
 	// and ALSO prevents the ruin from being spaced when it spawns in
@@ -757,11 +903,26 @@ SUBSYSTEM_DEF(overmap)
 	if(dynamic_datum.populate_turfs)
 		mapgen.populate_turfs(vlevel.get_unreserved_block())
 
+	// [SOLARIS-ADD] - Логирование времени генерации планеты.
+	log_planet("PLANET: populate_turfs: [(REALTIMEOFDAY - phase_start)/10]s")
+	phase_start = REALTIMEOFDAY
+	// [/SOLARIS-ADD]
+
 	///post generation things, such as greebles or smoothening out terrain generation.
 	mapgen.post_generation(vlevel.get_unreserved_block())
 
+	// [SOLARIS-ADD] - Логирование времени генерации планеты.
+	log_planet("PLANET: post_generation: [(REALTIMEOFDAY - phase_start)/10]s")
+	phase_start = REALTIMEOFDAY
+	// [/SOLARIS-ADD]
+
 	if(dynamic_datum.weather_controller_type)
 		new dynamic_datum.weather_controller_type(mapzone)
+
+	// [SOLARIS-ADD] - Логирование времени генерации планеты.
+	log_planet("PLANET: Погодный контроллер: [(REALTIMEOFDAY - phase_start)/10]s")
+	phase_start = REALTIMEOFDAY
+	// [/SOLARIS-ADD]
 
 	var/list/areas_to_update = get_areas(/area/overmap_encounter/planetoid)
 	for(var/area/overmap_encounter/planetoid as anything in areas_to_update)
@@ -775,6 +936,9 @@ SUBSYSTEM_DEF(overmap)
 		vlevel.low_y+RESERVE_DOCK_DEFAULT_PADDING + vlevel.reserved_margin,
 		vlevel.z_value
 		)
+	// [MANKIND-EDIT] - MANKIND_FIXES - Null-guard док-турфов: смещения +60/+75 могут выйти за границы планеты
+	if(!primary_docking_turf)
+		CRASH("spawn_dynamic_encounter: primary docking turf is null for [encounter_name]!")
 	// now we need to offset to account for the first dock
 	var/turf/secondary_docking_turf = locate(
 		// [MANKIND-EDIT] - MANKIND_MAP_EXPANSION - Смещение док порта
@@ -812,37 +976,42 @@ SUBSYSTEM_DEF(overmap)
 	primary_dock.adjust_dock_for_landing = TRUE
 	docking_ports += primary_dock
 
-	var/obj/docking_port/stationary/secondary_dock = new(secondary_docking_turf)
-	secondary_dock.dir = NORTH
-	secondary_dock.name = "[encounter_name] docking location #2"
-	secondary_dock.height = RESERVE_DOCK_MAX_SIZE_SHORT
-	secondary_dock.width = RESERVE_DOCK_MAX_SIZE_LONG
-	secondary_dock.dheight = 0
-	secondary_dock.dwidth = 0
-	secondary_dock.adjust_dock_for_landing = TRUE
-	docking_ports += secondary_dock
+	// [MANKIND-EDIT] - MANKIND_FIXES - Null-guard: вторичный/третий/четвёртый доки могут выйти за границы планеты
+	if(secondary_docking_turf)
+		var/obj/docking_port/stationary/secondary_dock = new(secondary_docking_turf)
+		secondary_dock.dir = NORTH
+		secondary_dock.name = "[encounter_name] docking location #2"
+		secondary_dock.height = RESERVE_DOCK_MAX_SIZE_SHORT
+		secondary_dock.width = RESERVE_DOCK_MAX_SIZE_LONG
+		secondary_dock.dheight = 0
+		secondary_dock.dwidth = 0
+		secondary_dock.adjust_dock_for_landing = TRUE
+		docking_ports += secondary_dock
 
 	// [MANKIND-ADD] - MANKIND_MAP_EXPANSION - Создание док порта исходя из ранее заданных координат
-	var/obj/docking_port/stationary/third_dock = new(third_docking_turf)
-	third_dock.dir = NORTH
-	third_dock.name = "[encounter_name] docking location #3"
-	third_dock.height = RESERVE_DOCK_MAX_SIZE_SHORT
-	third_dock.width = RESERVE_DOCK_MAX_SIZE_LONG
-	third_dock.dheight = 0
-	third_dock.dwidth = 0
-	third_dock.adjust_dock_for_landing = TRUE
-	docking_ports += third_dock
+	if(third_docking_turf)
+		var/obj/docking_port/stationary/third_dock = new(third_docking_turf)
+		third_dock.dir = NORTH
+		third_dock.name = "[encounter_name] docking location #3"
+		third_dock.height = RESERVE_DOCK_MAX_SIZE_SHORT
+		third_dock.width = RESERVE_DOCK_MAX_SIZE_LONG
+		third_dock.dheight = 0
+		third_dock.dwidth = 0
+		third_dock.adjust_dock_for_landing = TRUE
+		docking_ports += third_dock
 
-	var/obj/docking_port/stationary/fourth_dock = new(fourth_docking_turf)
-	fourth_dock.dir = NORTH
-	fourth_dock.name = "[encounter_name] docking location #4"
-	fourth_dock.height = RESERVE_DOCK_MAX_SIZE_SHORT
-	fourth_dock.width = RESERVE_DOCK_MAX_SIZE_LONG
-	fourth_dock.dheight = 0
-	fourth_dock.dwidth = 0
-	fourth_dock.adjust_dock_for_landing = TRUE
-	docking_ports += fourth_dock
+	if(fourth_docking_turf)
+		var/obj/docking_port/stationary/fourth_dock = new(fourth_docking_turf)
+		fourth_dock.dir = NORTH
+		fourth_dock.name = "[encounter_name] docking location #4"
+		fourth_dock.height = RESERVE_DOCK_MAX_SIZE_SHORT
+		fourth_dock.width = RESERVE_DOCK_MAX_SIZE_LONG
+		fourth_dock.dheight = 0
+		fourth_dock.dwidth = 0
+		fourth_dock.adjust_dock_for_landing = TRUE
+		docking_ports += fourth_dock
 	// [/MANKIND-ADD]
+	// [/MANKIND-EDIT]
 
 	// [MANKIND-REMOVE] - MANKIND_MAP_EXPANSION - Чтобы не возникало лишних док портов
 	// if(!used_ruin)
@@ -888,6 +1057,11 @@ SUBSYSTEM_DEF(overmap)
 	// [/MANKIND-REMOVE]
 
 
+	// [SOLARIS-ADD] - Логирование времени генерации планеты.
+	log_planet("PLANET: Создание док-портов: [(REALTIMEOFDAY - phase_start)/10]s", FALSE)
+	log_planet("PLANET: ФИНИШ загрузки \"[dynamic_datum.name]\" (тип: [dynamic_datum.planet?.name || "unknown"], mapgen: [dynamic_datum.mapgen]). Итого: [(REALTIMEOFDAY - start_time)/10]s", TRUE)
+	// [/SOLARIS-ADD]
+
 	return list(mapzone, docking_ports, ruin_turfs, ruin_templates)
 
 /**
@@ -897,6 +1071,11 @@ SUBSYSTEM_DEF(overmap)
  */
 /datum/overmap_star_system/proc/spawn_static_encounter(datum/overmap/static_object/static_datum, map)
 	log_shuttle("SSOVERMAP: SPAWNING STATIC ENCOUNTER STARTED")
+	// [SOLARIS-ADD] - Логирование времени генерации планеты.
+	var/start_time = REALTIMEOFDAY
+	var/phase_start = REALTIMEOFDAY
+	log_planet("PLANET: СТАРТ загрузки \"[static_datum.planet_name || static_datum.name]\" (mapgen: [static_datum.mapgen || "нет"], карта: [map])", TRUE)
+	// [/SOLARIS-ADD]
 	if(!static_datum)
 		CRASH("spawn_static_encounter called without any datum to spawn!")
 	if(!static_datum.default_baseturf)
@@ -925,10 +1104,16 @@ SUBSYSTEM_DEF(overmap)
 			map_to_load.width,
 			map_to_load.height,
 			ALLOCATION_QUADRANT,
-			QUADRANT_MAP_SIZE
+			QUADRANT_MAP_SIZE, // PENTEST EDIT - Manditory ZLevels
+			ZLEVEL_ROLE_RUIN // PENTEST EDIT - Manditory ZLevels
 		)
 
 	vlevel.reserve_margin(static_datum.border_size)
+
+	// [SOLARIS-ADD] - Логирование времени генерации планеты.
+	log_planet("PLANET: Резервирование карты/вирт-уровня: [(REALTIMEOFDAY - phase_start)/10]s")
+	phase_start = REALTIMEOFDAY
+	// [/SOLARIS-ADD]
 
 	var/datum/map_generator/mapgen
 
@@ -939,14 +1124,34 @@ SUBSYSTEM_DEF(overmap)
 		log_shuttle("SSOVERMAP: START_STATIC_E: RUNNING MAPGEN REF [REF(mapgen)] FOR VLEV [vlevel.id] OF TYPE [mapgen.type]")
 		mapgen.generate_turfs(vlevel.get_unreserved_block())
 
+	// [SOLARIS-ADD] - Логирование времени генерации планеты.
+	log_planet("PLANET: pre_generation + generate_turfs: [(REALTIMEOFDAY - phase_start)/10]s")
+	phase_start = REALTIMEOFDAY
+	// [/SOLARIS-ADD]
+
 	var/turf/spawn_turf = locate(vlevel.low_x,vlevel.low_y,vlevel.z_value)
 	map_to_load.load(spawn_turf)
+
+	// [SOLARIS-ADD] - Логирование времени генерации планеты.
+	log_planet("PLANET: Загрузка карты: [(REALTIMEOFDAY - phase_start)/10]s")
+	phase_start = REALTIMEOFDAY
+	// [/SOLARIS-ADD]
 
 	if(use_mapgen)
 		mapgen.populate_turfs(vlevel.get_unreserved_block())
 
+	// [SOLARIS-ADD] - Логирование времени генерации планеты.
+	log_planet("PLANET: populate_turfs: [(REALTIMEOFDAY - phase_start)/10]s")
+	phase_start = REALTIMEOFDAY
+	// [/SOLARIS-ADD]
+
 	if(static_datum.weather_controller_type)
 		new static_datum.weather_controller_type(mapzone)
+
+	// [SOLARIS-ADD] - Логирование времени генерации планеты.
+	log_planet("PLANET: Погодный контроллер + сбор док-портов: [(REALTIMEOFDAY - phase_start)/10]s")
+	log_planet("PLANET: ФИНИШ загрузки \"[static_datum.planet_name || static_datum.name]\". Итого: [(REALTIMEOFDAY - start_time)/10]s", TRUE)
+	// [/SOLARIS-ADD]
 
 	var/list/docking_ports = list()
 

@@ -35,7 +35,7 @@ SUBSYSTEM_DEF(statpanels)
 
 		global_data = list(
 			"Round ID: [GLOB.round_id ? GLOB.round_id : "NULL"]",
-			"Next Autotransfer (Updates Every Min): [cached_autotransfer_text]", // PENTEST ADDITION - Display autotransfer schedule status
+			// [MANKIND-DELETE] undo pentest 'next autotransfer' addition
 			"Time Dilation: [round(SStime_track.time_dilation_current,1)]% AVG:([round(SStime_track.time_dilation_avg_fast,1)]%, [round(SStime_track.time_dilation_avg,1)]%, [round(SStime_track.time_dilation_avg_slow,1)]%)",
 			"\n",
 			"Current Outpost: [SSticker.round_start_timeofday ? SSovermap.get_main_outpost() : "The round hasn't started yet!"]",
@@ -47,7 +47,8 @@ SUBSYSTEM_DEF(statpanels)
 			"Internal Round Timer: [SSticker.round_start_timeofday ? ROUND_TIME() : "The round hasn't started yet!"]",
 			"\n",
 			"Playing/Connected: [get_active_player_count()]/[length(GLOB.clients)]",
-			"Crew Percentage/Ship Locking Cap: [SSovermap.ship_crew_percentage()]%/[SSovermap.ship_locking_percentage()]%"
+			"Crew Percentage/Ship Locking Cap: [SSovermap.ship_crew_percentage()]%/[SSovermap.ship_locking_percentage()]%",
+			"Ротация кораблей: [GLOB.ship_rotation_enabled ? "ВКЛ" : "ВЫКЛ"]"
 		)
 
 		if(SSshuttle.jump_mode != BS_JUMP_IDLE)
@@ -102,8 +103,8 @@ SUBSYSTEM_DEF(statpanels)
 			return
 
 /datum/controller/subsystem/statpanels/proc/set_status_tab(client/target)
-#if MIN_COMPILER_VERSION > 515
-	#warn 516 is most certainly out of beta, remove this beta notice if you haven't already
+#if MIN_COMPILER_VERSION > 516
+	#warn 517 is most certainly out of beta, remove this beta notice if you haven't already
 #endif
 	var/static/list/beta_notice = list("", "Билд работает на 516 версии BYOND и могут быть баги!", "Если найдете ошибки с интерфейсами окон или другие ошибки, пожалуйста сообщите о них!")
 	if(!global_data)//statbrowser hasnt fired yet and we were called from immediate_send_stat_data()

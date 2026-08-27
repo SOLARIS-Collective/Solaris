@@ -1,11 +1,13 @@
 /**
- * @changes 2026 KOCMOHABT (https://github.com/MANKIND-Collective/Pentest/pull/2647)
+ * @changes 2026 KOCMOHABT (https://github.com/CeladonSS13/Shiptest/pull/2647)
  * @TDLR From anything changes, see History in GIT and PR.
  */
 import { useBackend } from '../backend';
 import {
   Button,
   ByondUi,
+  Box,
+  Icon,
   LabeledList,
   Section,
   ProgressBar,
@@ -59,7 +61,15 @@ export const HelmConsole = (_props, context) => {
 
 const SharedContent = (_props, context) => {
   const { act, data } = useBackend(context);
-  const { isViewer, canRename, shipInfo = [], otherInfo = [], arpa_ships = [], calibrating } = data;
+  const {
+    isViewer,
+    canRename,
+    shipInfo = [],
+    otherInfo = [],
+    arpa_ships = [],
+    calibrating,
+    omni_arpa,
+  } = data;
   let flyable = !data.docking && !data.docked;
   return (
     <>
@@ -76,15 +86,16 @@ const SharedContent = (_props, context) => {
             }
           />
         }
+        buttons={
+          <Button
+            tooltip="Refresh Ship Stats"
+            tooltipPosition="left"
+            icon="sync"
+            disabled={isViewer}
+            onClick={() => act('reload_ship')}
+          />
+        }
       >
-        <Button
-          fluid
-          icon="sync"
-          content="Refresh Ship Stats"
-          disabled={isViewer}
-          onClick={() => act('reload_ship')}
-          mb={1}
-        />
         <LabeledList>
           <LabeledList.Item label="Class">{shipInfo.class}</LabeledList.Item>
           <LabeledList.Item label="Sensor Range">
@@ -92,34 +103,30 @@ const SharedContent = (_props, context) => {
               value={shipInfo.sensor_range}
               minValue={1}
               maxValue={8}
-              mb={0.5}
             >
               <AnimatedNumber value={shipInfo.sensor_range} />
             </ProgressBar>
-            <Stack>
-                <Stack.Item>
-                  <Button
-                    tooltip="Decrease Signal Length"
-                    tooltipPosition="right"
-                    icon="arrow-left"
-                    // [MANKIND-ADD] - subshuttle fix
-                    disabled={data.issubshuttle !== null}
-                    // [/MANKIND-ADD] - subshuttle fix
-                    onClick={() => act('sensor_decrease')}
-                  />
-                </Stack.Item>
-                <Stack.Item>
-                  <Button
-                    tooltip="Increase Signal Length"
-                    tooltipPosition="right"
-                    icon="arrow-right"
-                    // [MANKIND-ADD] - subshuttle fix
-                    disabled={data.issubshuttle !== null}
-                    // [/MANKIND-ADD] - subshuttle fix
-                    onClick={() => act('sensor_increase')}
-                  />
-                </Stack.Item>
-            </Stack>
+            <Box inline ml={1} mt={1}>
+              <Button
+                tooltip="Decrease Signal Length"
+                tooltipPosition="right"
+                icon="arrow-left"
+                // [MANKIND-ADD] - subshuttle fix
+                disabled={data.issubshuttle !== null}
+                // [/MANKIND-ADD] - subshuttle fix
+                onClick={() => act('sensor_decrease')}
+              />
+              <Button
+                tooltip="Increase Signal Length"
+                tooltipPosition="right"
+                icon="arrow-right"
+                ml={1}
+                // [MANKIND-ADD] - subshuttle fix
+                disabled={data.issubshuttle !== null}
+                // [/MANKIND-ADD] - subshuttle fix
+                onClick={() => act('sensor_increase')}
+              />
+            </Box>
           </LabeledList.Item>
           {shipInfo.mass && (
             <LabeledList.Item label="Mass">
@@ -128,41 +135,76 @@ const SharedContent = (_props, context) => {
           )}
         </LabeledList>
       </Section>
-      <Section title="Radar"
+      <Section
+        title="Radar"
         buttons={
-          <Stack>
-            <Stack.Item>
-              <Button // [MANKIND-ADD] - Signal S.O.S - modular_mankind\wideband\code\signal.dm
-                tooltip="Send S.O.S."
-                tooltipPosition="left"
-                icon="globe"
-                disabled={isViewer}
-                onClick={() => act('send_sos')}
-              />
-            </Stack.Item>
-            <Stack.Item>
-              <Button
-                tooltip={calibrating ? 'Cancel Jump' : 'Bluespace Jump'}
-                tooltipPosition="left"
-                icon={calibrating ? 'times' : 'angle-double-right'}
-                color={calibrating ? 'bad' : 'average'}
-                disabled={!flyable}
-                onClick={() => act('bluespace_jump')}
-              />
-            </Stack.Item>
-          </Stack>
+          <>
+            <Button // [MANKIND-ADD] - TRANSPONDER_GOING_DARK - Переключатель транспондера
+              tooltip={
+                data.transponder_active
+                  ? 'Transponder ON - ship identity revealed'
+                  : 'Transponder OFF - ship is anonymous'
+              }
+              tooltipPosition="left"
+              icon={
+                data.transponder_active ? 'broadcast-tower' : 'broadcast-tower'
+              }
+              color={data.transponder_active ? 'green' : 'red'}
+              disabled={isViewer}
+              onClick={() => act('toggle_transponder')}
+            />
+            <Button // [MANKIND-ADD] - Signal S.O.S - modular_mankind\wideband\code\signal.dm
+              tooltip="Send S.O.S."
+              tooltipPosition="left"
+              icon="globe"
+              disabled={isViewer}
+              onClick={() => act('send_sos')}
+            />
+            <Button
+              tooltip={calibrating ? 'Cancel Jump' : 'Bluespace Jump'}
+              tooltipPosition="left"
+              icon={calibrating ? 'times' : 'angle-double-right'}
+              color={calibrating ? 'bad' : 'average'}
+              disabled={!flyable}
+              onClick={() => act('bluespace_jump')}
+            />
+          </>
         }
-		>
+      >
         <Table>
           <Table.Row bold>
             <Table.Cell>Name</Table.Cell>
+            {!isViewer && !omni_arpa && <Table.Cell>Label</Table.Cell>}
             {!isViewer && <Table.Cell>Hail</Table.Cell>}
-            {!isViewer && <Table.Cell>Act</Table.Cell>}
             {!isViewer && <Table.Cell>Dock</Table.Cell>}
           </Table.Row>
           {otherInfo.map((ship) => (
-            <Table.Row key={ship.name}>
-              <Table.Cell>{ship.name}</Table.Cell>
+            <Table.Row key={ship.ref || ship.name}>
+              <Table.Cell>
+                {ship.known ? (
+                  <span>
+                    <Icon name="check" color="good" /> {ship.name}
+                  </span>
+                ) : (
+                  ship.name
+                )}
+              </Table.Cell>
+              {!isViewer && !omni_arpa && (
+                <Table.Cell>
+                  {!!ship.scannable && (
+                    <Button
+                      tooltip="Set Label"
+                      tooltipPosition="left"
+                      icon="tag"
+                      onClick={() =>
+                        act('prompt_label', {
+                          ship_to_act: ship.ref,
+                        })
+                      }
+                    />
+                  )}
+                </Table.Cell>
+              )}
               {!isViewer && (
                 <Table.Cell>
                   <Button
@@ -228,8 +270,22 @@ const SharedContent = (_props, context) => {
       </Section>
       <Section title="ARPA">
         {arpa_ships.map((ship) => (
-          <Table.Row key={ship.name}>
+          <Table.Row key={ship.ref || ship.name}>
             <Table.Cell>{ship.name}</Table.Cell>
+            {!isViewer && !omni_arpa && !!ship.scannable && (
+              <Table.Cell>
+                <Button
+                  tooltip="Set Label"
+                  tooltipPosition="left"
+                  icon="tag"
+                  onClick={() =>
+                    act('prompt_label', {
+                      ship_to_act: ship.ref,
+                    })
+                  }
+                />
+              </Table.Cell>
+            )}
             <Divider vertical hidden />
             <Table.Cell>BRG:{ship.brg}°</Table.Cell>
             <Table.Cell>
@@ -444,7 +500,7 @@ const ShipControlContent = (_props, context) => {
       }
     >
       <LabeledControls>
-        <LabeledControls.Item label="Direction" width={'100%'}>
+        <LabeledControls.Item label="Direction">
           <Table collapsing>
             <Table.Row height={1}>
               <Table.Cell width={1}>
@@ -512,7 +568,7 @@ const ShipControlContent = (_props, context) => {
             </Table.Row>
           </Table>
         </LabeledControls.Item>
-        <LabeledControls.Item label="Throttle">
+        <LabeledControls.Item label="Throttle" grow>
           <Knob
             value={burnPercentage}
             minValue={1}

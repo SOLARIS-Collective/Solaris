@@ -30,8 +30,8 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/client/proc/requests,
 	/client/proc/fax_panel, /*send a paper to fax*/
 	/client/proc/show_all_verbs,				// [MANKIND-ADD] - ADMIN-PANEL - Black Reality
-	/client/proc/manage_chatfilter,				// [MANKIND-ADD] - BRAINDEAD-SYSTEM
-	/client/proc/toggle_chatfilter_hardcore,	// [MANKIND-ADD] - BRAINDEAD-SYSTEM
+	// /client/proc/manage_chatfilter,				// [MANKIND-ADD] - BRAINDEAD-SYSTEM
+	// /client/proc/toggle_chatfilter_hardcore,	// [MANKIND-ADD] - BRAINDEAD-SYSTEM
 	)
 GLOBAL_LIST_INIT(admin_verbs_admin, world.AVerbsAdmin())
 GLOBAL_PROTECT(admin_verbs_admin)
@@ -51,6 +51,7 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/datum/admins/proc/toggleenter,		/*toggles whether people can join the current game*/
 	/client/proc/toggle_ship_spawn, /* toggles players spawning ships via the join menu / shuttle creators */
 	/client/proc/toggle_ship_auto_locking,
+	/client/proc/toggle_ship_rotation, /*toggles ship rotation on/off*/
 	/datum/admins/proc/announce,		/*priority announce something to all clients.*/
 	/datum/admins/proc/set_admin_notice, /*announcement all clients see when joining the server.*/
 	/client/proc/admin_ghost,			/*allows us to ghost/reenter body at will*/
@@ -205,6 +206,7 @@ GLOBAL_PROTECT(admin_verbs_debug)
 	/client/proc/view_runtimes,
 	/client/proc/pump_random_event,
 	/client/proc/reload_configuration,
+	/client/proc/toggle_cpu_debug,
 	/client/proc/reload_autotransfer_schedule, // PENTEST - Reload the autotransfer schedule from config
 	/client/proc/jumptoarea,
 	/client/proc/jumptocoord,
@@ -222,6 +224,12 @@ GLOBAL_PROTECT(admin_verbs_debug)
 	/client/proc/toggle_AI_interact, /*toggle admin ability to interact with machines as an AI*/
 	/client/proc/toggle_cdn,
 	/client/proc/cmd_admin_toggle_fov,
+	/client/proc/toggle_breeding_debug,
+	/client/proc/test_custom_pets,
+	/client/proc/test_random_pet_selection,
+	/client/proc/spawn_random_custom_pet,
+	/client/proc/check_planet_load_status, /* PENTEST EDIT Check why a planet/virtual z-level is still loaded */
+	/client/proc/force_delete_planet, /* PENTEST EDIT Force delete a planet/virtual z-level */
 	)
 GLOBAL_LIST_INIT(admin_verbs_possess, list(/proc/possess, /proc/release))
 GLOBAL_PROTECT(admin_verbs_possess)
@@ -887,3 +895,12 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 
 	SStgui.close_uis(usr)
 // [/MANKIND-ADD]
+
+/client/proc/toggle_cpu_debug()
+	set category = "Debug"
+	set name = "Toggle Cpu Controls"
+	set desc = "Enables performance debug view, graphing cpu usage across the tick"
+
+	if(!holder || !check_rights(R_DEBUG))
+		return
+	GLOB.cpu_tracker.toggle_cpu_debug(src)

@@ -99,17 +99,30 @@
 /datum/overmap/dynamic/pre_docked(datum/overmap/ship/controlled/dock_requester, override_dock)
 	if(loading)
 		return new /datum/docking_ticket(_docking_error = "[src] is currently being scanned for suitable docking locations by another ship. Please wait.")
+	// [MANKIND-EDIT] - MANKIND_FIXES - Синхронная генерация планеты.
+	// Асинхронная генерация (INVOKE_ASYNC + stoplag/CHECK_TICK внутри mapgen) на BYOND 515.1633
+	// вызывала нативный краш сервера при посадке (срабатывал при слишком большом числе suspended
+	// процов, auxtools#87). Генерация теперь идёт в калстеке стыковки и yield-ится через stoplag,
+	// так что сервер продолжает тикать, просто под нагрузкой.
 	if(!load_level())
 		return new /datum/docking_ticket(_docking_error = "[src] cannot be docked to.")
 	else
 		var/dock_to_use = override_dock
+		//if true, we say that we do in fact have free docks, just you cant fit in any of them for whatever reason. hopefully this is less vauge than "X Cannot be docked to."
+		var/alt_message = FALSE
 		if(!override_dock)
 			for(var/obj/docking_port/stationary/dock as anything in reserve_docks)
+				//meant for quick dock, as such we check if we can actually dock here before checking all other docking ports.
+				//This means you can name a docking port with a leading ! like '!Ship Starboard Stern Docking Port' to have priority over other docking ports
 				if(!dock.docked)
+					alt_message = TRUE
+				if(!dock.docked && dock_requester.shuttle_port.check_dock(dock, TRUE, FALSE))
 					dock_to_use = dock
 					break
 
 		if(!dock_to_use)
+			if(alt_message)
+				return new /datum/docking_ticket(_docking_error = "[src] has free docks, however vessel is unable to fit in any. Attempt manual docking for more information. Aborting docking.")
 			return new /datum/docking_ticket(_docking_error = "[src] does not have any free docks. Aborting docking.")
 		return new /datum/docking_ticket(dock_to_use, src, dock_requester)
 
@@ -304,48 +317,77 @@
 			. += "-"
 			. += "[pick(rand(1,999))]"
 		if(3 to 5)
-			. += "[pick(GLOB.planet_names)]"
+			. += "[pick_planet_name()]"
 		if(5 to 7)
-			. += "[pick(GLOB.planet_names)] \Roman[rand(1,9)]"
+			. += "[pick_planet_name()] \Roman[rand(1,9)]"
 		if(8 to 11)
-			. += "[pick(GLOB.planet_prefixes)] [pick(GLOB.planet_names)]"
+			. += "[pick(GLOB.planet_prefixes)] [pick_planet_name()]"
 		if(12)
-			. += "[capitalize(pick(GLOB.adjectives))] [pick(GLOB.planet_names)]"
+			. += "[capitalize(pick(GLOB.adjectives))] [pick_planet_name()]"
+
+/datum/overmap/dynamic/proc/pick_planet_name()
+	if(!length(GLOB.planet_names))
+		stack_trace("We ran out of planet names! Consider running shorter rounds or expanding the namelist.")
+		GLOB.planet_names = world.file2list("strings/planet_names.txt")
+	var/planet_name = pick(GLOB.planet_names)
+	GLOB.planet_names -= planet_name
+	return planet_name
 
 /**
  * Load a level for a ship that's visiting the level.
  * * visiting shuttle - The docking port of the shuttle visiting the level.
  */
 /datum/overmap/dynamic/proc/load_level()
-	if(SSlag_switch.measures[DISABLE_PLANETGEN] && !(HAS_TRAIT(usr, TRAIT_BYPASS_MEASURES)))
+	if(SSlag_switch.measures[DISABLE_PLANETGEN] && !(usr && HAS_TRAIT(usr, TRAIT_BYPASS_MEASURES)))
 		return FALSE
 	if(mapzone)
 		return TRUE
+	if(loading)
+		return FALSE
 
 	loading = TRUE
 	log_shuttle("[src] [REF(src)] LEVEL_INIT")
 
-	var/list/dynamic_encounter_values = current_overmap.spawn_dynamic_encounter(src, selected_ruin)
-	if(!length(dynamic_encounter_values))
-		return FALSE
+	// [SOLARIS-ADD] - Логирование времени загрузки уровня.
+	var/load_start_time = REALTIMEOFDAY
+	log_planet("PLANET: СТАРТ загрузки уровня \"[name]\" ([planet?.name || "no planet"]) по запросу стыковки", FALSE)
+	// [/SOLARIS-ADD]
 
-	mapzone = dynamic_encounter_values[1]
-	reserve_docks = dynamic_encounter_values[2]
-	ruin_turfs = dynamic_encounter_values[3]
-	spawned_ruins = dynamic_encounter_values[4]
+	// [MANKIND-EDIT] - MANKIND_FIXES - try/catch, чтобы loading гарантированно сбрасывался даже при
+	// исключении внутри генерации. Иначе планета навсегда оставалась в состоянии "being scanned".
+	try
+		var/list/dynamic_encounter_values = current_overmap.spawn_dynamic_encounter(src, selected_ruin)
+		if(!length(dynamic_encounter_values))
+			. = FALSE
+		else
+			mapzone = dynamic_encounter_values[1]
+			reserve_docks = dynamic_encounter_values[2]
+			ruin_turfs = dynamic_encounter_values[3]
+			spawned_ruins = dynamic_encounter_values[4]
 
-	var/datum/virtual_level/our_likely_vlevel = mapzone.virtual_levels[1]
-	if(istype(our_likely_vlevel) && selfloop)
-		our_likely_vlevel.selfloop()
+			var/datum/virtual_level/our_likely_vlevel = mapzone.virtual_levels[1]
+			if(istype(our_likely_vlevel) && selfloop)
+				our_likely_vlevel.selfloop()
 
-	for(var/obj/docking_port/stationary/port in reserve_docks)
-		if(port.roundstart_template)
-			port.name = "[name] auxillary docking location"
-			port.load_roundstart()
+			for(var/obj/docking_port/stationary/port in reserve_docks)
+				if(port.roundstart_template)
+					port.name = "[name] auxillary docking location"
+					port.load_roundstart()
 
-	SEND_SIGNAL(src, COMSIG_OVERMAP_LOADED)
+			SEND_SIGNAL(src, COMSIG_OVERMAP_LOADED)
+			. = TRUE
+	catch(var/exception/error)
+		// [SOLARIS-EDIT] логируем место возбуждения исключения, а не только stack_trace
+		stack_trace("load_level for [src] failed: [error.name] at [error.file]:[error.line]")
+		. = FALSE
+	// [/MANKIND-EDIT]
+
+	// [SOLARIS-ADD] - Логирование времени загрузки уровня.
+	log_planet("PLANET: ФИНИШ загрузки уровня \"[name]\" ([planet?.name || "no planet"]). Итог: [. ? "успех" : "ПРОВАЛ"] за [(REALTIMEOFDAY - load_start_time)/10]s", TRUE)
+	// [/SOLARIS-ADD]
+
 	loading = FALSE
-	return TRUE
+	return .
 
 /datum/overmap/dynamic/admin_load()
 	preserve_level = TRUE

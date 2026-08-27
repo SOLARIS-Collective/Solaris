@@ -142,6 +142,11 @@
 			to_chat(spawnee, "<span class='danger'>Your [template.name] is being prepared. Please be patient!</span>")
 			var/datum/overmap/ship/controlled/target = SSovermap.spawn_ship_at_start(template, ship_loc, selected_system)
 
+			// [MANKIND-ADD] - Secret - Используется для сбора статистики о покупке кораблей.
+			// if(CONFIG_GET(flag/ShipStats))
+			// 	SSdbcore_ShipStat(usr, template)
+			// [/MANKIND-ADD]
+
 			if(!target?.shuttle_port)
 				to_chat(spawnee, span_danger("There was an error loading the ship. Please contact admins!"))
 				spawnee.new_player_panel()
@@ -180,15 +185,9 @@
 		if(!S.is_join_option())
 			continue
 
-		// [MANKIND-ADD] - YOU_NOT_SEPARATIST
-		// Проверка ограничений по видам для кораблей фракции Elysium
+		// Корабли Элизиума полностью скрыты из списка
 		if(S.source_template.faction.name == FACTION_ELYSIUM)
-			var/species_id = user.client?.prefs?.pref_species?.id
-			if(species_id != "human" && species_id != "ipc" && species_id != "lanius")
-				continue
-			if(user.client?.prefs?.features["tail_human"] != "None" || user.client?.prefs?.features["ears"] != "None")
-				continue
-		// [/MANKIND-ADD]
+			continue
 
 		var/list/ship_jobs = list()
 		for(var/datum/job/job as anything in S.job_slots)
@@ -219,18 +218,14 @@
 		.["ships"] += list(ship_data)
 
 	.["templates"] = list()
-	for(var/template_name as anything in SSmapping.ship_purchase_list)
-		var/datum/map_template/shuttle/T = SSmapping.ship_purchase_list[template_name]
+	for(var/template_name as anything in SSmapping.all_ship_purchase_list)
+		var/datum/map_template/shuttle/T = SSmapping.all_ship_purchase_list[template_name]
 		if(!T.enabled)
 			continue
 
-		// Проверка ограничений по видам для шаблонов кораблей фракции Elysium
+		// Корабли Элизиума полностью скрыты из списка покупки
 		if(T.faction.name == FACTION_ELYSIUM)
-			var/species_id = user.client?.prefs?.pref_species?.id
-			if(species_id != "human" && species_id != "ipc" && species_id != "lanius")
-				continue
-			if(user.client?.prefs?.features["tail_human"] != "None" || user.client?.prefs?.features["ears"] != "None")
-				continue
+			continue
 		var/list/ship_data = list(
 			"name" = T.name,
 			"faction" = T.faction.name,
@@ -243,5 +238,6 @@
 			// [MANKIND-ADD] - modular_mankind/qol - Берём значение из конфига корабликов.
 			"shortName" = T.short_name,
 			// [/MANKIND-ADD]
+			"rotated_out" = !(T.name in SSmapping.ship_purchase_list),
 		)
 		.["templates"] += list(ship_data)

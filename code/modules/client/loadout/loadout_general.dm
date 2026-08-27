@@ -173,17 +173,18 @@
 // /datum/gear/amongus
 // 	display_name = "toy, suspicious pill plushie"
 // 	path = /obj/item/toy/plush/among
+
+// /datum/gear/amongus/New()
+// 	. = ..()
+// 	var/obj/item/toy/plush/among/temp = new path()
+// 	description = "[capitalize(pick(temp.among_colors))] sus."
+// 	qdel(temp)
 // [/MANKIND-REMOVE]
 
 /datum/gear/dice_bag
 	display_name = "toy, bag of die"
 	path = /obj/item/storage/pill_bottle/dice
 
-/datum/gear/amongus/New()
-	. = ..()
-	var/obj/item/toy/plush/among/temp = new path()
-	description = "[capitalize(pick(temp.among_colors))] sus."
-	qdel(temp)
 
 /datum/gear/hairspray
 	display_name = "hair dye"

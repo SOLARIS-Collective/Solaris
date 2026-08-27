@@ -11,6 +11,4 @@
 	#endif
 #endif
 
-// [MANKIND-ADD] - MANKIND_CONFIGS_MAPS
-#include "_modular_solaris\map_files\centcomm_ship.dmm"
-// [/MANKIND-ADD]
+#include "map_files\centcomm_ship.dmm"
