@@ -260,6 +260,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	// [MANKIND-ADD] - MANKIND_QOL_LOADOUT
 	///Scroll position in gear menu
 	var/gear_scroll_pos = 0
+	///Search query for gear filtering
+	var/gear_search = ""
 	// [/MANKIND-ADD]
 
 	var/action_buttons_screen_locs = list()
@@ -1290,74 +1292,69 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					else
 						equipped_gear.Cut(i,i+1)
 
-			dat += "<table align='center' width='100%'>"
-			// [MANKIND-EDIT] - MANKIND_DONATE, MANKIND_QOL_LOADOUT
-			// dat += "<tr><td colspan=4><center><b>Current loadout usage: [length(equipped_gear)]/[CONFIG_GET(number/max_loadout_items)]</b> \[<a href='byond://?_src_=prefs;preference=gear;clear_loadout=1'>Clear Loadout</a>\] | \[<a href='byond://?_src_=prefs;preference=gear;toggle_loadout=1'>Toggle Loadout</a>\]</center></td></tr>"
-			dat += "<tr><td colspan=4 style='padding: 5px;'><div style='text-align: center; background: #2a2a2a; padding: 8px; border-radius: 5px; margin: 5px 0;'><b style='color: #87CEEB;'>Использовано слотов: [length(equipped_gear)]/[max_loadout_items]</b> | <a href='byond://?_src_=prefs;preference=gear;clear_loadout=1' style='color: #FF6B6B; text-decoration: none;'>Очистить</a> | <a href='byond://?_src_=prefs;preference=gear;toggle_loadout=1' style='color: #4ECDC4; text-decoration: none;'>Переключить</a></div></td></tr>"
-			// [/MANKIND-EDIT]
+			dat += "<div style='padding: 3px;'>"
 
+			// Toolbar: slots + search + actions
+			dat += "<div style='display: flex; align-items: center; gap: 6px; padding: 5px 8px; background: #1e1e2e; border: 1px solid #333; border-radius: 6px; margin-bottom: 4px;'>"
+			dat += "<span style='color: #87CEEB; font-weight: bold; font-size: 12px; flex-shrink: 0;'>Slots:</span>"
+			dat += "<span style='color: [length(equipped_gear) >= max_loadout_items ? "#FF6B6B" : "#90EE90"]; font-weight: bold; font-size: 12px; flex-shrink: 0;'>[length(equipped_gear)]/[max_loadout_items]</span>"
+			dat += "<div style='width: 1px; height: 16px; background: #444; flex-shrink: 0;'></div>"
+			dat += "<a href='byond://?_src_=prefs;preference=gear;clear_loadout=1' title='Remove all equipped items from your loadout' style='color: #FF6B6B; text-decoration: none; font-size: 11px; padding: 2px 6px; background: #2a1a1a; border-radius: 3px; border: 1px solid #553333; flex-shrink: 0;'>Clear</a>"
+			dat += "<div style='flex-grow: 1; position: relative;'>"
+			dat += "<input id='gear-search-input' type='text' placeholder='Search...' value='[gear_search]' "
+			dat += "style='width: 100%; padding: 3px 6px 3px 22px; background: #16161e; border: 1px solid #444; border-radius: 3px; color: #CCC; font-size: 11px; outline: none; box-sizing: border-box;' "
+			dat += "onkeydown='if(event.keyCode===13){window.location.href=\"byond://?_src_=prefs;preference=gear;gear_search=\"+encodeURIComponent(this.value);}' />"
+			dat += "<span style='position: absolute; left: 5px; top: 50%; transform: translateY(-50%); color: #666; font-size: 10px;'>&#128269;</span>"
+			dat += "</div>"
+			dat += "</div>"
 
-
-			// Навигация
-			dat += "<tr><td colspan=4>"
+			// Collapsible category navigation
+			dat += "<div style='margin-bottom: 4px;'>"
+			dat += "<div id='gear-nav-toggle' style='display: flex; align-items: center; gap: 6px; padding: 3px 8px; background: #1a1a2a; border: 1px solid #333; border-radius: 4px; cursor: pointer; user-select: none;' onclick='gearToggleNav()'>"
+			dat += "<span id='gear-nav-arrow' style='color: #87CEEB; font-size: 10px;'>&#9660;</span>"
+			dat += "<span style='color: #87CEEB; font-size: 11px; font-weight: bold;'>Categories</span>"
+			dat += "</div>"
+			dat += "<div id='gear-nav-body' style='display: none;'>"
 			dat += generate_loadout_tree_navigation(gear_tab)
-			dat += "</td></tr>"
+			dat += "</div>"
+			dat += "</div>"
 
 			var/datum/loadout_category/LC = GLOB.loadout_categories[gear_tab]
 			if(!LC)
-				// Если категория не найдена, выбираем первую доступную
 				for(var/cat_name in GLOB.loadout_categories)
 					gear_tab = cat_name
 					LC = GLOB.loadout_categories[gear_tab]
 					break
 
-			// [MANKIND-EDIT] - MANKIND_QOL_LOADOUT
-			// dat += "<tr><td colspan=3><hr></td></tr>"
-			// dat += "<tr><td colspan=3><b><center>[LC.category]</center></b></td></tr>"
-			// dat += "<tr><td colspan=3><hr></td></tr>"
+			// Item grid
+			dat += "<div id='gear-container' style='text-align: left; padding: 4px; max-height: 520px; overflow-y: auto; background: #16161e; border: 1px solid #333; border-radius: 6px;' onscroll='localStorage.setItem(\"gearScrollPos\", this.scrollTop);'>"
 
-			// dat += "<tr><td colspan=3><hr></td></tr>"
-			// dat += "<tr><td><b>Name</b></td>"
-			// dat += "<td><b>Restricted Jobs</b></td>"
-			// dat += "<td><b>Description</b></td></tr>"
-			// dat += "<tr><td colspan=3><hr></td></tr>"	// ORIGINAL
-			dat += "<tr><td colspan=4 style='padding: 5px 0;'><div style='text-align: center; font-weight: bold; font-size: 14px; color: #87CEEB; border-bottom: 1px solid #555; padding-bottom: 3px;'>[LC.category]</div></td></tr>"
 
-			// Сетка предметов
-			dat += "<tr><td colspan=4 style='padding: 0;'>"
-			dat += "<div id='gear-container' style='text-align: left; padding: 10px; max-height: 500px; overflow-y: auto; background: #1a1a1a; border: 1px solid #333; border-radius: 5px;' onscroll='localStorage.setItem(\"gearScrollPos\", this.scrollTop);'>"
-			// [/MANKIND-ADD]
+			dat += "<script>function gearToggleNav(){var nav=document.getElementById('gear-nav-body');var arrow=document.getElementById('gear-nav-arrow');var hidden=nav.style.display==='none';nav.style.display=hidden?'block':'none';arrow.innerHTML=hidden?'&#9660;':'&#9654;';localStorage.setItem('gearNavCollapsed',hidden?'0':'1');}var gc=localStorage.getItem('gearNavCollapsed');if(gc!=='1'){gearToggleNav();}</script>"
+			// Script to save/restore outer scroll position
+			dat += "<script>"
+			dat += "var outerScrollKey='gearOuterScrollPos';"
+			dat += "window.onload=function(){var p=localStorage.getItem(outerScrollKey);if(p){window.scrollTo(0,parseInt(p));localStorage.removeItem(outerScrollKey);}};"
+			dat += "</script>"
+
+			var/items_shown = 0
 			for(var/gear_name in LC.gear)
 				var/datum/gear/G = LC.gear[gear_name]
 				var/is_equipped = (G.display_name in equipped_gear)
-				// [MANKIND-EDIT] - MANKIND_QOL_LOADOUT
-				// dat += "<tr style='vertical-align:top; [is_equipped ? "background: #2a4a2a;" : ""]'>"
 
-				// // Колонка с предметом
-				// dat += "<td align='middle' width='20%'>"
-				// dat += "<a style='white-space:normal;' [(G.display_name in equipped_gear) ? "class='linkOn' " : ""]href='byond://?_src_=prefs;preference=gear;toggle_gear=[G.display_name]'>[G.display_name]</a><br/>"
-				// dat += "<img src='data:image/jpeg;base64,[G.base64icon]' class='loadoutPreview'><hr>"
-				// dat += "</td>"
+				if(gear_search && gear_search != "" && !G.matches_search(gear_search))
+					continue
 
-				// // Колонка с профессиями
-				// dat += "<td>"
-				// if(G.allowed_roles)
-				// 	dat += "<font size=2>"
-				// 	var/list/allowedroles = list()
-				// 	for(var/role in G.allowed_roles)
-				// 		allowedroles += role
-				// 	dat += english_list(allowedroles, null, ", ")
-				// 	dat += "</font>"
-				// dat += "</td>"
+				items_shown++
 
-				// // Колонка с описанием
-				// dat += "<td><font size=2><i>[G.description]</i></font></td>"
+				var/border_color = is_equipped ? "#90EE90" : "#3a3a4a"
+				var/bg_color = is_equipped ? "#1a3a2a" : "#1e1e2e"
+				dat += "<div style='width: 145px; min-height: 105px; border: 1px solid [border_color]; border-radius: 5px; padding: 4px; background: [bg_color]; text-align: center; display: inline-block; vertical-align: top; margin: 3px; cursor: pointer;' "
+				dat += "onclick=\"localStorage.setItem('gearOuterScrollPos',window.pageYOffset||document.documentElement.scrollTop);window.location.href='byond://?_src_=prefs;preference=gear;toggle_gear=[G.display_name]'\" "
+				dat += "onmouseover='this.style.borderColor=\"#87CEEB\"; this.style.transform=\"translateY(-1px)\"; this.style.boxShadow=\"0 2px 8px rgba(0,0,0,0.3)\"' "
+				dat += "onmouseout='this.style.borderColor=\"[border_color]\"; this.style.transform=\"translateY(0)\"; this.style.boxShadow=\"none\"' "
+				dat += ">"
 
-				// dat += "</tr>"	// ORIGINAL
-				// Карточка предмета
-				dat += "<div style='width: 200px; height: 150px; border: 2px solid [is_equipped ? "#90EE90" : "#555"]; border-radius: 8px; padding: 8px; background: [is_equipped ? "#2a4a2a" : "#1a1a1a"]; text-align: center; position: relative; display: inline-block; vertical-align: top; margin: 5px; cursor: pointer;' onclick=\"window.location.href='byond://?_src_=prefs;preference=gear;toggle_gear=[G.display_name]'\">"
-
-				// Фракция над картинкой
 				if(G.allowed_factions && G.allowed_factions.len)
 					var/list/faction_color_map = list(
 						"Nanotrasen" = "#283674",
@@ -1372,30 +1369,32 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					for(var/role in G.allowed_factions)
 						var/color = faction_color_map[role] || "#FFD700"
 						colored_roles += "<span style='color: [color];'>[role]</span>"
-					dat += "<div style='margin: 2px 0 5px 0; font-size: 12px; font-weight: bold;'>[english_list(colored_roles, null, ", ")]</div>"
+					dat += "<div style='margin: 0 0 2px 0; font-size: 9px; font-weight: bold; line-height: 1.1;'>[english_list(colored_roles, null, ", ")]</div>"
 
-				// Иконка предмета
-				dat += "<div style='margin: 5px 0;'>"
-				dat += "<img src='data:image/jpeg;base64,[G.base64icon]' style='width: 64px; height: 64px; border: 1px solid #333;'>"
+				dat += "<div style='margin: 2px 0; padding: 2px; background: #12121a; border-radius: 3px; display: inline-block;'>"
+				dat += "<img src='data:image/jpeg;base64,[G.base64icon]' style='width: 40px; height: 40px; image-rendering: pixelated;'>"
 				dat += "</div>"
 
-				// Название предмета
-				dat += "<div style='margin: 3px 0; color: [is_equipped ? "#90EE90" : "#87CEEB"]; font-weight: bold; font-size: 12px;'>"
-				dat += "[is_equipped ? "✓ " : ""][G.display_name]"
+				dat += "<div style='margin: 2px 0 1px 0; color: [is_equipped ? "#90EE90" : "#87CEEB"]; font-weight: bold; font-size: 10px; line-height: 1.1;'>"
+				dat += "[is_equipped ? "\u2713 " : ""][G.display_name]"
 				dat += "</div>"
 
-				// Описание
-				dat += "<div style='margin: 2px 0; font-size: 12px; color: #CCC; text-align: left; height: 40px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;' title='[G.description]'>"
-				dat += "[G.description]"
+				var/short_desc = G.description
+				if(length(short_desc) > 50)
+					short_desc = copytext(short_desc, 1, 47) + "..."
+				dat += "<div style='font-size: 9px; color: #888; text-align: center; line-height: 1.1; min-height: 20px;' title='[G.description]'>"
+				dat += "[short_desc]"
 				dat += "</div>"
 
 				dat += "</div>"
+
+			if(items_shown == 0)
+				var/no_items_msg = gear_search ? "Nothing found for \"[gear_search]\"" : "No items in this category"
+				dat += "<div style='text-align: center; color: #666; padding: 20px; font-size: 12px;'>[no_items_msg]</div>"
 
 			dat += "</div>"
-			dat += "<script>setTimeout(function(){var container = document.getElementById('gear-container'); if(container) {var pos = localStorage.getItem('gearScrollPos'); if(pos) container.scrollTop = parseInt(pos);}}, 10);</script>"
-			dat += "</td></tr>"
-
-			dat += "</table>"
+			dat += "<script>setTimeout(function(){var c=document.getElementById('gear-container');if(c){var p=localStorage.getItem('gearScrollPos');if(p)c.scrollTop=parseInt(p);}},10);</script>"
+			dat += "</div>"
 			// [/MANKIND-EDIT]
 
 		if(CHAR_GAMEPREFERENCES_TAB) // Game Preferences // [SOLARIS-EDIT] - SOLARIS_W_TTS_VOICES - Упрощаем понимание кода // ORIGINAL // if (3)
@@ -1671,7 +1670,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	dat += "</center>"
 
 	winshow(user, "preferences_window", TRUE)
-	var/datum/browser/popup = new(user, "preferences_browser", "<div align='center'>Character Setup</div>", 640, 825)
+	var/datum/browser/popup = new(user, "preferences_browser", "<div align='center'>Character Setup</div>", 650, 825)
 	popup.set_content(dat.Join())
 	popup.open(FALSE)
 	onclose(user, "preferences_window", src)
@@ -2067,6 +2066,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		else if(href_list["toggle_loadout"])
 			show_loadout = !show_loadout
 			update_preview_icon(show_gear, show_loadout)	// [MANKIND-ADD] - MANKIND_QOL_LOADOUT
+		else if("gear_search" in href_list)
+			gear_search = url_decode(href_list["gear_search"])
 
 		ShowChoices(user)
 		return
@@ -3094,6 +3095,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						random_character()
 						real_name = random_unique_name(gender)
 						save_character()
+					gear_search = ""
 
 				if("character_tab") // [CELADON-EDIT] - CELADON_W_TTS_VOICES - Улучшаем понимание кода // ORIGINAL // if("tab")
 					if (href_list["tab"])
