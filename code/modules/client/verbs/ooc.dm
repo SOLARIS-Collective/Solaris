@@ -29,10 +29,16 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 		return
 
 	msg = copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN)
-	var/raw_msg = msg
 
 	if(!msg)
-		return
+		msg = input(usr, "ooc \"text\"", "OOC", "") as text|null
+		if(isnull(msg))
+			return
+		msg = copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN)
+		if(!msg)
+			return
+
+	var/raw_msg = msg
 
 	msg = emoji_parse(msg)
 
@@ -86,15 +92,14 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 						to_chat(C, span_oocplain("<font color='[COLOR_OOC]'><b>[span_prefix("OOC:")] <EM>[holder.fakekey ? holder.fakekey : key]:</EM> <span class='message linkify'>[msg]</span></b></font>"), MESSAGE_TYPE_OOC)
 					else
 						to_chat(C, span_ooc("[span_prefix("OOC:")] <EM>[holder.fakekey ? holder.fakekey : key]:</EM> <span class='message linkify'>[msg]</span>"), MESSAGE_TYPE_OOC)
-
-		else
-			if(COLOR_OOC)
-				if(check_mentor())
-					to_chat(C, span_oocplain("<font color='["#00b40f"]'><b>[span_prefix("OOC:")] <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></b></font>"), MESSAGE_TYPE_OOC)
-				else
-					to_chat(C, span_oocplain("<font color='[COLOR_OOC]'><b>[span_prefix("OOC:")] <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></b></font>"), MESSAGE_TYPE_OOC)
 			else
-				to_chat(C, span_ooc("[span_prefix("OOC:")] <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span>"), MESSAGE_TYPE_OOC)
+				if(COLOR_OOC)
+					if(check_mentor())
+						to_chat(C, span_oocplain("<font color='["#00b40f"]'><b>[span_prefix("OOC:")] <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></b></font>"), MESSAGE_TYPE_OOC)
+					else
+						to_chat(C, span_oocplain("<font color='[COLOR_OOC]'><b>[span_prefix("OOC:")] <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></b></font>"), MESSAGE_TYPE_OOC)
+				else
+					to_chat(C, span_ooc("[span_prefix("OOC:")] <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span>"), MESSAGE_TYPE_OOC)
 
 /proc/toggle_ooc(toggle = null)
 	if(toggle != null) //if we're specifically en/disabling ooc
