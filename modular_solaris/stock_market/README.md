@@ -14,7 +14,9 @@
 | `code/emitters.dm` | Конкретные эмитенты (11 шт.) подтипами |
 | `code/news_events.dm` | `/datum/stock_event` + 27 шаблонов событий/новостей |
 | `code/brokerage.dm` | `/datum/brokerage_session` (счёт трейдера) и `/datum/stock_order` (лимитный ордер) |
-| `code/subsystem.dm` | `SSstock_market`: тики цен, события, спрос секторов, игровые хуки |
+| `code/subsystem.dm` | `SSstock_market`: тики цен, события, спрос секторов, игровые хуки, рантайм-крутилки |
+| `code/terminal.dm` | Терминал `obj/machinery/computer/stock_terminal` (игровой UI) |
+| `code/admin_panel.dm` | Админ-панель биржи `/datum/stock_market_admin` |
 | `code/roundend_report.dm` | Итоги смены через `SSticker.OnRoundend` |
 
 ## Как это работает
@@ -100,11 +102,26 @@ SSstock_market.news_feed                       // лента заголовко�
 
 ## Roadmap (после MVP)
 
-- Терминал `obj/machinery/computer/stock_terminal` + tgui `StockExchange`
-  (Рынок / Компания+стакан / Портфель / Мои ордера / Новости). Режим доступа:
-  фракционные корабли — пул фракции, independent/пираты — личный счёт.
-- PDA/радио уведомления об исполнении ордеров и крупных новостях.
-- Эскроу лимитных ордеров; тикер на голоскрины.
-- Кроссраундовая персистентность — осознанно отложена (каждый шифт рынок свежий).
+- [x] Терминал `obj/machinery/computer/stock_terminal` + tgui `StockExchange`
+  (Рынок / Компания+стакан / Портфель / Мои ордера / Новости), графики цен
+  (`Chart.Line`, спарклайны в списке). Режим доступа: фракционные корабли — пул
+  фракции, independent/пираты — личный счёт (по банк-карте).
+- [x] Админ-панель `StockAdmin` (верб `Admin.Game`: «Фондовая биржа: контроль»):
+  пауза/заморозка времени, принудительный тик/событие, live-правка всех балансовых
+  крутилок и таймингов, эмитенты (имя/описание/сектор/цены/шок/халт), оверрайды
+  шаблонов событий, кастомные новости. Крутилки дублируются на подсистеме
+  (`market_paused`, `market_wait` в десекундах, `broker_fee_percent`, `mm_spread`,
+  `mean_reversion`, `max_position_share`, `faction_vault_start`, `trader_share`,
+  `demand_threshold/decay/shock_max`, `event_interval_min/max`,
+  `max_orders_per_session`, `news_feed_length`), оверрайды событий — через
+  `event_overrides` на `SSstock_market`.
+- [x] Устанавливаемое ПО для ПДА (NTOS): `/datum/computer_file/program/stock_terminal`
+  (`tgui_id = "NtosStockTerminal"`), тот же общий интерфейс `StockExchangeContent`
+  в обёртке `NtosWindow`. Скачивается из NTNet-каталога (`available_on_ntnet`) и
+  предустановлено на планшеты. Логика сессий/данных/действий общая с терминалом:
+  `SSstock_market.terminal_session/terminal_ui_data/handle_terminal_act`.
+- [ ] PDA/радио уведомления об исполнении ордеров и крупных новостях.
+- [ ] Эскроу лимитных ордеров; тикер на голоскрины.
+- [ ] Кроссраундовая персистентность — осознанно отложена (каждый шифт рынок свежий).
 
 Автор: MrCat15352

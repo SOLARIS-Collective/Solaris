@@ -32,7 +32,7 @@
 
 /datum/stock_event/earnings_beat
 	name = "earnings beat"
-	headline = "%NAME% beats quarterly forecasts"
+	headline = "%NAME% отчитался лучше квартальных прогнозов"
 	weight = 12
 	shock_min = 6
 	shock_max = 14
@@ -40,14 +40,14 @@
 
 /datum/stock_event/earnings_miss
 	name = "earnings miss"
-	headline = "%NAME% misses earnings estimates"
+	headline = "%NAME% отчитался хуже ожиданий рынка"
 	weight = 12
 	shock_min = -16
 	shock_max = -8
 
 /datum/stock_event/product_launch
 	name = "product launch"
-	headline = "%NAME% unveils a new flagship product line"
+	headline = "%NAME% представил новую флагманскую линейку продукции"
 	weight = 10
 	shock_min = 5
 	shock_max = 12
@@ -56,14 +56,14 @@
 
 /datum/stock_event/product_recall
 	name = "product recall"
-	headline = "%NAME% recalls its latest production batch"
+	headline = "%NAME% отзывает последнюю партию продукции"
 	weight = 9
 	shock_min = -14
 	shock_max = -6
 
 /datum/stock_event/scandal
 	name = "scandal"
-	headline = "Corruption scandal engulfs %NAME% management"
+	headline = "Коррупционный скандал сотрясает руководство %NAME%"
 	weight = 7
 	shock_min = -18
 	shock_max = -8
@@ -71,7 +71,7 @@
 
 /datum/stock_event/ceo_change
 	name = "ceo change"
-	headline = "%NAME% announces a sudden CEO replacement"
+	headline = "%NAME% объявляет о внезапной смене генерального директора"
 	weight = 8
 	shock_min = -5
 	shock_max = 9
@@ -79,7 +79,7 @@
 
 /datum/stock_event/merger_rumor
 	name = "merger rumor"
-	headline = "Rumor: %NAME% may be acquired at a premium"
+	headline = "Слух: %NAME% могут купить с премией к рынку"
 	weight = 7
 	shock_min = 10
 	shock_max = 22
@@ -89,14 +89,14 @@
 
 /datum/stock_event/strike
 	name = "strike"
-	headline = "Workers at %NAME% facilities walk out on strike"
+	headline = "Рабочие на предприятиях %NAME% объявили забастовку"
 	weight = 8
 	shock_min = -12
 	shock_max = -5
 
 /datum/stock_event/gov_contract
 	name = "gov contract"
-	headline = "%NAME% wins a lucrative government contract"
+	headline = "%NAME% выигрывает крупный государственный контракт"
 	weight = 9
 	valid_sectors = list(STOCK_SECTOR_DEFENSE, STOCK_SECTOR_LOGISTICS, STOCK_SECTOR_INDUSTRIAL)
 	shock_min = 7
@@ -104,14 +104,14 @@
 
 /datum/stock_event/patent_dispute
 	name = "patent dispute"
-	headline = "%NAME% dragged into a costly patent dispute"
+	headline = "%NAME% втянут в дорогостоящий патентный спор"
 	weight = 7
 	shock_min = -10
 	shock_max = -4
 
 /datum/stock_event/breakthrough
 	name = "breakthrough"
-	headline = "%NAME% labs report a major breakthrough"
+	headline = "Лаборатории %NAME% сообщают о крупном прорыве"
 	weight = 6
 	valid_sectors = list(STOCK_SECTOR_MEDICAL, STOCK_SECTOR_ENERGY, STOCK_SECTOR_INDUSTRIAL)
 	shock_min = 12
@@ -121,7 +121,7 @@
 
 /datum/stock_event/dividend_raise
 	name = "dividend raise"
-	headline = "%NAME% raises its dividend payout"
+	headline = "%NAME% повышает дивидендные выплаты"
 	weight = 8
 	valid_sectors = list(STOCK_SECTOR_FINANCE, STOCK_SECTOR_MATERIALS, STOCK_SECTOR_AGRO)
 	shock_min = 3
@@ -129,7 +129,7 @@
 
 /datum/stock_event/short_report
 	name = "short report"
-	headline = "Short seller report accuses %NAME% of accounting fraud"
+	headline = "Шорт-репорт обвиняет %NAME% в бухгалтерских махинациях"
 	weight = 6
 	shock_min = -20
 	shock_max = -10
@@ -138,7 +138,7 @@
 
 /datum/stock_event/meme_hype
 	name = "meme hype"
-	headline = "Frontier traders pump %TICKER% into a speculative frenzy"
+	headline = "Трейдеры Фронтира разгоняют %TICKER% в спекулятивный ажиотаж"
 	weight = 4
 	shock_min = 30
 	shock_max = 70
@@ -149,7 +149,7 @@
 
 /datum/stock_event/factory_expansion
 	name = "factory expansion"
-	headline = "%NAME% breaks ground on new production capacity"
+	headline = "%NAME% закладывает новые производственные мощности"
 	weight = 8
 	valid_sectors = list(STOCK_SECTOR_INDUSTRIAL, STOCK_SECTOR_MATERIALS, STOCK_SECTOR_AGRO)
 	shock_min = 4
@@ -157,7 +157,7 @@
 
 /datum/stock_event/supply_chain_issue
 	name = "supply chain issue"
-	headline = "Supply chain troubles delay %NAME% shipments"
+	headline = "Проблемы с логистикой задерживают поставки %NAME%"
 	weight = 8
 	valid_sectors = list(STOCK_SECTOR_LOGISTICS, STOCK_SECTOR_INDUSTRIAL, STOCK_SECTOR_MATERIALS)
 	shock_min = -11
@@ -165,7 +165,7 @@
 
 /datum/stock_event/regulatory_probe
 	name = "regulatory probe"
-	headline = "Regulators open an antitrust probe into %NAME%"
+	headline = "Регуляторы открывают антимонопольную проверку %NAME%"
 	weight = 7
 	valid_sectors = list(STOCK_SECTOR_FINANCE, STOCK_SECTOR_ENERGY, STOCK_SECTOR_MEDICAL)
 	shock_min = -13
@@ -173,7 +173,7 @@
 
 /datum/stock_event/pirate_activity
 	name = "pirate activity"
-	headline = "Pirate raids disrupt %NAME% supply routes"
+	headline = "Пиратские налёты нарушают маршруты снабжения %NAME%"
 	weight = 8
 	valid_sectors = list(STOCK_SECTOR_LOGISTICS, STOCK_SECTOR_AGRO)
 	shock_min = -10
@@ -181,7 +181,7 @@
 
 /datum/stock_event/bumper_harvest
 	name = "bumper harvest"
-	headline = "%NAME% reports a record harvest season"
+	headline = "%NAME% сообщает о рекордном урожайном сезоне"
 	weight = 7
 	valid_sectors = list(STOCK_SECTOR_AGRO)
 	shock_min = 5
@@ -189,7 +189,7 @@
 
 /datum/stock_event/epidemic
 	name = "epidemic"
-	headline = "Outbreak on the rim drives demand for %NAME% products"
+	headline = "Вспышка на окраинах повышает спрос на продукцию %NAME%"
 	weight = 6
 	valid_sectors = list(STOCK_SECTOR_MEDICAL)
 	shock_min = 8
@@ -197,7 +197,7 @@
 
 /datum/stock_event/trading_halt
 	name = "trading halt"
-	headline = "Exchange halts trading in %TICKER% pending disclosures"
+	headline = "Биржа приостанавливает торги по %TICKER% до раскрытия информации"
 	weight = 5
 	shock_min = -1
 	shock_max = 1
@@ -205,7 +205,7 @@
 
 /datum/stock_event/bull_run
 	name = "bull run"
-	headline = "Markets rally across the board in a broad bull run"
+	headline = "Рынок растёт по всем фронтам — широкое ралли"
 	weight = 5
 	market_wide = TRUE
 	shock_min = 6
@@ -213,7 +213,7 @@
 
 /datum/stock_event/panic_selloff
 	name = "panic selloff"
-	headline = "Investors dump shares amid frontier-wide panic"
+	headline = "Инвесторы сбрасывают акции в панике по всему Фронтиру"
 	weight = 5
 	market_wide = TRUE
 	shock_min = -18
@@ -222,7 +222,7 @@
 
 /datum/stock_event/quiet_session
 	name = "quiet session"
-	headline = "A quiet session settles over the exchange floor"
+	headline = "На биржевую площадку опустилась тихая сессия"
 	weight = 6
 	market_wide = TRUE
 	shock_min = 0
@@ -232,7 +232,7 @@
 
 /datum/stock_event/sector_rotation
 	name = "sector rotation"
-	headline = "Capital rotates into %NAME%'s sector"
+	headline = "Капитал перетекает в сектор %NAME%"
 	weight = 6
 	shock_min = 4
 	shock_max = 10
@@ -242,7 +242,7 @@
 /// Gameplay-driven template: fired by SSstock_market hooks, never rolled randomly.
 /datum/stock_event/faction_success
 	name = "faction success"
-	headline = "%NAME% stock rises after successful operations of affiliated fleets"
+	headline = "Акции %NAME% растут после успешных операций аффилированных флотов"
 	gameplay_driven = TRUE
 	shock_min = 1
 	shock_max = 2
@@ -250,7 +250,7 @@
 
 /datum/stock_event/faction_failure
 	name = "faction failure"
-	headline = "%NAME% stock slides after setbacks of affiliated fleets"
+	headline = "Акции %NAME% падают после неудач аффилированных флотов"
 	gameplay_driven = TRUE
 	shock_min = -2
 	shock_max = -1

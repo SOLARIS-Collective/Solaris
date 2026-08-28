@@ -53,7 +53,7 @@
 		vol_mult = 1
 		vol_until_tick = 0
 	var/noise = gaussian(0, 1) * volatility * vol_mult
-	price *= 1 + noise + STOCK_MEAN_REVERSION * ((fundamental - price) / max(fundamental, 1))
+	price *= 1 + noise + SSstock_market.mean_reversion * ((fundamental - price) / max(fundamental, 1))
 	price = max(round(price, 0.1), 1)
 	history += price
 	if(length(history) > STOCK_HISTORY_LENGTH)
@@ -63,9 +63,12 @@
 /datum/stock_company/proc/get_quotes()
 	if(halted_until_tick > SSstock_market.ticks_elapsed)
 		return null
+	var/spread = STOCK_MM_SPREAD // дефолт на случай раннего вызова
+	if(!isnull(SSstock_market?.mm_spread))
+		spread = SSstock_market.mm_spread
 	return list(
-		"bid" = round(price * (1 - STOCK_MM_SPREAD), 0.1),
-		"ask" = round(price * (1 + STOCK_MM_SPREAD), 0.1),
+		"bid" = round(price * (1 - spread), 0.1),
+		"ask" = round(price * (1 + spread), 0.1),
 	)
 
 /// Шок фундаментала в процентах. peer_spread - доля шока соседям:

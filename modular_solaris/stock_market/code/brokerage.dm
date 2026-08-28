@@ -124,7 +124,7 @@
 	return execute_sell(company, count, quotes["bid"])
 
 /datum/brokerage_session/proc/execute_buy(datum/stock_company/company, count, unit_price)
-	var/max_count = floor(company.float_shares * STOCK_MAX_POSITION_SHARE)
+	var/max_count = floor(company.float_shares * SSstock_market.max_position_share)
 	var/existing = 0
 	if(positions[company.ticker])
 		existing = positions[company.ticker]["count"]
@@ -132,7 +132,7 @@
 		last_error = "Position cap reached for [company.ticker]."
 		return FALSE
 	var/cost = round(unit_price * count, 1)
-	var/fee = round(cost * STOCK_BROKER_FEE_PERCENT / 100, 1)
+	var/fee = round(cost * SSstock_market.broker_fee_percent / 100, 1)
 	if(!can_afford(cost + fee))
 		last_error = "Insufficient funds."
 		return FALSE
@@ -141,6 +141,7 @@
 	update_position_buy(company.ticker, count, cost)
 	net_pl -= fee
 	turnover += cost
+	SSstock_market.log_trade(trader_name, company.ticker, "buy", count, unit_price)
 	return TRUE
 
 /datum/brokerage_session/proc/update_position_buy(target_ticker, count, cost)
@@ -156,13 +157,14 @@
 
 /datum/brokerage_session/proc/execute_sell(datum/stock_company/company, count, unit_price)
 	var/proceeds = round(unit_price * count, 1)
-	var/fee = round(proceeds * STOCK_BROKER_FEE_PERCENT / 100, 1)
+	var/fee = round(proceeds * SSstock_market.broker_fee_percent / 100, 1)
 	var/basis = round(positions[company.ticker]["avg_cost"] * count, 1)
 	if(!credit(proceeds - fee))
 		return FALSE
 	net_pl += proceeds - fee - basis
 	turnover += proceeds
 	reduce_position(company.ticker, count)
+	SSstock_market.log_trade(trader_name, company.ticker, "sell", count, unit_price)
 	return TRUE
 
 /datum/brokerage_session/proc/reduce_position(target_ticker, count)
@@ -180,11 +182,11 @@
 		last_error = "Invalid limit price."
 		return null
 	if(new_order_type == STOCK_ORDER_BUY && positions[target_ticker])
-		var/max_count = floor(company.float_shares * STOCK_MAX_POSITION_SHARE)
+		var/max_count = floor(company.float_shares * SSstock_market.max_position_share)
 		if(positions[target_ticker]["count"] + count > max_count)
 			last_error = "Position cap reached for [target_ticker]."
 			return null
-	if(length(orders) >= STOCK_MAX_ORDERS_PER_SESSION)
+	if(length(orders) >= SSstock_market.max_orders_per_session)
 		last_error = "Too many resting orders."
 		return null
 	var/datum/stock_order/order = new(src, new_order_type, target_ticker, count, limit_price)
@@ -245,7 +247,7 @@
 		return
 	settled = TRUE
 	cancel_all_orders()
-	var/premium = floor(net_pl * trader_share)
+	var/premium = floor(net_pl * SSstock_market.trader_share)
 	var/datum/bank_account/payout = premium_account_ref?.resolve()
 	if(!premium || isnull(payout))
 		return
@@ -271,6 +273,13 @@
 			continue
 		total += quotes["bid"] * positions[target_ticker]["count"]
 	return round(total, 1)
+
+/// Cash available for new trades (account balance or faction vault).
+/datum/brokerage_session/proc/cash_balance()
+	if(mode == STOCK_MODE_FACTION)
+		return vault_balance
+	var/datum/bank_account/account = get_account()
+	return account ? account.account_balance : 0
 
 /// Pool gain over the shift, for roundend reporting.
 /datum/brokerage_session/proc/vault_delta()

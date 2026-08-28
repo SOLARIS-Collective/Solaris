@@ -10,5 +10,8 @@
 #include "code/brokerage.dm"
 #include "code/subsystem.dm"
 #include "code/roundend_report.dm"
+#include "code/terminal.dm"
+#include "code/admin_panel.dm"
+#include "code/pda_program.dm"
 
 #endif

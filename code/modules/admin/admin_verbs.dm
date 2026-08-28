@@ -44,6 +44,7 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/datum/verbs/Admin/verb/playerpanel,	// [MANKIND-EDIT] - ADMIN-PANEL - НЕ МЕНЯТЬ ЭТО: /menu/
 	/client/proc/game_panel,			/*game panel, allows to change game-mode etc*/
 	/client/proc/check_ai_laws,			/*shows AI and borg laws*/
+	/client/proc/stock_market_control,	// [SOLARIS-ADD] - STOCK_ADMIN_CONTROL - панель управления Фронтир-биржей
 	/datum/admins/proc/toggleooc,		/*toggles ooc on/off for everyone*/
 	/datum/admins/proc/toggleooclocal,	/*toggles looc on/off for everyone*/
 	/datum/admins/proc/toggledeadchat,	/*toggles deadchat on/off for everyone*/

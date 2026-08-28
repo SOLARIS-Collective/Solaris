@@ -46,9 +46,11 @@
 			best_ticker = ticker
 		if(isnull(worst_ticker) || company.round_change_percent() < companies[worst_ticker].round_change_percent())
 			worst_ticker = ticker
+	var/datum/stock_company/best_company = companies[best_ticker]
+	var/datum/stock_company/worst_company = companies[worst_ticker]
 	. = list(
-		"Best of the shift: <b>[best_ticker]</b> ([companies[best_ticker].round_change_percent()]%)",
-		"Worst of the shift: <b>[worst_ticker]</b> ([companies[worst_ticker].round_change_percent()]%)",
+		"Best of the shift: <b>[best_ticker]</b> ([best_company?.round_change_percent()]%)",
+		"Worst of the shift: <b>[worst_ticker]</b> ([worst_company?.round_change_percent()]%)",
 		"Exchange turnover: <b>[turnover_total] cr</b> across [length(sessions)] session(s).",
 	)
 
