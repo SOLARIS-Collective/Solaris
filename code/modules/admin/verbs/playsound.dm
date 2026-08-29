@@ -32,9 +32,9 @@
 
 	for(var/mob/M in GLOB.player_list)
 		if(M.client.prefs.toggles & SOUND_MIDI)
-			admin_sound.volume = vol * M.client.admin_music_volume
-			SEND_SOUND(M, admin_sound)
-			admin_sound.volume = vol
+			// [MANKIND-EDIT] - MANKIND_FIXES - Масштабируем админские звуки по категории FS_ADMIN (слайдер "Админские")
+			M.send_sound_scaled(admin_sound, FS_ADMIN, CHANNEL_ADMIN, vol * M.client.admin_music_volume)
+			// [/MANKIND-EDIT]
 
 	BLACKBOX_LOG_ADMIN_VERB("Play Global Sound")
 

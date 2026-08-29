@@ -23,6 +23,35 @@
 	)
 	environment = SOUND_ENVIRONMENT_NONE //Default to none so sounds without overrides dont get reverb
 
+/// Per-client tracking of which local sound channels are playing which volume category (sound_flag).
+/// Keyed by `"[channel]"` with a value of `list(sound_flag, base_volume, world.time)` so that moving a slider in
+/// the sound panel can immediately re-scale every currently playing sound of that category.
+/client/var/list/sound_category_channels
+
+/// Records that [channel] currently plays a sound of [sound_flag] category with an unscaled volume of [base_volume].
+/client/proc/track_category_sound(channel, sound_flag, base_volume)
+	if(!channel || !sound_flag)
+		return
+	if(!islist(sound_category_channels))
+		sound_category_channels = list()
+	var/key = num2text(channel)
+	sound_category_channels[key] = list(sound_flag, base_volume, world.time)
+	if(length(sound_category_channels) > SOUND_CHANNEL_TRACK_LIMIT)
+		var/min_time = world.time - SOUND_CHANNEL_TRACK_AGE
+		for(var/k in sound_category_channels)
+			if(sound_category_channels[k][3] < min_time)
+				sound_category_channels -= k
+
+/// Live-recalculates the volume of every currently playing channel of [sound_flag] category from its base volume (0 - 100 slider).
+/client/proc/update_category_volume(sound_flag, volume)
+	if(!islist(sound_category_channels))
+		return
+	volume = clamp(volume, 0, 100)
+	for(var/key in sound_category_channels)
+		var/list/entry = sound_category_channels[key]
+		if(entry[1] == sound_flag)
+			mob?.set_sound_channel_volume(text2num(key), round(entry[2] * volume / 100))
+
 /*! playsound
 
 playsound is a proc used to play a 3D sound in a specific range. This uses SOUND_RANGE + extra_range to determine that.
@@ -189,21 +218,25 @@ distance_multiplier - Can be used to multiply the distance at which the sound is
 			S.echo[4] = 0 //RoomHF setting, 0 means normal reverb.
 
 	// Apply sound flag volume scaling
+	var/base_volume = S.volume // [MANKIND-ADD] - MANKIND_FIXES - Базовую громкость запоминаем до применения слайдера категории
 	if(client?.prefs?.sound_volume)
 		S.volume = round(S.volume * (client.prefs.sound_volume[sound_flag] / 100))
 
 	if(S.volume <= 0)
 		return //No sound
 
+	// [MANKIND-ADD] - MANKIND_FIXES - Помечаем канал как используемый категорией, чтобы слайдер громкости мог менять его на лету
+	client?.track_category_sound(S.channel, sound_flag, base_volume)
+	// [/MANKIND-ADD]
 	SEND_SOUND(src, S)
 
-/proc/sound_to_playing_players(soundin, volume = 100, vary = FALSE, frequency = 0, channel = 0, pressure_affected = FALSE, sound/S)
+/proc/sound_to_playing_players(soundin, volume = 100, vary = FALSE, frequency = 0, channel = 0, pressure_affected = FALSE, sound/S, sound_flag = FS_GENERAL)
 	if(!S)
 		S = sound(get_sfx(soundin))
 	for(var/m in GLOB.player_list)
 		if(ismob(m) && !isnewplayer(m))
 			var/mob/M = m
-			M.playsound_local(M, null, volume, vary, frequency, null, channel, pressure_affected, S)
+			M.playsound_local(M, null, volume, vary, frequency, null, channel, pressure_affected, S, sound_flag = sound_flag)
 
 /mob/proc/stop_sound_channel(chan)
 	SEND_SOUND(src, sound(null, repeat = 0, wait = 0, channel = chan))
@@ -218,7 +251,8 @@ distance_multiplier - Can be used to multiply the distance at which the sound is
 /mob/proc/send_sound_scaled(soundin, sound_flag = FS_GENERAL, channel = 0, volume = 100)
 	if(!client)
 		return
-	var/sound/S = istype(soundin, /sound) ? soundin : sound(soundin)
+	var/needs_setup = !istype(soundin, /sound)
+	var/sound/S = needs_setup ? sound(soundin) : soundin
 	S.volume = volume
 	if(client.prefs?.sound_volume)
 		S.volume = round(S.volume * (client.prefs.sound_volume[sound_flag] / 100))
@@ -226,8 +260,10 @@ distance_multiplier - Can be used to multiply the distance at which the sound is
 		return
 	if(channel)
 		S.channel = channel
-	S.wait = 0
+	if(needs_setup)
+		S.wait = 0 //Only touch queueing for sounds we built ourselves; caller-prepared sounds (e.g. VOX) keep their own wait/status.
 	SEND_SOUND(src, S)
+	client?.track_category_sound(S.channel, sound_flag, volume)
 // [/MANKIND-ADD]
 
 /client/proc/playtitlemusic(vol = 85)

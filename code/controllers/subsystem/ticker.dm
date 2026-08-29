@@ -326,7 +326,9 @@ SUBSYSTEM_DEF(ticker)
 	SSredbot.send_discord_message("ooc", "**A new round has begun.**")
 // [MANKIND-EDIT]- MUSIC_MANKIND
 //	SEND_SOUND(world, sound('sound/roundstart/addiguana.ogg')) // ORIGINAL
-	SEND_SOUND(world, sound('modular_mankind/_storage_sounds/sound/lobby/sztart.ogg'))
+	// [MANKIND-EDIT] - MANKIND_FIXES - Звук начала раунда подчиняется категории "Оповещения"
+	sound_to_playing_players('modular_mankind/_storage_sounds/sound/lobby/sztart.ogg', 100, sound_flag = FS_ANNOUNCEMENTS)
+	// [/MANKIND-EDIT]
 // [/MANKIND-EDIT]
 
 	current_state = GAME_STATE_PLAYING
@@ -404,7 +406,7 @@ SUBSYSTEM_DEF(ticker)
 		listclearnulls(queued_players)
 		for (var/mob/dead/new_player/NP in queued_players)
 			to_chat(NP, span_userdanger("The alive players limit has been released!<br><a href='byond://?src=[REF(NP)];late_join=override'>[html_encode(">>Join Game<<")]</a>"))
-			SEND_SOUND(NP, sound('sound/misc/notice1.ogg'))
+			NP.send_sound_scaled(sound('sound/misc/notice1.ogg'), FS_ANNOUNCEMENTS)
 			NP.LateChoices()
 		queued_players.len = 0
 		queue_delay = 0
@@ -419,7 +421,7 @@ SUBSYSTEM_DEF(ticker)
 			if(living_player_count() < hpc)
 				if(next_in_line && next_in_line.client)
 					to_chat(next_in_line, span_userdanger("A slot has opened! You have approximately 20 seconds to join. <a href='byond://?src=[REF(next_in_line)];late_join=override'>\>\>Join Game\<\<</a>"))
-					SEND_SOUND(next_in_line, sound('sound/misc/notice1.ogg'))
+					next_in_line.send_sound_scaled(sound('sound/misc/notice1.ogg'), FS_ANNOUNCEMENTS)
 					next_in_line.LateChoices()
 					return
 				queued_players -= next_in_line //Client disconnected, remove he

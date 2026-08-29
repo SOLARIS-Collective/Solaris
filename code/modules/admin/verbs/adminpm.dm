@@ -244,7 +244,7 @@
 
 			//play the receiving admin the adminhelp sound (if they have them enabled)
 			if(recipient.prefs.toggles & SOUND_ADMINHELP)
-				SEND_SOUND(recipient, sound('sound/effects/adminhelp.ogg'))
+				recipient.mob?.send_sound_scaled(sound('sound/effects/adminhelp.ogg'), FS_ADMIN)
 		else
 			if(holder)	//sender is an admin but recipient is not. Do BIG RED TEXT
 				var/already_logged = FALSE
@@ -276,7 +276,7 @@
 					SSblackbox.log_ahelp(recipient.current_ticket.id, "Reply", msg, recipient.ckey, src.ckey)
 
 				//always play non-admin recipients the adminhelp sound
-				SEND_SOUND(recipient, sound('sound/effects/adminhelp.ogg'))
+				recipient.mob?.send_sound_scaled(sound('sound/effects/adminhelp.ogg'), FS_ADMIN)
 
 			else //neither are admins
 				if(!current_ticket)
@@ -408,7 +408,7 @@
 
 	window_flash(C, ignorepref = TRUE)
 	//always play non-admin recipients the adminhelp sound
-	SEND_SOUND(C, 'sound/effects/adminhelp.ogg')
+	C.mob?.send_sound_scaled(sound('sound/effects/adminhelp.ogg'), FS_ADMIN)
 
 	C.externalreplyamount = EXTERNALREPLYCOUNT
 

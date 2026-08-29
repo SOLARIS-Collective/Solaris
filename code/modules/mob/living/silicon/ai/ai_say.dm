@@ -145,9 +145,9 @@
 				if(M.can_hear() && (M.client.prefs.toggles & SOUND_ANNOUNCEMENTS))
 					var/turf/T = get_turf(M)
 					if(T.virtual_z() == z_level)
-						SEND_SOUND(M, voice)
+						M.send_sound_scaled(voice, FS_ANNOUNCEMENTS)
 		else
-			SEND_SOUND(only_listener, voice)
+			only_listener.send_sound_scaled(voice, FS_ANNOUNCEMENTS)
 		return 1
 	return 0
 

@@ -1403,7 +1403,7 @@
 		update_inv_hands()
 		if(prompted)
 			to_chat(src, span_adminnotice("Your prayers have been answered!! You received the <b>best [I.name]!</b>"), confidential = TRUE)
-			SEND_SOUND(src, sound('sound/effects/pray_chaplain.ogg'))
+			send_sound_scaled(sound('sound/effects/pray_chaplain.ogg'), FS_PRAYERS)
 		return TRUE
 	else
 		qdel(I)

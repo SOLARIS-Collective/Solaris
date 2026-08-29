@@ -38,7 +38,15 @@
 //THIS SHOULD ALWAYS BE THE LOWEST ONE!
 //KEEP IT UPDATED
 
-#define CHANNEL_HIGHEST_AVAILABLE 1015
+//The random/reservable channel pool runs 1..CHANNEL_HIGHEST_AVAILABLE.
+//Every dedicated CHANNEL_* above it (BICYCLE and up) is exclusive and never handed out randomly,
+//otherwise one-off sounds could stomp looping channels (ambience, buzz, jukebox, vox, admin, lobby).
+#define CHANNEL_HIGHEST_AVAILABLE 1011
+
+/// How many local channels per player we remember for live category volume updates.
+#define SOUND_CHANNEL_TRACK_LIMIT 256
+/// How long we keep a (potentially finished) channel in the category tracking lists. 100 ticks = 10 seconds.
+#define SOUND_CHANNEL_TRACK_AGE 100
 
 #define MAX_INSTRUMENT_CHANNELS (128 * 6)
 
