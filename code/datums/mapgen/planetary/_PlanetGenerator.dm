@@ -171,33 +171,10 @@
 #undef BIOME_RANDOM_SQUARE_DRIFT
 
 
-/datum/map_generator/planet_generator/post_generation(list/turf/turfs)
-	var/start_time = REALTIMEOFDAY
-	var/message = "MAPGEN: MAPGEN REF [REF(src)] ([type]) STARTING POST GEN"
-	log_shuttle(message)
-	log_world(message)
-
-	for(var/turf/check_turf as anything in turfs)
-
-		var/obj/effect/greeble_spawner/our_greeble = locate(/obj/effect/greeble_spawner) in check_turf
-		if(our_greeble)
-			our_greeble.start_load()
-
-		CHECK_TICK
-
-	for(var/turf/gen_turf as anything in turfs)
-		gen_turf.AfterChange(CHANGETURF_IGNORE_AIR)
-
-		QUEUE_SMOOTH(gen_turf)
-		QUEUE_SMOOTH_NEIGHBORS(gen_turf)
-
-		for(var/turf/open/space/adj in RANGE_TURFS(1, gen_turf))
-			adj.check_starlight(gen_turf)
-
-		// CHECK_TICK here is fine -- we are assuming that the turfs we're generating are staying relatively constant
-		CHECK_TICK
-
-	message = "MAPGEN: MAPGEN REF [REF(src)] ([type]) HAS FINISHED POST GEN IN [(REALTIMEOFDAY - start_time)/10]s"
-	log_shuttle(message)
-	log_world(message)
+/// Pre-pass of post_generation: each generated turf triggers its greeble spawners
+/// before the universal post steps (AfterChange/smoothing/starlight).
+/datum/map_generator/planet_generator/pre_post_generation_turf(turf/check_turf)
+	var/obj/effect/greeble_spawner/our_greeble = locate(/obj/effect/greeble_spawner) in check_turf
+	if(our_greeble)
+		our_greeble.start_load()
 	return
