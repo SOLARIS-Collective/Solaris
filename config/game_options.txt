@@ -550,7 +550,7 @@ USE_QUADRANT_GRID 1
 ## SHIP_ROTATION - Включает ротацию кораблей. Каждый раунд случайная половина кораблей
 ## доступна для покупки на каждую фракцию. Требует перезагрузки сервера.
 ## 1 - включить, 0 - выключить.
-SHIP_ROTATION 1
+SHIP_ROTATION 0
 
 ## TICK STABILIZATION ###
 ## Burn spare tick time to pin cpu usage to a consistent level.

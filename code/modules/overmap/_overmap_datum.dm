@@ -520,16 +520,14 @@
 	docking = TRUE
 
 	var/datum/docking_ticket/ticket = dock_target.pre_docked(src, override_dock)
-	var/ticket_error = ticket?.docking_error
-	if(!ticket || ticket_error)
+	if(!ticket || ticket.docking_error) // SOLARIS - pre_docked may return FALSE instead of a ticket
 		qdel(ticket)
 		docking = FALSE
-		return ticket_error || "Unknown docking error!"
+		return ticket?.docking_error || "Unknown docking error!"
 	if(!pre_dock(dock_target, ticket))
-		ticket_error = ticket?.docking_error
 		qdel(ticket)
 		docking = FALSE
-		return ticket_error
+		return "Docking failed!"
 
 	start_dock(dock_target, ticket)
 
