@@ -383,6 +383,11 @@
 
 		if(i < zap_strike)
 			sleep(1 SECONDS)
+
+	var/obj/machinery/power/cloak/cloaking_system = S.ship_modules[SHIPMODULE_CLOAKING]
+	if(cloaking_system?.cloak_active)
+		cloaking_system.set_cloak(FALSE)
+		cloaking_system.visible_message("[src] is overloaded by the electrical storm and shuts off!")
 // [/MANKIND-EDIT]
 
 
@@ -457,7 +462,7 @@
 
 /datum/overmap/event/nebula/process()
 	. = ..()
-	var/list/nearby_objects = get_nearby_overmap_objects()
+	var/list/nearby_objects = get_nearby_overmap_objects(include_docked = TRUE)
 	var/datum/virtual_level/ship_vlevel
 
 	for(var/datum/overmap/ship/controlled/ship as anything in affected_ships)
@@ -465,8 +470,7 @@
 
 			ship_vlevel = ship.shuttle_port.get_virtual_level()
 			affected_ships -= ship
-			ship.hidden = FALSE
-			ship.alter_token_appearance()
+			REMOVE_TRAIT(ship, TRAIT_CLOAKED, REF(src))
 
 			for(var/obj/machinery/light/light_to_mess in GLOB.machines)
 				if(light_to_mess.virtual_z() != ship_vlevel.id)
@@ -485,8 +489,7 @@
 	if(affected_ships.len == 0)
 		START_PROCESSING(SSfastprocess, src)
 	affected_ships += ship
-	ship.hidden = TRUE
-	ship.alter_token_appearance()
+	ADD_TRAIT(ship, TRAIT_CLOAKED, REF(src))
 
 
 	for(var/obj/machinery/light/light_to_mess in GLOB.machines)

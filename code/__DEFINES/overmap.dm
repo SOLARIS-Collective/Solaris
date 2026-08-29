@@ -157,4 +157,5 @@
 //All the 'shipmodules' a ship can have.
 #define SHIPMODULE_BSDRIVE "bluespace_drive"
 #define SHIPMODULE_HELMCONSOLE "helm_console"
+#define SHIPMODULE_CLOAKING "cloaking"
 

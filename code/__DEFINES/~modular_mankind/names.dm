@@ -24,6 +24,7 @@
 #define FACTION_FRONTIER "Frontiersmen Fleet"
 #define FACTION_FRONTIERSMEN "Frontiersmen Fleet"
 #define FACTION_PGF "Pan-Gezenan Federation"
+#define FACTION_ZOHIL "Zohil Explorat"
 
 // code/__DEFINES/mobfactions.dm
 // #define FACTION_PLAYER_SYNDICATE "playerSyndicate"
@@ -60,6 +61,7 @@
 #define PREFIX_CLIP list("CMSV", "CMGSV",)
 #define PREFIX_PGF list("PGF", "PGFMC", "PGFN",)
 #define PREFIX_RAMZI list("RCSV",)
+#define PREFIX_ZOHIL list("ZESV",)
 #define PREFIX_NONE list()
 
 GLOBAL_LIST_INIT(ship_faction_to_prefixes, list(

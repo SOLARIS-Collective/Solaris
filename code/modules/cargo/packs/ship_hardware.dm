@@ -1,6 +1,3 @@
-/* [MANKIND-DELETE] - Убираем инициализацию офовских предметов.
-	Разносим ресурсы по разным фракциям: "mod_celadon\outpost_console\code\supply_pack"
-
 /datum/supply_pack/ship_hardware
 	category = "Ship Hardware"
 	crate_type = /obj/structure/closet/crate/engineering
@@ -91,5 +88,3 @@
 	// currently unobtainable until someone adds a ship for zohil
 	faction = /datum/faction/zohil
 	faction_locked = TRUE
-
-[/MANKIND-DELETE] */

@@ -186,6 +186,8 @@
 			user.client.register_map_obj(current_ship.token.cam_screen)
 			user.client.register_map_obj(current_ship.token.cam_plane_master)
 			user.client.register_map_obj(current_ship.token.cam_background)
+			if(current_ship.cloaked_image)
+				user.client.images += current_ship.cloaked_image
 			current_ship.token.update_screen()
 
 		// Open UI
@@ -231,6 +233,8 @@
 			known = known_data["known"],
 			candock = available_dock,
 			scannable = istype(object, /datum/overmap/ship/controlled),
+			object_class = object.ship_class,
+			hidden = HAS_TRAIT(object, TRAIT_CLOAKED),
 			ref = REF(object)
 		)
 		.["otherInfo"] += list(other_data)
@@ -253,6 +257,11 @@
 	.["aiControls"] = allow_ai_control
 	.["burnDirection"] = current_ship.burn_direction
 	.["burnPercentage"] = current_ship.burn_percentage
+	.["cloaked"] = HAS_TRAIT_FROM(current_ship, TRAIT_CLOAKED, SHIPMODULE_CLOAKING)
+
+	var/obj/machinery/power/cloak/cloaking_system = current_ship.ship_modules[SHIPMODULE_CLOAKING]
+	if(cloaking_system)
+		.["cloakChargePercent"] = 100 * cloaking_system.current_charge / max(cloaking_system.max_charge, 1)
 	// [MANKIND-ADD] - MANKIND_OVERMAP_ARPA - Это вагабонд насрал
 	.["rotating"] = current_ship.rotating
 	// [/MANKIND-ADD]
@@ -310,6 +319,7 @@
 	)
 	.["canFly"] = TRUE
 	.["aiUser"] = issilicon(user)
+	.["hasCloaking"] = !isnull(current_ship.ship_modules[SHIPMODULE_CLOAKING])
 
 /obj/machinery/computer/helm/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
@@ -412,6 +422,12 @@
 			allow_ai_control = !allow_ai_control
 			say(allow_ai_control ? "AI Control has been enabled." : "AI Control is now disabled.")
 			return
+		if("toggle_cloak")
+			var/obj/machinery/power/cloak/cloaking_system = current_ship.ship_modules[SHIPMODULE_CLOAKING]
+			if(!cloaking_system)
+				return
+			cloaking_system.set_cloak(!cloaking_system.cloak_active)
+			return TRUE
 		// [MANKIND-ADD] - Signal S.O.S. - mod_celadon\wideband\code\signal.dm
 		if("send_sos")
 			if(!current_ship.SendSos(name = "[current_ship.name]", x = "[current_ship.x || current_ship.docked_to.x]", y = "[current_ship.y || current_ship.docked_to.y]"))
@@ -547,6 +563,8 @@
 		if(current_ship.burn_direction > BURN_NONE && !length(concurrent_users) && !viewer && is_living) // If accelerating with nobody else to stop it
 			say("Pilot absence detected, engaging acceleration safeties.")
 			current_ship.change_heading(BURN_NONE)
+		if(current_ship.cloaked_image)
+			user.client.images -= current_ship.cloaked_image
 
 	// Turn off the console
 	if(!length(concurrent_users) && is_living)
@@ -570,9 +588,20 @@
 	playsound(src, 'sound/effects/fuse.ogg')
 	current_ship.helm_locked = FALSE
 
-/obj/machinery/computer/helm/multitool_act(mob/living/user, obj/item/I)
+/obj/machinery/computer/helm/multitool_act(mob/living/user, obj/item/multitool/tool)
 	if(!Adjacent(user))
 		return
+
+	if(istype(tool, /obj/item/multitool) && isweakref(tool.buffer))
+		var/datum/weakref/buffer_ref = tool.buffer
+		var/obj/machinery/power/cloak/linked_cloak = buffer_ref.resolve()
+		if(istype(linked_cloak, /obj/machinery/power/cloak))
+			var/obj/machinery/power/cloak/current_cloak = current_ship.ship_modules[SHIPMODULE_CLOAKING]
+			if(current_cloak)
+				current_cloak.unlink_from_ship()
+			linked_cloak.link_to_ship(current_ship)
+			balloon_alert(user, "[linked_cloak.name] linked!")
+			return COMPONENT_BLOCK_TOOL_ATTACK
 
 	to_chat(user, span_warning("You begin to manually override the local database..."))
 	if(!do_after(user, 2 SECONDS, list(src)))
