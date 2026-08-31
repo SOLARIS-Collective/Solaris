@@ -39,8 +39,10 @@
 	var/ghost_type = tgui_input_list(usr, "Какого призрака ты хочешь выбрать?", "Изменение призрака", client.donator.DONATOR_GHOST_LIST, 30 SECONDS)
 	if(!ghost_type)
 		return
+	cut_overlays() // Срезаем скопированную внешность тела, чтобы VIP-скин полностью заменил её, а не накладывался поверх
 	icon = 'modular_mankind/_storage_icons/icons/assets/vip/ghost.dmi'
 	icon_state = ghost_type
+	has_mob_appearance = TRUE // Защищаем VIP-скин от перезаписи через update_icon()
 
 /mob/dead/observer/verb/ChangerColorGhost()
 	set category = "Ghost.VIP"
@@ -51,7 +53,19 @@
 		return
 
 	var pick_color = input(usr, "Light color", text("Input")) as color|null
+	if(isnull(pick_color))
+		return
 	color = pick_color
+
+/mob/dead/observer/verb/ResetGhost()
+	set category = "Ghost.VIP"
+	set name = "Reset Ghost"
+	set desc = "Сбрасывает внешний вид призрака до состояния вашего персонажа."
+	color = null
+	if(body_src)
+		set_appearance(body_src)
+	else
+		set_ghost_appearance()
 
 // MARK: Donate Loadout
 /datum/preferences
