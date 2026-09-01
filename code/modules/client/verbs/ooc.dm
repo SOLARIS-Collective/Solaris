@@ -29,10 +29,16 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 		return
 
 	msg = copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN)
-	var/raw_msg = msg
 
 	if(!msg)
-		return
+		msg = input(usr, "ooc \"text\"", "OOC", "") as text|null
+		if(isnull(msg))
+			return
+		msg = copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN)
+		if(!msg)
+			return
+
+	var/raw_msg = msg
 
 	msg = emoji_parse(msg)
 

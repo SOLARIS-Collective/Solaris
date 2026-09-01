@@ -211,6 +211,7 @@
 #include "code\__DEFINES\traits\sources.dm"
 #include "code\__DEFINES\traits\traits.dm"
 #include "code\__DEFINES\xyz\modular_defines.dm"
+#include "code\__DEFINES\ship_combat.dm"
 #include "code\__HELPERS\_auxtools_api.dm"
 #include "code\__HELPERS\auxcpu.dm"
 #include "code\__HELPERS\_lists.dm"
@@ -3202,6 +3203,14 @@
 #include "code\modules\overmap\overmap_inspect.dm"
 #include "code\modules\overmap\overmap_token.dm"
 #include "code\modules\overmap\overmap_turf.dm"
+#include "code\modules\overmap\combat\combat_event_manager.dm"
+#include "code\modules\overmap\combat\combat_system.dm"
+#include "code\modules\overmap\combat\fire_control_console.dm"
+#include "code\modules\overmap\combat\ship_damage_system.dm"
+#include "code\modules\overmap\combat\ship_default_stats.dm"
+#include "code\modules\overmap\combat\ship_integration.dm"
+#include "code\modules\overmap\combat\ship_projectile.dm"
+#include "code\modules\overmap\combat\ship_weapon.dm"
 
 #ifndef SOLARIS_GRID
 #include "code\modules\overmap\objects\dynamic_datum.dm"

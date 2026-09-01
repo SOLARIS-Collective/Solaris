@@ -10,9 +10,9 @@
 /turf/open/floor/plating,
 /area/ship/bridge)
 "au" = (
-/obj/structure/frame/computer,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/turf_decal/box,
+/obj/machinery/computer/ship/fire_control,
 /turf/open/floor/pod/light,
 /area/ship/bridge)
 "az" = (
@@ -110,6 +110,10 @@
 /obj/effect/turf_decal/industrial/warning,
 /turf/open/floor/mineral/plastitanium,
 /area/ship/cargo)
+"ee" = (
+/obj/machinery/computer/ship/compartments_monitor,
+/turf/template_noop,
+/area/template_noop)
 "eV" = (
 /obj/structure/cable,
 /obj/machinery/power/shuttle/engine/electric{
@@ -214,20 +218,6 @@
 "ml" = (
 /obj/machinery/holopad/emergency/command,
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/machinery/button/door{
-	dir = 4;
-	id = "pirateshutters";
-	name = "Window Lockdown";
-	pixel_x = -25;
-	pixel_y = -5
-	},
-/obj/machinery/button/door{
-	dir = 4;
-	id = "piratecargo";
-	name = "Blast Door Control";
-	pixel_x = -25;
-	pixel_y = 5
-	},
 /turf/open/floor/pod/light,
 /area/ship/bridge)
 "mJ" = (
@@ -576,12 +566,6 @@
 	},
 /obj/structure/railing,
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/item/radio/intercom/wideband/directional/east{
-	pixel_y = 7
-	},
-/obj/machinery/newscaster/directional/east{
-	pixel_y = -9
-	},
 /turf/open/floor/pod/light,
 /area/ship/bridge)
 "sv" = (
@@ -620,6 +604,11 @@
 	},
 /turf/open/floor/plating,
 /area/ship/crew)
+"sG" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/computer/ship/compartments_monitor,
+/turf/open/floor/pod/light,
+/area/ship/bridge)
 "sI" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer2,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -879,6 +868,14 @@
 	},
 /turf/open/floor/pod/light,
 /area/ship/security)
+"zu" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/ship_weapon/energy_cannon{
+	pixel_y = -29;
+	pixel_x = -23
+	},
+/turf/open/floor/pod/light,
+/area/ship/bridge)
 "zR" = (
 /obj/structure/rack,
 /obj/item/storage/firstaid/brute{
@@ -928,6 +925,14 @@
 /area/ship/crew)
 "Bb" = (
 /turf/closed/wall/mineral/plastitanium,
+/area/ship/bridge)
+"Be" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/ship_weapon/missile_launcher{
+	pixel_y = -33;
+	pixel_x = -20
+	},
+/turf/open/floor/pod/light,
 /area/ship/bridge)
 "Bi" = (
 /obj/structure/chair/plastic{
@@ -1010,6 +1015,28 @@
 /obj/item/pizzabox/mushroom,
 /turf/open/floor/pod/light,
 /area/ship/crew)
+"Co" = (
+/obj/machinery/button/door{
+	dir = 4;
+	id = "piratecargo";
+	name = "Blast Door Control";
+	pixel_x = -25;
+	pixel_y = 5
+	},
+/obj/machinery/button/door{
+	dir = 4;
+	id = "pirateshutters";
+	name = "Window Lockdown";
+	pixel_x = -25;
+	pixel_y = -5
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/ship_weapon/kinetic_cannon{
+	pixel_y = -35;
+	pixel_x = -11
+	},
+/turf/open/floor/pod/light,
+/area/ship/bridge)
 "Cx" = (
 /obj/structure/curtain/bounty,
 /obj/item/bedsheet/brown,
@@ -1553,6 +1580,14 @@
 	},
 /turf/open/floor/plating,
 /area/ship/hallway/port)
+"Qp" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/ship_weapon/laser_cannon{
+	pixel_y = -31;
+	pixel_x = -27
+	},
+/turf/open/floor/pod/light,
+/area/ship/bridge)
 "QO" = (
 /obj/machinery/door/airlock/maintenance_hatch{
 	dir = 4;
@@ -1928,6 +1963,16 @@
 	},
 /turf/open/floor/mineral/plastitanium,
 /area/ship/cargo)
+"Xs" = (
+/obj/item/radio/intercom/wideband/directional/east{
+	pixel_y = 7
+	},
+/obj/machinery/newscaster/directional/east{
+	pixel_y = -9
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/pod/light,
+/area/ship/bridge)
 "Xx" = (
 /obj/machinery/power/smes/engineering{
 	charge = 1e+006
@@ -2136,7 +2181,7 @@ XJ
 (5,1,1) = {"
 XJ
 XJ
-XJ
+ee
 XJ
 XJ
 fG
@@ -2190,10 +2235,10 @@ XJ
 XJ
 "}
 (7,1,1) = {"
-XJ
-XJ
-XJ
-XJ
+vN
+ad
+Bb
+ad
 Bb
 hb
 tY
@@ -2218,10 +2263,10 @@ Fx
 XJ
 "}
 (8,1,1) = {"
-vN
-ad
-Bb
-ad
+XB
+Qp
+Co
+zu
 Bb
 iA
 Ey
@@ -2302,10 +2347,10 @@ TP
 XJ
 "}
 (11,1,1) = {"
-vN
-ad
-Bb
-ad
+XB
+sG
+Xs
+Be
 Bb
 iA
 zi
@@ -2330,10 +2375,10 @@ mg
 XJ
 "}
 (12,1,1) = {"
-XJ
-XJ
-XJ
-XJ
+vN
+ad
+Bb
+ad
 Bb
 hb
 br
