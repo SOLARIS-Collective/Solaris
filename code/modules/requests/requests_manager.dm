@@ -65,7 +65,7 @@ GLOBAL_DATUM_INIT(requests, /datum/request_manager, new)
 	request_for_client(C, REQUEST_PRAYER, message)
 	for(var/client/admin in GLOB.admins)
 		if(is_chaplain && admin.prefs.chat_toggles & CHAT_PRAYER && admin.prefs.toggles & SOUND_PRAYERS)
-			SEND_SOUND(admin, sound('sound/effects/pray.ogg'))
+			admin.mob?.send_sound_scaled(sound('sound/effects/pray.ogg'), FS_PRAYERS)
 
 /**
  * Creates a request for a Centcom message
@@ -108,7 +108,7 @@ GLOBAL_DATUM_INIT(requests, /datum/request_manager, new)
 	request_for_client(requester, REQUEST_FAX, message, additional_info)
 	for(var/client/admin in GLOB.admins)
 		if(admin.prefs.chat_toggles & CHAT_PRAYER && admin.prefs.toggles & SOUND_PRAYERS)
-			SEND_SOUND(admin, sound('sound/misc/mail.ogg'))
+			admin.mob?.send_sound_scaled(sound('sound/misc/mail.ogg'), FS_ADMIN)
 
 /**
  * Creates a request and registers the request with all necessary internal tracking lists

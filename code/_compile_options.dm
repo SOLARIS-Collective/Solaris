@@ -112,3 +112,11 @@
 #endif
 
 #define SOLARIS_GRID
+
+// [SOLARIS-ADD] - HANGAR_BUILD - Требует приватного подмодуля
+// modular_solaris/_omni_access (git submodule update --init modular_solaris/_omni_access).
+// Включает хук в outpost.ensure_hangar -> solaris_ensure_hangar_async()
+// (фоновая загрузка ангарных боксов через SShangar_build).
+// Если закомментировать - собирается без приватного модуля, используются
+// старые процедуры (синхронный make_hangar в калстеке стыковки).
+#define HANGAR_BUILD_ASYNC

@@ -448,7 +448,7 @@ block( \
 /proc/showCandidatePollWindow(mob/M, poll_time, Question, list/candidates, ignore_category, time_passed, flashwindow = TRUE)
 	set waitfor = 0
 
-	SEND_SOUND(M, 'sound/misc/notice2.ogg') //Alerting them to their consideration
+	M.send_sound_scaled(sound('sound/misc/notice2.ogg'), FS_GENERAL) //Alerting them to their consideration
 	if(flashwindow)
 		window_flash(M.client)
 	var/list/answers = ignore_category ? list("Yes", "No", "Never for this round") : list("Yes", "No")
@@ -457,7 +457,7 @@ block( \
 			to_chat(M, span_notice("Choice registered: Yes."))
 			if(time_passed + poll_time <= world.time)
 				to_chat(M, span_danger("Sorry, you answered too late to be considered!"))
-				SEND_SOUND(M, 'sound/machines/buzz-sigh.ogg')
+				M.send_sound_scaled(sound('sound/machines/buzz-sigh.ogg'), FS_GENERAL)
 				candidates -= M
 			else
 				candidates += M

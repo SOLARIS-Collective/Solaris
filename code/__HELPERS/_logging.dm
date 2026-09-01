@@ -239,6 +239,18 @@
 	WRITE_LOG(GLOB.world_planets_log, "[time_stamp()] [text]")
 	SEND_TEXT(world.log, text)
 
+// [SOLARIS-ADD] - Диагностика затыков генерации: состояние подсистем в момент
+// провала (что именно успело накопиться). Живёт в ядре, потому что на неё
+// опираются и приватные вызовы planet_grid.dm, и код ядра _MapGenerator.dm
+// (post_generation/generate_turfs/populate_turfs) - публичная сборка без
+// приватного модуля обязана компилироваться.
+/proc/log_grid_stall(gap_ds, detail)
+	var/garbage_total = 0
+	for(var/level in 1 to length(SSgarbage?.queues))
+		garbage_total += length(SSgarbage.queues[level])
+	log_planet("GRID WATCHDOG: провал [gap_ds/10]s в [detail] | tick_usage=[world.tick_usage]% smooth_q=[length(SSicon_smooth?.smooth_queue)] garbage=[garbage_total]", FALSE)
+// [/SOLARIS-ADD]
+
 /* Log to both DD and the logfile. */
 /proc/log_world(text)
 #ifdef USE_CUSTOM_ERROR_HANDLER

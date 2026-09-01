@@ -16,7 +16,7 @@
 	log_mentor("MENTORHELP: [key_name_mentor(src, 0, 0, 0, 0)]: [msg]")
 
 	for(var/client/X in GLOB.mentors)
-		SEND_SOUND(X, 'sound/items/bikehorn.ogg')
+		X.mob?.send_sound_scaled(sound('sound/items/bikehorn.ogg'), FS_ADMIN)
 		to_chat(X, mentor_msg)
 
 	to_chat(src, span_mentornotice("PM to-<b>Mentors</b>: [msg]"))

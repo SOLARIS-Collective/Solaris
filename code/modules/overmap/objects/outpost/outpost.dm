@@ -376,7 +376,14 @@
 
 	// we didn't find a valid hangar, so we have to make one
 	var/datum/hangar_shaft/chosen_shaft = pick(shaft_datums)
+	// [SOLARIS-ADD] - HANGAR_BUILD
+	// Без #define HANGAR_BUILD_ASYNC в code/_compile_options.dm остаётся старая процедура
+#ifdef HANGAR_BUILD_ASYNC
+	return solaris_ensure_hangar_async(h_template, chosen_shaft)
+#else
 	return make_hangar(h_template, chosen_shaft)
+#endif
+	// [/SOLARIS-ADD]
 
 /datum/overmap/outpost/proc/make_hangar(datum/map_template/outpost/hangar/h_template, datum/hangar_shaft/shaft)
 	RETURN_TYPE(/obj/docking_port/stationary)

@@ -318,9 +318,9 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 		var/atom/movable/virtualspeaker/virt = speaker
 		//Play the walkie sound if this mob is speaking, and don't apply cooldown
 		if(virt.source == src)
-			playsound_local(get_turf(speaker), "sound/effects/walkietalkie.ogg", 20, FALSE)
+			playsound_local(get_turf(speaker), "sound/effects/walkietalkie.ogg", 20, FALSE, sound_flag = FS_RADIO)
 		else if(COOLDOWN_FINISHED(src, radio_crackle_cooldown))
-			playsound_local(get_turf(speaker), radio_sound, 20, FALSE)
+			playsound_local(get_turf(speaker), radio_sound, 20, FALSE, sound_flag = FS_RADIO)
 		//Always start it so that it only crackles when there hasn't been a message in a while
 		COOLDOWN_START(src, radio_crackle_cooldown, 5 SECONDS)
 

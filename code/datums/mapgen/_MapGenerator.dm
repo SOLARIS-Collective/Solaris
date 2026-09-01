@@ -6,6 +6,8 @@
 	return
 
 /// Goes through the planet's turfs again, for touchups or more importantly, greebles.
+/// The work is split into per-turf virtuals so it can also be driven in slices by
+/// SSplanetgen instead of a long batched loop inside the caller's callstack.
 /datum/map_generator/proc/post_generation(list/turf/turfs)
 	var/start_time = REALTIMEOFDAY
 	var/message = "MAPGEN: MAPGEN REF [REF(src)] ([type]) STARTING POST GEN"
@@ -16,13 +18,20 @@
 	var/watch_last = REALTIMEOFDAY
 	var/watch_i = 0
 	for(var/turf/gen_turf as anything in turfs)
-		gen_turf.AfterChange(CHANGETURF_IGNORE_AIR)
+		pre_post_generation_turf(gen_turf)
 
-		QUEUE_SMOOTH(gen_turf)
-		QUEUE_SMOOTH_NEIGHBORS(gen_turf)
+		watch_i++
+		if(REALTIMEOFDAY - watch_last > 20)
+			log_grid_stall(REALTIMEOFDAY - watch_last, "post_generation (pre) ([gen_turf.x],[gen_turf.y],[gen_turf.z]) #[watch_i]")
+			watch_last = REALTIMEOFDAY
 
-		for(var/turf/open/space/adj in RANGE_TURFS(1, gen_turf))
-			adj.check_starlight(gen_turf)
+		// CHECK_TICK here is fine -- we are assuming that the turfs we're generating are staying relatively constant
+		CHECK_TICK
+
+	watch_last = REALTIMEOFDAY
+	watch_i = 0
+	for(var/turf/gen_turf as anything in turfs)
+		post_generation_turf(gen_turf)
 
 		watch_i++
 		if(REALTIMEOFDAY - watch_last > 20)
@@ -36,6 +45,25 @@
 	log_shuttle(message)
 	log_world(message)
 	return
+
+/// Per-turf pre-pass of post_generation: runs for every generated turf before any
+/// universal post step (planet_generators trigger their greeble spawners here).
+/// Base implementation does nothing.
+/datum/map_generator/proc/pre_post_generation_turf(turf/gen_turf)
+	return
+
+/// Per-turf post-generation step: refreshes the turf state after all its contents
+/// have been spawned, queues icon smoothing and rechecks starlight of neighbouring
+/// open-space turfs. The universal step, shared by batched post_generation and the
+/// chunked SSplanetgen path.
+/datum/map_generator/proc/post_generation_turf(turf/gen_turf)
+	gen_turf.AfterChange(CHANGETURF_IGNORE_AIR)
+
+	QUEUE_SMOOTH(gen_turf)
+	QUEUE_SMOOTH_NEIGHBORS(gen_turf)
+
+	for(var/turf/open/space/adj in RANGE_TURFS(1, gen_turf))
+		adj.check_starlight(gen_turf)
 
 /// Given a list of turfs, asynchronously changes a list of turfs and their areas.
 /// Does not fill them with objects; this should be done with populate_turfs.

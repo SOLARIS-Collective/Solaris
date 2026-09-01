@@ -157,7 +157,9 @@
 
 		to_chat(M, "[span_minorannounce("<font color = red>[title]</font color><BR>[message]")]<BR>[from ? "[span_alert("-[from.name] ([from.job])")]" : null]")
 		if(M.client.prefs.toggles & SOUND_ANNOUNCEMENTS)
-			SEND_SOUND(M, S)
+			// [MANKIND-EDIT] - MANKIND_FIXES - Применяем масштабирование громкости по категории Announcements
+			M.send_sound_scaled(S, FS_ANNOUNCEMENTS)
+			// [/MANKIND-EDIT]
 
 /proc/create_distress_beacon(datum/overmap/ship/ship, distress_message)
 	if(!ship)
@@ -229,9 +231,9 @@
 			to_chat(M, html)
 			if(M.client.prefs.toggles & SOUND_ANNOUNCEMENTS)
 				if(raised)
-					SEND_SOUND(M, sound('sound/misc/notice1.ogg'))
+					M.send_sound_scaled(sound('sound/misc/notice1.ogg'), FS_ANNOUNCEMENTS)
 				else
-					SEND_SOUND(M, sound('sound/misc/notice2.ogg'))
+					M.send_sound_scaled(sound('sound/misc/notice2.ogg'), FS_ANNOUNCEMENTS)
 
 /proc/announce_captain_arrival(displayed_rank, captain_name)
 	if(!displayed_rank)
@@ -244,7 +246,7 @@
 		if(!isnewplayer(M) && M.can_hear())
 			to_chat(M, html)
 			if(M.client.prefs.toggles & SOUND_ANNOUNCEMENTS)
-				SEND_SOUND(M, sound('sound/misc/notice2.ogg'))
+				M.send_sound_scaled(sound('sound/misc/notice2.ogg'), FS_ANNOUNCEMENTS)
 
 /proc/build_ai_upload_notice(remote_access_restored = FALSE)
 	if(remote_access_restored)

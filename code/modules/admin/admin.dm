@@ -630,7 +630,7 @@
 		SSticker.start_immediately = FALSE
 		SSticker.SetTimeLeft(1800)
 		to_chat(world, "<b>The game will start in 180 seconds.</b>")
-		SEND_SOUND(world, sound('sound/ai/attention.ogg'))
+		sound_to_playing_players('sound/ai/attention.ogg', 100, sound_flag = FS_ANNOUNCEMENTS)
 		message_admins("<font color='blue'>[usr.key] has cancelled immediate game start. Game will start in 180 seconds.</font>")
 		log_admin("[usr.key] has cancelled immediate game start.")
 	else
@@ -694,7 +694,7 @@
 			log_admin("[key_name(usr)] delayed the round start.")
 		else
 			to_chat(world, "<b>The game will start in [DisplayTimeText(newtime)].</b>", confidential = TRUE)
-			SEND_SOUND(world, sound('sound/ai/attention.ogg'))
+			sound_to_playing_players('sound/ai/attention.ogg', 100, sound_flag = FS_ANNOUNCEMENTS)
 			log_admin("[key_name(usr)] set the pre-game delay to [DisplayTimeText(newtime)].")
 			log_mankind_admin("ADMIN: [key_name(usr)] set the pre-game delay to [DisplayTimeText(newtime)].") // [MANKIND_ADD] - logging admin actions.
 		BLACKBOX_LOG_ADMIN_VERB("Delay Game Start")

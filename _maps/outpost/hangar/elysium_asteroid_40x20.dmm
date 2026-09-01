@@ -328,12 +328,6 @@
 "ie" = (
 /turf/closed/indestructible/reinforced,
 /area/hangar)
-"iw" = (
-/obj/item/banner/elysium/mundane,
-/turf/open/floor/plasteel/dark{
-	planetary_atmos = 1
-	},
-/area/hangar)
 "iM" = (
 /obj/structure/railing{
 	layer = 3.1
@@ -1751,15 +1745,6 @@
 	layer = 3.1
 	},
 /turf/open/floor/plasteel/grimy,
-/area/hangar)
-"Jz" = (
-/obj/item/banner/elysium/mundane,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark{
-	planetary_atmos = 1
-	},
 /area/hangar)
 "JF" = (
 /obj/structure/catwalk/over/plated_catwalk,
@@ -3582,7 +3567,7 @@ NC
 Lc
 au
 au
-iw
+QC
 yO
 pJ
 pJ
@@ -3802,7 +3787,7 @@ ET
 au
 au
 au
-Jz
+Gl
 Ue
 pJ
 pJ

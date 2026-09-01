@@ -224,7 +224,7 @@
 	// [SOLARIS-ADD] - SOLARIS_W_TTS_VOICES
 	// Add observers who have ghost voice enabled.
 	for(var/mob/dead/observer/V in GLOB.player_list)
-		if(V.client.prefs.chat_toggles & SOUND_THE_VOICE)
+		if(V.client.prefs.toggles & SOUND_THE_VOICE)
 			receive |= V
 	// [/SOLARIS-ADD]
 
